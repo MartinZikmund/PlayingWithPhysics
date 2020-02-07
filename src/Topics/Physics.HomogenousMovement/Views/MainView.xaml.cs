@@ -32,6 +32,10 @@ namespace Physics.HomogenousMovement
         public MainView()
         {
             this.InitializeComponent();
+            InkCanvas.InkPresenter.InputDeviceTypes =
+                 Windows.UI.Core.CoreInputDeviceTypes.Mouse |
+                 Windows.UI.Core.CoreInputDeviceTypes.Pen |
+                 Windows.UI.Core.CoreInputDeviceTypes.Touch;
             _canvasController = new ThrowingCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
             this.Unloaded += MainView_Unloaded;

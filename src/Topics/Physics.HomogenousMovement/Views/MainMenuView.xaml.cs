@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Physics.Shared
+namespace Physics.HomogenousMovement.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -17,8 +17,20 @@ namespace Physics.Shared
         public MainMenuView()
         {
             this.InitializeComponent();
-
+            VideoBackground.MediaPlayer.MediaOpened += MediaPlayer_MediaOpened;
             DataContextChanged += MainMenuView_DataContextChanged;
+            RootGrid.Opacity = 0;
+            RootGrid.OpacityTransition = new Windows.UI.Xaml.ScalarTransition()
+            {
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
+        }
+
+        private async void MediaPlayer_MediaOpened(Windows.Media.Playback.MediaPlayer sender, object args)
+        {
+            await this.Dispatcher.RunAsync(
+                Windows.UI.Core.CoreDispatcherPriority.Normal, 
+                () => RootGrid.Opacity = 1);
         }
 
         public MainMenuViewModel Model { get; private set; }

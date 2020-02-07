@@ -151,9 +151,6 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\DifficultyViewModel.cs" />
     <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\MainMenuView.xaml.cs">
-      <DependentUpon>MainMenuView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <EmbeddedResource Include="Properties\Physics.Shared.rd.xml" />
@@ -193,13 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\hratky_logo.svg" />
     <Content Include="Assets\Icons\DifficultyAdvanced.png" />
     <Content Include="Assets\Icons\DifficultyBasic.png" />
     <Content Include="Assets\Icons\DifficultyExpert.png" />
