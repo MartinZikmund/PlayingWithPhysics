@@ -27,7 +27,7 @@ namespace Physics.Shared.Infrastructure.Setup
         {
             var list = new List<Assembly>();
             list.AddRange(base.GetViewAssemblies());
-            list.Add(typeof(MainMenuView).Assembly);
+            list.Add(typeof(DefaultAppSetup<>).Assembly);
             return list.ToArray();
         }
 

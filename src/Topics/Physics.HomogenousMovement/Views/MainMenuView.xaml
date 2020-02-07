@@ -1,12 +1,11 @@
 ﻿<views:MvxWindowsPage
-    x:Class="Physics.Shared.MainMenuView"
+    x:Class="Physics.HomogenousMovement.Views.MainMenuView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-    xmlns:xf="using:XamlFlair"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="#4299dd"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -19,29 +18,27 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Padding="12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock
-            Margin="12"
-            Grid.Row="0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            FontWeight="Bold"
-            Foreground="#0597F2"
-            Style="{ThemeResource HeaderTextBlockStyle}"
-            Text="HRÁTKY S FYZIKOU" />
-        <Grid HorizontalAlignment="Center" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="64" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/SmallTile.png" />
-            <TextBlock
+    <Grid>
+        <Image Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid x:Name="RootGrid">            
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/Videos/menubackground.mp4" Grid.RowSpan="4" />
+
+            <Grid Padding="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Height="150" Source="ms-appx:///Physics.Shared/Assets/hratky_logo.svg" />
+                <Grid HorizontalAlignment="Center" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="64" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/SmallTile.png" />
+                    <TextBlock
             Margin="12"
             Grid.Column="1"
             VerticalAlignment="Top"
@@ -49,70 +46,72 @@
             TextWrapping="Wrap"
             Style="{ThemeResource SubheaderTextBlockStyle}"
             Text="Pohyby v homogenním tíhovém poli Země" />
-        </Grid>
-        <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch"
+                </Grid>
+                <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch"
             VerticalAlignment="Center">
-            <Grid
+                    <Grid
                 x:Name="ButtonGrid"        
                 Margin="12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Button 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button 
                     Grid.Column="0" 
                     HorizontalAlignment="Stretch" 
                     x:Name="FirstDifficulty" 
                     Command="{x:Bind Model.GoToEasyCommand}">
-                    <Button.Content>
-                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                            <BitmapIcon
+                            <Button.Content>
+                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                    <BitmapIcon
                                 Width="128"
                                 Margin="0,0,12,0"
                                 UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyBasic.png" />
-                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Základní obtížnost" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Základní obtížnost" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
                     x:Name="SecondDifficulty"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.GoToAdvancedCommand}">
-                    <Button.Content>
-                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                            <BitmapIcon
+                            <Button.Content>
+                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                    <BitmapIcon
                                 Width="128"
                                 Margin="0,0,12,0"
                                 UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyExpert.png" />
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Pokročilá obtížnost" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Pokročilá obtížnost" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
                     x:Name="ThirdDifficulty"
                     Grid.Column="2"
                     Command="{x:Bind Model.OpenStudyTextCommand}"
                     HorizontalAlignment="Stretch">
-                    <Button.Content>
-                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                            <BitmapIcon
+                            <Button.Content>
+                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                    <BitmapIcon
                                 Width="128"
                                 Margin="0,0,12,0"
                                 UriSource="ms-appx:///Physics.Shared/Assets/Icons/StudyText.png" />
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Studijní text" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Studijní text" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </ScrollViewer>
+                <TextBlock Grid.Row="4" Foreground="Black" HorizontalAlignment="Right" Text="{x:Bind Model.Version}"></TextBlock>
             </Grid>
-        </ScrollViewer>
-        <TextBlock Grid.Row="4" Foreground="Gray" HorizontalAlignment="Right" Text="{x:Bind Model.Version}"></TextBlock>
+        </Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
@@ -120,6 +119,8 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="VideoBackground.VerticalAlignment" Value="Bottom" />
+                        <Setter Target="VideoBackground.HorizontalAlignment" Value="Center" />
                         <Setter Target="FirstDifficulty.(Grid.ColumnSpan)" Value="3" />
                         <Setter Target="SecondDifficulty.(Grid.Column)" Value="0" />
                         <Setter Target="SecondDifficulty.(Grid.Row)" Value="1" />
@@ -134,6 +135,7 @@
                         <AdaptiveTrigger MinWindowWidth="768" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="VideoBackground.VerticalAlignment" Value="Center" />
                         <Setter Target="FirstDifficulty.(Grid.ColumnSpan)" Value="1" />
                         <Setter Target="SecondDifficulty.(Grid.Column)" Value="1" />
                         <Setter Target="SecondDifficulty.(Grid.ColumnSpan)" Value="1" />

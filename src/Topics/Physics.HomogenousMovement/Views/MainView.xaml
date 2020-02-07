@@ -275,8 +275,8 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Trajektorie" />
-                            <CheckBox Grid.Row="1" IsChecked="{x:Bind Model.DrawTrajectoriesContinously, Mode=TwoWay}" Content="Postupné vykreslování" />
+                            <!--<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Trajektorie" />-->
+                            <!--<CheckBox Grid.Row="1" IsChecked="{x:Bind Model.DrawTrajectoriesContinously, Mode=TwoWay}" Content="Postupné vykreslování" />-->
                             <Button
                                     Grid.Row="2"
                                     Margin="4"
@@ -360,6 +360,11 @@
                 x:Name="AnimatedCanvas"
                 Grid.Column="1"
                 ClearColor="#1f1f1f" />
+            <InkCanvas x:Name="InkCanvas" />
+            <InkToolbar x:Name="inkToolbar"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                TargetInkCanvas="{x:Bind InkCanvas}" />
             <Grid Grid.Row="1" Padding="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
