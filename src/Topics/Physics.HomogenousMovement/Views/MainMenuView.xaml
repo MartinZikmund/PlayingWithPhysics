@@ -19,9 +19,9 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Image Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Grid x:Name="RootGrid">            
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/Videos/menubackground.mp4" Grid.RowSpan="4" />
+        <Image x:Name="Splash" Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid x:Name="RootGrid">
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Source="ms-appx:///Assets/Videos/tema_back_v01.mp4" Grid.RowSpan="4"/>
 
             <Grid Padding="12">
                 <Grid.RowDefinitions>
@@ -39,19 +39,18 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/SmallTile.png" />
                     <TextBlock
-            Margin="12"
-            Grid.Column="1"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            TextWrapping="Wrap"
-            Style="{ThemeResource SubheaderTextBlockStyle}"
-            Text="Pohyby v homogenním tíhovém poli Země" />
+                    Margin="12"
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    TextWrapping="Wrap"
+                    Style="{ThemeResource SubheaderTextBlockStyle}"
+                    Text="Pohyby v homogenním tíhovém poli Země" />
                 </Grid>
-                <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch"
-            VerticalAlignment="Center">
+                <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Grid
-                x:Name="ButtonGrid"        
-                Margin="12">
+                    x:Name="ButtonGrid"        
+                    Margin="12">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -63,16 +62,16 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Button 
-                    Grid.Column="0" 
-                    HorizontalAlignment="Stretch" 
-                    x:Name="FirstDifficulty" 
-                    Command="{x:Bind Model.GoToEasyCommand}">
+                        Grid.Column="0" 
+                        HorizontalAlignment="Stretch" 
+                        x:Name="FirstDifficulty" 
+                        Command="{x:Bind Model.GoToEasyCommand}">
                             <Button.Content>
                                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                                     <BitmapIcon
-                                Width="128"
-                                Margin="0,0,12,0"
-                                UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyBasic.png" />
+                                    Width="128"
+                                    Margin="0,0,12,0"
+                                    UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyBasic.png" />
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Základní obtížnost" />
                                 </StackPanel>
                             </Button.Content>

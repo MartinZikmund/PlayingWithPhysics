@@ -21,7 +21,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>7AC93334749EEEB0289BF528DD24B63433546CE7</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>118C59D1C93A333E8EA8DE9A01A88D75FDEE146B</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -217,6 +217,7 @@
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\Videos\menubackground.mp4" />
+    <Content Include="Assets\Videos\tema_back_v01.mp4" />
     <Content Include="Assets\volnypad.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
