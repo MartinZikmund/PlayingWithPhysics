@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{42CB8100-9E7C-4F4F-9A99-1A1EC746AB09}</ProjectGuid>
+    <ProjectGuid>{345BA2CF-EA5C-4081-B5B4-E9DEED03DBF4}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Physics.InclinedPlane</RootNamespace>
-    <AssemblyName>Physics.InclinedPlane</AssemblyName>
+    <RootNamespace>Physics.HomogenousParticle</RootNamespace>
+    <AssemblyName>Physics.HomogenousParticle</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,10 +119,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolToVelocityVariantConverter.cs" />
     <Compile Include="Core\AppStart.cs" />
     <Compile Include="Core\CrossApp.cs" />
     <Compile Include="Core\CrossSetup.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
+    <Compile Include="Models\VelocityVariant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -170,23 +172,24 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.3.191211002</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross">
+      <Version>6.4.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.csproj">
+      <Project>{80C65FA4-C269-470B-9499-0D26A549E2FA}</Project>
+      <Name>Physics.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Physics.HomongenousParticle.Logic\Physics.HomongenousParticle.Logic.csproj">
+      <Project>{85553a30-6c09-40f6-8caf-9ce69f08b2c4}</Project>
+      <Name>Physics.HomongenousParticle.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj">
-      <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
-      <Name>Physics.Shared.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.csproj">
-      <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
-      <Name>Physics.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

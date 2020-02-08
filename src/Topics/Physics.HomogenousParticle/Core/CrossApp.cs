@@ -4,7 +4,7 @@ using MvvmCross.Localization;
 using MvvmCross.ViewModels;
 using Physics.Shared.ViewModels;
 
-namespace Physics.InclinedPlane.Core
+namespace Physics.HomogenousParticle.Core
 {
     public class CrossApp : MvxApplication
     {

@@ -1,4 +1,4 @@
-﻿using Physics.InclinedPlane.ViewModels;
+﻿using Physics.HomogenousParticle.ViewModels;
 using Physics.Shared.Views;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Physics.InclinedPlane.Views
+namespace Physics.HomogenousParticle.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -27,13 +27,14 @@ namespace Physics.InclinedPlane.Views
         public MainView()
         {
             this.InitializeComponent();
+            DataContextChanged += MainView_DataContextChanged;
         }
 
-
-        private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void MainView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             Model = (MainViewModel)args.NewValue;
         }
+
         public MainViewModel Model { get; private set; }
     }
 }

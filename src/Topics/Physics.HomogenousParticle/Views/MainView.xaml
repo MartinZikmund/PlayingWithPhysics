@@ -1,0 +1,67 @@
+﻿<views:BaseView
+    xmlns:views="using:Physics.Shared.Views"
+    x:Class="Physics.HomogenousParticle.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.HomogenousParticle.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:converters="using:Physics.HomogenousParticle.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <views:BaseView.Resources>
+        <converters:BoolToVelocityVariantConverter x:Key="BoolToVelocityVariantConverter"></converters:BoolToVelocityVariantConverter>
+    </views:BaseView.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="{ThemeResource NavigationViewExpandedPaneBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="8" Grid.Row="0" x:Uid="ChooseMotion" Text="Vyber pohyb" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <Border Grid.Row="1" Margin="0,12,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <StackPanel Margin="12,0,8,0" Orientation="Vertical">
+                        <winui:RadioButtons>
+                            <winui:RadioButtons.Resources>
+                                <Style TargetType="RadioButton">
+                                    <Setter Property="Padding" Value="12,0,0,4" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                </Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                </Style>
+                            </winui:RadioButtons.Resources>
+
+                            <RadioButton IsChecked="{x:Bind Model.Variant, Converter={StaticResource BoolToVelocityVariantConverter}, ConverterParameter=Zero, Mode=TwoWay}">
+                                <RadioButton.Content>
+                                    <TextBlock Text="v = 0"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+                            <RadioButton IsChecked="{x:Bind Model.Variant, Converter={StaticResource BoolToVelocityVariantConverter}, ConverterParameter=Parallel, Mode=TwoWay}">
+                                <RadioButton.Content>
+                                    <TextBlock Text="v || B"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+                            <RadioButton IsChecked="{x:Bind Model.Variant, Converter={StaticResource BoolToVelocityVariantConverter}, ConverterParameter=Perpendicular, Mode=TwoWay}">
+                                <RadioButton.Content>
+                                    <TextBlock Text="v &#x27c2; B"/>
+                                </RadioButton.Content>
+                            </RadioButton>
+                        </winui:RadioButtons>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+        <TextBlock Grid.Column="1" Text="Drawing here" FontSize="100"></TextBlock>
+    </Grid>
+</views:BaseView>
