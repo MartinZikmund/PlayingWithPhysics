@@ -22,12 +22,12 @@ using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace Physics.HomogenousMovement.Rendering
 {
-    public class ThrowingCanvasController : BaseCanvasController, IDisposable
+    public class MotioningCanvasController : BaseCanvasController, IDisposable
     {
         private const int SimulationPadding = 52;
         private const int SimulationLeftSidePadding = 80;
         private const int BallRadius = 5;
-        private ThrowInfo[] _throws = Array.Empty<ThrowInfo>();
+        private MotionInfo[] _throws = Array.Empty<MotionInfo>();
         private TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
         private PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
 
@@ -44,7 +44,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         private ICanvasBrush _ballBrush;
 
-        public ThrowingCanvasController(CanvasAnimatedControl canvasAnimatedControl)
+        public MotioningCanvasController(CanvasAnimatedControl canvasAnimatedControl)
             : base(canvasAnimatedControl)
         {
         }
@@ -61,7 +61,7 @@ namespace Physics.HomogenousMovement.Rendering
         private RectangleF _simulationBoundsInPixels = new RectangleF();
         private float _meterSizeInPixels = 0;
 
-        public void StartNewSimulation(bool drawTrajectoriesContinuously, params ThrowInfo[] throws)
+        public void StartNewSimulation(bool drawTrajectoriesContinuously, params MotionInfo[] throws)
         {
             if (throws is null)
             {
@@ -94,12 +94,17 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void CalculateMaxima()
         {
-            var minX = 0f;
+            var minX = float.MaxValue;
             var maxX = 0f;
             foreach (var trajectory in _trajectories)
             {
                 maxX = Math.Max(trajectory.MaxX, maxX);
             }
+            foreach (var motion in _throws)
+            {
+                minX = Math.Min(motion.Origin.X, minX);
+            }
+            minX = Math.Min(minX, maxX);
             var minY = 0f;
             var maxY = 0f;
             foreach (var trajectory in _trajectories)
@@ -113,7 +118,7 @@ namespace Physics.HomogenousMovement.Rendering
         {
             if (_trajectories.Length == 0) return;
 
-            var totalSeconds = (float)SimulationTime.TotalTime.TotalSeconds;            
+            var totalSeconds = (float)SimulationTime.TotalTime.TotalSeconds;
 
             _simulationBoundsInPixels = new RectangleF(
                 SimulationLeftSidePadding,
@@ -180,7 +185,7 @@ namespace Physics.HomogenousMovement.Rendering
                     args.DrawingSession.DrawLine(
                         new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y) - BallRadius),
                         new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y) - BallRadius),
-                        Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color));
+                        Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color), 2);
 
                     lastPoint = currentPoint;
                     if (shouldEnd)

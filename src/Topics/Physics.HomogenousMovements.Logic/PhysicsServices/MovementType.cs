@@ -9,8 +9,8 @@ namespace Physics.HomogenousMovement.PhysicsServices
     public enum MovementType
     {
         FreeFall,
-        UpwardThrow,
-        ForwardThrow,
+        UpwardMotion,
+        ForwardMotion,
         ProjectileMotion
     }
 }

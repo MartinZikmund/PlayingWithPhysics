@@ -9,7 +9,7 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
         [Fact]
         public void PropertiesAreCorrectlySet()
         {
-            var physicsService = ThrowFactory.CreateFreeFall(new System.Numerics.Vector2(0, 100), 3, 0.1f, 10f);
+            var physicsService = MotionFactory.CreateFreeFall(new System.Numerics.Vector2(0, 100), 3, 0.1f, "#000000", 10f);
             Assert.Equal(100, physicsService.Origin.Y);
             Assert.Equal(0, physicsService.Origin.X);
             Assert.Equal(3, physicsService.Mass);
@@ -19,7 +19,7 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
         [Fact]
         public void FreeFallFromOneMeter()
         {
-            var physicsService = ThrowFactory.CreateFreeFall(new System.Numerics.Vector2(0, 1), 3, 0.1f, 10f);
+            var physicsService = new PhysicsService(MotionFactory.CreateFreeFall(new System.Numerics.Vector2(0, 1), 3, 0.1f, "#000000", 10f));
             var startY = physicsService.ComputeY(0);
             Assert.Equal(1, startY);
             var endY = physicsService.ComputeY(0.4472f);
@@ -31,7 +31,7 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
         [Fact]
         public void FreeFallFromGround()
         {
-            var physicsService = ThrowFactory.CreateFreeFall(new Vector2(0, 0), 1, 0.1f, 10);
+            var physicsService = new PhysicsService(MotionFactory.CreateFreeFall(new Vector2(0, 0), 1, 0.1f, "#000000", 10));
             var fallTime = physicsService.MaxT;
             Assert.Equal(0, fallTime);
             var maxY = physicsService.MaxY;
@@ -43,7 +43,7 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
         [Fact]
         public void FreeFallOnMoon()
         {
-            var physicsService = ThrowFactory.CreateFreeFall(new Vector2(0, 4.5f), 1, 0.1f, 1.62f);
+            var physicsService = new PhysicsService(MotionFactory.CreateFreeFall(new Vector2(0, 4.5f), 1, 0.1f, "#000000", 1.62f));
             var fallTime = physicsService.MaxT;
             Assert.Equal(2.357f, fallTime, 3);
             var maxY = physicsService.MaxY;

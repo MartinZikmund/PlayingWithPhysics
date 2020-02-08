@@ -28,7 +28,7 @@ namespace Physics.HomogenousMovement
     /// </summary>
     public sealed partial class MainView : BaseView
     {
-        private ThrowingCanvasController _canvasController;
+        private MotioningCanvasController _canvasController;
         public MainView()
         {
             this.InitializeComponent();
@@ -36,34 +36,13 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Mouse |
                  Windows.UI.Core.CoreInputDeviceTypes.Pen |
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            _canvasController = new ThrowingCanvasController(AnimatedCanvas);
+            _canvasController = new MotioningCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
             this.Unloaded += MainView_Unloaded;
-            SetupNumberBoxFormattings();
         }
 
-        private void SetupFromatting(NumberBox numberBox, int decimalPlaces)
-        {
-            var rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
-            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
+        
 
-            var formatter = new DecimalFormatter();
-            formatter.IntegerDigits = 1;
-            formatter.FractionDigits = decimalPlaces;
-            formatter.NumberRounder = rounder;
-            numberBox.NumberFormatter = formatter;
-        }
-
-        private void SetupNumberBoxFormattings()
-        {
-            SetupFromatting(StartXNumberBox, 2);
-            SetupFromatting(StartYNumberBox, 2);
-            SetupFromatting(GravityNumberBox, 2);
-            SetupFromatting(MassNumberBox, 2);
-            SetupFromatting(V0NumberBox, 2);
-            SetupFromatting(AngleNumberBox, 2);
-        }
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -79,16 +58,6 @@ namespace Physics.HomogenousMovement
         {
             Model = (MainViewModel)args.NewValue;
             Model.SetCanvasController(_canvasController);
-        }
-
-        private void UIElement_OnKeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.Enter)
-            {
-                var ap = new ButtonAutomationPeer(DrawButton);
-                var ip = ap.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
-                ip?.Invoke();
-            }
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)

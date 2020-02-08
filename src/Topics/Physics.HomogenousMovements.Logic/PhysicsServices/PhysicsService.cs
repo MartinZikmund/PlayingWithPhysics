@@ -9,7 +9,7 @@ namespace Physics.HomogenousMovement.PhysicsServices
     public class PhysicsService : IPhysicsService
     {
         private const int MaxTrajectoryJumps = 200;
-        public ThrowInfo ThrowInfo { get; }
+        public MotionInfo MotionInfo { get; }
         public float MaxT { get; }
 
         public float MaxX { get; }
@@ -18,12 +18,14 @@ namespace Physics.HomogenousMovement.PhysicsServices
 
         public float MaxY { get; }
 
+        public float MinX { get; }
+
         public float ComputeX(float timeMoment)
         {
             if (timeMoment > MaxT) return MaxX;
 
             //x = x0 + v0 * t
-            float x = ThrowInfo.Origin.X + ThrowInfo.V0 * timeMoment * (float) Math.Cos(AngleInRad);
+            float x = MotionInfo.Origin.X + MotionInfo.V0 * timeMoment * (float) Math.Cos(AngleInRad);
             return x;
         }
 
@@ -31,7 +33,7 @@ namespace Physics.HomogenousMovement.PhysicsServices
         {
             if (timeMoment > MaxT) return 0f;
             //y = y0 + v0 * t * sin(a)-0.5 * g * (t^2)
-            float y = ThrowInfo.Origin.Y + ThrowInfo.V0 * timeMoment * (float)Math.Sin(AngleInRad) - 0.5f * ThrowInfo.G * (float)Math.Pow(timeMoment, 2);
+            float y = MotionInfo.Origin.Y + MotionInfo.V0 * timeMoment * (float)Math.Sin(AngleInRad) - 0.5f * MotionInfo.G * (float)Math.Pow(timeMoment, 2);
             return y;
         }
 
@@ -48,7 +50,7 @@ namespace Physics.HomogenousMovement.PhysicsServices
         {
             if (timeMoment > MaxT) return 0f;
             
-            float vx = ThrowInfo.V0 * (float) Math.Cos(AngleInRad);
+            float vx = MotionInfo.V0 * (float) Math.Cos(AngleInRad);
             return vx;
         }
 
@@ -56,19 +58,19 @@ namespace Physics.HomogenousMovement.PhysicsServices
         {
             if (timeMoment > MaxT) return 0f;
 
-            float vy = ThrowInfo.V0 * (float) Math.Sin(AngleInRad) - ThrowInfo.G * timeMoment;
+            float vy = MotionInfo.V0 * (float) Math.Sin(AngleInRad) - MotionInfo.G * timeMoment;
             return vy;
         }
 
         public float ComputeEP(float timeMoment)
         {
-            float ep = ThrowInfo.Mass * ThrowInfo.G * ComputeY(timeMoment);
+            float ep = MotionInfo.Mass * MotionInfo.G * ComputeY(timeMoment);
             return ep;
         }
 
         public float ComputeEK(float timeMoment)
         {
-            float ek = 0.5f * ThrowInfo.Mass * (float)Math.Pow(ComputeV(timeMoment),2);
+            float ek = 0.5f * MotionInfo.Mass * (float)Math.Pow(ComputeV(timeMoment),2);
             return ek;
         }
 
@@ -78,20 +80,21 @@ namespace Physics.HomogenousMovement.PhysicsServices
             return epek;
         }
 
-        public PhysicsService(ThrowInfo throwInfo)
+        public PhysicsService(MotionInfo throwInfo)
         {
-            ThrowInfo = throwInfo;
+            MotionInfo = throwInfo;
+            MinX = MotionInfo.Origin.X;
             MaxT = ComputeTMax();
             MaxX = ComputeXMax();
             MaxY = ComputeYMax();
         }
 
-        public float AngleInRad => (float)Math.PI * ThrowInfo.Angle / 180.0f;
+        public float AngleInRad => (float)Math.PI * MotionInfo.Angle / 180.0f;
 
         private float ComputeTMax()
         {
-            var vy = ThrowInfo.V0 * (float)Math.Sin(AngleInRad);
-            return (vy + (float)Math.Sqrt((float)Math.Pow(vy, 2) + 2 * ThrowInfo.G * ThrowInfo.Origin.Y)) / ThrowInfo.G;
+            var vy = MotionInfo.V0 * (float)Math.Sin(AngleInRad);
+            return (vy + (float)Math.Sqrt((float)Math.Pow(vy, 2) + 2 * MotionInfo.G * MotionInfo.Origin.Y)) / MotionInfo.G;
 
         }
 
@@ -102,8 +105,8 @@ namespace Physics.HomogenousMovement.PhysicsServices
 
         private float ComputeYMax()
         {
-            var vy = ThrowInfo.V0 * (float)Math.Sin(AngleInRad);
-            return ThrowInfo.Origin.Y + (float)Math.Pow(vy, 2) / (2 * ThrowInfo.G);
+            var vy = MotionInfo.V0 * (float)Math.Sin(AngleInRad);
+            return MotionInfo.Origin.Y + (float)Math.Pow(vy, 2) / (2 * MotionInfo.G);
         }
 
         public TrajectoryData CreateTrajectoryData()

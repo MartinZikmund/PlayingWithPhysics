@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
-    public class MovementInfoViewModel : MvxNotifyPropertyChanged
+    public class MotionInfoViewModel : MvxNotifyPropertyChanged
     {
-        public MovementInfoViewModel(ThrowInfo throwInfo)
+        public MotionInfoViewModel(MotionInfo throwInfo)
         {
-            ThrowInfo = throwInfo;
+            MotionInfo = throwInfo;
         }
 
-        public ThrowInfo ThrowInfo { get; }
+        public MotionInfo MotionInfo { get; set; }
 
         public string Label
         {
-            get => ThrowInfo.Label; 
+            get => MotionInfo.Label; 
             set
             {
-                ThrowInfo.Label = value;
+                MotionInfo.Label = value;
                 RaisePropertyChanged();
             }
         }
