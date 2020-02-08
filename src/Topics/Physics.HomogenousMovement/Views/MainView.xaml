@@ -14,22 +14,15 @@
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
+    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     x:Name="Page">
-    <views:BaseView.Resources>
-        <Style x:Key="RadioButtonBitmapIconStyle" TargetType="BitmapIcon">
-            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
-            <Setter Property="Width" Value="16" />
-            <Setter Property="Height" Value="16" />
-            <Setter Property="Margin" Value="0,0,4,0" />
-        </Style>
-        <physicsServices:MovementTypeToBoolValueConverter x:Key="MovementTypeToBoolValueConverter"></physicsServices:MovementTypeToBoolValueConverter>
-    </views:BaseView.Resources>
-    <Grid KeyDown="UIElement_OnKeyDown">
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition MaxWidth="320" Width="*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Padding="12" Background="{ThemeResource NavigationViewExpandedPaneBackground}">
@@ -37,236 +30,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Nastavení" Style="{ThemeResource TitleTextBlockStyle}" />
-            <Border Grid.Row="1" Margin="0,12,0,0">
+            <Border Grid.Row="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Grid.Column="0" Orientation="Vertical">
-                        <winui:RadioButtons>
-                            <winui:RadioButtons.Resources>
-                                <Style TargetType="RadioButton">
-                                    <Setter Property="Padding" Value="8,0,0,0" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                </Style>
-
-                            </winui:RadioButtons.Resources>
-                            <RadioButton IsChecked="{x:Bind Model.CheckBoxMovementType, Converter={StaticResource MovementTypeToBoolValueConverter}, ConverterParameter=FreeFall, Mode=TwoWay}">
-                                <RadioButton.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <BitmapIcon Style="{StaticResource RadioButtonBitmapIconStyle}" UriSource="/Assets/volnypad.png" />
-                                        <TextBlock Text="Volný pád"/>
-                                    </StackPanel>
-                                </RadioButton.Content>
-                            </RadioButton>
-
-                            <RadioButton IsChecked="{x:Bind Model.CheckBoxMovementType, Converter={StaticResource MovementTypeToBoolValueConverter}, ConverterParameter=UpwardThrow, Mode=TwoWay}">
-                                <RadioButton.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <BitmapIcon Style="{StaticResource RadioButtonBitmapIconStyle}" UriSource="/Assets/volnypad.png">
-                                            <BitmapIcon.RenderTransform>
-                                                <RotateTransform Angle="180" />
-                                            </BitmapIcon.RenderTransform>
-                                        </BitmapIcon>
-                                        <TextBlock VerticalAlignment="Center" Text="Svislý vrh" />
-                                    </StackPanel>
-                                </RadioButton.Content>
-                            </RadioButton>
-
-                            <RadioButton IsChecked="{x:Bind Model.CheckBoxMovementType, Converter={StaticResource MovementTypeToBoolValueConverter}, ConverterParameter=ForwardThrow, Mode=TwoWay}">
-                                <RadioButton.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <BitmapIcon Style="{StaticResource RadioButtonBitmapIconStyle}" UriSource="/Assets/volnypad.png">
-                                            <BitmapIcon.RenderTransform>
-                                                <RotateTransform Angle="-90" />
-                                            </BitmapIcon.RenderTransform>
-                                        </BitmapIcon>
-                                        <TextBlock VerticalAlignment="Center" Text="Vodorovný vrh" />
-                                    </StackPanel>
-                                </RadioButton.Content>
-                            </RadioButton>
-                            <RadioButton Visibility="{x:Bind Model.IsProjectileMotionCheckBoxEnabled}" IsChecked="{x:Bind Model.CheckBoxMovementType, Converter={StaticResource MovementTypeToBoolValueConverter}, ConverterParameter=ProjectileMotion, Mode=TwoWay}">
-                                <RadioButton.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <BitmapIcon Style="{StaticResource RadioButtonBitmapIconStyle}" UriSource="/Assets/sikmyvrh.png">
-                                            <BitmapIcon.RenderTransform>
-                                                <RotateTransform Angle="90" />
-                                            </BitmapIcon.RenderTransform>
-                                        </BitmapIcon>
-                                        <TextBlock VerticalAlignment="Center" Text="Šikmý vrh" />
-                                    </StackPanel>
-                                </RadioButton.Content>
-                            </RadioButton>
-                        </winui:RadioButtons>
-
-                        <Grid Margin="0,20,0,10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock
-                                Grid.Row="0"
-                                Margin="4,0,8,4"
-                                VerticalAlignment="Center">
-                                <Run>Rychlost v</Run><Run Typography.Variants="Subscript">0</Run>
-                                <Run>(m/s)</Run>
-                            </TextBlock>
-
-                            <winui:NumberBox
-                                x:Name="V0NumberBox"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom"
-                                Minimum="0"
-                                Maximum="2000"
-                                Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="12,0,0,4"
-                                IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="1"
-                                Margin="4,0,8,4"
-                                VerticalAlignment="Center">
-                                Počáteční souřadnice x<Run Typography.Variants="Subscript">0</Run> (m)
-                            </TextBlock>
-
-                            <winui:NumberBox
-                                x:Name="StartXNumberBox"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Minimum="0"
-                                Maximum="1000"
-                                Value="{x:Bind Model.X0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="0,0,0,4"
-                                IsEnabled="{x:Bind Model.IsX0Enabled, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="2"
-                                Margin="4,0,8,4"
-                                VerticalAlignment="Center">
-                                Počáteční souřadnice y<Run Typography.Variants="Subscript">0</Run> (m)
-                            </TextBlock>
-
-                            <winui:NumberBox
-                                x:Name="StartYNumberBox"
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Minimum="0"
-                                Maximum="1000"
-                                Value="{x:Bind Model.Y0, Mode=TwoWay}"
-                                Margin="0,0,0,4"
-                                IsEnabled="{x:Bind Model.IsY0Enabled, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="3"
-                                Margin="4,0,8,4"
-                                VerticalAlignment="Center"
-                                Text="Hmotnost tělesa (kg)"/>
-
-                            <winui:NumberBox
-                                x:Name="MassNumberBox"
-                                Grid.Row="3"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Minimum="0.0001"
-                                Maximum="1000"
-                                Margin="0,0,0,4"
-                                IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
-                                Value="{x:Bind Model.Mass, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="4"
-                                Margin="4,0,0,0"                      
-                                VerticalAlignment="Center"
-                                Text="Úhel (°)" />
-
-                            <winui:NumberBox
-                                x:Name="AngleNumberBox"
-                                Margin="0,0,0,4"
-                                Grid.Row="4"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Minimum="-90"
-                                Maximum="90"
-                                IsEnabled="{x:Bind Model.IsAngleEnabled, Mode=TwoWay}"
-                                Value="{x:Bind Model.Angle, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="5"
-                                Margin="4,5,8,0"
-                                VerticalAlignment="Top" >
-                                <Run Text="Tíhové zrychlení g (m/s" /><Run Typography.Variants="Superscript" Text="2" /><Run Text=")" />
-                            </TextBlock>
-
-                            <winui:NumberBox
-                                x:Name="GravityNumberBox"
-                                Grid.Row="5"
-                                Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Minimum="1"
-                                Maximum="50"
-                                Value="{x:Bind Model.Gravity, Mode=TwoWay}"
-                                SpinButtonPlacementMode="Inline" />
-
-                            <TextBlock
-                                Grid.Row="6" Grid.Column="0"
-                                Margin="4,12,8,0"
-                                VerticalAlignment="Top"
-                                Text="Barva"/>
-                            <Button Margin="12,4,0,0" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Button.Flyout>
-                                    <Flyout>
-                                        <ColorPicker Color="{x:Bind Model.Color, Mode=TwoWay}">
-                                        </ColorPicker>
-                                    </Flyout>
-                                </Button.Flyout>
-                                <StackPanel Orientation="Horizontal">
-                                    <Border CornerRadius="12" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="{x:Bind Model.Color, Mode=TwoWay}" />
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock Margin="8,2,0,0" Text="Vyber barvu"></TextBlock>
-                                </StackPanel>
-                            </Button>
-
-                        </Grid>
-                        <Button
-                            x:Name="DrawButton"
-                            Margin="4"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.StartNewSimulationCommand}"
-                            Content="Vykreslit"
-                            x:Uid="DrawMotion"/>
-                        <Button
-                            Margin="4"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.ShowValuesTableCommand}"
-                            Content="Zobrazit tabulku hodnot"
-                            x:Uid="ShowValuesTable"/>
-                        <MenuFlyoutSeparator Margin="10" />
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -274,23 +40,26 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-
-                            <!--<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Trajektorie" />-->
-                            <!--<CheckBox Grid.Row="1" IsChecked="{x:Bind Model.DrawTrajectoriesContinously, Mode=TwoWay}" Content="Postupné vykreslování" />-->
                             <Button
                                     Grid.Row="2"
                                     Margin="4"
                                     HorizontalAlignment="Stretch"
-                                    Command="{x:Bind Model.AddTrajectoryCommand}"
-                                    Content="Přidat trajektorii"/>
-                            <ListView IsItemClickEnabled="False" Grid.Row="3" ItemsSource="{x:Bind Model.Throws}">
+                                    Command="{x:Bind Model.AddTrajectoryCommand}">
+                                <StackPanel Spacing="8" Orientation="Horizontal">
+                                    <Viewbox Width="16" Height="16" VerticalAlignment="Center">
+                                        <SymbolIcon Symbol="Add" />
+                                    </Viewbox>
+                                    <TextBlock Text="{extensions:Localize Key=AddMotion}" />
+                                </StackPanel>
+                            </Button>
+                            <ListView SelectedItem="{x:Bind Model.SelectedMotion, Mode=TwoWay}" SelectionMode="Single" IsItemClickEnabled="False" Grid.Row="3" ItemsSource="{x:Bind Model.Motions}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     </Style>
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
-                                    <DataTemplate x:DataType="viewModels:MovementInfoViewModel">
+                                    <DataTemplate x:DataType="viewModels:MotionInfoViewModel">
                                         <Grid ColumnSpacing="8">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="32" />
@@ -300,7 +69,7 @@
                                             </Grid.ColumnDefinitions>
                                             <Border CornerRadius="12" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <Border.Background>
-                                                    <SolidColorBrush Color="{x:Bind ThrowInfo.Color, Mode=OneWay}" />
+                                                    <SolidColorBrush Color="{x:Bind MotionInfo.Color, Mode=OneWay}" />
                                                 </Border.Background>
                                             </Border>
                                             <TextBlock VerticalAlignment="Center" Text="{x:Bind Label, Mode=OneWay}" Grid.Column="1" />
@@ -317,8 +86,10 @@
                         </Grid>
 
                         <MenuFlyoutSeparator Margin="10"/>
-
-                        <Grid Margin="12,12,0,0" ColumnSpacing="8" RowSpacing="8">
+                        
+                        
+                        <TextBlock Text="{extensions:Localize Key=SelectedMotion}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                        <Grid Margin="0,8,0,0" ColumnSpacing="8" RowSpacing="8">
                             <Grid.Resources>
                                 <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="18"/>
@@ -327,14 +98,15 @@
                                 </Style>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
                             <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="0" Text="t:"></TextBlock>
@@ -385,17 +157,23 @@
                     </Storyboard>
                 </Grid.Resources>
                 <StackPanel HorizontalAlignment="Center" Spacing="8" Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                    <Button Click="Backward_Click" IsEnabled="True" x:Name="RewindButton">
+                        <SymbolIcon Symbol="Previous" />
+                    </Button>
+                    <Button Click="Backward_Click" IsEnabled="True" x:Name="BackButton">
+                        <SymbolIcon Symbol="Back" />
+                    </Button>
                     <Button Click="Play_Click" IsEnabled="False" x:Name="PlayButton">
                         <SymbolIcon Symbol="Play" />
                     </Button>
                     <Button Click="Pause_Click" IsEnabled="True" x:Name="PauseButton">
                         <SymbolIcon Symbol="Pause" />
-                    </Button>
-                    <Button Click="Backward_Click" IsEnabled="True" x:Name="BackButton">
-                        <SymbolIcon Symbol="Back" />
-                    </Button>
+                    </Button>           
                     <Button Click="Forward_Click" IsEnabled="True" x:Name="ForwardButton">
                         <SymbolIcon Symbol="Forward" />
+                    </Button>
+                    <Button Click="Backward_Click" IsEnabled="True" x:Name="FastForwardButton">
+                        <SymbolIcon Symbol="Next" />
                     </Button>
                     <Button Click="Button_Click">
                         <SymbolIcon Symbol="OneBar"/>
@@ -409,7 +187,7 @@
                     <Slider ValueChanged="SpeedSldr_ValueChanged" VerticalAlignment="Center" x:Name="SpeedSldr" Opacity="0" Value="1" Visibility="Collapsed" Minimum="0.1" Maximum="2" Width="300" StepFrequency="0.1"></Slider>
                 </StackPanel>
                 <Button Grid.Column="1" Command="{x:Bind Model.ShareCommand}">
-                    <SymbolIcon Margin="3,0,0,0" Symbol="Share"/>   
+                    <SymbolIcon Margin="3,0,0,0" Symbol="Share"/>
                 </Button>
             </Grid>
         </Grid>

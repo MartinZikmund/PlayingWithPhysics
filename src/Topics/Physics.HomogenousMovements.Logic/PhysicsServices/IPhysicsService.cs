@@ -16,7 +16,7 @@ namespace Physics.HomogenousMovement.PhysicsServices
         float MaxX { get; }
         float MaxT { get; }
         float MaxY { get; }
-        ThrowInfo ThrowInfo { get; }
+        MotionInfo MotionInfo { get; }
 
         TrajectoryData CreateTrajectoryData();
     }

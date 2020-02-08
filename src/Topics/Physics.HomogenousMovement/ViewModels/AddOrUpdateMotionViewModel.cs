@@ -1,0 +1,266 @@
+﻿using System;
+using Physics.Shared.ViewModels;
+using Physics.HomogenousMovement.Logic.PhysicsServices;
+using Physics.Shared.Logic.Constants;
+using Physics.HomogenousMovement.PhysicsServices;
+using System.Numerics;
+using Windows.UI;
+using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using Windows.UI.Xaml;
+using Physics.Shared.Infrastructure.Topics;
+using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Popups;
+
+namespace Physics.HomogenousMovement.ViewModels
+{
+    public class AddOrUpdateMotionViewModel : ViewModelBase
+    {
+        private float _x0;
+        private float _y0;
+        private float _v0;
+        private float _mass = 1;
+        private float _angle;
+        private float _gravity = GravityConstants.Earth;
+        private Color _color = Colors.CornflowerBlue;
+
+        public AddOrUpdateMotionViewModel(MotionInfo motionInfo)
+        {
+            Label = motionInfo.Label;
+            Gravity = motionInfo.G;
+            Color = ColorHelper.ToColor(motionInfo.Color);
+            V0 = motionInfo.V0;
+            Angle = motionInfo.Angle;
+            X0 = motionInfo.Origin.X;
+            Y0 = motionInfo.Origin.Y;
+            Mass = motionInfo.Mass;
+            SelectedMotionIndex = (int)motionInfo.Type;
+            DisableUnusedInputs();
+        }
+
+        public AddOrUpdateMotionViewModel(string newMotionDefaultName)
+        {
+            SelectedMotionIndex = (int)MovementType.FreeFall;
+            Label = newMotionDefaultName;
+            DisableUnusedInputs();
+        }
+
+        public ICommand SaveCommand => GetOrCreateAsyncCommand<ContentDialogButtonClickEventArgs>(SaveAsync);
+
+        private async Task SaveAsync(ContentDialogButtonClickEventArgs args)
+        {
+            var deferral = args.GetDeferral();
+            try
+            {
+                ResultMotionInfo = PrepareMotion();
+                ResultMotionInfo.Label = Label;
+            }
+            catch (ArgumentException)
+            {
+                var resourceManager = ResourceLoader.GetForCurrentView();
+                string errorMessage = resourceManager.GetString("ArgumentExceptionErrorMessage");
+                var messageDialog = new MessageDialog(resourceManager.GetString("InvalidInput"), errorMessage);
+                await messageDialog.ShowAsync();
+                args.Cancel = true;
+            }
+            finally
+            {
+                deferral.Complete();
+            }
+        }
+
+        public MotionInfo ResultMotionInfo { get; set; }
+
+        public DifficultyOption Difficulty { get; set; }
+
+        public Visibility IsProjectileMotionCheckBoxEnabled
+        {
+            get
+            {
+                bool isEasy = (Difficulty == DifficultyOption.Easy);
+                return isEasy ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
+
+        public int SelectedMotionIndex { get; set; }
+
+        public void OnSelectedMotionIndexChanged()
+        {
+            MovementType = (MovementType)SelectedMotionIndex;
+        }
+
+        public MovementType MovementType { get; set; }
+
+        public void OnMovementTypeChanged()
+        {
+            DisableUnusedInputs();
+        }
+
+        public bool IsV0Enabled { get; set; }
+        public bool IsMassEnabled { get; set; }
+        public bool IsAngleEnabled { get; set; }
+        public bool IsX0Enabled { get; set; }
+        public bool IsY0Enabled { get; set; }
+
+        public string Label { get; set; }
+
+        public Color Color
+        {
+            get => _color;
+            set
+            {
+                _color = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public float X0
+        {
+            get => _x0;
+            set
+            {
+                if (!float.IsNaN(value) && value != _x0)
+                {
+                    _x0 = value;
+                    RaisePropertyChanged();
+                }
+
+            }
+        }
+
+        public float Y0
+        {
+            get => _y0;
+            set
+            {
+                if (!float.IsNaN(value) && value != _y0)
+                {
+                    _y0 = value;
+                    RaisePropertyChanged();
+                }
+
+            }
+        }
+
+        public float Mass
+        {
+            get => _mass;
+            set
+            {
+                if (!float.IsNaN(value) && value != _mass)
+                {
+                    _mass = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public float V0
+        {
+            get => _v0;
+            set
+            {
+                if (!float.IsNaN(value) && value != _v0)
+                {
+                    _v0 = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public float Angle
+        {
+            get => _angle;
+            set
+            {
+                if (!float.IsNaN(value) && value != _angle)
+                {
+                    _angle = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public float Gravity
+        {
+            get => _gravity;
+            set
+            {
+                if (!float.IsNaN(value) && value != _gravity)
+                {
+                    _gravity = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private void DisableUnusedInputs()
+        {
+            switch (MovementType)
+            {
+                case MovementType.UpwardMotion:
+                    IsY0Enabled = true;
+                    IsX0Enabled = true;
+                    IsV0Enabled = true;
+                    IsMassEnabled = true;
+                    IsAngleEnabled = false;
+                    break;
+                case MovementType.ForwardMotion:
+                    IsY0Enabled = true;
+                    IsV0Enabled = true;
+                    IsX0Enabled = true;
+                    IsMassEnabled = true;
+                    IsAngleEnabled = false;
+                    break;
+                case MovementType.ProjectileMotion:
+                    IsY0Enabled = true;
+                    IsX0Enabled = true;
+
+                    IsV0Enabled = true;
+                    IsMassEnabled = true;
+                    IsAngleEnabled = true;
+                    break;
+                default:
+                    IsY0Enabled = true;
+                    IsX0Enabled = true;
+                    IsV0Enabled = false;
+                    IsMassEnabled = true;
+                    IsAngleEnabled = false;
+                    break;
+            }
+        }
+
+        private MotionInfo PrepareMotion()
+            => MovementType switch
+            {
+                MovementType.FreeFall => MotionFactory.CreateFreeFall(
+                    new Vector2(X0, Y0),
+                    Mass,
+                    0,
+                    ColorHelper.ToHex(Color), Gravity),
+                MovementType.UpwardMotion =>
+                MotionFactory.CreateUpwardMotion(
+                    new Vector2(X0, Y0),
+                    Mass,
+                    0,
+                    V0,
+                    ColorHelper.ToHex(Color), Gravity),
+                MovementType.ForwardMotion => MotionFactory.CreateHorizontalMotion(
+                    new Vector2(X0, Y0),
+                    Mass,
+                    0,
+                    V0,
+                    ColorHelper.ToHex(Color), Gravity),
+                MovementType.ProjectileMotion => MotionFactory.CreateProjectileMotion(
+                    new Vector2(X0, Y0),
+                    Mass,
+                    0,
+                    V0,
+                    ColorHelper.ToHex(Color),
+                    Angle, Gravity),
+                _ => throw new ArgumentNullException()
+            };
+    }
+}
