@@ -24,11 +24,31 @@ namespace Physics.Shared.ViewModels
             return command;
         }
 
+        protected ICommand GetOrCreateCommand<T>(Action<T> execute, [CallerMemberName]string propertyName = null)
+        {
+            if (!_commands.TryGetValue(propertyName, out var command))
+            {
+                command = new MvxCommand<T>(execute);
+                _commands.Add(propertyName, command);
+            }
+            return command;
+        }
+
         protected ICommand GetOrCreateAsyncCommand(Func<Task> execute, [CallerMemberName]string propertyName = null)
         {
             if (!_commands.TryGetValue(propertyName, out var command))
             {
                 command = new MvxAsyncCommand(execute);
+                _commands.Add(propertyName, command);
+            }
+            return command;
+        }
+
+        protected ICommand GetOrCreateAsyncCommand<T>(Func<T,Task> execute, [CallerMemberName]string propertyName = null)
+        {
+            if (!_commands.TryGetValue(propertyName, out var command))
+            {
+                command = new MvxAsyncCommand<T>(execute);
                 _commands.Add(propertyName, command);
             }
             return command;

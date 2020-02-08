@@ -5,9 +5,9 @@ using System.Numerics;
 
 namespace Physics.HomogenousMovement.Logic.PhysicsServices
 {
-    public class ThrowInfo
+    public class MotionInfo
     {
-        public ThrowInfo(MovementType movementType, Vector2 origin, float mass, float v0, float angle, string color, float g = GravityConstants.Earth)
+        public MotionInfo(MovementType movementType, Vector2 origin, float mass, float v0, float angle, string color, float g = GravityConstants.Earth)
         {
             if (mass == 0f)
                 throw new ArgumentException("Hmotnost musí být větší než 1 kg.");
@@ -20,7 +20,7 @@ namespace Physics.HomogenousMovement.Logic.PhysicsServices
             G = g;
         }
 
-        public ThrowInfo()
+        public MotionInfo()
         {
         }
 

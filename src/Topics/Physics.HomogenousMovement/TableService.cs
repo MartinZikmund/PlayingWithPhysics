@@ -17,7 +17,7 @@ namespace Physics.HomogenousMovement
         public List<TableRow> PopulateTable(float timeInterval)
         {
             List<TableRow> table = new List<TableRow>();
-            float currentY = _physicsService.ThrowInfo.Origin.Y;
+            float currentY = _physicsService.MotionInfo.Origin.Y;
             float cycles = 0;
             float time = 0.0f;
             do

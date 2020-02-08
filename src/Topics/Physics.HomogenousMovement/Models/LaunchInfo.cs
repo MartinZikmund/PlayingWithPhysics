@@ -9,6 +9,6 @@ namespace Physics.HomogenousMovement.Models
 {
     public class LaunchInfo
     {
-        public List<ThrowInfo> Throws { get; set; }
+        public List<MotionInfo> Motions { get; set; }
     }
 }

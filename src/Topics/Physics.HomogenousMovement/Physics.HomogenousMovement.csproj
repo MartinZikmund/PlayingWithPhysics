@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Physics.HomogenousMovement</RootNamespace>
     <AssemblyName>Physics.HomogenousMovement</AssemblyName>
-    <DefaultLanguage>cs-cz</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
@@ -142,18 +142,18 @@
     <Compile Include="Core\AppStart.cs" />
     <Compile Include="Core\CrossApp.cs" />
     <Compile Include="Core\CrossSetup.cs" />
-    <Compile Include="Dialogs\AddOrUpdateTrajectoryDialog.xaml.cs">
-      <DependentUpon>AddOrUpdateTrajectoryDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
+      <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\LaunchInfo.cs" />
     <Compile Include="Models\LaunchUriManager.cs" />
     <Compile Include="Rendering\ThrowingCanvasController.cs" />
     <Compile Include="Services\Preferences\IAppPreferences.cs" />
     <Compile Include="TableService.cs" />
-    <Compile Include="ViewModels\AddOrUpdateTrajectoryViewModel.cs" />
-    <Compile Include="ViewModels\MovementInfoViewModel.cs" />
-    <Compile Include="ViewModels\ThrowTrajectoryViewModel.cs" />
+    <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
+    <Compile Include="ViewModels\MotionInfoViewModel.cs" />
     <Compile Include="ViewModels\ValuesTableDialogViewModel.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
@@ -232,6 +232,7 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -242,7 +243,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\AddOrUpdateTrajectoryDialog.xaml">
+    <Page Include="Dialogs\AddOrUpdateMovement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -315,7 +316,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\cs-cz\Resources.resw" />
+    <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\Interaction\" />
