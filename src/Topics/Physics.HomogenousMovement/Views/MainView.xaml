@@ -15,6 +15,7 @@
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
     xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     x:Name="Page">
@@ -42,7 +43,7 @@
                             </Grid.RowDefinitions>
                             <Button
                                     Grid.Row="2"
-                                    Margin="4"
+                                    Margin="0,0,0,8"
                                     HorizontalAlignment="Stretch"
                                     Command="{x:Bind Model.AddTrajectoryCommand}">
                                 <StackPanel Spacing="8" Orientation="Horizontal">
@@ -85,39 +86,47 @@
                             </ListView>
                         </Grid>
 
-                        <MenuFlyoutSeparator Margin="10"/>
-                        
-                        
-                        <TextBlock Text="{extensions:Localize Key=SelectedMotion}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                        <Grid Margin="0,8,0,0" ColumnSpacing="8" RowSpacing="8">
-                            <Grid.Resources>
-                                <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="18"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Margin" Value="0,0,0,2" />
-                                </Style>
-                            </Grid.Resources>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Center" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Opacity="0.8" TextWrapping="Wrap" Text="{extensions:Localize Key=SelectMotionTip}" />
 
-                            <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="0" Text="t:"></TextBlock>
-                            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}"></TextBlock>
-                            <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="1" Grid.Column="0" Text="x:"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentX, Mode=OneWay}"></TextBlock>
-                            <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="2" Grid.Column="0" Text="y:"></TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentY, Mode=OneWay}"></TextBlock>
-                            <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="3" Grid.Column="0" Text="v:"></TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentSpeed, Mode=OneWay}"></TextBlock>
-                        </Grid>
+
+                        <MenuFlyoutSeparator Margin="10" />
+                       
+                        
+                        <StackPanel Visibility="{x:Bind Model.SelectedMotion, Mode=OneWay, Converter={StaticResource InvertedNullToVisibilityConverter}}">
+                            <animations:Implicit.ShowAnimations>
+                                <animations:OpacityAnimation From="0" Duration="0:0:0.3" To="1.0"></animations:OpacityAnimation>
+                            </animations:Implicit.ShowAnimations>
+                            <TextBlock Text="{x:Bind Model.SelectedMotion.Label,Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                            <Grid Margin="0,8,0,0" ColumnSpacing="8" RowSpacing="8">
+                                <Grid.Resources>
+                                    <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="{StaticResource MathFont}" />
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="Margin" Value="0,0,0,2" />
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="0" Text="t:"></TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}"></TextBlock>
+                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="1" Grid.Column="0" Text="x:"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentX, Mode=OneWay}"></TextBlock>
+                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="2" Grid.Column="0" Text="y:"></TextBlock>
+                                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentY, Mode=OneWay}"></TextBlock>
+                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="3" Grid.Column="0" Text="v:"></TextBlock>
+                                <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentSpeed, Mode=OneWay}"></TextBlock>
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
@@ -157,7 +166,7 @@
                     </Storyboard>
                 </Grid.Resources>
                 <StackPanel HorizontalAlignment="Center" Spacing="8" Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                    <Button Click="Backward_Click" IsEnabled="True" x:Name="RewindButton">
+                    <Button Click="Rewind_Click" IsEnabled="True" x:Name="RewindButton">
                         <SymbolIcon Symbol="Previous" />
                     </Button>
                     <Button Click="Backward_Click" IsEnabled="True" x:Name="BackButton">
@@ -168,12 +177,9 @@
                     </Button>
                     <Button Click="Pause_Click" IsEnabled="True" x:Name="PauseButton">
                         <SymbolIcon Symbol="Pause" />
-                    </Button>           
+                    </Button>
                     <Button Click="Forward_Click" IsEnabled="True" x:Name="ForwardButton">
                         <SymbolIcon Symbol="Forward" />
-                    </Button>
-                    <Button Click="Backward_Click" IsEnabled="True" x:Name="FastForwardButton">
-                        <SymbolIcon Symbol="Next" />
                     </Button>
                     <Button Click="Button_Click">
                         <SymbolIcon Symbol="OneBar"/>

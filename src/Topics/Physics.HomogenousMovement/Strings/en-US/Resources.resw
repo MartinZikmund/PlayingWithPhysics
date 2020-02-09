@@ -180,6 +180,9 @@
   <data name="SelectedMotion" xml:space="preserve">
     <value>Selected motion</value>
   </data>
+  <data name="SelectMotionTip" xml:space="preserve">
+    <value>Select a motion to see current values.</value>
+  </data>
   <data name="ShowValues" xml:space="preserve">
     <value>Show values</value>
   </data>

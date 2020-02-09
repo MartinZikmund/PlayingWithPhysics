@@ -26,7 +26,7 @@ namespace Physics.Shared.Rendering
 
         public void Play() => _simulationPaused = false;
 
-        public void Pause() => _simulationPaused = true;
+        public void Pause() => _simulationPaused = true;        
 
         public void Rewind(float time)
         {

@@ -70,15 +70,15 @@ namespace Physics.HomogenousMovement.ViewModels
 
 
         public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
-        
+
         public bool DrawTrajectoriesContinously { get; set; } = true;
-               
+
         private void _timer_Tick(object sender, object e)
         {
             if (SelectedMotion == null)
             {
                 return;
-            }            
+            }
             if (_timer.IsEnabled && _selectedMotionPhysicsService != null && _controller != null)
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
@@ -97,7 +97,7 @@ namespace Physics.HomogenousMovement.ViewModels
         public string CurrentSpeed { get; private set; }
         public string CurrentX { get; private set; }
         public string CurrentY { get; private set; }
-        
+
         public ObservableCollection<MotionInfoViewModel> Motions { get; } =
             new ObservableCollection<MotionInfoViewModel>();
 
@@ -130,7 +130,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task DeleteTrajectoryAsync(MotionInfoViewModel arg)
         {
             Motions.Remove(arg);
-            await StartSimulationAsync();            
+            await StartSimulationAsync();
         }
 
         private async Task AddTrajectoryAsync()
@@ -141,8 +141,12 @@ namespace Physics.HomogenousMovement.ViewModels
             if (result == ContentDialogResult.Primary)
             {
                 Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
+                if (Motions.Count == 1)
+                {
+                    SelectedMotion = Motions[0];
+                }
                 await StartSimulationAsync();
-            }            
+            }
         }
 
         private string GenerateNextUniqueMotionName()
@@ -168,7 +172,7 @@ namespace Physics.HomogenousMovement.ViewModels
             {
                 arg.MotionInfo = dialogViewModel.ResultMotionInfo;
                 await StartSimulationAsync();
-            }            
+            }
         }
 
         private async Task StartSimulationAsync()

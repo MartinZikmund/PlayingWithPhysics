@@ -194,13 +194,13 @@ namespace Physics.HomogenousMovement.Rendering
                     }
                 }
                 //draw ball
-                var ballX = _simulationBoundsInPixels.X + lastPoint.X * _meterSizeInPixels;
-                var ballY = _simulationBoundsInPixels.Bottom - lastPoint.Y * _meterSizeInPixels - BallRadius; //ball reference point is its horizontal center and vertical bottom
+                var ballX = MetersToPixelsX(lastPoint.X);
+                var ballY = MetersToPixelsY(lastPoint.Y) - BallRadius; //ball reference point is its horizontal center and vertical bottom
                 args.DrawingSession.FillCircle(new Vector2(ballX, ballY), BallRadius, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color));
             }
         }
 
-        private float MetersToPixelsX(float meters) => _simulationBoundsInPixels.X + meters * _meterSizeInPixels;
+        private float MetersToPixelsX(float meters) => _simulationBoundsInPixels.X + (meters - _simulationBoundsInMeters.Left) * _meterSizeInPixels;
 
         private float MetersToPixelsY(float meters) => _simulationBoundsInPixels.Bottom - meters * _meterSizeInPixels;
 
@@ -234,7 +234,7 @@ namespace Physics.HomogenousMovement.Rendering
             for (float currentDistance = 0; meters - currentDistance > -0.01; currentDistance += jumpSize)
             {
                 drawing.DrawText(
-                    currentDistance.ToString("0.#"),
+                    (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
                     _simulationBoundsInPixels.Bottom + 12,
                     Colors.Black);

@@ -183,6 +183,9 @@
   <data name="SelectedMotion" xml:space="preserve">
     <value>Vybraný vrh</value>
   </data>
+  <data name="SelectMotionTip" xml:space="preserve">
+    <value>Klikněte na vrh pro zobrazení hodnot.</value>
+  </data>
   <data name="ShowValues" xml:space="preserve">
     <value>Zobrazit hodnoty</value>
   </data>
