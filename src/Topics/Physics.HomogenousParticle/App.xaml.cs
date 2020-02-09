@@ -2,7 +2,7 @@
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross.Platforms.Uap.Views;
-using Physics.InclinedPlane.Core;
+using Physics.HomogenousParticle.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,11 +20,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Physics.InclinedPlane
-{
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
+namespace Physics.HomogenousParticle
+{    /// <summary>
+     /// Provides application-specific behavior to supplement the default Application class.
+     /// </summary>
     sealed partial class App : PhysicsApp
     {
         public App()
@@ -32,7 +31,7 @@ namespace Physics.InclinedPlane
             this.InitializeComponent();
             AppCenter.Start("1d9d6ae2-9f90-4992-9ec2-a9811882f3dc",
                    typeof(Analytics), typeof(Crashes));
-        }   
+        }
     }
     public class PhysicsApp : MvxApplication<CrossSetup, Core.CrossApp>
     {
