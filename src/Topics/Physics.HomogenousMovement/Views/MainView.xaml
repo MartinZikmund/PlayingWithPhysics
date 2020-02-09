@@ -16,17 +16,25 @@
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
     xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{ThemeResource NavigationViewExpandedPaneBackground}"
+    RequestedTheme="Dark"
     mc:Ignorable="d"
     x:Name="Page">
-
+    <Page.Resources>
+        <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+                  BackgroundSource="Backdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".5"/>
+        <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
+                  BackgroundSource="Backdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".5"/>
+        <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+                  BackgroundSource="HostBackdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".7"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="320" Width="*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Padding="12" Background="{ThemeResource NavigationViewExpandedPaneBackground}">
+        <Grid Grid.Column="0" Padding="12">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -41,6 +49,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+                            <Image Source="ms-appx:///Physics.Shared/Assets/hratky_logo.svg" />
                             <Button
                                     Grid.Row="2"
                                     Margin="0,0,0,8"
@@ -143,6 +152,7 @@
                 ClearColor="#1f1f1f" />
             <InkCanvas x:Name="InkCanvas" />
             <InkToolbar x:Name="inkToolbar"
+                RequestedTheme="Light"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Center"
                 TargetInkCanvas="{x:Bind InkCanvas}" />

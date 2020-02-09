@@ -135,7 +135,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task AddTrajectoryAsync()
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(GenerateNextUniqueMotionName());
+            var dialogViewModel = new AddOrUpdateMotionViewModel(GenerateNextUniqueMotionName(), Difficulty);
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -165,7 +165,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task EditTrajectoryAsync(MotionInfoViewModel arg)
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo);
+            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo, Difficulty);
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)

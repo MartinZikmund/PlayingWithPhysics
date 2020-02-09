@@ -26,7 +26,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _gravity = GravityConstants.Earth;
         private Color _color = Colors.CornflowerBlue;
 
-        public AddOrUpdateMotionViewModel(MotionInfo motionInfo)
+        public AddOrUpdateMotionViewModel(MotionInfo motionInfo, DifficultyOption difficulty)
         {
             Label = motionInfo.Label;
             Gravity = motionInfo.G;
@@ -40,7 +40,7 @@ namespace Physics.HomogenousMovement.ViewModels
             DisableUnusedInputs();
         }
 
-        public AddOrUpdateMotionViewModel(string newMotionDefaultName)
+        public AddOrUpdateMotionViewModel(string newMotionDefaultName, DifficultyOption difficulty)
         {
             SelectedMotionIndex = (int)MovementType.FreeFall;
             Label = newMotionDefaultName;
