@@ -8,7 +8,6 @@
                   BackgroundSource="Backdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".5"/>
     <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                   BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".7"/>
-
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FF1F1F1F" />
@@ -17,4 +16,8 @@
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFF4F4F4" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Physics.Shared/Resources/Converters.xaml" />
+        <ResourceDictionary Source="ms-appx:///Physics.Shared/Resources/Fonts.xaml" />        
+    </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

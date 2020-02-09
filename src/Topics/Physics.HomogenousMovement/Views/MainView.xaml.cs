@@ -100,5 +100,10 @@ namespace Physics.HomogenousMovement
                 SpeedButtonStoryboardHide.Begin();
             }
         }
+
+        private void Rewind_Click(object sender, RoutedEventArgs e)
+        {
+            _canvasController.SimulationTime.Restart();
+        }
     }
 }
