@@ -186,6 +186,9 @@
   <data name="ShowValues" xml:space="preserve">
     <value>Show values</value>
   </data>
+  <data name="ShowValuesTable" xml:space="preserve">
+    <value>Show values table</value>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
   </data>

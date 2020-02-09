@@ -189,6 +189,9 @@
   <data name="ShowValues" xml:space="preserve">
     <value>Zobrazit hodnoty</value>
   </data>
+  <data name="ShowValuesTable" xml:space="preserve">
+    <value>Zobrazit tabulku hodnot</value>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>Rychlost</value>
   </data>

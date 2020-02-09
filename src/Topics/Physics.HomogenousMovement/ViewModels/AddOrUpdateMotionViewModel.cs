@@ -37,6 +37,7 @@ namespace Physics.HomogenousMovement.ViewModels
             Y0 = motionInfo.Origin.Y;
             Mass = motionInfo.Mass;
             SelectedMotionIndex = (int)motionInfo.Type;
+            Difficulty = difficulty;
             DisableUnusedInputs();
         }
 
@@ -44,6 +45,7 @@ namespace Physics.HomogenousMovement.ViewModels
         {
             SelectedMotionIndex = (int)MovementType.FreeFall;
             Label = newMotionDefaultName;
+            Difficulty = difficulty;
             DisableUnusedInputs();
         }
 

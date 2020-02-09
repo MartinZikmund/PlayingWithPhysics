@@ -69,7 +69,7 @@
                     </RadioButton.Content>
                 </RadioButton>
 
-                <RadioButton Visibility="{x:Bind Model.IsProjectileMotionCheckBoxEnabled}">
+                <RadioButton Visibility="{x:Bind Model.IsProjectileMotionCheckBoxEnabled, Mode=OneWay}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <BitmapIcon Style="{StaticResource RadioButtonBitmapIconStyle}" UriSource="/Assets/sikmyvrh.png">

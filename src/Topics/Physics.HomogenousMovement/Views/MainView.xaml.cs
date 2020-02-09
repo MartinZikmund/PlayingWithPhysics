@@ -45,7 +45,7 @@ namespace Physics.HomogenousMovement
 
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
-        {
+        {            
             Model.SetCanvasController(null);
             _canvasController.Dispose();
             AnimatedCanvas.RemoveFromVisualTree();

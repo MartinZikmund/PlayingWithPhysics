@@ -99,14 +99,14 @@
 
 
                         <MenuFlyoutSeparator Margin="10" />
-                       
-                        
+
+
                         <StackPanel Visibility="{x:Bind Model.SelectedMotion, Mode=OneWay, Converter={StaticResource InvertedNullToVisibilityConverter}}">
                             <animations:Implicit.ShowAnimations>
                                 <animations:OpacityAnimation From="0" Duration="0:0:0.3" To="1.0"></animations:OpacityAnimation>
                             </animations:Implicit.ShowAnimations>
                             <TextBlock Text="{x:Bind Model.SelectedMotion.Label,Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                            <Grid Margin="0,8,0,0" ColumnSpacing="8" RowSpacing="8">
+                            <Grid Margin="0,8,0,8" ColumnSpacing="8" RowSpacing="8">
                                 <Grid.Resources>
                                     <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
                                         <Setter Property="FontFamily" Value="{StaticResource MathFont}" />
@@ -135,6 +135,18 @@
                                 <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="3" Grid.Column="0" Text="v:"></TextBlock>
                                 <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentSpeed, Mode=OneWay}"></TextBlock>
                             </Grid>
+                            <Button
+                            Grid.Row="2"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.ShowValuesTableCommand}">
+                                <StackPanel Spacing="8" Orientation="Horizontal">
+                                    <Viewbox Width="16" Height="16" VerticalAlignment="Center">
+                                        <SymbolIcon Symbol="ViewAll" />
+                                    </Viewbox>
+                                    <TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

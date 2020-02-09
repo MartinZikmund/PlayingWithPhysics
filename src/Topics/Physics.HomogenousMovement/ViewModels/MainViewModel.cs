@@ -28,8 +28,10 @@ namespace Physics.HomogenousMovement.ViewModels
         }
 
         private MotioningCanvasController _controller;
+        private LaunchInfo _launchInfo = null;
         private IPhysicsService _selectedMotionPhysicsService = null;
         private DispatcherTimer _timer = new DispatcherTimer();
+        private bool _startWithController = false;
 
         public MainViewModel()
         {
@@ -50,10 +52,18 @@ namespace Physics.HomogenousMovement.ViewModels
         public override void Prepare(NavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
-            LoadLaunchInfo(parameter.LaunchInfo);
+            _launchInfo = parameter.LaunchInfo;
         }
 
-        public void LoadLaunchInfo(LaunchInfo launchInfo)
+        public override async Task Initialize()
+        {
+            if (_launchInfo != null)
+            {
+                await LoadLaunchInfoAsync(_launchInfo);
+            }
+        }
+
+        public async Task LoadLaunchInfoAsync(LaunchInfo launchInfo)
         {
             if (launchInfo?.Motions != null && launchInfo.Motions.Count > 0)
             {
@@ -63,6 +73,8 @@ namespace Physics.HomogenousMovement.ViewModels
                 {
                     Motions.Add(new MotionInfoViewModel(launchInfo.Motions[movementId]));
                 }
+
+                await StartSimulationAsync();
             }
         }
 
@@ -115,7 +127,15 @@ namespace Physics.HomogenousMovement.ViewModels
             }
         }
 
-        public void SetCanvasController(MotioningCanvasController controller) => _controller = controller;
+        public async void SetCanvasController(MotioningCanvasController controller)
+        {
+            _controller = controller;
+            if (_startWithController)
+            {
+                await Task.Delay(1000);
+                await StartSimulationAsync();
+            }
+        }
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableDialog);
 
@@ -177,6 +197,12 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task StartSimulationAsync()
         {
+            if (_controller == null)
+            {
+                _startWithController = true;
+                return;
+            }
+
             _timer.Start();
             await _controller.RunOnGameLoopAsync(() =>
             {
