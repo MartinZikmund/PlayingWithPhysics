@@ -137,6 +137,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\arrow_down.png" />
+    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -157,6 +159,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fody">
+      <Version>6.1.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter">
       <Version>2.6.4</Version>
     </PackageReference>
@@ -174,6 +181,9 @@
     </PackageReference>
     <PackageReference Include="MvvmCross">
       <Version>6.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.2.6</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

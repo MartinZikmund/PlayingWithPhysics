@@ -120,4 +120,7 @@
   <data name="ChooseMotion.Text" xml:space="preserve">
     <value>Vyber variantu</value>
   </data>
+  <data name="DrawButton.Content" xml:space="preserve">
+    <value>Vykresli pohyb</value>
+  </data>
 </root>
