@@ -154,7 +154,8 @@
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\LaunchInfo.cs" />
     <Compile Include="Models\LaunchUriManager.cs" />
-    <Compile Include="Rendering\ThrowingCanvasController.cs" />
+    <Compile Include="Rendering\GamificationCanvasController.cs" />
+    <Compile Include="Rendering\HomogenousMovementCanvasController.cs" />
     <Compile Include="Services\Preferences\IAppPreferences.cs" />
     <Compile Include="TableService.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
@@ -178,6 +179,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\cannonon.png" />
+    <Content Include="Assets\Game\cannonoff.png" />
+    <Content Include="Assets\Game\ball.png" />
+    <Content Include="Assets\Game\background.png" />
+    <Content Include="Assets\Game\ground.png" />
+    <Content Include="Assets\Game\sky.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />

@@ -27,7 +27,7 @@ namespace Physics.HomogenousMovement.ViewModels
             public LaunchInfo LaunchInfo { get; set; }
         }
 
-        private MotioningCanvasController _controller;
+        private HomogenousMovementCanvasController _controller;
         private LaunchInfo _launchInfo = null;
         private IPhysicsService _selectedMotionPhysicsService = null;
         private DispatcherTimer _timer = new DispatcherTimer();
@@ -127,7 +127,7 @@ namespace Physics.HomogenousMovement.ViewModels
             }
         }
 
-        public async void SetCanvasController(MotioningCanvasController controller)
+        public async void SetCanvasController(HomogenousMovementCanvasController controller)
         {
             _controller = controller;
             if (_startWithController)

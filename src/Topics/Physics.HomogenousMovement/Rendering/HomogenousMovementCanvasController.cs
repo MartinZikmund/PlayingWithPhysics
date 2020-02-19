@@ -22,10 +22,8 @@ using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace Physics.HomogenousMovement.Rendering
 {
-    public class MotioningCanvasController : BaseCanvasController, IDisposable
+    public class HomogenousMovementCanvasController : BaseCanvasController, IDisposable
     {
-        private const int SimulationPadding = 52;
-        private const int SimulationLeftSidePadding = 80;
         private const int BallRadius = 5;
         private MotionInfo[] _throws = Array.Empty<MotionInfo>();
         private TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
@@ -35,6 +33,9 @@ namespace Physics.HomogenousMovement.Rendering
 
         private ICanvasBrush _brush;
 
+        protected int SimulationPadding { get; set; } = 52;
+        protected int SimulationLeftSidePadding { get; set; } = 80;
+
         //private ICanvasBrush _backgroundBrush;
         //private CanvasBitmap _skyImage;
         private readonly CanvasTextFormat _yAxisFormat = new CanvasTextFormat()
@@ -42,9 +43,7 @@ namespace Physics.HomogenousMovement.Rendering
             HorizontalAlignment = CanvasHorizontalAlignment.Center
         };
 
-        private ICanvasBrush _ballBrush;
-
-        public MotioningCanvasController(CanvasAnimatedControl canvasAnimatedControl)
+        public HomogenousMovementCanvasController(CanvasAnimatedControl canvasAnimatedControl)
             : base(canvasAnimatedControl)
         {
         }
@@ -52,9 +51,7 @@ namespace Physics.HomogenousMovement.Rendering
         public override Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             _brush = new CanvasSolidColorBrush(sender, Colors.Black);
-            _ballBrush = new CanvasSolidColorBrush(sender, Windows.UI.Color.FromArgb(255, 4, 119, 191));
-            return Task.CompletedTask;
-            //_skyImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Images/sky.jpg"));
+            return Task.CompletedTask;           
         }
 
         private RectangleF _simulationBoundsInMeters = new RectangleF();
@@ -120,6 +117,8 @@ namespace Physics.HomogenousMovement.Rendering
 
             var totalSeconds = (float)SimulationTime.TotalTime.TotalSeconds;
 
+            UpdatePadding(sender);
+
             _simulationBoundsInPixels = new RectangleF(
                 SimulationLeftSidePadding,
                 SimulationPadding,
@@ -139,6 +138,10 @@ namespace Physics.HomogenousMovement.Rendering
             }
         }
 
+        protected virtual void UpdatePadding(ICanvasAnimatedControl sender)
+        {            
+        }
+
         private float CalculateRequiredMeterSize(float meters, float pixels)
         {
             var jumpSize = CalculateJumpSizeForAxis(meters);
@@ -150,7 +153,9 @@ namespace Physics.HomogenousMovement.Rendering
         public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
-            args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
+            
+            DrawBackground(sender, args);
+
             if (_trajectories.Length == 0) return;
 
             DrawYMeasure(sender, args);
@@ -159,12 +164,18 @@ namespace Physics.HomogenousMovement.Rendering
             DrawTrajectories(sender, args);
         }
 
+        protected virtual void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
+        }
+
         private void DrawTrajectories(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             for (int movementId = 0; movementId < _trajectories.Length; movementId++)
-            {
+            {                
                 var trajectory = _trajectories[movementId];
                 var movement = _throws[movementId];
+                var movementColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color);
                 var lastPoint = trajectory.Points.First();
                 foreach (var point in trajectory.Points)
                 {
@@ -185,7 +196,7 @@ namespace Physics.HomogenousMovement.Rendering
                     args.DrawingSession.DrawLine(
                         new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y) - BallRadius),
                         new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y) - BallRadius),
-                        Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color), 2);
+                        movementColor, 2);
 
                     lastPoint = currentPoint;
                     if (shouldEnd)
@@ -196,8 +207,13 @@ namespace Physics.HomogenousMovement.Rendering
                 //draw ball
                 var ballX = MetersToPixelsX(lastPoint.X);
                 var ballY = MetersToPixelsY(lastPoint.Y) - BallRadius; //ball reference point is its horizontal center and vertical bottom
-                args.DrawingSession.FillCircle(new Vector2(ballX, ballY), BallRadius, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color));
+                DrawBall(args, new Vector2(ballX, ballY), movementColor);                
             }
+        }
+
+        protected virtual void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Windows.UI.Color movementColor)
+        {
+            args.DrawingSession.FillCircle(centerPoint, BallRadius, movementColor);
         }
 
         private float MetersToPixelsX(float meters) => _simulationBoundsInPixels.X + (meters - _simulationBoundsInMeters.Left) * _meterSizeInPixels;

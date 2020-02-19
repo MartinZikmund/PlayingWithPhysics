@@ -9,6 +9,7 @@ namespace Physics.Shared.Infrastructure.Topics
     public enum DifficultyOption
     {
         Easy,
-        Advanced
+        Advanced,
+        Game
     }
 }
