@@ -23,9 +23,6 @@ using Windows.ApplicationModel.DataTransfer;
 
 namespace Physics.HomogenousMovement
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainView : BaseView
     {
         private HomogenousMovementCanvasController _canvasController;
@@ -36,13 +33,10 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Mouse |
                  Windows.UI.Core.CoreInputDeviceTypes.Pen |
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            _canvasController = new GamificationCanvasController(AnimatedCanvas);
+            _canvasController = new HomogenousMovementCanvasController(AnimatedCanvas); //new GamificationCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
             this.Unloaded += MainView_Unloaded;
         }
-
-        
-
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
         {            
@@ -63,15 +57,15 @@ namespace Physics.HomogenousMovement
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             _canvasController.Pause();
-            PlayButton.IsEnabled = true;
-            PauseButton.IsEnabled = false;
+            PlayButton.Visibility = Visibility.Visible;
+            PauseButton.Visibility = Visibility.Collapsed;
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
             _canvasController.Play();
-            PlayButton.IsEnabled = false;
-            PauseButton.IsEnabled = true;
+            PlayButton.Visibility = Visibility.Collapsed;
+            PauseButton.Visibility = Visibility.Visible;
         }
         private void Backward_Click(object sender, RoutedEventArgs e)
         {

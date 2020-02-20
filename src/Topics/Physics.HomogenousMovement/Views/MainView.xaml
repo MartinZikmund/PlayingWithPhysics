@@ -27,6 +27,11 @@
                   BackgroundSource="Backdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".5"/>
         <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                   BackgroundSource="HostBackdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".7"/>
+        <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource MathFont}" />
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="0,0,0,2" />
+        </Style>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -51,7 +56,7 @@
                             </Grid.RowDefinitions>
                             <Image Source="ms-appx:///Physics.Shared/Assets/hratky_logo.svg" />
                             <Button
-                                    Grid.Row="2"
+                                    Grid.Row="1"
                                     Margin="0,0,0,8"
                                     HorizontalAlignment="Stretch"
                                     Command="{x:Bind Model.AddTrajectoryCommand}">
@@ -62,7 +67,7 @@
                                     <TextBlock Text="{extensions:Localize Key=AddMotion}" />
                                 </StackPanel>
                             </Button>
-                            <ListView SelectedItem="{x:Bind Model.SelectedMotion, Mode=TwoWay}" SelectionMode="Single" IsItemClickEnabled="False" Grid.Row="3" ItemsSource="{x:Bind Model.Motions}">
+                            <ListView SelectionMode="None" IsItemClickEnabled="False" Grid.Row="3" ItemsSource="{x:Bind Model.Motions}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -70,84 +75,74 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewModels:MotionInfoViewModel">
-                                        <Grid ColumnSpacing="8">
+                                        <Grid ColumnSpacing="8" RowSpacing="4" Padding="0,8">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="32" />
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
                                             <Border CornerRadius="12" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <Border.Background>
                                                     <SolidColorBrush Color="{x:Bind MotionInfo.Color, Mode=OneWay}" />
                                                 </Border.Background>
                                             </Border>
-                                            <TextBlock VerticalAlignment="Center" Text="{x:Bind Label, Mode=OneWay}" Grid.Column="1" />
-                                            <Button Grid.Column="2" Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}" CommandParameter="{x:Bind}">
-                                                <SymbolIcon Symbol="Edit" />
-                                            </Button>
-                                            <Button Grid.Column="3" Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}" CommandParameter="{x:Bind}">
-                                                <SymbolIcon Symbol="Delete" />
-                                            </Button>
+
+                                            <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{x:Bind Label, Mode=OneWay}" Grid.Column="1" />
+
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=Edit}" Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}" CommandParameter="{x:Bind}">
+                                                    <SymbolIcon Symbol="Edit" />
+                                                </Button>
+                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=Delete}" Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}" CommandParameter="{x:Bind}">
+                                                    <SymbolIcon Symbol="Delete" />
+                                                </Button>
+                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=ShowValuesTable}" Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}" CommandParameter="{x:Bind}">
+                                                    <SymbolIcon Symbol="ViewAll" />
+                                                </Button>
+                                            </StackPanel>
+                                            
+                                            <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="0">
+                                                    <Run Text="t: " />
+                                                    <Run Text="{x:Bind TimeElapsed, Mode=OneWay}" />
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="1" Grid.Column="0">
+                                                    <Run Text="x: " />
+                                                    <Run Text="{x:Bind CurrentX, Mode=OneWay}" />
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="1" Grid.Column="1">
+                                                    <Run Text="y: " />
+                                                    <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="1">
+                                                    <Run Text="v: " />
+                                                    <Run Text="{x:Bind CurrentSpeed, Mode=OneWay}" />
+                                                </TextBlock>
+                                            </Grid>
+                                            <MenuFlyoutSeparator Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
 
-                        <TextBlock HorizontalAlignment="Center" Margin="0,8,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Opacity="0.8" TextWrapping="Wrap" Text="{extensions:Localize Key=SelectMotionTip}" />
 
 
-                        <MenuFlyoutSeparator Margin="10" />
 
-
-                        <StackPanel Visibility="{x:Bind Model.SelectedMotion, Mode=OneWay, Converter={StaticResource InvertedNullToVisibilityConverter}}">
-                            <animations:Implicit.ShowAnimations>
-                                <animations:OpacityAnimation From="0" Duration="0:0:0.3" To="1.0"></animations:OpacityAnimation>
-                            </animations:Implicit.ShowAnimations>
-                            <TextBlock Text="{x:Bind Model.SelectedMotion.Label,Mode=OneWay}" Style="{StaticResource SubtitleTextBlockStyle}" />
-                            <Grid Margin="0,8,0,8" ColumnSpacing="8" RowSpacing="8">
-                                <Grid.Resources>
-                                    <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
-                                        <Setter Property="FontFamily" Value="{StaticResource MathFont}" />
-                                        <Setter Property="FontSize" Value="18"/>
-                                        <Setter Property="Margin" Value="0,0,0,2" />
-                                    </Style>
-                                </Grid.Resources>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="0" Grid.Column="0" Text="t:"></TextBlock>
-                                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}"></TextBlock>
-                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="1" Grid.Column="0" Text="x:"></TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentX, Mode=OneWay}"></TextBlock>
-                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="2" Grid.Column="0" Text="y:"></TextBlock>
-                                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentY, Mode=OneWay}"></TextBlock>
-                                <TextBlock Style="{StaticResource InfoTextBlockStyle}" Grid.Row="3" Grid.Column="0" Text="v:"></TextBlock>
-                                <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Model.CurrentSpeed, Mode=OneWay}"></TextBlock>
-                            </Grid>
-                            <Button
-                            Grid.Row="2"
-                            Margin="0,0,0,8"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.ShowValuesTableCommand}">
-                                <StackPanel Spacing="8" Orientation="Horizontal">
-                                    <Viewbox Width="16" Height="16" VerticalAlignment="Center">
-                                        <SymbolIcon Symbol="ViewAll" />
-                                    </Viewbox>
-                                    <TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
@@ -194,12 +189,14 @@
                     <Button Click="Backward_Click" IsEnabled="True" x:Name="BackButton">
                         <SymbolIcon Symbol="Back" />
                     </Button>
-                    <Button Click="Play_Click" IsEnabled="False" x:Name="PlayButton">
-                        <SymbolIcon Symbol="Play" />
-                    </Button>
-                    <Button Click="Pause_Click" IsEnabled="True" x:Name="PauseButton">
-                        <SymbolIcon Symbol="Pause" />
-                    </Button>
+                    <Grid>
+                        <Button Click="Play_Click" Visibility="Collapsed" x:Name="PlayButton">
+                            <SymbolIcon Symbol="Play" />
+                        </Button>
+                        <Button Click="Pause_Click" Visibility="Visible" x:Name="PauseButton">
+                            <SymbolIcon Symbol="Pause" />
+                        </Button>
+                    </Grid>
                     <Button Click="Forward_Click" IsEnabled="True" x:Name="ForwardButton">
                         <SymbolIcon Symbol="Forward" />
                     </Button>

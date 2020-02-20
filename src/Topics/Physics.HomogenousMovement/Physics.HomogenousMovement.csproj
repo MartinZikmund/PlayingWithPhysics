@@ -172,6 +172,9 @@
     <Compile Include="Views\ValuesTableDialog.xaml.cs">
       <DependentUpon>ValuesTableDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -269,6 +272,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ValuesTableDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ValuesTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using MvvmCross.ViewModels;
 using Physics.HomogenousMovement.PhysicsServices;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
-    public class ValuesTableDialogViewModel : MvxNotifyPropertyChanged
+    public class ValuesTableDialogViewModel : INotifyPropertyChanged
     {
         private readonly IPhysicsService _service;
         public float TimeInterval { get; set; } = 0.1f;
         public ObservableCollection<TableRow> Values { get; private set; }
         private TableService _tableService;
         private MovementType _type;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ValuesTableDialogViewModel(IPhysicsService service, MovementType type)
         {
@@ -34,5 +38,10 @@ namespace Physics.HomogenousMovement.ViewModels
         public Visibility ButtonVisibility => (_type == MovementType.FreeFall || _type == MovementType.UpwardMotion)
             ? Visibility.Visible
             : Visibility.Collapsed;
+
+        public void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

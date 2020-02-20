@@ -16,6 +16,10 @@ using Windows.UI.Xaml;
 using Windows.ApplicationModel.DataTransfer;
 using Physics.HomogenousMovement.Models;
 using System.Runtime.CompilerServices;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using System.Collections.Generic;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
@@ -29,7 +33,6 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private HomogenousMovementCanvasController _controller;
         private LaunchInfo _launchInfo = null;
-        private IPhysicsService _selectedMotionPhysicsService = null;
         private DispatcherTimer _timer = new DispatcherTimer();
         private bool _startWithController = false;
 
@@ -87,45 +90,20 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private void _timer_Tick(object sender, object e)
         {
-            if (SelectedMotion == null)
-            {
-                return;
-            }
-            if (_timer.IsEnabled && _selectedMotionPhysicsService != null && _controller != null)
+            if (_timer.IsEnabled && _controller != null)
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
-                if (timeElapsed > _selectedMotionPhysicsService.MaxT)
+
+                foreach (var motion in Motions)
                 {
-                    timeElapsed = _selectedMotionPhysicsService.MaxT;
+                    motion.UpdateCurrentValues(timeElapsed);
                 }
-                TimeElapsed = timeElapsed.ToString("0.##") + " s";
-                CurrentSpeed = _selectedMotionPhysicsService.ComputeV(timeElapsed).ToString("0.##") + " m/s";
-                CurrentX = _selectedMotionPhysicsService.ComputeX(timeElapsed).ToString("0.##") + " m";
-                CurrentY = _selectedMotionPhysicsService.ComputeY(timeElapsed).ToString("0.##") + " m";
             }
         }
 
-        public string TimeElapsed { get; private set; }
-        public string CurrentSpeed { get; private set; }
-        public string CurrentX { get; private set; }
-        public string CurrentY { get; private set; }
 
         public ObservableCollection<MotionInfoViewModel> Motions { get; } =
             new ObservableCollection<MotionInfoViewModel>();
-
-        public MotionInfoViewModel SelectedMotion { get; set; }
-
-        public void OnSelectedMotionChanged()
-        {
-            if (SelectedMotion == null)
-            {
-                _selectedMotionPhysicsService = null;
-            }
-            else
-            {
-                _selectedMotionPhysicsService = new PhysicsService(SelectedMotion.MotionInfo);
-            }
-        }
 
         public async void SetCanvasController(HomogenousMovementCanvasController controller)
         {
@@ -137,8 +115,6 @@ namespace Physics.HomogenousMovement.ViewModels
             }
         }
 
-        public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableDialog);
-
         public ICommand StartNewSimulationCommand => GetOrCreateAsyncCommand(StartSimulationAsync);
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(AddTrajectoryAsync);
@@ -147,9 +123,12 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public ICommand DeleteTrajectoryCommand => GetOrCreateAsyncCommand<MotionInfoViewModel>(DeleteTrajectoryAsync);
 
+        public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<MotionInfoViewModel>(ShowValuesTableAsync);
+
         private async Task DeleteTrajectoryAsync(MotionInfoViewModel arg)
         {
             Motions.Remove(arg);
+            await CloseAppViewForMotionAsync(arg);
             await StartSimulationAsync();
         }
 
@@ -161,10 +140,6 @@ namespace Physics.HomogenousMovement.ViewModels
             if (result == ContentDialogResult.Primary)
             {
                 Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
-                if (Motions.Count == 1)
-                {
-                    SelectedMotion = Motions[0];
-                }
                 await StartSimulationAsync();
             }
         }
@@ -210,16 +185,50 @@ namespace Physics.HomogenousMovement.ViewModels
             });
         }
 
-        private async Task ShowValuesTableDialog()
-        {
-            if (SelectedMotion == null || _selectedMotionPhysicsService == null)
-            {
-                return;
-            }
+        private Dictionary<MotionInfoViewModel, int> _tableWindowIds = new Dictionary<MotionInfoViewModel, int>();
 
-            //Check if service exists
-            var dialog = new ValuesTableDialog(_selectedMotionPhysicsService, SelectedMotion.MotionInfo.Type);
-            await dialog.ShowAsync();
+        private async Task ShowValuesTableAsync(MotionInfoViewModel viewModel)
+        {
+            if (_tableWindowIds.ContainsKey(viewModel)) return;
+            var newView = CoreApplication.CreateNewView();
+            int newViewId = 0;
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                var frame = new Frame();
+                frame.Navigate(typeof(ValuesTablePage), null);
+                (frame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+                Window.Current.Content = frame;
+                // You have to activate the window in order to show it later.
+                Window.Current.Activate();
+                ApplicationView.GetForCurrentView().Title = viewModel.Label;
+                newViewId = ApplicationView.GetForCurrentView().Id;
+            });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+            if (viewShown)
+            {
+                _tableWindowIds.Add(viewModel, newViewId);
+            }
+            ////Check if service exists
+            //var dialog = new ValuesTableDialog(_selectedMotionPhysicsService, SelectedMotion.MotionInfo.Type);
+            //await dialog.ShowAsync();
+        }
+
+        private async Task CloseAppViewForMotionAsync(MotionInfoViewModel viewModel)
+        {
+            //if (_tableWindowIds.TryGetValue(viewModel, out var windowId))
+            //{
+            //    var coreView = CoreApplication.Views.FirstOrDefault(v => ApplicationView.GetApplicationViewIdForWindow(v.CoreWindow) == windowId);
+
+            //    if (coreView != null)
+            //    {
+            //        await coreView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            //        {
+            //            await ApplicationView.GetForCurrentView().TryConsolidateAsync();
+            //        });
+            //    }
+
+            //    _tableWindowIds.Remove(viewModel);
+            //}
         }
 
         public override void ViewAppearing()

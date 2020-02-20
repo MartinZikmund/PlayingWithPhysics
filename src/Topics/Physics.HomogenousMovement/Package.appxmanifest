@@ -14,7 +14,7 @@
   <mp:PhoneIdentity PhoneProductId="f3bf20d4-aeef-47e1-acd0-096efe439f16" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli Země</DisplayName>
+    <DisplayName>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli</DisplayName>
     <PublisherDisplayName>Martin Zikmund</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

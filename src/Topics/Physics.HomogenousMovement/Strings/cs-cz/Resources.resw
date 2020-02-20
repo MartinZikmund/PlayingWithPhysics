@@ -127,7 +127,7 @@
     <value>Úhel</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli Země</value>
+    <value>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli</value>
   </data>
   <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
     <value>Chybný formát vstupních hodnot</value>
@@ -141,8 +141,14 @@
   <data name="Color" xml:space="preserve">
     <value>Barva</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Základní varianta</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Upravit</value>
   </data>
   <data name="EditMotion" xml:space="preserve">
     <value>Upravit vrh</value>
@@ -206,5 +212,8 @@
   </data>
   <data name="VerticalMotion" xml:space="preserve">
     <value>Svislý vrh</value>
+  </data>
+  <data name="PohybyVHomogennímTíhovémPoliTextBlock.Text" xml:space="preserve">
+    <value>Pohyby v homogenním tíhovém poli</value>
   </data>
 </root>

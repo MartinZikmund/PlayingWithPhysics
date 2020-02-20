@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-    Background="#4299dd"
+    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
+    Background="{StaticResource AppThemeColor}"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -45,7 +46,7 @@
                     HorizontalAlignment="Center"
                     TextWrapping="Wrap"
                     Style="{ThemeResource SubheaderTextBlockStyle}"
-                    Text="Pohyby v homogenním tíhovém poli Země" />
+                    Text="{extensions:Localize Key=AppName}" />
                 </Grid>
                 <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Grid
