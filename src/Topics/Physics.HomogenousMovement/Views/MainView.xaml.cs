@@ -33,8 +33,9 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Mouse |
                  Windows.UI.Core.CoreInputDeviceTypes.Pen |
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            _canvasController = new HomogenousMovementCanvasController(AnimatedCanvas); //new GamificationCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
+            _canvasController = new HomogenousMovementCanvasController(AnimatedCanvas);
+            //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
         }
 

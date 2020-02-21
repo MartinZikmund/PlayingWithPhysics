@@ -160,7 +160,7 @@
     <value>Gravitace</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
-    <value>Přímý vrh</value>
+    <value>Vodorovný vrh</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
     <value>Neplatný vstup</value>

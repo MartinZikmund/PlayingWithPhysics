@@ -40,7 +40,8 @@ namespace Physics.HomogenousMovement.Rendering
         //private CanvasBitmap _skyImage;
         private readonly CanvasTextFormat _yAxisFormat = new CanvasTextFormat()
         {
-            HorizontalAlignment = CanvasHorizontalAlignment.Center
+            HorizontalAlignment = CanvasHorizontalAlignment.Center,
+            FontSize = 10
         };
 
         public HomogenousMovementCanvasController(CanvasAnimatedControl canvasAnimatedControl)
@@ -253,7 +254,8 @@ namespace Physics.HomogenousMovement.Rendering
                     (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
                     _simulationBoundsInPixels.Bottom + 12,
-                    Colors.Black);
+                    Colors.Black,
+                    _yAxisFormat);
             }
         }
 

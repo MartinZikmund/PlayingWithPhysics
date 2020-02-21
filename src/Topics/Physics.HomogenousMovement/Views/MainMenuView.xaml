@@ -22,7 +22,7 @@
     <Grid>
         <Image x:Name="Splash" Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Grid x:Name="RootGrid">
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Source="ms-appx:///Assets/Videos/tema_back_v01.mp4" Grid.RowSpan="4"/>
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Grid.RowSpan="4"/>
 
             <Grid Padding="12">
                 <Grid.RowDefinitions>
