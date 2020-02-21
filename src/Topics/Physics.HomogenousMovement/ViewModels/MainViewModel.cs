@@ -237,6 +237,7 @@ namespace Physics.HomogenousMovement.ViewModels
             if (_tableWindowIds.TryGetValue(viewModel, out var window))
             {
                 await window.TryShowAsync();
+                return;
             };
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
@@ -253,7 +254,8 @@ namespace Physics.HomogenousMovement.ViewModels
             newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
             newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
             newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-
+            newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
             newWindow.RequestSize(new Size(600, 400));
             var shown = await newWindow.TryShowAsync();
             if (shown)
