@@ -251,6 +251,9 @@ namespace Physics.HomogenousMovement.ViewModels
             newWindow.TitleBar.ForegroundColor = Colors.White;
             newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
             newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+            newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+
             newWindow.RequestSize(new Size(600, 400));
             var shown = await newWindow.TryShowAsync();
             if (shown)

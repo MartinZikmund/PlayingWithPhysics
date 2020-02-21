@@ -117,17 +117,17 @@ namespace Physics.HomogenousMovement.Views
 
             if (e.Column.Header.ToString() == "EP")
             {
-                e.Column.Header = "Ep (N)";
+                e.Column.Header = "Ep (J)";
             }
 
             if (e.Column.Header.ToString() == "EK")
             {
-                e.Column.Header = "Ek (N)";
+                e.Column.Header = "Ek (J)";
             }
 
             if (e.Column.Header.ToString() == "EPEK")
             {
-                e.Column.Header = "EpEk (N)";
+                e.Column.Header = "EpEk (J)";
             }
         }
     }
