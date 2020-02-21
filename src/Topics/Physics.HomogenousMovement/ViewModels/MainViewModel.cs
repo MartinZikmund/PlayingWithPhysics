@@ -20,11 +20,19 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using System.Collections.Generic;
+using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.WindowManagement;
+using Windows.UI.Xaml.Hosting;
+using MvvmCross.Base;
+using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
     public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
     {
+        private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
+
         public class NavigationModel
         {
             public DifficultyOption Difficulty { get; set; }
@@ -36,8 +44,9 @@ namespace Physics.HomogenousMovement.ViewModels
         private DispatcherTimer _timer = new DispatcherTimer();
         private bool _startWithController = false;
 
-        public MainViewModel()
+        public MainViewModel(IMvxMainThreadAsyncDispatcher dispatcher)
         {
+            _dispatcher = dispatcher;
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             _timer.Tick += _timer_Tick;
         }
@@ -167,6 +176,7 @@ namespace Physics.HomogenousMovement.ViewModels
             {
                 arg.MotionInfo = dialogViewModel.ResultMotionInfo;
                 await StartSimulationAsync();
+                UpdateMotionAppWindow(arg);
             }
         }
 
@@ -185,50 +195,104 @@ namespace Physics.HomogenousMovement.ViewModels
             });
         }
 
-        private Dictionary<MotionInfoViewModel, int> _tableWindowIds = new Dictionary<MotionInfoViewModel, int>();
+        private Dictionary<MotionInfoViewModel, AppWindow> _tableWindowIds =
+            new Dictionary<MotionInfoViewModel, AppWindow>();
 
         private async Task ShowValuesTableAsync(MotionInfoViewModel viewModel)
         {
-            if (_tableWindowIds.ContainsKey(viewModel)) return;
-            var newView = CoreApplication.CreateNewView();
-            int newViewId = 0;
-            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                var frame = new Frame();
-                frame.Navigate(typeof(ValuesTablePage), null);
-                (frame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
-                Window.Current.Content = frame;
-                // You have to activate the window in order to show it later.
-                Window.Current.Activate();
-                ApplicationView.GetForCurrentView().Title = viewModel.Label;
-                newViewId = ApplicationView.GetForCurrentView().Id;
-            });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-            if (viewShown)
-            {
-                _tableWindowIds.Add(viewModel, newViewId);
-            }
+
+            //if (_tableWindowIds.ContainsKey(viewModel)) return;
+            //var newView = CoreApplication.CreateNewView();
+            //int newViewId = 0;
+            //await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            //{
+            //    var frame = new Frame();
+            //    frame.Navigate(typeof(ValuesTablePage), null);
+            //    (frame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+            //    Window.Current.Content = frame;
+            //    var view = ApplicationView.GetForCurrentView();
+
+            //    view.Title = viewModel.Label;
+
+            //    view.TitleBar.BackgroundColor = ColorHelper.ToColor(viewModel.MotionInfo.Color);
+            //    view.TitleBar.ForegroundColor = Colors.White;
+            //    view.TitleBar.InactiveBackgroundColor = view.TitleBar.BackgroundColor;
+            //    // You have to activate the window in order to show it later.
+            //    Window.Current.Activate();
+
+            //    view.TryResizeView(new Size { Width = 600, Height = 400 });
+
+            //    newViewId = view.Id;
+            //});
+            //bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+
+            //if (viewShown)
+            //{
+            //    _tableWindowIds.Add(viewModel, newView);
+            //}
             ////Check if service exists
             //var dialog = new ValuesTableDialog(_selectedMotionPhysicsService, SelectedMotion.MotionInfo.Type);
             //await dialog.ShowAsync();
+
+            if (_tableWindowIds.TryGetValue(viewModel, out var window))
+            {
+                await window.TryShowAsync();
+            };
+            var newWindow = await AppWindow.TryCreateAsync();
+            var appWindowContentFrame = new Frame();
+            appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+            (appWindowContentFrame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+            // Attach the XAML content to the window.
+            ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+            newWindow.Closed += NewWindow_Closed;
+            newWindow.Title = viewModel.Label;
+
+            newWindow.TitleBar.BackgroundColor = ColorHelper.ToColor(viewModel.MotionInfo.Color);
+            newWindow.TitleBar.ForegroundColor = Colors.White;
+            newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+            newWindow.RequestSize(new Size(600, 400));
+            var shown = await newWindow.TryShowAsync();
+            if (shown)
+            {
+                _tableWindowIds.Add(viewModel, newWindow);
+            }
+        }
+
+        private void NewWindow_Closed(AppWindow sender, AppWindowClosedEventArgs args)
+        {
+            var pair = _tableWindowIds.FirstOrDefault(t => t.Value == sender);
+            _tableWindowIds.Remove(pair.Key);
+        }
+
+        private void UpdateMotionAppWindow(MotionInfoViewModel viewModel)
+        {
+            if (_tableWindowIds.TryGetValue(viewModel, out var appWindow))
+            {
+                var frame = ElementCompositionPreview.GetAppWindowContent(appWindow) as Frame;
+                var page = frame?.Content as ValuesTablePage;
+                page?.Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+            }
+        }
+
+        private async void NewView_HostedViewClosing(CoreApplicationView sender, HostedViewClosingEventArgs args)
+        {
+            await _dispatcher.ExecuteOnMainThreadAsync(() =>
+            {
+
+            });
         }
 
         private async Task CloseAppViewForMotionAsync(MotionInfoViewModel viewModel)
         {
-            //if (_tableWindowIds.TryGetValue(viewModel, out var windowId))
-            //{
-            //    var coreView = CoreApplication.Views.FirstOrDefault(v => ApplicationView.GetApplicationViewIdForWindow(v.CoreWindow) == windowId);
-
-            //    if (coreView != null)
-            //    {
-            //        await coreView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            //        {
-            //            await ApplicationView.GetForCurrentView().TryConsolidateAsync();
-            //        });
-            //    }
-
-            //    _tableWindowIds.Remove(viewModel);
-            //}
+            if (_tableWindowIds.TryGetValue(viewModel, out var appView))
+            {
+                await appView.CloseAsync();
+                //await appView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                //    {
+                //        await ApplicationView.GetForCurrentView().TryConsolidateAsync();
+                //    });
+            }
         }
 
         public override void ViewAppearing()
@@ -240,6 +304,10 @@ namespace Physics.HomogenousMovement.ViewModels
         public override void ViewDisappearing()
         {
             base.ViewDisappearing();
+            foreach (var motion in Motions)
+            {
+                CloseAppViewForMotionAsync(motion);
+            }
             DataTransferManager.GetForCurrentView().DataRequested -= MainView_DataRequested;
         }
 

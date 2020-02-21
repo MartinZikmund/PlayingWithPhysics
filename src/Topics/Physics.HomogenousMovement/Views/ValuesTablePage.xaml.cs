@@ -31,14 +31,15 @@ namespace Physics.HomogenousMovement.Views
         public ValuesTablePage()
         {
             this.InitializeComponent();
+            Model = new ValuesTableDialogViewModel();
+            DataContext = Model;
         }
 
         public void Initialize(IPhysicsService service, MovementType type)
         {
             SetupFromatting();
             _type = type;
-            Model = new ValuesTableDialogViewModel(service, type);
-            DataContext = Model;
+            Model.Initalize(service, type);
         }
 
         private void SetupFromatting()

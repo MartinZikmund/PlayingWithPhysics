@@ -14,7 +14,7 @@ namespace Physics.HomogenousMovement.ViewModels
 {
     public class ValuesTableDialogViewModel : INotifyPropertyChanged
     {
-        private readonly IPhysicsService _service;
+        private IPhysicsService _service;
         public float TimeInterval { get; set; } = 0.1f;
         public ObservableCollection<TableRow> Values { get; private set; }
         private TableService _tableService;
@@ -22,7 +22,12 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ValuesTableDialogViewModel(IPhysicsService service, MovementType type)
+        public ValuesTableDialogViewModel()
+        {
+
+        }
+
+        public void Initalize(IPhysicsService service, MovementType type)
         {
             _type = type;
             _service = service;

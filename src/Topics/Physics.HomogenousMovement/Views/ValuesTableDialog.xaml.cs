@@ -37,7 +37,7 @@ namespace Physics.HomogenousMovement.Views
             this.InitializeComponent();
             SetupFromatting();
             _type = type;
-            Model = new ValuesTableDialogViewModel(service, type);
+            Model = new ValuesTableDialogViewModel();
             DataContext = Model;
         }
 
