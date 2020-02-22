@@ -28,7 +28,6 @@
         <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                   BackgroundSource="HostBackdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".7"/>
         <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource MathFont}" />
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="0,0,0,2" />
         </Style>
@@ -71,42 +70,59 @@
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Margin" Value="0,8" />
+                                        <Setter Property="Padding" Value="0" />
                                     </Style>
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewModels:MotionInfoViewModel">
-                                        <Grid ColumnSpacing="8" RowSpacing="4" Padding="0,8">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                        <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
-
-                                            <Border CornerRadius="12" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                <Border.Background>
+                                            <Grid Margin="0,4" CornerRadius="2" ColumnSpacing="8" RowSpacing="4" Padding="8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Background>
                                                     <SolidColorBrush Color="{x:Bind MotionInfo.Color, Mode=OneWay}" />
-                                                </Border.Background>
-                                            </Border>
+                                                </Grid.Background>
 
-                                            <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{x:Bind Label, Mode=OneWay}" Grid.Column="1" />
+                                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Text="{x:Bind Label, Mode=OneWay}" />
 
-                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
-                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=Edit}" Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}" CommandParameter="{x:Bind}">
-                                                    <SymbolIcon Symbol="Edit" />
+                                                <Button Grid.Column="2">
+                                                    <Button.Flyout>
+                                                        <MenuFlyout>
+                                                            <MenuFlyoutItem Text="{extensions:Localize Key=ShowValuesTable}" Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}" CommandParameter="{x:Bind}">
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="ViewAll" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutSeparator />
+                                                            <MenuFlyoutItem Text="{extensions:Localize Key=Edit}" Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}" CommandParameter="{x:Bind}">
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Edit" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutItem Text="{extensions:Localize Key=Duplicate}" Command="{Binding ElementName=Page, Path=Model.DuplicateTrajectoryCommand}" CommandParameter="{x:Bind}">
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Copy" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutItem Text="{extensions:Localize Key=Delete}" Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}" CommandParameter="{x:Bind}">
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Delete" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                        </MenuFlyout>
+                                                    </Button.Flyout>
+                                                    <SymbolIcon Symbol="More" />
                                                 </Button>
-                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=Delete}" Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}" CommandParameter="{x:Bind}">
-                                                    <SymbolIcon Symbol="Delete" />
-                                                </Button>
-                                                <Button ToolTipService.ToolTip="{extensions:Localize Key=ShowValuesTable}" Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}" CommandParameter="{x:Bind}">
-                                                    <SymbolIcon Symbol="ViewAll" />
-                                                </Button>
-                                            </StackPanel>
-                                            
-                                            <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                                            </Grid>
+
+                                            <Grid RowSpacing="4" Grid.Row="1" Grid.ColumnSpan="4">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
@@ -133,16 +149,11 @@
                                                     <Run Text="{x:Bind CurrentSpeed, Mode=OneWay}" />
                                                 </TextBlock>
                                             </Grid>
-                                            <MenuFlyoutSeparator Grid.Row="1" Margin="10" HorizontalAlignment="Stretch" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-
-
-
-
                     </StackPanel>
                 </ScrollViewer>
             </Border>

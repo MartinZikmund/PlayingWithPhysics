@@ -20,7 +20,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>118C59D1C93A333E8EA8DE9A01A88D75FDEE146B</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>934D1958FC1AFF941C6592CEAAF1A49375FA40D6</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -130,7 +130,7 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
+    <Compile Include="Models\AvailableMotionNames.cs" />
     <Compile Include="Models\LaunchInfo.cs" />
     <Compile Include="Models\LaunchUriManager.cs" />
     <Compile Include="Rendering\GamificationCanvasController.cs" />

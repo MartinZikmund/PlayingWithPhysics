@@ -134,6 +134,8 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<MotionInfoViewModel>(ShowValuesTableAsync);
 
+        public ICommand DuplicateTrajectoryCommand => GetOrCreateAsyncCommand<MotionInfoViewModel>(DuplicateTrajectoryAsync);
+
         private async Task DeleteTrajectoryAsync(MotionInfoViewModel arg)
         {
             Motions.Remove(arg);
@@ -169,7 +171,9 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task EditTrajectoryAsync(MotionInfoViewModel arg)
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo, Difficulty);
+            var duplicateMotion = arg.MotionInfo.Clone();
+            duplicateMotion.Label = GenerateNextUniqueMotionName();
+            var dialogViewModel = new AddOrUpdateMotionViewModel(duplicateMotion, Difficulty);
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -177,6 +181,18 @@ namespace Physics.HomogenousMovement.ViewModels
                 arg.MotionInfo = dialogViewModel.ResultMotionInfo;
                 await StartSimulationAsync();
                 UpdateMotionAppWindow(arg);
+            }
+        }
+
+        private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
+        {
+            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo, Difficulty);
+            var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
+                await StartSimulationAsync();
             }
         }
 
@@ -200,40 +216,6 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task ShowValuesTableAsync(MotionInfoViewModel viewModel)
         {
-
-            //if (_tableWindowIds.ContainsKey(viewModel)) return;
-            //var newView = CoreApplication.CreateNewView();
-            //int newViewId = 0;
-            //await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            //{
-            //    var frame = new Frame();
-            //    frame.Navigate(typeof(ValuesTablePage), null);
-            //    (frame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
-            //    Window.Current.Content = frame;
-            //    var view = ApplicationView.GetForCurrentView();
-
-            //    view.Title = viewModel.Label;
-
-            //    view.TitleBar.BackgroundColor = ColorHelper.ToColor(viewModel.MotionInfo.Color);
-            //    view.TitleBar.ForegroundColor = Colors.White;
-            //    view.TitleBar.InactiveBackgroundColor = view.TitleBar.BackgroundColor;
-            //    // You have to activate the window in order to show it later.
-            //    Window.Current.Activate();
-
-            //    view.TryResizeView(new Size { Width = 600, Height = 400 });
-
-            //    newViewId = view.Id;
-            //});
-            //bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-
-            //if (viewShown)
-            //{
-            //    _tableWindowIds.Add(viewModel, newView);
-            //}
-            ////Check if service exists
-            //var dialog = new ValuesTableDialog(_selectedMotionPhysicsService, SelectedMotion.MotionInfo.Type);
-            //await dialog.ShowAsync();
-
             if (_tableWindowIds.TryGetValue(viewModel, out var window))
             {
                 await window.TryShowAsync();

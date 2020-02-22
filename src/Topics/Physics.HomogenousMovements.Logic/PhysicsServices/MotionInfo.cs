@@ -24,6 +24,14 @@ namespace Physics.HomogenousMovement.Logic.PhysicsServices
         {
         }
 
+        public MotionInfo Clone()
+        {
+            return new MotionInfo(this.Type, Origin, Mass, V0, Angle, Color, G)
+            {
+                Label = Label,
+            };
+        }
+
         public MovementType Type { get; set; }
         public Vector2 Origin { get; set; }
         public float G { get; set; }

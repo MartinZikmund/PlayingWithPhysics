@@ -101,6 +101,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -214,7 +215,7 @@
                                 Grid.Row="6" Grid.Column="0"
                                 VerticalAlignment="Center"
                                 Text="{extensions:Localize Key=Color}" />
-                <Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <!--<Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Button.Flyout>
                         <Flyout>
                             <ColorPicker Color="{x:Bind Model.Color, Mode=TwoWay}">
@@ -229,7 +230,18 @@
                         </Border>
                         <TextBlock Margin="8,0,0,0" Text="Vyber barvu"></TextBlock>
                     </StackPanel>
-                </Button>
+                </Button>-->
+                <GridView Grid.Row="7" Grid.ColumnSpan="2" ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}" SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="32" Height="32">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding}" />
+                                </Border.Background>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
 
             </Grid>
         </StackPanel>
