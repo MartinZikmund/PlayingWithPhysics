@@ -216,4 +216,7 @@
   <data name="PohybyVHomogennímTíhovémPoliTextBlock.Text" xml:space="preserve">
     <value>Pohyby v homogenním tíhovém poli</value>
   </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Zkopírovat</value>
+  </data>
 </root>
