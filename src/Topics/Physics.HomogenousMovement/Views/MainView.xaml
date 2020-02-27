@@ -214,9 +214,19 @@
 
                     <Slider ValueChanged="SpeedSldr_ValueChanged" VerticalAlignment="Center" x:Name="SpeedSldr" Opacity="0" Value="1" Visibility="Collapsed" Minimum="0.1" Maximum="2" Width="300" StepFrequency="0.1"></Slider>
                 </StackPanel>
-                <Button Grid.Column="1" Command="{x:Bind Model.ShareCommand}">
-                    <SymbolIcon Margin="3,0,0,0" Symbol="Share"/>
-                </Button>
+                <StackPanel Spacing="8" Grid.Column="1" Orientation="Horizontal">
+                    <Button Command="{x:Bind Model.ShareCommand}">
+                        <SymbolIcon Margin="3,0,0,0" Symbol="Share"/>
+                    </Button>
+                    <Button>
+                        <Button.Flyout>
+                            <Flyout>
+                                <winui:NumberBox x:Name="StepSizeNumberBox" SmallChange="0.1" LargeChange="0.1" Minimum="0.1" Value="{x:Bind Model.StepSize, Mode=TwoWay}" Header="{extensions:Localize Key=JumpSize}" SpinButtonPlacementMode="Inline"/>
+                            </Flyout>
+                        </Button.Flyout>
+                        <SymbolIcon Symbol="Setting"></SymbolIcon>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

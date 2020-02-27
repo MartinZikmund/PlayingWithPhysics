@@ -12,8 +12,9 @@ namespace Physics.HomogenousMovement.ViewModels
 {
     public class ValuesTableDialogViewModel : MvxNotifyPropertyChanged
     {
+        //TODO: Fix when editing motions
         private readonly IPhysicsService _service;
-        public float TimeInterval { get; set; } = 0.1f;
+        public float TimeInterval { get; set; }
         public ObservableCollection<TableRow> Values { get; private set; }
         private TableService _tableService;
         private MovementType _type;
@@ -23,6 +24,7 @@ namespace Physics.HomogenousMovement.ViewModels
             _type = type;
             _service = service;
             _tableService = new TableService(service);
+            TimeInterval = (float)(_service.MaxT / 30);
             Values = new ObservableCollection<TableRow>(_tableService.PopulateTable(TimeInterval));
         }
 

@@ -20,6 +20,7 @@ using Windows.Globalization.NumberFormatting;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
+using Physics.Shared.Helpers;
 
 namespace Physics.HomogenousMovement
 {
@@ -39,10 +40,8 @@ namespace Physics.HomogenousMovement
             _canvasController = new MotioningCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
             this.Unloaded += MainView_Unloaded;
+            StepSizeNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
         }
-
-        
-
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
         {            
@@ -75,12 +74,12 @@ namespace Physics.HomogenousMovement
         }
         private void Backward_Click(object sender, RoutedEventArgs e)
         {
-            _canvasController.Rewind(0.1f);
+            _canvasController.Rewind(Model.StepSize);
         }
 
         private void Forward_Click(object sender, RoutedEventArgs e)
         {
-            _canvasController.FastForward(0.1f);
+            _canvasController.FastForward(Model.StepSize);
         }
 
         private void SpeedSldr_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)

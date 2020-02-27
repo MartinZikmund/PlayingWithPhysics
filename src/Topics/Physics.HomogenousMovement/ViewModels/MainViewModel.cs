@@ -48,7 +48,6 @@ namespace Physics.HomogenousMovement.ViewModels
             args.Request.Data.Properties.Description = "This motion and it's settings will be shared as a URI which let's other users make use of it.";
         }
 
-
         public override void Prepare(NavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
@@ -79,8 +78,7 @@ namespace Physics.HomogenousMovement.ViewModels
         }
 
         public DifficultyOption Difficulty { get; set; }
-
-
+        public float StepSize { get; set; } = 0.1f;
         public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
 
         public bool DrawTrajectoriesContinously { get; set; } = true;

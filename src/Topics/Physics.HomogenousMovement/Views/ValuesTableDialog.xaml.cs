@@ -23,6 +23,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls.Primitives;
 using MvvmCross.ViewModels;
 using Physics.HomogenousMovement.PhysicsServices;
 using Physics.HomogenousMovement.ViewModels;
+using Physics.Shared.Helpers;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,23 +36,10 @@ namespace Physics.HomogenousMovement.Views
         public ValuesTableDialog(IPhysicsService service, MovementType type)
         {
             this.InitializeComponent();
-            SetupFromatting();
             _type = type;
             Model = new ValuesTableDialogViewModel(service, type);
             DataContext = Model;
-        }
-
-        private void SetupFromatting()
-        {
-            IncrementNumberRounder rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
-            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
-
-            DecimalFormatter formatter = new DecimalFormatter();
-            formatter.IntegerDigits = 1;
-            formatter.FractionDigits = 1;
-            formatter.NumberRounder = rounder;
-            TimeIntervalNumberBox.NumberFormatter = formatter;
+            TimeIntervalNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
         }
 
         public ValuesTableDialogViewModel Model { get; set; }

@@ -9,7 +9,7 @@
   <Identity
     Name="5143MartinZikmund.HrtkysfyzikouPohybyvhomogennmtho"
     Publisher="CN=5EDFBB6C-AD5D-4B76-B479-1C5F44017714"
-    Version="0.8.5.0" />
+    Version="0.8.8.0" />
 
   <mp:PhoneIdentity PhoneProductId="f3bf20d4-aeef-47e1-acd0-096efe439f16" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
