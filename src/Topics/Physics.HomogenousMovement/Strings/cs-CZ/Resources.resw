@@ -138,6 +138,9 @@
   <data name="ChooseColor" xml:space="preserve">
     <value>Vybrat barvu</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Barva</value>
   </data>
@@ -157,13 +160,16 @@
     <value>Volný pád</value>
   </data>
   <data name="Gravity" xml:space="preserve">
-    <value>Gravitace</value>
+    <value>Tíhové zrychlení</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Vodorovný vrh</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
     <value>Neplatný vstup</value>
+  </data>
+  <data name="JumpSize" xml:space="preserve">
+    <value>Volba kroku vykreslování</value>
   </data>
   <data name="Label" xml:space="preserve">
     <value>Název</value>
@@ -191,6 +197,9 @@
   </data>
   <data name="SelectMotionTip" xml:space="preserve">
     <value>Klikněte na vrh pro zobrazení hodnot.</value>
+  </data>
+  <data name="ShowHideIrrelevantColumns" xml:space="preserve">
+    <value>Zobrazit/skrýt nulové sloupce</value>
   </data>
   <data name="ShowValues" xml:space="preserve">
     <value>Zobrazit hodnoty</value>
