@@ -24,7 +24,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _mass = 1;
         private float _angle;
         private float _gravity = GravityConstants.Earth;
-        private Color _color = Colors.CornflowerBlue;
+        private Color _color = ColorHelper.ToColor("#0063B1");
 
         public AddOrUpdateMotionViewModel(MotionInfo motionInfo, DifficultyOption difficulty)
         {
@@ -107,6 +107,16 @@ namespace Physics.HomogenousMovement.ViewModels
         public bool IsY0Enabled { get; set; }
 
         public string Label { get; set; }
+
+        public Color[] AvailableColors { get; } = new Color[]
+        {
+            ColorHelper.ToColor("#0063B1"),
+            ColorHelper.ToColor("#2D7D9A"),
+            ColorHelper.ToColor("#E81123"),
+            ColorHelper.ToColor("#881798"),
+            ColorHelper.ToColor("#498205"),
+            ColorHelper.ToColor("#515C6B"),
+        };
 
         public Color Color
         {

@@ -24,12 +24,9 @@ using Physics.Shared.Helpers;
 
 namespace Physics.HomogenousMovement
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainView : BaseView
     {
-        private MotioningCanvasController _canvasController;
+        private HomogenousMovementCanvasController _canvasController;
         public MainView()
         {
             this.InitializeComponent();
@@ -37,8 +34,9 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Mouse |
                  Windows.UI.Core.CoreInputDeviceTypes.Pen |
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            _canvasController = new MotioningCanvasController(AnimatedCanvas);
             DataContextChanged += MainMenuView_DataContextChanged;
+            _canvasController = new HomogenousMovementCanvasController(AnimatedCanvas);
+            //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
             StepSizeNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
         }
@@ -62,15 +60,15 @@ namespace Physics.HomogenousMovement
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             _canvasController.Pause();
-            PlayButton.IsEnabled = true;
-            PauseButton.IsEnabled = false;
+            PlayButton.Visibility = Visibility.Visible;
+            PauseButton.Visibility = Visibility.Collapsed;
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
             _canvasController.Play();
-            PlayButton.IsEnabled = false;
-            PauseButton.IsEnabled = true;
+            PlayButton.Visibility = Visibility.Collapsed;
+            PauseButton.Visibility = Visibility.Visible;
         }
         private void Backward_Click(object sender, RoutedEventArgs e)
         {

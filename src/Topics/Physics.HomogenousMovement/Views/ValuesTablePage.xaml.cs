@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.HomogenousMovement.PhysicsServices;
+using Physics.HomogenousMovement.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Numerics;
-using System.Reactive;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Globalization.NumberFormatting;
@@ -18,28 +17,42 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Toolkit.Uwp.UI.Controls;
-using Microsoft.Toolkit.Uwp.UI.Controls.Primitives;
-using MvvmCross.ViewModels;
-using Physics.HomogenousMovement.PhysicsServices;
-using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Helpers;
 
-// The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Physics.HomogenousMovement.Views
 {
-
-    public sealed partial class ValuesTableDialog : ContentDialog
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ValuesTablePage : Page
     {
         private MovementType _type;
-        public ValuesTableDialog(IPhysicsService service, MovementType type)
+        public ValuesTablePage()
         {
             this.InitializeComponent();
-            _type = type;
             Model = new ValuesTableDialogViewModel();
             DataContext = Model;
-            TimeIntervalNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
+        }
+
+        public void Initialize(IPhysicsService service, MovementType type)
+        {
+            SetupFromatting();
+            _type = type;
+            Model.Initalize(service, type);
+        }
+
+        private void SetupFromatting()
+        {
+            var rounder = new IncrementNumberRounder();
+            rounder.Increment = 0.1;
+            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
+
+            var formatter = new DecimalFormatter();
+            formatter.IntegerDigits = 1;
+            formatter.FractionDigits = 1;
+            formatter.NumberRounder = rounder;
+            TimeIntervalNumberBox.NumberFormatter = formatter;
         }
 
         public ValuesTableDialogViewModel Model { get; set; }
@@ -104,17 +117,17 @@ namespace Physics.HomogenousMovement.Views
 
             if (e.Column.Header.ToString() == "EP")
             {
-                e.Column.Header = "Ep (N)";
+                e.Column.Header = "Ep (J)";
             }
 
             if (e.Column.Header.ToString() == "EK")
             {
-                e.Column.Header = "Ek (N)";
+                e.Column.Header = "Ek (J)";
             }
 
             if (e.Column.Header.ToString() == "EPEK")
             {
-                e.Column.Header = "EpEk (N)";
+                e.Column.Header = "EpEk (J)";
             }
         }
     }

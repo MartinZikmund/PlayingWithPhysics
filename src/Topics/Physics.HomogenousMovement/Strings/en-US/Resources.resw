@@ -141,8 +141,17 @@
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Easy difficulty</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EditMotion" xml:space="preserve">
     <value>Edit motion</value>

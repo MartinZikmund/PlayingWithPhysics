@@ -5,7 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-    Background="#4094e5"
+    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
+    Background="{StaticResource AppThemeColor}"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -21,7 +22,7 @@
     <Grid>
         <Image x:Name="Splash" Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Grid x:Name="RootGrid">
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Source="ms-appx:///Assets/Videos/tema_back_v01.mp4" Grid.RowSpan="4"/>
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Grid.RowSpan="4"/>
 
             <Grid Padding="12">
                 <Grid.RowDefinitions>
@@ -45,7 +46,7 @@
                     HorizontalAlignment="Center"
                     TextWrapping="Wrap"
                     Style="{ThemeResource SubheaderTextBlockStyle}"
-                    Text="Pohyby v homogenním tíhovém poli Země" />
+                    Text="{extensions:Localize Key=AppName}" />
                 </Grid>
                 <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Grid
@@ -55,8 +56,10 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -92,7 +95,22 @@
                             </Button.Content>
                         </Button>
                         <Button
-                    x:Name="ThirdDifficulty"
+                    x:Name="GameButton"
+                    Grid.Column="1"
+                    Command="{x:Bind Model.GameModeCommand}"
+                    HorizontalAlignment="Stretch">
+                            <Button.Content>
+                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                    <BitmapIcon
+                                Width="128"
+                                Margin="0,0,12,0"
+                                UriSource="ms-appx:///Physics.Shared/Assets/Icons/StudyText.png" />
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Hra" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
+                    x:Name="StudyTextButton"
                     Grid.Column="2"
                     Command="{x:Bind Model.OpenStudyTextCommand}"
                     HorizontalAlignment="Stretch">
@@ -124,9 +142,12 @@
                         <Setter Target="SecondDifficulty.(Grid.Column)" Value="0" />
                         <Setter Target="SecondDifficulty.(Grid.Row)" Value="1" />
                         <Setter Target="SecondDifficulty.(Grid.ColumnSpan)" Value="3" />
-                        <Setter Target="ThirdDifficulty.(Grid.Column)" Value="0" />
-                        <Setter Target="ThirdDifficulty.(Grid.Row)" Value="2" />
-                        <Setter Target="ThirdDifficulty.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="GameButton.(Grid.Column)" Value="0" />
+                        <Setter Target="GameButton.(Grid.Row)" Value="2" />
+                        <Setter Target="GameButton.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="StudyTextButton.(Grid.Column)" Value="0" />
+                        <Setter Target="StudyTextButton.(Grid.Row)" Value="3" />
+                        <Setter Target="StudyTextButton.(Grid.ColumnSpan)" Value="3" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -138,8 +159,11 @@
                         <Setter Target="FirstDifficulty.(Grid.ColumnSpan)" Value="1" />
                         <Setter Target="SecondDifficulty.(Grid.Column)" Value="1" />
                         <Setter Target="SecondDifficulty.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="ThirdDifficulty.(Grid.Column)" Value="2" />
-                        <Setter Target="ThirdDifficulty.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="GameButton.(Grid.Column)" Value="2" />
+                        <Setter Target="GameButton.(Grid.Row)" Value="0" />
+                        <Setter Target="GameButton.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="StudyTextButton.(Grid.Column)" Value="3" />
+                        <Setter Target="StudyTextButton.(Grid.ColumnSpan)" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

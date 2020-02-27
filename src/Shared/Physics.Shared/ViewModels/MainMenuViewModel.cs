@@ -19,12 +19,15 @@ namespace Physics.Shared.ViewModels
         private ICommand _goToEasyCommand;
         private ICommand _goToAdvancedCommand;
         private ICommand _openStudyTextCommand;
+        private ICommand _gameModeCommand;
 
         public MainMenuViewModel(ITopicNavigator topicNavigator) => _topicNavigator = topicNavigator;
 
         public ICommand GoToEasyCommand => _goToEasyCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Easy);
 
         public ICommand GoToAdvancedCommand => _goToAdvancedCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Advanced);
+
+        public ICommand GameModeCommand => _gameModeCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Game);
 
         public ICommand OpenStudyTextCommand =>
             _openStudyTextCommand ??= new MvxAsyncCommand(_topicNavigator.OpenStudyTextAsync);

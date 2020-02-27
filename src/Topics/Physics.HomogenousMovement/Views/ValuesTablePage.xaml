@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="Physics.HomogenousMovement.Views.ValuesTablePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.HomogenousMovement.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:toolkitPrimitives="using:Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:numberFormatting="using:Windows.Globalization.NumberFormatting"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <toolkit:DataGrid x:Name="ValuesTable" ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}" FrozenColumnCount="1" AutoGeneratingColumn="ValuesTable_AutoGeneratingColumn" Padding="12" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{x:Bind Model.Values, Mode=OneWay}">
+        </toolkit:DataGrid>
+        <TextBlock Margin="1,0,0,0" Grid.Row="1" Text="Interval výpočtu hodnot (s)" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+        <controls:NumberBox x:Name="TimeIntervalNumberBox" Grid.Row="1" Minimum="0.1" SmallChange="0.1" VerticalAlignment="Center" HorizontalAlignment="Right" SpinButtonPlacementMode="Inline" Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
+        <Button Margin="0,10,0,0"  Grid.Row="2" Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" Content="Zobrazit/skrýt nulové sloupce" Click="ButtonBase_OnClick"></Button>
+    </Grid>
+</Page>
