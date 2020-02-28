@@ -16,7 +16,7 @@ namespace Physics.HomogenousMovement.Dialogs
 
         public AddOrUpdateMotionViewModel Model { get; }
 
-        private void SetupFromatting(NumberBox numberBox, int decimalPlaces)
+        private void SetupFormatting(NumberBox numberBox, int decimalPlaces)
         {
             var rounder = new IncrementNumberRounder();
             rounder.Increment = 0.1;
@@ -31,12 +31,13 @@ namespace Physics.HomogenousMovement.Dialogs
 
         private void SetupNumberBoxFormattings()
         {
-            SetupFromatting(StartXNumberBox, 2);
-            SetupFromatting(StartYNumberBox, 2);
-            SetupFromatting(GravityNumberBox, 2);
-            SetupFromatting(MassNumberBox, 2);
-            SetupFromatting(V0NumberBox, 2);
-            SetupFromatting(AngleNumberBox, 2);
+            SetupFormatting(StartXNumberBox, 2);
+            SetupFormatting(StartYNumberBox, 2);
+            SetupFormatting(GravityNumberBox, 2);
+            SetupFormatting(MassNumberBox, 2);
+            SetupFormatting(V0NumberBox, 2);
+            SetupFormatting(AngleNumberBox, 2);
+            GravityNumberBox.SmallChange = 0.1;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

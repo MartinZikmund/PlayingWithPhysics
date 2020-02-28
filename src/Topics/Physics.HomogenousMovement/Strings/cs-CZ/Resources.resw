@@ -156,9 +156,6 @@
   <data name="EditMotion" xml:space="preserve">
     <value>Upravit vrh</value>
   </data>
-  <data name="FreeFall" xml:space="preserve">
-    <value>Volný pád</value>
-  </data>
   <data name="Gravity" xml:space="preserve">
     <value>Tíhové zrychlení</value>
   </data>
@@ -227,5 +224,14 @@
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Zkopírovat</value>
+  </data>
+  <data name="ForwardMotion" xml:space="preserve">
+    <value>Vodorovný vrh</value>
+  </data>
+  <data name="FreeFall" xml:space="preserve">
+    <value>Volný pád</value>
+  </data>
+  <data name="UpwardMotion" xml:space="preserve">
+    <value>Svislý vrh</value>
   </data>
 </root>

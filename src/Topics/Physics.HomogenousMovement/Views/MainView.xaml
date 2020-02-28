@@ -55,6 +55,7 @@
                             </Grid.RowDefinitions>
                             <Image Source="ms-appx:///Physics.Shared/Assets/hratky_logo.svg" />
                             <Button
+                                    IsEnabled="{x:Bind Model.AddTrajectoryButtonEnabled, Mode=OneWay}"
                                     Grid.Row="1"
                                     Margin="0,0,0,8"
                                     HorizontalAlignment="Stretch"

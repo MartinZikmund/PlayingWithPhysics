@@ -122,6 +122,8 @@ namespace Physics.HomogenousMovement.ViewModels
             }
         }
 
+        public bool AddTrajectoryButtonEnabled { get; set; } = true;
+
         public ICommand StartNewSimulationCommand => GetOrCreateAsyncCommand(StartSimulationAsync);
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(AddTrajectoryAsync);
@@ -137,6 +139,10 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task DeleteTrajectoryAsync(MotionInfoViewModel arg)
         {
             Motions.Remove(arg);
+            if (Motions.Count < 5)
+            {
+                AddTrajectoryButtonEnabled = true;
+            }
             await CloseAppViewForMotionAsync(arg);
             await StartSimulationAsync();
         }
@@ -149,6 +155,10 @@ namespace Physics.HomogenousMovement.ViewModels
             if (result == ContentDialogResult.Primary)
             {
                 Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
+                if (Motions.Count == 5)
+                {
+                    AddTrajectoryButtonEnabled = false;
+                }
                 await StartSimulationAsync();
             }
         }

@@ -28,7 +28,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public AddOrUpdateMotionViewModel(MotionInfo motionInfo, DifficultyOption difficulty)
         {
-            Label = motionInfo.Label;
+            SetLocalizedAndNumberedLabelName();
             Gravity = motionInfo.G;
             Color = ColorHelper.ToColor(motionInfo.Color);
             V0 = motionInfo.V0;
@@ -46,6 +46,11 @@ namespace Physics.HomogenousMovement.ViewModels
             SelectedMotionIndex = (int)MovementType.FreeFall;
             Label = newMotionDefaultName;
             Difficulty = difficulty;
+            //Set localized and numbered label text
+            var resLoader = ResourceLoader.GetForCurrentView();
+            var movementType = (MovementType)SelectedMotionIndex;
+            string index = newMotionDefaultName.Substring(newMotionDefaultName.IndexOf("#"), 2);
+            Label = $"{resLoader.GetString(movementType.ToString())} {index}";
             DisableUnusedInputs();
         }
 
@@ -91,6 +96,13 @@ namespace Physics.HomogenousMovement.ViewModels
         public void OnSelectedMotionIndexChanged()
         {
             MovementType = (MovementType)SelectedMotionIndex;
+            SetLocalizedAndNumberedLabelName();
+        }
+        
+        private void SetLocalizedAndNumberedLabelName()
+        {
+            string index = Label.Substring(Label.IndexOf("#"), 2);
+            Label = $"{ResourceLoader.GetForCurrentView().GetString(MovementType.ToString())} {index}";
         }
 
         public MovementType MovementType { get; set; }
