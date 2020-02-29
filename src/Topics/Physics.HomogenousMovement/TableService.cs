@@ -12,6 +12,8 @@ namespace Physics.HomogenousMovement
 {
     public class TableService
     {
+
+
         private IPhysicsService _physicsService;
 
         public List<TableRow> PopulateTable(float timeInterval)
@@ -52,6 +54,7 @@ namespace Physics.HomogenousMovement
 
     public class TableRow
     {
+        private const char TabSeparator = '\t';
         private const string ZeroFormatting = "0.###";
 
         public string Time { get; set; }
@@ -75,6 +78,29 @@ namespace Physics.HomogenousMovement
             EP = ep.ToString(ZeroFormatting);
             EK = ek.ToString(ZeroFormatting);
             EPEK = epek.ToString(ZeroFormatting);
+        }
+
+        public string ToTabString()
+        {
+            var builder = new StringBuilder();
+            builder.Append(Time);
+            builder.Append(TabSeparator);
+            builder.Append(X);
+            builder.Append(TabSeparator);
+            builder.Append(Y);
+            builder.Append(TabSeparator);
+            builder.Append(V);
+            builder.Append(TabSeparator);
+            builder.Append(VX);
+            builder.Append(TabSeparator);
+            builder.Append(VY);
+            builder.Append(TabSeparator);
+            builder.Append(EP);
+            builder.Append(TabSeparator);
+            builder.Append(EK);
+            builder.Append(TabSeparator);
+            builder.Append(EPEK);
+            return builder.ToString();
         }
     }
 }

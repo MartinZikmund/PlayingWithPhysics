@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -129,6 +131,19 @@ namespace Physics.HomogenousMovement.Views
             {
                 e.Column.Header = "EpEk (J)";
             }
+        }
+
+        private void CopyToClipbord_Click(object sender, RoutedEventArgs e)
+        {
+            var clipboardContents = new StringBuilder();
+            foreach (var data in Model.Values)
+            {
+                clipboardContents.AppendLine(data.ToTabString());
+            }
+
+            var dataPackage = new DataPackage();
+            dataPackage.SetText(clipboardContents.ToString());
+            Clipboard.SetContent(dataPackage);
         }
     }
 }

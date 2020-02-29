@@ -10,6 +10,7 @@
     xmlns:toolkitPrimitives="using:Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:numberFormatting="using:Windows.Globalization.NumberFormatting"
+    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="20">
@@ -22,6 +23,9 @@
         </toolkit:DataGrid>
         <TextBlock Margin="1,0,0,0" Grid.Row="1" Text="Interval výpočtu hodnot (s)" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
         <controls:NumberBox x:Name="TimeIntervalNumberBox" Grid.Row="1" Minimum="0.1" SmallChange="0.1" VerticalAlignment="Center" HorizontalAlignment="Right" SpinButtonPlacementMode="Inline" Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
-        <Button Margin="0,10,0,0"  Grid.Row="2" Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" Content="Zobrazit/skrýt nulové sloupce" Click="ButtonBase_OnClick"></Button>
+        <StackPanel Spacing="4" Grid.Row="2" Orientation="Horizontal">
+            <Button Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" Content="{extensions:Localize Key=ShowHideZeroes}" Click="ButtonBase_OnClick"></Button>
+            <Button Content="{extensions:Localize Key=CopyToClipboard}" Click="CopyToClipbord_Click"></Button>
+        </StackPanel>
     </Grid>
 </Page>

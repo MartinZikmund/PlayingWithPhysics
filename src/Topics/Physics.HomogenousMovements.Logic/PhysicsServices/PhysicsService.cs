@@ -8,6 +8,7 @@ namespace Physics.HomogenousMovement.PhysicsServices
 {
     public class PhysicsService : IPhysicsService
     {
+        private const int MinTrajectoryJumps = 50;
         private const int MaxTrajectoryJumps = 200;
         public MotionInfo MotionInfo { get; }
         public float MaxT { get; }
@@ -111,11 +112,20 @@ namespace Physics.HomogenousMovement.PhysicsServices
 
         public TrajectoryData CreateTrajectoryData()
         {
+            if (Math.Abs(MaxT) < 0.00001)
+            {
+                return new TrajectoryData(new TrajectoryPoint(TimeSpan.Zero, ComputeX(0), ComputeY(0)));
+            }
             var frameTime = 1 / 60f;
             var jumpCount = (int)Math.Ceiling(MaxT / frameTime);
             if (jumpCount > MaxTrajectoryJumps)
             {
                 jumpCount = MaxTrajectoryJumps;
+            }
+
+            if (jumpCount < MinTrajectoryJumps)
+            {
+                jumpCount = MinTrajectoryJumps;
             }
             var jumpSize = MaxT / jumpCount;
             var currentTime = 0f;

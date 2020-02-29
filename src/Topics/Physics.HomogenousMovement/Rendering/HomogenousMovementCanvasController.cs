@@ -109,6 +109,16 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 maxY = Math.Max(trajectory.MaxY, maxY);
             }
+
+            // adjust maximum to make measures square
+            if ((maxX - minX) > (maxY - minY))
+            {
+                maxY = minY + (maxX - minX);
+            }
+            else
+            {
+                maxX = minX + (maxY - minY);
+            }
             _simulationBoundsInMeters = new RectangleF(minX, minY, maxX - minX, maxY - minY);
         }
 
@@ -224,11 +234,19 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawYMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var drawing = args.DrawingSession;
+            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top, _brush);
             var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Height);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Height / jumpSize);
             var meters = jumps * jumpSize;
             for (float currentHeight = jumpSize; meters - currentHeight > -0.01; currentHeight += jumpSize)
             {
+                drawing.DrawLine(
+                    SimulationLeftSidePadding - 3,
+                    _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
+                    SimulationLeftSidePadding + 3,
+                    _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
+                    Colors.Black);
+
                 drawing.DrawText(
                     currentHeight.ToString("0.#"),
                     new Rect(
@@ -250,6 +268,13 @@ namespace Physics.HomogenousMovement.Rendering
             var meters = jumps * jumpSize;
             for (float currentDistance = 0; meters - currentDistance > -0.01; currentDistance += jumpSize)
             {
+                drawing.DrawLine(
+                    _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
+                    _simulationBoundsInPixels.Bottom - 3,
+                    _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
+                    _simulationBoundsInPixels.Bottom + 3,
+                    Colors.Black);
+
                 drawing.DrawText(
                     (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,

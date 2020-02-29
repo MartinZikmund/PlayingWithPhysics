@@ -180,6 +180,8 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
         {
             var duplicateMotion = arg.MotionInfo.Clone();
+            duplicateMotion.Label =
+                $"{duplicateMotion.Label} ({ResourceLoader.GetForCurrentView().GetString("Copy")})";
             var dialogViewModel = new AddOrUpdateMotionViewModel(duplicateMotion, Difficulty, Motions.Select(m => m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();

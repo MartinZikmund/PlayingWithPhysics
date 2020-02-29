@@ -41,7 +41,7 @@ namespace Physics.HomogenousMovement.ViewModels
             Values = new ObservableCollection<TableRow>(_tableService.PopulateTable(TimeInterval));
         }
 
-        public Visibility ButtonVisibility => (_type == MovementType.FreeFall || _type == MovementType.UpwardMotion)
+        public Visibility ButtonVisibility => (_type == MovementType.FreeFall || _type == MovementType.VerticalMotion)
             ? Visibility.Visible
             : Visibility.Collapsed;
 

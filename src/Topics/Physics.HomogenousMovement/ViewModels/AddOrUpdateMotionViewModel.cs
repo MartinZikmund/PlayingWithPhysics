@@ -240,14 +240,14 @@ namespace Physics.HomogenousMovement.ViewModels
         {
             switch (MovementType)
             {
-                case MovementType.UpwardMotion:
+                case MovementType.VerticalMotion:
                     IsY0Enabled = true;
                     IsX0Enabled = true;
                     IsV0Enabled = true;
                     IsMassEnabled = true;
                     IsAngleEnabled = false;
                     break;
-                case MovementType.ForwardMotion:
+                case MovementType.HorizontalMotion:
                     IsY0Enabled = true;
                     IsV0Enabled = true;
                     IsX0Enabled = true;
@@ -280,14 +280,14 @@ namespace Physics.HomogenousMovement.ViewModels
                     Mass,
                     0,
                     ColorHelper.ToHex(Color), Gravity),
-                MovementType.UpwardMotion =>
+                MovementType.VerticalMotion =>
                 MotionFactory.CreateUpwardMotion(
                     new Vector2(X0, Y0),
                     Mass,
                     0,
                     V0,
                     ColorHelper.ToHex(Color), Gravity),
-                MovementType.ForwardMotion => MotionFactory.CreateHorizontalMotion(
+                MovementType.HorizontalMotion => MotionFactory.CreateHorizontalMotion(
                     new Vector2(X0, Y0),
                     Mass,
                     0,

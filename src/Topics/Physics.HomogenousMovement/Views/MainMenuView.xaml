@@ -121,13 +121,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="Uniform" HorizontalAlignment="Right" Width="500" Margin="-12" VerticalAlignment="Center" />
-            <Grid Grid.Column="1">
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="Uniform" HorizontalAlignment="Right" Width="600" Margin="-12" VerticalAlignment="Center" />
+            <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ItemsGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition x:Name="LastRow" Height="*" />
                 </Grid.RowDefinitions>
                 <Image Height="150" Source="ms-appx:///Physics.Shared/Assets/logo.png" />
                 <StackPanel Grid.Row="1" MaxWidth="300">
@@ -185,7 +185,7 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                <Grid HorizontalAlignment="Stretch" Grid.Row="2" Margin="-50,0,-200,0">
+                <Grid x:Name="TitleBlock" HorizontalAlignment="Stretch" Grid.Row="2" Margin="-80,0,-200,0">
                     <Border Background="#d62633" HorizontalAlignment="Stretch">
                         <Border.RenderTransform>
                             <SkewTransform AngleX="-40" />
@@ -204,25 +204,34 @@
                 <TextBlock VerticalAlignment="Bottom" Grid.Row="3" Foreground="Black" HorizontalAlignment="Right" Text="{x:Bind Model.Version}"></TextBlock>
             </Grid>
         </Grid>
-        <!--<VisualStateManager.VisualStateGroups>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Low">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LastRow.Height" Value="Auto" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="High">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="768" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LastRow.Height" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="VideoBackground.VerticalAlignment" Value="Bottom" />
-                        <Setter Target="VideoBackground.HorizontalAlignment" Value="Center" />
-                        <Setter Target="FirstDifficulty.(Grid.ColumnSpan)" Value="3" />
-                        <Setter Target="SecondDifficulty.(Grid.Column)" Value="0" />
-                        <Setter Target="SecondDifficulty.(Grid.Row)" Value="1" />
-                        <Setter Target="SecondDifficulty.(Grid.ColumnSpan)" Value="3" />
-                        <Setter Target="GameButton.(Grid.Column)" Value="0" />
-                        <Setter Target="GameButton.(Grid.Row)" Value="2" />
-                        <Setter Target="GameButton.(Grid.ColumnSpan)" Value="3" />
-                        <Setter Target="StudyTextButton.(Grid.Column)" Value="0" />
-                        <Setter Target="StudyTextButton.(Grid.Row)" Value="3" />
-                        <Setter Target="StudyTextButton.(Grid.ColumnSpan)" Value="3" />
+                        <Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
+                        <Setter Target="VideoBackground.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="TitleBlock.Margin" Value="100,0,-200,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -230,18 +239,11 @@
                         <AdaptiveTrigger MinWindowWidth="768" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="VideoBackground.VerticalAlignment" Value="Center" />
-                        <Setter Target="FirstDifficulty.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="SecondDifficulty.(Grid.Column)" Value="1" />
-                        <Setter Target="SecondDifficulty.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="GameButton.(Grid.Column)" Value="2" />
-                        <Setter Target="GameButton.(Grid.Row)" Value="0" />
-                        <Setter Target="GameButton.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="StudyTextButton.(Grid.Column)" Value="3" />
-                        <Setter Target="StudyTextButton.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ItemsGrid.(Grid.Column)" Value="1" />
+                        <Setter Target="VideoBackground.(Grid.ColumnSpan)" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </views:MvxWindowsPage>
