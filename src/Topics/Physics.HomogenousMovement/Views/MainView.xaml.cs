@@ -20,13 +20,16 @@ using Windows.Globalization.NumberFormatting;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Navigation;
 using Physics.Shared.Helpers;
+using Physics.Shared.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement
 {
-    public sealed partial class MainView : BaseView
+    public sealed partial class MainView : BaseView, IMainViewInteraction
     {
         private HomogenousMovementCanvasController _canvasController;
+        private CanvasAnimatedControl _animatedCanvas;
         public MainView()
         {
             this.InitializeComponent();
@@ -35,18 +38,21 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Pen |
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
             DataContextChanged += MainMenuView_DataContextChanged;
-            _canvasController = new HomogenousMovementCanvasController(AnimatedCanvas);
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
             StepSizeNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+        }
+
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
-        {            
-            Model.SetCanvasController(null);
-            _canvasController.Dispose();
-            AnimatedCanvas.RemoveFromVisualTree();
-            AnimatedCanvas = null;
+        {
+            _canvasController?.Dispose();
+            _animatedCanvas?.RemoveFromVisualTree();
+            _animatedCanvas = null;
         }
 
         public MainViewModel Model { get; private set; }
@@ -54,7 +60,7 @@ namespace Physics.HomogenousMovement
         private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             Model = (MainViewModel)args.NewValue;
-            Model.SetCanvasController(_canvasController);
+            Model.SetViewInteraction(this);
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)
@@ -101,6 +107,17 @@ namespace Physics.HomogenousMovement
         private void Rewind_Click(object sender, RoutedEventArgs e)
         {
             _canvasController.SimulationTime.Restart();
+        }
+
+        public HomogenousMovementCanvasController Initialize(DifficultyOption difficulty)
+        {
+            _animatedCanvas = new CanvasAnimatedControl();
+            CanvasHolder.Children.Add(_animatedCanvas);
+            _canvasController =
+                difficulty == DifficultyOption.Game ?
+                    new GamificationCanvasController(_animatedCanvas) :
+                    new HomogenousMovementCanvasController(_animatedCanvas);
+            return _canvasController;
         }
     }
 }

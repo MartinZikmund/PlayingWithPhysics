@@ -3,6 +3,7 @@ using Physics.Shared.ViewModels;
 using System;
 using System.Diagnostics;
 using Windows.Media.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -19,19 +20,16 @@ namespace Physics.HomogenousMovement.Views
         {
             this.InitializeComponent();
             this.Loaded += MainMenuView_Loaded;
+
+            VideoBackground.Opacity = 0;
+            VideoBackground.OpacityTransition = new ScalarTransition()
+            {
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
             VideoBackground.MediaPlayer.MediaOpened += MediaPlayer_MediaOpened;
             VideoBackground.MediaPlayer.IsLoopingEnabled = true;
+            
             DataContextChanged += MainMenuView_DataContextChanged;
-            RootGrid.Opacity = 0;
-            RootGrid.OpacityTransition = new Windows.UI.Xaml.ScalarTransition()
-            {
-                Duration = TimeSpan.FromSeconds(0.3)
-            };
-
-            Splash.OpacityTransition = new Windows.UI.Xaml.ScalarTransition()
-            {
-                Duration = TimeSpan.FromSeconds(0.3)
-            };
         }
 
         private void MainMenuView_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -44,8 +42,7 @@ namespace Physics.HomogenousMovement.Views
             await this.Dispatcher.RunAsync(
                 Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    RootGrid.Opacity = 1;
-                    Splash.Opacity = 0;
+                    VideoBackground.Opacity = 1;
                 });
         }
 

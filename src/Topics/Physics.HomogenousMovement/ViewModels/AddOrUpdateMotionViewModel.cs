@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Physics.Shared.ViewModels;
 using Physics.HomogenousMovement.Logic.PhysicsServices;
 using Physics.Shared.Logic.Constants;
@@ -18,6 +19,7 @@ namespace Physics.HomogenousMovement.ViewModels
 {
     public class AddOrUpdateMotionViewModel : ViewModelBase
     {
+        private readonly string[] _existingNames;
         private float _x0;
         private float _y0;
         private float _v0;
@@ -25,10 +27,13 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _angle;
         private float _gravity = GravityConstants.Earth;
         private Color _color = ColorHelper.ToColor("#0063B1");
+        private bool _autogenerateLabel = true;
 
-        public AddOrUpdateMotionViewModel(MotionInfo motionInfo, DifficultyOption difficulty)
+        public AddOrUpdateMotionViewModel(MotionInfo motionInfo, DifficultyOption difficulty, params string[] existingNames)
         {
-            SetLocalizedAndNumberedLabelName();
+            _existingNames = existingNames;
+            _autogenerateLabel = false; // Do not autogenerate for edit mode.
+            Label = motionInfo.Label;
             Gravity = motionInfo.G;
             Color = ColorHelper.ToColor(motionInfo.Color);
             V0 = motionInfo.V0;
@@ -41,16 +46,16 @@ namespace Physics.HomogenousMovement.ViewModels
             DisableUnusedInputs();
         }
 
-        public AddOrUpdateMotionViewModel(string newMotionDefaultName, DifficultyOption difficulty)
+        public AddOrUpdateMotionViewModel(DifficultyOption difficulty, params string[] existingNames)
         {
+            _existingNames = existingNames;
             SelectedMotionIndex = (int)MovementType.FreeFall;
-            Label = newMotionDefaultName;
+            SetLocalizedAndNumberedLabelName();
             Difficulty = difficulty;
             //Set localized and numbered label text
             var resLoader = ResourceLoader.GetForCurrentView();
             var movementType = (MovementType)SelectedMotionIndex;
-            string index = newMotionDefaultName.Substring(newMotionDefaultName.IndexOf("#"), 2);
-            Label = $"{resLoader.GetString(movementType.ToString())} {index}";
+            SetLocalizedAndNumberedLabelName();
             DisableUnusedInputs();
         }
 
@@ -96,13 +101,24 @@ namespace Physics.HomogenousMovement.ViewModels
         public void OnSelectedMotionIndexChanged()
         {
             MovementType = (MovementType)SelectedMotionIndex;
-            SetLocalizedAndNumberedLabelName();
+            if (_autogenerateLabel)
+            {
+                SetLocalizedAndNumberedLabelName();
+            }
         }
-        
+
         private void SetLocalizedAndNumberedLabelName()
         {
-            string index = Label.Substring(Label.IndexOf("#"), 2);
-            Label = $"{ResourceLoader.GetForCurrentView().GetString(MovementType.ToString())} {index}";
+            var movementTypeName = ResourceLoader.GetForCurrentView().GetString(MovementType.ToString());
+            var currentId = 0;
+
+            string generatedName;
+            do
+            {
+                generatedName = $"{movementTypeName} #{++currentId}";
+            } while (_existingNames.Contains(generatedName));
+
+            Label = generatedName;
         }
 
         public MovementType MovementType { get; set; }

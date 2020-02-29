@@ -32,7 +32,7 @@ namespace Physics.HomogenousMovement.ViewModels
     public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
     {
         private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
-
+        private IMainViewInteraction _mainViewInteraction;
         public class NavigationModel
         {
             public DifficultyOption Difficulty { get; set; }
@@ -112,9 +112,10 @@ namespace Physics.HomogenousMovement.ViewModels
         public ObservableCollection<MotionInfoViewModel> Motions { get; } =
             new ObservableCollection<MotionInfoViewModel>();
 
-        public async void SetCanvasController(HomogenousMovementCanvasController controller)
+        public async void SetViewInteraction(IMainViewInteraction mainViewInteraction)
         {
-            _controller = controller;
+            _mainViewInteraction = mainViewInteraction;
+            _controller = _mainViewInteraction.Initialize(Difficulty);
             if (_startWithController)
             {
                 await Task.Delay(1000);
@@ -149,7 +150,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task AddTrajectoryAsync()
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(GenerateNextUniqueMotionName(), Difficulty);
+            var dialogViewModel = new AddOrUpdateMotionViewModel(Difficulty, Motions.Select(m=>m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -162,26 +163,10 @@ namespace Physics.HomogenousMovement.ViewModels
                 await StartSimulationAsync();
             }
         }
-
-        private string GenerateNextUniqueMotionName()
-        {
-            var currentId = Motions.Count + 1;
-
-            while (Motions.FirstOrDefault(t => t.Label.StartsWith($"#{currentId}")) != null)
-            {
-                currentId++;
-            }
-
-            var resourceLoader = ResourceLoader.GetForCurrentView();
-
-            return $"{resourceLoader.GetString("Motion")} #{currentId}";
-        }
-
+     
         private async Task EditTrajectoryAsync(MotionInfoViewModel arg)
         {
-            var duplicateMotion = arg.MotionInfo.Clone();
-            duplicateMotion.Label = GenerateNextUniqueMotionName();
-            var dialogViewModel = new AddOrUpdateMotionViewModel(duplicateMotion, Difficulty);
+            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo, Difficulty, Motions.Select(m => m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -194,7 +179,8 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(arg.MotionInfo, Difficulty);
+            var duplicateMotion = arg.MotionInfo.Clone();
+            var dialogViewModel = new AddOrUpdateMotionViewModel(duplicateMotion, Difficulty, Motions.Select(m => m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)

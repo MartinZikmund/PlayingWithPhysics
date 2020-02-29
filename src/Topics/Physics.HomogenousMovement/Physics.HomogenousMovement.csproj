@@ -18,9 +18,8 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <PackageCertificateKeyFile>
-    </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>24C263369198658B96B0E59BB3BB40E0CA31731B</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>Physics.HomogenousMovement_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>ACC28830E45BDF2ABB1422C6245422E4875D62BC</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -161,6 +160,7 @@
     <Compile Include="Services\Preferences\IAppPreferences.cs" />
     <Compile Include="TableService.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
+    <Compile Include="ViewModels\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\MotionInfoViewModel.cs" />
     <Compile Include="ViewModels\ValuesTableDialogViewModel.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
@@ -184,6 +184,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\cannon.png" />
     <Content Include="Assets\Game\cannonon.png" />
     <Content Include="Assets\Game\cannonoff.png" />
     <Content Include="Assets\Game\ball.png" />

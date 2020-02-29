@@ -205,7 +205,7 @@
     <Content Include="Assets\Fonts\NeoEuler.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\hratky_logo.svg" />
+    <Content Include="Assets\logo.png" />
     <Content Include="Assets\Icons\DifficultyAdvanced.png" />
     <Content Include="Assets\Icons\DifficultyBasic.png" />
     <Content Include="Assets\Icons\DifficultyExpert.png" />

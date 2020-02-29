@@ -10,126 +10,201 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <ResourceDictionary>
-            <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-                <Setter Property="VerticalAlignment" Value="Stretch" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="Margin" Value="8" />
-                <Setter Property="FontSize" Value="30" />
-            </Style>
-        </ResourceDictionary>
+        <Style x:Key="DefaultButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+            <Setter Property="FocusVisualMargin" Value="-3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Margin="20,0,-20,0" x:Name="BackgroundPresenter" Background="{TemplateBinding Background}">
+                                <Border.RenderTransform>
+                                    <SkewTransform AngleX="-40" />
+                                </Border.RenderTransform>
+                            </Border>
+                            <ContentPresenter
+                        x:Name="ContentPresenter"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        ContentTransitions="{TemplateBinding ContentTransitions}"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        AutomationProperties.AccessibilityView="Raw">
+                           
+                        </ContentPresenter>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                       
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="BitmapIcon">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+        </Style>
     </Page.Resources>
-    <Grid>
-        <Image x:Name="Splash" Source="/Assets/SplashScreen.png" Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Grid x:Name="RootGrid">
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="None" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Grid.RowSpan="4"/>
-
-            <Grid Padding="12">
+    <Grid x:Name="RootGrid">
+        <Grid Padding="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="Uniform" HorizontalAlignment="Right" Width="500" Margin="-12" VerticalAlignment="Center" />
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
-                <Image Height="150" Source="ms-appx:///Physics.Shared/Assets/hratky_logo.svg" />
-                <Grid HorizontalAlignment="Center" Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="64" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Assets/SmallTile.png" />
-                    <TextBlock
-                    Margin="12"
+                <Image Height="150" Source="ms-appx:///Physics.Shared/Assets/logo.png" />
+                <StackPanel Grid.Row="1" MaxWidth="300">
+                    <Button 
+                        Grid.Column="0" 
+                        Background="#f0f0f0"
+                        HorizontalAlignment="Stretch" 
+                        x:Name="FirstDifficulty" 
+                        Command="{x:Bind Model.GoToEasyCommand}">
+                        <Button.Content>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <BitmapIcon
+                                   UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyBasic.png" />
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Základní obtížnost" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                    x:Name="SecondDifficulty"
+                    Background="#dcdcdc"
                     Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind Model.GoToAdvancedCommand}">
+                        <Button.Content>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <BitmapIcon UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyExpert.png" />
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Pokročilá obtížnost" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                    x:Name="GameButton"
+                    Background="#bfbfbf"
+                    Grid.Column="1"
+                    Command="{x:Bind Model.GameModeCommand}"
+                    HorizontalAlignment="Stretch">
+                        <Button.Content>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <BitmapIcon UriSource="ms-appx:///Assets/cannon.png" />
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Hra" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                    x:Name="StudyTextButton"
+                    Background="#a2a2a2"
+                    Grid.Column="2"
+                    Command="{x:Bind Model.OpenStudyTextCommand}"
+                    HorizontalAlignment="Stretch">
+                        <Button.Content>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <BitmapIcon UriSource="ms-appx:///Physics.Shared/Assets/Icons/StudyText.png" />
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Studijní text" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+                <Grid HorizontalAlignment="Stretch" Grid.Row="2" Margin="-50,0,-200,0">
+                    <Border Background="#d62633" HorizontalAlignment="Stretch">
+                        <Border.RenderTransform>
+                            <SkewTransform AngleX="-40" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <TextBlock
+                    Margin="0,20,200,20"
+                    Foreground="White"
+                    FontWeight="Bold"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Center"
                     TextWrapping="Wrap"
                     Style="{ThemeResource SubheaderTextBlockStyle}"
                     Text="{extensions:Localize Key=AppName}" />
                 </Grid>
-                <ScrollViewer Grid.Row="2" MaxWidth="1000" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                    <Grid
-                    x:Name="ButtonGrid"        
-                    Margin="12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Button 
-                        Grid.Column="0" 
-                        HorizontalAlignment="Stretch" 
-                        x:Name="FirstDifficulty" 
-                        Command="{x:Bind Model.GoToEasyCommand}">
-                            <Button.Content>
-                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                    <BitmapIcon
-                                    Width="128"
-                                    Margin="0,0,12,0"
-                                    UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyBasic.png" />
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Základní obtížnost" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
-                    x:Name="SecondDifficulty"
-                    Grid.Column="1"
-                    HorizontalAlignment="Stretch"
-                    Command="{x:Bind Model.GoToAdvancedCommand}">
-                            <Button.Content>
-                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                    <BitmapIcon
-                                Width="128"
-                                Margin="0,0,12,0"
-                                UriSource="ms-appx:///Physics.Shared/Assets/Icons/DifficultyExpert.png" />
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Pokročilá obtížnost" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
-                    x:Name="GameButton"
-                    Grid.Column="1"
-                    Command="{x:Bind Model.GameModeCommand}"
-                    HorizontalAlignment="Stretch">
-                            <Button.Content>
-                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                    <BitmapIcon
-                                Width="128"
-                                Margin="0,0,12,0"
-                                UriSource="ms-appx:///Physics.Shared/Assets/Icons/StudyText.png" />
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Hra" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
-                    x:Name="StudyTextButton"
-                    Grid.Column="2"
-                    Command="{x:Bind Model.OpenStudyTextCommand}"
-                    HorizontalAlignment="Stretch">
-                            <Button.Content>
-                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                    <BitmapIcon
-                                Width="128"
-                                Margin="0,0,12,0"
-                                UriSource="ms-appx:///Physics.Shared/Assets/Icons/StudyText.png" />
-                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="Studijní text" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                </ScrollViewer>
-                <TextBlock Grid.Row="4" Foreground="Black" HorizontalAlignment="Right" Text="{x:Bind Model.Version}"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Grid.Row="3" Foreground="Black" HorizontalAlignment="Right" Text="{x:Bind Model.Version}"></TextBlock>
             </Grid>
         </Grid>
-        <VisualStateManager.VisualStateGroups>
+        <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
                     <VisualState.StateTriggers>
@@ -167,6 +242,6 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>-->
     </Grid>
 </views:MvxWindowsPage>
