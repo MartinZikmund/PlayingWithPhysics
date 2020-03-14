@@ -136,6 +136,7 @@
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\NumberBoxHelpers.cs" />
+    <Compile Include="Infrastructure\DefaultViewPresenter.cs" />
     <Compile Include="Infrastructure\Interactions\AsyncInteraction.cs" />
     <Compile Include="Infrastructure\Interactions\AsyncInteractionRequest.cs" />
     <Compile Include="Infrastructure\Interactions\RunOnCanvasLoopHandler.cs" />

@@ -121,16 +121,16 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <MediaPlayerElement x:Name="VideoBackground" AutoPlay="True" Stretch="Uniform" HorizontalAlignment="Right" Width="600" Margin="-12" VerticalAlignment="Center" />
+            <Image x:Name="CircleImage" Source="/Assets/Menu/Circle.png" Stretch="Uniform" HorizontalAlignment="Right" Width="600" Margin="-12" VerticalAlignment="Center" />
             <Grid Grid.Column="1" Grid.ColumnSpan="2" x:Name="ItemsGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition x:Name="LastRow" Height="*" />
                 </Grid.RowDefinitions>
-                <Image Height="150" Source="ms-appx:///Physics.Shared/Assets/logo.png" />
-                <StackPanel Grid.Row="1" MaxWidth="300">
+                <Image x:Name="Logo" Height="150" Source="ms-appx:///Physics.Shared/Assets/logo.png" />
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="1" MaxWidth="300">
                     <Button 
                         Grid.Column="0" 
                         Background="#f0f0f0"
@@ -212,6 +212,16 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LastRow.Height" Value="Auto" />
+                        <Setter Target="Logo.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Mid">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="550" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LastRow.Height" Value="Auto" />
+                        <Setter Target="Logo.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="High">
@@ -220,6 +230,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="LastRow.Height" Value="*" />
+                        <Setter Target="Logo.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -230,7 +241,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
-                        <Setter Target="VideoBackground.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="CircleImage.(Grid.ColumnSpan)" Value="2" />
                         <Setter Target="TitleBlock.Margin" Value="100,0,-200,0" />
                     </VisualState.Setters>
                 </VisualState>
@@ -240,7 +251,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="ItemsGrid.(Grid.Column)" Value="1" />
-                        <Setter Target="VideoBackground.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="CircleImage.(Grid.ColumnSpan)" Value="1" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

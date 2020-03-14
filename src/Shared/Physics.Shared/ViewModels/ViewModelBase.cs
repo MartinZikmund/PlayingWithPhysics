@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MvvmCross;
+using MvvmCross.Navigation;
 
 namespace Physics.Shared.ViewModels
 {
@@ -53,6 +55,13 @@ namespace Physics.Shared.ViewModels
             }
             return command;
         }
+
+        public ICommand GoBackCommand => GetOrCreateAsyncCommand(GoBackAsync);
+
+        private async Task GoBackAsync()
+        {
+            await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Close(this);
+        }
     }
 
     public abstract class ViewModelBase<TParameter>
@@ -88,6 +97,13 @@ namespace Physics.Shared.ViewModels
                 _commands.Add(propertyName, command);
             }
             return command;
+        }
+
+        public ICommand GoBackCommand => GetOrCreateAsyncCommand(GoBackAsync);
+
+        private async Task GoBackAsync()
+        {
+            await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Close(this);
         }
     }
 }

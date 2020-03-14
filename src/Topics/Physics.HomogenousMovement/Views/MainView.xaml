@@ -21,12 +21,9 @@
     mc:Ignorable="d"
     x:Name="Page">
     <Page.Resources>
-        <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
-                  BackgroundSource="Backdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".5"/>
-        <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
-                  BackgroundSource="Backdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".5"/>
-        <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
-                  BackgroundSource="HostBackdrop" TintColor="#1D5F91" FallbackColor="#1D5F91" TintOpacity=".7"/>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#145490" />
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#145490" />
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="#145490" />
         <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="0,0,0,2" />
@@ -53,7 +50,14 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Image Source="ms-appx:///Physics.Shared/Assets/logo.png" Margin="0,0,0,20" />
+                            <Grid Height="120">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Style="{ThemeResource NavigationBackButtonNormalStyle}" Command="{x:Bind Model.GoBackCommand}" />
+                                <Image Grid.Column="1" Source="ms-appx:///Physics.Shared/Assets/logo.png" Margin="0,0,0,20" />
+                            </Grid>
                             <Button
                                     IsEnabled="{x:Bind Model.AddTrajectoryButtonEnabled, Mode=OneWay}"
                                     Grid.Row="1"

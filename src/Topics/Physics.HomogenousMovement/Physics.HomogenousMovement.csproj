@@ -20,7 +20,7 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>3752F47BB2EBB039FE83C9D95A309CFE673381CC</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>6F0F548AA0FC436B003F7A22FE71990EF13F5EA7</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -186,12 +186,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cannon.png" />
-    <Content Include="Assets\Game\cannonon.png" />
-    <Content Include="Assets\Game\cannonoff.png" />
-    <Content Include="Assets\Game\ball.png" />
-    <Content Include="Assets\Game\background.png" />
-    <Content Include="Assets\Game\ground.png" />
-    <Content Include="Assets\Game\sky.png" />
+    <Content Include="Assets\Game\delo.png" />
+    <Content Include="Assets\Game\drevo_1.png" />
+    <Content Include="Assets\Game\drevo_2.png" />
+    <Content Include="Assets\Game\hrad-ko.png" />
+    <Content Include="Assets\Game\hrad.png" />
+    <Content Include="Assets\Game\hradby-ko.png" />
+    <Content Include="Assets\Game\hradby.png" />
+    <Content Include="Assets\Game\hrdina_1.png" />
+    <Content Include="Assets\Game\hrdina_2.png" />
+    <Content Include="Assets\Game\koule.png" />
+    <Content Include="Assets\Game\lano.png" />
+    <Content Include="Assets\Game\mraky_1.png" />
+    <Content Include="Assets\Game\mraky_2.png" />
+    <Content Include="Assets\Game\mraky_3.png" />
+    <Content Include="Assets\Game\mraky_4.png" />
+    <Content Include="Assets\Game\nebe.png" />
+    <Content Include="Assets\Game\puda.png" />
+    <Content Include="Assets\Game\strom_1.png" />
+    <Content Include="Assets\Game\strom_2.png" />
+    <Content Include="Assets\Game\strom_3.png" />
+    <Content Include="Assets\Game\travnik.png" />
+    <Content Include="Assets\Game\vybuch.png" />
+    <Content Include="Assets\Game\vystrel.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -235,8 +252,7 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
-    <Content Include="Assets\Videos\menubackground.mp4" />
-    <Content Include="Assets\Videos\tema_back_v01.mp4" />
+    <Content Include="Assets\Menu\circle.png" />
     <Content Include="Assets\volnypad.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />

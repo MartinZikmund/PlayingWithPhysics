@@ -11,6 +11,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using MvvmCross.Platforms.Uap.Presenters;
+using MvvmCross.Platforms.Uap.Views;
 
 namespace Physics.Shared.Infrastructure.Setup
 {
@@ -37,6 +39,11 @@ namespace Physics.Shared.Infrastructure.Setup
             list.AddRange(base.GetViewModelAssemblies());
             list.Add(typeof(MainMenuViewModel).Assembly);
             return list.ToArray();
+        }
+
+        protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+        {
+            return new DefaultViewPresenter(rootFrame);
         }
     }
 }

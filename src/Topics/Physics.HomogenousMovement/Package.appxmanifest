@@ -9,7 +9,7 @@
   <Identity
     Name="5143MartinZikmund.HrtkysfyzikouPohybyvhomogennmtho"
     Publisher="CN=5EDFBB6C-AD5D-4B76-B479-1C5F44017714"
-    Version="0.9.7.0" />
+    Version="0.9.8.0" />
 
   <mp:PhoneIdentity PhoneProductId="f53668a1-31fa-4d4c-8de8-97d95b92b8d7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -35,9 +35,9 @@
         DisplayName="ms-resource:AppName"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        BackgroundColor="#4299dd" Description="Playing with Physics">
+        BackgroundColor="#145490" Description="Playing with Physics">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#4299dd"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#145490"/>
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
