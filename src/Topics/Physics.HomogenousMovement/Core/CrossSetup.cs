@@ -32,7 +32,7 @@ namespace Physics.HomogenousMovement.Core
                 var uri = eventArgs.Uri;
                 LaunchInfo launchInfo = LaunchUriManager.Deserialize<LaunchInfo>(uri);
                 await Mvx.IoCProvider.Resolve<IMvxNavigationService>()
-                    .Navigate<MainViewModel, MainViewModel.NavigationModel>(new MainViewModel.NavigationModel() { Difficulty = DifficultyOption.Advanced, LaunchInfo = launchInfo });
+                    .Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel() { Difficulty = DifficultyOption.Advanced, LaunchInfo = launchInfo });
 
             }
         }

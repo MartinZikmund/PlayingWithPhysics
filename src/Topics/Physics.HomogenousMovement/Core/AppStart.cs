@@ -25,7 +25,7 @@ namespace Physics.HomogenousMovement.Core
                 var eventArgs = activationArgs as ProtocolActivatedEventArgs;
                 var uri = eventArgs.Uri;
                 var launchInfo = LaunchUriManager.Deserialize<LaunchInfo>(uri);                
-                await NavigationService.Navigate<MainViewModel, MainViewModel.NavigationModel>(new MainViewModel.NavigationModel() { Difficulty = DifficultyOption.Advanced, LaunchInfo = launchInfo });
+                await NavigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel() { Difficulty = DifficultyOption.Advanced, LaunchInfo = launchInfo });
             }
         }
     }

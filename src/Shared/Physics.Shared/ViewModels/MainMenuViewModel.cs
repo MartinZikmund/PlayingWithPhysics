@@ -27,7 +27,7 @@ namespace Physics.Shared.ViewModels
 
         public ICommand GoToAdvancedCommand => _goToAdvancedCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Advanced);
 
-        public ICommand GameModeCommand => _gameModeCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Game);
+        public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);
 
         public ICommand OpenStudyTextCommand =>
             _openStudyTextCommand ??= new MvxAsyncCommand(_topicNavigator.OpenStudyTextAsync);

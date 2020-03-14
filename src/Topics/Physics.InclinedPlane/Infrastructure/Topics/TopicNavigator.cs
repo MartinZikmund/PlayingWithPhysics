@@ -20,6 +20,11 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
 
         public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel>();
 
+        public Task GoToGameAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task OpenStudyTextAsync()
         {
             throw new NotImplementedException();

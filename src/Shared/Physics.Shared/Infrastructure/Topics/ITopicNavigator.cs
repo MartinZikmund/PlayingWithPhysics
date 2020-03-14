@@ -10,6 +10,8 @@ namespace Physics.Shared.Infrastructure.Topics
     {
         Task GoToDifficultyAsync(DifficultyOption option);
 
+        Task GoToGameAsync();
+
         Task OpenStudyTextAsync();
     }
 }

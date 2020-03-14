@@ -1,37 +1,37 @@
 ﻿using System;
-using System.Numerics;
-using System.Threading.Tasks;
-using Windows.System;
-using Windows.UI;
-using Windows.UI.Input;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Automation.Provider;
-using Windows.UI.Xaml.Input;
-using Microsoft.Graphics.Canvas.UI.Xaml;
-using Physics.HomogenousMovement.PhysicsServices;
-using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Controls;
-using Microsoft.Graphics.Canvas.Brushes;
-using Physics.Shared.Infrastructure.Interactions;
-using Physics.Shared.Views;
-using Physics.HomogenousMovement.Rendering;
-using Windows.Globalization.NumberFormatting;
-using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
+using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared.Helpers;
 using Physics.Shared.Infrastructure.Topics;
+using Physics.Shared.Views;
 
-namespace Physics.HomogenousMovement
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace Physics.HomogenousMovement.Views
 {
-    public sealed partial class MainView : BaseView, IMainViewInteraction
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class GameView : BaseView, IGameViewInteraction
     {
-        private HomogenousMovementCanvasController _canvasController;
+        private GamificationCanvasController _canvasController;
         private CanvasAnimatedControl _animatedCanvas;
-        public MainView()
+        public GameView()
         {
             this.InitializeComponent();
             InkCanvas.InkPresenter.InputDeviceTypes =
@@ -56,11 +56,11 @@ namespace Physics.HomogenousMovement
             _animatedCanvas = null;
         }
 
-        public MainViewModel Model { get; private set; }
+        public GameViewModel Model { get; private set; }
 
         private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (MainViewModel)args.NewValue;
+            Model = (GameViewModel)args.NewValue;
             Model.SetViewInteraction(this);
         }
 
@@ -110,11 +110,11 @@ namespace Physics.HomogenousMovement
             _canvasController.SimulationTime.Restart();
         }
 
-        public HomogenousMovementCanvasController Initialize(DifficultyOption difficulty)
+        public GamificationCanvasController Initialize(DifficultyOption difficulty)
         {
             _animatedCanvas = new CanvasAnimatedControl();
             CanvasHolder.Children.Add(_animatedCanvas);
-            _canvasController = new HomogenousMovementCanvasController(_animatedCanvas);
+            _canvasController = new GamificationCanvasController(_animatedCanvas);
             return _canvasController;
         }
     }

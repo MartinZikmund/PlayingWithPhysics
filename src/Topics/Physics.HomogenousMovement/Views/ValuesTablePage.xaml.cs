@@ -89,32 +89,32 @@ namespace Physics.HomogenousMovement.Views
         {
             if (e.Column.Header.ToString() == "Time")
             {
-                e.Column.Header = "T (s)";
+                e.Column.Header = "t (s)";
             }
 
             if (e.Column.Header.ToString() == "X")
             {
-                e.Column.Header = "X (m)";
+                e.Column.Header = "x (m)";
             }
 
             if (e.Column.Header.ToString() == "Y")
             {
-                e.Column.Header = "Y (m)";
+                e.Column.Header = "y (m)";
             }
 
             if (e.Column.Header.ToString() == "VX")
             {
-                e.Column.Header = "Vx (m/s)";
+                e.Column.Header = "vx (m/s)";
             }
 
             if (e.Column.Header.ToString() == "VY")
             {
-                e.Column.Header = "Vy (m/s)";
+                e.Column.Header = "vy (m/s)";
             }
 
             if (e.Column.Header.ToString() == "V")
             {
-                e.Column.Header = "V (m/s)";
+                e.Column.Header = "v (m/s)";
             }
 
             if (e.Column.Header.ToString() == "EP")

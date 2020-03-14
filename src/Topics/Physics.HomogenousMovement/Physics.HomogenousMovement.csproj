@@ -152,18 +152,26 @@
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\Localize.cs" />
+    <Compile Include="Gamification\GameSetup.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\AvailableMotionNames.cs" />
     <Compile Include="Models\LaunchInfo.cs" />
     <Compile Include="Models\LaunchUriManager.cs" />
+    <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Rendering\GamificationCanvasController.cs" />
     <Compile Include="Rendering\HomogenousMovementCanvasController.cs" />
     <Compile Include="Services\Preferences\IAppPreferences.cs" />
     <Compile Include="TableService.cs" />
+    <Compile Include="ViewInteractions\IGameViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
-    <Compile Include="ViewModels\IMainViewInteraction.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\MotionInfoViewModel.cs" />
+    <Compile Include="ViewModels\SimulationViewModelBase.cs" />
     <Compile Include="ViewModels\ValuesTableDialogViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
@@ -172,9 +180,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\ValuesTableDialog.xaml.cs">
-      <DependentUpon>ValuesTableDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
@@ -283,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainMenuView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -290,10 +299,6 @@
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ValuesTableDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ValuesTablePage.xaml">
       <SubType>Designer</SubType>

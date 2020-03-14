@@ -10,6 +10,5 @@ namespace Physics.Shared.Infrastructure.Topics
     {
         Easy,
         Advanced,
-        Game
     }
 }

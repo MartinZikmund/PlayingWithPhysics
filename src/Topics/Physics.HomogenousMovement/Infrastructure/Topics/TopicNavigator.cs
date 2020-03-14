@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.System;
+using Physics.HomogenousMovement.Models;
+using Physics.HomogenousMovement.Views;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {
@@ -19,7 +21,12 @@ namespace Physics.HomogenousMovement.Infrastructure.Topics
         public TopicNavigator(IMvxNavigationService navigationService) =>
             _navigationService = navigationService;
 
-        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel,MainViewModel.NavigationModel>(new MainViewModel.NavigationModel { Difficulty = option });
+        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+        public async Task GoToGameAsync()
+        {
+            await _navigationService.Navigate<GameViewModel, SimulationNavigationModel>(
+                new SimulationNavigationModel() {Difficulty = DifficultyOption.Advanced});
+        }
 
         public async Task OpenStudyTextAsync()
         {

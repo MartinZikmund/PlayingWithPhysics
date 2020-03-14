@@ -52,12 +52,13 @@ namespace Physics.HomogenousMovement.Rendering
         public override Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             _brush = new CanvasSolidColorBrush(sender, Colors.Black);
-            return Task.CompletedTask;           
+            return Task.CompletedTask;
         }
 
-        private RectangleF _simulationBoundsInMeters = new RectangleF();
+        protected RectangleF _simulationBoundsInMeters = new RectangleF();
         private RectangleF _simulationBoundsInPixels = new RectangleF();
-        private float _meterSizeInPixels = 0;
+
+        protected float _meterSizeInPixels = 0;
 
         public void StartNewSimulation(bool drawTrajectoriesContinuously, params MotionInfo[] throws)
         {
@@ -92,7 +93,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void CalculateMaxima()
         {
-            var minX = float.MaxValue;
+            var minX = 0f;
             var maxX = 0f;
             foreach (var trajectory in _trajectories)
             {
@@ -124,8 +125,6 @@ namespace Physics.HomogenousMovement.Rendering
 
         public override void Update(ICanvasAnimatedControl sender)
         {
-            if (_trajectories.Length == 0) return;
-
             var totalSeconds = (float)SimulationTime.TotalTime.TotalSeconds;
 
             UpdatePadding(sender);
@@ -135,12 +134,10 @@ namespace Physics.HomogenousMovement.Rendering
                 SimulationPadding,
                 (float)sender.Size.Width - SimulationLeftSidePadding - SimulationPadding,
                 (float)sender.Size.Height - SimulationPadding * 2);
-            var verticalMeterInPixels =
-                CalculateRequiredMeterSize(_simulationBoundsInMeters.Height, _simulationBoundsInPixels.Height);
+            var verticalMeterInPixels = CalculateRequiredMeterSize(_simulationBoundsInMeters.Height, _simulationBoundsInPixels.Height);
             if (Math.Abs(_simulationBoundsInMeters.Width) > 0.01)
             {
-                var horizontalMeterInPixels =
-                    CalculateRequiredMeterSize(_simulationBoundsInMeters.Width, _simulationBoundsInPixels.Width);
+                var horizontalMeterInPixels = CalculateRequiredMeterSize(_simulationBoundsInMeters.Width, _simulationBoundsInPixels.Width);
                 _meterSizeInPixels = Math.Min(verticalMeterInPixels, horizontalMeterInPixels);
             }
             else
@@ -150,8 +147,9 @@ namespace Physics.HomogenousMovement.Rendering
         }
 
         protected virtual void UpdatePadding(ICanvasAnimatedControl sender)
-        {            
+        {
         }
+
 
         private float CalculateRequiredMeterSize(float meters, float pixels)
         {
@@ -164,13 +162,14 @@ namespace Physics.HomogenousMovement.Rendering
         public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
-            
-            DrawBackground(sender, args);
 
-            if (_trajectories.Length == 0) return;
+            DrawBackground(sender, args);
 
             DrawYMeasure(sender, args);
             DrawXMeasure(sender, args);
+
+
+            if (_trajectories.Length == 0) return;
 
             DrawTrajectories(sender, args);
         }
@@ -183,7 +182,7 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawTrajectories(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             for (int movementId = 0; movementId < _trajectories.Length; movementId++)
-            {                
+            {
                 var trajectory = _trajectories[movementId];
                 var movement = _throws[movementId];
                 var movementColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color);
@@ -218,7 +217,7 @@ namespace Physics.HomogenousMovement.Rendering
                 //draw ball
                 var ballX = MetersToPixelsX(lastPoint.X);
                 var ballY = MetersToPixelsY(lastPoint.Y) - BallRadius; //ball reference point is its horizontal center and vertical bottom
-                DrawBall(args, new Vector2(ballX, ballY), movementColor);                
+                DrawBall(args, new Vector2(ballX, ballY), movementColor);
             }
         }
 
