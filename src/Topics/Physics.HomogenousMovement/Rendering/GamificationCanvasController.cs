@@ -12,6 +12,7 @@ using Microsoft.Graphics.Canvas.Effects;
 using Physics.HomogenousMovement.Gamification;
 using Physics.Shared.Helpers;
 using Color = Windows.UI.Color;
+using Windows.UI;
 
 namespace Physics.HomogenousMovement.Rendering
 {
@@ -30,6 +31,12 @@ namespace Physics.HomogenousMovement.Rendering
         private CanvasBitmap[] _treeImages;
 
         private GameSetup _game = null;
+
+        public float CannonAngle { get; internal set; }
+
+        protected override Color XMeasureColor => Colors.White;
+
+        protected override Color YMeasureColor => Colors.Transparent;
 
         public GamificationCanvasController(CanvasAnimatedControl canvasAnimatedControl) : base(canvasAnimatedControl)
         {
@@ -80,7 +87,12 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
-            args.DrawingSession.DrawImage(_ballImage, centerPoint.X - (float)_ballImage.Size.Width / 2, centerPoint.Y - (float)_ballImage.Size.Height / 2);
+            var scaledImage = new ScaleEffect()
+            {
+                Source = _ballImage,
+                Scale = new Vector2((float)(_meterSizeInPixels * 1f / _ballImage.Size.Width))
+            };
+            args.DrawingSession.DrawImage(scaledImage, centerPoint.X - (float)_ballImage.Size.Width / 2, centerPoint.Y - (float)_ballImage.Size.Height / 2);
         }
 
         protected override void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -91,9 +103,26 @@ namespace Physics.HomogenousMovement.Rendering
             if (_game != null)
             {
                 DrawTrees(sender, args);
-                DrawCannon(sender, args, -45);
                 DrawCastle(sender, args);
                 DrawWall(sender, args);
+                DrawBackStand(sender, args);
+            }
+        }
+
+        private void DrawBackStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+        }
+        
+        private void DrawFrontStand()
+        {
+        }
+
+        protected override void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            if (_game != null)
+            {
+                DrawCannon(sender, args, -45);
+                DrawFrontStand();
             }
         }
 
@@ -158,13 +187,15 @@ namespace Physics.HomogenousMovement.Rendering
                 Source = _cannonImage,
                 Scale = new Vector2((float)(_meterSizeInPixels * 4f / _cannonImage.Size.Width))
             };
+            var rotate = new Transform2DEffect()
+            {
+                Source = scaledImage,
+                TransformMatrix = Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-CannonAngle))
+            };            
             args.DrawingSession.DrawImage(
-                scaledImage,
+                (ICanvasImage)rotate,
                 SimulationLeftSidePadding,
-                (float)sender.Size.Height - SimulationLeftSidePadding,
-                new Rect(0, 0, (float)(scaledImage.Scale.X * _cannonImage.Size.Width), (float)(scaledImage.Scale.Y * _cannonImage.Size.Height)),
-                1,
-                CanvasImageInterpolation.Cubic);
+                (float)sender.Size.Height - SimulationPadding);              
         }
     }
 }

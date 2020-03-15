@@ -60,8 +60,12 @@ namespace Physics.HomogenousMovement.Views
 
         private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (GameViewModel)args.NewValue;
-            Model.SetViewInteraction(this);
+            var model = (GameViewModel)args.NewValue;
+            if (Model != model)
+            {
+                Model = model;
+                Model.SetViewInteraction(this);
+            }
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)

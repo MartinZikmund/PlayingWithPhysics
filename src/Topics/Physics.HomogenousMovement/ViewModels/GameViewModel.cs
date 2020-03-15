@@ -33,6 +33,11 @@ namespace Physics.HomogenousMovement.ViewModels
         {
         }
 
+        public override async Task Initialize()
+        {
+            await StartNewGameAsync();
+        }
+
         public float V0
         {
             get => _v0;
@@ -54,9 +59,15 @@ namespace Physics.HomogenousMovement.ViewModels
                 if (!float.IsNaN(value) && value != _angle)
                 {
                     _angle = value;
+                    UpdateControllerAngle();
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        private void UpdateControllerAngle()
+        {
+            _gameController.CannonAngle = Angle;
         }
 
         public float Gravity
@@ -105,7 +116,7 @@ namespace Physics.HomogenousMovement.ViewModels
         }
 
         private async Task StartNewGameAsync()
-        {
+        {            
             var castleDistance = _randomizer.Next(25, 50);
             var treeCount = _randomizer.Next(2, 6);
             var treeDistances = new List<int>();
@@ -114,6 +125,7 @@ namespace Physics.HomogenousMovement.ViewModels
                 treeDistances.Add(_randomizer.Next(0, castleDistance));
             }
             await _gameController.StartNewGameAsync(new GameSetup(castleDistance, _randomizer.Next(5, castleDistance), treeDistances.ToArray()));
+            _gameController.CannonAngle = Angle;
         }
     }
 }

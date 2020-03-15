@@ -19,6 +19,7 @@ using Physics.HomogenousMovement.Logic.PhysicsServices;
 using Physics.HomogenousMovement.ViewModels;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Windows.UI.Xaml;
 
 namespace Physics.HomogenousMovement.Rendering
 {
@@ -35,6 +36,9 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected int SimulationPadding { get; set; } = 52;
         protected int SimulationLeftSidePadding { get; set; } = 80;
+
+        protected virtual Windows.UI.Color XMeasureColor => Windows.UI.Colors.Black;
+        protected virtual Windows.UI.Color YMeasureColor => Windows.UI.Colors.Black;
 
         //private ICanvasBrush _backgroundBrush;
         //private CanvasBitmap _skyImage;
@@ -169,14 +173,22 @@ namespace Physics.HomogenousMovement.Rendering
             DrawXMeasure(sender, args);
 
 
-            if (_trajectories.Length == 0) return;
+            if (_trajectories.Length > 0)
+            {
+                DrawTrajectories(sender, args);
+            }
 
-            DrawTrajectories(sender, args);
+            DrawOverlay(sender, args);
         }
 
         protected virtual void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
+        }
+
+        protected virtual void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            
         }
 
         private void DrawTrajectories(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -244,7 +256,7 @@ namespace Physics.HomogenousMovement.Rendering
                     _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
                     SimulationLeftSidePadding + 3,
                     _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
-                    Colors.Black);
+                    YMeasureColor);
 
                 drawing.DrawText(
                     currentHeight.ToString("0.#"),
@@ -253,7 +265,7 @@ namespace Physics.HomogenousMovement.Rendering
                         _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
                         SimulationLeftSidePadding,
                         100),
-                    Colors.Black,
+                    YMeasureColor,
                     _yAxisFormat);
             }
         }
@@ -272,13 +284,13 @@ namespace Physics.HomogenousMovement.Rendering
                     _simulationBoundsInPixels.Bottom - 3,
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
                     _simulationBoundsInPixels.Bottom + 3,
-                    Colors.Black);
+                    XMeasureColor);
 
                 drawing.DrawText(
                     (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
                     _simulationBoundsInPixels.Bottom + 12,
-                    Colors.Black,
+                    XMeasureColor,
                     _yAxisFormat);
             }
         }

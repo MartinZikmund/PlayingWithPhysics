@@ -60,8 +60,12 @@ namespace Physics.HomogenousMovement
 
         private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (MainViewModel)args.NewValue;
-            Model.SetViewInteraction(this);
+            var model = (MainViewModel)args.NewValue;
+            if (Model != model)
+            {
+                Model = model;
+                Model.SetViewInteraction(this);
+            }
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)
