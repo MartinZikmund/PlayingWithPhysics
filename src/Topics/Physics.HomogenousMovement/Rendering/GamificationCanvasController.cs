@@ -40,8 +40,16 @@ namespace Physics.HomogenousMovement.Rendering
             await RunOnGameLoopAsync(() =>
             {
                 _game = game;
-                _simulationBoundsInMeters = new RectangleF(0, 0, _game.CastleDistance * 1.2f, 30);
+                CalculateMaxima();
             });
+        }
+
+        protected override void CalculateMaxima()
+        {
+            if (_game != null)
+            {
+                _simulationBoundsInMeters = new RectangleF(0, 0, _game.CastleDistance * 1.2f, 30);
+            }
         }
 
         public override async Task CreateResourcesAsync(CanvasAnimatedControl sender)
@@ -95,7 +103,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 var distance = _game.TreeDistances[treeId];
                 var originalImage = _treeImages[treeId % _treeImages.Length];
-                var scaling = (float) (_meterSizeInPixels * 4f / originalImage.Size.Width);
+                var scaling = (float)(_meterSizeInPixels * 4f / originalImage.Size.Width);
                 var scaledImage = new ScaleEffect()
                 {
                     Source = originalImage,
@@ -105,7 +113,7 @@ namespace Physics.HomogenousMovement.Rendering
                     scaledImage,
                     SimulationLeftSidePadding + distance * _meterSizeInPixels,
                     (float)sender.Size.Height - SimulationPadding - scaling * (float)originalImage.Size.Height,
-                    new Rect(0, 0, originalImage.Size.Width, originalImage.Size.Height),
+                    new Rect(0, 0, (float)(scaledImage.Scale.X * originalImage.Size.Width), (float)(scaledImage.Scale.Y * originalImage.Size.Height)),
                     1,
                     CanvasImageInterpolation.Cubic);
             }
@@ -122,7 +130,7 @@ namespace Physics.HomogenousMovement.Rendering
                 scaledImage,
                 SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels,
                 (float)sender.Size.Height - SimulationPadding - (float)(_meterSizeInPixels * 10f / _castleImage.Size.Width) * (float)_castleImage.Size.Height,
-                new Rect(0, 0, _castleImage.Size.Width, _castleImage.Size.Height),
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _castleImage.Size.Width), (float)(scaledImage.Scale.Y * _castleImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }
@@ -138,7 +146,7 @@ namespace Physics.HomogenousMovement.Rendering
                 scaledImage,
                 SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels,
                 (float)sender.Size.Height - SimulationPadding - (float)(_meterSizeInPixels * 5f / _wallImage.Size.Width) * (float)_wallImage.Size.Height,
-                new Rect(0, 0, _wallImage.Size.Width, _wallImage.Size.Height),
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _wallImage.Size.Width), (float)(scaledImage.Scale.Y * _wallImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }
@@ -154,7 +162,7 @@ namespace Physics.HomogenousMovement.Rendering
                 scaledImage,
                 SimulationLeftSidePadding,
                 (float)sender.Size.Height - SimulationLeftSidePadding,
-                new Rect(0, 0, _cannonImage.Size.Width, _cannonImage.Size.Height),
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _cannonImage.Size.Width), (float)(scaledImage.Scale.Y * _cannonImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }

@@ -162,6 +162,9 @@
   <data name="EditMotion" xml:space="preserve">
     <value>Edit motion</value>
   </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Fire!</value>
+  </data>
   <data name="FreeFall" xml:space="preserve">
     <value>Free fall</value>
   </data>
@@ -185,6 +188,9 @@
   </data>
   <data name="Motion" xml:space="preserve">
     <value>Motion</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
   </data>
   <data name="Origin" xml:space="preserve">
     <value>Origin</value>

@@ -91,7 +91,7 @@ namespace Physics.HomogenousMovement.Rendering
             _physicsServices = physicsServices.ToArray();
         }
 
-        private void CalculateMaxima()
+        protected virtual void CalculateMaxima()
         {
             var minX = 0f;
             var maxX = 0f;

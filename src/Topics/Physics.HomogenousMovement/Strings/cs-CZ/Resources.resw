@@ -237,4 +237,10 @@
   <data name="ShowHideZeroes" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
   </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Pal!</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nová hra</value>
+  </data>
 </root>
