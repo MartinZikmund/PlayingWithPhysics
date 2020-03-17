@@ -30,6 +30,8 @@ namespace Physics.HomogenousMovement.Rendering
         private TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
         private PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
 
+        private int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
+
         private bool _drawTrajectoriesContinously;
 
         private ICanvasBrush _brush;
@@ -45,6 +47,7 @@ namespace Physics.HomogenousMovement.Rendering
         private readonly CanvasTextFormat _yAxisFormat = new CanvasTextFormat()
         {
             HorizontalAlignment = CanvasHorizontalAlignment.Center,
+            VerticalAlignment = CanvasVerticalAlignment.Center,
             FontSize = 12
         };
 
@@ -76,7 +79,7 @@ namespace Physics.HomogenousMovement.Rendering
             _throws = throws;
             _drawTrajectoriesContinously = drawTrajectoriesContinuously;
 
-            PrepareTrajectories();            
+            PrepareTrajectories();
 
             Restart();
 
@@ -274,7 +277,7 @@ namespace Physics.HomogenousMovement.Rendering
                     currentHeight.ToString("0.#"),
                     new Rect(
                         0,
-                        _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
+                        _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight - 50,
                         SimulationLeftSidePadding,
                         100),
                     YMeasureColor,
@@ -321,10 +324,35 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 return 0.5f;
             }
+            else if (range <= 10)
+            {
+                return 1f;
+            }
+            else if (range <= 20)
+            {
+                return 2f;
+            }
+            else if (range <= 50)
+            {
+                return 10;
+            }
             else
             {
-                var upperBound = (float)Math.Ceiling(range / 10f);
-                return upperBound;
+
+                var upperBound = (float)Math.Ceiling(range);
+                var currentMultiplier = 1;
+                while (true)
+                {
+                    foreach (var allowedJumpSize in _allowedScaleJumps)
+                    {
+                        var scaleSize = allowedJumpSize * currentMultiplier;
+                        if (upperBound / scaleSize < 20)
+                        {
+                            return scaleSize;
+                        }
+                    }
+                    currentMultiplier *= 10;
+                }
             }
         }
     }
