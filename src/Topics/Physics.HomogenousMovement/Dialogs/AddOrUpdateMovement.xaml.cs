@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Physics.HomogenousMovement.ViewModels;
+using Physics.Shared.Helpers;
 using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;
 
@@ -16,27 +17,16 @@ namespace Physics.HomogenousMovement.Dialogs
 
         public AddOrUpdateMotionViewModel Model { get; }
 
-        private void SetupFormatting(NumberBox numberBox, int decimalPlaces)
-        {
-            var rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
-            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
-
-            var formatter = new DecimalFormatter();
-            formatter.IntegerDigits = 1;
-            formatter.FractionDigits = decimalPlaces;
-            formatter.NumberRounder = rounder;
-            numberBox.NumberFormatter = formatter;
-        }
+       
 
         private void SetupNumberBoxFormattings()
         {
-            SetupFormatting(StartXNumberBox, 2);
-            SetupFormatting(StartYNumberBox, 2);
-            SetupFormatting(GravityNumberBox, 2);
-            SetupFormatting(MassNumberBox, 2);
-            SetupFormatting(V0NumberBox, 2);
-            SetupFormatting(AngleNumberBox, 2);
+            StartXNumberBox.SetupFormatting(fractionDigits: 2);
+            StartYNumberBox.SetupFormatting(fractionDigits: 2);
+            GravityNumberBox.SetupFormatting(fractionDigits: 2);
+            MassNumberBox.SetupFormatting(fractionDigits: 2);
+            V0NumberBox.SetupFormatting(fractionDigits: 2);
+            AngleNumberBox.SetupFormatting(fractionDigits: 2);
             GravityNumberBox.SmallChange = 0.1;
         }
 

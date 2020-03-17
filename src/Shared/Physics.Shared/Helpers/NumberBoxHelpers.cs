@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,18 @@ namespace Physics.Shared.Helpers
 {
     public static class NumberBoxHelpers
     {
-        public static DecimalFormatter SetupFromatting(float increment = 0.1f, int integerDigits = 1, int fractionDigits = 1)
+        public static void SetupFormatting(this NumberBox numberBox, double increment = 0.1, int integerDigits = 1, int fractionDigits = 1)
         {
             IncrementNumberRounder rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
+            rounder.Increment = increment;
             rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
 
             DecimalFormatter formatter = new DecimalFormatter();
-            formatter.IntegerDigits = 1;
-            formatter.FractionDigits = 1;
+            formatter.IntegerDigits = integerDigits;
+            formatter.FractionDigits = fractionDigits;
             formatter.NumberRounder = rounder;
-            return formatter;
+
+            numberBox.NumberFormatter = formatter;
         }
     }
 }

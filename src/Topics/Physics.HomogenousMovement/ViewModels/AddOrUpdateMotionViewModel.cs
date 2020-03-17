@@ -125,7 +125,26 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public void OnMovementTypeChanged()
         {
-            DisableUnusedInputs();
+            if (Enum.IsDefined(typeof(MovementType), MovementType))
+            {
+                TryUpdateLabel();
+                DisableUnusedInputs();
+            }
+        }
+
+        private void TryUpdateLabel()
+        {
+            var resourceLoader = ResourceLoader.GetForCurrentView();
+            var movementTypes = Enum.GetValues(typeof(MovementType)).OfType<MovementType>();
+            foreach (var movementType in movementTypes)
+            {
+                if (Label.StartsWith(resourceLoader.GetString(movementType.ToString())))
+                {
+                    // user has probably not modified the name, we can update according to movement type
+                    SetLocalizedAndNumberedLabelName();
+                }
+            }
+
         }
 
         public bool IsV0Enabled { get; set; }

@@ -45,7 +45,7 @@ namespace Physics.HomogenousMovement.Rendering
         private readonly CanvasTextFormat _yAxisFormat = new CanvasTextFormat()
         {
             HorizontalAlignment = CanvasHorizontalAlignment.Center,
-            FontSize = 10
+            FontSize = 12
         };
 
         public HomogenousMovementCanvasController(CanvasAnimatedControl canvasAnimatedControl)
@@ -160,6 +160,10 @@ namespace Physics.HomogenousMovement.Rendering
             var jumpSize = CalculateJumpSizeForAxis(meters);
             var jumps = (float)Math.Ceiling(meters / jumpSize);
             var realMeters = jumps * jumpSize;
+            if (realMeters == 0)
+            {
+                return 0;
+            }
             return (float)pixels / realMeters;
         }
 
@@ -188,7 +192,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected virtual void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            
+
         }
 
         private void DrawTrajectories(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -216,8 +220,8 @@ namespace Physics.HomogenousMovement.Rendering
 
                     //draw
                     args.DrawingSession.DrawLine(
-                        new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y) - BallRadius),
-                        new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y) - BallRadius),
+                        new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y)),
+                        new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y)),
                         movementColor, 2);
 
                     lastPoint = currentPoint;
@@ -228,7 +232,7 @@ namespace Physics.HomogenousMovement.Rendering
                 }
                 //draw ball
                 var ballX = MetersToPixelsX(lastPoint.X);
-                var ballY = MetersToPixelsY(lastPoint.Y) - BallRadius; //ball reference point is its horizontal center and vertical bottom
+                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
                 DrawBall(args, new Vector2(ballX, ballY), movementColor);
             }
         }
@@ -277,7 +281,7 @@ namespace Physics.HomogenousMovement.Rendering
             var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Width);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;
-            for (float currentDistance = 0; meters - currentDistance > -0.01; currentDistance += jumpSize)
+            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
             {
                 drawing.DrawLine(
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,

@@ -41,7 +41,16 @@ namespace Physics.HomogenousMovement.Views
             DataContextChanged += MainMenuView_DataContextChanged;
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
-            StepSizeNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
+            StepSizeNumberBox.SetupFormatting();
+            SetupNumberBoxFormattings();
+        }
+
+        private void SetupNumberBoxFormattings()
+        {
+            GravityNumberBox.SetupFormatting(fractionDigits: 2);
+            V0NumberBox.SetupFormatting(fractionDigits: 2);
+            AngleNumberBox.SetupFormatting(fractionDigits: 2);
+            GravityNumberBox.SmallChange = 0.1;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

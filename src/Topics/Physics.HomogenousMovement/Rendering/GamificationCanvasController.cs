@@ -87,12 +87,14 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
+            var scale = (float)(_meterSizeInPixels * 1f / _ballImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _ballImage,
-                Scale = new Vector2((float)(_meterSizeInPixels * 1f / _ballImage.Size.Width))
+                Scale = new Vector2(scale)
             };
-            args.DrawingSession.DrawImage(scaledImage, centerPoint.X - (float)_ballImage.Size.Width / 2, centerPoint.Y - (float)_ballImage.Size.Height / 2);
+            var actualBallSize = scale * (float)_ballImage.Size.Width;
+            args.DrawingSession.DrawImage(scaledImage, centerPoint.X - actualBallSize / 2, centerPoint.Y - actualBallSize / 2);
         }
 
         protected override void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -182,10 +184,11 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float angle)
         {
+            var scale = (float)(_meterSizeInPixels * 4f / _cannonImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _cannonImage,
-                Scale = new Vector2((float)(_meterSizeInPixels * 4f / _cannonImage.Size.Width))
+                Scale = new Vector2(scale)
             };
             var rotate = new Transform2DEffect()
             {
@@ -194,8 +197,8 @@ namespace Physics.HomogenousMovement.Rendering
             };            
             args.DrawingSession.DrawImage(
                 (ICanvasImage)rotate,
-                SimulationLeftSidePadding,
-                (float)sender.Size.Height - SimulationPadding);              
+                SimulationLeftSidePadding - 0.16f * (float)_cannonImage.Size.Width,
+                (float)sender.Size.Height - SimulationPadding - ((float)_cannonImage.Size.Height / 6) * scale);              
         }
     }
 }

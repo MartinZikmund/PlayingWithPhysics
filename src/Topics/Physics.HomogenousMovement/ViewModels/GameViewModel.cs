@@ -35,7 +35,6 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public override async Task Initialize()
         {
-            await StartNewGameAsync();
         }
 
         public float V0
@@ -108,15 +107,12 @@ namespace Physics.HomogenousMovement.ViewModels
             _gameViewInteraction = gameViewInteraction;
             _gameController = _gameViewInteraction.Initialize(Difficulty);
             _controller = _gameController;
-            if (_startWithController)
-            {
-                await Task.Delay(1000);
-                await StartSimulationAsync();
-            }
+            await Task.Delay(1000);
+            await StartNewGameAsync();
         }
 
         private async Task StartNewGameAsync()
-        {            
+        {
             var castleDistance = _randomizer.Next(25, 50);
             var treeCount = _randomizer.Next(2, 6);
             var treeDistances = new List<int>();

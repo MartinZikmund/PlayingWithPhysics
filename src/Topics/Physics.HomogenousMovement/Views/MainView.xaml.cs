@@ -41,7 +41,7 @@ namespace Physics.HomogenousMovement
             DataContextChanged += MainMenuView_DataContextChanged;
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
-            StepSizeNumberBox.NumberFormatter = NumberBoxHelpers.SetupFromatting();
+            StepSizeNumberBox.SetupFormatting();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
