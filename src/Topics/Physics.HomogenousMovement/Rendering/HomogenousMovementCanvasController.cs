@@ -64,6 +64,8 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected float _meterSizeInPixels = 0;
 
+        protected virtual TimeSpan? TrajectoryStopTime { get; } = null;
+
         public void StartNewSimulation(bool drawTrajectoriesContinuously, params MotionInfo[] throws)
         {
             if (throws is null)
@@ -74,11 +76,17 @@ namespace Physics.HomogenousMovement.Rendering
             _throws = throws;
             _drawTrajectoriesContinously = drawTrajectoriesContinuously;
 
-            PrepareTrajectories();
+            PrepareTrajectories();            
 
             Restart();
 
+            OnSimulationStarting();
+
             CalculateMaxima();
+        }
+
+        protected virtual void OnSimulationStarting()
+        {
         }
 
         private void PrepareTrajectories()

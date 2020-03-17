@@ -31,6 +31,11 @@ namespace Physics.HomogenousMovement.Rendering
         private CanvasBitmap[] _treeImages;
 
         private GameSetup _game = null;
+        
+        private TimeSpan? _trajectoryStopTime;
+
+        private TimeSpan? _castleCollisionTime;
+        private TimeSpan? _wallCollisionTime;
 
         public float CannonAngle { get; internal set; }
 
@@ -80,10 +85,31 @@ namespace Physics.HomogenousMovement.Rendering
             };
         }
 
+        protected override void OnSimulationStarting()
+        {
+            //calculate collision times
+            _castleCollisionTime = CalculateCastleCollisionTime();
+            _wallCollisionTime = CalculateWallCollisionTime();
+
+            _trajectoryStopTime = _castleCollisionTime ?? _wallCollisionTime;
+        }
+
+        private TimeSpan? CalculateWallCollisionTime()
+        {
+            return null;
+        }
+
+        private TimeSpan? CalculateCastleCollisionTime()
+        {
+            return null;
+        }
+
         protected override void UpdatePadding(ICanvasAnimatedControl sender)
         {
 
         }
+
+        protected override TimeSpan? TrajectoryStopTime => _trajectoryStopTime;
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
@@ -110,6 +136,7 @@ namespace Physics.HomogenousMovement.Rendering
                 DrawBackStand(sender, args);
             }
         }
+
 
         private void DrawBackStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
