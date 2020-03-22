@@ -214,7 +214,7 @@ namespace Physics.HomogenousMovement.Rendering
                 var movement = _motions[movementId];
                 var movementColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color);
                 var lastPoint = trajectory.Points.First();
-                foreach (var point in trajectory.Points)
+                foreach (var point in trajectory.Points.Where(p => TrajectoryStopTime == null || p.Time <= TrajectoryStopTime.Value))
                 {
                     var currentPoint = point;
                     bool shouldEnd = false;
@@ -241,10 +241,13 @@ namespace Physics.HomogenousMovement.Rendering
                         break;
                     }
                 }
-                //draw ball
-                var ballX = MetersToPixelsX(lastPoint.X);
-                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
-                DrawBall(args, new Vector2(ballX, ballY), movementColor);
+                if (TrajectoryStopTime == null || SimulationTime.TotalTime <= TrajectoryStopTime)
+                {
+                    //draw ball
+                    var ballX = MetersToPixelsX(lastPoint.X);
+                    var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
+                    DrawBall(args, new Vector2(ballX, ballY), movementColor);
+                }
             }
         }
 
@@ -260,7 +263,7 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawYMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var drawing = args.DrawingSession;
-            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top, _brush);
+            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top, YMeasureColor);
             var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Height);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Height / jumpSize);
             var meters = jumps * jumpSize;
@@ -288,7 +291,7 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawXMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var drawing = args.DrawingSession;
-            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom, _brush);
+            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom, XMeasureColor);
             var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Width);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;

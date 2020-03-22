@@ -12,6 +12,7 @@ using Physics.HomogenousMovement.Logic.PhysicsServices;
 using Physics.HomogenousMovement.PhysicsServices;
 using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
+using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -91,8 +92,15 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task FireAsync()
         {
             Motions.Clear();
+
+            var shootSourceRelativeToCannonWidth = 0.9f;
+            //Calculate origin
+            var cannonOperationalLength = (shootSourceRelativeToCannonWidth - GamificationCanvasController.CannonRotationPointRelativeToWidth) * GamificationCanvasController.CannonWidthInMeters;
+            var sourceHeight = Math.Sin(MathHelpers.DegreesToRadians(Angle)) * cannonOperationalLength + GamificationCanvasController.CannonRelativeHeightToStand * GamificationCanvasController.CannonStandHeightInMeters;
+            var sourceWidth = Math.Cos(MathHelpers.DegreesToRadians(Angle)) * cannonOperationalLength;
+
             var projectileMotion = MotionFactory.CreateProjectileMotion(
-                    new Vector2(0, 0),
+                    new Vector2((float)sourceWidth, (float)sourceHeight),
                     10,
                     0,
                     V0,
@@ -116,7 +124,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task StartNewGameAsync()
         {
             var castleDistance = _randomizer.Next(300, 500);
-            var treeCount = _randomizer.Next(2, 6);
+            var treeCount = _randomizer.Next(2, 15);
             var treeDistances = new List<int>();
             for (int treeId = 0; treeId < treeCount; treeId++)
             {

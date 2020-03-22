@@ -21,6 +21,11 @@ namespace Physics.HomogenousMovement.Rendering
     {
         private const float WallWidthInMeters = 40f;
         private const float CastleWidthInMeters = 50f;
+        public const float CannonWidthInMeters = 30f;
+        public const float CannonStandHeightInMeters = CannonStandWidthInMeters * 1.27f;
+        public const float CannonStandWidthInMeters = 10f;
+        public const float CannonRelativeHeightToStand = 0.6f;
+        public const float CannonRotationPointRelativeToWidth = 0.25f;
 
         private readonly (Vector2, Vector2)[] _castleRectangles = new (Vector2, Vector2)[]
         {
@@ -168,7 +173,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override void UpdatePadding(ICanvasAnimatedControl sender)
         {
-
+//            SimulationPadding = 62;
         }
 
         public override void Update(ICanvasAnimatedControl sender)
@@ -194,11 +199,52 @@ namespace Physics.HomogenousMovement.Rendering
         protected override void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.DrawImage(_skyImage, new Rect(0, 0, sender.Size.Width, sender.Size.Height));
-            args.DrawingSession.DrawImage(_groundImage, new Rect(0, sender.Size.Height - SimulationPadding, sender.Size.Width, SimulationPadding));
-            args.DrawingSession.DrawImage(_grassImage, new Rect(0, sender.Size.Height - SimulationPadding - 10, sender.Size.Width, 10));
+            args.DrawingSession.DrawImage(_groundImage, new Rect(0, sender.Size.Height - ReducedPadding, sender.Size.Width, ReducedPadding));
+            args.DrawingSession.DrawImage(_grassImage, new Rect(0, sender.Size.Height - ReducedPadding - 30, sender.Size.Width, 30));
             if (_game != null)
             {
                 DrawTrees(sender, args);
+
+                DrawBackStand(sender, args);
+            }
+        }
+
+
+        private void DrawBackStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            var scale = (float)(_meterSizeInPixels * CannonStandWidthInMeters / _wood1Image.Size.Width);
+            var image = _wood1Image;
+            var scaledImage = new ScaleEffect()
+            {
+                Source = image,
+                Scale = new Vector2(scale)
+            };
+
+            args.DrawingSession.DrawImage(
+                scaledImage,
+                new Vector2(SimulationLeftSidePadding - scale * (float)_wood1Image.Size.Width * 0.4f, (float)sender.Size.Height - BottomGamificationPadding - (float)_wood1Image.Size.Height * scale));
+        }
+
+        private void DrawFrontStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            var scale = (float)(_meterSizeInPixels * CannonStandWidthInMeters / _wood2Image.Size.Width);
+            var image = _wood2Image;
+            var scaledImage = new ScaleEffect()
+            {
+                Source = image,
+                Scale = new Vector2(scale)
+            };
+
+            args.DrawingSession.DrawImage(
+                scaledImage,
+                new Vector2(SimulationLeftSidePadding - scale * (float)_wood2Image.Size.Width * 0.6f, (float)sender.Size.Height - BottomGamificationPadding - (float)_wood2Image.Size.Height * scale + 10));
+        }
+
+        protected override void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            if (_game != null)
+            {
+                DrawCannon(sender, args, -45);
                 if (_castleCollisionTime == null || SimulationTime.TotalTime < _castleCollisionTime)
                 {
                     DrawCastle(sender, args);
@@ -216,26 +262,12 @@ namespace Physics.HomogenousMovement.Rendering
                 {
                     DrawKoWall(sender, args);
                 }
-
-                DrawBackStand(sender, args);
-            }
-        }
-
-
-        private void DrawBackStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
-        }
-
-        private void DrawFrontStand()
-        {
-        }
-
-        protected override void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
-            if (_game != null)
-            {
-                DrawCannon(sender, args, -45);
-                DrawFrontStand();
+                DrawFrontStand(sender, args);
+                //if (_motions.Length > 0) {
+                //    args.DrawingSession.DrawEllipse(
+                //        SimulationLeftSidePadding + _motions.First().Origin.X * _meterSizeInPixels, 
+                //        (float)sender.Size.Height - BottomGamificationPadding - _motions.First().Origin.Y * _meterSizeInPixels, 2, 2, Colors.Red);
+                //}
             }
         }
 
@@ -245,7 +277,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 var distance = _game.TreeDistances[treeId];
                 var originalImage = _treeImages[treeId % _treeImages.Length];
-                var scaling = (float)(_meterSizeInPixels * 15f / originalImage.Size.Width);
+                var scaling = (float)(_meterSizeInPixels * 25f / originalImage.Size.Width);
                 var scaledImage = new ScaleEffect()
                 {
                     Source = originalImage,
@@ -254,7 +286,7 @@ namespace Physics.HomogenousMovement.Rendering
                 args.DrawingSession.DrawImage(
                     scaledImage,
                     SimulationLeftSidePadding + distance * _meterSizeInPixels,
-                    (float)sender.Size.Height - SimulationPadding - scaling * (float)originalImage.Size.Height,
+                    (float)sender.Size.Height - BottomGamificationPadding - scaling * (float)originalImage.Size.Height,
                     new Rect(0, 0, (float)(scaledImage.Scale.X * originalImage.Size.Width), (float)(scaledImage.Scale.Y * originalImage.Size.Height)),
                     1,
                     CanvasImageInterpolation.Cubic);
@@ -272,7 +304,7 @@ namespace Physics.HomogenousMovement.Rendering
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels,
-                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleImage.Size.Height,
+                (float)sender.Size.Height - BottomGamificationPadding - scale * (float)_castleImage.Size.Height,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _castleImage.Size.Width), (float)(scaledImage.Scale.Y * _castleImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
@@ -289,7 +321,7 @@ namespace Physics.HomogenousMovement.Rendering
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels - scale * (float)_castleKoImage.Size.Width * 0.115f,
-                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleKoImage.Size.Height * 0.8f,
+                (float)sender.Size.Height - BottomGamificationPadding - scale * (float)_castleKoImage.Size.Height * 0.8f,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _castleKoImage.Size.Width), (float)(scaledImage.Scale.Y * _castleKoImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
@@ -306,7 +338,7 @@ namespace Physics.HomogenousMovement.Rendering
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels,
-                (float)sender.Size.Height - SimulationPadding - scale * (float)_wallImage.Size.Height,
+                (float)sender.Size.Height - BottomGamificationPadding - scale * (float)_wallImage.Size.Height,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _wallImage.Size.Width), (float)(scaledImage.Scale.Y * _wallImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
@@ -323,19 +355,25 @@ namespace Physics.HomogenousMovement.Rendering
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels - scale * (float)_wallKoImage.Size.Width * 0.515f,
-                (float)sender.Size.Height - SimulationPadding - scale * (float)_wallKoImage.Size.Height * 0.9f,
+                (float)sender.Size.Height - BottomGamificationPadding - scale * (float)_wallKoImage.Size.Height * 0.9f,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _wallKoImage.Size.Width), (float)(scaledImage.Scale.Y * _wallKoImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }
 
+        private float BottomGamificationPadding => SimulationPadding;
+        private float ReducedPadding => SimulationPadding - 10f;
+
         private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float angle)
         {
-            var scale = (float)(_meterSizeInPixels * 30f / _cannonImage.Size.Width);
+            var standHeight = (float)((_meterSizeInPixels * CannonStandWidthInMeters / _wood2Image.Size.Width) * (_wood2Image.Size.Height));
+            var standWidth = (float)(_meterSizeInPixels * CannonStandWidthInMeters);
+
+            var scale = (float)(_meterSizeInPixels * CannonWidthInMeters / _cannonImage.Size.Width);
             var image = _cannonImage;
             var cannonImageScaledSize = new Vector2((float)_cannonImage.Size.Width * scale, (float)_cannonImage.Size.Height * scale);
-            var imageTransformPivot = new Vector2((float)_cannonImage.Size.Width / 7, (float)_cannonImage.Size.Height / 2) * scale;
-            var axisOriginPoint = new Vector2(SimulationLeftSidePadding, (float)sender.Size.Height - SimulationPadding);
+            var imageTransformPivot = new Vector2((float)_cannonImage.Size.Width * CannonRotationPointRelativeToWidth, (float)_cannonImage.Size.Height / 2) * scale;
+            var axisOriginPoint = new Vector2(SimulationLeftSidePadding, (float)sender.Size.Height - BottomGamificationPadding);
             var rotatedImage = new Transform2DEffect()
             {
                 Source = image,
@@ -348,9 +386,9 @@ namespace Physics.HomogenousMovement.Rendering
 
             args.DrawingSession.DrawImage(
                 rotatedImage,
-                new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y));
+                new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y - standHeight * CannonRelativeHeightToStand));
 
-            args.DrawingSession.DrawEllipse(axisOriginPoint, 2, 2, Colors.Red);
+            
         }
     }
 }
