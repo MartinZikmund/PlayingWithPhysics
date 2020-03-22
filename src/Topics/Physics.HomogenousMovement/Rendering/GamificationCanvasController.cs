@@ -20,6 +20,16 @@ namespace Physics.HomogenousMovement.Rendering
     public class GamificationCanvasController : HomogenousMovementCanvasController
     {
         private const float WallWidthInMeters = 40f;
+        private const float CastleWidthInMeters = 50f;
+
+        private readonly (Vector2, Vector2)[] _castleRectangles = new (Vector2, Vector2)[]
+        {
+            (new Vector2(0,0), new Vector2(0.267f, 0.54f)), //Left wall
+            (new Vector2(0.267f, 0f), new Vector2(0.72f, 0.432f)), //Center base
+            (new Vector2(0.72f, 0f), new Vector2(1f, 0.54f)), //Right wall
+            (new Vector2(0.38f, 0.432f), new Vector2(0.591f,0.601f)), //Middle tower
+            (new Vector2(0.3f, 0.601f), new Vector2(0.683f,0.765f)) //Upper tower
+        };
 
         private CanvasBitmap _skyImage;
         private CanvasBitmap _groundImage;
@@ -103,12 +113,31 @@ namespace Physics.HomogenousMovement.Rendering
 
         private TimeSpan? FindCastleCollisionTime(TrajectoryData trajectory)
         {
+            foreach (var point in trajectory.Points)
+            {
+                if (IsCastleCollision(point))
+                {
+                    return point.Time;
+                }
+            }
             return null;
         }
 
-        private void CheckCastleCollision(Vector2 ballPositionInMeters)
+        private bool IsCastleCollision(TrajectoryPoint ballPositionInMeter)
         {
+            var castleWidth = CastleWidthInMeters;
+            var castleHeight = (float)((CastleWidthInMeters / _castleImage.Size.Width) * _castleImage.Size.Height);
 
+            foreach (var (bottomLeftRelative, topRightRelative) in _castleRectangles)
+            {
+                var bottomLeft = new Vector2(_game.CastleDistance + castleWidth * bottomLeftRelative.X, 0 + castleHeight * bottomLeftRelative.Y);
+                var topRight = new Vector2(_game.CastleDistance + castleWidth * topRightRelative.X, 0 + castleHeight * topRightRelative.Y);
+                if (IsPointInRect(ballPositionInMeter, bottomLeft, topRight))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private TimeSpan? FindWallCollisionTime(TrajectoryData trajectory)
@@ -126,15 +155,15 @@ namespace Physics.HomogenousMovement.Rendering
         private bool IsWallCollision(TrajectoryPoint ballPositionInMeters)
         {
             var wallHeight = (WallWidthInMeters / _wallImage.Size.Width) * _wallImage.Size.Height;
-            var wallTopLeft = new Vector2(_game.WallDistance, (float)wallHeight);
-            var wallBottomRight = new Vector2(_game.WallDistance + WallWidthInMeters, 0);
-            return IsPointInRect(ballPositionInMeters, wallTopLeft, wallBottomRight);
+            var wallBottomLeft = new Vector2(_game.WallDistance, 0);
+            var wallTopRight = new Vector2(_game.WallDistance + WallWidthInMeters, (float)wallHeight);
+            return IsPointInRect(ballPositionInMeters, wallBottomLeft, wallTopRight);
         }
 
-        private bool IsPointInRect(TrajectoryPoint point, Vector2 topLeft, Vector2 bottomRight)
+        private bool IsPointInRect(TrajectoryPoint point, Vector2 bottomLeft, Vector2 topRight)
         {
-            return topLeft.X <= point.X && point.X <= bottomRight.X &&
-                   bottomRight.Y <= point.Y && point.Y <= topLeft.Y;
+            return bottomLeft.X <= point.X && point.X <= topRight.X &&
+                   bottomLeft .Y <= point.Y && point.Y <= topRight.Y;
         }
 
         protected override void UpdatePadding(ICanvasAnimatedControl sender)
@@ -170,7 +199,7 @@ namespace Physics.HomogenousMovement.Rendering
             if (_game != null)
             {
                 DrawTrees(sender, args);
-                if (_castleCollisionTime == null || SimulationTime.TotalTime < _castleCollisionTime )
+                if (_castleCollisionTime == null || SimulationTime.TotalTime < _castleCollisionTime)
                 {
                     DrawCastle(sender, args);
                 }
@@ -234,7 +263,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawCastle(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var scale = (float)(_meterSizeInPixels * 50f / _castleImage.Size.Width);
+            var scale = (float)(_meterSizeInPixels * CastleWidthInMeters / _castleImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _castleImage,
@@ -251,24 +280,24 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawKoCastle(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var scale = (float)(_meterSizeInPixels * 50f / _castleImage.Size.Width);
+            var scale = (float)(_meterSizeInPixels * 1.75f * CastleWidthInMeters / _castleKoImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
-                Source = _castleImage,
+                Source = _castleKoImage,
                 Scale = new Vector2(scale)
             };
             args.DrawingSession.DrawImage(
                 scaledImage,
-                SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels,
-                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleImage.Size.Height,
-                new Rect(0, 0, (float)(scaledImage.Scale.X * _castleImage.Size.Width), (float)(scaledImage.Scale.Y * _castleImage.Size.Height)),
+                SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels - scale * (float)_castleKoImage.Size.Width * 0.115f,
+                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleKoImage.Size.Height * 0.8f,
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _castleKoImage.Size.Width), (float)(scaledImage.Scale.Y * _castleKoImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }
 
         private void DrawWall(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var scale = (float)(_meterSizeInPixels * 40f / _wallImage.Size.Width);
+            var scale = (float)(_meterSizeInPixels * WallWidthInMeters / _wallImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _wallImage,
@@ -285,7 +314,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawKoWall(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var scale = (float)(_meterSizeInPixels * 107f / _wallKoImage.Size.Width);
+            var scale = (float)(_meterSizeInPixels * 2.675f * WallWidthInMeters / _wallKoImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _wallKoImage,
@@ -293,7 +322,7 @@ namespace Physics.HomogenousMovement.Rendering
             };
             args.DrawingSession.DrawImage(
                 scaledImage,
-                SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels - scale * (float) _wallKoImage.Size.Width * 0.515f,
+                SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels - scale * (float)_wallKoImage.Size.Width * 0.515f,
                 (float)sender.Size.Height - SimulationPadding - scale * (float)_wallKoImage.Size.Height * 0.9f,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _wallKoImage.Size.Width), (float)(scaledImage.Scale.Y * _wallKoImage.Size.Height)),
                 1,
