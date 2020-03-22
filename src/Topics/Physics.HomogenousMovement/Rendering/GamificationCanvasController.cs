@@ -27,11 +27,12 @@ namespace Physics.HomogenousMovement.Rendering
         private CanvasBitmap _castleKoImage;
         private CanvasBitmap _wallImage;
         private CanvasBitmap _wallKoImage;
-
+        private CanvasBitmap _wood1Image;
+        private CanvasBitmap _wood2Image;
         private CanvasBitmap[] _treeImages;
 
         private GameSetup _game = null;
-        
+
         private TimeSpan? _trajectoryStopTime;
 
         private TimeSpan? _castleCollisionTime;
@@ -76,6 +77,8 @@ namespace Physics.HomogenousMovement.Rendering
             _castleKoImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hrad-ko.png"));
             _wallImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hradby.png"));
             _wallKoImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hradby-ko.png"));
+            _wood1Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/drevo_1.png"));
+            _wood2Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/drevo_2.png"));
 
             _treeImages = new[]
             {
@@ -113,7 +116,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
-            var scale = (float)(_meterSizeInPixels * 1f / _ballImage.Size.Width);
+            var scale = (float)(_meterSizeInPixels * 5f / _ballImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _ballImage,
@@ -141,7 +144,7 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawBackStand(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
         }
-        
+
         private void DrawFrontStand()
         {
         }
@@ -161,7 +164,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 var distance = _game.TreeDistances[treeId];
                 var originalImage = _treeImages[treeId % _treeImages.Length];
-                var scaling = (float)(_meterSizeInPixels * 4f / originalImage.Size.Width);
+                var scaling = (float)(_meterSizeInPixels * 15f / originalImage.Size.Width);
                 var scaledImage = new ScaleEffect()
                 {
                     Source = originalImage,
@@ -179,15 +182,16 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawCastle(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            var scale = (float)(_meterSizeInPixels * 50f / _castleImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _castleImage,
-                Scale = new Vector2((float)(_meterSizeInPixels * 10f / _castleImage.Size.Width))
+                Scale = new Vector2(scale)
             };
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels,
-                (float)sender.Size.Height - SimulationPadding - (float)(_meterSizeInPixels * 10f / _castleImage.Size.Width) * (float)_castleImage.Size.Height,
+                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleImage.Size.Height,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _castleImage.Size.Width), (float)(scaledImage.Scale.Y * _castleImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
@@ -195,37 +199,43 @@ namespace Physics.HomogenousMovement.Rendering
 
         private void DrawWall(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            var scale = (float)(_meterSizeInPixels * 40f / _wallImage.Size.Width);
             var scaledImage = new ScaleEffect()
             {
                 Source = _wallImage,
-                Scale = new Vector2((float)(_meterSizeInPixels * 5f / _wallImage.Size.Width))
+                Scale = new Vector2(scale)
             };
             args.DrawingSession.DrawImage(
                 scaledImage,
                 SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels,
-                (float)sender.Size.Height - SimulationPadding - (float)(_meterSizeInPixels * 5f / _wallImage.Size.Width) * (float)_wallImage.Size.Height,
+                (float)sender.Size.Height - SimulationPadding - scale * (float)_wallImage.Size.Height,
                 new Rect(0, 0, (float)(scaledImage.Scale.X * _wallImage.Size.Width), (float)(scaledImage.Scale.Y * _wallImage.Size.Height)),
                 1,
                 CanvasImageInterpolation.Cubic);
         }
 
         private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float angle)
-        {
-            var scale = (float)(_meterSizeInPixels * 4f / _cannonImage.Size.Width);
-            var scaledImage = new ScaleEffect()
+        {            
+            var scale = (float)(_meterSizeInPixels * 30f / _cannonImage.Size.Width);
+            var image = _cannonImage;
+            var cannonImageScaledSize = new Vector2((float)_cannonImage.Size.Width * scale, (float)_cannonImage.Size.Height * scale);
+            var imageTransformPivot = new Vector2((float)_cannonImage.Size.Width / 7, (float)_cannonImage.Size.Height / 2) * scale;
+            var axisOriginPoint = new Vector2(SimulationLeftSidePadding, (float)sender.Size.Height - SimulationPadding);
+            var rotatedImage = new Transform2DEffect()
             {
-                Source = _cannonImage,
-                Scale = new Vector2(scale)
+                Source = image,
+                TransformMatrix =
+                    Matrix3x2.CreateScale(scale) *
+                    Matrix3x2.CreateTranslation(-imageTransformPivot) *
+                    Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-CannonAngle)) *
+                    Matrix3x2.CreateTranslation(imageTransformPivot)
             };
-            var rotate = new Transform2DEffect()
-            {
-                Source = scaledImage,
-                TransformMatrix = Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-CannonAngle))
-            };            
+            
             args.DrawingSession.DrawImage(
-                (ICanvasImage)rotate,
-                SimulationLeftSidePadding - 0.16f * (float)_cannonImage.Size.Width,
-                (float)sender.Size.Height - SimulationPadding - ((float)_cannonImage.Size.Height / 6) * scale);              
+                rotatedImage,
+                new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y));
+
+            args.DrawingSession.DrawEllipse(axisOriginPoint, 2, 2, Colors.Red);
         }
     }
 }

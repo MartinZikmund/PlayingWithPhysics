@@ -37,6 +37,8 @@ namespace Physics.HomogenousMovement.ViewModels
         {
         }
 
+        public GameSetup CurrentGame { get; set; }
+
         public float V0
         {
             get => _v0;
@@ -113,14 +115,15 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task StartNewGameAsync()
         {
-            var castleDistance = _randomizer.Next(25, 50);
+            var castleDistance = _randomizer.Next(300, 500);
             var treeCount = _randomizer.Next(2, 6);
             var treeDistances = new List<int>();
             for (int treeId = 0; treeId < treeCount; treeId++)
             {
                 treeDistances.Add(_randomizer.Next(0, castleDistance));
             }
-            await _gameController.StartNewGameAsync(new GameSetup(castleDistance, _randomizer.Next(5, castleDistance), treeDistances.ToArray()));
+            CurrentGame = new GameSetup(castleDistance, _randomizer.Next(20, castleDistance), treeDistances.ToArray());
+            await _gameController.StartNewGameAsync(CurrentGame);
             _gameController.CannonAngle = Angle;
         }
     }

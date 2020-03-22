@@ -47,7 +47,7 @@
             <Border Grid.Row="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Grid.Column="0" Orientation="Vertical">
-                        <Grid>
+                        <Grid RowSpacing="8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -76,7 +76,19 @@
                                 </StackPanel>
                             </Button>
 
-                            <StackPanel Grid.Row="2" Spacing="4" Orientation="Vertical">
+                            <StackPanel Grid.Row="2" Spacing="8">
+                                <TextBlock>
+                                      <Run FontWeight="Bold" Text="Castle distance: " />
+                                      <Run Text="{x:Bind Model.CurrentGame.CastleDistance, Mode=OneWay}" />
+                                </TextBlock>
+                            
+                                <TextBlock>
+                                      <Run FontWeight="Bold" Text="Wall distance: " />
+                                      <Run Text="{x:Bind Model.CurrentGame.WallDistance, Mode=OneWay}" />
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3" Spacing="4" Orientation="Vertical">
                                 <TextBlock
                                 Grid.Row="0"
                                 VerticalAlignment="Center">
@@ -90,8 +102,8 @@
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 VerticalAlignment="Bottom"
-                                Minimum="0"
-                                Maximum="2000"
+                                Minimum="20"
+                                Maximum="100"
                                 Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
@@ -106,7 +118,7 @@
                                 Grid.Row="4"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
-                                Minimum="-90"
+                                Minimum="10"
                                 Maximum="90"
                                 Value="{x:Bind Model.Angle, Mode=TwoWay}" />
 
@@ -124,7 +136,7 @@
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Minimum="1"
-                                Maximum="50"
+                                Maximum="20"
                                 Value="{x:Bind Model.Gravity, Mode=TwoWay}" />
 
                                 <Button                                
