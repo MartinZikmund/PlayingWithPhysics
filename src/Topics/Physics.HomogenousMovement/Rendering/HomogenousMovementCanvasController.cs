@@ -26,8 +26,8 @@ namespace Physics.HomogenousMovement.Rendering
     public class HomogenousMovementCanvasController : BaseCanvasController, IDisposable
     {
         private const int BallRadius = 5;
-        private MotionInfo[] _throws = Array.Empty<MotionInfo>();
-        private TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
+        protected MotionInfo[] _motions = Array.Empty<MotionInfo>();
+        protected TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
         private PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
 
         private int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
@@ -76,7 +76,7 @@ namespace Physics.HomogenousMovement.Rendering
                 throw new ArgumentNullException(nameof(throws));
             }
 
-            _throws = throws;
+            _motions = throws;
             _drawTrajectoriesContinously = drawTrajectoriesContinuously;
 
             PrepareTrajectories();
@@ -96,7 +96,7 @@ namespace Physics.HomogenousMovement.Rendering
         {
             var trajectories = new List<TrajectoryData>();
             var physicsServices = new List<PhysicsService>();
-            foreach (var movement in _throws)
+            foreach (var movement in _motions)
             {
                 var physicsService = new PhysicsService(movement);
                 physicsServices.Add(physicsService);
@@ -114,7 +114,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 maxX = Math.Max(trajectory.MaxX, maxX);
             }
-            foreach (var motion in _throws)
+            foreach (var motion in _motions)
             {
                 minX = Math.Min(motion.Origin.X, minX);
             }
@@ -211,7 +211,7 @@ namespace Physics.HomogenousMovement.Rendering
             for (int movementId = 0; movementId < _trajectories.Length; movementId++)
             {
                 var trajectory = _trajectories[movementId];
-                var movement = _throws[movementId];
+                var movement = _motions[movementId];
                 var movementColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color);
                 var lastPoint = trajectory.Points.First();
                 foreach (var point in trajectory.Points)

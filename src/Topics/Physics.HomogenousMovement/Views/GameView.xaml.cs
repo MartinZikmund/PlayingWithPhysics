@@ -47,10 +47,10 @@ namespace Physics.HomogenousMovement.Views
 
         private void SetupNumberBoxFormattings()
         {
-            GravityNumberBox.SetupFormatting(fractionDigits: 2);
+            //GravityNumberBox.SetupFormatting(fractionDigits: 2);
             V0NumberBox.SetupFormatting(fractionDigits: 2);
             AngleNumberBox.SetupFormatting(fractionDigits: 2);
-            GravityNumberBox.SmallChange = 0.1;
+            //GravityNumberBox.SmallChange = 0.1;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

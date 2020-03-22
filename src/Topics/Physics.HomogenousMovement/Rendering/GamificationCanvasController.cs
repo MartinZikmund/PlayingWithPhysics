@@ -13,11 +13,14 @@ using Physics.HomogenousMovement.Gamification;
 using Physics.Shared.Helpers;
 using Color = Windows.UI.Color;
 using Windows.UI;
+using Physics.HomogenousMovement.Logic.PhysicsServices;
 
 namespace Physics.HomogenousMovement.Rendering
 {
     public class GamificationCanvasController : HomogenousMovementCanvasController
     {
+        private const float WallWidthInMeters = 40f;
+
         private CanvasBitmap _skyImage;
         private CanvasBitmap _groundImage;
         private CanvasBitmap _grassImage;
@@ -33,10 +36,10 @@ namespace Physics.HomogenousMovement.Rendering
 
         private GameSetup _game = null;
 
-        private TimeSpan? _trajectoryStopTime;
-
-        private TimeSpan? _castleCollisionTime;
+        private bool _hasWallCollided = false;
+        private bool _hasCastleCollided = false;
         private TimeSpan? _wallCollisionTime;
+        private TimeSpan? _castleCollisionTime;
 
         public float CannonAngle { get; internal set; }
 
@@ -90,21 +93,48 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override void OnSimulationStarting()
         {
-            //calculate collision times
-            _castleCollisionTime = CalculateCastleCollisionTime();
-            _wallCollisionTime = CalculateWallCollisionTime();
-
-            _trajectoryStopTime = _castleCollisionTime ?? _wallCollisionTime;
+            if (_trajectories.Length > 0)
+            {
+                var trajectory = _trajectories[0];
+                _wallCollisionTime = FindWallCollisionTime(trajectory);
+                _castleCollisionTime = FindCastleCollisionTime(trajectory);
+            }
         }
 
-        private TimeSpan? CalculateWallCollisionTime()
+        private TimeSpan? FindCastleCollisionTime(TrajectoryData trajectory)
         {
             return null;
         }
 
-        private TimeSpan? CalculateCastleCollisionTime()
+        private void CheckCastleCollision(Vector2 ballPositionInMeters)
         {
+
+        }
+
+        private TimeSpan? FindWallCollisionTime(TrajectoryData trajectory)
+        {
+            foreach (var point in trajectory.Points)
+            {
+                if (IsWallCollision(point))
+                {
+                    return point.Time;
+                }
+            }
             return null;
+        }
+
+        private bool IsWallCollision(TrajectoryPoint ballPositionInMeters)
+        {
+            var wallHeight = (WallWidthInMeters / _wallImage.Size.Width) * _wallImage.Size.Height;
+            var wallTopLeft = new Vector2(_game.WallDistance, (float)wallHeight);
+            var wallBottomRight = new Vector2(_game.WallDistance + WallWidthInMeters, 0);
+            return IsPointInRect(ballPositionInMeters, wallTopLeft, wallBottomRight);
+        }
+
+        private bool IsPointInRect(TrajectoryPoint point, Vector2 topLeft, Vector2 bottomRight)
+        {
+            return topLeft.X <= point.X && point.X <= bottomRight.X &&
+                   bottomRight.Y <= point.Y && point.Y <= topLeft.Y;
         }
 
         protected override void UpdatePadding(ICanvasAnimatedControl sender)
@@ -112,7 +142,13 @@ namespace Physics.HomogenousMovement.Rendering
 
         }
 
-        protected override TimeSpan? TrajectoryStopTime => _trajectoryStopTime;
+        public override void Update(ICanvasAnimatedControl sender)
+        {
+            base.Update(sender);
+
+        }
+
+        protected override TimeSpan? TrajectoryStopTime => _wallCollisionTime ?? _castleCollisionTime;
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
@@ -134,8 +170,24 @@ namespace Physics.HomogenousMovement.Rendering
             if (_game != null)
             {
                 DrawTrees(sender, args);
-                DrawCastle(sender, args);
-                DrawWall(sender, args);
+                if (_castleCollisionTime == null || SimulationTime.TotalTime < _castleCollisionTime )
+                {
+                    DrawCastle(sender, args);
+                }
+                else
+                {
+                    DrawKoCastle(sender, args);
+                }
+
+                if (_wallCollisionTime == null || SimulationTime.TotalTime < _wallCollisionTime)
+                {
+                    DrawWall(sender, args);
+                }
+                else
+                {
+                    DrawKoWall(sender, args);
+                }
+
                 DrawBackStand(sender, args);
             }
         }
@@ -197,6 +249,23 @@ namespace Physics.HomogenousMovement.Rendering
                 CanvasImageInterpolation.Cubic);
         }
 
+        private void DrawKoCastle(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            var scale = (float)(_meterSizeInPixels * 50f / _castleImage.Size.Width);
+            var scaledImage = new ScaleEffect()
+            {
+                Source = _castleImage,
+                Scale = new Vector2(scale)
+            };
+            args.DrawingSession.DrawImage(
+                scaledImage,
+                SimulationLeftSidePadding + _game.CastleDistance * _meterSizeInPixels,
+                (float)sender.Size.Height - SimulationPadding - scale * (float)_castleImage.Size.Height,
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _castleImage.Size.Width), (float)(scaledImage.Scale.Y * _castleImage.Size.Height)),
+                1,
+                CanvasImageInterpolation.Cubic);
+        }
+
         private void DrawWall(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var scale = (float)(_meterSizeInPixels * 40f / _wallImage.Size.Width);
@@ -214,8 +283,25 @@ namespace Physics.HomogenousMovement.Rendering
                 CanvasImageInterpolation.Cubic);
         }
 
+        private void DrawKoWall(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            var scale = (float)(_meterSizeInPixels * 107f / _wallKoImage.Size.Width);
+            var scaledImage = new ScaleEffect()
+            {
+                Source = _wallKoImage,
+                Scale = new Vector2(scale)
+            };
+            args.DrawingSession.DrawImage(
+                scaledImage,
+                SimulationLeftSidePadding + _game.WallDistance * _meterSizeInPixels - scale * (float) _wallKoImage.Size.Width * 0.515f,
+                (float)sender.Size.Height - SimulationPadding - scale * (float)_wallKoImage.Size.Height * 0.9f,
+                new Rect(0, 0, (float)(scaledImage.Scale.X * _wallKoImage.Size.Width), (float)(scaledImage.Scale.Y * _wallKoImage.Size.Height)),
+                1,
+                CanvasImageInterpolation.Cubic);
+        }
+
         private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float angle)
-        {            
+        {
             var scale = (float)(_meterSizeInPixels * 30f / _cannonImage.Size.Width);
             var image = _cannonImage;
             var cannonImageScaledSize = new Vector2((float)_cannonImage.Size.Width * scale, (float)_cannonImage.Size.Height * scale);
@@ -230,7 +316,7 @@ namespace Physics.HomogenousMovement.Rendering
                     Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-CannonAngle)) *
                     Matrix3x2.CreateTranslation(imageTransformPivot)
             };
-            
+
             args.DrawingSession.DrawImage(
                 rotatedImage,
                 new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y));
