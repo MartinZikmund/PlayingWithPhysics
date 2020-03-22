@@ -7,14 +7,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    xmlns:converters="using:Physics.HomogenousParticle.Converters"
+    xmlns:conv="using:Physics.HomogenousParticle.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <views:BaseView.Resources>
-        <converters:BoolToVelocityVariantConverter x:Key="BoolToVelocityVariantConverter"></converters:BoolToVelocityVariantConverter>
-    </views:BaseView.Resources>
+
     <Grid>
+        <Grid.Resources>
+            <conv:BoolToVelocityVariantConverter x:Key="BoolToVelocityVariantConverter"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
