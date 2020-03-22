@@ -30,6 +30,8 @@ namespace Physics.HomogenousMovement.Rendering
         protected TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
         private PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
 
+        protected virtual Vector2 XAxisOffset => Vector2.Zero;
+
         private int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
 
         private bool _drawTrajectoriesContinously;
@@ -291,7 +293,7 @@ namespace Physics.HomogenousMovement.Rendering
         private void DrawXMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var drawing = args.DrawingSession;
-            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom, XMeasureColor);
+            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, XMeasureColor);
             var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Width);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;
@@ -299,15 +301,15 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 drawing.DrawLine(
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom - 3,
+                    _simulationBoundsInPixels.Bottom - 3 + XAxisOffset.Y,
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom + 3,
+                    _simulationBoundsInPixels.Bottom + 3 + XAxisOffset.Y,
                     XMeasureColor);
 
                 drawing.DrawText(
                     (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom + 12,
+                    _simulationBoundsInPixels.Bottom + 12 + XAxisOffset.Y,
                     XMeasureColor,
                     _yAxisFormat);
             }

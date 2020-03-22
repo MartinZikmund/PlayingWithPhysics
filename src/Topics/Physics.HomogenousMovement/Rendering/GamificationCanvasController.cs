@@ -27,6 +27,8 @@ namespace Physics.HomogenousMovement.Rendering
         public const float CannonRelativeHeightToStand = 0.6f;
         public const float CannonRotationPointRelativeToWidth = 0.25f;
 
+        protected override Vector2 XAxisOffset => new Vector2(0,10);
+
         private readonly (Vector2, Vector2)[] _castleRectangles = new (Vector2, Vector2)[]
         {
             (new Vector2(0,0), new Vector2(0.267f, 0.54f)), //Left wall
@@ -179,7 +181,10 @@ namespace Physics.HomogenousMovement.Rendering
         public override void Update(ICanvasAnimatedControl sender)
         {
             base.Update(sender);
-
+            if (TrajectoryStopTime != null && SimulationTime.TotalTime > TrajectoryStopTime.Value)
+            {
+                //TODO: Stop motion completely so that invisible ball does not destroy both wall and castle
+            }
         }
 
         protected override TimeSpan? TrajectoryStopTime => _wallCollisionTime ?? _castleCollisionTime;
