@@ -118,12 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyb částice v homogenním magnetickém poli Země</value>
-  </data>
-  <data name="ChooseMotion.Text" xml:space="preserve">
-    <value>Vyber variantu</value>
-  </data>
-  <data name="DrawButton.Content" xml:space="preserve">
-    <value>Vykresli pohyb</value>
+    <value>Playing with Physics: Homogenous Particle Movement</value>
   </data>
 </root>

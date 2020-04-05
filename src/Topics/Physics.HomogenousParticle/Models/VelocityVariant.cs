@@ -10,6 +10,6 @@ namespace Physics.HomogenousParticle.Models
     {
         Zero,
         Parallel,
-        Perpendicular,
+        Perpendicular
     }
 }
