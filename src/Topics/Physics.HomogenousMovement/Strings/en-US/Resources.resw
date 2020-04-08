@@ -127,7 +127,10 @@
     <value>Angle</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Projectile motion</value>
+    <value>Playing with Physics: Projectile motions</value>
+  </data>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>Projectile motions</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -236,5 +239,8 @@
   </data>
   <data name="VerticalMotion" xml:space="preserve">
     <value>Vertical throw</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
   </data>
 </root>

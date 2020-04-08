@@ -19,7 +19,7 @@
         </SplitView.Pane>
 
         <Grid>
-            <ContentControl Content="{x:Bind Model.CurrentContent}" />
+            <ContentControl Content="{Binding Model.CurrentContent}" />
         </Grid>
     </SplitView>
 </views:BaseView>

@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.Shared.Resources">
     <FontFamily x:Key="MathFont">ms-appx:///Physics.Shared/Assets/Fonts/LatinModern.otf#Latin Modern Roman 10</FontFamily>
+    <FontFamily x:Key="PlayingWithPhysicsIconFont">ms-appx:///Physics.Shared/Assets/Fonts/playingwithphysics.ttf#playingwithphysics</FontFamily>
+
+    <x:String x:Key="GameGlyph">&#xE900;</x:String>
+    <x:String x:Key="AdvancedDifficultyGlyph">&#xE901;</x:String>
+    <x:String x:Key="BasicDifficultyGlyph">&#xE902;</x:String>
+    <x:String x:Key="StudyTextGlyph">&#xE903;</x:String>
 </ResourceDictionary>
