@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
+using Physics.Shared.Services.Sounds;
 
 namespace Physics.Shared.Infrastructure.Setup
 {
@@ -23,6 +24,7 @@ namespace Physics.Shared.Infrastructure.Setup
         {
             base.InitializeFirstChance();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IPreferences, Preferences>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISoundPlayer, SoundPlayer>();
         }
 
         public override IEnumerable<Assembly> GetViewAssemblies()

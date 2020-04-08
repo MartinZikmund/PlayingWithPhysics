@@ -9,4 +9,5 @@
     <x:String x:Key="AdvancedDifficultyGlyph">&#xE901;</x:String>
     <x:String x:Key="BasicDifficultyGlyph">&#xE902;</x:String>
     <x:String x:Key="StudyTextGlyph">&#xE903;</x:String>
+    <x:String x:Key="CannonGlyph">&#xE904;</x:String>
 </ResourceDictionary>

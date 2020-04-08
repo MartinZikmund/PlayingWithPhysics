@@ -266,6 +266,7 @@
                     </Grid>
                     <TextBlock
                         Grid.Row="3"
+                        Grid.Column="1"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Foreground="{ThemeResource ApplicationForegroundThemeBrush}"

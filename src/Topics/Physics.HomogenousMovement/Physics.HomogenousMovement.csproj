@@ -363,6 +363,7 @@
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Sounds\" />
     <Folder Include="Infrastructure\Interaction\" />
   </ItemGroup>
   <ItemGroup>
