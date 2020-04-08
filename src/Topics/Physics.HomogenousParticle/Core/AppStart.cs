@@ -1,6 +1,6 @@
 ﻿using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Physics.HomogenousParticle.ViewModels;
+using Physics.Shared.ViewModels;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace Physics.HomogenousParticle.Core
 
         protected override async Task NavigateToFirstViewModel(object hint = null)
         {
-            await NavigationService.Navigate<MainViewModel>();
+            await NavigationService.Navigate<MainMenuViewModel>();
         }
     }
 }

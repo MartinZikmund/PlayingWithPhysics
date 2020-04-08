@@ -45,10 +45,6 @@ namespace Physics.HomogenousParticle.ViewModels
                     IsVEnabled = false;
                     break;
                 case VelocityVariant.Parallel:
-                    IsQEnabled = true;
-                    IsBEnabled = true;
-                    IsVEnabled = true;
-                    break;
                 case VelocityVariant.Perpendicular:
                     IsQEnabled = true;
                     IsBEnabled = true;
