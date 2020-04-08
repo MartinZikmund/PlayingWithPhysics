@@ -38,7 +38,6 @@ namespace Physics.HomogenousMovement.ViewModels
 
         public override async Task Initialize()
         {
-            await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/GunCannon.wav", UriKind.Absolute), "Cannon");
         }
 
         public GameSetup CurrentGame { get; set; }
@@ -112,14 +111,13 @@ namespace Physics.HomogenousMovement.ViewModels
                     Gravity);
             Motions.Add(new MotionInfoViewModel(projectileMotion));
             await StartSimulationAsync();
-            _gameController.StartNewSimulation(true, Motions.Select(m => m.MotionInfo).ToArray());
-            _soundPlayer.PlaySound("Cannon");
+            _gameController.StartNewSimulation(true, Motions.Select(m => m.MotionInfo).ToArray());            
         }
 
         public async void SetViewInteraction(IGameViewInteraction gameViewInteraction)
         {
             _gameViewInteraction = gameViewInteraction;
-            _gameController = _gameViewInteraction.Initialize(Difficulty);
+            _gameController = _gameViewInteraction.Initialize(Difficulty, _soundPlayer);
             _controller = _gameController;
             await Task.Delay(1000);
             await StartNewGameAsync();

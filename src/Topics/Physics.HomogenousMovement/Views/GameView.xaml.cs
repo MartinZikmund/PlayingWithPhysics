@@ -19,6 +19,7 @@ using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared.Helpers;
 using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.Views;
+using Physics.Shared.Services.Sounds;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -123,11 +124,11 @@ namespace Physics.HomogenousMovement.Views
             _canvasController.SimulationTime.Restart();
         }
 
-        public GamificationCanvasController Initialize(DifficultyOption difficulty)
+        public GamificationCanvasController Initialize(DifficultyOption difficulty, ISoundPlayer soundPlayer)
         {
             _animatedCanvas = new CanvasAnimatedControl();
             CanvasHolder.Children.Add(_animatedCanvas);
-            _canvasController = new GamificationCanvasController(_animatedCanvas);
+            _canvasController = new GamificationCanvasController(_animatedCanvas, soundPlayer);
             return _canvasController;
         }
     }

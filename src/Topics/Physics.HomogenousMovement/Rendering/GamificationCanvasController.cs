@@ -14,6 +14,7 @@ using Physics.Shared.Helpers;
 using Color = Windows.UI.Color;
 using Windows.UI;
 using Physics.HomogenousMovement.Logic.PhysicsServices;
+using Physics.Shared.Services.Sounds;
 
 namespace Physics.HomogenousMovement.Rendering
 {
@@ -37,7 +38,7 @@ namespace Physics.HomogenousMovement.Rendering
             (new Vector2(0.38f, 0.432f), new Vector2(0.591f,0.601f)), //Middle tower
             (new Vector2(0.3f, 0.601f), new Vector2(0.683f,0.765f)) //Upper tower
         };
-
+        private readonly ISoundPlayer _soundPlayer;
         private CanvasBitmap _skyImage;
         private CanvasBitmap _groundImage;
         private CanvasBitmap _grassImage;
@@ -64,8 +65,9 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected override Color YMeasureColor => Colors.Transparent;
 
-        public GamificationCanvasController(CanvasAnimatedControl canvasAnimatedControl) : base(canvasAnimatedControl)
+        public GamificationCanvasController(CanvasAnimatedControl canvasAnimatedControl, ISoundPlayer soundPlayer) : base(canvasAnimatedControl)
         {
+            _soundPlayer = soundPlayer;
         }
 
         public async Task StartNewGameAsync(GameSetup game)
@@ -88,6 +90,11 @@ namespace Physics.HomogenousMovement.Rendering
         public override async Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             await base.CreateResourcesAsync(sender);
+
+            await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/GunCannon.wav", UriKind.Absolute), "Cannon");
+            await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/Crash1.mp3", UriKind.Absolute), "Crash1");
+            await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/Crash2.mp3", UriKind.Absolute), "Crash2");
+
             _skyImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/nebe.png"));
             _groundImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/puda.png"));
             _grassImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/travnik.png"));
@@ -115,6 +122,8 @@ namespace Physics.HomogenousMovement.Rendering
                 var trajectory = _trajectories[0];
                 _wallCollisionTime = FindWallCollisionTime(trajectory);
                 _castleCollisionTime = FindCastleCollisionTime(trajectory);
+
+                _soundPlayer.PlaySound("Cannon");
             }
         }
 
