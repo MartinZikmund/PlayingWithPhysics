@@ -129,6 +129,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli</value>
   </data>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>Pohyby v homogenním tíhovém poli</value>
+  </data>
   <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
     <value>Chybný formát vstupních hodnot</value>
   </data>
@@ -242,5 +245,8 @@
   </data>
   <data name="NewGame" xml:space="preserve">
     <value>Nová hra</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Hra</value>
   </data>
 </root>
