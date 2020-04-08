@@ -14,6 +14,7 @@ using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
+using Physics.Shared.Services.Sounds;
 using Windows.UI;
 using Windows.UI.Xaml;
 
@@ -22,7 +23,7 @@ namespace Physics.HomogenousMovement.ViewModels
     public class GameViewModel : SimulationViewModelBase
     {
         private readonly Random _randomizer = new Random();
-
+        private readonly ISoundPlayer _soundPlayer;
         private IGameViewInteraction _gameViewInteraction;
         private GamificationCanvasController _gameController;
 
@@ -30,12 +31,14 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _angle = 45;
         private float _gravity = GravityConstants.Earth;
 
-        public GameViewModel(IMvxMainThreadAsyncDispatcher dispatcher) : base(dispatcher)
+        public GameViewModel(IMvxMainThreadAsyncDispatcher dispatcher, ISoundPlayer soundPlayer) : base(dispatcher)
         {
+            _soundPlayer = soundPlayer;
         }
 
         public override async Task Initialize()
         {
+            await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/GunCannon.wav", UriKind.Absolute), "Cannon");
         }
 
         public GameSetup CurrentGame { get; set; }
@@ -110,6 +113,7 @@ namespace Physics.HomogenousMovement.ViewModels
             Motions.Add(new MotionInfoViewModel(projectileMotion));
             await StartSimulationAsync();
             _gameController.StartNewSimulation(true, Motions.Select(m => m.MotionInfo).ToArray());
+            _soundPlayer.PlaySound("Cannon");
         }
 
         public async void SetViewInteraction(IGameViewInteraction gameViewInteraction)
