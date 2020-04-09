@@ -144,6 +144,12 @@
   <data name="Close" xml:space="preserve">
     <value>Zavřít</value>
   </data>
+  <data name="YouWin" xml:space="preserve">
+    <value>Trefa!</value>
+  </data>
+  <data name="Missed" xml:space="preserve">
+    <value>Vedle...</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Barva</value>
   </data>
