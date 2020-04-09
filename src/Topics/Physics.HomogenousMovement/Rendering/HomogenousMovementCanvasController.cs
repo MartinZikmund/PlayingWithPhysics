@@ -28,7 +28,7 @@ namespace Physics.HomogenousMovement.Rendering
         private const int BallRadius = 5;
         protected MotionInfo[] _motions = Array.Empty<MotionInfo>();
         protected TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
-        private PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
+        protected PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
 
         protected virtual Vector2 XAxisOffset => Vector2.Zero;
 
@@ -69,7 +69,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected float _meterSizeInPixels = 0;
 
-        protected virtual TimeSpan? TrajectoryStopTime { get; } = null;
+        public virtual TimeSpan? TrajectoryStopTime { get; } = null;
 
         public void StartNewSimulation(bool drawTrajectoriesContinuously, params MotionInfo[] throws)
         {

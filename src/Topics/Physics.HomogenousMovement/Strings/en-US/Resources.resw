@@ -141,6 +141,12 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="YouWin" xml:space="preserve">
+    <value>You win!</value>
+  </data>
+  <data name="Missed" xml:space="preserve">
+    <value>Missed...</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>

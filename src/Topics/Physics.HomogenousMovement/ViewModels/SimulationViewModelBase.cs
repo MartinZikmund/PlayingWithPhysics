@@ -30,13 +30,13 @@ namespace Physics.HomogenousMovement.ViewModels
     public abstract class SimulationViewModelBase : ViewModelBase<SimulationNavigationModel>
     {
         private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
-        
+
         protected bool _startWithController = false;
         protected HomogenousMovementCanvasController _controller;
-        
+
         private LaunchInfo _launchInfo = null;
         private DispatcherTimer _timer = new DispatcherTimer();
-        
+
         public SimulationViewModelBase(IMvxMainThreadAsyncDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
@@ -93,6 +93,11 @@ namespace Physics.HomogenousMovement.ViewModels
             if (_timer.IsEnabled && _controller != null)
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+
+                if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime > _controller.TrajectoryStopTime)
+                {
+                    timeElapsed = (float)_controller.TrajectoryStopTime.Value.TotalSeconds;
+                }
 
                 foreach (var motion in Motions)
                 {

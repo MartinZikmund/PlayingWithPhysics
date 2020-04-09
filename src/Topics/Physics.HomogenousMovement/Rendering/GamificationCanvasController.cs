@@ -15,6 +15,7 @@ using Color = Windows.UI.Color;
 using Windows.UI;
 using Physics.HomogenousMovement.Logic.PhysicsServices;
 using Physics.Shared.Services.Sounds;
+using Windows.ApplicationModel.Resources;
 
 namespace Physics.HomogenousMovement.Rendering
 {
@@ -28,7 +29,9 @@ namespace Physics.HomogenousMovement.Rendering
         public const float CannonRelativeHeightToStand = 0.6f;
         public const float CannonRotationPointRelativeToWidth = 0.25f;
 
-        protected override Vector2 XAxisOffset => new Vector2(0,10);
+        public const float FireLength = 500;
+
+        protected override Vector2 XAxisOffset => new Vector2(0, 10);
 
         private readonly (Vector2, Vector2)[] _castleRectangles = new (Vector2, Vector2)[]
         {
@@ -50,7 +53,11 @@ namespace Physics.HomogenousMovement.Rendering
         private CanvasBitmap _wallKoImage;
         private CanvasBitmap _wood1Image;
         private CanvasBitmap _wood2Image;
+        private CanvasBitmap _hero1Image;
+        private CanvasBitmap _hero2Image;
+        private CanvasBitmap _fireImage;
         private CanvasBitmap[] _treeImages;
+
 
         private GameSetup _game = null;
 
@@ -58,6 +65,10 @@ namespace Physics.HomogenousMovement.Rendering
         private bool _hasCastleCollided = false;
         private TimeSpan? _wallCollisionTime;
         private TimeSpan? _castleCollisionTime;
+        private TimeSpan? _collisionSoundTime = null;
+
+        private ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
+
 
         public float CannonAngle { get; internal set; }
 
@@ -106,6 +117,9 @@ namespace Physics.HomogenousMovement.Rendering
             _wallKoImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hradby-ko.png"));
             _wood1Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/drevo_1.png"));
             _wood2Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/drevo_2.png"));
+            _hero1Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hrdina_1.png"));
+            _hero2Image = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/hrdina_2.png"));
+            _fireImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vystrel.png"));
 
             _treeImages = new[]
             {
@@ -179,24 +193,25 @@ namespace Physics.HomogenousMovement.Rendering
         private bool IsPointInRect(TrajectoryPoint point, Vector2 bottomLeft, Vector2 topRight)
         {
             return bottomLeft.X <= point.X && point.X <= topRight.X &&
-                   bottomLeft .Y <= point.Y && point.Y <= topRight.Y;
+                   bottomLeft.Y <= point.Y && point.Y <= topRight.Y;
         }
 
         protected override void UpdatePadding(ICanvasAnimatedControl sender)
         {
-//            SimulationPadding = 62;
+            //            SimulationPadding = 62;
         }
 
         public override void Update(ICanvasAnimatedControl sender)
         {
             base.Update(sender);
-            if (TrajectoryStopTime != null && SimulationTime.TotalTime > TrajectoryStopTime.Value)
+
+            if (SimulationTime.TotalTime < _collisionSoundTime)
             {
-                //TODO: Stop motion completely so that invisible ball does not destroy both wall and castle
+                _collisionSoundTime = null;
             }
         }
 
-        protected override TimeSpan? TrajectoryStopTime => _wallCollisionTime ?? _castleCollisionTime;
+        public override TimeSpan? TrajectoryStopTime => _wallCollisionTime ?? _castleCollisionTime;
 
         protected override void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Color movementColor)
         {
@@ -258,31 +273,88 @@ namespace Physics.HomogenousMovement.Rendering
         {
             if (_game != null)
             {
-                DrawCannon(sender, args, -45);
-                if (_castleCollisionTime == null || SimulationTime.TotalTime < _castleCollisionTime)
+                DrawCannon(sender, args);
+                if (_castleCollisionTime == null ||
+                    SimulationTime.TotalTime < _castleCollisionTime ||
+                    (TrajectoryStopTime != null && TrajectoryStopTime < _castleCollisionTime))
                 {
                     DrawCastle(sender, args);
                 }
                 else
                 {
+                    if (_collisionSoundTime == null)
+                    {
+                        _soundPlayer.PlaySound("Crash1", 0.8f);
+                        _collisionSoundTime = SimulationTime.TotalTime;
+                    }
                     DrawKoCastle(sender, args);
                 }
 
-                if (_wallCollisionTime == null || SimulationTime.TotalTime < _wallCollisionTime)
+                if (_wallCollisionTime == null || SimulationTime.TotalTime < _wallCollisionTime || (TrajectoryStopTime != null && TrajectoryStopTime < _wallCollisionTime))
                 {
                     DrawWall(sender, args);
                 }
                 else
                 {
+                    if (_collisionSoundTime == null)
+                    {
+                        _soundPlayer.PlaySound("Crash1", 0.8f);
+                        _collisionSoundTime = SimulationTime.TotalTime;
+                    }
                     DrawKoWall(sender, args);
                 }
                 DrawFrontStand(sender, args);
+
+                if (SimulationTime.TotalTime < TimeSpan.FromMilliseconds(FireLength))
+                {
+                    DrawFire(sender, args);
+                }
+
+                DrawGameOverText(sender, args);
                 //if (_motions.Length > 0) {
                 //    args.DrawingSession.DrawEllipse(
                 //        SimulationLeftSidePadding + _motions.First().Origin.X * _meterSizeInPixels, 
                 //        (float)sender.Size.Height - BottomGamificationPadding - _motions.First().Origin.Y * _meterSizeInPixels, 2, 2, Colors.Red);
                 //}
             }
+        }
+
+        private void DrawFire(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            var shootSourceRelativeToCannonWidth = 0.9f;
+            //Calculate origin
+            var cannonOperationalLength = (shootSourceRelativeToCannonWidth - GamificationCanvasController.CannonRotationPointRelativeToWidth) * GamificationCanvasController.CannonWidthInMeters;
+            var sourceHeightInMeters = Math.Sin(MathHelpers.DegreesToRadians(CannonAngle)) * cannonOperationalLength + GamificationCanvasController.CannonRelativeHeightToStand * GamificationCanvasController.CannonStandHeightInMeters;
+            var sourceWidthInMeters = Math.Cos(MathHelpers.DegreesToRadians(CannonAngle)) * cannonOperationalLength;
+            var sourceHeight = sourceHeightInMeters * _meterSizeInPixels;
+            var sourceWidth = sourceWidthInMeters * _meterSizeInPixels;
+            var scale = (float)(_meterSizeInPixels * 20f / _fireImage.Size.Width);
+
+            var relativeTime = SimulationTime.TotalTime.TotalMilliseconds / FireLength;
+            scale = (float)relativeTime * scale;
+
+            var scaledHeight = (float)_fireImage.Size.Height * scale;
+
+            var topLeftXDiff = (float)Math.Sin(MathHelpers.DegreesToRadians(CannonAngle)) * scaledHeight / 2;
+            var topLeftYDiff = (float)Math.Cos(MathHelpers.DegreesToRadians(CannonAngle)) * scaledHeight / 2;
+
+            var image = _fireImage;
+            var cannonImageScaledSize = new Vector2((float)_fireImage.Size.Width * scale, (float)_fireImage.Size.Height * scale);
+            var imageTransformPivot = new Vector2((float)_fireImage.Size.Width / 2, (float)_fireImage.Size.Height / 2) * scale;
+            var axisOriginPoint = new Vector2(SimulationLeftSidePadding, (float)sender.Size.Height - BottomGamificationPadding);
+            var rotatedImage = new Transform2DEffect()
+            {
+                Source = image,
+                TransformMatrix =
+                    Matrix3x2.CreateScale(scale) *
+                    //Matrix3x2.CreateTranslation(-imageTransformPivot) *
+                    Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-CannonAngle))
+                //Matrix3x2.CreateTranslation(imageTransformPivot)
+            };
+
+            args.DrawingSession.DrawImage(
+                rotatedImage,
+                new Vector2(SimulationLeftSidePadding + (float)sourceWidth - topLeftXDiff, (float)sender.Size.Height - BottomGamificationPadding - (float)sourceHeight - topLeftYDiff));
         }
 
         private void DrawTrees(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -378,7 +450,7 @@ namespace Physics.HomogenousMovement.Rendering
         private float BottomGamificationPadding => SimulationPadding;
         private float ReducedPadding => SimulationPadding - 10f;
 
-        private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, float angle)
+        private void DrawCannon(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var standHeight = (float)((_meterSizeInPixels * CannonStandWidthInMeters / _wood2Image.Size.Width) * (_wood2Image.Size.Height));
             var standWidth = (float)(_meterSizeInPixels * CannonStandWidthInMeters);
@@ -402,7 +474,22 @@ namespace Physics.HomogenousMovement.Rendering
                 rotatedImage,
                 new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y - standHeight * CannonRelativeHeightToStand));
 
-            
+
+        }
+
+        private void DrawGameOverText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+        {
+            if (_motions.Length == 0) return;
+            if (
+                (_wallCollisionTime == null && _castleCollisionTime == null && SimulationTime.TotalTime.TotalSeconds >= _physicsServices[0].MaxT) ||
+                (_wallCollisionTime != null && SimulationTime.TotalTime >= _wallCollisionTime))
+            {
+                args.DrawingSession.DrawText(resourceLoader.GetString("Missed"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.Red);
+            }
+            else if (_castleCollisionTime != null && SimulationTime.TotalTime >= _castleCollisionTime)
+            {
+                args.DrawingSession.DrawText(resourceLoader.GetString("YouWin"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.Green);
+            }
         }
     }
 }
