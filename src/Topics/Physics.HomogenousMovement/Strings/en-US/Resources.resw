@@ -132,6 +132,9 @@
   <data name="ShortAppName" xml:space="preserve">
     <value>Projectile motions</value>
   </data>
+  <data name="PauseAfterChanges" xml:space="preserve">
+    <value>Pause after changes</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

@@ -205,31 +205,6 @@
                                                                     <SymbolIcon Symbol="ViewAll" />
                                                                 </MenuFlyoutItem.Icon>
                                                             </MenuFlyoutItem>
-                                                            <MenuFlyoutSeparator />
-                                                            <MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Edit}">
-                                                                <MenuFlyoutItem.Icon>
-                                                                    <SymbolIcon Symbol="Edit" />
-                                                                </MenuFlyoutItem.Icon>
-                                                            </MenuFlyoutItem>
-                                                            <MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DuplicateTrajectoryCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Duplicate}">
-                                                                <MenuFlyoutItem.Icon>
-                                                                    <SymbolIcon Symbol="Copy" />
-                                                                </MenuFlyoutItem.Icon>
-                                                            </MenuFlyoutItem>
-                                                            <MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Delete}">
-                                                                <MenuFlyoutItem.Icon>
-                                                                    <SymbolIcon Symbol="Delete" />
-                                                                </MenuFlyoutItem.Icon>
-                                                            </MenuFlyoutItem>
                                                         </MenuFlyout>
                                                     </Button.Flyout>
                                                     <SymbolIcon Symbol="More" />

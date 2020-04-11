@@ -118,7 +118,7 @@ namespace Physics.HomogenousMovement
         {
             _animatedCanvas = new CanvasAnimatedControl();
             CanvasHolder.Children.Add(_animatedCanvas);
-            _canvasController = new HomogenousMovementCanvasController(_animatedCanvas);
+            _canvasController = new HomogenousMovementCanvasController(_animatedCanvas);            
             return _canvasController;
         }
     }

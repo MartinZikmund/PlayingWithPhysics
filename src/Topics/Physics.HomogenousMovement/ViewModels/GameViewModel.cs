@@ -15,6 +15,7 @@ using Physics.HomogenousMovement.ViewInteractions;
 using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
 using Physics.Shared.Services.Sounds;
+using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Xaml;
 
@@ -109,7 +110,7 @@ namespace Physics.HomogenousMovement.ViewModels
                     Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex((Color)Application.Current.Resources["AppThemeColor"]),
                     Angle,
                     Gravity);
-            Motions.Add(new MotionInfoViewModel(projectileMotion));
+            Motions.Add(new MotionInfoViewModel(projectileMotion) { Label = ResourceLoader.GetForCurrentView().GetString("Fire") });
             await StartSimulationAsync();
             _gameController.StartNewSimulation(true, Motions.Select(m => m.MotionInfo).ToArray());            
         }
