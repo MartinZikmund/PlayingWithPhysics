@@ -213,6 +213,9 @@
   <data name="ShowValues" xml:space="preserve">
     <value>Zobrazit hodnoty</value>
   </data>
+  <data name="PauseAfterChanges" xml:space="preserve">
+    <value>Pozastavit po změnách</value>
+  </data>
   <data name="ShowValuesTable" xml:space="preserve">
     <value>Zobrazit tabulku hodnot</value>
   </data>
