@@ -126,6 +126,9 @@
   <data name="Angle" xml:space="preserve">
     <value>Angle</value>
   </data>
+  <data name="IntervalForTable" xml:space="preserve">
+    <value>Time interval (s)</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Projectile motions</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Copy</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
-    <value>Zkopírovat do schránky</value>
+    <value>Copy to clipboard</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>

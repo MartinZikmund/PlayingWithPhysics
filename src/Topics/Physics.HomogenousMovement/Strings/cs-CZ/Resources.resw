@@ -129,6 +129,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli</value>
   </data>
+  <data name="IntervalForTable" xml:space="preserve">
+    <value>Časový interval (s)</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby v homogenním tíhovém poli</value>
   </data>

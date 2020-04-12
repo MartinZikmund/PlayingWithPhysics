@@ -2,30 +2,56 @@
     x:Class="Physics.HomogenousMovement.Views.ValuesTablePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.HomogenousMovement.Views"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
+    xmlns:local="using:Physics.HomogenousMovement.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:numberFormatting="using:Windows.Globalization.NumberFormatting"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:toolkitPrimitives="using:Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
-    xmlns:numberFormatting="using:Windows.Globalization.NumberFormatting"
-    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
 
     <Grid Padding="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <toolkit:DataGrid x:Name="ValuesTable" ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}" FrozenColumnCount="1" AutoGeneratingColumn="ValuesTable_AutoGeneratingColumn" Padding="12" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{x:Bind Model.Values, Mode=OneWay}">
-        </toolkit:DataGrid>
-        <TextBlock Margin="1,0,0,0" Grid.Row="1" Text="Interval výpočtu hodnot (s)" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
-        <controls:NumberBox x:Name="TimeIntervalNumberBox" Grid.Row="1" Minimum="0.1" SmallChange="0.1" VerticalAlignment="Center" HorizontalAlignment="Right" SpinButtonPlacementMode="Inline" Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
-        <StackPanel Spacing="4" Grid.Row="2" Orientation="Horizontal">
-            <Button Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" Content="{extensions:Localize Key=ShowHideZeroes}" Click="ButtonBase_OnClick"></Button>
-            <Button Content="{extensions:Localize Key=CopyToClipboard}" Click="CopyToClipbord_Click"></Button>
+        <toolkit:DataGrid
+            x:Name="ValuesTable"
+            Padding="12"
+            AutoGenerateColumns="True"
+            AutoGeneratingColumn="ValuesTable_AutoGeneratingColumn"
+            ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}"
+            FrozenColumnCount="1"
+            IsReadOnly="True"
+            ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
+        <TextBlock
+            Grid.Row="1"
+            Margin="1,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Text="{extensions:Localize Key=IntervalForTable}" />
+        <controls:NumberBox
+            x:Name="TimeIntervalNumberBox"
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Minimum="0.1"
+            SmallChange="0.1"
+            SpinButtonPlacementMode="Inline"
+            Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            Spacing="4">
+            <Button
+                Click="ButtonBase_OnClick"
+                Content="{extensions:Localize Key=ShowHideZeroes}"
+                Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />
+            <Button Click="CopyToClipbord_Click" Content="{extensions:Localize Key=CopyToClipboard}" />
         </StackPanel>
     </Grid>
 </Page>
