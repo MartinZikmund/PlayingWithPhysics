@@ -134,6 +134,7 @@
       <DependentUpon>SimulationControls.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
+    <Compile Include="Converters\NativeConverters.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\MathHelpers.cs" />
     <Compile Include="Helpers\NumberBoxHelpers.cs" />
@@ -177,6 +178,9 @@
       <Version>2.3.200213001</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
+      <Version>6.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.4.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">

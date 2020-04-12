@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj" />
   </ItemGroup>
 

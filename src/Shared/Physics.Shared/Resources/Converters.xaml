@@ -5,4 +5,6 @@
     xmlns:local="using:Physics.Shared.Resources">
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <converters:NullToVisibilityConverter x:Key="InvertedNullToVisibilityConverter" Invert="True" />
+    <converters:NativeBoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converters:NativeInvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
 </ResourceDictionary>

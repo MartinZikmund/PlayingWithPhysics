@@ -24,24 +24,38 @@ using Physics.HomogenousMovement.Views;
 using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.ViewModels;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using Physics.Shared.Services.Preferences;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
     public abstract class SimulationViewModelBase : ViewModelBase<SimulationNavigationModel>
     {
         private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
-
+        private readonly IPreferences _preferences;
         protected bool _startWithController = false;
         protected HomogenousMovementCanvasController _controller;
 
         private LaunchInfo _launchInfo = null;
         private DispatcherTimer _timer = new DispatcherTimer();
 
-        public SimulationViewModelBase(IMvxMainThreadAsyncDispatcher dispatcher)
+        public SimulationViewModelBase(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences)
         {
             _dispatcher = dispatcher;
+            _preferences = preferences;
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             _timer.Tick += _timer_Tick;
+        }
+
+        public virtual bool PauseAfterChanges
+        {
+            get
+            {
+                return _preferences.GetSetting(nameof(PauseAfterChanges), false, PreferenceLocality.Local);
+            }
+            set
+            {
+                _preferences.SetSetting(nameof(PauseAfterChanges), value, PreferenceLocality.Local);
+            }
         }
 
         private void MainView_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
@@ -111,6 +125,23 @@ namespace Physics.HomogenousMovement.ViewModels
             new ObservableCollection<MotionInfoViewModel>();
 
         public bool AddTrajectoryButtonEnabled { get; set; } = true;
+
+        public bool IsPaused { get; set; }
+
+        public ICommand PauseToggleCommand => GetOrCreateCommand(PauseToggle);
+
+        private void PauseToggle()
+        {
+            IsPaused = !IsPaused;
+            if (IsPaused)
+            {
+                _controller.Pause();
+            }
+            else
+            {
+                _controller.Play();
+            }
+        }
 
         public ICommand StartNewSimulationCommand => GetOrCreateAsyncCommand(StartSimulationAsync);
 
@@ -188,6 +219,11 @@ namespace Physics.HomogenousMovement.ViewModels
             }
 
             _timer.Start();
+            if (PauseAfterChanges)
+            {
+                IsPaused = true;
+                _controller.Pause();
+            }
             await _controller.RunOnGameLoopAsync(() =>
             {
                 _controller.StartNewSimulation(DrawTrajectoriesContinously, Motions.Select(t => t.MotionInfo).ToArray());

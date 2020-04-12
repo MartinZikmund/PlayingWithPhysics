@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.4.2" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 

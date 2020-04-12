@@ -10,4 +10,11 @@
     <x:String x:Key="BasicDifficultyGlyph">&#xE902;</x:String>
     <x:String x:Key="StudyTextGlyph">&#xE903;</x:String>
     <x:String x:Key="CannonGlyph">&#xE904;</x:String>
+    <x:String x:Key="SkipToStartGlyph">&#xE90a;</x:String>
+    <x:String x:Key="SpeedGlyph">&#xE905;</x:String>
+    <x:String x:Key="SkipToEndGlyph">&#xE906;</x:String>
+    <x:String x:Key="PlayGlyph">&#xE909;</x:String>
+    <x:String x:Key="PauseGlyph">&#xE90b;</x:String>
+    <x:String x:Key="FastForwardGlyph">&#xE907;</x:String>
+    <x:String x:Key="RewindGlyph">&#xE908;</x:String>
 </ResourceDictionary>

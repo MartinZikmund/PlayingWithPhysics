@@ -473,8 +473,6 @@ namespace Physics.HomogenousMovement.Rendering
             args.DrawingSession.DrawImage(
                 rotatedImage,
                 new Vector2(axisOriginPoint.X - imageTransformPivot.X, axisOriginPoint.Y - imageTransformPivot.Y - standHeight * CannonRelativeHeightToStand));
-
-
         }
 
         private void DrawGameOverText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)

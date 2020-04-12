@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'playingwithphysics';
-  src:  url('fonts/playingwithphysics.eot?o1800t');
-  src:  url('fonts/playingwithphysics.eot?o1800t#iefix') format('embedded-opentype'),
-    url('fonts/playingwithphysics.ttf?o1800t') format('truetype'),
-    url('fonts/playingwithphysics.woff?o1800t') format('woff'),
-    url('fonts/playingwithphysics.svg?o1800t#playingwithphysics') format('svg');
+  src:  url('fonts/playingwithphysics.eot?d5rh7t');
+  src:  url('fonts/playingwithphysics.eot?d5rh7t#iefix') format('embedded-opentype'),
+    url('fonts/playingwithphysics.ttf?d5rh7t') format('truetype'),
+    url('fonts/playingwithphysics.woff?d5rh7t') format('woff'),
+    url('fonts/playingwithphysics.svg?d5rh7t#playingwithphysics') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pause:before {
+  content: "\e90b";
+}
+.icon-skiptostart:before {
+  content: "\e90a";
+}
+.icon-speed:before {
+  content: "\e905";
+}
+.icon-skiptoend:before {
+  content: "\e906";
+}
+.icon-fastforward:before {
+  content: "\e907";
+}
+.icon-rewind:before {
+  content: "\e908";
+}
+.icon-play:before {
+  content: "\e909";
+}
 .icon-cannon:before {
   content: "\e904";
 }

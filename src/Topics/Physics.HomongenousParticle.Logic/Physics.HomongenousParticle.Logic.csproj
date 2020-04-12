@@ -8,4 +8,8 @@
     <Folder Include="PhysicsServices\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.4.2" />
+  </ItemGroup>
+
 </Project>

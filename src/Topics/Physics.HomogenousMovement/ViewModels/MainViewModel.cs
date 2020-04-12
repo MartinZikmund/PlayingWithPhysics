@@ -35,7 +35,6 @@ namespace Physics.HomogenousMovement.ViewModels
     public class MainViewModel : SimulationViewModelBase
     {
         private IMainViewInteraction _mainViewInteraction;
-        private readonly IPreferences _preferences;
 
         public async void SetViewInteraction(IMainViewInteraction mainViewInteraction)
         {
@@ -48,21 +47,8 @@ namespace Physics.HomogenousMovement.ViewModels
             }
         }
 
-        public MainViewModel(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences) : base(dispatcher)
-        {
-            _preferences = preferences;
-        }
-
-        public bool PauseAfterChanges
-        {
-            get
-            {
-                return _preferences.GetSetting(nameof(PauseAfterChanges), false, PreferenceLocality.Local);
-            }
-            set
-            {
-                _preferences.SetSetting(nameof(PauseAfterChanges), value, PreferenceLocality.Local);
-            }
-        }
+        public MainViewModel(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences) : base(dispatcher, preferences)
+        {           
+        }        
     }
 }

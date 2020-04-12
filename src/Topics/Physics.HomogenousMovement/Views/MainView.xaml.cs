@@ -42,6 +42,7 @@ namespace Physics.HomogenousMovement
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
             StepSizeNumberBox.SetupFormatting();
+            ControlsBar.Translation += new Vector3(0, 0, 32);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -77,9 +78,7 @@ namespace Physics.HomogenousMovement
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            _canvasController.Play();
-            PlayButton.Visibility = Visibility.Collapsed;
-            PauseButton.Visibility = Visibility.Visible;
+            _canvasController.Play();            
         }
         private void Backward_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +119,10 @@ namespace Physics.HomogenousMovement
             CanvasHolder.Children.Add(_animatedCanvas);
             _canvasController = new HomogenousMovementCanvasController(_animatedCanvas);            
             return _canvasController;
+        }
+
+        private void SkipToEnd_Click(object sender, RoutedEventArgs e)
+        {            
         }
     }
 }

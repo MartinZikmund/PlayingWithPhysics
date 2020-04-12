@@ -14,6 +14,7 @@ using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
+using Physics.Shared.Services.Preferences;
 using Physics.Shared.Services.Sounds;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
@@ -32,7 +33,8 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _angle = 45;
         private float _gravity = GravityConstants.Earth;
 
-        public GameViewModel(IMvxMainThreadAsyncDispatcher dispatcher, ISoundPlayer soundPlayer) : base(dispatcher)
+        public GameViewModel(IMvxMainThreadAsyncDispatcher dispatcher, ISoundPlayer soundPlayer, IPreferences preferences) 
+            : base(dispatcher, preferences)
         {
             _soundPlayer = soundPlayer;
         }
@@ -40,6 +42,11 @@ namespace Physics.HomogenousMovement.ViewModels
         public override async Task Initialize()
         {
         }
+
+        /// <summary>
+        /// Can't pause in game.
+        /// </summary>
+        public override bool PauseAfterChanges { get => false; set { } }
 
         public GameSetup CurrentGame { get; set; }
 
@@ -112,7 +119,6 @@ namespace Physics.HomogenousMovement.ViewModels
                     Gravity);
             Motions.Add(new MotionInfoViewModel(projectileMotion) { Label = ResourceLoader.GetForCurrentView().GetString("Fire") });
             await StartSimulationAsync();
-            _gameController.StartNewSimulation(true, Motions.Select(m => m.MotionInfo).ToArray());            
         }
 
         public async void SetViewInteraction(IGameViewInteraction gameViewInteraction)
