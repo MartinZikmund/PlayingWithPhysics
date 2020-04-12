@@ -71,7 +71,7 @@
                                     </Border>
                                     <TextBlock
                                         x:Name="TitleTextBlock"
-                                        Margin="0,0,48,0"
+                                        Margin="-12,0,52,0"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="20"
@@ -333,12 +333,12 @@
                         IsEnabled="True">
                         <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
                     </Button>
-                    <Button
+                    <!--<Button
                         x:Name="SkipToEndButton"
                         Click="SkipToEnd_Click"
                         IsEnabled="True">
                         <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToEndGlyph}" />
-                    </Button>
+                    </Button>-->
                     <Button Click="Button_Click">
                         <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
                         <!--<Interactivity:Interaction.Behaviors>
