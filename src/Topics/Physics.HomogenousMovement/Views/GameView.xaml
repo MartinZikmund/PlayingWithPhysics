@@ -84,12 +84,14 @@
 
                             <StackPanel Grid.Row="2" Spacing="8">
                                 <TextBlock>
-                                    <Run FontWeight="Bold" Text="Castle distance: " />
+                                    <Run FontWeight="Bold" Text="{extensions:Localize Key=CastleDistance}" />
+                                    <Run Text=": " />
                                     <Run Text="{x:Bind Model.CurrentGame.CastleDistance, Mode=OneWay}" />
                                 </TextBlock>
 
                                 <TextBlock>
-                                    <Run FontWeight="Bold" Text="Wall distance: " />
+                                    <Run FontWeight="Bold" Text="{extensions:Localize Key=WallDistance}" />
+                                    <Run Text=": " />
                                     <Run Text="{x:Bind Model.CurrentGame.WallDistance, Mode=OneWay}" />
                                 </TextBlock>
                             </StackPanel>

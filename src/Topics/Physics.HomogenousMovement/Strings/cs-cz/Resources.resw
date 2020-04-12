@@ -246,6 +246,15 @@
   <data name="Copy" xml:space="preserve">
     <value>Kopie</value>
   </data>
+  <data name="WallHeight" xml:space="preserve">
+    <value>Výška hradeb</value>
+  </data>
+  <data name="WallDistance" xml:space="preserve">
+    <value>Vzdálenost hradeb</value>
+  </data>
+  <data name="CastleDistance" xml:space="preserve">
+    <value>Vzdálenost hradu</value>
+  </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Zkopírovat do schránky</value>
   </data>

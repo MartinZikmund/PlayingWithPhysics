@@ -2,6 +2,7 @@
 using Physics.Shared.ViewModels;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using Windows.Media.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,6 +22,13 @@ namespace Physics.HomogenousMovement.Views
             this.InitializeComponent();
          
             DataContextChanged += MainMenuView_DataContextChanged;
+
+            // hide study text in non-CZ
+            if (!CultureInfo.CurrentUICulture.IetfLanguageTag.StartsWith("cs"))
+            {
+                StudyTextButton.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         public MainMenuViewModel Model { get; private set; }

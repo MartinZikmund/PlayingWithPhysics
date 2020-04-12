@@ -165,6 +165,15 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="WallHeight" xml:space="preserve">
+    <value>Wall height</value>
+  </data>
+  <data name="WallDistance" xml:space="preserve">
+    <value>Wall distance</value>
+  </data>
+  <data name="CastleDistance" xml:space="preserve">
+    <value>Castle distance</value>
+  </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Duplicate</value>
   </data>

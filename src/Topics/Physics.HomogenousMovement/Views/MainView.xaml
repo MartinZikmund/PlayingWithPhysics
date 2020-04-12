@@ -71,7 +71,7 @@
                                     </Border>
                                     <TextBlock
                                         x:Name="TitleTextBlock"
-                                        Margin="-64,0,0,0"
+                                        Margin="0,0,48,0"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="20"
@@ -79,6 +79,7 @@
                                         Foreground="White"
                                         Style="{ThemeResource SubheaderTextBlockStyle}"
                                         Text="{extensions:Localize Key=ShortAppName}"
+                                        TextAlignment="Center"
                                         TextWrapping="Wrap" />
                                 </Grid>
                             </Grid>
