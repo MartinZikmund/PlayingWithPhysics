@@ -228,9 +228,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\NeoEuler.otf" />
+    <Content Include="Assets\logo.language-en-US.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\logo.language-cs-CZ.png" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">

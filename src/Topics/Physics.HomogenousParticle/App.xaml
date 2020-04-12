@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <ResourceDictionary Source="ms-appx:///Physics.Shared/Resources/DefaultResources.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="ms-appx:///Physics.Shared/Resources/DefaultResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="AppThemeColor">#4fd5fa</Color>
             <Color x:Key="DarkAppThemeColor">#124E87</Color>
