@@ -4,6 +4,7 @@ using Physics.Shared.Infrastructure.Topics;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +15,20 @@ namespace Physics.Shared.ViewModels
 {
     public class MainMenuViewModel : MvxViewModel
     {
-        private readonly ITopicNavigator _topicNavigator;
+        private readonly ITopicConfiguration _topicNavigator;
 
         private ICommand _goToEasyCommand;
         private ICommand _goToAdvancedCommand;
-        private ICommand _openStudyTextCommand;
+        private ICommand _goToStudyModeCommand;
         private ICommand _gameModeCommand;
 
-        public MainMenuViewModel(ITopicNavigator topicNavigator) => _topicNavigator = topicNavigator;
+        public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
+
+        public bool HasGame => _topicNavigator.HasGame;
+
+        public bool HasStudyMode => _topicNavigator.HasStudyMode && IsCurrentCultureCzech;
+
+        public bool HasAdvancedDifficulty => _topicNavigator.HasAdvancedDifficulty;
 
         public ICommand GoToEasyCommand => _goToEasyCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Easy);
 
@@ -29,8 +36,13 @@ namespace Physics.Shared.ViewModels
 
         public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);
 
-        public ICommand OpenStudyTextCommand =>
-            _openStudyTextCommand ??= new MvxAsyncCommand(_topicNavigator.OpenStudyTextAsync);
+        public ICommand GoToStudyModeCommand =>
+            _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
+
+        private bool IsCurrentCultureCzech =>
+            CultureInfo.CurrentUICulture
+                .TwoLetterISOLanguageName
+                .StartsWith("cs", StringComparison.InvariantCultureIgnoreCase);
 
         private ICommand CreateTopicDifficultyCommand(DifficultyOption difficulty) =>
             new MvxAsyncCommand(() => _topicNavigator.GoToDifficultyAsync(difficulty));

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:extensions="using:Physics.HomogenousMovement.Extensions"
+    xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HomogenousMovement.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:numberFormatting="using:Windows.Globalization.NumberFormatting"

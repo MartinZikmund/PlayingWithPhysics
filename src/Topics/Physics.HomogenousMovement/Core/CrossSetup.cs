@@ -20,7 +20,7 @@ namespace Physics.HomogenousMovement.Core
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicNavigator, TopicNavigator>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
         }
 
         public override async void UpdateActivationArguments(IActivatedEventArgs e)

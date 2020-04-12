@@ -14,21 +14,28 @@ using Physics.HomogenousMovement.Views;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {
-    class TopicNavigator : ITopicNavigator
+    class TopicNavigator : ITopicConfiguration
     {
         private readonly IMvxNavigationService _navigationService;
 
         public TopicNavigator(IMvxNavigationService navigationService) =>
             _navigationService = navigationService;
 
+        public bool HasAdvancedDifficulty => true;
+
+        public bool HasStudyMode => true;
+
+        public bool HasGame => true;
+
         public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+
         public async Task GoToGameAsync()
         {
             await _navigationService.Navigate<GameViewModel, SimulationNavigationModel>(
-                new SimulationNavigationModel() {Difficulty = DifficultyOption.Advanced});
+                new SimulationNavigationModel() { Difficulty = DifficultyOption.Advanced });
         }
 
-        public async Task OpenStudyTextAsync()
+        public async Task GoToStudyModeAsync()
         {
             await Launcher.LaunchFileAsync(
                 await StorageFile.GetFileFromApplicationUriAsync(

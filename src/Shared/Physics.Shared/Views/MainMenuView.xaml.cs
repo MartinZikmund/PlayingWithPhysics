@@ -1,34 +1,34 @@
-﻿using MvvmCross.Platforms.Uap.Views;
-using Physics.Shared.ViewModels;
+﻿using Physics.Shared.ViewModels;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Globalization;
-using Windows.Media.Core;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Physics.HomogenousMovement.Views
+namespace Physics.Shared.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainMenuView : MvxWindowsPage
+    public sealed partial class MainMenuView : BaseView
     {
         public MainMenuView()
         {
             this.InitializeComponent();
-         
+
             DataContextChanged += MainMenuView_DataContextChanged;
-
-            // hide study text in non-CZ
-            if (!CultureInfo.CurrentUICulture.IetfLanguageTag.StartsWith("cs"))
-            {
-                StudyTextButton.Visibility = Visibility.Collapsed;
-            }
-
         }
 
         public MainMenuViewModel Model { get; private set; }

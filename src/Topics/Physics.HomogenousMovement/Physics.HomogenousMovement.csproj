@@ -149,7 +149,6 @@
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Gamification\GameSetup.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\AvailableMotionNames.cs" />
@@ -169,9 +168,6 @@
     <Compile Include="ViewModels\ValuesTableDialogViewModel.cs" />
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainMenuView.xaml.cs">
-      <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -292,10 +288,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainMenuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -369,9 +361,7 @@
   <ItemGroup>
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Interaction\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Physics.HomogenousMovement_TemporaryKey.pfx" />
   </ItemGroup>

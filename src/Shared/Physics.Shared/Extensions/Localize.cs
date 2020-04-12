@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Markup;
 
-namespace Physics.HomogenousMovement.Extensions
+namespace Physics.Shared.Extensions
 {
     public class Localize : MarkupExtension
     {

@@ -17,7 +17,7 @@ namespace Physics.HomogenousParticle.Core
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicNavigator, TopicNavigator>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
         }
     }
 }

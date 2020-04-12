@@ -136,6 +136,7 @@
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
     <Compile Include="Converters\NativeConverters.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Helpers\MathHelpers.cs" />
     <Compile Include="Helpers\NumberBoxHelpers.cs" />
     <Compile Include="Infrastructure\DefaultViewPresenter.cs" />
@@ -146,7 +147,7 @@
     <Compile Include="Infrastructure\Interactions\IInteractionRequestHandler.cs" />
     <Compile Include="Infrastructure\Setup\DefaultAppSetup.cs" />
     <Compile Include="Infrastructure\Topics\DifficultyOption.cs" />
-    <Compile Include="Infrastructure\Topics\ITopicNavigator.cs" />
+    <Compile Include="Infrastructure\Topics\ITopicConfiguration.cs" />
     <Compile Include="Models\Navigation\SelfStudyNavigationModel.cs" />
     <Compile Include="Rendering\BaseCanvasController.cs" />
     <Compile Include="Rendering\ICanvasController.cs" />
@@ -162,6 +163,9 @@
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="Views\MainMenuView.xaml.cs">
+      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelfStudy\SelfStudyView.xaml.cs">
       <DependentUpon>SelfStudyView.xaml</DependentUpon>
     </Compile>
@@ -210,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
