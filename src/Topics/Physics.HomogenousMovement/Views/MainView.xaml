@@ -51,17 +51,38 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Grid Height="120">
+
+                            <Grid Height="80" Margin="0,0,0,24">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
-                                <Image
+                                <Grid
+                                    x:Name="TitleBlock"
                                     Grid.Column="1"
-                                    Margin="0,0,0,20"
-                                    Source="ms-appx:///Physics.Shared/Assets/logo.png" />
+                                    Height="80"
+                                    Margin="64,0,0,0"
+                                    HorizontalAlignment="Stretch">
+                                    <Border HorizontalAlignment="Stretch" Background="#d62633">
+                                        <Border.RenderTransform>
+                                            <SkewTransform AngleX="-40" />
+                                        </Border.RenderTransform>
+                                    </Border>
+                                    <TextBlock
+                                        x:Name="TitleTextBlock"
+                                        Margin="-64,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Style="{ThemeResource SubheaderTextBlockStyle}"
+                                        Text="{extensions:Localize Key=ShortAppName}"
+                                        TextWrapping="Wrap" />
+                                </Grid>
                             </Grid>
+
                             <Button
                                 Grid.Row="1"
                                 Margin="0,0,0,8"
