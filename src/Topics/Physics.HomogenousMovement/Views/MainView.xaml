@@ -84,8 +84,15 @@
                                 </Grid>
                             </Grid>
 
+                            <StackPanel Grid.Row="1">
+                                <CheckBox Content="{extensions:Localize Key=PauseAfterChanges}" IsChecked="{x:Bind Model.PauseAfterChanges, Mode=TwoWay}" />
+                                <CheckBox
+                                    Content="{extensions:Localize Key=BreakDownMotions}"
+                                    IsChecked="{x:Bind Model.BreakDownMotions, Mode=TwoWay}"
+                                    Visibility="{x:Bind Model.IsAdvanced, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            </StackPanel>
                             <Button
-                                Grid.Row="1"
+                                Grid.Row="2"
                                 Margin="0,0,0,8"
                                 HorizontalAlignment="Stretch"
                                 Command="{x:Bind Model.AddTrajectoryCommand}"
@@ -100,10 +107,6 @@
                                     <TextBlock Text="{extensions:Localize Key=AddMotion}" />
                                 </StackPanel>
                             </Button>
-                            <CheckBox
-                                Grid.Row="2"
-                                Content="{extensions:Localize Key=PauseAfterChanges}"
-                                IsChecked="{x:Bind Model.PauseAfterChanges, Mode=TwoWay}" />
                             <ListView
                                 Grid.Row="3"
                                 IsItemClickEnabled="False"

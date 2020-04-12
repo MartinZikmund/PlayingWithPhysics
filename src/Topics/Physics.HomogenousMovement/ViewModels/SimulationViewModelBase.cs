@@ -70,6 +70,7 @@ namespace Physics.HomogenousMovement.ViewModels
         public override void Prepare(SimulationNavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
+            RaisePropertyChanged(nameof(IsAdvanced));
             _launchInfo = parameter.LaunchInfo;
         }
 
@@ -97,6 +98,9 @@ namespace Physics.HomogenousMovement.ViewModels
         }
 
         public DifficultyOption Difficulty { get; set; }
+        
+        public bool IsAdvanced => Difficulty == DifficultyOption.Advanced;
+
         public float StepSize { get; set; } = 0.1f;
         public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
 
@@ -125,6 +129,16 @@ namespace Physics.HomogenousMovement.ViewModels
             new ObservableCollection<MotionInfoViewModel>();
 
         public bool AddTrajectoryButtonEnabled { get; set; } = true;
+
+        public bool BreakDownMotions { get; set; } = false;
+
+        public async void OnBreakDownMotionsChanged()
+        {
+            if (Motions.Count > 0)
+            {
+                await StartSimulationAsync();
+            }
+        }
 
         public bool IsPaused { get; set; }
 
@@ -226,7 +240,7 @@ namespace Physics.HomogenousMovement.ViewModels
             }
             await _controller.RunOnGameLoopAsync(() =>
             {
-                _controller.StartNewSimulation(DrawTrajectoriesContinously, Motions.Select(t => t.MotionInfo).ToArray());
+                _controller.StartNewSimulation(DrawTrajectoriesContinously, BreakDownMotions, Motions.Select(t => t.MotionInfo).ToArray());
             });
         }
 

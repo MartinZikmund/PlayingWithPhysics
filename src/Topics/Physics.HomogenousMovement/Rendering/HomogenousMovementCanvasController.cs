@@ -35,6 +35,7 @@ namespace Physics.HomogenousMovement.Rendering
         private int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
 
         private bool _drawTrajectoriesContinously;
+        private bool _breakDownMotions;
 
         private ICanvasBrush _brush;
 
@@ -71,7 +72,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         public virtual TimeSpan? TrajectoryStopTime { get; } = null;
 
-        public void StartNewSimulation(bool drawTrajectoriesContinuously, params MotionInfo[] throws)
+        public void StartNewSimulation(bool drawTrajectoriesContinuously, bool breakDownMotions, params MotionInfo[] throws)
         {
             if (throws is null)
             {
@@ -80,6 +81,7 @@ namespace Physics.HomogenousMovement.Rendering
 
             _motions = throws;
             _drawTrajectoriesContinously = drawTrajectoriesContinuously;
+            _breakDownMotions = breakDownMotions;
 
             PrepareTrajectories();
 
@@ -215,41 +217,74 @@ namespace Physics.HomogenousMovement.Rendering
                 var trajectory = _trajectories[movementId];
                 var movement = _motions[movementId];
                 var movementColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(movement.Color);
-                var lastPoint = trajectory.Points.First();
-                foreach (var point in trajectory.Points.Where(p => TrajectoryStopTime == null || p.Time <= TrajectoryStopTime.Value))
+                DrawTrajectory(args, movementId, trajectory, movementColor);
+            }
+        }
+
+        private void DrawTrajectory(CanvasAnimatedDrawEventArgs args, int movementId, TrajectoryData trajectory, Windows.UI.Color movementColor)
+        {
+            var startPoint = trajectory.Points.First();
+            var lastPoint = trajectory.Points.First();
+
+            var minX = startPoint.X;
+            var maxX = startPoint.X;
+            var maxY = startPoint.Y;
+            var minY = startPoint.Y;
+
+            foreach (var point in trajectory.Points.Where(p => TrajectoryStopTime == null || p.Time <= TrajectoryStopTime.Value))
+            {
+                var currentPoint = point;
+                bool shouldEnd = false;
+
+                //change point if the next generated is after current time
+                if ((_drawTrajectoriesContinously || movementId == 0) && point.Time > SimulationTime.TotalTime)
                 {
-                    var currentPoint = point;
-                    bool shouldEnd = false;
+                    //calculate last point exactly
+                    var x = _physicsServices[movementId].ComputeX((float)SimulationTime.TotalTime.TotalSeconds);
+                    var y = _physicsServices[movementId].ComputeY((float)SimulationTime.TotalTime.TotalSeconds);
 
-                    //change point if the next generated is after current time
-                    if ((_drawTrajectoriesContinously || movementId == 0) && point.Time > SimulationTime.TotalTime)
-                    {
-                        //calculate last point exactly
-                        var x = _physicsServices[movementId].ComputeX((float)SimulationTime.TotalTime.TotalSeconds);
-                        var y = _physicsServices[movementId].ComputeY((float)SimulationTime.TotalTime.TotalSeconds);
-                        currentPoint = new TrajectoryPoint(SimulationTime.TotalTime, x, y);
-                        shouldEnd = true;
-                    }
-
-                    //draw
-                    args.DrawingSession.DrawLine(
-                        new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y)),
-                        new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y)),
-                        movementColor, 2);
-
-                    lastPoint = currentPoint;
-                    if (shouldEnd)
-                    {
-                        break;
-                    }
+                    currentPoint = new TrajectoryPoint(SimulationTime.TotalTime, x, y);
+                    shouldEnd = true;
                 }
-                if (TrajectoryStopTime == null || SimulationTime.TotalTime <= TrajectoryStopTime)
+
+                minX = Math.Min(minX, currentPoint.X);
+                maxX = Math.Max(maxX, currentPoint.X);
+                minY = Math.Min(minY, currentPoint.Y);
+                maxY = Math.Max(maxY, currentPoint.Y);
+
+                //draw
+                args.DrawingSession.DrawLine(
+                    new Vector2(MetersToPixelsX(lastPoint.X), MetersToPixelsY(lastPoint.Y)),
+                    new Vector2(MetersToPixelsX(currentPoint.X), MetersToPixelsY(currentPoint.Y)),
+                    movementColor, 2);
+
+                lastPoint = currentPoint;
+                if (shouldEnd)
                 {
-                    //draw ball
-                    var ballX = MetersToPixelsX(lastPoint.X);
-                    var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
-                    DrawBall(args, new Vector2(ballX, ballY), movementColor);
+                    break;
                 }
+            }
+
+            if (_breakDownMotions)
+            {
+                var ballX = MetersToPixelsX(lastPoint.X);
+                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom                
+                var semiTransparentColor = Windows.UI.Color.FromArgb(150, movementColor.R, movementColor.G, movementColor.B);
+                args.DrawingSession.DrawLine(
+                    new Vector2(MetersToPixelsX(minX), MetersToPixelsY(startPoint.Y)), new Vector2(MetersToPixelsX(maxX), MetersToPixelsY(startPoint.Y)), semiTransparentColor);
+                args.DrawingSession.DrawLine(
+                    new Vector2(MetersToPixelsX(startPoint.X), MetersToPixelsY(minY)), new Vector2(MetersToPixelsX(startPoint.X), MetersToPixelsY(maxY)), semiTransparentColor);
+
+                args.DrawingSession.DrawCircle(new Vector2(MetersToPixelsX(startPoint.X), ballY), BallRadius, semiTransparentColor);
+                args.DrawingSession.DrawCircle(new Vector2(ballX, MetersToPixelsY(startPoint.Y)), BallRadius, semiTransparentColor);
+            }
+
+            if (TrajectoryStopTime == null || SimulationTime.TotalTime <= TrajectoryStopTime)
+            {
+                //draw ball
+                var ballX = MetersToPixelsX(lastPoint.X);
+                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
+                DrawBall(args, new Vector2(ballX, ballY), movementColor);
             }
         }
 

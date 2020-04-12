@@ -249,6 +249,9 @@
   <data name="WallHeight" xml:space="preserve">
     <value>Výška hradeb</value>
   </data>
+  <data name="BreakDownMotions" xml:space="preserve">
+    <value>Rozklad pohybu</value>
+  </data>
   <data name="WallDistance" xml:space="preserve">
     <value>Vzdálenost hradeb</value>
   </data>

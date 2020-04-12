@@ -168,6 +168,9 @@
   <data name="WallHeight" xml:space="preserve">
     <value>Wall height</value>
   </data>
+  <data name="BreakDownMotions" xml:space="preserve">
+    <value>Break down motions</value>
+  </data>
   <data name="WallDistance" xml:space="preserve">
     <value>Wall distance</value>
   </data>
