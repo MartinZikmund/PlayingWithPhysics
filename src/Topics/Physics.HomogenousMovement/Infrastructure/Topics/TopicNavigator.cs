@@ -2,15 +2,10 @@
 using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared.Infrastructure.Topics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
 using Windows.Storage;
 using Windows.System;
 using Physics.HomogenousMovement.Models;
-using Physics.HomogenousMovement.Views;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {

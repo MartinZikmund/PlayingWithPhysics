@@ -12,8 +12,8 @@
                 <ResourceDictionary Source="ms-appx:///Physics.Shared/Resources/DefaultResources.xaml" />
                 <ResourceDictionary Source="/Assets/Resources/ValuesTableResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Color x:Key="AppThemeColor">#29abe3</Color>
-            <Color x:Key="DarkAppThemeColor">#124E87</Color>
+            <Color x:Key="AppThemeColor">#0072b0</Color>
+            <Color x:Key="DarkAppThemeColor">#0072b0</Color>
         </ResourceDictionary>
     </Application.Resources>
 </local:PhysicsApp>

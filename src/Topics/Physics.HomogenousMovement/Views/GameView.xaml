@@ -18,13 +18,13 @@
     xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     x:Name="Page"
-    Background="{ThemeResource NavigationViewExpandedPaneBackground}"
+    Background="{StaticResource AppThemeColor}"
     RequestedTheme="Dark"
     mc:Ignorable="d">
     <Page.Resources>
-        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#145490" />
-        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="#145490" />
-        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="#145490" />
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
         <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="Margin" Value="0,0,0,2" />
