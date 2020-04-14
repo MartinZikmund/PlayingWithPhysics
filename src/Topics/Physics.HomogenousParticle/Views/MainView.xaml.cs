@@ -37,12 +37,6 @@ namespace Physics.HomogenousParticle.Views
 
         public MainViewModel Model { get; private set; }
 
-        private void NumberBox_ValueChanged(Microsoft.UI.Xaml.Controls.NumberBox sender, Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs args)
-        {
-            if (args.NewValue != 0 && args.NewValue < 2)
-            {
-                VelocityNumberBox.Value = args.OldValue;
-            }
-        }
+
     }
 }

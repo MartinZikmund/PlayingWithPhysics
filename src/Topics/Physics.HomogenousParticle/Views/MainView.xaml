@@ -7,15 +7,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    xmlns:conv="using:Physics.HomogenousParticle.Converters"
+    xmlns:usercontrols="using:Physics.HomogenousParticle.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
     <Grid>
-        <Grid.Resources>
-            <conv:BoolToVelocityVariantConverter x:Key="BoolToVelocityVariantConverter"/>
-        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -59,29 +56,20 @@
                                         <TextBlock Text="v &#x27c2; B"/>
                                     </RadioButton.Content>
                                 </RadioButton>
+                                
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="D"/>
+                                    </RadioButton.Content>
+                                </RadioButton>
                             </winui:RadioButtons>
                         </Grid>
                         <Image Margin="0,8,0,8" Width="24" Source="/Assets/arrow_down.png"></Image>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Náboj částice q" Margin="0,0,16,0"/>
-                            <winui:NumberBox Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="-3" Maximum="3" IsEnabled="{x:Bind Model.IsQEnabled, Mode=OneWay}" Value="{x:Bind Model.QInput, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Orientace indukčních čar B" Margin="0,0,16,0"/>
-                            <winui:NumberBox Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="360" IsEnabled="{x:Bind Model.IsBEnabled, Mode=OneWay}" Value="{x:Bind Model.OrientationInput, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">n</Run></TextBlock>
-                            <winui:NumberBox x:Name="VelocityNumberBox" Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="6" ValueChanged="NumberBox_ValueChanged" IsEnabled="{x:Bind Model.IsVEnabled, Mode=OneWay}" Value="{x:Bind Model.VelocityInput, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
-                        </Grid>
+                        <ContentControl Content="{x:Bind Model.VariantInputViewModel, Mode=OneWay}">
+                            <ContentControl.ContentTemplateSelector>
+                                <usercontrols:InputControlContentTemplateSelector/>
+                            </ContentControl.ContentTemplateSelector>
+                        </ContentControl>
                         <Button Command="{x:Bind Model.DrawCommand}" x:Uid="DrawButton" Content="Draw" HorizontalAlignment="Stretch" Margin="8,8,8,0"></Button>
                     </StackPanel>
                 </ScrollViewer>
