@@ -59,17 +59,20 @@
                                 
                                 <RadioButton>
                                     <RadioButton.Content>
-                                        <TextBlock Text="D"/>
+                                        <TextBlock Text="Greek"/>
                                     </RadioButton.Content>
                                 </RadioButton>
                             </winui:RadioButtons>
                         </Grid>
+                        
                         <Image Margin="0,8,0,8" Width="24" Source="/Assets/arrow_down.png"></Image>
+                        
                         <ContentControl Content="{x:Bind Model.VariantInputViewModel, Mode=OneWay}">
                             <ContentControl.ContentTemplateSelector>
                                 <usercontrols:InputControlContentTemplateSelector/>
                             </ContentControl.ContentTemplateSelector>
                         </ContentControl>
+                        
                         <Button Command="{x:Bind Model.DrawCommand}" x:Uid="DrawButton" Content="Draw" HorizontalAlignment="Stretch" Margin="8,8,8,0"></Button>
                     </StackPanel>
                 </ScrollViewer>

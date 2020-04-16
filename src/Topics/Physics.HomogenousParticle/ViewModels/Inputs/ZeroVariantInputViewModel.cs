@@ -11,11 +11,10 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     {
         public IMotionSetup CreateMotionSetup()
         {
-            return new ZeroMotionSetup(Velocity, Charge, InductionOrientation);
+            return new ZeroMotionSetup(Charge, InductionOrientation);
         }
 
-        public float Charge { get; set; }
-        public float InductionOrientation { get; set; }
-        public float Velocity { get; set; }
+        public float Charge { get; set; } // -3<=q<=3
+        public float InductionOrientation { get; set; } // 0<=B<=360
     }
 }

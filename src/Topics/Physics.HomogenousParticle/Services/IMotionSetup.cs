@@ -9,7 +9,5 @@ namespace Physics.HomogenousParticle.Services
     public interface IMotionSetup
     {
         float Velocity { get; }
-        float Charge { get; }
-        float InductionOrientation { get; }
     }
 }

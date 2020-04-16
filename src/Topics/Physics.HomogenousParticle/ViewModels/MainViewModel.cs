@@ -41,10 +41,13 @@ namespace Physics.HomogenousParticle.ViewModels
                     VariantInputViewModel = new ZeroVariantInputViewModel();
                     break;
                 case VelocityVariant.Parallel:
+                    VariantInputViewModel = new ParallelVariantInputViewModel();
                     break;
                 case VelocityVariant.Perpendicular:
+                    VariantInputViewModel = new PerpendicularVariantInputViewModel();
                     break;
                 case VelocityVariant.Greek:
+                    VariantInputViewModel = new GreekVariantInputViewModel();
                     break;
             }
         }

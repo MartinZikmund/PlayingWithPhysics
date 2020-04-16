@@ -9,9 +9,5 @@ namespace Physics.HomogenousParticle.Services
     public abstract class MotionSetupBase : IMotionSetup
     {
         public float Velocity { get; set; }
-
-        public float Charge { get; set; }
-
-        public float InductionOrientation { get; set; }
     }
 }

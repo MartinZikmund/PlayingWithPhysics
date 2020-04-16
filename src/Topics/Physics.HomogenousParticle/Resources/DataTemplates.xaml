@@ -8,4 +8,16 @@
     <DataTemplate x:Key="ZeroVariantInputDataTemplate">
         <usercontrols:ZeroVariantInputControl/>
     </DataTemplate>
+
+    <DataTemplate x:Key="ParallelVariantInputDataTemplate">
+        <usercontrols:ParallelVariantInputControl/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PerpendicularVariantInputDataTemplate">
+        <usercontrols:PerpendicularVariantInputControl/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GreekVariantInputDataTemplate">
+        <usercontrols:GreekVariantInputControl/>
+    </DataTemplate>
 </ResourceDictionary>
