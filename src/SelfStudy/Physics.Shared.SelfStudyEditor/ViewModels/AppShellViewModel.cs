@@ -6,6 +6,8 @@ namespace Physics.SelfStudy.Editor.ViewModels
 {
     public class AppShellViewModel : ViewModelBase
     {
+        public Workspace Workspace { get; } = new Workspace();
+
         public ICommand NewFileCommand => GetOrCreateCommand(async () => await Workspace.NewAsync());
 
         public ICommand SaveFileCommand => GetOrCreateCommand(async () => await Workspace.CurrentProject.SaveAsync());

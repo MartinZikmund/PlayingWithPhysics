@@ -65,6 +65,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <Button Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand, Mode=OneWay}" HorizontalAlignment="Stretch">Add section</Button>
+                    <winui:TreeView Grid.Row="1" ItemTemplateSelector="{StaticResource ChapterTreeDataTemplateSelector}" ItemsSource="{x:Bind ViewModel.Workspace.CurrentProject.Tree, Mode=OneWay}" CanDragItems="True" />
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
