@@ -123,6 +123,9 @@
     <Compile Include="Core\AppStart.cs" />
     <Compile Include="Core\CrossApp.cs" />
     <Compile Include="Core\CrossSetup.cs" />
+    <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
+      <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Services\GreekMotionSetup.cs" />
@@ -150,6 +153,7 @@
       <DependentUpon>ZeroVariantInputControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
+    <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
     <Compile Include="ViewModels\Inputs\GreekVariantInputViewModel.cs" />
     <Compile Include="ViewModels\Inputs\IVariantInputViewModel.cs" />
     <Compile Include="ViewModels\Inputs\ParallelVariantInputViewModel.cs" />
@@ -228,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialogs\AddOrUpdateMovement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

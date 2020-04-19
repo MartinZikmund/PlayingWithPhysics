@@ -106,6 +106,7 @@
                         </ContentControl>
                         
                         <Button Command="{x:Bind Model.DrawCommand}" x:Uid="DrawButton" Content="Draw" HorizontalAlignment="Stretch" Margin="8,8,8,0"></Button>
+                        <Button Content="Add motion" Command="{x:Bind Model.AddTrajectoryCommand}"></Button>
                     </StackPanel>
                 </ScrollViewer>
             </Border>

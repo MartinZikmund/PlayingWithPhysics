@@ -16,5 +16,6 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public float Charge { get; set; } // -3<=q<=3
         public float InductionOrientation { get; set; } // 0<=B<=360
+        public string Label { get; set; }
     }
 }

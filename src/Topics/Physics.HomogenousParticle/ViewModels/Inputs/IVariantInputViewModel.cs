@@ -10,5 +10,6 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     public interface IVariantInputViewModel
     {
         IMotionSetup CreateMotionSetup();
+        string Label { get; set; }
     }
 }
