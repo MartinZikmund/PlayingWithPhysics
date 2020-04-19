@@ -18,5 +18,6 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
         public float Angle { get; set; } // 0<=alfa<=360, skoky po deseti stupních
         public float Charge { get; set; } // -1 nebo 1, bez velikosti
         public float InductionOrientation { get; set; } // 180: do papíru, 0: z papíru
+        public string Label { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace Physics.HomogenousParticle.ViewModels
 {
     public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
     {
-        private float v;
         public class NavigationModel
         {
         }
@@ -53,6 +52,21 @@ namespace Physics.HomogenousParticle.ViewModels
         }
 
         public IVariantInputViewModel VariantInputViewModel { get; set; }
+
+        public ICommand AddTrajectoryCommand => GetOrCreateCommand(() =>
+        {
+            var dialogViewModel = new AddOrUpdateMotionViewModel(Difficulty, Motions.Select(m => m.Label).ToArray());
+            var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
+                if (Motions.Count == 5)
+                {
+                    AddTrajectoryButtonEnabled = false;
+                }
+            }
+        });
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 

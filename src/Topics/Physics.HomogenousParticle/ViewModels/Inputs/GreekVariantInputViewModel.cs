@@ -16,6 +16,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public float Velocity { get; set; } = (float)Math.PI / 3; //v = pi/3
         public RadiationType Type { get; set; }
+        public string Label { get; set; }
     }
 
     public enum RadiationType
