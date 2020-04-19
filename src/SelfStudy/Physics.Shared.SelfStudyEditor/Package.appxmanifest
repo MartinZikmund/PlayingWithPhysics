@@ -4,18 +4,19 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp rescap">
 
   <Identity
-    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsProjec"
-    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
-    Version="0.18.3.0" />
+    Name="PlayingWithPhysicsSelfStudyEditor"
+    Publisher="CN=Martin"
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="04ec38d0-7f48-423f-ab15-547b83fda6ec" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="79c6b8dc-3c2c-444b-8972-61a5c90f7187" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>ms-resource:AppName</DisplayName>
-    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
+    <DisplayName>Playing with Physics: Self study Editor</DisplayName>
+    <PublisherDisplayName>Martin Zikmund</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,25 +31,21 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Physics.HomogenousMovement.App">
+      EntryPoint="Physics.SelfStudy.Editor.App">
       <uap:VisualElements
-        DisplayName="ms-resource:AppName"
+        DisplayName="Playing with Physics: Self study Editor"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        BackgroundColor="#0081c7" Description="Playing with Physics">
+        Description="Physics.SelfStudy.Editor"
+        BackgroundColor="#FEFEFE">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#0081c7"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#FEFEFE"/>
       </uap:VisualElements>
-      <Extensions>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="hsf1">
-            <uap:DisplayName>Výukové aplikace</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-      </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient"/></Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="confirmAppClose" />
+  </Capabilities>
 </Package>
