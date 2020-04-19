@@ -25,10 +25,34 @@
         </Grid.RowDefinitions>
         <winui:MenuBar>
             <winui:MenuBarItem Title="File">
-                <MenuFlyoutItem Text="New" />
-                <MenuFlyoutItem Text="Open" />
-                <MenuFlyoutItem Text="Save" />
-                <MenuFlyoutItem Text="Save As..." />
+                <MenuFlyoutItem Text="New" Command="{x:Bind ViewModel.NewFileCommand}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator 
+                            Modifiers="Control" 
+                            Key="N" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Open" Command="{x:Bind ViewModel.OpenFileCommand}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator 
+                            Modifiers="Control" 
+                            Key="O" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Save" Command="{x:Bind ViewModel.SaveFileCommand}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator 
+                            Modifiers="Control" 
+                            Key="S" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+                <MenuFlyoutItem Text="Save As..." Command="{x:Bind ViewModel.SaveAsFileCommand}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator 
+                            Modifiers="Control,Shift" 
+                            Key="S" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
             </winui:MenuBarItem>
         </winui:MenuBar>
         <SplitView

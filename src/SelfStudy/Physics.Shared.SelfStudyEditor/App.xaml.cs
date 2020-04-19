@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.SelfStudy.Editor.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,21 +69,7 @@ namespace Physics.SelfStudy.Editor
         private async void App_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             var deferral = e.GetDeferral();
-
-            var dialog = new ContentDialog();
-            dialog.Title = "Do you want to save changes?";
-            dialog.DefaultButton = ContentDialogButton.Close;
-            dialog.CloseButtonText = "Cancel";
-            dialog.SecondaryButtonText = "No";
-            dialog.PrimaryButtonText = "Yes";
-            dialog.IsPrimaryButtonEnabled = true;
-            dialog.IsSecondaryButtonEnabled = true;
-            var result = await dialog.ShowAsync();
-            if( result == ContentDialogResult.None)
-            {
-                e.Handled = true;
-            }            
-
+            e.Handled = !await Workspace.TryCloseCurrentProjectAsync();
             deferral.Complete();
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.SelfStudy.Editor.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,18 +28,11 @@ namespace Physics.SelfStudy.Editor
         private AppShell()
         {
             this.InitializeComponent();
+            ViewModel = new AppShellViewModel();
         }
 
         public static AppShell Instance => _instance.Value;
 
-        private void WebView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
-        {
-
-        }
-
-        private void WebView_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-
-        }
+        public AppShellViewModel ViewModel { get; }
     }
 }

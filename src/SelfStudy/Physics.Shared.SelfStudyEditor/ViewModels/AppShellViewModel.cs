@@ -1,38 +1,17 @@
-﻿using System.Windows.Input;
+﻿using Physics.SelfStudy.Editor.Infrastructure;
+using System.Windows.Input;
 using Windows.Storage;
 
 namespace Physics.SelfStudy.Editor.ViewModels
 {
     public class AppShellViewModel : ViewModelBase
     {
-        private StorageFile _backingFile = null;
+        public ICommand NewFileCommand => GetOrCreateCommand(async () => await Workspace.NewAsync());
 
-        public ICommand NewFileCommand => GetOrCreateCommand(NewFile);
+        public ICommand SaveFileCommand => GetOrCreateCommand(async () => await Workspace.CurrentProject.SaveAsync());
 
-        private void NewFile()
-        {
-            
-        }
+        public ICommand OpenFileCommand => GetOrCreateCommand(async () => await Workspace.OpenAsync());
 
-        public ICommand SaveFileCommand => GetOrCreateCommand(SaveFile);
-
-        private void SaveFile()
-        {
-            
-        }
-
-        public ICommand OpenFileCommand => GetOrCreateCommand(OpenFile);
-
-        public void OpenFile()
-        {
-
-        }
-
-        public ICommand SaveAsFileCommand => GetOrCreateCommand(SaveAsFile);
-
-        private void SaveAsFile()
-        {
-            
-        }
+        public ICommand SaveAsFileCommand => GetOrCreateCommand(async () => await Workspace.CurrentProject.SaveAsAsync());
     }
 }
