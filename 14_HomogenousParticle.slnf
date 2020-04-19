@@ -1,0 +1,12 @@
+{
+  "solution": {
+    "path": "PlayingWithPhysics.sln",
+    "projects": [
+      "src\\SelfStudy\\Physics.SelfStudy\\Physics.SelfStudy.csproj",
+      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.Logic.csproj",
+      "src\\Shared\\Physics.Shared\\Physics.Shared.csproj",
+      "src\\Topics\\Physics.HomogenousParticle\\Physics.HomogenousParticle.csproj",
+      "src\\Topics\\Physics.HomongenousParticle.Logic\\Physics.HomongenousParticle.Logic.csproj"
+    ]
+  }
+}

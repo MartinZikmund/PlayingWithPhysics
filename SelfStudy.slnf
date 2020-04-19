@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "PlayingWithPhysics.sln",
+    "projects": [
+      "src\\SelfStudy\\Physics.SelfStudy\\Physics.SelfStudy.csproj",
+      "src\\SelfStudy\\Physics.Shared.SelfStudyEditor\\Physics.SelfStudy.Editor.csproj",
+      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.Logic.csproj",
+      "src\\Shared\\Physics.Shared\\Physics.Shared.csproj"
+    ]
+  }
+}
