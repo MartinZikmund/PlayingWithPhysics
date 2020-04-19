@@ -1,4 +1,5 @@
-﻿using Physics.HomogenousParticle.Models;
+﻿using Physics.HomogenousParticle.Services;
+using Physics.HomogenousParticle.ViewModels.Inputs;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Physics.HomogenousParticle.ViewModels
 {
     public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
     {
+        private float v;
         public class NavigationModel
         {
         }
@@ -32,30 +34,25 @@ namespace Physics.HomogenousParticle.ViewModels
 
         public void OnSelectedVariantIndexChanged()
         {
-            DisableInputs();
-        }
-
-        private void DisableInputs()
-        {
-            switch ((VelocityVariant)SelectedVariantIndex)
+            VelocityVariant variant = (VelocityVariant)SelectedVariantIndex;
+            switch (variant)
             {
                 case VelocityVariant.Zero:
-                    IsQEnabled = true;
-                    IsBEnabled = true;
-                    IsVEnabled = false;
+                    VariantInputViewModel = new ZeroVariantInputViewModel();
                     break;
                 case VelocityVariant.Parallel:
+                    VariantInputViewModel = new ParallelVariantInputViewModel();
+                    break;
                 case VelocityVariant.Perpendicular:
-                    IsQEnabled = true;
-                    IsBEnabled = true;
-                    IsVEnabled = true;
+                    VariantInputViewModel = new PerpendicularVariantInputViewModel();
+                    break;
+                case VelocityVariant.Greek:
+                    VariantInputViewModel = new GreekVariantInputViewModel();
                     break;
             }
         }
 
-        public float QInput { get; set; }
-        public float OrientationInput { get; set; }
-        public float VelocityInput { get; set; }
+        public IVariantInputViewModel VariantInputViewModel { get; set; }
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
@@ -67,5 +64,10 @@ namespace Physics.HomogenousParticle.ViewModels
         public string DrawingContent { get; set; }
 
         public Visibility IsSecondStepVisible { get; set; } = Visibility.Visible;
+
+        public float Q { get; set; }
+        public float Orientation { get; set; }
+        public float Velocity { get; set; }
+        public float Angle { get; set; }
     }
 }

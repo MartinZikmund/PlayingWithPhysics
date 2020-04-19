@@ -120,16 +120,41 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BoolToVelocityVariantConverter.cs" />
     <Compile Include="Core\AppStart.cs" />
     <Compile Include="Core\CrossApp.cs" />
     <Compile Include="Core\CrossSetup.cs" />
     <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
-    <Compile Include="Models\VelocityVariant.cs" />
+    <Compile Include="Services\GreekMotionSetup.cs" />
+    <Compile Include="Services\IMotionSetup.cs" />
+    <Compile Include="Services\MotionSetupBase.cs" />
+    <Compile Include="Services\MovementDirection.cs" />
+    <Compile Include="Services\ParallelMotionSetup.cs" />
+    <Compile Include="Services\PerpendicularMotionSetup.cs" />
+    <Compile Include="Services\VelocityVariant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\HomogenousParticleCanvasController.cs" />
+    <Compile Include="Services\ZeroMotionSetup.cs" />
+    <Compile Include="Services\PhysicsService.cs" />
+    <Compile Include="UserControls\GreekVariantInputControl.xaml.cs">
+      <DependentUpon>GreekVariantInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InputControlContentTemplateSelector.cs" />
+    <Compile Include="UserControls\ParallelVariantInputControl.xaml.cs">
+      <DependentUpon>ParallelVariantInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PerpendicularVariantInputControl.xaml.cs">
+      <DependentUpon>PerpendicularVariantInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ZeroVariantInputControl.xaml.cs">
+      <DependentUpon>ZeroVariantInputControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
+    <Compile Include="ViewModels\Inputs\GreekVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\Inputs\IVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\Inputs\ParallelVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\Inputs\PerpendicularVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\Inputs\ZeroVariantInputViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -203,6 +228,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GreekVariantInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ParallelVariantInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PerpendicularVariantInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ZeroVariantInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

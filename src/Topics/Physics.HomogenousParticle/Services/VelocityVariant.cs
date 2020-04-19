@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Physics.HomogenousParticle.Models
+namespace Physics.HomogenousParticle.Services
 {
     public enum VelocityVariant
     {
         Zero,
         Parallel,
-        Perpendicular
+        Perpendicular,
+        Greek
     }
 }
