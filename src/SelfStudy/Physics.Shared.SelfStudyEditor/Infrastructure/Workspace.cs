@@ -1,4 +1,5 @@
 ﻿using Physics.SelfStudy.Editor.Infrastructure.Pickers;
+using Physics.SelfStudy.Editor.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,18 @@ using Windows.UI.Xaml.Controls;
 
 namespace Physics.SelfStudy.Editor.Infrastructure
 {
-    public static class Workspace
+    public class Workspace : ViewModelBase
     {
-        public static Project CurrentProject { get; private set; } = Project.CreateNew();
+        public Project CurrentProject { get; private set; } = Project.CreateNew();
 
-        public static async Task NewAsync()
+        public async Task NewAsync()
         {
             if (!await TryCloseCurrentProjectAsync()) return;
 
             CurrentProject = Project.CreateNew();
         }
 
-        public static async Task OpenAsync()
+        public async Task OpenAsync()
         {
             if (!await TryCloseCurrentProjectAsync()) return;
 
@@ -30,7 +31,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             }
         }
 
-        public static async Task<bool> TryCloseCurrentProjectAsync()
+        public async Task<bool> TryCloseCurrentProjectAsync()
         {
             if (CurrentProject.IsDirty)
             {

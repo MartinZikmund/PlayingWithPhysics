@@ -69,7 +69,7 @@ namespace Physics.SelfStudy.Editor
         private async void App_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             var deferral = e.GetDeferral();
-            e.Handled = !await Workspace.TryCloseCurrentProjectAsync();
+            e.Handled = !await AppShell.Instance.ViewModel.Workspace.TryCloseCurrentProjectAsync();
             deferral.Complete();
         }
 
