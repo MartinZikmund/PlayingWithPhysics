@@ -19,9 +19,7 @@
         VerticalScrollBarVisibility="Auto"
         VerticalScrollMode="Auto">
         <StackPanel Spacing="8">
-            <TextBox Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
-
-            <ContentControl Content="{Binding VariantInputViewModel, Mode=OneWay}">
+            <ContentControl Content="{x:Bind Model, Mode=OneWay}">
                 <ContentControl.ContentTemplateSelector>
                     <usercontrols:InputControlContentTemplateSelector/>
                 </ContentControl.ContentTemplateSelector>

@@ -141,4 +141,13 @@
   <data name="StudyText" xml:space="preserve">
     <value>Studijní text</value>
   </data>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Přidat pohyb</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Uložit</value>
+  </data>
 </root>

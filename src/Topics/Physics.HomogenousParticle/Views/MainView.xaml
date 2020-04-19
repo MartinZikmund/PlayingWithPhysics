@@ -30,31 +30,30 @@
                 </Grid.ColumnDefinitions>
                 <Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
                 <Grid
-                                    x:Name="TitleBlock"
-                                    Grid.Column="1"
-                                    Height="80"
-                                    Margin="64,0,0,0"
-                                    HorizontalAlignment="Stretch">
-                    <Border HorizontalAlignment="Stretch" Background="#d62633">
-                        <Border.RenderTransform>
-                            <SkewTransform AngleX="-40" />
-                        </Border.RenderTransform>
-                    </Border>
-                    <TextBlock
-                                        x:Name="TitleTextBlock"
-                                        Margin="-28,0,52,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"
-                                        FontWeight="Bold"
-                                        Foreground="White"
-                                        Style="{ThemeResource SubheaderTextBlockStyle}"
-                                        Text="{extensions:Localize Key=ShortAppName}"
-                                        TextAlignment="Center"
-                                        TextWrapping="Wrap" />
+                    x:Name="TitleBlock"
+                    Grid.Column="1"
+                    Height="80"
+                    Margin="64,0,0,0"
+                    HorizontalAlignment="Stretch">
+                <Border HorizontalAlignment="Stretch" Background="#d62633">
+                    <Border.RenderTransform>
+                        <SkewTransform AngleX="-40" />
+                    </Border.RenderTransform>
+                </Border>
+                <TextBlock
+                    x:Name="TitleTextBlock"
+                    Margin="-28,0,52,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Style="{ThemeResource SubheaderTextBlockStyle}"
+                    Text="{extensions:Localize Key=ShortAppName}"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
                 </Grid>
             </Grid>
-            <!--<TextBlock Margin="8" Grid.Row="0" x:Uid="ChooseMotion" Text="Vyber pohyb" Style="{ThemeResource TitleTextBlockStyle}"/>-->
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
@@ -88,7 +87,7 @@
                                         <TextBlock Text="v &#x27c2; B"/>
                                     </RadioButton.Content>
                                 </RadioButton>
-                                
+
                                 <RadioButton>
                                     <RadioButton.Content>
                                         <TextBlock Text="Greek"/>
@@ -96,17 +95,9 @@
                                 </RadioButton>
                             </winui:RadioButtons>
                         </Grid>
-                        
-                        <Image Margin="0,8,0,8" Width="24" Source="/Assets/arrow_down.png"></Image>
-                        
-                        <ContentControl Content="{x:Bind Model.VariantInputViewModel, Mode=OneWay}">
-                            <ContentControl.ContentTemplateSelector>
-                                <usercontrols:InputControlContentTemplateSelector/>
-                            </ContentControl.ContentTemplateSelector>
-                        </ContentControl>
-                        
+                        <Button Content="Add motion" Command="{x:Bind Model.AddTrajectoryCommand}" HorizontalAlignment="Stretch" Margin="8,8,8,0"></Button>
                         <Button Command="{x:Bind Model.DrawCommand}" x:Uid="DrawButton" Content="Draw" HorizontalAlignment="Stretch" Margin="8,8,8,0"></Button>
-                        <Button Content="Add motion" Command="{x:Bind Model.AddTrajectoryCommand}"></Button>
+                        
                     </StackPanel>
                 </ScrollViewer>
             </Border>
