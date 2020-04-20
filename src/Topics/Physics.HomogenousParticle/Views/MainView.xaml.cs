@@ -36,7 +36,5 @@ namespace Physics.HomogenousParticle.Views
         }
 
         public MainViewModel Model { get; private set; }
-
-
     }
 }

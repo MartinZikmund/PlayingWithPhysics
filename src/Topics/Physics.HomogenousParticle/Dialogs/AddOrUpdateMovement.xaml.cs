@@ -1,8 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using Physics.HomogenousParticle.ViewModels;
+﻿using Physics.HomogenousParticle.Services;
 using Physics.HomogenousParticle.ViewModels.Inputs;
-using Physics.Shared.Helpers;
-using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.HomogenousParticle.Dialogs
@@ -31,7 +28,9 @@ namespace Physics.HomogenousParticle.Dialogs
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Model.CreateMotionSetup();
+            Setup = Model.CreateMotionSetup();
         }
+
+        public IMotionSetup Setup { get; set; }
     }
 }

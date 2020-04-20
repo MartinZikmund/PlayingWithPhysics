@@ -1,4 +1,5 @@
-﻿using Physics.HomogenousParticle.Services;
+﻿using Physics.HomogenousParticle.Dialogs;
+using Physics.HomogenousParticle.Services;
 using Physics.HomogenousParticle.ViewModels.Inputs;
 using Physics.Shared.ViewModels;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.HomogenousParticle.ViewModels
 {
@@ -53,18 +55,13 @@ namespace Physics.HomogenousParticle.ViewModels
 
         public IVariantInputViewModel VariantInputViewModel { get; set; }
 
-        public ICommand AddTrajectoryCommand => GetOrCreateCommand(() =>
+        public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialogViewModel = new AddOrUpdateMotionViewModel(Difficulty, Motions.Select(m => m.Label).ToArray());
-            var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
+            var dialog = new AddOrUpdateMotionDialog(VariantInputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
-                if (Motions.Count == 5)
-                {
-                    AddTrajectoryButtonEnabled = false;
-                }
+                DrawingContent = dialog.Setup.ToString();
             }
         });
 
@@ -72,7 +69,6 @@ namespace Physics.HomogenousParticle.ViewModels
 
         public void DrawMotion()
         {
-            DrawingContent = "Drawing...";
         }
 
         public string DrawingContent { get; set; }
