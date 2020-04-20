@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.SelfStudy.Models.Contents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,19 @@ namespace Physics.SelfStudy.Resources
 
         public DataTemplate ToRemember { get; set; }
 
-        protected override DataTemplate SelectTemplateCore(object item)
-        {
-            return AdditionalResources;
-        }
+        public DataTemplate Chapter { get; set; }
+
+        protected override DataTemplate SelectTemplateCore(object item) =>
+            item switch
+            {
+                ChapterContent _ => Chapter,
+                AdditionalResourcesContent _ => AdditionalResources,
+                KnowledgeCheckContent _ => KnowledgeCheck,
+                LiteratureContent _ => Literature,
+                RealWorldContent _ => RealWorld,
+                TasksContent _ => Tasks,
+                ToRememberContent _ => ToRemember
+                _ => throw new NotImplementedException(),
+            };
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Physics.SelfStudy.Editor.Infrastructure.Pickers;
 using Physics.SelfStudy.Editor.ViewModels;
+using Physics.SelfStudy.Models;
+using Physics.SelfStudy.Models.Contents;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,7 +16,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public string Name { get; set; }
 
-        public ObservableCollection<TreeViewNode> Tree { get; } = new ObservableCollection<TreeViewNode>();
+        public ObservableCollection<IContent> Tree { get; } = new ObservableCollection<IContent>();
 
         public bool IsDirty { get; private set; } = false;
 
@@ -22,7 +24,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
         {
         }
 
-        public ICommand AddSectionCommand => GetOrCreateCommand(() => { Tree.Add(new TreeViewNode() { Content = "Ahoj" }); });
+        public ICommand AddSectionCommand => GetOrCreateCommand(() => { Tree.Add(new ChapterContent() { Title = "Ahoj" }); });
 
         public async Task SaveAsync()
         {

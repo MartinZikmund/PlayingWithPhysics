@@ -16,6 +16,8 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -120,14 +122,18 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Models\Chapter.cs" />
-    <Compile Include="Models\ChapterPart.cs" />
-    <Compile Include="Models\ChapterPartType.cs" />
-    <Compile Include="Models\HtmlChapterPart.cs" />
-    <Compile Include="Models\QuestionChapterPart.cs" />
-    <Compile Include="Models\Questions\QuestionType.cs" />
-    <Compile Include="Models\RtfChapterPart.cs" />
-    <Compile Include="Models\TextChapterPart.cs" />
+    <Compile Include="Models\Contents\ChapterContent.cs" />
+    <Compile Include="Models\ContentType.cs" />
+    <Compile Include="Models\Contents\Abstract\HtmlContent.cs" />
+    <Compile Include="Models\Contents\Abstract\SelectQuestionChapterContent.cs" />
+    <Compile Include="Models\Contents\AdditionalResourcesContent.cs" />
+    <Compile Include="Models\Contents\KnowledgeCheckContent.cs" />
+    <Compile Include="Models\Contents\LiteratureContent.cs" />
+    <Compile Include="Models\Contents\RealWorldContent.cs" />
+    <Compile Include="Models\Contents\TasksContent.cs" />
+    <Compile Include="Models\Contents\ToRememberContent.cs" />
+    <Compile Include="Models\IContent.cs" />
+    <Compile Include="Models\QuestionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ChapterTreeDataTemplateSelector.cs" />
     <EmbeddedResource Include="Properties\Physics.SelfStudy.rd.xml" />
