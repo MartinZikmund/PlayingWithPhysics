@@ -1,9 +1,11 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using System;
 using Physics.SelfStudy.Editor.Infrastructure.Pickers;
 using Physics.SelfStudy.Editor.ViewModels;
 using Physics.SelfStudy.Models;
 using Physics.SelfStudy.Models.Contents;
 using System.Collections.ObjectModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
@@ -28,7 +30,12 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public async Task SaveAsync()
         {
-
+            if ( _backingFile == null)
+            {
+                await SaveAsAsync();
+                return;
+            }
+            await SaveToBackingFileAsync();
         }
 
         public async Task SaveAsAsync()
@@ -36,8 +43,15 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             var file = await PickProjectFileDialog.SaveAsAsync();
             if (file != null)
             {
+                _backingFile = file;
+                await SaveToBackingFileAsync();
+            }            
+        }
 
-            }
+        private async Task SaveToBackingFileAsync()
+        {
+            var contents = JsonSerializer.Serialize(Tree);
+            await FileIO.WriteTextAsync(_backingFile, contents);
         }
 
         public async Task DiscardAsync()

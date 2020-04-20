@@ -5,7 +5,7 @@ namespace Physics.SelfStudy.Models.Contents
 {
     public class ChapterContent : IContent
     {
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
         public bool IsBrowsable => false;
 

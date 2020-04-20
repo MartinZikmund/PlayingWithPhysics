@@ -34,7 +34,7 @@ namespace Physics.SelfStudy.Resources
                 LiteratureContent _ => Literature,
                 RealWorldContent _ => RealWorld,
                 TasksContent _ => Tasks,
-                ToRememberContent _ => ToRemember
+                ToRememberContent _ => ToRemember,
                 _ => throw new NotImplementedException(),
             };
     }
