@@ -1,4 +1,5 @@
 ﻿using Physics.SelfStudy.Editor.Infrastructure;
+using Physics.SelfStudy.Models.Contents;
 using System.Windows.Input;
 using Windows.Storage;
 

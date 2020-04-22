@@ -63,15 +63,37 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand, Mode=OneWay}" HorizontalAlignment="Stretch">Add section</Button>
-                    <winui:TreeView Grid.Row="1" ItemTemplateSelector="{StaticResource ChapterTreeDataTemplateSelector}" ItemsSource="{x:Bind ViewModel.Workspace.CurrentProject.Tree, Mode=OneWay}" CanDragItems="True">
+                    <Button Grid.Row="0" Command="{x:Bind ViewModel.Workspace.CurrentProject.AddRootCommand, Mode=OneWay}" HorizontalAlignment="Stretch">Add root section</Button>
+                    <Button Grid.Row="1" HorizontalAlignment="Stretch" Content="Add section under selected">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Chapter">Chapter</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="AdditionalResources">AdditionalResources</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="KnowledgeCheck">KnowledgeCheck</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Literature">Literature</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="RealWorld">RealWorld</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Tasks">Tasks</MenuFlyoutItem>
+                                <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="ToRemember">ToRemember</MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+
+                    <winui:TreeView x:Name="Tree" Grid.Row="2" ItemTemplateSelector="{StaticResource ChapterTreeDataTemplateSelector}" ItemsSource="{x:Bind ViewModel.Workspace.CurrentProject.Tree, Mode=OneWay}" ItemInvoked="Tree_ItemInvoked" CanDragItems="True">
                     </winui:TreeView>
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <editors:HtmlEditor />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem.Title, Mode=TwoWay}" />
+                    <editors:HtmlEditor Grid.Row="1" />
+                </Grid>                
             </SplitView.Content>
         </SplitView>
     </Grid>

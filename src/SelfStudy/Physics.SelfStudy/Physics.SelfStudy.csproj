@@ -134,6 +134,7 @@
     <Compile Include="Models\Contents\ToRememberContent.cs" />
     <Compile Include="Models\IContent.cs" />
     <Compile Include="Models\QuestionType.cs" />
+    <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ChapterTreeDataTemplateSelector.cs" />
     <Compile Include="Resources\ChapterTreeTemplates.xaml.cs">
@@ -142,11 +143,19 @@
     <EmbeddedResource Include="Properties\Physics.SelfStudy.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fody">
+      <Version>6.1.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.3.200213001</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.2.8</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>4.7.1</Version>
@@ -162,6 +171,7 @@
     <Content Include="Assets\Icons\additionalresources.png" />
     <Content Include="Assets\Icons\tasks.png" />
     <Content Include="Assets\Icons\realworld.png" />
+    <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\ChapterTreeTemplates.xaml">
