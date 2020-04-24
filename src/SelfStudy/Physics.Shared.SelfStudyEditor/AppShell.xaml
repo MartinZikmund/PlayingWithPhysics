@@ -91,8 +91,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBox Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem.Title, Mode=TwoWay}" />
-                    <editors:HtmlEditor Grid.Row="1" />
+                    <TextBox Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <local:EditorHostControl Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" EditedContent="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem, Mode=OneWay}" />
                 </Grid>                
             </SplitView.Content>
         </SplitView>

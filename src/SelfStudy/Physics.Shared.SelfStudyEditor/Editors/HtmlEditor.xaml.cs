@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Physics.SelfStudy.Html;
+using Physics.SelfStudy.Models.Contents.Abstract;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
@@ -20,45 +23,32 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Physics.SelfStudy.Editor.Editors
 {
-    public sealed partial class HtmlEditor : UserControl
+    public sealed partial class HtmlEditor : UserControl, INotifyPropertyChanged
     {
         private string _layoutContents;
+
         private IDisposable _inputChangedDisposable;
 
         public HtmlEditor()
         {
             this.InitializeComponent();
-            this.Loaded += HtmlEditor_Loaded;
+            this.DataContextChanged += HtmlEditor_DataContextChanged;
             this.Unloaded += HtmlEditor_Unloaded;
-        }        
+        }
 
-        private async void HtmlEditor_Loaded(object sender, RoutedEventArgs e)
+        public HtmlContent ViewModel { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void HtmlEditor_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            await LoadLayoutAsync();
-            var inputChangedObservable = HtmlInput
-                .Events()
-                .TextChanged
-                .Throttle(TimeSpan.FromMilliseconds(500))
-                .ObserveOn(Dispatcher)
-                .Subscribe(input => UpdatePreview());
+            ViewModel = args.NewValue as HtmlContent;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ViewModel)));
         }
 
         private void HtmlEditor_Unloaded(object sender, RoutedEventArgs e)
         {
             _inputChangedDisposable.Dispose();
-        }
-
-        private async Task LoadLayoutAsync()
-        {
-            var layoutFile = await StorageFile.GetFileFromApplicationUriAsync(
-                new Uri("ms-appx:///Physics.SelfStudy/Assets/Html/Layout.html"));
-            _layoutContents = await FileIO.ReadTextAsync(layoutFile);
-        }
-
-        private void UpdatePreview()
-        {
-            var input = string.Format(_layoutContents, HtmlInput.Text);
-            HtmlPreview.NavigateToString(input);
         }
     }
 }

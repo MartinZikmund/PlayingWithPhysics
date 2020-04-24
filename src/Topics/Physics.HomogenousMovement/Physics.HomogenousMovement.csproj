@@ -261,6 +261,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Assets\Texts\StudijniText.pdf" />
+    <Content Include="Assets\StudyMode\index.json" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -345,6 +346,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SelfStudy\Physics.SelfStudy\Physics.SelfStudy.csproj">
+      <Project>{C19A64CD-7662-4572-9FE7-573E7BEA90F4}</Project>
+      <Name>Physics.SelfStudy</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj">
       <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
       <Name>Physics.Shared.Logic</Name>

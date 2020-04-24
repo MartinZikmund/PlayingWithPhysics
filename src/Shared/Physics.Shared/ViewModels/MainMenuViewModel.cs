@@ -40,9 +40,13 @@ namespace Physics.Shared.ViewModels
             _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
 
         private bool IsCurrentCultureCzech =>
+#if DEBUG
+            true;
+#else
             CultureInfo.CurrentUICulture
                 .TwoLetterISOLanguageName
                 .StartsWith("cs", StringComparison.InvariantCultureIgnoreCase);
+#endif
 
         private ICommand CreateTopicDifficultyCommand(DifficultyOption difficulty) =>
             new MvxAsyncCommand(() => _topicNavigator.GoToDifficultyAsync(difficulty));

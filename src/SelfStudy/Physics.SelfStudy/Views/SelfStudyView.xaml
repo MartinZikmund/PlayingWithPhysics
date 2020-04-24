@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="Physics.SelfStudy.Views.SelfStudyView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.SelfStudy.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="HamburgerButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Content" Value="" />
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="MinHeight" Value="48" />
+            <Setter Property="MinWidth" Value="48" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <SplitView
+            Grid.Row="1"
+            DisplayMode="Inline"
+            IsPaneOpen="True">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <winui:TreeView x:Name="Tree" Grid.Row="2" ItemTemplateSelector="{StaticResource ChapterTreeDataTemplateSelector}" ItemsSource="{x:Bind ViewModel.Contents, Mode=OneWay}">
+                    </winui:TreeView>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--<TextBox Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem.Title, Mode=TwoWay}" />-->
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>

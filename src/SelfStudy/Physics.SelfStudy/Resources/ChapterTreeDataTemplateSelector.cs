@@ -35,6 +35,7 @@ namespace Physics.SelfStudy.Resources
                 RealWorldContent _ => RealWorld,
                 TasksContent _ => Tasks,
                 ToRememberContent _ => ToRemember,
+                null => null,
                 _ => throw new NotImplementedException(),
             };
     }

@@ -166,9 +166,6 @@
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelfStudy\SelfStudyView.xaml.cs">
-      <DependentUpon>SelfStudyView.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Physics.Shared.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -218,10 +215,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenuView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SelfStudy\SelfStudyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

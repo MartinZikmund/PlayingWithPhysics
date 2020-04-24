@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.System;
 using Physics.HomogenousMovement.Models;
+using Physics.SelfStudy;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {
@@ -32,9 +33,7 @@ namespace Physics.HomogenousMovement.Infrastructure.Topics
 
         public async Task GoToStudyModeAsync()
         {
-            await Launcher.LaunchFileAsync(
-                await StorageFile.GetFileFromApplicationUriAsync(
-                    new Uri("ms-appx:///Assets/Texts/StudijniText.pdf")));
+            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"));
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary
-    x:Class="Physics.SelfStudy.Resources.ChapterTreeTemplates"
+    x:Class="Physics.SelfStudy.Resources.SelfStudyResources"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.SelfStudy.Resources" 
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls" 
-    xmlns:contents="using:Physics.SelfStudy.Models.Contents">
+    xmlns:contents="using:Physics.SelfStudy.Models.Contents" xmlns:viewers="using:Physics.SelfStudy.Viewers" xmlns:abstract="using:Physics.SelfStudy.Models.Contents.Abstract">
     <DataTemplate x:Key="ChapterTreeItemTemplate" x:DataType="contents:ChapterContent">
         <muxc:TreeViewItem ItemsSource="{x:Bind Subcontents}">
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontWeight="SemiBold" />
@@ -33,7 +33,7 @@
         <muxc:TreeViewItem>
             <StackPanel Orientation="Horizontal">
                 <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/literature.png"/>
-                <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
             </StackPanel>
         </muxc:TreeViewItem>
     </DataTemplate>
@@ -42,7 +42,7 @@
         <muxc:TreeViewItem>
             <StackPanel Orientation="Horizontal">
                 <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/tasks.png"/>
-                <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
             </StackPanel>
         </muxc:TreeViewItem>
     </DataTemplate>
@@ -51,7 +51,7 @@
         <muxc:TreeViewItem>
             <StackPanel Orientation="Horizontal">
                 <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/toremember.png"/>
-                <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
             </StackPanel>
         </muxc:TreeViewItem>
     </DataTemplate>
@@ -60,10 +60,18 @@
         <muxc:TreeViewItem>
             <StackPanel Orientation="Horizontal">
                 <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/realworld.png"/>
-                <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
             </StackPanel>
         </muxc:TreeViewItem>
     </DataTemplate>
+
+    <DataTemplate x:Key="HtmlViewerTemplate" x:DataType="abstract:HtmlContent">
+        <viewers:HtmlContentViewer HtmlContent="{x:Bind}" />
+    </DataTemplate>
+
+    <local:ContentViewerDataTemplateSelector
+        x:Key="ContentViewerDataTemplateSelector"
+        HtmlViewer="{StaticResource HtmlViewerTemplate}" />
 
     <local:ChapterTreeDataTemplateSelector
         x:Key="ChapterTreeDataTemplateSelector"

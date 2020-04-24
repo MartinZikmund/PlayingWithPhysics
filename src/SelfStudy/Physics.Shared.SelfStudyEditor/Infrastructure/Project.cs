@@ -4,13 +4,11 @@ using Physics.SelfStudy.Editor.ViewModels;
 using Physics.SelfStudy.Models;
 using Physics.SelfStudy.Models.Contents;
 using System.Collections.ObjectModel;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
 using Physics.Shared.SelfStudy.Models;
-using Microsoft.UI.Xaml.Controls;
+using Newtonsoft.Json;
 
 namespace Physics.SelfStudy.Editor.Infrastructure
 {
@@ -97,7 +95,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         private async Task SaveToBackingFileAsync()
         {
-            var contents = JsonSerializer.Serialize(Tree);
+            var contents = JsonConvert.SerializeObject(Tree);
             await FileIO.WriteTextAsync(_backingFile, contents);
         }
 
@@ -113,10 +111,16 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public static Project CreateNew() => new Project();
 
-        public static async Task<Project> LoadAsync(StorageFile newProject)
+        public static async Task<Project> LoadAsync(StorageFile projectFile)
         {
-            // TODO:
-            return new Project();
+            var contents = await StudyModeManager.ReadDefinitionFileAsync(projectFile);
+
+            var project = new Project();
+            foreach(var content in contents)
+            {
+                project.Tree.Add(content);
+            }
+            return project;
         }
     }
 }

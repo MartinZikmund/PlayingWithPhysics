@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Physics.SelfStudy.Editor.ViewModels;
+using Physics.SelfStudy.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +42,7 @@ namespace Physics.SelfStudy.Editor
 
         private void Tree_ItemInvoked(Microsoft.UI.Xaml.Controls.TreeView sender, Microsoft.UI.Xaml.Controls.TreeViewItemInvokedEventArgs args)
         {
-            ViewModel.Workspace.CurrentProject.UpdateSelection();
+            ViewModel.Workspace.CurrentProject.SelectedItem = args.InvokedItem as IContent;
         }
     }
 }

@@ -12,9 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBox AcceptsReturn="True" x:Name="HtmlInput" />
-        <WebView Grid.Column="1" x:Name="HtmlPreview" />
+        <TextBox AcceptsReturn="True" x:Name="HtmlInput" Text="{x:Bind ViewModel.Html, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

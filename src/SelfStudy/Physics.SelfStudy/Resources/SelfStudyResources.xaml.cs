@@ -7,9 +7,9 @@ using Windows.UI.Xaml;
 
 namespace Physics.SelfStudy.Resources
 {
-    public partial class ChapterTreeTemplates : ResourceDictionary
+    public partial class SelfStudyResources : ResourceDictionary
     {
-        public ChapterTreeTemplates()
+        public SelfStudyResources()
         {
             this.InitializeComponent();
         }
