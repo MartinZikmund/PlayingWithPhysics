@@ -1,4 +1,6 @@
-﻿using Physics.HomogenousParticle.ViewModels;
+﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+using Physics.HomogenousParticle.Rendering;
+using Physics.HomogenousParticle.ViewModels;
 using Physics.Shared.Views;
 using System;
 using System.Collections.Generic;
@@ -24,10 +26,26 @@ namespace Physics.HomogenousParticle.Views
     /// </summary>
     public sealed partial class MainView : BaseView
     {
+        private HomogenousParticleCanvasControllerBase _canvasController;
+        private CanvasAnimatedControl _animatedCanvas;
+
         public MainView()
         {
             this.InitializeComponent();
+            this.Loaded += MainView_Loaded;
             DataContextChanged += MainView_DataContextChanged;
+        }
+
+        private void MainView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Initialize();
+        }
+
+        private void MainView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            _canvasController?.Dispose();
+            _animatedCanvas?.RemoveFromVisualTree();
+            _animatedCanvas = null;
         }
 
         private void MainView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
@@ -36,5 +54,13 @@ namespace Physics.HomogenousParticle.Views
         }
 
         public MainViewModel Model { get; private set; }
+
+        public HomogenousParticleCanvasControllerBase Initialize()
+        {
+            _animatedCanvas = new CanvasAnimatedControl();
+            CanvasHolder.Children.Add(_animatedCanvas);
+            _canvasController = new VariantAController(_animatedCanvas);
+            return _canvasController;
+        }
     }
 }

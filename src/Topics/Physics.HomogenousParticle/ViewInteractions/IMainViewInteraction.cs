@@ -10,6 +10,6 @@ namespace Physics.HomogenousParticle.ViewInteractions
 {
     public interface IMainViewInteraction
     {
-        HomogenousParticleCanvasController Initialize(DifficultyOption difficulty);
+        HomogenousParticleCanvasControllerBase Initialize();
     }
 }

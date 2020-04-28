@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -79,5 +80,29 @@ namespace Physics.HomogenousParticle.ViewModels
         public float Orientation { get; set; }
         public float Velocity { get; set; }
         public float Angle { get; set; }
+
+
+        public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
+
+        public float StepSize { get; set; } = 0.1f;
+
+        public bool IsPaused { get; set; }
+
+        public ICommand PauseToggleCommand => GetOrCreateCommand(PauseToggle);
+
+        private void PauseToggle()
+        {
+            throw new NotImplementedException();
+            IsPaused = !IsPaused;
+            if (IsPaused)
+            {
+                //_controller.Pause();
+            }
+            else
+            {
+                //_controller.Play();
+            }
+        }
+
     }
 }
