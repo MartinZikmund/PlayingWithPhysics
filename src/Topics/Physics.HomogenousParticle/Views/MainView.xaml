@@ -95,7 +95,7 @@
 
                                 <RadioButton>
                                     <RadioButton.Content>
-                                        <TextBlock Text="Greek" />
+                                        <TextBlock Text="{extensions:Localize Key=Radiation}" />
                                     </RadioButton.Content>
                                 </RadioButton>
                             </winui:RadioButtons>
@@ -104,13 +104,12 @@
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.AddTrajectoryCommand}"
-                            Content="Add motion" />
+                            Content="{extensions:Localize Key=AddMotion}" />
                         <Button
-                            x:Uid="DrawButton"
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.DrawCommand}"
-                            Content="Draw" />
+                            Content="{extensions:Localize Key=DrawMotion}" />
 
                     </StackPanel>
                 </ScrollViewer>

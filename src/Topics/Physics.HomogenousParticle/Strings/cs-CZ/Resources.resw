@@ -150,4 +150,10 @@
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
   </data>
+  <data name="DrawMotion" xml:space="preserve">
+    <value>Vykresli pohyb</value>
+  </data>
+  <data name="Radiation" xml:space="preserve">
+    <value>Záření</value>
+  </data>
 </root>

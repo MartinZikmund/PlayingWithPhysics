@@ -22,13 +22,14 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0">Velikost rychlosti</TextBlock>
         <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
-            <ComboBoxItem Content="alfa"></ComboBoxItem>
-            <ComboBoxItem Content="betaminus"></ComboBoxItem>
-            <ComboBoxItem Content="betaplus"></ComboBoxItem>
-            <ComboBoxItem Content="gama"></ComboBoxItem>
+            <ComboBoxItem Content="α" Tag="0"></ComboBoxItem>
+            <ComboBoxItem Content="β-" Tag="1"></ComboBoxItem>
+            <ComboBoxItem Content="β+" Tag="2"></ComboBoxItem>
+            <ComboBoxItem Content="γ" Tag="3"></ComboBoxItem>
+            <ComboBoxItem Content="Neutron" Tag="4"></ComboBoxItem>
         </ComboBox>
         
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">n</Run></TextBlock>
-        <winui:NumberBox Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Value="{x:Bind Model.Velocity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        <winui:NumberBox x:Name="VelocityNumberBox" Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Value="{x:Bind Model.Velocity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
     </Grid>
 </UserControl>

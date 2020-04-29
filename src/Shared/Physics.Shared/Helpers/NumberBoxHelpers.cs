@@ -10,7 +10,7 @@ namespace Physics.Shared.Helpers
 {
     public static class NumberBoxHelpers
     {
-        public static void SetupFormatting(this NumberBox numberBox, double increment = 0.1, int integerDigits = 1, int fractionDigits = 1)
+        public static void SetupFormatting(this NumberBox numberBox, double increment = 0.1, int integerDigits = 1, int fractionDigits = 1, double smallChange = 1)
         {
             IncrementNumberRounder rounder = new IncrementNumberRounder();
             rounder.Increment = increment;
@@ -18,9 +18,17 @@ namespace Physics.Shared.Helpers
 
             DecimalFormatter formatter = new DecimalFormatter();
             formatter.IntegerDigits = integerDigits;
-            formatter.FractionDigits = fractionDigits;
+            if (smallChange == Math.Floor(smallChange))
+            {
+                formatter.FractionDigits = 0;
+            }
+            else
+            {
+                formatter.FractionDigits = fractionDigits;
+            }
             formatter.NumberRounder = rounder;
 
+            numberBox.SmallChange = smallChange;
             numberBox.NumberFormatter = formatter;
         }
     }

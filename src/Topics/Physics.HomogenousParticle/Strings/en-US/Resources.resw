@@ -135,4 +135,13 @@
   <data name="StudyText" xml:space="preserve">
     <value>Study text</value>
   </data>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Add motion</value>
+  </data>
+  <data name="DrawMotion" xml:space="preserve">
+    <value>Draw motion</value>
+  </data>
+  <data name="Radiation" xml:space="preserve">
+    <value>Radiation</value>
+  </data>
 </root>
