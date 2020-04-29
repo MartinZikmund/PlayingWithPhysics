@@ -61,7 +61,7 @@ namespace Physics.HomogenousParticle.Views
         {
             _animatedCanvas = new CanvasAnimatedControl();
             CanvasHolder.Children.Add(_animatedCanvas);
-            _canvasController = new VariantAController(_animatedCanvas);
+            _canvasController = new ZeroVariantCanvasController(_animatedCanvas);
             return _canvasController;
         }
     }

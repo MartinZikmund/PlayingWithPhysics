@@ -1,6 +1,7 @@
 ﻿using MathNet.Spatial.Euclidean;
 using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Physics.HomogenousParticle.Services;
 using Physics.Shared.Helpers;
 using Physics.Shared.Rendering;
 using System;
@@ -27,6 +28,8 @@ namespace Physics.HomogenousParticle.Rendering
         public HomogenousParticleCanvasControllerBase(CanvasAnimatedControl canvasAnimatedControl) : base(canvasAnimatedControl)
         {
         }
+
+        public abstract void StartSimulation(IMotionSetup[] motions);
 
         public override void Update(ICanvasAnimatedControl sender)
         {

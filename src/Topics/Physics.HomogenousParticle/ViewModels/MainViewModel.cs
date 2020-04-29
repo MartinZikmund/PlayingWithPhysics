@@ -4,6 +4,7 @@ using Physics.HomogenousParticle.ViewModels.Inputs;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,16 +29,14 @@ namespace Physics.HomogenousParticle.ViewModels
         public override void Prepare(NavigationModel parameter)
         {
         }
+
         public int SelectedVariantIndex { get; set; }
 
-        public bool IsQEnabled { get; set; }
-        public bool IsBEnabled { get; set; }
-        public bool IsVEnabled { get; set; }
+        public VelocityVariant SelectedVariant => (VelocityVariant)SelectedVariantIndex;
 
         public void OnSelectedVariantIndexChanged()
         {
-            VelocityVariant variant = (VelocityVariant)SelectedVariantIndex;
-            switch (variant)
+            switch (SelectedVariant)
             {
                 case VelocityVariant.Zero:
                     VariantInputViewModel = new ZeroVariantInputViewModel();
@@ -61,10 +60,17 @@ namespace Physics.HomogenousParticle.ViewModels
             var dialog = new AddOrUpdateMotionDialog(VariantInputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
-            {
-                DrawingContent = dialog.Setup.ToString();
+            {                
+                if (SelectedVariant == VelocityVariant.Zero || SelectedVariant == VelocityVariant.Parallel)
+                {
+                    Motions.Clear();
+                }
+                Motions.Add(dialog.Setup);
+                RestartSimulation();
             }
         });
+
+        public ObservableCollection<IMotionSetup> Motions { get; }
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
@@ -75,12 +81,6 @@ namespace Physics.HomogenousParticle.ViewModels
         public string DrawingContent { get; set; }
 
         public Visibility IsSecondStepVisible { get; set; } = Visibility.Visible;
-
-        public float Q { get; set; }
-        public float Orientation { get; set; }
-        public float Velocity { get; set; }
-        public float Angle { get; set; }
-
 
         public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
 
@@ -104,5 +104,9 @@ namespace Physics.HomogenousParticle.ViewModels
             }
         }
 
+        private void RestartSimulation()
+        {
+
+        }
     }
 }

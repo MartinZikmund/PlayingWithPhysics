@@ -128,7 +128,7 @@
     </Compile>
     <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
-    <Compile Include="Rendering\VariantAController.cs" />
+    <Compile Include="Rendering\ZeroVariantCanvasController.cs" />
     <Compile Include="Services\GreekMotionSetup.cs" />
     <Compile Include="Services\IMotionSetup.cs" />
     <Compile Include="Services\MotionSetupBase.cs" />
