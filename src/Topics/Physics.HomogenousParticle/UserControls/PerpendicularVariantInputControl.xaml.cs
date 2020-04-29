@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.ViewModels.Inputs;
+using Physics.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,10 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += PerpendicularVariantInputControl_DataContextChanged;
+            ChargeNumberBox.SetupFormatting(smallChange: 0.1);
+            OrientationNumberBox.SetupFormatting();
+            VelocityNumberBox.SetupFormatting(smallChange: 0.1);
+            AngleNumberBox.SetupFormatting();
         }
 
         private void PerpendicularVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

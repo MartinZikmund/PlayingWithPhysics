@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousParticle.Rendering;
 using Physics.HomogenousParticle.ViewModels;
+using Physics.Shared.Helpers;
 using Physics.Shared.Views;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Physics.HomogenousParticle.Views
             this.InitializeComponent();
             this.Loaded += MainView_Loaded;
             DataContextChanged += MainView_DataContextChanged;
+            StepSizeNumberBox.SetupFormatting();
         }
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)

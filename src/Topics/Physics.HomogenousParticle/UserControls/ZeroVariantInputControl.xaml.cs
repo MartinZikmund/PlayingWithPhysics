@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.ViewModels.Inputs;
+using Physics.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,8 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             this.DataContextChanged += ZeroVariantInputControl_DataContextChanged;
+            ChargeNumberBox.SetupFormatting(smallChange: 0.1);
+            OrientationNumberBox.SetupFormatting(fractionDigits: 0);
         }
 
         private void ZeroVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

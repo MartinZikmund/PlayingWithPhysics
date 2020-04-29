@@ -9,7 +9,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 {
     public class PerpendicularVariantInputViewModel : IVariantInputViewModel
     {
-        public IMotionSetup CreateMotionSetup()
+        public async Task<IMotionSetup> CreateMotionSetup()
         {
             return new PerpendicularMotionSetup(Velocity, Angle, Charge, InductionOrientation);
         }

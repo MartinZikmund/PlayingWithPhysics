@@ -26,9 +26,15 @@ namespace Physics.HomogenousParticle.Dialogs
             //GravityNumberBox.SmallChange = 0.1;
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            Setup = Model.CreateMotionSetup();
+            var deferral = args.GetDeferral();
+            Setup = await Model.CreateMotionSetup();
+            if (Setup == null)
+            {
+                args.Cancel = true;
+            }
+            deferral.Complete();
         }
 
         public IMotionSetup Setup { get; set; }

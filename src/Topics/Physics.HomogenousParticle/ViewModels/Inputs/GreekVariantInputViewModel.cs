@@ -9,7 +9,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 {
     public class GreekVariantInputViewModel : IVariantInputViewModel
     {
-        public IMotionSetup CreateMotionSetup()
+        public async Task<IMotionSetup> CreateMotionSetup()
         {
             return new GreekMotionSetup(Velocity, Type);
         }
