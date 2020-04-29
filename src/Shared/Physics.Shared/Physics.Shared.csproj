@@ -151,6 +151,7 @@
     <Compile Include="Models\Navigation\SelfStudyNavigationModel.cs" />
     <Compile Include="Rendering\BaseCanvasController.cs" />
     <Compile Include="Rendering\ICanvasController.cs" />
+    <Compile Include="Rendering\SimulationBounds.cs" />
     <Compile Include="Rendering\SimulationTime.cs" />
     <Compile Include="Services\Preferences\IPreferences.cs" />
     <Compile Include="Services\Preferences\PreferenceLocality.cs" />
