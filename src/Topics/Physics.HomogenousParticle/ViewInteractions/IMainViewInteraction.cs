@@ -11,6 +11,6 @@ namespace Physics.HomogenousParticle.ViewInteractions
 {
     public interface IMainViewInteraction
     {
-        HomogenousParticleCanvasControllerBase PrepareController(VelocityVariant variant);
+        HomogenousParticleCanvasController PrepareController(VelocityVariant variant);
     }
 }
