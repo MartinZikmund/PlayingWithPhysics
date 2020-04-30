@@ -139,7 +139,6 @@
       <DependentUpon>EditorResources.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppShellViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Infrastructure\Workspace.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Html\HtmlHelpers.cs" />
     <Compile Include="Json\ContentConverter.cs" />
+    <Compile Include="Models\Contents\Abstract\MultipleChoiceQuestionContent.cs" />
     <Compile Include="Models\Contents\ChapterContent.cs" />
     <Compile Include="Models\ContentType.cs" />
     <Compile Include="Models\Contents\Abstract\HtmlContent.cs" />
@@ -147,7 +148,12 @@
     <Compile Include="Viewers\HtmlContentViewer.xaml.cs">
       <DependentUpon>HtmlContentViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Viewers\MultipleChoiceQuestionViewer.xaml.cs">
+      <DependentUpon>MultipleChoiceQuestionViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\MultipleChoiceQuestionViewerViewModel.cs" />
     <Compile Include="ViewModels\SelfStudyViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\SelfStudyView.xaml.cs">
       <DependentUpon>SelfStudyView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +170,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.3.200213001</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLight">
+      <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -193,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\HtmlContentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\MultipleChoiceQuestionViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

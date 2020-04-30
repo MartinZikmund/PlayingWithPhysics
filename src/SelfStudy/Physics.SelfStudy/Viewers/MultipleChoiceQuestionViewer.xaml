@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Physics.SelfStudy.Viewers.MultipleChoiceQuestionViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Physics.SelfStudy.Viewers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid Padding="12" Visibility="{x:Bind Model.ShowQuestion, Mode=OneWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <controls:RadioButtons
+            Grid.ColumnSpan="2"
+            Padding="12"
+            ItemsSource="{x:Bind Question.Options, Mode=OneWay}"
+            SelectedIndex="{x:Bind Model.SelectedAnswerIndex, Mode=TwoWay}">
+            <controls:RadioButtons.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <WebView Source="{x:Bind}" />
+                </DataTemplate>
+            </controls:RadioButtons.ItemTemplate>
+        </controls:RadioButtons>
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalAlignment="Center">
+            Show answer
+        </Button>
+    </Grid>
+</Page>
