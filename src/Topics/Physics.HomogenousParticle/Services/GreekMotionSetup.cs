@@ -9,10 +9,11 @@ namespace Physics.HomogenousParticle.Services
 {
     public class GreekMotionSetup : MotionSetupBase
     {
-        public GreekMotionSetup(float velocity, RadiationType type)
+        public GreekMotionSetup(float velocity, RadiationType type, string color)
         {
             Velocity = velocity;
             Type = type;
+            Color = color;
         }
 
         public RadiationType Type { get; set; }

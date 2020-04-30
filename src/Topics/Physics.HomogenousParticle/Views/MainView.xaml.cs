@@ -1,5 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousParticle.Rendering;
+using Physics.HomogenousParticle.Services;
+using Physics.HomogenousParticle.ViewInteractions;
 using Physics.HomogenousParticle.ViewModels;
 using Physics.Shared.Helpers;
 using Physics.Shared.Views;
@@ -25,7 +27,7 @@ namespace Physics.HomogenousParticle.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainView : BaseView
+    public sealed partial class MainView : BaseView, IMainViewInteraction
     {
         private HomogenousParticleCanvasControllerBase _canvasController;
         private CanvasAnimatedControl _animatedCanvas;
@@ -40,7 +42,7 @@ namespace Physics.HomogenousParticle.Views
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)
         {
-            Initialize();
+
         }
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
@@ -52,16 +54,39 @@ namespace Physics.HomogenousParticle.Views
 
         private void MainView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (MainViewModel)args.NewValue;
+            var model = (MainViewModel)args.NewValue;
+            if (Model != model)
+            {
+                Model = model;
+                Model.SetViewInteraction(this);
+            }
         }
 
         public MainViewModel Model { get; private set; }
 
-        public HomogenousParticleCanvasControllerBase Initialize()
+        public HomogenousParticleCanvasControllerBase PrepareController(VelocityVariant variant)
         {
-            _animatedCanvas = new CanvasAnimatedControl();
-            CanvasHolder.Children.Add(_animatedCanvas);
-            _canvasController = new ZeroVariantCanvasController(_animatedCanvas);
+            if (_animatedCanvas == null)
+            {
+                _animatedCanvas = new CanvasAnimatedControl();
+                CanvasHolder.Children.Add(_animatedCanvas);
+            }
+
+            _canvasController?.Dispose();
+
+            switch (variant)
+            {
+                case VelocityVariant.Zero:
+                    _canvasController = new ZeroVariantCanvasController(_animatedCanvas);
+                    break;
+                case VelocityVariant.Parallel:
+                    
+                    break;
+                case VelocityVariant.Perpendicular:
+                    break;
+                case VelocityVariant.Greek:
+                    break;
+            }
             return _canvasController;
         }
     }

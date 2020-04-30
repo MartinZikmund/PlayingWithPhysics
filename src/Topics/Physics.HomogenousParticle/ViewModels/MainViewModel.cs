@@ -1,6 +1,8 @@
 ﻿using Physics.HomogenousParticle.Dialogs;
 using Physics.HomogenousParticle.Services;
+using Physics.HomogenousParticle.ViewInteractions;
 using Physics.HomogenousParticle.ViewModels.Inputs;
+using Physics.HomogenousParticle.Views;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace Physics.HomogenousParticle.ViewModels
 {
     public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
     {
+        private IMainViewInteraction _interaction;
+
         public class NavigationModel
         {
         }
@@ -70,7 +74,12 @@ namespace Physics.HomogenousParticle.ViewModels
             }
         });
 
-        public ObservableCollection<IMotionSetup> Motions { get; }
+        internal void SetViewInteraction(IMainViewInteraction interaction)
+        {
+            _interaction = interaction;
+        }
+
+        public ObservableCollection<IMotionSetup> Motions { get; } = new ObservableCollection<IMotionSetup>();
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
@@ -106,7 +115,9 @@ namespace Physics.HomogenousParticle.ViewModels
 
         private void RestartSimulation()
         {
-
+            if (_interaction == null) return;
+            var controller = _interaction.PrepareController(SelectedVariant);
+            controller.StartSimulation(Motions.ToArray());
         }
     }
 }

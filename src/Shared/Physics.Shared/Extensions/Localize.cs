@@ -11,13 +11,25 @@ namespace Physics.Shared.Extensions
     public class Localize : MarkupExtension
     {
         private static ResourceLoader _resourceLoader = null;
+        private static ResourceLoader _sharedResourceLoader = null;
 
         public string Key { get; set; }
 
         protected override object ProvideValue()
         {
             _resourceLoader ??= ResourceLoader.GetForCurrentView();
-            return _resourceLoader.GetString(Key);
+            var result = _resourceLoader.GetString(Key);
+            if (string.IsNullOrEmpty(result))
+            {
+                // use shared resources
+                _sharedResourceLoader ??= ResourceLoader.GetForCurrentView("Physics.Shared/SharedResources");
+                result = _sharedResourceLoader.GetString(Key);
+                if (string.IsNullOrEmpty(result))
+                {
+                    result = "?????" + Key + "?????";
+                }
+            }
+            return result;
         }
     }
 }

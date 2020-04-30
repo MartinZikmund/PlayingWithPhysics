@@ -29,7 +29,7 @@ namespace Physics.HomogenousParticle.Dialogs
         private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             var deferral = args.GetDeferral();
-            Setup = await Model.CreateMotionSetup();
+            Setup = await Model.CreateMotionSetupAsync();
             if (Setup == null)
             {
                 args.Cancel = true;

@@ -240,6 +240,12 @@
       <Link>Assets\Fonts\playingwithphysics.ttf</Link>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\SharedResources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\cs-CZ\SharedResources.resw" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

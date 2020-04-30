@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.Rendering;
+using Physics.HomogenousParticle.Services;
 using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace Physics.HomogenousParticle.ViewInteractions
 {
     public interface IMainViewInteraction
     {
-        HomogenousParticleCanvasControllerBase Initialize();
+        HomogenousParticleCanvasControllerBase PrepareController(VelocityVariant variant);
     }
 }

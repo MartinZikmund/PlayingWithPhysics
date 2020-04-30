@@ -8,7 +8,7 @@
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:extensions="using:Physics.HomogenousParticle.Extensions"
+    xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HomogenousParticle.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:usercontrols="using:Physics.HomogenousParticle.UserControls"

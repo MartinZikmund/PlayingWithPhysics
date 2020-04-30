@@ -126,7 +126,6 @@
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Rendering\ZeroVariantCanvasController.cs" />
     <Compile Include="Services\GreekMotionSetup.cs" />
@@ -159,6 +158,7 @@
     <Compile Include="ViewModels\Inputs\IVariantInputViewModel.cs" />
     <Compile Include="ViewModels\Inputs\ParallelVariantInputViewModel.cs" />
     <Compile Include="ViewModels\Inputs\PerpendicularVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\Inputs\VariantInputViewModelBase.cs" />
     <Compile Include="ViewModels\Inputs\ZeroVariantInputViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

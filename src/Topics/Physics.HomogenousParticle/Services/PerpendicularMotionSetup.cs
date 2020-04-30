@@ -8,17 +8,19 @@ namespace Physics.HomogenousParticle.Services
 {
     public class PerpendicularMotionSetup : MotionSetupBase
     {
-        public PerpendicularMotionSetup(float velocity, float angle, float charge, float inductionOrientation)
+        public PerpendicularMotionSetup(float velocity, float angle, float charge, float inductionOrientation, string color)
         {
             Velocity = velocity;
             Angle = angle;
             Charge = charge;
             InductionOrientation = inductionOrientation;
-
+            Color = color;
         }
 
         public float Angle { get; set; }
+
         public float Charge { get; set; }
+
         public float InductionOrientation { get; set; }
     }
 }

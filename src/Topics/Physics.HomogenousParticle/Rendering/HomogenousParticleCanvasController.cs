@@ -171,6 +171,11 @@ namespace Physics.HomogenousParticle.Rendering
             }            
         }
 
+        protected void DrawParticle(Vector2 position, Color color, CanvasAnimatedDrawEventArgs args)
+        {
+
+        }
+
         private void DrawArrowTip(Vector2 point, double angle, Color color, CanvasAnimatedDrawEventArgs args)
         {
             // Calculate unit vector of the given angle

@@ -20,7 +20,7 @@ namespace Physics.Shared.Rendering
             _canvasAnimatedControl.Draw += Draw;
             _canvasAnimatedControl.Update += CanvasUpdate;
             _canvasAnimatedControl.CreateResources += CreateResources;
-        }
+        }        
 
         public SimulationTime SimulationTime { get; } = new SimulationTime();
 
@@ -69,6 +69,12 @@ namespace Physics.Shared.Rendering
 
         public virtual void Dispose()
         {
+            if (_canvasAnimatedControl != null)
+            {
+                _canvasAnimatedControl.Draw -= Draw;
+                _canvasAnimatedControl.Update -= CanvasUpdate;
+                _canvasAnimatedControl.CreateResources -= CreateResources;
+            }
             _canvasAnimatedControl = null;
             Debug.WriteLine("Base canvas controller has been disposed.");
         }
