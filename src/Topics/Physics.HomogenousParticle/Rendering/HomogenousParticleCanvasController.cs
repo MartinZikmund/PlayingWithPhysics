@@ -16,7 +16,7 @@ using Color = Windows.UI.Color;
 
 namespace Physics.HomogenousParticle.Rendering
 {
-    public abstract class HomogenousParticleCanvasControllerBase : BaseCanvasController, IDisposable
+    public class HomogenousParticleCanvasController : BaseCanvasController
     {
         private const int ArrowDistance = 80;
 
@@ -25,11 +25,23 @@ namespace Physics.HomogenousParticle.Rendering
         protected SimulationBounds _simulationBoundsInMeters = new SimulationBounds();
         private SimulationBounds _simulationBoundsInPixels = new SimulationBounds();
 
-        public HomogenousParticleCanvasControllerBase(CanvasAnimatedControl canvasAnimatedControl) : base(canvasAnimatedControl)
+        private IVariantRenderer _renderer;
+
+        public HomogenousParticleCanvasController(CanvasAnimatedControl canvasAnimatedControl) : base(canvasAnimatedControl)
         {
         }
 
-        public abstract void StartSimulation(IMotionSetup[] motions);
+        public override Task CreateResourcesAsync(CanvasAnimatedControl sender)
+        {
+            return Task.CompletedTask;
+        }
+
+        public void SetVariantRenderer(IVariantRenderer renderer)
+        {
+            _renderer = renderer;
+        }
+
+        public void StartSimulation(IMotionSetup[] motions) => _renderer?.StartSimulation(motions);
 
         public override void Update(ICanvasAnimatedControl sender)
         {
@@ -38,10 +50,19 @@ namespace Physics.HomogenousParticle.Rendering
                 SimulationPadding,
                 (float)sender.Size.Width - SimulationPadding,
                 (float)sender.Size.Height - SimulationPadding);
+
+            SimulationTime.Restart();
+            _renderer?.Update(sender);
         }
 
-        protected void DrawInductionArrows(double angle, Windows.UI.Color color, CanvasAnimatedDrawEventArgs args)
+        public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            _renderer?.Draw(sender, args);
+        }
+
+        internal void DrawInductionArrows(double angle, Windows.UI.Color color, CanvasAnimatedDrawEventArgs args)
+        {
+            var semiTransparentColor = Color.FromArgb(125, color.R, color.G, color.B);
             // calculate perpendicular line through the simulation center
             var center = new Point2D(_canvasAnimatedControl.Size.Width / 2f, _canvasAnimatedControl.Size.Height / 2f);
             var perpendicularAngle = angle - 90;
@@ -51,16 +72,19 @@ namespace Physics.HomogenousParticle.Rendering
             while (i <= 10)
             {
                 var upX = center.X + normalized.X * i * ArrowDistance;
-                var upY = center.Y + normalized.Y * i * ArrowDistance;               
+                var upY = center.Y + normalized.Y * i * ArrowDistance;
 
                 var upLine = CalculatePointLineUnderAngle(angle, new Point2D(upX, upY));
-                DrawInductionArrow(upLine, angle, color, args);
+                DrawInductionArrow(upLine, angle, semiTransparentColor, args);
 
-                var inverseX = center.X - normalized.X * i * ArrowDistance;
-                var inverseY = center.Y - normalized.Y * i * ArrowDistance;
+                if (i != 0)
+                {
+                    var inverseX = center.X - normalized.X * i * ArrowDistance;
+                    var inverseY = center.Y - normalized.Y * i * ArrowDistance;
 
-                var inverseLine = CalculatePointLineUnderAngle(angle, new Point2D(inverseX, inverseY));
-                DrawInductionArrow(inverseLine, angle, color, args);
+                    var inverseLine = CalculatePointLineUnderAngle(angle, new Point2D(inverseX, inverseY));
+                    DrawInductionArrow(inverseLine, angle, semiTransparentColor, args);
+                }
 
                 i++;
             }
@@ -168,12 +192,12 @@ namespace Physics.HomogenousParticle.Rendering
                 }
 
                 DrawArrowTip(arrowPoint, angle, color, args);
-            }            
+            }
         }
 
-        protected void DrawParticle(Vector2 position, Color color, CanvasAnimatedDrawEventArgs args)
+        internal void DrawParticle(Vector2 position, Color color, CanvasAnimatedDrawEventArgs args)
         {
-
+            args.DrawingSession.FillCircle(position, 5, color);
         }
 
         private void DrawArrowTip(Vector2 point, double angle, Color color, CanvasAnimatedDrawEventArgs args)

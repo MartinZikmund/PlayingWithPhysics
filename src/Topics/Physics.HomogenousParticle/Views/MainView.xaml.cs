@@ -29,7 +29,7 @@ namespace Physics.HomogenousParticle.Views
     /// </summary>
     public sealed partial class MainView : BaseView, IMainViewInteraction
     {
-        private HomogenousParticleCanvasControllerBase _canvasController;
+        private HomogenousParticleCanvasController _canvasController;
         private CanvasAnimatedControl _animatedCanvas;
 
         public MainView()
@@ -64,7 +64,7 @@ namespace Physics.HomogenousParticle.Views
 
         public MainViewModel Model { get; private set; }
 
-        public HomogenousParticleCanvasControllerBase PrepareController(VelocityVariant variant)
+        public HomogenousParticleCanvasController PrepareController(VelocityVariant variant)
         {
             if (_animatedCanvas == null)
             {
@@ -72,15 +72,18 @@ namespace Physics.HomogenousParticle.Views
                 CanvasHolder.Children.Add(_animatedCanvas);
             }
 
-            _canvasController?.Dispose();
+            if (_canvasController == null)
+            {
+                _canvasController = new HomogenousParticleCanvasController(_animatedCanvas);
+            }
 
             switch (variant)
             {
                 case VelocityVariant.Zero:
-                    _canvasController = new ZeroVariantCanvasController(_animatedCanvas);
+                    _canvasController.SetVariantRenderer(new ZeroVariantRenderer(_canvasController));
                     break;
                 case VelocityVariant.Parallel:
-                    
+                    _canvasController.SetVariantRenderer(new ParallelVariantRenderer(_canvasController));
                     break;
                 case VelocityVariant.Perpendicular:
                     break;

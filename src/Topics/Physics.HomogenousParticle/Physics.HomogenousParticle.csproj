@@ -127,7 +127,9 @@
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
-    <Compile Include="Rendering\ZeroVariantCanvasController.cs" />
+    <Compile Include="Rendering\IVariantRenderer.cs" />
+    <Compile Include="Rendering\ParallelVariantRenderer.cs" />
+    <Compile Include="Rendering\ZeroVariantRenderer.cs" />
     <Compile Include="Services\GreekMotionSetup.cs" />
     <Compile Include="Services\IMotionSetup.cs" />
     <Compile Include="Services\MotionSetupBase.cs" />
