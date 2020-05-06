@@ -42,10 +42,15 @@ namespace Physics.HomogenousParticle.Rendering
             }
             else
             {
-                _lastPosition += new Vector2(
-                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Cos(MathHelpers.DegreesToRadians(_motion.Angle))),
-                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Sin(MathHelpers.DegreesToRadians(_motion.Angle)))
+                var direction = new Vector2(
+                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Cos(MathHelpers.DegreesToRadians(_motion.InductionOrientation))),
+                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Sin(-MathHelpers.DegreesToRadians(_motion.InductionOrientation)))
                     );
+                if (_motion.Angle == 180)
+                {
+                    direction *= -1;
+                }
+                _lastPosition += direction;
             }
         }
 
