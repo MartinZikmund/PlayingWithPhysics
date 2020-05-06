@@ -86,6 +86,7 @@ namespace Physics.HomogenousParticle.Views
                     _canvasController.SetVariantRenderer(new ParallelVariantRenderer(_canvasController));
                     break;
                 case VelocityVariant.Perpendicular:
+                    _canvasController.SetVariantRenderer(new PerpendicularVariantRenderer(_canvasController));
                     break;
                 case VelocityVariant.Greek:
                     break;

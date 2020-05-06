@@ -34,8 +34,8 @@ namespace Physics.HomogenousParticle.Rendering
 
         public void Update(ICanvasAnimatedControl sender)
         {
-            var unit = sender.Size.Width / 1000000;
-            var actualVelocity = Math.Pow(10, _motion.Velocity);
+            var unit = sender.Size.Width / 1000;
+            var actualVelocity = _motion.Velocity;
             if (_lastPosition == null)
             {
                 _lastPosition = new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f);

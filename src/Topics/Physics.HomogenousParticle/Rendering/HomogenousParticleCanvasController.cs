@@ -197,7 +197,7 @@ namespace Physics.HomogenousParticle.Rendering
 
         internal void DrawParticle(Vector2 position, Color color, CanvasAnimatedDrawEventArgs args)
         {
-            args.DrawingSession.FillCircle(position, 5, color);
+            args.DrawingSession.FillCircle(position, 20, color);
         }
 
         private void DrawArrowTip(Vector2 point, double angle, Color color, CanvasAnimatedDrawEventArgs args)
