@@ -18,7 +18,11 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public string Name { get; set; }
 
-        public ObservableCollection<IContent> Tree { get; } = new ObservableCollection<IContent>();
+        public ObservableCollection<Chapter> Chapters { get; } = new ObservableCollection<Chapter>();
+
+        public Chapter SelectedChapter { get; set; }
+
+        public IContent SelectedContent { get; set; }
 
         public bool IsDirty { get; private set; } = false;
 
@@ -26,30 +30,28 @@ namespace Physics.SelfStudy.Editor.Infrastructure
         {
         }
 
-        public ICommand AddRootCommand => GetOrCreateCommand(() => Tree.Add(new ChapterContent() { Title = "Untitled" }));
+        public ICommand DeleteSelectedSectionCommand => GetOrCreateCommand(DeleteSelectedSection);
 
-        private IContent GetSelectedItem()
+        private void DeleteSelectedSection()
         {
-            return (IContent)AppShell.Instance.TreeView.SelectedItem;
+            if (SelectedContent != null)
+            {
+                SelectedChapter.Contents.Remove(SelectedContent);
+            }
         }
 
-        public IContent SelectedItem { get; set; }
-
-        public void UpdateSelection()
-        {
-            SelectedItem = GetSelectedItem();
-        }
+        public ICommand AddChapterCommand => GetOrCreateCommand(() => Chapters.Add(new Chapter() { Title = "Untitled" }));
 
         public ICommand AddSectionCommand => GetOrCreateCommand((string type) =>
         {
-            var selectedItem = GetSelectedItem();
-            if (!(selectedItem is ChapterContent)) return;
+            if (SelectedChapter == null) return;
+
             IContent content = null;
             var enumValue = Enum.Parse<ContentType>(type, true);
             switch (enumValue)
             {
-                case ContentType.Chapter:
-                    content = new ChapterContent() { Title = "Untitled" };
+                case ContentType.Text:
+                    content = new TextContent() { Title = "Untitled" };
                     break;
                 case ContentType.AdditionalResources:
                     content = new AdditionalResourcesContent() { Title = "Untitled" };
@@ -70,7 +72,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
                     content = new ToRememberContent() { Title = "Untitled" };
                     break;
             }
-            selectedItem.Subcontents.Add(content);
+            SelectedChapter.Contents.Add(content);
         });
 
         public async Task SaveAsync()
@@ -95,7 +97,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         private async Task SaveToBackingFileAsync()
         {
-            var contents = JsonConvert.SerializeObject(Tree);
+            var contents = JsonConvert.SerializeObject(Chapters);
             await FileIO.WriteTextAsync(_backingFile, contents);
         }
 
@@ -104,9 +106,13 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         }
 
-        public async Task SaveTempAsync()
+        public async Task<string> SaveTempAsync()
         {
-
+            var contents = JsonConvert.SerializeObject(Chapters);
+            var fileName = Guid.NewGuid().ToString() + ".json";
+            var tempFile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(fileName);
+            await FileIO.WriteTextAsync(tempFile, contents);
+            return fileName;
         }
 
         public static Project CreateNew() => new Project();
@@ -116,11 +122,18 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             var contents = await StudyModeManager.ReadDefinitionFileAsync(projectFile);
 
             var project = new Project();
-            foreach(var content in contents)
+            foreach (var content in contents)
             {
-                project.Tree.Add(content);
+                project.Chapters.Add(content);
             }
             return project;
+        }
+
+        public async Task PreviewAsync()
+        {
+            var tempFileName = await SaveTempAsync();
+            var uri = new Uri($"ms-appdata:///temp/{tempFileName}");
+            await StudyModeManager.OpenStudyModeAsync(uri);
         }
     }
 }

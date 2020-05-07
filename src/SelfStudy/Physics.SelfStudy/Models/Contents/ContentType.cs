@@ -7,6 +7,7 @@ namespace Physics.Shared.SelfStudy.Models
     public enum ContentType
     {
         Chapter,
+        Text,
         AdditionalResources,
         KnowledgeCheck,
         Literature,

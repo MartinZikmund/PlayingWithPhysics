@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.Shared.SelfStudy.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,9 +9,9 @@ namespace Physics.SelfStudy.Editor.ViewModels
 {
     public abstract class ContentBase : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public abstract ContentType Type { get; }
 
-        private readonly Dictionary<string, ICommand> _commands = new Dictionary<string, ICommand>();
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

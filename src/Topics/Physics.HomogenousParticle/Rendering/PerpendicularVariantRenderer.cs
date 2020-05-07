@@ -53,13 +53,13 @@ namespace Physics.HomogenousParticle.Rendering
         {
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
             args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
-
+            var drawingOffset = new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f);
             if (_motions != null)
             {
                 for (int i = 0; i < _motions.Length; i++)
                 {
                     var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_motions[i].Color);
-                    _controller.DrawParticle(_currentMotionPositions[i], color, args);
+                    _controller.DrawParticle(_currentMotionPositions[i] + drawingOffset, color, args);
                 }
             }
         }

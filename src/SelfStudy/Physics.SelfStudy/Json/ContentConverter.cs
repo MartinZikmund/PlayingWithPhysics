@@ -36,7 +36,7 @@ namespace Physics.SelfStudy.Json
             switch (contentType)
             {
                 case ContentType.Chapter:
-                    return JsonConvert.DeserializeObject<ChapterContent>(jsonString);
+                    return JsonConvert.DeserializeObject<Chapter>(jsonString);
                 case ContentType.AdditionalResources:
                     return JsonConvert.DeserializeObject<AdditionalResourcesContent>(jsonString);
                 case ContentType.KnowledgeCheck:
@@ -49,6 +49,8 @@ namespace Physics.SelfStudy.Json
                     return JsonConvert.DeserializeObject<TasksContent>(jsonString);
                 case ContentType.ToRemember:
                     return JsonConvert.DeserializeObject<ToRememberContent>(jsonString);
+                case ContentType.Text:
+                    return JsonConvert.DeserializeObject<TextContent>(jsonString);
                 default:
                     throw new InvalidOperationException("Unsupported content type.");
             }

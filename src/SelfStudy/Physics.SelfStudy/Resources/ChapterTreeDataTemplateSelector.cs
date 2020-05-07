@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Physics.SelfStudy.Resources
 {
-    public class ChapterTreeDataTemplateSelector : DataTemplateSelector
+    public class ChapterListDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate AdditionalResources { get; set; }
 
@@ -23,12 +23,12 @@ namespace Physics.SelfStudy.Resources
 
         public DataTemplate ToRemember { get; set; }
 
-        public DataTemplate Chapter { get; set; }
+        public DataTemplate Text { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item) =>
             item switch
             {
-                ChapterContent _ => Chapter,
+                TextContent _ => Text,
                 AdditionalResourcesContent _ => AdditionalResources,
                 KnowledgeCheckContent _ => KnowledgeCheck,
                 LiteratureContent _ => Literature,

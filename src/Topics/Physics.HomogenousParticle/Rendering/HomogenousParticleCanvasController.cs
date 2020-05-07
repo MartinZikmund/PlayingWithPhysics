@@ -41,7 +41,11 @@ namespace Physics.HomogenousParticle.Rendering
             _renderer = renderer;
         }
 
-        public void StartSimulation(IMotionSetup[] motions) => _renderer?.StartSimulation(motions);
+        public void StartSimulation(IMotionSetup[] motions)
+        {
+            _renderer?.StartSimulation(motions);
+            SimulationTime.Restart();
+        }
 
         public override void Update(ICanvasAnimatedControl sender)
         {
@@ -51,7 +55,6 @@ namespace Physics.HomogenousParticle.Rendering
                 (float)sender.Size.Width - SimulationPadding,
                 (float)sender.Size.Height - SimulationPadding);
 
-            SimulationTime.Restart();
             _renderer?.Update(sender);
         }
 

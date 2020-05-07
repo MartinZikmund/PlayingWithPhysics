@@ -14,7 +14,5 @@ namespace Physics.SelfStudy.Models
         string Title { get; set; }
 
         ContentType Type { get; }
-
-        ObservableCollection<IContent> Subcontents { get; }
     }
 }
