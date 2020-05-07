@@ -124,9 +124,10 @@
   <ItemGroup>
     <Compile Include="Html\HtmlHelpers.cs" />
     <Compile Include="Json\ContentConverter.cs" />
+    <Compile Include="Models\Contents\Chapter.cs" />
     <Compile Include="Models\Contents\Abstract\MultipleChoiceQuestionContent.cs" />
-    <Compile Include="Models\Contents\ChapterContent.cs" />
-    <Compile Include="Models\ContentType.cs" />
+    <Compile Include="Models\Contents\TextContent.cs" />
+    <Compile Include="Models\Contents\ContentType.cs" />
     <Compile Include="Models\Contents\Abstract\HtmlContent.cs" />
     <Compile Include="Models\Contents\Abstract\SelectQuestionChapterContent.cs" />
     <Compile Include="Models\Contents\AdditionalResourcesContent.cs" />
@@ -135,9 +136,9 @@
     <Compile Include="Models\Contents\RealWorldContent.cs" />
     <Compile Include="Models\Contents\TasksContent.cs" />
     <Compile Include="Models\Contents\ToRememberContent.cs" />
-    <Compile Include="Models\IContent.cs" />
-    <Compile Include="Models\QuestionType.cs" />
-    <Compile Include="Models\ContentBase.cs" />
+    <Compile Include="Models\Contents\IContent.cs" />
+    <Compile Include="Models\Contents\QuestionType.cs" />
+    <Compile Include="Models\Contents\ContentBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ChapterTreeDataTemplateSelector.cs" />
     <Compile Include="Resources\ContentViewerDataTemplateSelector.cs" />

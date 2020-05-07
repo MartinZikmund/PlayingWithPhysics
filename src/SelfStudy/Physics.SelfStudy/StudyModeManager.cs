@@ -2,6 +2,7 @@
 using Physics.SelfStudy.Html;
 using Physics.SelfStudy.Json;
 using Physics.SelfStudy.Models;
+using Physics.SelfStudy.Models.Contents;
 using Physics.SelfStudy.Views;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace Physics.SelfStudy
 
         public static async Task OpenStudyModeAsync(Uri backingFileUri)
         {
+            await InitializeAsync();
+
             var resourceLoader = new ResourceLoader();
 
             // open new application view
@@ -51,7 +54,7 @@ namespace Physics.SelfStudy
             var shown = await newWindow.TryShowAsync();
         }
 
-        public static async Task<IContent[]> ReadDefinitionFileAsync(StorageFile file)
+        public static async Task<Chapter[]> ReadDefinitionFileAsync(StorageFile file)
         {
             var json = await FileIO.ReadTextAsync(file);
             var options = new JsonSerializerSettings()
@@ -61,7 +64,7 @@ namespace Physics.SelfStudy
                     new ContentConverter()
                 }
             };
-            return JsonConvert.DeserializeObject<IContent[]>(json, options);
+            return JsonConvert.DeserializeObject<Chapter[]>(json, options);
         }
     }
 }

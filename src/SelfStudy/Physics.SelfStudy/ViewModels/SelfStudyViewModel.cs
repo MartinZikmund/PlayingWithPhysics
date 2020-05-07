@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Physics.SelfStudy.Editor.ViewModels;
 using Physics.SelfStudy.Json;
 using Physics.SelfStudy.Models;
+using Physics.SelfStudy.Models.Contents;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -8,7 +10,7 @@ using Windows.Storage;
 
 namespace Physics.SelfStudy.ViewModels
 {
-    public class SelfStudyViewModel
+    public class SelfStudyViewModel : ViewModelBase
     {
         public SelfStudyViewModel()
         {            
@@ -17,10 +19,12 @@ namespace Physics.SelfStudy.ViewModels
         public async Task LoadAsync(Uri uri)
         {
             var backingFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
-            var contents = await StudyModeManager.ReadDefinitionFileAsync(backingFile);
-            Contents = new ObservableCollection<IContent>(contents);
+            var chapters = await StudyModeManager.ReadDefinitionFileAsync(backingFile);
+            Chapters = new ObservableCollection<Chapter>(chapters);
         }
 
-        public ObservableCollection<IContent> Contents { get; set; }
+        public ObservableCollection<Chapter> Chapters { get; set; }
+
+        public Chapter SelectedChapter { get; set; }
     }
 }

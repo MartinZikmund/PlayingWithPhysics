@@ -1,85 +1,77 @@
 ﻿<ResourceDictionary
     x:Class="Physics.SelfStudy.Resources.SelfStudyResources"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.SelfStudy.Resources" 
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" 
-    xmlns:contents="using:Physics.SelfStudy.Models.Contents" xmlns:viewers="using:Physics.SelfStudy.Viewers" xmlns:abstract="using:Physics.SelfStudy.Models.Contents.Abstract">
-    <DataTemplate x:Key="ChapterTreeItemTemplate" x:DataType="contents:ChapterContent">
-        <muxc:TreeViewItem ItemsSource="{x:Bind Subcontents}">
-            <TextBlock Text="{x:Bind Title, Mode=OneWay}" FontWeight="SemiBold" />
-        </muxc:TreeViewItem>
+    xmlns:abstract="using:Physics.SelfStudy.Models.Contents.Abstract"
+    xmlns:contents="using:Physics.SelfStudy.Models.Contents"
+    xmlns:local="using:Physics.SelfStudy.Resources"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:viewers="using:Physics.SelfStudy.Viewers">
+
+    <DataTemplate x:Key="AdditionalResourcesListItemTemplate" x:DataType="contents:AdditionalResourcesContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/additionalresources.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="AdditionalResourcesTreeItemTemplate" x:DataType="contents:AdditionalResourcesContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/additionalresources.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="KnowledgeCheckListItemTemplate" x:DataType="contents:KnowledgeCheckContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/knowledgecheck.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="KnowledgeCheckTreeItemTemplate" x:DataType="contents:KnowledgeCheckContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/knowledgecheck.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}"/>
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="LiteratureListItemTemplate" x:DataType="contents:LiteratureContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/literature.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="LiteratureTreeItemTemplate" x:DataType="contents:LiteratureContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/literature.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="TasksListItemTemplate" x:DataType="contents:TasksContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/tasks.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="TasksTreeItemTemplate" x:DataType="contents:TasksContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/tasks.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="TextListItemTemplate" x:DataType="contents:TextContent">
+        <StackPanel Orientation="Horizontal">
+            <Viewbox Width="20" Height="20">
+                <SymbolIcon Symbol="Character" />
+            </Viewbox>
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="ToRememberTreeItemTemplate" x:DataType="contents:ToRememberContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/toremember.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="ToRememberListItemTemplate" x:DataType="contents:ToRememberContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/toremember.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="RealWorldTreeItemTemplate" x:DataType="contents:RealWorldContent">
-        <muxc:TreeViewItem>
-            <StackPanel Orientation="Horizontal">
-                <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/realworld.png"/>
-                <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
-            </StackPanel>
-        </muxc:TreeViewItem>
+    <DataTemplate x:Key="RealWorldListItemTemplate" x:DataType="contents:RealWorldContent">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/realworld.png" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="HtmlViewerTemplate" x:DataType="abstract:HtmlContent">
         <viewers:HtmlContentViewer HtmlContent="{x:Bind}" />
     </DataTemplate>
 
-    <local:ContentViewerDataTemplateSelector
-        x:Key="ContentViewerDataTemplateSelector"
-        HtmlViewer="{StaticResource HtmlViewerTemplate}" />
+    <local:ContentViewerDataTemplateSelector x:Key="ContentViewerDataTemplateSelector" HtmlViewer="{StaticResource HtmlViewerTemplate}" />
 
-    <local:ChapterTreeDataTemplateSelector
-        x:Key="ChapterTreeDataTemplateSelector"
-        KnowledgeCheck="{StaticResource KnowledgeCheckTreeItemTemplate}"
-        AdditionalResources="{StaticResource AdditionalResourcesTreeItemTemplate}"
-        Literature="{StaticResource LiteratureTreeItemTemplate}"
-        ToRemember="{StaticResource ToRememberTreeItemTemplate}"
-        Tasks="{StaticResource TasksTreeItemTemplate}"
-        RealWorld="{StaticResource RealWorldTreeItemTemplate}" 
-        Chapter="{StaticResource ChapterTreeItemTemplate}"/>
+    <local:ChapterListDataTemplateSelector
+        x:Key="ChapterListDataTemplateSelector"
+        AdditionalResources="{StaticResource AdditionalResourcesListItemTemplate}"
+        KnowledgeCheck="{StaticResource KnowledgeCheckListItemTemplate}"
+        Literature="{StaticResource LiteratureListItemTemplate}"
+        RealWorld="{StaticResource RealWorldListItemTemplate}"
+        Tasks="{StaticResource TasksListItemTemplate}"
+        Text="{StaticResource TextListItemTemplate}"
+        ToRemember="{StaticResource ToRememberListItemTemplate}" />
 </ResourceDictionary>

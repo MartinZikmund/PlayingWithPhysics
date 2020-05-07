@@ -9,9 +9,17 @@
     <style type="text/css">
         html {{
             font-family: 'Segoe UI', Arial;
-            background-color: #F3F3F3;
+            background-color: #FCFCFC;
         }}
     </style>
+    <script type="text/javascript">
+        function getDocHeight() {{
+            var D = document;
+            return Math.max(
+                Math.max(D.body.offsetHeight, D.documentElement.offsetHeight)
+            );
+        }}
+    </script>
     <title>Playing with Physics</title>
 </head>
 <body>

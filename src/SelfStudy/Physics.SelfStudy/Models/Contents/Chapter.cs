@@ -3,17 +3,18 @@ using Physics.Shared.SelfStudy.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Physics.SelfStudy.Models.Contents.Abstract
+namespace Physics.SelfStudy.Models.Contents
 {
-    public abstract class HtmlContent : ContentBase, IContent
+    public class Chapter : ContentBase
     {
         public string Title { get; set; }
 
-        public string Html { get; set; }
+        public ObservableCollection<IContent> Contents { get; } = new ObservableCollection<IContent>();
+
+        public override ContentType Type => ContentType.Chapter;
     }
 }

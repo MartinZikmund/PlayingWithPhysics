@@ -2,11 +2,14 @@
     x:Class="Physics.SelfStudy.Views.SelfStudyView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.SelfStudy.Views"
+    xmlns:contents="using:Physics.SelfStudy.Models.Contents"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:local="using:Physics.SelfStudy.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light"
+    mc:Ignorable="d">
 
     <Page.Resources>
         <Style x:Key="HamburgerButtonStyle" TargetType="ToggleButton">
@@ -24,6 +27,7 @@
         </Grid.RowDefinitions>
         <SplitView
             Grid.Row="1"
+            Background="#FCFCFC"
             DisplayMode="Inline"
             IsPaneOpen="True">
             <SplitView.Pane>
@@ -34,18 +38,48 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <winui:TreeView x:Name="Tree" Grid.Row="2" ItemTemplateSelector="{StaticResource ChapterTreeDataTemplateSelector}" ItemsSource="{x:Bind ViewModel.Contents, Mode=OneWay}">
-                    </winui:TreeView>
+                    <ListView ItemsSource="{x:Bind ViewModel.Chapters}" SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="contents:Chapter">
+                                <Grid ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <SymbolIcon Symbol="AlignLeft" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Padding="8"
+                                        HorizontalAlignment="Stretch"
+                                        Text="{x:Bind Title, Mode=TwoWay}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <!--<TextBox Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedItem.Title, Mode=TwoWay}" />-->
-                </Grid>
+                <ListView
+                    ItemTemplateSelector="{StaticResource ContentViewerDataTemplateSelector}"
+                    ItemsSource="{x:Bind ViewModel.SelectedChapter.Contents, Mode=OneWay}"
+                    SelectionMode="None">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </SplitView.Content>
         </SplitView>
     </Grid>

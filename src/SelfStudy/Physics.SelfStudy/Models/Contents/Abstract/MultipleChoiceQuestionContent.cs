@@ -11,7 +11,7 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
 {
     public class MultipleChoiceQuestionContent : ContentBase, IContent
     {
-        public ContentType Type { get; set; }
+        public override ContentType Type { get; }
 
         public string Title { get; set; }
 
@@ -22,7 +22,5 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
         public int CorrectOptionIndex { get; set; }
 
         public string Options { get; set; }
-
-        public ObservableCollection<IContent> Subcontents { get; } = new ObservableCollection<IContent>();
     }
 }

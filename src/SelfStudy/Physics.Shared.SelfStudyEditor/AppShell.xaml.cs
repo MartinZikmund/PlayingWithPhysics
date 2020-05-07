@@ -36,13 +36,6 @@ namespace Physics.SelfStudy.Editor
 
         public static AppShell Instance => _instance.Value;
 
-        public Microsoft.UI.Xaml.Controls.TreeView TreeView => Tree;
-
         public AppShellViewModel ViewModel { get; }
-
-        private void Tree_ItemInvoked(Microsoft.UI.Xaml.Controls.TreeView sender, Microsoft.UI.Xaml.Controls.TreeViewItemInvokedEventArgs args)
-        {
-            ViewModel.Workspace.CurrentProject.SelectedItem = args.InvokedItem as IContent;
-        }
     }
 }

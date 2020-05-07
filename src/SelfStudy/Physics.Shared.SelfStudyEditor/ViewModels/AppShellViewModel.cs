@@ -16,5 +16,7 @@ namespace Physics.SelfStudy.Editor.ViewModels
         public ICommand OpenFileCommand => GetOrCreateCommand(async () => await Workspace.OpenAsync());
 
         public ICommand SaveAsFileCommand => GetOrCreateCommand(async () => await Workspace.CurrentProject.SaveAsAsync());
+
+        public ICommand PreviewCommand => GetOrCreateCommand(async () => await Workspace.CurrentProject.PreviewAsync());
     }
 }
