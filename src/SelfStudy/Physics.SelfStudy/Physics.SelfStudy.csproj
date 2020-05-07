@@ -146,6 +146,9 @@
       <DependentUpon>SelfStudyResources.xaml</DependentUpon>
     </Compile>
     <Compile Include="StudyModeManager.cs" />
+    <Compile Include="Viewers\ContentHeader.xaml.cs">
+      <DependentUpon>ContentHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Viewers\HtmlContentViewer.xaml.cs">
       <DependentUpon>HtmlContentViewer.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\SelfStudyResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\ContentHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

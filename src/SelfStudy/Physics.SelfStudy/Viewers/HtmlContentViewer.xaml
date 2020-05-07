@@ -10,5 +10,18 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <WebView x:Name="WebView" />
+    <StackPanel>
+        <local:ContentHeader Content="{x:Bind HtmlContent, Mode=OneWay}" />
+        <Grid x:Name="Wrapper">
+            <WebView
+                x:Name="WebView"
+                PointerWheelChanged="WebView_PointerWheelChanged"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollMode="Disabled" />
+            <Border
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="Transparent" />
+        </Grid>
+    </StackPanel>
 </UserControl>

@@ -8,36 +8,40 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:viewers="using:Physics.SelfStudy.Viewers">
 
+    <Style x:Key="ListItemStackPanelStyle" TargetType="StackPanel">
+        <Setter Target="Spacing" Value="8" />
+    </Style>
+
     <DataTemplate x:Key="AdditionalResourcesListItemTemplate" x:DataType="contents:AdditionalResourcesContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/additionalresources.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="KnowledgeCheckListItemTemplate" x:DataType="contents:KnowledgeCheckContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/knowledgecheck.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="LiteratureListItemTemplate" x:DataType="contents:LiteratureContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/literature.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="TasksListItemTemplate" x:DataType="contents:TasksContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/tasks.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="TextListItemTemplate" x:DataType="contents:TextContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Viewbox Width="20" Height="20">
                 <SymbolIcon Symbol="Character" />
             </Viewbox>
@@ -46,14 +50,14 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ToRememberListItemTemplate" x:DataType="contents:ToRememberContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/toremember.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="RealWorldListItemTemplate" x:DataType="contents:RealWorldContent">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/realworld.png" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>

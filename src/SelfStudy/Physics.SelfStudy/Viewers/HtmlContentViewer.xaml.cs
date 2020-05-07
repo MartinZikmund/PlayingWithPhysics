@@ -15,6 +15,7 @@ namespace Physics.SelfStudy.Viewers
             this.InitializeComponent();
             WebView.SizeChanged += WebView_SizeChanged;
             WebView.NavigationCompleted += WebView_NavigationCompleted;
+            WebView.CanBeScrollAnchor = false;
         }
 
         private async void WebView_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -36,7 +37,7 @@ namespace Physics.SelfStudy.Viewers
             int height;
             if (int.TryParse(heightString, out height))
             {
-                WebView.Height = height;
+                Wrapper.Height = height;
                 System.Diagnostics.Debug.WriteLine(height);
             }
         }
@@ -58,6 +59,11 @@ namespace Physics.SelfStudy.Viewers
                 viewer._initialized = false;
                 viewer.WebView.NavigateToString(string.Format(HtmlHelpers.LayoutFormatString, htmlContent.Html));
             }
+        }
+
+        private void WebView_PointerWheelChanged(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
