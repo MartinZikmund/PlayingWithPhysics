@@ -6,10 +6,248 @@
     xmlns:local="using:Physics.InclinedPlane.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button>Test</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="{ThemeResource AppThemeColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Height="80" Margin="0,0,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
+                <Grid
+                    x:Name="TitleBlock"
+                    Grid.Column="1"
+                    Height="80"
+                    Margin="64,0,0,0"
+                    HorizontalAlignment="Stretch">
+                    <Border HorizontalAlignment="Stretch" Background="#d62633">
+                        <Border.RenderTransform>
+                            <SkewTransform AngleX="-40" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <TextBlock
+                        x:Name="TitleTextBlock"
+                        Margin="-28,0,52,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Style="{ThemeResource SubheaderTextBlockStyle}"
+                        Text="{extensions:Localize Key=ShortAppName}"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Grid>
+            <Border Grid.Row="1" Margin="0,12,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <StackPanel Margin="12,0,8,0" Orientation="Vertical">
+                        <Grid>
+                            <winui:RadioButtons SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+                                <winui:RadioButtons.Resources>
+                                    <Style TargetType="RadioButton">
+                                        <Setter Property="Padding" Value="12,0,0,4" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="16" />
+                                    </Style>
+                                </winui:RadioButtons.Resources>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v = 0" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v || B" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v &#x27c2; B" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="Nic" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </winui:RadioButtons>
+                        </Grid>
+                        <Button
+                            Margin="8,8,8,0"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.AddTrajectoryCommand}"
+                            Content="{extensions:Localize Key=AddMotion}" />
+                        <Button
+                            Margin="8,8,8,0"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.DrawCommand}"
+                            Content="{extensions:Localize Key=DrawMotion}" />
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1" Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="CanvasHolder" />
+            <InkCanvas x:Name="InkCanvas" />
+            <InkToolbar
+                x:Name="inkToolbar"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                RequestedTheme="Light"
+                TargetInkCanvas="{x:Bind InkCanvas}" />
+            <Grid
+                x:Name="ControlsBar"
+                Grid.Row="1"
+                Padding="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Storyboard x:Name="SpeedButtonStoryboardShow">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation
+                            Storyboard.TargetName="SpeedSldr"
+                            Storyboard.TargetProperty="Opacity"
+                            To="1"
+                            Duration="0:0:0.5" />
+                    </Storyboard>
+                    <Storyboard x:Name="SpeedButtonStoryboardHide">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation
+                            Storyboard.TargetName="SpeedSldr"
+                            Storyboard.TargetProperty="Opacity"
+                            To="0"
+                            Duration="0:0:0.5" />
+                    </Storyboard>
+                </Grid.Resources>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <StackPanel.Resources>
+                        <Windows10version1809:Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="Button">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Width" Value="32" />
+                            <Setter Property="Height" Value="32" />
+                            <Setter Property="CornerRadius" Value="16" />
+                        </Windows10version1809:Style>
+                    </StackPanel.Resources>
+                    <Button x:Name="RewindButton" IsEnabled="True">
+                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToStartGlyph}" />
+                    </Button>
+                    <Button
+                        x:Name="BackButton"
+                        Padding="0"
+                        IsEnabled="True">
+                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource RewindGlyph}" />
+                    </Button>
+                    <Grid>
+                        <Button
+                            x:Name="PlayButton"
+                            Width="48"
+                            Height="48"
+                            Windows10version1809:CornerRadius="24"
+                            Command="{x:Bind Model.PauseToggleCommand}"
+                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PlayGlyph}" />
+                        </Button>
+                        <Button
+                            x:Name="PauseButton"
+                            Width="48"
+                            Height="48"
+                            Windows10version1809:CornerRadius="24"
+                            Command="{x:Bind Model.PauseToggleCommand}"
+                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}">
+                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PauseGlyph}" />
+                        </Button>
+                    </Grid>
+                    <Button x:Name="ForwardButton" IsEnabled="True">
+                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
+                    </Button>
+                    <!--<Button
+                        x:Name="SkipToEndButton"
+                        Click="SkipToEnd_Click"
+                        IsEnabled="True">
+                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToEndGlyph}" />
+                    </Button>-->
+                    <Button>
+                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
+                        <!--<Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Click">
+                                <media:ControlStoryboardAction Storyboard="{StaticResource SpeedButtonStoryboard}" />
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>-->
+                    </Button>
+
+                    <Slider
+                        x:Name="SpeedSldr"
+                        Width="300"
+                        VerticalAlignment="Center"
+                        Maximum="3"
+                        Minimum="0.1"
+                        Opacity="0"
+                        StepFrequency="0.1"
+                        Visibility="Collapsed"
+                        Value="1" />
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <Button Command="{x:Bind Model.ShareCommand}">
+                        <SymbolIcon Margin="3,0,0,0" Symbol="Share" />
+                    </Button>
+                    <Button>
+                        <Button.Flyout>
+                            <Flyout>
+                                <winui:NumberBox
+                                    x:Name="StepSizeNumberBox"
+                                    Header="{extensions:Localize Key=JumpSize}"
+                                    LargeChange="0.1"
+                                    Minimum="0.1"
+                                    SmallChange="0.1"
+                                    SpinButtonPlacementMode="Inline"
+                                    Value="{x:Bind Model.StepSize, Mode=TwoWay}" />
+                            </Flyout>
+                        </Button.Flyout>
+                        <SymbolIcon Symbol="Setting" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </views:BaseView>

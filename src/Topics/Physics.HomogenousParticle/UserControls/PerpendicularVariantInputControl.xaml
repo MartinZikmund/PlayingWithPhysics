@@ -23,13 +23,17 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Náboj částice q" Margin="0,0,16,0"/>
-        <winui:NumberBox x:Name="ChargeNumberBox" Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="-3" Maximum="3" Value="{x:Bind Model.Charge, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        <!--<winui:NumberBox x:Name="ChargeNumberBox" Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="-3" Maximum="3" Value="{x:Bind Model.Charge, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>-->
+        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
+            <ComboBoxItem Content="+1" Tag="1"></ComboBoxItem>
+            <ComboBoxItem Content="-1" Tag="-1"></ComboBoxItem>
+        </ComboBox>
 
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Orientace indukčních čar B" Margin="0,0,16,0"/>
-        <winui:NumberBox x:Name="OrientationNumberBox" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="360" Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        <winui:NumberBox x:Name="OrientationNumberBox" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  SmallChange="10" Minimum="0" Maximum="350" Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">n</Run></TextBlock>
-        <winui:NumberBox x:Name="VelocityNumberBox" Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Value="{x:Bind Model.Velocity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">6</Run> * n</TextBlock>
+        <winui:NumberBox x:Name="VelocityNumberBox" Minimum="1" Maximum="10" Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Value="{x:Bind Model.Velocity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,16,0">Úhel rychlosti</TextBlock>
         <winui:NumberBox x:Name="AngleNumberBox" Margin="0,0,0,8" Grid.Row="3" Grid.Column="1" Value="{x:Bind Model.Angle, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>

@@ -19,7 +19,7 @@ namespace Physics.InclinedPlane.Core
 
         protected override async Task NavigateToFirstViewModel(object hint = null)
         {
-            await NavigationService.Navigate<MainViewModel>();
+            await NavigationService.Navigate<MainMenuViewModel>();
         }
     }
 }

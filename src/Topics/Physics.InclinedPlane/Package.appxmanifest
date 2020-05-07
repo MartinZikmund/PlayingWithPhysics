@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="8e3791b9-d011-4c69-b245-33fdf8b464ef"
+    Name="InclinedPlane"
     Publisher="CN=danie"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="8e3791b9-d011-4c69-b245-33fdf8b464ef" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Physics.InclinedPlane</DisplayName>
+    <DisplayName>ms-resource:AppName</DisplayName>
     <PublisherDisplayName>danie</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Physics.InclinedPlane.App">
       <uap:VisualElements
-        DisplayName="Physics.InclinedPlane"
+        DisplayName="ms-resource:AppName"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Physics.InclinedPlane"

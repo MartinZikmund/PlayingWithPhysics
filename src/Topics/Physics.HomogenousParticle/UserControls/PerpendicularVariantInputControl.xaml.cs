@@ -25,9 +25,9 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += PerpendicularVariantInputControl_DataContextChanged;
-            ChargeNumberBox.SetupFormatting(smallChange: 0.1);
-            OrientationNumberBox.SetupFormatting();
-            VelocityNumberBox.SetupFormatting(smallChange: 0.1);
+            //ChargeNumberBox.SetupFormatting(smallChange: 0.1);
+            OrientationNumberBox.SetupFormatting(smallChange: 10);
+            VelocityNumberBox.SetupFormatting(smallChange: 1);
             AngleNumberBox.SetupFormatting();
         }
 
