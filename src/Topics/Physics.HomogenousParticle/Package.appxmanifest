@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="4ff98264-5784-4465-bd10-0a56c287055c"
-    Publisher="CN=danie"
-    Version="1.0.0.0" />
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsMagnet"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.5.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="4ff98264-5784-4465-bd10-0a56c287055c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="768a70bb-08d5-4494-babd-a5989b1ad05f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>
-    <PublisherDisplayName>danie</PublisherDisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

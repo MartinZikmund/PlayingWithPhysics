@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Movement in Homogenous Magnetic Field</value>
+    <value>Playing with Physics: Magnetic Field</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Movement in Homogenous Magnetic Field</value>
+    <value>Magnetic Field</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Easy difficulty</value>
