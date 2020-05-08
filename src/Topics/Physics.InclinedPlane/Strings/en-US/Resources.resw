@@ -117,31 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Add motion</value>
+  </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá varianta</value>
+    <value>Advanced difficulty</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby po nakloněné rovině</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Zrušit</value>
+    <value>Playing with Physics: Inclined Plane</value>
   </data>
   <data name="DrawMotion" xml:space="preserve">
-    <value>Vykresli pohyb</value>
+    <value>Draw motion</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní varianta</value>
+    <value>Easy difficulty</value>
   </data>
   <data name="Game" xml:space="preserve">
-    <value>Hra</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Uložit</value>
+    <value>Game</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyby po nakloněné rovině</value>
+    <value>Inclined Plane</value>
   </data>
   <data name="StudyText" xml:space="preserve">
-    <value>Studijní text</value>
+    <value>Study text</value>
   </data>
 </root>
