@@ -1,6 +1,5 @@
 ﻿using Physics.HomogenousParticle.Rendering;
 using Physics.HomogenousParticle.Services;
-using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

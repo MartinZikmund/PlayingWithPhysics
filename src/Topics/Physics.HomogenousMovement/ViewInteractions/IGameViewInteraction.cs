@@ -1,6 +1,6 @@
 ﻿using Physics.HomogenousMovement.Rendering;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.Services.Sounds;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.ViewInteractions
 {

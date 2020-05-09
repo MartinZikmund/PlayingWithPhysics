@@ -17,9 +17,10 @@ using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared.Helpers;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.Views;
 using Physics.Shared.Services.Sounds;
+using Physics.Shared.UI.Helpers;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

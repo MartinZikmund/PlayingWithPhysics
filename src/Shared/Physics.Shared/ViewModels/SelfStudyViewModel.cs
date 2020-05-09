@@ -1,10 +1,10 @@
-﻿using Physics.Shared.Models.Navigation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Physics.Shared.UI.Models.Navigation;
 
 namespace Physics.Shared.ViewModels
 {

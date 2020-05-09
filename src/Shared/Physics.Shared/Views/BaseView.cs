@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Base;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
-using Physics.Shared.Infrastructure.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
+using Physics.Shared.UI.Infrastructure.Interactions;
 
 namespace Physics.Shared.Views
 {

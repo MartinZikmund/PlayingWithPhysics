@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

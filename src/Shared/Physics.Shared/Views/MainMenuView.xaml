@@ -156,7 +156,7 @@
                         Height="160"
                         Margin="0,12,0,12"
                         HorizontalAlignment="Center"
-                        Source="ms-appx:///Physics.Shared/Assets/logo.png" />
+                        Source="ms-appx:///Physics.Shared.UI/Assets/logo.png" />
                     <StackPanel
                         Grid.Row="1"
                         Grid.Column="1"

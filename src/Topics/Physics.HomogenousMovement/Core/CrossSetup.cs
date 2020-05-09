@@ -6,12 +6,12 @@ using Physics.HomogenousMovement.Infrastructure.Topics;
 using Physics.HomogenousMovement.Models;
 using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared;
-using Physics.Shared.Infrastructure.Setup;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.ViewModels;
 using System.Collections.Generic;
 using System.Reflection;
 using Windows.ApplicationModel.Activation;
+using Physics.Shared.UI.Infrastructure.Setup;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.Core
 {

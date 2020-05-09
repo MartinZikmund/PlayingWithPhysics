@@ -1,11 +1,7 @@
-﻿using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MvvmCross.ViewModels;
 
-namespace Physics.Shared.Infrastructure.Interactions
+namespace Physics.Shared.UI.Infrastructure.Interactions
 {
     /// <summary>
     /// Represents an awaitable MvvmCross interaction

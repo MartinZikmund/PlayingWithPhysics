@@ -1,17 +1,12 @@
-﻿using MathNet.Spatial.Euclidean;
-using Microsoft.Graphics.Canvas.Geometry;
-using Microsoft.Graphics.Canvas.UI.Xaml;
+﻿using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousParticle.Services;
 using Physics.Shared.Helpers;
-using Physics.Shared.Rendering;
+using Physics.Shared.Logic.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Numerics;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.UI;
+using Physics.Shared.UI.Rendering;
 using Color = Windows.UI.Color;
 
 namespace Physics.HomogenousParticle.Rendering
@@ -67,7 +62,7 @@ namespace Physics.HomogenousParticle.Rendering
         {
             var semiTransparentColor = Color.FromArgb(125, color.R, color.G, color.B);
             // calculate perpendicular line through the simulation center
-            var center = new Point2D(_canvasAnimatedControl.Size.Width / 2f, _canvasAnimatedControl.Size.Height / 2f);
+            var center = new Point2d((float)_canvasAnimatedControl.Size.Width / 2f, (float)_canvasAnimatedControl.Size.Height / 2f);
             var perpendicularAngle = angle - 90;
             var perpendicularLine = CalculatePointLineUnderAngle(perpendicularAngle, center);
             var normalized = perpendicularLine.Direction;
@@ -77,7 +72,7 @@ namespace Physics.HomogenousParticle.Rendering
                 var upX = center.X + normalized.X * i * ArrowDistance;
                 var upY = center.Y + normalized.Y * i * ArrowDistance;
 
-                var upLine = CalculatePointLineUnderAngle(angle, new Point2D(upX, upY));
+                var upLine = CalculatePointLineUnderAngle(angle, new Point2d(upX, upY));
                 DrawInductionArrow(upLine, angle, semiTransparentColor, args);
 
                 if (i != 0)
@@ -85,7 +80,7 @@ namespace Physics.HomogenousParticle.Rendering
                     var inverseX = center.X - normalized.X * i * ArrowDistance;
                     var inverseY = center.Y - normalized.Y * i * ArrowDistance;
 
-                    var inverseLine = CalculatePointLineUnderAngle(angle, new Point2D(inverseX, inverseY));
+                    var inverseLine = CalculatePointLineUnderAngle(angle, new Point2d(inverseX, inverseY));
                     DrawInductionArrow(inverseLine, angle, semiTransparentColor, args);
                 }
 
@@ -111,30 +106,30 @@ namespace Physics.HomogenousParticle.Rendering
             //      TODO: draw arrows
         }
 
-        private void DrawInductionArrow(Line2D line, double angle, Color color, CanvasAnimatedDrawEventArgs args)
+        private void DrawInductionArrow(Line2d line, double angle, Color color, CanvasAnimatedDrawEventArgs args)
         {
             angle = ((angle % 360.0) + 360) % 360.0;
-            var touchPoints = new List<Point2D>();
+            var touchPoints = new List<Point2d>();
 
-            var intersectionBottom = line.IntersectWith(new Line2D(new Point2D(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom), new Point2D(_simulationBoundsInPixels.Left + 1, _simulationBoundsInPixels.Bottom)));
+            var intersectionBottom = line.IntersectWith(new Line2d(new Point2d(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom), new Point2d(_simulationBoundsInPixels.Left + 1, _simulationBoundsInPixels.Bottom)));
             if (intersectionBottom != null && _simulationBoundsInPixels.Left <= intersectionBottom.Value.X && intersectionBottom.Value.X <= _simulationBoundsInPixels.Right)
             {
                 touchPoints.Add(intersectionBottom.Value);
             }
 
-            var intersectionTop = line.IntersectWith(new Line2D(new Point2D(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top), new Point2D(_simulationBoundsInPixels.Left + 1, _simulationBoundsInPixels.Top)));
+            var intersectionTop = line.IntersectWith(new Line2d(new Point2d(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top), new Point2d(_simulationBoundsInPixels.Left + 1, _simulationBoundsInPixels.Top)));
             if (intersectionTop != null && _simulationBoundsInPixels.Left <= intersectionTop.Value.X && intersectionTop.Value.X <= _simulationBoundsInPixels.Right)
             {
                 touchPoints.Add(intersectionTop.Value);
             }
 
-            var intersectionLeft = line.IntersectWith(new Line2D(new Point2D(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom), new Point2D(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom + 1)));
+            var intersectionLeft = line.IntersectWith(new Line2d(new Point2d(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom), new Point2d(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom + 1)));
             if (intersectionLeft != null && intersectionLeft.Value.Y != _simulationBoundsInPixels.Bottom && intersectionLeft.Value.Y != _simulationBoundsInPixels.Top &&
                  _simulationBoundsInPixels.Bottom >= intersectionLeft.Value.Y && intersectionLeft.Value.Y >= _simulationBoundsInPixels.Top)
             {
                 touchPoints.Add(intersectionLeft.Value);
             }
-            var intersectionRight = line.IntersectWith(new Line2D(new Point2D(_simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom), new Point2D(_simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom + 1)));
+            var intersectionRight = line.IntersectWith(new Line2d(new Point2d(_simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom), new Point2d(_simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom + 1)));
             if (intersectionRight != null && intersectionRight.Value.Y != _simulationBoundsInMeters.Bottom && intersectionRight.Value.Y != _simulationBoundsInPixels.Top &&
                  _simulationBoundsInPixels.Bottom >= intersectionRight.Value.Y && intersectionRight.Value.Y >= _simulationBoundsInPixels.Top)
             {
@@ -223,15 +218,15 @@ namespace Physics.HomogenousParticle.Rendering
             args.DrawingSession.DrawLine(secondPoint, point, color, 2f);
         }
 
-        private Line2D CalculatePointLineUnderAngle(double angle, Point2D point)
+        private Line2d CalculatePointLineUnderAngle(double angle, Point2d point)
         {
             var a = Math.Tan(MathHelpers.DegreesToRadians(-(float)angle));
             var b = point.Y - a * point.X;
 
             var x1 = point.X + 1;
-            var y1 = a * x1 + b;
+            var y1 = (float)a * x1 + (float)b;
 
-            return new Line2D(new Point2D(point.X, point.Y), new Point2D(x1, y1));
+            return new Line2d(new Point2d(point.X, point.Y), new Point2d(x1, y1));
         }
     }
 }

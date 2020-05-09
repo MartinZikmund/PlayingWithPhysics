@@ -3,6 +3,7 @@ using Physics.HomogenousMovement.ViewModels;
 using Physics.Shared.Helpers;
 using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;
+using Physics.Shared.UI.Helpers;
 
 namespace Physics.HomogenousMovement.Dialogs
 {

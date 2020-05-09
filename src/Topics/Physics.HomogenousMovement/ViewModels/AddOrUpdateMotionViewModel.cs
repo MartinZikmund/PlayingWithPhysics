@@ -8,12 +8,12 @@ using System.Numerics;
 using Windows.UI;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Windows.UI.Xaml;
-using Physics.Shared.Infrastructure.Topics;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.ViewModels
 {

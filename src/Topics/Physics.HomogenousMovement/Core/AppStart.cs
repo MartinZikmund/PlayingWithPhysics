@@ -2,11 +2,11 @@
 using MvvmCross.ViewModels;
 using Physics.HomogenousMovement.Models;
 using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.ViewModels;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.Core
 {

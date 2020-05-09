@@ -1,21 +1,16 @@
-﻿using MvvmCross;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Uap.Core;
-using MvvmCross.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
-using Physics.Shared.Services.Preferences;
-using Physics.Shared.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
+using Physics.Shared.Services.Preferences;
 using Physics.Shared.Services.Sounds;
+using Physics.Shared.ViewModels;
 
-namespace Physics.Shared.Infrastructure.Setup
+namespace Physics.Shared.UI.Infrastructure.Setup
 {
     public abstract class DefaultAppSetup<T> : MvxWindowsSetup<T>
         where T : class, IMvxApplication, new()

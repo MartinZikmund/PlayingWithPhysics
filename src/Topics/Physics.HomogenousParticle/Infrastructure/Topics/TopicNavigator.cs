@@ -1,8 +1,8 @@
 ﻿using MvvmCross.Navigation;
 using Physics.HomogenousParticle.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Threading.Tasks;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousParticle.Infrastructure.Topics
 {

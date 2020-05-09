@@ -1,8 +1,7 @@
-﻿using System.Windows.Input;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Physics.Shared.Controls
+namespace Physics.Shared.UI.Controls
 {
     public sealed partial class SimulationControls : UserControl
     {

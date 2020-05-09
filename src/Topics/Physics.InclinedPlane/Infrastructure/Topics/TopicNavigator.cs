@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Navigation;
 using Physics.Shared.Logic;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.InclinedPlane.ViewModels;
 using Physics.InclinedPlane.Views;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.InclinedPlane.Infrastructure.Topics
 {

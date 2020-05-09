@@ -1,5 +1,4 @@
 ﻿using Physics.HomogenousMovement.Views;
-using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

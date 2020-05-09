@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj" />
+    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.csproj" />
   </ItemGroup>
 
 </Project>

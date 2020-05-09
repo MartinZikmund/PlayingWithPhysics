@@ -280,9 +280,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MathNet.Spatial">
-      <Version>0.5.0</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter">
       <Version>3.1.0</Version>
     </PackageReference>
@@ -318,9 +315,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.csproj">
-      <Project>{80C65FA4-C269-470B-9499-0D26A549E2FA}</Project>
+    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.csproj">
+      <Project>{627635C3-AD48-4CC1-960D-F3C60D8E3C3B}</Project>
       <Name>Physics.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.UI.csproj">
+      <Project>{80C65FA4-C269-470B-9499-0D26A549E2FA}</Project>
+      <Name>Physics.Shared.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Physics.HomongenousParticle.Logic\Physics.HomongenousParticle.Logic.csproj">
       <Project>{85553a30-6c09-40f6-8caf-9ce69f08b2c4}</Project>

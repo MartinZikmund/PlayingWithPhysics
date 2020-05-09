@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MvvmCross.Platforms.Uap.Presenters;
+﻿using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
 
-namespace Physics.Shared.Infrastructure
+namespace Physics.Shared.UI.Infrastructure
 {
     public class DefaultViewPresenter : MvxWindowsViewPresenter
     {

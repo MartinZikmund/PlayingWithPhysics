@@ -1,11 +1,7 @@
-﻿using Microsoft.Graphics.Canvas.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Graphics.Canvas.UI;
 
-namespace Physics.Shared.Rendering
+namespace Physics.Shared.UI.Rendering
 {
     public class SimulationTime
     {

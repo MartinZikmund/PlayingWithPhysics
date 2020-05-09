@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Physics.Shared.Infrastructure.Topics;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.Models
 {

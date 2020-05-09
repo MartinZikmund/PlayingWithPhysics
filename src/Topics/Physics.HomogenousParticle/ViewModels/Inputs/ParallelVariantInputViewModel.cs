@@ -19,20 +19,18 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
                 await new MessageDialog("Náboj nesmí být 0").ShowAsync();
                 return null;
             }
-            return new ParallelMotionSetup(Velocity, (float)Convert.ToInt32(AngleItem.Tag), Charge, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new ParallelMotionSetup(Velocity, (int)SelectedOrientation, Charge, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
         public float Velocity { get; set; } // 10^n: 2<=n<=6
 
-        public float Angle
+        public ParallelVariantOrientation[] VariantOrientations { get; } = new ParallelVariantOrientation[]
         {
-            get
-            {
-                return (float)AngleItem.Tag;
-            }
-        }
+            ParallelVariantOrientation.Normal,
+            ParallelVariantOrientation.Opposite
+        };
 
-        public ComboBoxItem AngleItem { get; set; }
+        public ParallelVariantOrientation SelectedOrientation { get; set; }
 
         public float Charge { get; set; } = 0.1f; // -3<=q<=3, not 0
 
@@ -43,7 +41,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
     public enum ParallelVariantOrientation
     {
-        Alongside = 0,
-        TheOtherWay = 1
+        Normal = 0,
+        Opposite = 180
     }
 }

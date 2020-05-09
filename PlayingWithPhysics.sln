@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Topics", "Topics", "{381E61
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{892E4AFA-6526-4CA8-BB3F-B47C8F293C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.Shared", "src\Shared\Physics.Shared\Physics.Shared.csproj", "{80C65FA4-C269-470B-9499-0D26A549E2FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.Shared.UI", "src\Shared\Physics.Shared\Physics.Shared.UI.csproj", "{80C65FA4-C269-470B-9499-0D26A549E2FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.HomogenousMovement", "src\Topics\Physics.HomogenousMovement\Physics.HomogenousMovement.csproj", "{3C77F98D-CFDA-416E-8B59-6F866EE6C0AD}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_HomogenousMovement", "01
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.HomogenousMovement.Logic", "src\Topics\Physics.HomogenousMovements.Logic\Physics.HomogenousMovement.Logic.csproj", "{B6D4F82A-CDE3-4797-B2C3-45A18FDADC85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.Shared.Logic", "src\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj", "{627635C3-AD48-4CC1-960D-F3C60D8E3C3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.Shared", "src\Shared\Physics.Shared.Logic\Physics.Shared.csproj", "{627635C3-AD48-4CC1-960D-F3C60D8E3C3B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.HomogenousMovement.Logic.Tests", "tests\Topics\Physics.HomogenousMovement.Logic.Tests\Physics.HomogenousMovement.Logic.Tests.csproj", "{21F1B8EE-FCA1-43F2-BC94-34D6E014F33F}"
 EndProject

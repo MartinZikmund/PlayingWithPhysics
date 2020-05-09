@@ -1,10 +1,9 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
-using MvvmCross.Base;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Graphics.Canvas.UI.Xaml;
+using MvvmCross.Base;
 
-namespace Physics.Shared.Infrastructure.Interactions
+namespace Physics.Shared.UI.Infrastructure.Interactions
 {
     public class RunOnCanvasLoopHandler : IInteractionRequestHandler<RunOnCanvasLoopRequest>
     {

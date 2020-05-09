@@ -13,7 +13,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     xmlns:physicsServices="using:Physics.HomogenousMovement.PhysicsServices"
-    xmlns:sharedControls="using:Physics.Shared.Controls"
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
     xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -65,7 +64,7 @@
                                 <Image
                                     Grid.Column="1"
                                     Margin="0,0,0,20"
-                                    Source="ms-appx:///Physics.Shared/Assets/logo.png" />
+                                    Source="ms-appx:///Physics.Shared.UI/Assets/logo.png" />
                             </Grid>
                             <Button
                                 Grid.Row="1"

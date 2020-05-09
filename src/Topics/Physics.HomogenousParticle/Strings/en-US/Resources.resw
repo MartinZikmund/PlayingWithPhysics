@@ -144,4 +144,10 @@
   <data name="Radiation" xml:space="preserve">
     <value>Radiation</value>
   </data>
+  <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
+    <value>Opposite</value>
+  </data>
 </root>

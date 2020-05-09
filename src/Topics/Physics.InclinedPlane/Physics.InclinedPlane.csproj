@@ -201,13 +201,13 @@
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.Logic.csproj">
+    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.csproj">
       <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
-      <Name>Physics.Shared.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.csproj">
-      <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
       <Name>Physics.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.UI.csproj">
+      <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
+      <Name>Physics.Shared.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

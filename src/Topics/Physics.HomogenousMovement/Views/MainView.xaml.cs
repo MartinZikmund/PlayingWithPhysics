@@ -11,9 +11,7 @@ using Windows.UI.Xaml.Input;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousMovement.PhysicsServices;
 using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Controls;
 using Microsoft.Graphics.Canvas.Brushes;
-using Physics.Shared.Infrastructure.Interactions;
 using Physics.Shared.Views;
 using Physics.HomogenousMovement.Rendering;
 using Windows.Globalization.NumberFormatting;
@@ -23,7 +21,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Navigation;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.Shared.Helpers;
-using Physics.Shared.Infrastructure.Topics;
+using Physics.Shared.UI.Helpers;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement
 {

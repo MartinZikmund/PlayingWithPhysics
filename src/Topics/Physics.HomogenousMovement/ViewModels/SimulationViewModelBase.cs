@@ -21,10 +21,10 @@ using Physics.HomogenousMovement.PhysicsServices;
 using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.HomogenousMovement.Views;
-using Physics.Shared.Infrastructure.Topics;
 using Physics.Shared.ViewModels;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Physics.Shared.Services.Preferences;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.ViewModels
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Physics.Shared.Rendering
+﻿namespace Physics.Shared.UI.Rendering
 {
     public struct SimulationBounds
     {

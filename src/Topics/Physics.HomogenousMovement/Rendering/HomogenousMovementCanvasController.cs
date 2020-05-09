@@ -4,7 +4,6 @@ using Microsoft.Graphics.Canvas.Geometry;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousMovement.PhysicsServices;
-using Physics.Shared.Rendering;
 using System;
 using System.Diagnostics;
 using System.Numerics;
@@ -20,6 +19,7 @@ using Physics.HomogenousMovement.ViewModels;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI.Xaml;
+using Physics.Shared.UI.Rendering;
 
 namespace Physics.HomogenousMovement.Rendering
 {

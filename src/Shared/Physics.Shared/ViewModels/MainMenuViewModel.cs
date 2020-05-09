@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.Shared.ViewModels
 {

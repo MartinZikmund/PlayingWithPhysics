@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Physics.Shared.Converters
+namespace Physics.Shared.UI.Converters
 {
     public class NativeBoolToVisibilityConverter : MvxNativeValueConverter<MvxVisibilityValueConverter>
     {

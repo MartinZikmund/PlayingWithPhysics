@@ -1,10 +1,8 @@
-﻿using Microsoft.Graphics.Canvas.UI;
-using Microsoft.Graphics.Canvas.UI.Xaml;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 
-namespace Physics.Shared.Rendering
+namespace Physics.Shared.UI.Rendering
 {
     public interface ICanvasController : IDisposable
     {

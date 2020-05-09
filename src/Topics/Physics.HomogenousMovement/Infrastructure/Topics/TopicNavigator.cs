@@ -1,12 +1,12 @@
 ﻿using MvvmCross.Navigation;
 using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Infrastructure.Topics;
 using System;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.System;
 using Physics.HomogenousMovement.Models;
 using Physics.SelfStudy;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {
