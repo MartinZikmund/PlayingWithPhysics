@@ -39,9 +39,7 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
             DataContextChanged += MainMenuView_DataContextChanged;
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
-            this.Unloaded += MainView_Unloaded;
-            StepSizeNumberBox.SetupFormatting();
-            ControlsBar.Translation += new Vector3(0, 0, 32);
+            this.Unloaded += MainView_Unloaded;            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -68,49 +66,37 @@ namespace Physics.HomogenousMovement
             }
         }
 
-        private void Pause_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Pause();
-            PlayButton.Visibility = Visibility.Visible;
-            PauseButton.Visibility = Visibility.Collapsed;
-        }
+        //private void Pause_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _canvasController.Pause();
+        //    PlayButton.Visibility = Visibility.Visible;
+        //    PauseButton.Visibility = Visibility.Collapsed;
+        //}
 
-        private void Play_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Play();            
-        }
-        private void Backward_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Rewind(Model.StepSize);
-        }
+        //private void Play_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _canvasController.Play();            
+        //}
+        //private void Backward_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _canvasController.Rewind(Model.StepSize);
+        //}
 
-        private void Forward_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.FastForward(Model.StepSize);
-        }
+        //private void Forward_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _canvasController.FastForward(Model.StepSize);
+        //}
 
-        private void SpeedSldr_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
-        {
-            if (_canvasController != null)
-                _canvasController.SimulationTime.SimulationSpeed = (float)SpeedSldr.Value;
-        }
+        //private void SpeedSldr_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        //{
+        //    if (_canvasController != null)
+        //        _canvasController.SimulationTime.SimulationSpeed = (float)SpeedSldr.Value;
+        //}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (SpeedSldr.Opacity == 0)
-            {
-                SpeedButtonStoryboardShow.Begin();
-            }
-            else
-            {
-                SpeedButtonStoryboardHide.Begin();
-            }
-        }
-
-        private void Rewind_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.SimulationTime.Restart();
-        }
+        //private void Rewind_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _canvasController.SimulationTime.Restart();
+        //}
 
         public HomogenousMovementCanvasController Initialize(DifficultyOption difficulty)
         {

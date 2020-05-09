@@ -13,6 +13,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     xmlns:physicsServices="using:Physics.HomogenousMovement.PhysicsServices"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
     xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -252,140 +253,7 @@
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <Grid
-                x:Name="ControlsBar"
-                Grid.Row="1"
-                Padding="12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.Resources>
-                    <Storyboard x:Name="SpeedButtonStoryboardShow">
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimation
-                            Storyboard.TargetName="SpeedSldr"
-                            Storyboard.TargetProperty="Opacity"
-                            To="1"
-                            Duration="0:0:0.5" />
-                    </Storyboard>
-                    <Storyboard x:Name="SpeedButtonStoryboardHide">
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimation
-                            Storyboard.TargetName="SpeedSldr"
-                            Storyboard.TargetProperty="Opacity"
-                            To="0"
-                            Duration="0:0:0.5" />
-                    </Storyboard>
-                </Grid.Resources>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <StackPanel.Resources>
-                        <Windows10version1809:Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="Button">
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Width" Value="32" />
-                            <Setter Property="Height" Value="32" />
-                            <Setter Property="CornerRadius" Value="16" />
-                        </Windows10version1809:Style>
-                    </StackPanel.Resources>
-                    <Button
-                        x:Name="RewindButton"
-                        Click="Rewind_Click"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToStartGlyph}" />
-                    </Button>
-                    <Button
-                        x:Name="BackButton"
-                        Padding="0"
-                        Click="Backward_Click"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource RewindGlyph}" />
-                    </Button>
-                    <Grid>
-                        <Button
-                            x:Name="PlayButton"
-                            Width="48"
-                            Height="48"
-                            Windows10version1809:CornerRadius="24"
-                            Command="{x:Bind Model.PauseToggleCommand}"
-                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PlayGlyph}" />
-                        </Button>
-                        <Button
-                            x:Name="PauseButton"
-                            Width="48"
-                            Height="48"
-                            Windows10version1809:CornerRadius="24"
-                            Command="{x:Bind Model.PauseToggleCommand}"
-                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}">
-                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PauseGlyph}" />
-                        </Button>
-                    </Grid>
-                    <Button
-                        x:Name="ForwardButton"
-                        Click="Forward_Click"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
-                    </Button>
-                    <!--<Button
-                        x:Name="SkipToEndButton"
-                        Click="SkipToEnd_Click"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToEndGlyph}" />
-                    </Button>-->
-                    <Button Click="Button_Click">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
-                        <!--<Interactivity:Interaction.Behaviors>
-                            <Core:EventTriggerBehavior EventName="Click">
-                                <media:ControlStoryboardAction Storyboard="{StaticResource SpeedButtonStoryboard}" />
-                            </Core:EventTriggerBehavior>
-                        </Interactivity:Interaction.Behaviors>-->
-                    </Button>
-
-                    <Slider
-                        x:Name="SpeedSldr"
-                        Width="300"
-                        VerticalAlignment="Center"
-                        Maximum="3"
-                        Minimum="0.1"
-                        Opacity="0"
-                        StepFrequency="0.1"
-                        ValueChanged="SpeedSldr_ValueChanged"
-                        Visibility="Collapsed"
-                        Value="1" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Column="1"
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <Button Command="{x:Bind Model.ShareCommand}">
-                        <SymbolIcon Margin="3,0,0,0" Symbol="Share" />
-                    </Button>
-                    <Button>
-                        <Button.Flyout>
-                            <Flyout>
-                                <winui:NumberBox
-                                    x:Name="StepSizeNumberBox"
-                                    Header="{extensions:Localize Key=JumpSize}"
-                                    LargeChange="0.1"
-                                    Minimum="0.1"
-                                    SmallChange="0.1"
-                                    SpinButtonPlacementMode="Inline"
-                                    Value="{x:Bind Model.StepSize, Mode=TwoWay}" />
-                            </Flyout>
-                        </Button.Flyout>
-                        <SymbolIcon Symbol="Setting" />
-                    </Button>
-                </StackPanel>
-            </Grid>
+            <sharedControls:SimulationControls Grid.Row="1" />
         </Grid>
     </Grid>
 </views:BaseView>

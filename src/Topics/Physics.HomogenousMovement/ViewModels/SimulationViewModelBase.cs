@@ -102,6 +102,7 @@ namespace Physics.HomogenousMovement.ViewModels
         public bool IsAdvanced => Difficulty == DifficultyOption.Advanced;
 
         public float StepSize { get; set; } = 0.1f;
+
         public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
 
         public bool DrawTrajectoriesContinously { get; set; } = true;
