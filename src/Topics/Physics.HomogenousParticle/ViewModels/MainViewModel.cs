@@ -101,7 +101,6 @@ namespace Physics.HomogenousParticle.ViewModels
 
         private void PauseToggle()
         {
-            throw new NotImplementedException();
             IsPaused = !IsPaused;
             if (IsPaused)
             {

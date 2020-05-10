@@ -66,37 +66,7 @@ namespace Physics.HomogenousMovement
             }
         }
 
-        //private void Pause_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _canvasController.Pause();
-        //    PlayButton.Visibility = Visibility.Visible;
-        //    PauseButton.Visibility = Visibility.Collapsed;
-        //}
-
-        //private void Play_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _canvasController.Play();            
-        //}
-        //private void Backward_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _canvasController.Rewind(Model.StepSize);
-        //}
-
-        //private void Forward_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _canvasController.FastForward(Model.StepSize);
-        //}
-
-        //private void SpeedSldr_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
-        //{
-        //    if (_canvasController != null)
-        //        _canvasController.SimulationTime.SimulationSpeed = (float)SpeedSldr.Value;
-        //}
-
-        //private void Rewind_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _canvasController.SimulationTime.Restart();
-        //}
+        
 
         public HomogenousMovementCanvasController Initialize(DifficultyOption difficulty)
         {

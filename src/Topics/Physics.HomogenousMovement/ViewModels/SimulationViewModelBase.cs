@@ -25,6 +25,7 @@ using Physics.Shared.ViewModels;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Physics.Shared.Services.Preferences;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.ViewModels;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
@@ -45,6 +46,8 @@ namespace Physics.HomogenousMovement.ViewModels
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             _timer.Tick += _timer_Tick;
         }
+
+        public SimulationPlaybackViewModel SimulationPlayback { get; } = new SimulationPlaybackViewModel();
 
         public virtual bool PauseAfterChanges
         {
@@ -124,7 +127,6 @@ namespace Physics.HomogenousMovement.ViewModels
                 }
             }
         }
-
 
         public ObservableCollection<MotionInfoViewModel> Motions { get; } =
             new ObservableCollection<MotionInfoViewModel>();

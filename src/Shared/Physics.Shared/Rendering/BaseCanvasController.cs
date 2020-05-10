@@ -10,7 +10,6 @@ namespace Physics.Shared.UI.Rendering
     public abstract class BaseCanvasController : ICanvasController
     {
         private bool _simluationInitiated = false;
-        private bool _simulationPaused = false;
 
         protected CanvasAnimatedControl _canvasAnimatedControl;
 
@@ -20,13 +19,15 @@ namespace Physics.Shared.UI.Rendering
             _canvasAnimatedControl.Draw += Draw;
             _canvasAnimatedControl.Update += CanvasUpdate;
             _canvasAnimatedControl.CreateResources += CreateResources;
-        }        
+        }      
+        
+        public bool IsPaused { get; private set; }
 
         public SimulationTime SimulationTime { get; } = new SimulationTime();
 
-        public void Play() => _simulationPaused = false;
+        public void Play() => IsPaused = false;
 
-        public void Pause() => _simulationPaused = true;        
+        public void Pause() => IsPaused = true;        
 
         public void Rewind(float time)
         {
@@ -53,7 +54,7 @@ namespace Physics.Shared.UI.Rendering
 
         private void CanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            if (!_simulationPaused && _simluationInitiated)
+            if (!IsPaused && _simluationInitiated)
             {
                 SimulationTime.UpdateFromCanvas(args.Timing);
             }

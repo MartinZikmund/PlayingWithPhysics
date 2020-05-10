@@ -39,6 +39,7 @@ namespace Physics.HomogenousMovement.ViewModels
         {
             _mainViewInteraction = mainViewInteraction;
             _controller = _mainViewInteraction.Initialize(Difficulty);
+            SimulationPlayback.SetController(_controller);
             if (_startWithController)
             {
                 await Task.Delay(1000);

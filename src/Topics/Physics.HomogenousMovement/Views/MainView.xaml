@@ -253,7 +253,17 @@
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <sharedControls:SimulationControls Grid.Row="1" />
+            <sharedControls:SimulationControls
+                Grid.Row="1"
+                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
+                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}" />
         </Grid>
     </Grid>
 </views:BaseView>
