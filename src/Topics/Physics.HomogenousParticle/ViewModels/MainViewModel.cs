@@ -66,7 +66,9 @@ namespace Physics.HomogenousParticle.ViewModels
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {                
-                if (SelectedVariant == VelocityVariant.Zero || SelectedVariant == VelocityVariant.Parallel)
+                if (SelectedVariant == VelocityVariant.Zero || 
+                    SelectedVariant == VelocityVariant.Parallel || 
+                    SelectedVariant == VelocityVariant.Perpendicular)
                 {
                     Motions.Clear();
                 }

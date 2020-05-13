@@ -17,7 +17,7 @@
         <usercontrols:PerpendicularVariantInputControl />
     </DataTemplate>
 
-    <DataTemplate x:Key="GreekVariantInputDataTemplate">
-        <usercontrols:GreekVariantInputControl />
+    <DataTemplate x:Key="RadiationVariantInputDataTemplate">
+        <usercontrols:RadiationVariantInputControl />
     </DataTemplate>
 </ResourceDictionary>

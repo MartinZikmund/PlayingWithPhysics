@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:inputs="using:Physics.HomogenousParticle.Services"
     xmlns:local="using:Physics.HomogenousParticle.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -46,16 +47,19 @@
             Margin="0,0,16,0"
             VerticalAlignment="Center"
             Text="Orientace indukčních čar B" />
-        <winui:NumberBox
-            x:Name="OrientationNumberBox"
+        <ComboBox
             Grid.Row="1"
             Grid.Column="1"
             Margin="0,0,0,8"
-            Maximum="350"
-            Minimum="0"
-            SmallChange="10"
-            SpinButtonPlacementMode="Inline"
-            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
+            HorizontalAlignment="Stretch"
+            ItemsSource="{x:Bind Model.InductionOrientations}"
+            SelectedItem="{x:Bind Model.InductionOrientation, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="inputs:PerpendicularInductionOrientation">
+                    <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <TextBlock
             Grid.Row="2"

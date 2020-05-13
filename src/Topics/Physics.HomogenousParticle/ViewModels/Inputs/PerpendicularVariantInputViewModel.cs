@@ -1,6 +1,7 @@
 ﻿using Physics.HomogenousParticle.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,13 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
         public float Charge { get; set; } // -1 nebo 1, bez velikosti
 
         public PerpendicularInductionOrientation InductionOrientation { get; set; } // 180: do papíru, 0: z papíru
+
+        public ObservableCollection<PerpendicularInductionOrientation> InductionOrientations { get; } =
+            new ObservableCollection<PerpendicularInductionOrientation>() 
+            {
+                PerpendicularInductionOrientation.FromPaper,
+                PerpendicularInductionOrientation.IntoPaper
+            };
 
         public override string Label { get; set; }
     }
