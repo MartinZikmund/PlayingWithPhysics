@@ -38,7 +38,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{x:Bind ViewModel.Chapters}" SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
+                    <ListView ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -64,22 +64,41 @@
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <ListView
-                    ItemTemplateSelector="{StaticResource ContentViewerDataTemplateSelector}"
-                    ItemsSource="{x:Bind ViewModel.SelectedChapter.Contents, Mode=OneWay}"
-                    SelectionMode="None">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                <Grid>
+                    <ListView
+                        Header="{x:Bind ViewModel.SelectedChapter.Title, Mode=OneWay}"
+                        ItemTemplateSelector="{StaticResource ContentViewerDataTemplateSelector}"
+                        ItemsSource="{x:Bind ViewModel.SelectedChapter.Contents, Mode=OneWay}"
+                        SelectionMode="None">
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Padding="12"
+                                    Style="{ThemeResource HeaderTextBlockStyle}"
+                                    Text="{Binding}" />
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <!--<winui:ProgressRing
+                        Width="80"
+                        Height="80"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        IsActive="True"
+                        Visibility="{x:Bind IsLoading, Mode=OneWay}" />-->
+                </Grid>
             </SplitView.Content>
         </SplitView>
     </Grid>

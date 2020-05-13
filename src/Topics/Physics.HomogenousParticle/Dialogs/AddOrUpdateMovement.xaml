@@ -6,13 +6,16 @@
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HomogenousParticle.Dialogs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:usercontrols="using:Physics.HomogenousParticle.UserControls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Title="{extensions:Localize Key=AddMotion}"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
     mc:Ignorable="d">
+    <ContentDialog.Resources>
+        <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMotionDialog" />
+    </ContentDialog.Resources>
     <ScrollViewer
         HorizontalScrollBarVisibility="Auto"
         HorizontalScrollMode="Auto"
@@ -21,7 +24,7 @@
         <StackPanel Spacing="8">
             <ContentControl Content="{x:Bind Model, Mode=OneWay}">
                 <ContentControl.ContentTemplateSelector>
-                    <usercontrols:InputControlContentTemplateSelector/>
+                    <usercontrols:InputControlContentTemplateSelector />
                 </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </StackPanel>

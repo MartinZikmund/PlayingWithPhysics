@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-using Physics.Shared.Extensions;
-using Physics.Shared.UI.Services.Localization;
+using Physics.Shared.UI.Localization;
 
 namespace Physics.Shared.UI.Converters
 {

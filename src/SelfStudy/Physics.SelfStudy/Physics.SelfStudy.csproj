@@ -123,6 +123,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Html\HtmlHelpers.cs" />
+    <Compile Include="Html\MathWebView.xaml.cs">
+      <DependentUpon>MathWebView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Json\ContentConverter.cs" />
     <Compile Include="Models\Contents\Chapter.cs" />
     <Compile Include="Models\Contents\Abstract\MultipleChoiceQuestionContent.cs" />
@@ -204,6 +207,10 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Html\MathWebView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\SelfStudyResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,7 +232,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\cs-CZ\Resources.resw" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:html="using:Physics.SelfStudy.Html"
     xmlns:local="using:Physics.SelfStudy.Viewers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     VerticalAlignment="Stretch"
@@ -12,16 +13,6 @@
 
     <StackPanel>
         <local:ContentHeader Content="{x:Bind HtmlContent, Mode=OneWay}" />
-        <Grid x:Name="Wrapper">
-            <WebView
-                x:Name="WebView"
-                PointerWheelChanged="WebView_PointerWheelChanged"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                ScrollViewer.VerticalScrollMode="Disabled" />
-            <Border
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="Transparent" />
-        </Grid>
+        <html:MathWebView x:Name="Web" />
     </StackPanel>
 </UserControl>

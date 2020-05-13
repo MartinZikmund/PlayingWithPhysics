@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({{
+        messageStyle: "none"
+        }});
+    </script>
     <script id="MathJax-script" async src="ms-appx-web:///Physics.SelfStudy/Assets/Html/MathJax.min.js"></script>
     <link rel="stylesheet" type="text/css" href="ms-appx-web:///Physics.SelfStudy/Assets/Html/reset.css" />
     <style type="text/css">
@@ -20,6 +25,7 @@
                 Math.max(D.body.offsetHeight, D.documentElement.offsetHeight)
             );
         }}
+        MathJax.Hub.Register.StartupHook("End", function () {{ }});
     </script>
     <title>Playing with Physics</title>
 </head>

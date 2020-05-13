@@ -30,7 +30,7 @@ namespace Physics.SelfStudy
         {
             await InitializeAsync();
 
-            var resourceLoader = new ResourceLoader();
+            var resourceLoader = new ResourceLoader("Physics.SelfStudy/Resources");
 
             // open new application view
             var newWindow = await AppWindow.TryCreateAsync();
@@ -40,7 +40,7 @@ namespace Physics.SelfStudy
             // Attach the XAML content to the window.
             ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
             //newWindow.Closed += NewWindow_Closed;
-            newWindow.Title = resourceLoader.GetString("AppName");
+            newWindow.Title = resourceLoader.GetString("WindowTitle");
 
             //newWindow.TitleBar.BackgroundColor = (Application;
             //newWindow.TitleBar.ForegroundColor = Colors.White;

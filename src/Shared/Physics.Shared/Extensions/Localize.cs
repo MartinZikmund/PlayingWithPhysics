@@ -1,10 +1,4 @@
-﻿using Physics.Shared.UI.Services.Localization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
+﻿using Physics.Shared.UI.Localization;
 using Windows.UI.Xaml.Markup;
 
 namespace Physics.Shared.Extensions

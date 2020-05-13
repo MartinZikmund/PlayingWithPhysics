@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using MvvmCross.Binding.Binders;
 
-namespace Physics.Shared.UI.Services.Localization
+namespace Physics.Shared.UI.Localization
 {
     public class Localizer
     {

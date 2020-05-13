@@ -12,7 +12,7 @@ namespace Physics.Shared.UI.Controls
         {
             this.InitializeComponent();
             StepSizeNumberBox.SetupFormatting();
-            ControlsBar.Translation += new Vector3(0, 0, 32);
+            StepSizeForwardNumberBox.SetupFormatting();
         }
 
         public ICommand PlayCommand
