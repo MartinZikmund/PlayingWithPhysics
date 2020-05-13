@@ -18,7 +18,15 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource AppThemeColor}"
     mc:Ignorable="d">
-
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -45,8 +53,18 @@
                         Margin="12,0,8,0"
                         Orientation="Vertical"
                         Spacing="8">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
                         <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=ChooseVariant}" />
                         <winui:RadioButtons MaxColumns="2" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+                            <winui:RadioButtons.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                                </TransitionCollection>
+                            </winui:RadioButtons.Transitions>
                             <winui:RadioButtons.Resources>
                                 <Style TargetType="RadioButton">
                                     <Setter Property="Padding" Value="12,0,0,4" />

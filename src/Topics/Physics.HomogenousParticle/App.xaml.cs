@@ -35,6 +35,7 @@ namespace Physics.HomogenousParticle
         protected override Frame CreateFrame()
         {
             var frame = base.CreateFrame();
+            frame.Transitions.Clear();
             frame.Background = new SolidColorBrush((Color)Resources["AppThemeColor"]);
             return frame;
         }
