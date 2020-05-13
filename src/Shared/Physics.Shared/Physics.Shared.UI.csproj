@@ -133,6 +133,9 @@
     <Compile Include="Controls\SimulationControls.xaml.cs">
       <DependentUpon>SimulationControls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SkewedMenuHeader.xaml.cs">
+      <DependentUpon>SkewedMenuHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
     <Compile Include="Converters\EnumLocalizationConverter.cs" />
     <Compile Include="Converters\NativeConverters.cs" />
@@ -202,6 +205,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\SimulationControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SkewedMenuHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

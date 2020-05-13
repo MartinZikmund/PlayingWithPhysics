@@ -52,37 +52,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <Grid Height="80" Margin="0,0,0,24">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
-                                <Grid
-                                    x:Name="TitleBlock"
-                                    Grid.Column="1"
-                                    Height="80"
-                                    Margin="64,0,0,0"
-                                    HorizontalAlignment="Stretch">
-                                    <Border HorizontalAlignment="Stretch" Background="#d62633">
-                                        <Border.RenderTransform>
-                                            <SkewTransform AngleX="-40" />
-                                        </Border.RenderTransform>
-                                    </Border>
-                                    <TextBlock
-                                        x:Name="TitleTextBlock"
-                                        Margin="-12,0,52,0"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        FontWeight="Bold"
-                                        Foreground="White"
-                                        Style="{ThemeResource SubheaderTextBlockStyle}"
-                                        Text="{extensions:Localize Key=ShortAppName}"
-                                        TextAlignment="Center"
-                                        TextWrapping="Wrap" />
-                                </Grid>
-                            </Grid>
+                            <sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
                             <StackPanel Grid.Row="1">
                                 <CheckBox Content="{extensions:Localize Key=PauseAfterChanges}" IsChecked="{x:Bind Model.PauseAfterChanges, Mode=TwoWay}" />
