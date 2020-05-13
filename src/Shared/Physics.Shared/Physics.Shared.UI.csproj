@@ -164,6 +164,7 @@
     <Compile Include="Services\Sounds\SoundPlayer.cs" />
     <Compile Include="ViewModels\SelfStudyViewModel.cs" />
     <Compile Include="ViewModels\SimulationPlaybackViewModel.cs" />
+    <Compile Include="ViewModels\SimulationViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\DifficultyViewModel.cs" />
     <Compile Include="Views\BaseView.cs" />

@@ -8,8 +8,11 @@ namespace Physics.Shared.UI.ViewModels
     {
         private BaseCanvasController _canvasController;
 
-        public void SetController(BaseCanvasController canvasController) => 
+        public void SetController(BaseCanvasController canvasController)
+        {
             _canvasController = canvasController;
+            RaisePropertyChanged(nameof(IsPaused));
+        }
 
         public ICommand PlayCommand => GetOrCreateCommand(Play);
 
@@ -31,7 +34,7 @@ namespace Physics.Shared.UI.ViewModels
 
         private void JumpForward() => _canvasController.FastForward(JumpSize);
 
-        public bool IsPaused => _canvasController.IsPaused;
+        public bool IsPaused => _canvasController?.IsPaused ?? false;
 
         public float JumpSize { get; set; }
 

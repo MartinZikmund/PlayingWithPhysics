@@ -21,7 +21,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public float Charge { get; set; } // -1 nebo 1, bez velikosti
 
-        public float InductionOrientation { get; set; } // 180: do papíru, 0: z papíru
+        public PerpendicularInductionOrientation InductionOrientation { get; set; } // 180: do papíru, 0: z papíru
 
         public override string Label { get; set; }
     }

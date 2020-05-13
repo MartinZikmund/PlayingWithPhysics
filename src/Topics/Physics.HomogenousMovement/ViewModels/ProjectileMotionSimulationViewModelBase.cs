@@ -29,7 +29,7 @@ using Physics.Shared.UI.ViewModels;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
-    public abstract class SimulationViewModelBase : ViewModelBase<SimulationNavigationModel>
+    public abstract class ProjectileMotionSimulationViewModelBase : SimulationViewModelBase<SimulationNavigationModel>
     {
         private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
         private readonly IPreferences _preferences;
@@ -39,7 +39,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private LaunchInfo _launchInfo = null;
         private DispatcherTimer _timer = new DispatcherTimer();
 
-        public SimulationViewModelBase(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences)
+        public ProjectileMotionSimulationViewModelBase(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences)
         {
             _dispatcher = dispatcher;
             _preferences = preferences;
@@ -47,7 +47,6 @@ namespace Physics.HomogenousMovement.ViewModels
             _timer.Tick += _timer_Tick;
         }
 
-        public SimulationPlaybackViewModel SimulationPlayback { get; } = new SimulationPlaybackViewModel();
 
         public virtual bool PauseAfterChanges
         {

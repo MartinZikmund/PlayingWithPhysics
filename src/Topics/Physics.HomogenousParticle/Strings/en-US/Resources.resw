@@ -150,4 +150,7 @@
   <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
     <value>Opposite</value>
   </data>
+  <data name="ChooseVariant" xml:space="preserve">
+    <value>Choose variant</value>
+  </data>
 </root>

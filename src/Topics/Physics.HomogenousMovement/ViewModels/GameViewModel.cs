@@ -22,7 +22,7 @@ using Windows.UI.Xaml;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
-    public class GameViewModel : SimulationViewModelBase
+    public class GameViewModel : ProjectileMotionSimulationViewModelBase
     {
         private readonly Random _randomizer = new Random();
         private readonly ISoundPlayer _soundPlayer;

@@ -31,7 +31,7 @@ using Physics.HomogenousMovement.Services.Preferences;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
-    public class MainViewModel : SimulationViewModelBase
+    public class MainViewModel : ProjectileMotionSimulationViewModelBase
     {
         private IMainViewInteraction _mainViewInteraction;
 

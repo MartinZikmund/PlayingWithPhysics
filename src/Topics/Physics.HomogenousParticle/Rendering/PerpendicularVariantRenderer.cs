@@ -7,6 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 
 namespace Physics.HomogenousParticle.Rendering
 {
@@ -62,6 +63,33 @@ namespace Physics.HomogenousParticle.Rendering
                     _controller.DrawParticle(_currentMotionPositions[i] + drawingOffset, color, args);
                 }
             }
+        }
+
+        private void DrawInductionDirection()
+        {
+            if (_motions[0].InductionOrientation == PerpendicularInductionOrientation.FromPaper)
+            {
+                DrawInductionGrid(DrawInductionCross);
+            }
+            else
+            {
+                DrawInductionGrid(DrawInductionDot);
+            }
+        }
+
+        private void DrawInductionGrid(Action<Point> drawPoint)
+        {
+
+        }
+
+        private void DrawInductionCross(Point point)
+        {
+
+        }
+
+        private void DrawInductionDot(Point point)
+        {
+
         }
 
         private Vector2 CalculateMotionPosition(PerpendicularMotionSetup motionSetup, float radius)

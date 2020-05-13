@@ -8,7 +8,7 @@ using Windows.UI;
 
 namespace Physics.HomogenousParticle.ViewModels.Inputs
 {
-    public class GreekVariantInputViewModel : VariantInputViewModelBase
+    public class RadiationVariantInputViewModel : VariantInputViewModelBase
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {

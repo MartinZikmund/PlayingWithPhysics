@@ -3,6 +3,7 @@ using Physics.HomogenousParticle.Services;
 using Physics.HomogenousParticle.ViewInteractions;
 using Physics.HomogenousParticle.ViewModels.Inputs;
 using Physics.HomogenousParticle.Views;
+using Physics.Shared.UI.ViewModels;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Physics.HomogenousParticle.ViewModels
 {
-    public class MainViewModel : ViewModelBase<MainViewModel.NavigationModel>
+    public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
     {
         private IMainViewInteraction _interaction;
 
@@ -52,7 +53,7 @@ namespace Physics.HomogenousParticle.ViewModels
                     VariantInputViewModel = new PerpendicularVariantInputViewModel();
                     break;
                 case VelocityVariant.Greek:
-                    VariantInputViewModel = new GreekVariantInputViewModel();
+                    VariantInputViewModel = new RadiationVariantInputViewModel();
                     break;
             }
         }
@@ -91,31 +92,11 @@ namespace Physics.HomogenousParticle.ViewModels
 
         public Visibility IsSecondStepVisible { get; set; } = Visibility.Visible;
 
-        public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
-
-        public float StepSize { get; set; } = 0.1f;
-
-        public bool IsPaused { get; set; }
-
-        public ICommand PauseToggleCommand => GetOrCreateCommand(PauseToggle);
-
-        private void PauseToggle()
-        {
-            IsPaused = !IsPaused;
-            if (IsPaused)
-            {
-                //_controller.Pause();
-            }
-            else
-            {
-                //_controller.Play();
-            }
-        }
-
         private void RestartSimulation()
         {
             if (_interaction == null) return;
             var controller = _interaction.PrepareController(SelectedVariant);
+            SimulationPlayback.SetController(controller);
             controller.StartSimulation(Motions.ToArray());
         }
     }

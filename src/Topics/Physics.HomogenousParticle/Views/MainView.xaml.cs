@@ -38,7 +38,8 @@ namespace Physics.HomogenousParticle.Views
             this.InitializeComponent();
             this.Loaded += MainView_Loaded;
             DataContextChanged += MainView_DataContextChanged;
-            StepSizeNumberBox.SetupFormatting();
+            MenuPane.Translation = new System.Numerics.Vector3(0, 0, 16);
+            ((ThemeShadow)MenuPane.Shadow).Receivers.Add(SecondPane);
         }
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)

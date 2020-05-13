@@ -20,20 +20,20 @@ using Physics.Shared.UI.Helpers;
 
 namespace Physics.HomogenousParticle.UserControls
 {
-    public sealed partial class GreekVariantInputControl : UserControl
+    public sealed partial class RadiationVariantInputControl : UserControl
     {
-        public GreekVariantInputControl()
+        public RadiationVariantInputControl()
         {
             this.InitializeComponent();
-            DataContextChanged += GreekVariantInputControl_DataContextChanged;
+            DataContextChanged += RadiationVariantInputControl_DataContextChanged;
             VelocityNumberBox.SetupFormatting(smallChange: 0.1);
         }
 
-        private void GreekVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void RadiationVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (GreekVariantInputViewModel)args.NewValue;
+            Model = (RadiationVariantInputViewModel)args.NewValue;
         }
 
-        public GreekVariantInputViewModel Model { get; private set; }
+        public RadiationVariantInputViewModel Model { get; private set; }
     }
 }

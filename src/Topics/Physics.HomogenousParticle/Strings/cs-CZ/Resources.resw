@@ -156,4 +156,7 @@
   <data name="Radiation" xml:space="preserve">
     <value>Záření</value>
   </data>
+  <data name="ChooseVariant" xml:space="preserve">
+    <value>Vyberte variantu</value>
+  </data>
 </root>
