@@ -67,7 +67,14 @@
         <viewers:HtmlContentViewer HtmlContent="{x:Bind}" />
     </DataTemplate>
 
-    <local:ContentViewerDataTemplateSelector x:Key="ContentViewerDataTemplateSelector" HtmlViewer="{StaticResource HtmlViewerTemplate}" />
+    <DataTemplate x:Key="KnowledgeCheckViewerTemplate" x:DataType="abstract:MultipleChoiceQuestionContent">
+        <viewers:MultipleChoiceQuestionViewer Question="{x:Bind}" />
+    </DataTemplate>
+
+    <local:ContentViewerDataTemplateSelector
+        x:Key="ContentViewerDataTemplateSelector"
+        HtmlViewer="{StaticResource HtmlViewerTemplate}"
+        KnowledgeCheckViewer="{StaticResource KnowledgeCheckViewerTemplate}" />
 
     <local:ChapterListDataTemplateSelector
         x:Key="ChapterListDataTemplateSelector"

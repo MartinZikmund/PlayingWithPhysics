@@ -131,6 +131,9 @@
     <Compile Include="Editors\HtmlEditor.xaml.cs">
       <DependentUpon>HtmlEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editors\KnowledgeCheckEditor.xaml.cs">
+      <DependentUpon>KnowledgeCheckEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Pickers\PickProjectFileDialog.cs" />
     <Compile Include="Infrastructure\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Editors\HtmlEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\KnowledgeCheckEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

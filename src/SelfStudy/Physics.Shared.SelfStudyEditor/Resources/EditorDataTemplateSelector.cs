@@ -1,4 +1,5 @@
-﻿using Physics.SelfStudy.Models.Contents.Abstract;
+﻿using Physics.SelfStudy.Models.Contents;
+using Physics.SelfStudy.Models.Contents.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Physics.SelfStudy.Editor.Resources
     {
         public DataTemplate HtmlContent { get; set; }
 
+        public DataTemplate KnowledgeCheck { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container) => GetTemplateForItem(item);
 
         protected override DataTemplate SelectTemplateCore(object item) => GetTemplateForItem(item);
@@ -21,6 +24,7 @@ namespace Physics.SelfStudy.Editor.Resources
             item switch
             {
                 HtmlContent html => HtmlContent,
+                KnowledgeCheckContent knowledgeCheck => KnowledgeCheck,
                 null => null,
                 _ => throw new NotImplementedException(),
             };        
