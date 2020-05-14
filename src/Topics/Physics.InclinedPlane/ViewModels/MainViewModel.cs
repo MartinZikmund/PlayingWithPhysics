@@ -4,6 +4,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Physics.InclinedPlane.Dialogs;
 using Physics.Shared.UI.ViewModels;
+using Physics.InclinedPlane.UserControls;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.InclinedPlane.ViewModels
 {
@@ -45,11 +47,21 @@ namespace Physics.InclinedPlane.ViewModels
         //    }
         //}
 
-        //public IVariantInputViewModel VariantInputViewModel { get; set; }
+        public IVariantInputViewModel VariantInputViewModel
+        {
+            get
+            {
+                
+                if (true)
+                {
+                    return new AdvancedVariantInputViewModel();
+                }
+            }
+        }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovement();
+            var dialog = new AddOrUpdateMovement(VariantInputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

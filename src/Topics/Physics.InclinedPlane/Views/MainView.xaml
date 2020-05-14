@@ -56,44 +56,7 @@
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
-                        <Grid>
-                            <winui:RadioButtons SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
-                                <winui:RadioButtons.Resources>
-                                    <Style TargetType="RadioButton">
-                                        <Setter Property="Padding" Value="12,0,0,4" />
-                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    </Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="FontSize" Value="16" />
-                                    </Style>
-                                </winui:RadioButtons.Resources>
-
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="v = 0" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="v || B" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="v &#x27c2; B" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="Nic" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-                            </winui:RadioButtons>
-                        </Grid>
+                        <TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>
                         <Button
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"

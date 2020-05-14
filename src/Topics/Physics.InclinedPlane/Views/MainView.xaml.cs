@@ -27,10 +27,10 @@ namespace Physics.InclinedPlane.Views
         public MainView()
         {
             this.InitializeComponent();
+            DataContextChanged += MainView_DataContextChanged;
         }
 
-
-        private void MainMenuView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void MainView_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             Model = (MainViewModel)args.NewValue;
         }

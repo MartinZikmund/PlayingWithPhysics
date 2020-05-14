@@ -127,8 +127,23 @@
     </Compile>
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdvancedMotionSetup.cs" />
+    <Compile Include="Services\BasicMotionSetup.cs" />
+    <Compile Include="Services\IMotionSetup.cs" />
+    <Compile Include="Services\MotionSetupBase.cs" />
+    <Compile Include="UserControls\AdvancedVariantInputControl.xaml.cs">
+      <DependentUpon>AdvancedVariantInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BasicVariantInputControl.xaml.cs">
+      <DependentUpon>BasicVariantInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InputControlContentTemplateSelector.cs" />
     <Compile Include="ViewModels\AddOrUpdateTrajectoryViewModel.cs" />
+    <Compile Include="ViewModels\AdvancedVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\BasicVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\IVariantInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\VariantInputViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Menu\circle.png" />
+    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -155,6 +171,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Dialogs\AddOrUpdateMovement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AdvancedVariantInputControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BasicVariantInputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,9 +225,7 @@
       <Version>3.2.8</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
@@ -215,6 +241,11 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

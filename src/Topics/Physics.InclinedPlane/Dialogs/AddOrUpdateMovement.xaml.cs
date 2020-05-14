@@ -20,16 +20,11 @@ namespace Physics.InclinedPlane.Dialogs
 {
     public sealed partial class AddOrUpdateMovement : ContentDialog
     {
-        public AddOrUpdateMovement()
+        public AddOrUpdateMovement(IVariantInputViewModel viewModel)
         {
             this.InitializeComponent();
-            DataContextChanged += AddOrUpdateMovement_DataContextChanged; ;
+            Model = viewModel;
             SetupNumberBoxFormattings();
-        }
-
-        private void AddOrUpdateMovement_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            Model = (AddOrUpdateTrajectoryViewModel)args.NewValue;
         }
 
         private void SetupNumberBoxFormattings()
@@ -43,7 +38,7 @@ namespace Physics.InclinedPlane.Dialogs
             //GravityNumberBox.SmallChange = 0.1;
         }
 
-        public AddOrUpdateTrajectoryViewModel Model { get; private set; }
+        public IVariantInputViewModel Model { get; private set; }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
