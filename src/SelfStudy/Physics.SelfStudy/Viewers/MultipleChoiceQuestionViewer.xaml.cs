@@ -46,8 +46,6 @@ namespace Physics.SelfStudy.Viewers
         public static readonly DependencyProperty ModelProperty =
             DependencyProperty.Register(nameof(Model), typeof(MultipleChoiceQuestionViewerViewModel), typeof(MultipleChoiceQuestionViewer), new PropertyMetadata(0));
 
-
-
         private static void OnQuestionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var viewer = (MultipleChoiceQuestionViewer)d;

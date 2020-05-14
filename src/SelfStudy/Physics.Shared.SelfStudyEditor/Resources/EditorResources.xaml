@@ -1,16 +1,22 @@
 ﻿<ResourceDictionary
     x:Class="Physics.SelfStudy.Editor.Resources.EditorResources"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.SelfStudy.Editor.Resources" 
-    xmlns:editors="using:Physics.SelfStudy.Editor.Editors">
+    xmlns:editors="using:Physics.SelfStudy.Editor.Editors"
+    xmlns:local="using:Physics.SelfStudy.Editor.Resources">
 
     <DataTemplate x:Key="HtmlContentEditorTemplate">
-        <editors:HtmlEditor Grid.Row="1" />
+        <editors:HtmlEditor />
     </DataTemplate>
 
+    <DataTemplate x:Key="KnowledgeCheckEditorTemplate">
+        <editors:KnowledgeCheckEditor />
+    </DataTemplate>
 
-    <local:EditorDataTemplateSelector x:Key="EditorDataTemplateSelector" HtmlContent="{StaticResource HtmlContentEditorTemplate}" />
+    <local:EditorDataTemplateSelector
+        x:Key="EditorDataTemplateSelector"
+        HtmlContent="{StaticResource HtmlContentEditorTemplate}"
+        KnowledgeCheck="{StaticResource KnowledgeCheckEditorTemplate}" />
 
 
 </ResourceDictionary>

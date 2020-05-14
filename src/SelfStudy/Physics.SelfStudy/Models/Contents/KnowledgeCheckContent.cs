@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Physics.SelfStudy.Models.Contents
 {
-    public class KnowledgeCheckContent : HtmlContent
+    public class KnowledgeCheckContent : MultipleChoiceQuestionContent
     {
         public override ContentType Type => ContentType.KnowledgeCheck;
     }

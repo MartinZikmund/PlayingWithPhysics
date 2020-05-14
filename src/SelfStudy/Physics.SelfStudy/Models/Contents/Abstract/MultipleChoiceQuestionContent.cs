@@ -15,12 +15,14 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
 
         public string Title { get; set; }
 
+        public string Question { get; set; }
+
         public string CorrectResponse { get; set; }
 
         public string WrongResponse { get; set; }
 
         public int CorrectOptionIndex { get; set; }
 
-        public string Options { get; set; }
+        public ObservableCollection<string> Options { get; set; } = new ObservableCollection<string>();
     }
 }

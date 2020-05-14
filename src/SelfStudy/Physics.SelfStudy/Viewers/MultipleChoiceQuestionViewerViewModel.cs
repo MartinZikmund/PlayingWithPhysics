@@ -33,11 +33,11 @@ namespace Physics.SelfStudy.Viewers
         private void RevealAnswer()
         {
             ShowQuestion = false;
-            if (SelectedAnswerIndex == _question.CorrectOptionIndex)
+            //if (SelectedAnswerIndex == _question.CorrectOptionIndex)
             {
                 ShowCorrectAnswer = true;
             }
-            else
+            //else
             {
                 ShowWrongAnswer = true;
             }
