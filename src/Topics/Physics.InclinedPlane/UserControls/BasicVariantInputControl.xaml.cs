@@ -1,4 +1,5 @@
 ﻿using Physics.InclinedPlane.ViewModels;
+using Physics.Shared.UI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,9 @@ namespace Physics.InclinedPlane.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += BasicVariantInputControl_DataContextChanged;
+            InclinedPlaneElevationNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
+            InclinedPlaneLengthNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
+            DriftCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.1);
         }
 
         private void BasicVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
