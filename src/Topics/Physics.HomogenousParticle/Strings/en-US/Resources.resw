@@ -153,4 +153,10 @@
   <data name="ChooseVariant" xml:space="preserve">
     <value>Choose variant</value>
   </data>
+  <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
+    <value>From paper</value>
+  </data>
+  <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
+    <value>Into paper</value>
+  </data>
 </root>

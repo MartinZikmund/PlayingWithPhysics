@@ -120,4 +120,13 @@
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="IntervalForTable" xml:space="preserve">
+    <value>Time interval (s)</value>
+  </data>
+  <data name="ShowHideZeroes" xml:space="preserve">
+    <value>Show/hide zero columns</value>
+  </data>
 </root>

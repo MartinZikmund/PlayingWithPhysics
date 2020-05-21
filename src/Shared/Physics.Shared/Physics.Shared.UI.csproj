@@ -162,9 +162,13 @@
     <Compile Include="Services\Preferences\Preferences.cs" />
     <Compile Include="Services\Sounds\ISoundPlayer.cs" />
     <Compile Include="Services\Sounds\SoundPlayer.cs" />
+    <Compile Include="Services\ValuesTable\ITableService.cs" />
+    <Compile Include="Services\ValuesTable\IValuesTableRow.cs" />
+    <Compile Include="Services\ValuesTable\ValuesTableRowBase.cs" />
     <Compile Include="ViewModels\SelfStudyViewModel.cs" />
     <Compile Include="ViewModels\SimulationPlaybackViewModel.cs" />
     <Compile Include="ViewModels\SimulationViewModelBase.cs" />
+    <Compile Include="ViewModels\ValuesTableDialogViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\DifficultyViewModel.cs" />
     <Compile Include="Views\BaseView.cs" />
@@ -176,6 +180,11 @@
     <EmbeddedResource Include="Properties\Physics.Shared.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fody">
+      <Version>6.1.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
@@ -196,6 +205,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.2.8</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
       <Version>11.4.1</Version>
@@ -227,6 +239,10 @@
     <Page Include="Resources\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ValuesTableResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainMenuView.xaml">
       <SubType>Designer</SubType>

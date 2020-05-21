@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="InclinedPlane"
-    Publisher="CN=danie"
-    Version="1.0.0.0" />
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.2.5.0" />
 
-  <mp:PhoneIdentity PhoneProductId="8e3791b9-d011-4c69-b245-33fdf8b464ef" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="bee4a473-e4c0-4865-8be7-41ffa6909710" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>
-    <PublisherDisplayName>danie</PublisherDisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
