@@ -259,7 +259,12 @@ namespace Physics.HomogenousMovement.ViewModels
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
             appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-            (appWindowContentFrame.Content as ValuesTablePage).Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+            var physicsService = new PhysicsService(viewModel.MotionInfo);
+            var valuesTableService = new TableService(physicsService);
+            var movementType = viewModel.MotionInfo.Type;
+            var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, movementType);
+            valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 30);
+            (appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
             // Attach the XAML content to the window.
             ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
             newWindow.Closed += NewWindow_Closed;
@@ -292,8 +297,8 @@ namespace Physics.HomogenousMovement.ViewModels
             if (_tableWindowIds.TryGetValue(viewModel, out var appWindow))
             {
                 var frame = ElementCompositionPreview.GetAppWindowContent(appWindow) as Frame;
-                var page = frame?.Content as ValuesTablePage;
-                page?.Initialize(new PhysicsService(viewModel.MotionInfo), viewModel.MotionInfo.Type);
+                var page = frame.Content as ValuesTablePage;
+                page?.Model.Reset(new TableService(new PhysicsService(viewModel.MotionInfo)), viewModel.MotionInfo.Type);
             }
         }
 

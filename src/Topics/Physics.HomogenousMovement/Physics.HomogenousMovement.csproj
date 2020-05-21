@@ -159,14 +159,15 @@
     <Compile Include="Rendering\GamificationCanvasController.cs" />
     <Compile Include="Rendering\HomogenousMovementCanvasController.cs" />
     <Compile Include="Services\Preferences\IAppPreferences.cs" />
-    <Compile Include="TableService.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ViewInteractions\IGameViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\MotionInfoViewModel.cs" />
     <Compile Include="ViewModels\ProjectileMotionSimulationViewModelBase.cs" />
-    <Compile Include="ViewModels\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
@@ -278,10 +279,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Assets\Resources\ValuesTableResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dialogs\AddOrUpdateMovement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -370,7 +367,9 @@
   <ItemGroup>
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Physics.HomogenousMovement_TemporaryKey.pfx" />
   </ItemGroup>

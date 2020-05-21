@@ -159,4 +159,10 @@
   <data name="ChooseVariant" xml:space="preserve">
     <value>Vyberte variantu</value>
   </data>
+  <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
+    <value>Z papíru</value>
+  </data>
+  <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
+    <value>Do papíru</value>
+  </data>
 </root>

@@ -20,31 +20,25 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Physics.HomogenousMovement.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ValuesTablePage : Page
     {
         private MovementType _type;
+
         public ValuesTablePage()
         {
-            this.InitializeComponent();
-            Model = new ValuesTableDialogViewModel();
-            DataContext = Model;
+            this.InitializeComponent();           
         }
-
-        public void Initialize(IPhysicsService service, MovementType type)
+        
+        public void Initialize(ValuesTableDialogViewModel viewModel)
         {
-            SetupFromatting();
-            _type = type;
-            Model.Initalize(service, type);
+            Model = viewModel;
+            DataContext = Model;
+            SetupFormatting();
         }
 
-        private void SetupFromatting()
+        private void SetupFormatting()
         {
             var rounder = new IncrementNumberRounder();
             rounder.Increment = 0.1;
@@ -67,8 +61,8 @@ namespace Physics.HomogenousMovement.Views
 
         private void SwitchColumnsVisibility()
         {
-            var xColumn = ValuesTable.Columns.First(column => "X (m)".Equals(column.Header));
-            var v0Column = ValuesTable.Columns.First(column => "Vx (m/s)".Equals(column.Header));
+            var xColumn = ValuesTable.Columns[1];
+            var v0Column = ValuesTable.Columns[4];
             if (xColumn != null && v0Column != null)
             {
                 Visibility newVisibility = Visibility.Visible;
@@ -85,65 +79,7 @@ namespace Physics.HomogenousMovement.Views
             }
         }
 
-        private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.Column.Header.ToString() == "Time")
-            {
-                e.Column.Header = "t (s)";
-            }
-
-            if (e.Column.Header.ToString() == "X")
-            {
-                e.Column.Header = "x (m)";
-            }
-
-            if (e.Column.Header.ToString() == "Y")
-            {
-                e.Column.Header = "y (m)";
-            }
-
-            if (e.Column.Header.ToString() == "VX")
-            {
-                e.Column.Header = "vx (m/s)";
-            }
-
-            if (e.Column.Header.ToString() == "VY")
-            {
-                e.Column.Header = "vy (m/s)";
-            }
-
-            if (e.Column.Header.ToString() == "V")
-            {
-                e.Column.Header = "v (m/s)";
-            }
-
-            if (e.Column.Header.ToString() == "EP")
-            {
-                e.Column.Header = "Ep (J)";
-            }
-
-            if (e.Column.Header.ToString() == "EK")
-            {
-                e.Column.Header = "Ek (J)";
-            }
-
-            if (e.Column.Header.ToString() == "EPEK")
-            {
-                e.Column.Header = "EpEk (J)";
-            }
-        }
-
-        private void CopyToClipbord_Click(object sender, RoutedEventArgs e)
-        {
-            var clipboardContents = new StringBuilder();
-            foreach (var data in Model.Values)
-            {
-                clipboardContents.AppendLine(data.ToTabString());
-            }
-
-            var dataPackage = new DataPackage();
-            dataPackage.SetText(clipboardContents.ToString());
-            Clipboard.SetContent(dataPackage);
-        }
+        private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) =>
+            Model?.AdjustColumnHeaders(e);
     }
 }

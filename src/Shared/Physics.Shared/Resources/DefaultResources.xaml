@@ -23,6 +23,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/ValuesTableResources.xaml" />
         <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/Converters.xaml" />
         <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>

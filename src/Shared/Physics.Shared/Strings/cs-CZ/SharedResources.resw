@@ -120,4 +120,16 @@
   <data name="Color" xml:space="preserve">
     <value>Barva</value>
   </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Zkopírovat do schránky</value>
+  </data>
+  <data name="IntervalForTable" xml:space="preserve">
+    <value>Časový interval (s)</value>
+  </data>
+  <data name="ShowHideIrrelevantColumns" xml:space="preserve">
+    <value>Zobrazit/skrýt nulové sloupce</value>
+  </data>
+  <data name="ShowHideZeroes" xml:space="preserve">
+    <value>Zobrazit/skrýt nulové sloupce</value>
+  </data>
 </root>
