@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.HomongenousParticle.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Physics.HomogenousParticle.Services
 {
     public class ParallelMotionSetup : MotionSetupBase
     {
-        public ParallelMotionSetup(float velocity, float angle, float charge, float inductionOrientation, string color)
+        public ParallelMotionSetup(float velocity, ParallelVariantOrientation angle, float charge, float inductionOrientation, string color)
         {
             Velocity = velocity;
             Angle = angle;
@@ -17,7 +18,7 @@ namespace Physics.HomogenousParticle.Services
             Color = color;
         }
 
-        public float Angle { get; set; }
+        public ParallelVariantOrientation Angle { get; set; }
 
         public float Charge { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousParticle.Services;
+using Physics.HomongenousParticle.Logic;
 using Physics.Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Physics.HomogenousParticle.Rendering
                     (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Cos(MathHelpers.DegreesToRadians(_motion.InductionOrientation))),
                     (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Sin(-MathHelpers.DegreesToRadians(_motion.InductionOrientation)))
                     );
-                if (_motion.Angle == 180)
+                if (_motion.Angle == ParallelVariantOrientation.Opposite)
                 {
                     direction *= -1;
                 }
@@ -65,13 +66,6 @@ namespace Physics.HomogenousParticle.Rendering
                 _controller.DrawInductionArrows(_motion.InductionOrientation, color, args);
 
                 _controller.DrawParticle(_lastPosition.Value, color, args);
-
-                //Microsoft.Graphics.Canvas.Text.CanvasTextFormat format = new Microsoft.Graphics.Canvas.Text.CanvasTextFormat()
-                //{
-                //    FontSize = 14,
-                //    HorizontalAlignment = Microsoft.Graphics.Canvas.Text.CanvasHorizontalAlignment.Center,
-                //};
-                //args.DrawingSession.DrawText("Síla na částici je nulová, částice zůstává v klidu.", new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f - 40), Windows.UI.Colors.Black, format);
             }
         }
     }

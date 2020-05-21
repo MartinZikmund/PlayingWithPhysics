@@ -12,7 +12,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new GreekMotionSetup(Velocity, Type, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new RadioactiveMotionSetup(Velocity, Type, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
         public float Velocity { get; set; } = (float)Math.PI / 3; //v = pi/3
@@ -20,13 +20,5 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
         public RadiationType Type { get; set; }
 
         public override string Label { get; set; }
-    }
-
-    public enum RadiationType
-    {
-        Alfa,
-        BetaMinus,
-        BetaPlus,
-        Neutron
     }
 }

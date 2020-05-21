@@ -28,6 +28,8 @@ using Physics.HomogenousMovement.Models;
 using MvvmCross;
 using MvvmCross.Navigation;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using Physics.Shared.UI.Services;
+using Physics.Shared.UI.Infrastructure;
 
 namespace Physics.HomogenousMovement
 {
@@ -44,35 +46,7 @@ namespace Physics.HomogenousMovement
         }
     }
 
-    public class PhysicsApp : MvxApplication<CrossSetup, Core.CrossApp>
+    public class HomogenousMovementApp : PhysicsAppBase<CrossSetup, CrossApp>
     {
-        protected override void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            base.OnWindowCreated(args);
-            SetupTitleBar();
-        }
-
-        protected override Frame CreateFrame()
-        {
-            var frame = base.CreateFrame();
-            frame.Background = new SolidColorBrush((Color) Resources["AppThemeColor"]);
-            return frame;
-        }
-
-        private void SetupTitleBar()
-        {
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            
-            var appColor = ColorHelper.ToColor("#0D2B4A");
-            var inactiveForeground = Colors.LightGray;
-            titleBar.BackgroundColor = appColor;
-            titleBar.ButtonBackgroundColor = appColor;
-            titleBar.ForegroundColor = Colors.White;
-            titleBar.ButtonForegroundColor = Colors.White;
-            titleBar.InactiveBackgroundColor = appColor;
-            titleBar.InactiveForegroundColor = inactiveForeground;
-            titleBar.ButtonInactiveBackgroundColor = appColor;
-            titleBar.ButtonInactiveForegroundColor = inactiveForeground;
-        }
     }
 }

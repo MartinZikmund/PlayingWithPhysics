@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.Services;
+using Physics.HomongenousParticle.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,13 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
                 await new MessageDialog("Náboj nesmí být 0").ShowAsync();
                 return null;
             }
-            return new ParallelMotionSetup(Velocity, (int)SelectedOrientation, Charge, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
+            return new ParallelMotionSetup(
+                Velocity, 
+                SelectedOrientation, 
+                Charge, 
+                InductionOrientation, 
+                colorSerialized);
         }
 
         public float Velocity { get; set; } // 10^n: 2<=n<=6
@@ -37,11 +44,5 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
         public float InductionOrientation { get; set; } // 0 <= B <= 360
 
         public override string Label { get; set; }
-    }
-
-    public enum ParallelVariantOrientation
-    {
-        Normal = 0,
-        Opposite = 180
     }
 }

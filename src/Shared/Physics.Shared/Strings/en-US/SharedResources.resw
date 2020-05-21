@@ -126,6 +126,9 @@
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
   </data>
+  <data name="ShowHideIrrelevantColumns" xml:space="preserve">
+    <value>Show/hide irrelevant columns</value>
+  </data>
   <data name="ShowHideZeroes" xml:space="preserve">
     <value>Show/hide zero columns</value>
   </data>

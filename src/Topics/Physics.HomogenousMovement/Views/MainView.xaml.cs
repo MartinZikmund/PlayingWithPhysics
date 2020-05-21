@@ -66,18 +66,12 @@ namespace Physics.HomogenousMovement
             }
         }
 
-        
-
         public HomogenousMovementCanvasController Initialize(DifficultyOption difficulty)
         {
             _animatedCanvas = new CanvasAnimatedControl();
             CanvasHolder.Children.Add(_animatedCanvas);
             _canvasController = new HomogenousMovementCanvasController(_animatedCanvas);            
             return _canvasController;
-        }
-
-        private void SkipToEnd_Click(object sender, RoutedEventArgs e)
-        {            
         }
     }
 }

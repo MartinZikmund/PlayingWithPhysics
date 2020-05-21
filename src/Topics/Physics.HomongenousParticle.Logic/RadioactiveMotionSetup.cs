@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.ViewModels.Inputs;
+using Physics.HomongenousParticle.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Physics.HomogenousParticle.Services
 {
-    public class GreekMotionSetup : MotionSetupBase
+    public class RadioactiveMotionSetup : MotionSetupBase
     {
-        public GreekMotionSetup(float velocity, RadiationType type, string color)
+        public RadioactiveMotionSetup(float velocity, RadiationType type, string color)
         {
             Velocity = velocity;
             Type = type;
