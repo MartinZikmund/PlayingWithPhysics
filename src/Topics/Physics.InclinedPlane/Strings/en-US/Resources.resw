@@ -126,6 +126,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Inclined Plane</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
   <data name="DrawMotion" xml:space="preserve">
     <value>Draw motion</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="JumpSize" xml:space="preserve">
+    <value>Jump Size</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Inclined Plane</value>

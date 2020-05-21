@@ -24,7 +24,7 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
 
         public bool HasGame => false;
 
-        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel>();
+        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, MainViewModel.NavigationModel>(new MainViewModel.NavigationModel { Difficulty = option });
 
         public Task GoToGameAsync()
         {

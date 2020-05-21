@@ -11,8 +11,10 @@ namespace Physics.InclinedPlane.ViewModels
 {
     public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
     {
+        private DifficultyOption Difficulty;
         public class NavigationModel
         {
+            public DifficultyOption Difficulty { get; set; }
         }
 
         public MainViewModel()
@@ -22,6 +24,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public override void Prepare(NavigationModel parameter)
         {
+            Difficulty = parameter.Difficulty;
         }
 
         public int SelectedVariantIndex { get; set; }
@@ -52,7 +55,11 @@ namespace Physics.InclinedPlane.ViewModels
             get
             {
                 
-                if (true)
+                if (Difficulty == DifficultyOption.Easy)
+                {
+                    return new BasicVariantInputViewModel();
+                }
+                else
                 {
                     return new AdvancedVariantInputViewModel();
                 }

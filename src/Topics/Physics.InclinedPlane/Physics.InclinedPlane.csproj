@@ -129,6 +129,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdvancedMotionSetup.cs" />
     <Compile Include="Services\BasicMotionSetup.cs" />
+    <Compile Include="Services\DriftCoefficientDefault.cs" />
+    <Compile Include="Services\GravityPreset.cs" />
     <Compile Include="Services\IMotionSetup.cs" />
     <Compile Include="Services\MotionSetupBase.cs" />
     <Compile Include="UserControls\AdvancedVariantInputControl.xaml.cs">

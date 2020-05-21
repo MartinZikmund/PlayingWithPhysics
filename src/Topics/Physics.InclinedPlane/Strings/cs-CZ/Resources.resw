@@ -129,6 +129,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Barva</value>
+  </data>
   <data name="DrawMotion" xml:space="preserve">
     <value>Vykresli pohyb</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
+  </data>
+  <data name="JumpSize" xml:space="preserve">
+    <value>Volba kroku vykreslování</value>
   </data>
   <data name="Motions" xml:space="preserve">
     <value>Pohyby</value>
