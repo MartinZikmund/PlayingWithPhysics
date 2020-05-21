@@ -29,6 +29,7 @@ namespace Physics.Shared.UI.Infrastructure
         protected override Frame CreateFrame()
         {
             var frame = base.CreateFrame();
+            frame.Transitions.Clear();
             frame.Background = new SolidColorBrush((Color)Resources["AppThemeColor"]);
             return frame;
         }

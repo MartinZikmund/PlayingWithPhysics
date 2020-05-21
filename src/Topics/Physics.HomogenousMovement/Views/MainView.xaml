@@ -5,6 +5,7 @@
     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,9 +19,18 @@
     xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     x:Name="Page"
-    Background="{StaticResource AppThemeColor}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Dark"
     mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
     <Page.Resources>
         <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
         <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
@@ -36,14 +46,21 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Padding="12">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid
+            x:Name="MenuPane"
+            Grid.Column="0"
+            Background="{ThemeResource AppThemeColor}">
+            <Windows10version1903:Grid.Shadow>
+                <ThemeShadow />
+            </Windows10version1903:Grid.Shadow>
             <Border Grid.Row="1">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer Padding="12" VerticalScrollBarVisibility="Auto">
                     <StackPanel Grid.Column="0" Orientation="Vertical">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -210,12 +227,15 @@
             </Border>
 
         </Grid>
-        <Grid Grid.Column="1" Padding="0">
+        <Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid x:Name="CanvasHolder" />
+            <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
             <InkCanvas x:Name="InkCanvas" />
             <InkToolbar
                 x:Name="inkToolbar"
@@ -233,7 +253,15 @@
                 JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
-                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}" />
+                RequestedTheme="Light"
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
+                <sharedControls:SimulationControls.Background>
+                    <AcrylicBrush
+                        BackgroundSource="Backdrop"
+                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                        TintColor="{ThemeResource SystemChromeMediumColor}" />
+                </sharedControls:SimulationControls.Background>
+            </sharedControls:SimulationControls>
         </Grid>
     </Grid>
 </views:BaseView>

@@ -18,12 +18,12 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         public float MaxT => throw new NotImplementedException();
 
-        public float ComputeX()
+        public float ComputeX(float seconds)
         {
             throw new NotImplementedException();
         }
 
-        public float ComputeY()
+        public float ComputeY(float seconds)
         {
             throw new NotImplementedException();
         }

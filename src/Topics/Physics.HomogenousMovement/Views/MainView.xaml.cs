@@ -23,6 +23,8 @@ using Physics.HomogenousMovement.ViewInteractions;
 using Physics.Shared.Helpers;
 using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Windows.UI.Xaml.Media;
+using Windows.Foundation.Metadata;
 
 namespace Physics.HomogenousMovement
 {
@@ -39,7 +41,12 @@ namespace Physics.HomogenousMovement
                  Windows.UI.Core.CoreInputDeviceTypes.Touch;
             DataContextChanged += MainMenuView_DataContextChanged;
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
-            this.Unloaded += MainView_Unloaded;            
+            this.Unloaded += MainView_Unloaded;
+            if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.ThemeShadow"))
+            {
+                MenuPane.Translation = new System.Numerics.Vector3(0, 0, 16);
+                ((ThemeShadow)MenuPane.Shadow).Receivers.Add(SecondPane);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

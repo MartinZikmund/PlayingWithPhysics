@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Physics.Shared.UI.Helpers;
+using Windows.Foundation.Metadata;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -37,9 +38,12 @@ namespace Physics.HomogenousParticle.Views
         {
             this.InitializeComponent();
             this.Loaded += MainView_Loaded;
-            DataContextChanged += MainView_DataContextChanged;
-            MenuPane.Translation = new System.Numerics.Vector3(0, 0, 16);
-            ((ThemeShadow)MenuPane.Shadow).Receivers.Add(SecondPane);
+            DataContextChanged += MainView_DataContextChanged;            
+            if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.ThemeShadow"))
+            {
+                MenuPane.Translation = new System.Numerics.Vector3(0, 0, 16);
+                ((ThemeShadow)MenuPane.Shadow).Receivers.Add(SecondPane);
+            }
         }
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)

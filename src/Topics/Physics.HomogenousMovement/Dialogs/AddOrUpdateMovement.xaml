@@ -30,6 +30,11 @@
         VerticalScrollMode="Auto">
         <StackPanel Spacing="8">
             <winui:RadioButtons MaxColumns="2" SelectedIndex="{x:Bind Model.SelectedMotionIndex, Mode=TwoWay}">
+                <winui:RadioButtons.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </winui:RadioButtons.Transitions>
                 <winui:RadioButtons.Resources>
                     <Style TargetType="RadioButton">
                         <Setter Property="Padding" Value="8,0,0,0" />
@@ -97,6 +102,11 @@
                         <Setter Property="HorizontalAlignment" Value="Right" />
                     </Style>
                 </Grid.Resources>
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />

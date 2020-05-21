@@ -1,4 +1,5 @@
 ﻿using Physics.HomogenousParticle.Services;
+using Physics.HomongenousParticle.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
