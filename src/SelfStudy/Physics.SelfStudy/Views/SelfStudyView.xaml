@@ -29,9 +29,10 @@
             Grid.Row="1"
             Background="#FCFCFC"
             DisplayMode="Inline"
-            IsPaneOpen="True">
+            IsPaneOpen="True"
+            PaneBackground="{ThemeResource AppThemeColor}">
             <SplitView.Pane>
-                <Grid>
+                <Grid RequestedTheme="{x:Bind ViewModel.PaneRequestedTheme}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />

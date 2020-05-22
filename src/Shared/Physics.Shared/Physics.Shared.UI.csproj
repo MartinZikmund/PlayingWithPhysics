@@ -140,6 +140,7 @@
     <Compile Include="Converters\EnumLocalizationConverter.cs" />
     <Compile Include="Converters\NativeConverters.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\Localize.cs" />
     <Compile Include="Helpers\NumberBoxHelpers.cs" />
     <Compile Include="Infrastructure\DefaultViewPresenter.cs" />

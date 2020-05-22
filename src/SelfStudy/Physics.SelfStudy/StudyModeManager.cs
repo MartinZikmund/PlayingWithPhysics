@@ -50,7 +50,7 @@ namespace Physics.SelfStudy
             //newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
             //newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
             //newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-            newWindow.RequestSize(new Size(600, 400));
+            newWindow.RequestSize(new Size(800, 600));
             var shown = await newWindow.TryShowAsync();
         }
 
