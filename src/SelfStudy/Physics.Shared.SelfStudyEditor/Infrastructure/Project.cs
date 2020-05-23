@@ -15,9 +15,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 {
     public class Project : ViewModelBase
     {
-        private StorageFile _backingFile = null;
-
-        public string Name { get; set; }
+        public StorageFile BackingFile { get; set; }
 
         public ObservableCollection<Chapter> Chapters { get; } = new ObservableCollection<Chapter>();
 
@@ -78,7 +76,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public async Task SaveAsync()
         {
-            if (_backingFile == null)
+            if (BackingFile == null)
             {
                 await SaveAsAsync();
                 return;
@@ -91,7 +89,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             var file = await PickProjectFileDialog.SaveAsAsync();
             if (file != null)
             {
-                _backingFile = file;
+                BackingFile = file;
                 await SaveToBackingFileAsync();
             }
         }
@@ -99,7 +97,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
         private async Task SaveToBackingFileAsync()
         {
             var contents = JsonConvert.SerializeObject(Chapters);
-            await FileIO.WriteTextAsync(_backingFile, contents);
+            await FileIO.WriteTextAsync(BackingFile, contents);
         }
 
         public async Task DiscardAsync()
@@ -123,6 +121,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             var contents = await StudyModeManager.ReadDefinitionFileAsync(projectFile);
 
             var project = new Project();
+            project.BackingFile = projectFile;
             foreach (var content in contents)
             {
                 project.Chapters.Add(content);

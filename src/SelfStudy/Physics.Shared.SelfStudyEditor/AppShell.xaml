@@ -26,7 +26,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <winui:MenuBar>
+        <Grid
+            x:Name="TitleBar"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{ThemeResource AppTitleBarColor}" />
+        <winui:MenuBar
+            x:Name="MenuBar"
+            Background="{x:Null}"
+            RequestedTheme="Dark">
             <winui:MenuBarItem Title="File">
                 <MenuFlyoutItem Command="{x:Bind ViewModel.NewFileCommand}" Text="New">
                     <MenuFlyoutItem.KeyboardAccelerators>
@@ -55,12 +63,21 @@
                 </MenuFlyoutItem>
             </winui:MenuBarItem>
         </winui:MenuBar>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            RequestedTheme="Dark"
+            Text="{x:Bind ViewModel.Workspace.CurrentProject.BackingFile.Name, Mode=OneWay}" />
         <SplitView
             Grid.Row="1"
             DisplayMode="Inline"
-            IsPaneOpen="True">
+            IsPaneOpen="True"
+            PaneBackground="{ThemeResource AppThemeColor}">
             <SplitView.Pane>
-                <Grid Padding="12" RowSpacing="12">
+                <Grid
+                    Padding="12"
+                    RequestedTheme="Dark"
+                    RowSpacing="12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -150,7 +167,11 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox InputScope="Default" Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox
+                            BorderThickness="0,0,0,1"
+                            InputScope="Default"
+                            PlaceholderText="Section title"
+                            Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <Button Grid.Column="1" Command="{x:Bind ViewModel.Workspace.CurrentProject.DeleteSelectedSectionCommand, Mode=OneWay}">
                             <SymbolIcon Symbol="Delete" />
                         </Button>

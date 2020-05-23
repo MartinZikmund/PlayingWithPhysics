@@ -270,6 +270,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.UI.csproj">
+      <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
+      <Name>Physics.Shared.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Physics.SelfStudy\Physics.SelfStudy.csproj">
       <Project>{c19a64cd-7662-4572-9fe7-573e7bea90f4}</Project>
       <Name>Physics.SelfStudy</Name>

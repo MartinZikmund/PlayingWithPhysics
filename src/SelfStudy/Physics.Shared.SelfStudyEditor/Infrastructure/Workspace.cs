@@ -38,7 +38,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
                 // prompt user to save changes or cancel
                 var dialog = new ContentDialog();
                 dialog.Title = "Do you want to save changes?";
-                dialog.Content = $"There are unsaved changes in project {CurrentProject.Name}";
+                dialog.Content = $"There are unsaved changes in project {CurrentProject.BackingFile.Name}";
                 dialog.DefaultButton = ContentDialogButton.Close;
                 dialog.CloseButtonText = "Cancel";
                 dialog.SecondaryButtonText = "No";

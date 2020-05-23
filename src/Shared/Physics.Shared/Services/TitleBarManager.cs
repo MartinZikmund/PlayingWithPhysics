@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
+using MvvmCross.Base;
 using Physics.Shared.UI.Extensions;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.Shared.UI.Services
 {
@@ -67,10 +69,15 @@ namespace Physics.Shared.UI.Services
             titleBar.ButtonInactiveBackgroundColor = appColor;
         }
 
-        public static void SetExtendIntoView(bool extend)
+        public static void SetExtendIntoView(bool extend, FrameworkElement control = null)
         {
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = extend;
+
+            if (extend)
+            {
+                Window.Current.SetTitleBar(control);             
+            }
         }
     }
 }
