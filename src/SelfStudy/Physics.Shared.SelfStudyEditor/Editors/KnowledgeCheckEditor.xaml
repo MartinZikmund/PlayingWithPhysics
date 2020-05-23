@@ -9,7 +9,7 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <StackPanel>
+    <StackPanel Padding="12" Spacing="8">
         <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay}" />
         <TextBox Header="Correct response" Text="{x:Bind ViewModel.CorrectResponse, Mode=TwoWay}" />
         <ListView Header="Options" ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}" />

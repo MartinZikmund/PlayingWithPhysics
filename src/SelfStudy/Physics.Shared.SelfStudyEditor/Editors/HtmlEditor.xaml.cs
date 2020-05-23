@@ -25,15 +25,10 @@ namespace Physics.SelfStudy.Editor.Editors
 {
     public sealed partial class HtmlEditor : UserControl, INotifyPropertyChanged
     {
-        private string _layoutContents;
-
-        private IDisposable _inputChangedDisposable;
-
         public HtmlEditor()
         {
             this.InitializeComponent();
             this.DataContextChanged += HtmlEditor_DataContextChanged;
-            this.Unloaded += HtmlEditor_Unloaded;
         }
 
         public HtmlContent ViewModel { get; private set; }
@@ -44,11 +39,6 @@ namespace Physics.SelfStudy.Editor.Editors
         {
             ViewModel = args.NewValue as HtmlContent;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ViewModel)));
-        }
-
-        private void HtmlEditor_Unloaded(object sender, RoutedEventArgs e)
-        {
-            _inputChangedDisposable.Dispose();
         }
     }
 }

@@ -15,7 +15,8 @@
         Padding="8,8,8,8"
         HorizontalAlignment="Stretch"
         Background="#F3F3F3"
-        ColumnSpacing="12">
+        ColumnSpacing="12"
+        CornerRadius="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

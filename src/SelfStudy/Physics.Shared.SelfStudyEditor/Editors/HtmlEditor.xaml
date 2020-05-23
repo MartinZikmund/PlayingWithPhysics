@@ -15,7 +15,10 @@
         </Grid.ColumnDefinitions>
         <TextBox
             x:Name="HtmlInput"
+            Padding="12"
             AcceptsReturn="True"
-            Text="{x:Bind ViewModel.Html, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            BorderBrush="Transparent"
+            Text="{x:Bind ViewModel.Html, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
     </Grid>
 </UserControl>

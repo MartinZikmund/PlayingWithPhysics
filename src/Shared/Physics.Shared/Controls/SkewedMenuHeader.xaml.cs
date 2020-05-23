@@ -11,6 +11,15 @@ namespace Physics.Shared.UI.Controls
             this.InitializeComponent();
         }
 
+        public bool ShowBackButton
+        {
+            get { return (bool)GetValue(ShowBackButtonProperty); }
+            set { SetValue(ShowBackButtonProperty, value); }
+        }
+
+        public static readonly DependencyProperty ShowBackButtonProperty =
+            DependencyProperty.Register(nameof(ShowBackButton), typeof(bool), typeof(SkewedMenuHeader), new PropertyMetadata(true));
+
         public ICommand GoBackCommand   
         {
             get { return (ICommand)GetValue(GoBackCommandProperty); }

@@ -23,7 +23,7 @@ namespace Physics.Shared.UI.Infrastructure
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             base.OnWindowCreated(args);
-            TitleBarManager.Personalize((Color)Resources["AppTitleBarColor"], ElementTheme.Dark);
+            TitleBarManager.Personalize((Color)Resources["AppTitleBarColor"]);
         }
 
         protected override Frame CreateFrame()

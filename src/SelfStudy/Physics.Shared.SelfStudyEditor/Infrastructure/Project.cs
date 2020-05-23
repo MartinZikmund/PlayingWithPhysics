@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Windows.Storage;
 using Physics.Shared.SelfStudy.Models;
 using Newtonsoft.Json;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.SelfStudy.Editor.Infrastructure
 {
@@ -131,6 +132,15 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public async Task PreviewAsync()
         {
+            if (Chapters.Count == 0)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.Title = "Can't display preview";
+                dialog.Content = "Your project needs to have at least one chapter to display preview";
+                dialog.CloseButtonText = "Close";                
+                await dialog.ShowAsync();
+                return;
+            }
             var tempFileName = await SaveTempAsync();
             var uri = new Uri($"ms-appdata:///temp/{tempFileName}");
             await StudyModeManager.OpenStudyModeAsync(uri);

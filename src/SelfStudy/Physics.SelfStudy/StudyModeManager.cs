@@ -4,6 +4,7 @@ using Physics.SelfStudy.Json;
 using Physics.SelfStudy.Models;
 using Physics.SelfStudy.Models.Contents;
 using Physics.SelfStudy.Views;
+using Physics.Shared.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.WindowManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 
@@ -36,20 +38,13 @@ namespace Physics.SelfStudy
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
             appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri);
-            
+
             // Attach the XAML content to the window.
             ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
             //newWindow.Closed += NewWindow_Closed;
             newWindow.Title = resourceLoader.GetString("WindowTitle");
 
-            //newWindow.TitleBar.BackgroundColor = (Application;
-            //newWindow.TitleBar.ForegroundColor = Colors.White;
-            //newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            //newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-            //newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            //newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-            //newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            //newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+            TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["DarkAppThemeColor"]);
             newWindow.RequestSize(new Size(800, 600));
             var shown = await newWindow.TryShowAsync();
         }

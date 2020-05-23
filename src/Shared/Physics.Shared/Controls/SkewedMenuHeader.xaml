@@ -15,7 +15,10 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Command="{x:Bind GoBackCommand, Mode=OneWay}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
+        <Button
+            Command="{x:Bind GoBackCommand, Mode=OneWay}"
+            Style="{ThemeResource NavigationBackButtonNormalStyle}"
+            Visibility="{x:Bind ShowBackButton, Mode=OneWay}" />
         <Grid
             x:Name="TitleBlock"
             Grid.Column="1"

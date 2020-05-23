@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:contents="using:Physics.SelfStudy.Models.Contents"
+    xmlns:controls="using:Physics.Shared.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Physics.SelfStudy.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -32,14 +33,17 @@
             IsPaneOpen="True"
             PaneBackground="{ThemeResource AppThemeColor}">
             <SplitView.Pane>
-                <Grid RequestedTheme="{x:Bind ViewModel.PaneRequestedTheme}">
+                <Grid Padding="8" RequestedTheme="{x:Bind ViewModel.PaneRequestedTheme}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
-                    <ListView ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
+                    <controls:SkewedMenuHeader ShowBackButton="False" Text="Self study" />
+                    <ListView
+                        Grid.Row="2"
+                        ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -65,7 +69,7 @@
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid>
+                <Grid MaxWidth="700" Padding="12">
                     <ListView
                         Header="{x:Bind ViewModel.SelectedChapter.Title, Mode=OneWay}"
                         ItemTemplateSelector="{StaticResource ContentViewerDataTemplateSelector}"

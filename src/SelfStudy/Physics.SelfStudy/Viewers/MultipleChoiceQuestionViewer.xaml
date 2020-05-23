@@ -7,7 +7,6 @@
     xmlns:html="using:Physics.SelfStudy.Html"
     xmlns:local="using:Physics.SelfStudy.Viewers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Light"
     mc:Ignorable="d">
 
