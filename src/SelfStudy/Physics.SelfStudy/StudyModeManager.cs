@@ -44,7 +44,7 @@ namespace Physics.SelfStudy
             //newWindow.Closed += NewWindow_Closed;
             newWindow.Title = resourceLoader.GetString("WindowTitle");
 
-            TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["DarkAppThemeColor"]);
+            TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["AppTitleBarColor"]);
             newWindow.RequestSize(new Size(800, 600));
             var shown = await newWindow.TryShowAsync();
         }
