@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap mp rescap">
 
   <Identity
-    Name="PlayingWithPhysicsSelfStudyEditor"
-    Publisher="CN=Martin"
-    Version="1.0.0.0" />
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysics-Selfs"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.1.2.0" />
 
-  <mp:PhoneIdentity PhoneProductId="79c6b8dc-3c2c-444b-8972-61a5c90f7187" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="3c4f8ac7-2178-4aa6-87e9-0a16c824bc8d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Playing with Physics: Self study Editor</DisplayName>
-    <PublisherDisplayName>Martin Zikmund</PublisherDisplayName>
+    <DisplayName>Playing with Physics: Self study editor</DisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -33,7 +33,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Physics.SelfStudy.Editor.App">
       <uap:VisualElements
-        DisplayName="Playing with Physics: Self study Editor"
+        DisplayName="Playing with Physics: Self study editor"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Physics.SelfStudy.Editor"
