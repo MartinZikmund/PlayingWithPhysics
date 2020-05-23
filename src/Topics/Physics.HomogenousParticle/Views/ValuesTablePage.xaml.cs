@@ -11,120 +11,103 @@ namespace Physics.HomogenousParticle.Views
 {
     public sealed partial class ValuesTablePage : Page
     {        
-        public ValuesTablePage(ValuesTableDialogViewModel viewModel)
+        public ValuesTablePage()
         {
             this.InitializeComponent();
-            Model = viewModel;
-            DataContext = Model;
         }
 
-        public void Initialize()
-        {
-            SetupFormatting();
-            _type = type;
-            Model.Initalize(service, type);
-        }
+        //public void Initialize()
+        //{
+        //    SetupFormatting();
+        //}
 
-        private void SetupFormatting()
-        {
-            var rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
-            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
+        //private void SetupFormatting()
+        //{
+        //    var rounder = new IncrementNumberRounder();
+        //    rounder.Increment = 0.1;
+        //    rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
 
-            var formatter = new DecimalFormatter();
-            formatter.IntegerDigits = 1;
-            formatter.FractionDigits = 1;
-            formatter.NumberRounder = rounder;
-            TimeIntervalNumberBox.NumberFormatter = formatter;
-        }
+        //    var formatter = new DecimalFormatter();
+        //    formatter.IntegerDigits = 1;
+        //    formatter.FractionDigits = 1;
+        //    formatter.NumberRounder = rounder;
+        //    TimeIntervalNumberBox.NumberFormatter = formatter;
+        //}
 
-        public ValuesTableDialogViewModel Model { get; set; }
+        //public ValuesTableDialogViewModel Model { get; set; }
 
-        //TODO: Translate button content
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            SwitchColumnsVisibility();
-        }
+        ////TODO: Translate button content
+        //private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    SwitchColumnsVisibility();
+        //}
 
-        private void SwitchColumnsVisibility()
-        {
-            var xColumn = ValuesTable.Columns.First(column => "X (m)".Equals(column.Header));
-            var v0Column = ValuesTable.Columns.First(column => "Vx (m/s)".Equals(column.Header));
-            if (xColumn != null && v0Column != null)
-            {
-                Visibility newVisibility = Visibility.Visible;
-                if (xColumn.Visibility == Visibility.Collapsed)
-                {
-                    newVisibility = Visibility.Visible;
-                }
-                else
-                {
-                    newVisibility = Visibility.Collapsed;
-                }
-                xColumn.Visibility = newVisibility;
-                v0Column.Visibility = newVisibility;
-            }
-        }
+        //private void SwitchColumnsVisibility()
+        //{
+        //    var xColumn = ValuesTable.Columns.First(column => "X (m)".Equals(column.Header));
+        //    var v0Column = ValuesTable.Columns.First(column => "Vx (m/s)".Equals(column.Header));
+        //    if (xColumn != null && v0Column != null)
+        //    {
+        //        Visibility newVisibility = Visibility.Visible;
+        //        if (xColumn.Visibility == Visibility.Collapsed)
+        //        {
+        //            newVisibility = Visibility.Visible;
+        //        }
+        //        else
+        //        {
+        //            newVisibility = Visibility.Collapsed;
+        //        }
+        //        xColumn.Visibility = newVisibility;
+        //        v0Column.Visibility = newVisibility;
+        //    }
+        //}
 
-        private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.Column.Header.ToString() == "Time")
-            {
-                e.Column.Header = "t (s)";
-            }
+        //private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        //{
+        //    if (e.Column.Header.ToString() == "Time")
+        //    {
+        //        e.Column.Header = "t (s)";
+        //    }
 
-            if (e.Column.Header.ToString() == "X")
-            {
-                e.Column.Header = "x (m)";
-            }
+        //    if (e.Column.Header.ToString() == "X")
+        //    {
+        //        e.Column.Header = "x (m)";
+        //    }
 
-            if (e.Column.Header.ToString() == "Y")
-            {
-                e.Column.Header = "y (m)";
-            }
+        //    if (e.Column.Header.ToString() == "Y")
+        //    {
+        //        e.Column.Header = "y (m)";
+        //    }
 
-            if (e.Column.Header.ToString() == "VX")
-            {
-                e.Column.Header = "vx (m/s)";
-            }
+        //    if (e.Column.Header.ToString() == "VX")
+        //    {
+        //        e.Column.Header = "vx (m/s)";
+        //    }
 
-            if (e.Column.Header.ToString() == "VY")
-            {
-                e.Column.Header = "vy (m/s)";
-            }
+        //    if (e.Column.Header.ToString() == "VY")
+        //    {
+        //        e.Column.Header = "vy (m/s)";
+        //    }
 
-            if (e.Column.Header.ToString() == "V")
-            {
-                e.Column.Header = "v (m/s)";
-            }
+        //    if (e.Column.Header.ToString() == "V")
+        //    {
+        //        e.Column.Header = "v (m/s)";
+        //    }
 
-            if (e.Column.Header.ToString() == "EP")
-            {
-                e.Column.Header = "Ep (J)";
-            }
+        //    if (e.Column.Header.ToString() == "EP")
+        //    {
+        //        e.Column.Header = "Ep (J)";
+        //    }
 
-            if (e.Column.Header.ToString() == "EK")
-            {
-                e.Column.Header = "Ek (J)";
-            }
+        //    if (e.Column.Header.ToString() == "EK")
+        //    {
+        //        e.Column.Header = "Ek (J)";
+        //    }
 
-            if (e.Column.Header.ToString() == "EPEK")
-            {
-                e.Column.Header = "EpEk (J)";
-            }
-        }
-
-        private void CopyToClipbord_Click(object sender, RoutedEventArgs e)
-        {
-            var clipboardContents = new StringBuilder();
-            foreach (var data in Model.Values)
-            {
-                clipboardContents.AppendLine(data.ToTabString());
-            }
-
-            var dataPackage = new DataPackage();
-            dataPackage.SetText(clipboardContents.ToString());
-            Clipboard.SetContent(dataPackage);
-        }
+        //    if (e.Column.Header.ToString() == "EPEK")
+        //    {
+        //        e.Column.Header = "EpEk (J)";
+        //    }
+        //}
     }
 }

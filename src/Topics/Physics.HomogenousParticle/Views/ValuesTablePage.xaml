@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Grid Padding="20">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -50,6 +50,6 @@
                 Content="{extensions:Localize Key=ShowHideZeroes}"
                 Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />
             <Button Click="CopyToClipbord_Click" Content="{extensions:Localize Key=CopyToClipboard}" />
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>

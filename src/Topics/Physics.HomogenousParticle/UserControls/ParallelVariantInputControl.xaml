@@ -7,7 +7,7 @@
     xmlns:inputs="using:Physics.HomogenousParticle.ViewModels.Inputs"
     xmlns:local="using:Physics.HomogenousParticle.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:inputs1="using:Physics.HomongenousParticle.Logic"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -94,7 +94,7 @@
             ItemsSource="{x:Bind Model.VariantOrientations}"
             SelectedItem="{x:Bind Model.SelectedOrientation, Mode=TwoWay}">
             <ComboBox.ItemTemplate>
-                <DataTemplate x:DataType="inputs:ParallelVariantOrientation">
+                <DataTemplate x:DataType="inputs1:ParallelVariantOrientation">
                     <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>

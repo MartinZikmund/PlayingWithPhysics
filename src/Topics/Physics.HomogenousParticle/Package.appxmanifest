@@ -9,7 +9,7 @@
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsMagnet"
     Publisher="CN=VCT"
-    Version="0.5.4.0" />
+    Version="0.5.10.0" />
 
   <mp:PhoneIdentity PhoneProductId="768a70bb-08d5-4494-babd-a5989b1ad05f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
