@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ex="using:Physics.Shared.Extensions"
     xmlns:html="using:Physics.SelfStudy.Html"
     xmlns:local="using:Physics.SelfStudy.Viewers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -609,9 +610,8 @@
                 Grid.Column="0"
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.RevealAnswerCommand, Mode=OneWay}"
-                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}">
-                Show answer
-            </Button>
+                Content="{ex:Localize Key=ShowAnswer}"
+                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}" />
         </Grid>
         <StackPanel
             Grid.Row="1"
@@ -622,14 +622,13 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="Správně 🎉!" />
+                Text="{ex:Localize Key=WrongAnswerTitle}" />
             <html:MathWebView HtmlContent="{x:Bind Question.CorrectResponse}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
-                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}">
-                Znovu
-            </Button>
+                Content="{ex:Localize Key=TryAgain}"
+                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}" />
         </StackPanel>
         <StackPanel
             Grid.Row="1"
@@ -640,14 +639,13 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="Špatně 😕" />
+                Text="{ex:Localize Key=CorrectAnswerTitle}" />
             <html:MathWebView HtmlContent="{x:Bind Question.WrongResponse}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
-                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}">
-                Znovu
-            </Button>
+                Content="{ex:Localize Key=TryAgain}"
+                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}" />
         </StackPanel>
     </Grid>
 </Page>
