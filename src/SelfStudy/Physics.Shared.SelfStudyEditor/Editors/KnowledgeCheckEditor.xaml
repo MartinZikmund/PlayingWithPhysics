@@ -11,16 +11,31 @@
 
     <StackPanel Padding="12" Spacing="8">
         <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay}" />
-        <TextBox Header="Correct response" Text="{x:Bind ViewModel.CorrectResponse, Mode=TwoWay}" />
-        <ListView Header="Options" ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}" />
-        <StackPanel Orientation="Horizontal">
+        <ListView
+            Header="Options"
+            ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}"
+            SelectedIndex="{x:Bind SelectedOptionIndex, Mode=TwoWay}" />
+        <StackPanel Orientation="Horizontal" Spacing="8">
             <TextBox
                 Width="200"
-                Header="New option"
+                PlaceholderText="New option"
                 Text="{x:Bind NewItemText, Mode=TwoWay}" />
-            <Button VerticalAlignment="Bottom" Click="{x:Bind AddItem}">Add</Button>
+            <Button VerticalAlignment="Bottom" Click="{x:Bind AddOption}">Add</Button>
         </StackPanel>
-        <Button>Delete selected</Button>
-
+        <Button Click="{x:Bind DeleteSelectedOption}">Delete selected</Button>
+        <ComboBox
+            Header="Correct answer"
+            ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}"
+            SelectedIndex="{x:Bind ViewModel.CorrectAnswerIndex, Mode=TwoWay}" />
+        <TextBox
+            Height="100"
+            AcceptsReturn="True"
+            Header="Correct response"
+            Text="{x:Bind ViewModel.CorrectResponse, Mode=TwoWay}" />
+        <TextBox
+            Height="100"
+            AcceptsReturn="True"
+            Header="Wrong response"
+            Text="{x:Bind ViewModel.WrongResponse, Mode=TwoWay}" />
     </StackPanel>
 </UserControl>

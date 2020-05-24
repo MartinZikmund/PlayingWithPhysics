@@ -33,9 +33,22 @@ namespace Physics.SelfStudy.Editor.Editors
 
         public string NewItemText { get; set; }
 
-        public void AddItem()
+        public int SelectedOptionIndex { get; set; }
+
+        public void AddOption()
         {
             ViewModel.Options.Add(NewItemText);
+            ViewModel.ForceUpdate();
+            NewItemText = "";
+        }
+
+        public void DeleteSelectedOption()
+        {
+            if (SelectedOptionIndex >= 0 && SelectedOptionIndex < ViewModel.Options.Count)
+            {
+                ViewModel.Options.RemoveAt(SelectedOptionIndex);
+                ViewModel.ForceUpdate();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

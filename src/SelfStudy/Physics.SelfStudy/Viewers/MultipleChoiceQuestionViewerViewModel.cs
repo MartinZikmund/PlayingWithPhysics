@@ -20,7 +20,9 @@ namespace Physics.SelfStudy.Viewers
             _question = question;
         }
 
-        public int SelectedAnswerIndex { get; set; }
+        public int SelectedAnswerIndex { get; set; } = -1;
+
+        public bool IsShowAnswerButtonEnabled => SelectedAnswerIndex >= 0;
 
         public bool ShowQuestion { get; set; } = true;
 
@@ -30,14 +32,24 @@ namespace Physics.SelfStudy.Viewers
 
         public ICommand RevealAnswerCommand => GetOrCreateCommand(RevealAnswer);
 
+        public ICommand TryAgainCommand => GetOrCreateCommand(TryAgain);
+
+        private void TryAgain()
+        {
+            SelectedAnswerIndex = -1;
+            ShowQuestion = true;
+            ShowCorrectAnswer = false;
+            ShowWrongAnswer = false;
+        }
+
         private void RevealAnswer()
         {
             ShowQuestion = false;
-            //if (SelectedAnswerIndex == _question.CorrectOptionIndex)
+            if (SelectedAnswerIndex == _question.CorrectAnswerIndex)
             {
                 ShowCorrectAnswer = true;
             }
-            //else
+            else
             {
                 ShowWrongAnswer = true;
             }

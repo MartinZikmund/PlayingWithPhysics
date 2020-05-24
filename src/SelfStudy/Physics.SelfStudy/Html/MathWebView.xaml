@@ -9,9 +9,10 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <Grid x:Name="Wrapper">
+    <Grid x:Name="Wrapper" CornerRadius="2">
         <WebView
             x:Name="Web"
+            DefaultBackgroundColor="Transparent"
             PointerWheelChanged="WebView_PointerWheelChanged"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollMode="Disabled" />

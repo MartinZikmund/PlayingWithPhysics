@@ -11,6 +11,11 @@ namespace Physics.SelfStudy.Editor.ViewModels
     {
         public abstract ContentType Type { get; }
 
+        public void ForceUpdate()
+        {
+            OnPropertyChanged(null);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
