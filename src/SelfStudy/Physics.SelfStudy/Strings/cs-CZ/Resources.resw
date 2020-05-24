@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CorrectAnswerTitle" xml:space="preserve">
-    <value>Správně 🎉!</value>
-  </data>
-  <data name="ShowAnswer" xml:space="preserve">
-    <value>Zobrazit odpověď</value>
-  </data>
-  <data name="TryAgain" xml:space="preserve">
-    <value>Zkusit znovu</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Samostudium</value>
-  </data>
-  <data name="WrongAsnwerTitle" xml:space="preserve">
-    <value>Špatně 😕</value>
   </data>
 </root>

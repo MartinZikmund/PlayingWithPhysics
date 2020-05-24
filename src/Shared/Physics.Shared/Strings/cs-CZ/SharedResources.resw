@@ -123,13 +123,25 @@
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Zkopírovat do schránky</value>
   </data>
+  <data name="CorrectAnswerTitle" xml:space="preserve">
+    <value>Správně 🎉!</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Časový interval (s)</value>
+  </data>
+  <data name="ShowAnswer" xml:space="preserve">
+    <value>Zobrazit odpověď</value>
   </data>
   <data name="ShowHideIrrelevantColumns" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
   </data>
   <data name="ShowHideZeroes" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Zkusit znovu</value>
+  </data>
+  <data name="WrongAsnwerTitle" xml:space="preserve">
+    <value>Špatně 😕</value>
   </data>
 </root>
