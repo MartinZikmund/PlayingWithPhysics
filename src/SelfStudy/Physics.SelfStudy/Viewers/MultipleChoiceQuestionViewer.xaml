@@ -15,13 +15,14 @@
         <Style x:Key="ListViewItemExpanded" TargetType="ListViewItem">
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
             <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="#11000000" />
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
             <Setter Property="TabNavigation" Value="Local" />
             <Setter Property="IsHoldingEnabled" Value="True" />
             <Setter Property="Padding" Value="12,0,12,0" />
+            <Setter Property="Margin" Value="2" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="MinWidth" Value="{ThemeResource ListViewItemMinWidth}" />
@@ -192,7 +193,7 @@
                                                 To="1"
                                                 Duration="0:0:0" />
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentBorder" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightListAccentLowBrush}" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppThemeColor}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
@@ -584,6 +585,7 @@
         <Grid
             Grid.Row="1"
             Padding="12"
+            RowSpacing="4"
             Visibility="{x:Bind Model.ShowQuestion, Mode=OneWay}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -633,8 +635,8 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="{ex:Localize Key=WrongAnswerTitle}" />
-            <html:MathWebView HtmlContent="{x:Bind Question.CorrectResponse}" />
+                Text="{ex:Localize Key=CorrectAnswerTitle}" />
+            <html:MathWebView HtmlContent="{x:Bind Question.CorrectResponse, Mode=OneWay}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
@@ -660,8 +662,8 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="{ex:Localize Key=CorrectAnswerTitle}" />
-            <html:MathWebView HtmlContent="{x:Bind Question.WrongResponse}" />
+                Text="{ex:Localize Key=WrongAnswerTitle}" />
+            <html:MathWebView HtmlContent="{x:Bind Question.WrongResponse, Mode=OneWay}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
