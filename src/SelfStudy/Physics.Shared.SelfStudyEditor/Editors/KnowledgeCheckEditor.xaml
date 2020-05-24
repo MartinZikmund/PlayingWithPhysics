@@ -29,11 +29,13 @@
             SelectedIndex="{x:Bind ViewModel.CorrectAnswerIndex, Mode=TwoWay}" />
         <TextBox
             Height="100"
+            TextWrapping="Wrap"            
             AcceptsReturn="True"
             Header="Correct response"
             Text="{x:Bind ViewModel.CorrectResponse, Mode=TwoWay}" />
         <TextBox
             Height="100"
+            TextWrapping="Wrap"
             AcceptsReturn="True"
             Header="Wrong response"
             Text="{x:Bind ViewModel.WrongResponse, Mode=TwoWay}" />
