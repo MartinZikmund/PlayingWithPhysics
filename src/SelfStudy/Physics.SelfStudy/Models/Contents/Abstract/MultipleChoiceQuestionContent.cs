@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Physics.SelfStudy.Models.Contents.Abstract
 {
-    public class MultipleChoiceQuestionContent : ContentBase, IContent
+    public abstract class MultipleChoiceQuestionContent : ContentBase, IContent
     {
         public override ContentType Type { get; }
 
