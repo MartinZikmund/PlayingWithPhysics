@@ -32,7 +32,7 @@
 
             <html:MathWebView HtmlContent="{x:Bind Question.Question, Mode=OneWay}" />
 
-            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasNumericInput}">
+            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasNumericInput, Mode=OneWay}">
                 <controls:NumberBox
                     Width="100"
                     PlaceholderText="{x:Bind Model.Placeholder}"
@@ -40,7 +40,7 @@
                 <TextBlock Grid.Row="1" Text="{x:Bind Model.Unit}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasTextualInput}">
+            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasTextualInput, Mode=OneWay}">
                 <TextBox
                     Width="100"
                     InputScope="Text"

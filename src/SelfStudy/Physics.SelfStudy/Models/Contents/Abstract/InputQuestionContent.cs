@@ -9,7 +9,7 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
     {
         public string Title { get; set; }
 
-        public bool IsNumeric { get; set; }
+        public bool HasNumericInput { get; set; }
 
         public string Unit { get; set; }
 

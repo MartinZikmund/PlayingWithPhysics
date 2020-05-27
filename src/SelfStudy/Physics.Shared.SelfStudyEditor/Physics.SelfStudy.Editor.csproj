@@ -145,6 +145,9 @@
     <Compile Include="Editors\HtmlEditor.xaml.cs">
       <DependentUpon>HtmlEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editors\InputQuestionEditor.xaml.cs">
+      <DependentUpon>InputQuestionEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editors\KnowledgeCheckEditor.xaml.cs">
       <DependentUpon>KnowledgeCheckEditor.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
     <Page Include="Editors\HtmlEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\InputQuestionEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Editors\KnowledgeCheckEditor.xaml">
       <SubType>Designer</SubType>

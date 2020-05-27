@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Physics.SelfStudy.Models.Contents.Abstract;
+using Physics.SelfStudy.Viewers.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,33 @@ namespace Physics.SelfStudy.Viewers
         public InputQuestionViewer()
         {
             this.InitializeComponent();
+        }
+
+        public InputQuestionContent Question
+        {
+            get { return (InputQuestionContent)GetValue(QuestionProperty); }
+            set { SetValue(QuestionProperty, value); }
+        }
+
+        public static readonly DependencyProperty QuestionProperty =
+            DependencyProperty.Register(nameof(Question), typeof(InputQuestionContent), typeof(InputQuestionViewer), new PropertyMetadata(null, OnQuestionChanged));
+
+        public InputQuestionViewerViewModel Model
+        {
+            get { return (InputQuestionViewerViewModel)GetValue(ModelProperty); }
+            set { SetValue(ModelProperty, value); }
+        }
+
+        public static readonly DependencyProperty ModelProperty =
+            DependencyProperty.Register(nameof(Model), typeof(InputQuestionViewerViewModel), typeof(InputQuestionViewer), new PropertyMetadata(null));
+
+        private static void OnQuestionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var viewer = (InputQuestionViewer)d;
+            if (e.NewValue is InputQuestionContent question)
+            {
+                viewer.Model = new InputQuestionViewerViewModel(question);
+            }
         }
     }
 }

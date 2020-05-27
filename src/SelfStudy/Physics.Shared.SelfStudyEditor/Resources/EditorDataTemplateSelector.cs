@@ -14,6 +14,8 @@ namespace Physics.SelfStudy.Editor.Resources
     {
         public DataTemplate HtmlContent { get; set; }
 
+        public DataTemplate InputQuestion { get; set; }
+
         public DataTemplate KnowledgeCheck { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container) => GetTemplateForItem(item);
@@ -24,6 +26,7 @@ namespace Physics.SelfStudy.Editor.Resources
             item switch
             {
                 HtmlContent html => HtmlContent,
+                InputQuestionContent input => InputQuestion,
                 KnowledgeCheckContent knowledgeCheck => KnowledgeCheck,
                 null => null,
                 _ => throw new NotImplementedException(),
