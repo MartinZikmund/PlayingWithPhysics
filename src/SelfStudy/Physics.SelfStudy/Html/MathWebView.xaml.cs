@@ -25,19 +25,20 @@ namespace Physics.SelfStudy.Html
         public MathWebView()
         {
             this.InitializeComponent();
+            Web.ScriptNotify += Web_ScriptNotify;
             Web.SizeChanged += WebView_SizeChanged;
-            Web.NavigationCompleted += WebView_NavigationCompleted;
+            //Web.NavigationCompleted += WebView_NavigationCompleted;
             Web.CanBeScrollAnchor = false;
+        }
+
+        private void Web_ScriptNotify(object sender, NotifyEventArgs e)
+        {
+            _initialized = true;
+            UpdateHeight();
         }
 
         private async void WebView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            UpdateHeight();
-        }
-
-        private async void WebView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
-        {
-            _initialized = true;
             UpdateHeight();
         }
 
@@ -81,7 +82,8 @@ namespace Physics.SelfStudy.Html
             if (e.NewValue is string html)
             {
                 viewer._initialized = false;
-                viewer.Web.NavigateToString(string.Format(HtmlHelpers.LayoutFormatString, html));
+                var fullHtml = string.Format(HtmlHelpers.LayoutFormatString, html);
+                viewer.Web.NavigateToString(fullHtml);
             }
         }
     }
