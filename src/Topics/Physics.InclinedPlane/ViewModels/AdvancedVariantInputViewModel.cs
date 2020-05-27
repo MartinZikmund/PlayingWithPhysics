@@ -13,7 +13,7 @@ namespace Physics.InclinedPlane.ViewModels
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new AdvancedMotionSetup(Elevation, Length, SelectedDriftCoefficient.Value, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new AdvancedMotionSetup(Elevation, Angle, Mass, SelectedDriftCoefficient.Value, Length, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color), SelectedDriftCoefficient.Value);
         }
 
         private GravityPreset _selectedGravityPreset;

@@ -13,7 +13,7 @@ namespace Physics.InclinedPlane.ViewModels
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new BasicMotionSetup(Elevation, Length, SelectedDriftCoefficient.Value, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new BasicMotionSetup(Elevation, Angle, Mass, DriftCoefficient, Length, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
         public override string Label { get; set; }
     }

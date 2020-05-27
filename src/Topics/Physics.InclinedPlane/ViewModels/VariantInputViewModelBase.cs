@@ -36,10 +36,11 @@ namespace Physics.InclinedPlane.ViewModels
             }
         }
         public float Elevation { get; set; }
-        public float Length { get; set; }
+        public float Angle { get; set; }
+        public float Mass { get; set; }
+        public float Length => (Elevation / (float)Math.Sin(Angle));
         public abstract string Label { get; set; }
         public abstract Task<IMotionSetup> CreateMotionSetupAsync();
-
         public void OnElevationChanged()
         {
             float maxElevtion = Length * 2;

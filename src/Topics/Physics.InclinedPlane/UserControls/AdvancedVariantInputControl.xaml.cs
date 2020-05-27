@@ -26,7 +26,8 @@ namespace Physics.InclinedPlane.UserControls
             this.InitializeComponent();
             DataContextChanged += AdvancedVariantInputControl_DataContextChanged;
             InclinedPlaneElevationNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
-            InclinedPlaneLengthNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
+            InclinedPlaneMassNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
+            InclinedPlaneAngleNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
             DriftCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.1);
             GravityNumberBox.SetupFormatting(increment: 0.0001, fractionDigits: 4, smallChange: 0.1);
         }
