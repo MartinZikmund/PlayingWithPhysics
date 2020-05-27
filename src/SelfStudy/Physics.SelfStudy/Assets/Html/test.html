@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript">
+        function getDocHeight() {
+            var D = document;
+            return Math.max(
+                Math.max(D.body.offsetHeight, D.documentElement.offsetHeight)
+            );
+        }        
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Register.StartupHook("End", function () { document.getElementById("test").innerHTML = "ENDED"; window.external.notify("mathloaded"); });
+        MathJax.Hub.Config({
+        messageStyle: "none"
+        });
+    </script>
+    <script id="MathJax-script" async src="./MathJax.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./reset.css" />
+    <style type="text/css">
+        html {
+            font-family: 'Segoe UI', Arial;
+            background-color: transparent;
+            overflow:hidden;
+        }
+    </style>
+
+    <title>Playing with Physics</title>
+</head>
+<body id="test">
+    Pro jednoduchost budeme přepokládat, že na těleso kromě tíhové síly \(\overrightarrow{F_G}\) žádné další síly nepůsobí. Zanedbáme tedy i odpor vzduchu. Pohyb v odporujícím prostředí bude tématem další aplikace v projektu „Hrátky s fyzikou.“
+</body>
+</html>

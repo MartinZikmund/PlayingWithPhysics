@@ -8,6 +8,7 @@
         MathJax.Hub.Config({{
         messageStyle: "none"
         }});
+        MathJax.Hub.Register.StartupHook("End", function () {{ window.external.notify("mathloaded"); }});
     </script>
     <script id="MathJax-script" async src="ms-appx-web:///Physics.SelfStudy/Assets/Html/MathJax.min.js"></script>
     <link rel="stylesheet" type="text/css" href="ms-appx-web:///Physics.SelfStudy/Assets/Html/reset.css" />
@@ -24,12 +25,11 @@
             return Math.max(
                 Math.max(D.body.offsetHeight, D.documentElement.offsetHeight)
             );
-        }}
-        MathJax.Hub.Register.StartupHook("End", function () {{ }});
+        }}        
     </script>
     <title>Playing with Physics</title>
 </head>
-<body>
+<body id="test">
     {0}
 </body>
 </html>
