@@ -9,6 +9,8 @@ namespace Physics.InclinedPlane.Services
     public interface IMotionSetup
     {
         float Elevation { get; }
+        float Angle { get; }
+        float Mass { get; }
         float Length { get; }
         float Gravity { get; }
         float DriftCoefficient { get; }

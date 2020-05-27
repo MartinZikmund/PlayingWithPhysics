@@ -40,6 +40,7 @@
         <ComboBox
             Grid.Row="0"
             Grid.Column="1"
+            Margin="0,0,0,8"
             HorizontalAlignment="Stretch">
             <ComboBoxItem Content="+1" Tag="1" />
             <ComboBoxItem Content="-1" Tag="-1" />

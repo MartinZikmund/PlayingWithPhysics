@@ -8,5 +8,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 {
     interface IPhysicsService
     {
+        float ComputeX();
+        float ComputeY();
     }
 }
