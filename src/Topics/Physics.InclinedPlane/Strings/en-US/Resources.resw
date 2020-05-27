@@ -126,6 +126,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Inclined Plane</value>
   </data>
+  <data name="ChangeMotion" xml:space="preserve">
+    <value>Upravit hodnoty</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>

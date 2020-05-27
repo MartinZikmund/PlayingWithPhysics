@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Physics.InclinedPlane.Logic.PhysicsServices
 {
-    interface IPhysicsService
+    public interface IPhysicsService
     {
-        float ComputeX();
-        float ComputeY();
+        float ComputeX(float time);
+        float ComputeY(float time);
+        float ComputeV(float time);
+        float ComputeS(float time);
+        float MaxT { get; }
     }
 }

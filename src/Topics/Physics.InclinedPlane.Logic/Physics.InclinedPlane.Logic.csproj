@@ -120,7 +120,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PhysicsServices\AdvancedMotionSetup.cs" />
+    <Compile Include="PhysicsServices\BasicMotionSetup.cs" />
+    <Compile Include="PhysicsServices\IMotionSetup.cs" />
     <Compile Include="PhysicsServices\IPhysicsService.cs" />
+    <Compile Include="PhysicsServices\MotionSetupBase.cs" />
     <Compile Include="PhysicsServices\PhysicsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Physics.InclinedPlane.Logic.rd.xml" />
@@ -138,10 +142,6 @@
     <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.UI.csproj">
       <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
       <Name>Physics.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Physics.InclinedPlane\Physics.InclinedPlane.csproj">
-      <Project>{42CB8100-9E7C-4F4F-9A99-1A1EC746AB09}</Project>
-      <Name>Physics.InclinedPlane</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
