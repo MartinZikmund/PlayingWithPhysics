@@ -1,4 +1,5 @@
 ﻿using Physics.SelfStudy.Models.Contents.Abstract;
+using Physics.SelfStudy.Viewers.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,39 +15,41 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
+
 namespace Physics.SelfStudy.Viewers
 {
-    public sealed partial class MultipleChoiceQuestionViewer : UserControl
+    public sealed partial class InputQuestionViewer : UserControl
     {
-        public MultipleChoiceQuestionViewer()
+        public InputQuestionViewer()
         {
             this.InitializeComponent();
         }
 
-        public MultipleChoiceQuestionContent Question
+        public InputQuestionContent Question
         {
-            get { return (MultipleChoiceQuestionContent)GetValue(QuestionProperty); }
+            get { return (InputQuestionContent)GetValue(QuestionProperty); }
             set { SetValue(QuestionProperty, value); }
         }
 
         public static readonly DependencyProperty QuestionProperty =
-            DependencyProperty.Register(nameof(Question), typeof(MultipleChoiceQuestionContent), typeof(MultipleChoiceQuestionViewer), new PropertyMetadata(null, OnQuestionChanged));
+            DependencyProperty.Register(nameof(Question), typeof(InputQuestionContent), typeof(InputQuestionViewer), new PropertyMetadata(null, OnQuestionChanged));
 
-        public MultipleChoiceQuestionViewerViewModel Model
+        public InputQuestionViewerViewModel Model
         {
-            get { return (MultipleChoiceQuestionViewerViewModel)GetValue(ModelProperty); }
+            get { return (InputQuestionViewerViewModel)GetValue(ModelProperty); }
             set { SetValue(ModelProperty, value); }
         }
 
         public static readonly DependencyProperty ModelProperty =
-            DependencyProperty.Register(nameof(Model), typeof(MultipleChoiceQuestionViewerViewModel), typeof(MultipleChoiceQuestionViewer), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(Model), typeof(InputQuestionViewerViewModel), typeof(InputQuestionViewer), new PropertyMetadata(null));
 
         private static void OnQuestionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var viewer = (MultipleChoiceQuestionViewer)d;
-            if (e.NewValue is MultipleChoiceQuestionContent question)
+            var viewer = (InputQuestionViewer)d;
+            if (e.NewValue is InputQuestionContent question)
             {
-                viewer.Model = new MultipleChoiceQuestionViewerViewModel(question);   
+                viewer.Model = new InputQuestionViewerViewModel(question);
             }
         }
     }

@@ -13,9 +13,14 @@
         <editors:KnowledgeCheckEditor />
     </DataTemplate>
 
+    <DataTemplate x:Key="InputQuestionEditorTemplate">
+        <editors:InputQuestionEditor />
+    </DataTemplate>
+
     <local:EditorDataTemplateSelector
         x:Key="EditorDataTemplateSelector"
         HtmlContent="{StaticResource HtmlContentEditorTemplate}"
+        InputQuestion="{StaticResource InputQuestionEditorTemplate}"
         KnowledgeCheck="{StaticResource KnowledgeCheckEditorTemplate}" />
 
 

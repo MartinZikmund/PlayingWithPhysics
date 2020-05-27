@@ -14,6 +14,8 @@ namespace Physics.SelfStudy.Resources
     {
         public DataTemplate HtmlViewer { get; set; }
 
+        public DataTemplate InputQuestion { get; set; }
+
         public DataTemplate KnowledgeCheckViewer { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item) =>
@@ -26,6 +28,7 @@ namespace Physics.SelfStudy.Resources
             item switch
             {
                 HtmlContent html => HtmlViewer,
+                InputQuestionContent inputQuestion => InputQuestion,
                 KnowledgeCheckContent knowledgeCheck => KnowledgeCheckViewer,
                 null => null,
                 _ => throw new NotImplementedException(),
