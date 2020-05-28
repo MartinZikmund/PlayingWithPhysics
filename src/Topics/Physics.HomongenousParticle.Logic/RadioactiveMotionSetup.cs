@@ -16,6 +16,8 @@ namespace Physics.HomogenousParticle.Services
             Color = color;
         }
 
+        public float Velocity { get; set; }
+
         public RadiationType Type { get; set; }
     }
 }

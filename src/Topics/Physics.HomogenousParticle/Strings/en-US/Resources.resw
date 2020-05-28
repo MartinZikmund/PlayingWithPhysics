@@ -159,4 +159,22 @@
   <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
     <value>Into paper</value>
   </data>
+  <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
+    <value>Particle charge</value>
+  </data>
+  <data name="PerpendicularInput_Induction" xml:space="preserve">
+    <value>Induction</value>
+  </data>
+  <data name="PerpendicularInput_InductionOrientation" xml:space="preserve">
+    <value>Induction orientation</value>
+  </data>
+  <data name="PerpendicularInput_MassStart" xml:space="preserve">
+    <value>Particle mass</value>
+  </data>
+  <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
+    <value>(multiple of</value>
+  </data>
+  <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
+    <value>Velocity</value>
+  </data>
 </root>

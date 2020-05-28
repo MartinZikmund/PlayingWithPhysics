@@ -22,6 +22,7 @@ namespace Physics.HomogenousParticle.Services
         }
 
         public float Charge { get; set; }
+
         public float InductionOrientation { get; set; }
     }
 }

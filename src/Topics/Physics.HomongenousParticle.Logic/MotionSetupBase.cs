@@ -13,13 +13,10 @@ namespace Physics.HomogenousParticle.Services
 
         }
 
-        public MotionSetupBase(float velocity, string color)
+        public MotionSetupBase(string color)
         {           
-            Velocity = velocity;
             Color = color ?? throw new ArgumentNullException(nameof(color));
         }
-
-        public float Velocity { get; set; }
 
         public string Color { get; set; }
     }

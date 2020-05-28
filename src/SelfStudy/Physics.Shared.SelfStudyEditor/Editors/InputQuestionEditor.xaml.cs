@@ -30,24 +30,24 @@ namespace Physics.SelfStudy.Editor.Editors
 
         public InputQuestionContent ViewModel { get; private set; }
 
-        public string NewItemText { get; set; }
+        public string NewAnswerText { get; set; }
 
         public int SelectedOptionIndex { get; set; }
 
-        public void AddOption()
-        {
-            
+        public void AddAnswer()
+        {            
+            ViewModel.AllowedAnswers.Add(NewAnswerText);
             ViewModel.ForceUpdate();
-            NewItemText = "";
+            NewAnswerText = "";
         }
 
         public void DeleteSelectedOption()
         {
-            //if (SelectedOptionIndex >= 0 && SelectedOptionIndex < ViewModel.Options.Count)
-            //{
-            //    ViewModel.Options.RemoveAt(SelectedOptionIndex);
-            //    ViewModel.ForceUpdate();
-            //}
+            if (SelectedOptionIndex >= 0 && SelectedOptionIndex < ViewModel.AllowedAnswers.Count)
+            {
+                ViewModel.AllowedAnswers.RemoveAt(SelectedOptionIndex);
+                ViewModel.ForceUpdate();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

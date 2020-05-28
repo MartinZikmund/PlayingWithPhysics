@@ -20,6 +20,8 @@ namespace Physics.HomogenousParticle.Services
 
         public ParallelVariantOrientation Angle { get; set; }
 
+        public float Velocity { get; set; }
+
         public float Charge { get; set; }
 
         public float InductionOrientation { get; set; }

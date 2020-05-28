@@ -111,18 +111,7 @@ namespace Physics.HomogenousParticle.Rendering
         private Vector2 CalculateMotionPosition(PerpendicularMotionSetup motionSetup, float radius)
         {
             var t = _controller.SimulationTime.TotalTime.TotalSeconds;
-            var angle = MathHelpers.DegreesToRadians(motionSetup.Angle);
-            var x =
-                radius *
-                Math.Cos(-(Math.PI / 2) * t - (3 * Math.PI / 2) + angle) +
-                radius *
-                Math.Cos(angle - Math.PI / 2);
-            var y =
-                radius *
-                Math.Sin(-(Math.PI / 2) * t - (3 * Math.PI / 2) + angle) +
-                radius *
-                Math.Cos(angle - Math.PI / 2);
-            return new Vector2((float)x, (float)y);
+            return Vector2.Zero;
         }
     }
 }

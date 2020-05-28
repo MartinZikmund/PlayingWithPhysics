@@ -1,6 +1,7 @@
 ﻿using Physics.SelfStudy.Editor.ViewModels;
 using Physics.Shared.SelfStudy.Models;
 using System;
+using System.Collections.ObjectModel;
 using Windows.Devices.Bluetooth.Advertisement;
 
 namespace Physics.SelfStudy.Models.Contents.Abstract
@@ -21,7 +22,7 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
 
         public string WrongResponse { get; set; }
 
-        public string[] AllowedAnswers { get; set; }
+        public ObservableCollection<string> AllowedAnswers { get; set; } = new ObservableCollection<string>();
 
         public double Tolerance { get; set; }
     }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -21,14 +23,21 @@ namespace Physics.SelfStudy.Html
     public sealed partial class MathWebView : UserControl
     {
         private bool _initialized;
+        private IDisposable _subscriber;
 
         public MathWebView()
         {
             this.InitializeComponent();
             Web.ScriptNotify += Web_ScriptNotify;
-            Web.SizeChanged += WebView_SizeChanged;
+            //Web.SizeChanged += WebView_SizeChanged;
             //Web.NavigationCompleted += WebView_NavigationCompleted;
             Web.CanBeScrollAnchor = false;
+            _subscriber = Observable.FromEventPattern<SizeChangedEventHandler, SizeChangedEventArgs>(
+                h => Web.SizeChanged += h,
+                h => Web.SizeChanged -= h)
+                .Throttle(TimeSpan.FromMilliseconds(300))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(s => UpdateHeight());
         }
 
         private void Web_ScriptNotify(object sender, NotifyEventArgs e)
@@ -45,20 +54,22 @@ namespace Physics.SelfStudy.Html
         private async void UpdateHeight()
         {
             if (!_initialized) return;
-
             try
             {
                 var heightString = await Web.InvokeScriptAsync("eval", new[] { "getDocHeight().toString()" });
                 int height;
                 if (int.TryParse(heightString, out height))
                 {
-                    Wrapper.Height = height;
+                    if (Wrapper.Height != height)
+                    {
+                        Wrapper.Height = height;                        
+                    }
                     System.Diagnostics.Debug.WriteLine(height);
                 }
             }
             catch
             {
-                Debug.WriteLine("Exception thrown");
+                Debug.WriteLine("Exception thrown");                
             }
         }
 

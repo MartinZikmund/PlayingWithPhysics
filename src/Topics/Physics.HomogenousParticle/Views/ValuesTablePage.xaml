@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Grid Padding="20">
-        <!--<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -25,7 +25,7 @@
             ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}"
             FrozenColumnCount="1"
             IsReadOnly="True"
-            ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
+            ItemsSource="{Binding Values, Mode=OneWay}" />
         <TextBlock
             Grid.Row="1"
             Margin="1,0,0,0"
@@ -40,16 +40,13 @@
             Minimum="0.1"
             SmallChange="0.1"
             SpinButtonPlacementMode="Inline"
-            Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
+            Value="{Binding TimeInterval, Mode=TwoWay}" />
         <StackPanel
             Grid.Row="2"
             Orientation="Horizontal"
             Spacing="4">
-            <Button
-                Click="ButtonBase_OnClick"
-                Content="{extensions:Localize Key=ShowHideZeroes}"
-                Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />
-            <Button Click="CopyToClipbord_Click" Content="{extensions:Localize Key=CopyToClipboard}" />
-        </StackPanel>-->
+            <Button Content="{extensions:Localize Key=ShowHideZeroes}" Visibility="{Binding ButtonVisibility, Mode=OneWay}" />
+            <Button Content="{extensions:Localize Key=CopyToClipboard}" />
+        </StackPanel>
     </Grid>
 </Page>

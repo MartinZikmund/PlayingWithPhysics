@@ -2,6 +2,7 @@
     x:Class="Physics.SelfStudy.Editor.Editors.InputQuestionEditor"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Physics.SelfStudy.Editor.Editors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,14 +11,23 @@
     mc:Ignorable="d">
 
     <StackPanel Padding="12" Spacing="8">
-        <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay}" />
-
+        <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <CheckBox Content="Use numeric input" IsChecked="{x:Bind ViewModel.HasNumericInput, Mode=TwoWay}" />
+        <controls:NumberBox
+            Header="Tolerance"
+            IsEnabled="{x:Bind ViewModel.HasNumericInput, Mode=OneWay}"
+            Value="{x:Bind ViewModel.Tolerance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Header="Unit" Text="{x:Bind ViewModel.Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ListView
+            Header="Correct answers"
+            ItemsSource="{x:Bind ViewModel.AllowedAnswers, Mode=OneWay}"
+            SelectedIndex="{x:Bind SelectedOptionIndex, Mode=TwoWay}" />
         <StackPanel Orientation="Horizontal" Spacing="8">
             <TextBox
                 Width="200"
-                PlaceholderText="New option"
-                Text="{x:Bind NewItemText, Mode=TwoWay}" />
-            <Button VerticalAlignment="Bottom" Click="{x:Bind AddOption}">Add</Button>
+                PlaceholderText="New answer"
+                Text="{x:Bind NewAnswerText, Mode=TwoWay}" />
+            <Button VerticalAlignment="Bottom" Click="{x:Bind AddAnswer}">Add</Button>
         </StackPanel>
         <Button Click="{x:Bind DeleteSelectedOption}">Delete selected</Button>
         <TextBox

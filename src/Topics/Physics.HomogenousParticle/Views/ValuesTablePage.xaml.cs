@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using Physics.HomogenousParticle.ViewModels;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Windows.ApplicationModel.DataTransfer;
@@ -16,10 +17,10 @@ namespace Physics.HomogenousParticle.Views
             this.InitializeComponent();
         }
 
-        //public void Initialize()
-        //{
-        //    SetupFormatting();
-        //}
+        public void Initialize(INotifyPropertyChanged viewModel)
+        {
+            DataContext = viewModel;
+        }
 
         //private void SetupFormatting()
         //{
@@ -62,52 +63,53 @@ namespace Physics.HomogenousParticle.Views
         //    }
         //}
 
-        //private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        //{
-        //    if (e.Column.Header.ToString() == "Time")
-        //    {
-        //        e.Column.Header = "t (s)";
-        //    }
+        private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+        }
+            //    if (e.Column.Header.ToString() == "Time")
+            //    {
+            //        e.Column.Header = "t (s)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "X")
-        //    {
-        //        e.Column.Header = "x (m)";
-        //    }
+            //    if (e.Column.Header.ToString() == "X")
+            //    {
+            //        e.Column.Header = "x (m)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "Y")
-        //    {
-        //        e.Column.Header = "y (m)";
-        //    }
+            //    if (e.Column.Header.ToString() == "Y")
+            //    {
+            //        e.Column.Header = "y (m)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "VX")
-        //    {
-        //        e.Column.Header = "vx (m/s)";
-        //    }
+            //    if (e.Column.Header.ToString() == "VX")
+            //    {
+            //        e.Column.Header = "vx (m/s)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "VY")
-        //    {
-        //        e.Column.Header = "vy (m/s)";
-        //    }
+            //    if (e.Column.Header.ToString() == "VY")
+            //    {
+            //        e.Column.Header = "vy (m/s)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "V")
-        //    {
-        //        e.Column.Header = "v (m/s)";
-        //    }
+            //    if (e.Column.Header.ToString() == "V")
+            //    {
+            //        e.Column.Header = "v (m/s)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "EP")
-        //    {
-        //        e.Column.Header = "Ep (J)";
-        //    }
+            //    if (e.Column.Header.ToString() == "EP")
+            //    {
+            //        e.Column.Header = "Ep (J)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "EK")
-        //    {
-        //        e.Column.Header = "Ek (J)";
-        //    }
+            //    if (e.Column.Header.ToString() == "EK")
+            //    {
+            //        e.Column.Header = "Ek (J)";
+            //    }
 
-        //    if (e.Column.Header.ToString() == "EPEK")
-        //    {
-        //        e.Column.Header = "EpEk (J)";
-        //    }
-        //}
-    }
+            //    if (e.Column.Header.ToString() == "EPEK")
+            //    {
+            //        e.Column.Header = "EpEk (J)";
+            //    }
+            //}
+        }
 }
