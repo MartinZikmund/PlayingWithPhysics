@@ -15,7 +15,7 @@ namespace Physics.InclinedPlane.ViewModels
         public MotionViewModel(IMotionSetup motion)
         {
             MotionInfo = motion ?? throw new ArgumentNullException(nameof(motion));
-            UpdateCurrentValues(3);
+            UpdateCurrentValues(0);
         }
 
         private IMotionSetup _motionInfo;

@@ -30,15 +30,13 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 }
             }
         }
-        private IMotionSetup _setup;
+        public IMotionSetup Setup { get; set; }
         public PhysicsService(IMotionSetup setup)
         {
-            _setup = setup;
-        }
+            Setup = setup;
+        }    
 
-    
-
-        public float GetDifferenceOfFpFt()
+        private float GetDifferenceOfFpFt()
         {
             return ComputeFp() - ComputeFt();
         }
@@ -58,23 +56,24 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float ComputeFp()
         {
-            return _setup.Mass * _setup.Gravity * (float)Math.Sin(AngleInRad);
+            return Setup.Mass * Setup.Gravity * (float)Math.Sin(AngleInRad);
         }
         public float ComputeFt()
         {
-            return _setup.DriftCoefficient * _setup.Mass * _setup.Gravity * (float)Math.Cos(AngleInRad);
+            return Setup.DriftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
         }
 
-        public float ComputeEk(float time) => _setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
+        public float ComputeEk(float time) => Setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
 
         public float ComputeX(float time)
         {
-            return 0.0f;
+            return ComputeS(time) * (float)Math.Cos(AngleInRad);
         }
 
+        public float Y0 => Setup.Length * (float)Math.Sin(AngleInRad);
         public float ComputeY(float time)
         {
-            return 0.0f;
+            return Y0 - ComputeS(time) * (float)Math.Sin(AngleInRad);
         }
 
         public float ComputeS(float time)
@@ -82,7 +81,6 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             switch (_variant)
             {
                 case FComputeVariant.MoreThanZero:
-                    return Acceleration * (float)Math.Pow(time, 2) / 2;
                 case FComputeVariant.LessThanZero:
                     return V0 * time + (Acceleration * (float)Math.Pow(time, 2) / 2);
                 default:
@@ -90,14 +88,13 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             }
         }
 
-        public float ComputeEv(float time) => _setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
+        public float ComputeEv(float time) => Setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
 
         public float ComputeV(float time)
         {
             switch (_variant)
             {
                 case FComputeVariant.MoreThanZero:
-                    return Acceleration * time;
                 case FComputeVariant.LessThanZero:
                     return V0 + Acceleration * time;
                 default:
@@ -115,7 +112,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return ComputeV(time) * (float)Math.Sin(AngleInRad);
         }
 
-        public float Acceleration => _setup.Gravity * ((float)Math.Sin(AngleInRad) - _setup.DriftCoefficient * (float)Math.Cos(AngleInRad));
+        public float Acceleration => Setup.Gravity * (float)Math.Sin(AngleInRad) - Setup.DriftCoefficient * (float)Math.Cos(AngleInRad);
         public float Time { get; set; } //To be replaced by drawing controller
         public float MaxT
         {
@@ -124,21 +121,21 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 switch (_variant)
                 {
                     case FComputeVariant.MoreThanZero:
-                        return (float)Math.Sqrt(2 * _setup.Length / Acceleration);
+                        return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
                     case FComputeVariant.LessThanZero:
-                        if (TotalLength > _setup.Length)
+                        if (TotalLength > Setup.Length)
                             return V0 / -Acceleration;
                         else
-                            return (float)Math.Pow(V0, 2) + 2 * Acceleration * _setup.Length;
+                            return (float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length;
                     default:
-                        return _setup.Length / V0;
+                        return Setup.Length / V0;
                 }
             }
         }
 
         public float V0 => 5;
-        public float AngleInRad => MathHelpers.DegreesToRadians(_setup.Angle);
-        public float TotalLength => (_variant == FComputeVariant.LessThanZero) ? ((float)Math.Pow(V0, 2) / (-2 * Acceleration)) : _setup.Length;
+        public float AngleInRad => MathHelpers.DegreesToRadians(Setup.Angle);
+        public float TotalLength => (_variant == FComputeVariant.LessThanZero) ? ((float)Math.Pow(V0, 2) / (-2 * Acceleration)) : Setup.Length;
     }
 
     enum FComputeVariant

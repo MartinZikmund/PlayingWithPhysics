@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.InclinedPlane.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         float ComputeV(float time);
         float ComputeS(float time);
         float MaxT { get; }
+        IMotionSetup Setup { get; set; }
     }
 }

@@ -67,7 +67,7 @@
                         <NavigationViewItemSeparator/>
                         <Grid Padding="8,4,4,6" Background="#c95d7c" Margin="8,0,8,0">
                             <TextBlock Text="Aktuální hodnoty" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
-                            <Button Foreground="White" HorizontalAlignment="Right">
+                            <Button Foreground="White" HorizontalAlignment="Right" Command="{x:Bind Model.ShowValuesTableCommand}">
                                 <SymbolIcon Symbol="ViewAll" />
                             </Button>
                         </Grid>

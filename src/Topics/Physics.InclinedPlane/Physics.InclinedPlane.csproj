@@ -149,6 +149,9 @@
       <DependentUpon>BasicVariantInputControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\InputControlContentTemplateSelector.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
     <Compile Include="ViewModels\AddOrUpdateTrajectoryViewModel.cs" />
     <Compile Include="ViewModels\AdvancedVariantInputViewModel.cs" />
     <Compile Include="ViewModels\BasicVariantInputViewModel.cs" />
@@ -158,6 +161,9 @@
     <Compile Include="ViewModels\VariantInputViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ValuesTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
