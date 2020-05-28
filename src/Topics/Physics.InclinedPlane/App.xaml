@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="/Resources/DataTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="AppThemeColor">#dd6285</Color>
-            <Color x:Key="DarkAppThemeColor">#124E87</Color>
+            <Color x:Key="DarkAppThemeColor">#ad4e69</Color>
         </ResourceDictionary>
     </Application.Resources>
 </local:PhysicsApp>

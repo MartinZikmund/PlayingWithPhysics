@@ -9,6 +9,7 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:services="using:Physics.InclinedPlane.Services"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -56,14 +57,63 @@
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
-                        <TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>
+                        <!--<TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>-->
                         <Button
+                            Foreground="White"
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.AddTrajectoryCommand}"
-                            Content="{extensions:Localize Key=AddMotion}" />
+                            Content="{extensions:Localize Key=ChangeMotion}" />
+                        <NavigationViewItemSeparator/>
+                        <Grid Padding="8,4,4,6" Background="#c95d7c" Margin="8,0,8,0">
+                            <TextBlock Text="Aktuální hodnoty" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
+                            <Button Foreground="White" HorizontalAlignment="Right">
+                                <SymbolIcon Symbol="ViewAll" />
+                            </Button>
+                        </Grid>
+                        <Grid Margin="16,8,8,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="t:" Grid.Row="0" Grid.Column="0" Foreground="White" FontSize="16" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Foreground="White" FontSize="16">
+                                    <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}"></Run>
+                                    <Run Text=" s"></Run>
+                                </TextBlock>
+                                <TextBlock Text="v:" Grid.Row="0" Grid.Column="2" Foreground="White" FontSize="16"/>
+                                <TextBlock Grid.Row="0" Grid.Column="3" Foreground="White" FontSize="16">
+                                    <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}"></Run>
+                                    <Run Text=" m/s"></Run>
+                                </TextBlock>
+                                <TextBlock Text="x:" Grid.Row="1" Grid.Column="0" Foreground="White" FontSize="16"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="16">
+                                    <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock Text="y:" Grid.Row="1" Grid.Column="2" Foreground="White" FontSize="16"/>
+                                <TextBlock Grid.Row="1" Grid.Column="3" Foreground="White" FontSize="16">
+                                    <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock Text="s:" Grid.Row="2" Grid.Column="0" Foreground="White" FontSize="16"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="16">
+                                    <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}"></Run>
+                                    <Run Text=" m"></Run>
+                                </TextBlock>
+                            </Grid>
+                        </Grid>
+                        <NavigationViewItemSeparator/>
+                        
                         <Button
                             Margin="8,8,8,0"
+                            Foreground="White"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.DrawCommand}"
                             Content="{extensions:Localize Key=DrawMotion}" />

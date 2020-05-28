@@ -3,6 +3,7 @@ using Physics.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,12 +67,12 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float ComputeEk(float time) => _setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
 
-        public float ComputeX()
+        public float ComputeX(float time)
         {
             return 0.0f;
         }
 
-        public float ComputeY()
+        public float ComputeY(float time)
         {
             return 0.0f;
         }
@@ -96,9 +97,9 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             switch (_variant)
             {
                 case FComputeVariant.MoreThanZero:
-                    return Acceleration * Time;
+                    return Acceleration * time;
                 case FComputeVariant.LessThanZero:
-                    return V0 + Acceleration * Time;
+                    return V0 + Acceleration * time;
                 default:
                     return V0;  
             }
@@ -116,7 +117,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float Acceleration => _setup.Gravity * ((float)Math.Sin(AngleInRad) - _setup.DriftCoefficient * (float)Math.Cos(AngleInRad));
         public float Time { get; set; } //To be replaced by drawing controller
-        public float MaxTime
+        public float MaxT
         {
             get
             {
