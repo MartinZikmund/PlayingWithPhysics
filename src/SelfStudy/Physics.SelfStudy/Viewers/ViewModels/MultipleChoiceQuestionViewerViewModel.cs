@@ -30,6 +30,10 @@ namespace Physics.SelfStudy.Viewers
 
         public bool ShowWrongAnswer { get; set; }
 
+        public bool ShowAnswer => ShowCorrectAnswer || ShowWrongAnswer;
+
+        public string Response { get; set; }
+
         public ICommand RevealAnswerCommand => GetOrCreateCommand(RevealAnswer);
 
         public ICommand TryAgainCommand => GetOrCreateCommand(TryAgain);
@@ -48,10 +52,12 @@ namespace Physics.SelfStudy.Viewers
             if (SelectedAnswerIndex == _question.CorrectAnswerIndex)
             {
                 ShowCorrectAnswer = true;
+                Response = _question.CorrectResponse;
             }
             else
             {
                 ShowWrongAnswer = true;
+                Response = !string.IsNullOrWhiteSpace(_question.WrongResponse) ? _question.WrongResponse : _question.CorrectResponse;
             }
         }
     }

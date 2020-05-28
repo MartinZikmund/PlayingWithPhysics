@@ -32,21 +32,46 @@
 
             <html:MathWebView HtmlContent="{x:Bind Question.Question, Mode=OneWay}" />
 
-            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasNumericInput, Mode=OneWay}">
+            <Grid
+                Grid.Row="1"
+                ColumnSpacing="8"
+                Visibility="{x:Bind Model.HasNumericInput, Mode=OneWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <controls:NumberBox
                     Width="100"
+                    VerticalAlignment="Center"
                     PlaceholderText="{x:Bind Model.Placeholder}"
                     Value="{x:Bind Model.NumericInput, Mode=TwoWay}" />
-                <TextBlock Grid.Row="1" Text="{x:Bind Model.Unit}" />
-            </StackPanel>
+                <html:MathWebView
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HtmlContent="{x:Bind Question.Unit, Mode=OneWay}" />
+            </Grid>
 
-            <StackPanel Orientation="Horizontal" Visibility="{x:Bind Model.HasTextualInput, Mode=OneWay}">
+            <Grid
+                Grid.Row="1"
+                ColumnSpacing="8"
+                Visibility="{x:Bind Model.HasTextualInput, Mode=OneWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <TextBox
                     Width="100"
+                    VerticalAlignment="Center"
                     InputScope="Text"
                     PlaceholderText="{x:Bind Model.Placeholder}"
                     Text="{x:Bind Model.TextualInput, Mode=TwoWay}" />
-            </StackPanel>
+                <html:MathWebView
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HtmlContent="{x:Bind Question.Unit, Mode=OneWay}" />
+            </Grid>
 
             <Button
                 Grid.Row="2"
@@ -61,7 +86,7 @@
             Grid.RowSpan="3"
             Padding="12"
             Spacing="8"
-            Visibility="{x:Bind Model.ShowCorrectAnswer, Mode=OneWay}">
+            Visibility="{x:Bind Model.ShowAnswer, Mode=OneWay}">
             <animations:Implicit.ShowAnimations>
                 <animations:TranslationAnimation
                     From="0, 10, 0"
@@ -75,35 +100,14 @@
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="{ex:Localize Key=CorrectAnswerTitle}" />
-            <html:MathWebView HtmlContent="{x:Bind Question.CorrectResponse, Mode=OneWay}" />
-            <Button
-                HorizontalAlignment="Center"
-                Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
-                Content="{ex:Localize Key=TryAgain}"
-                IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}" />
-        </StackPanel>
-        <StackPanel
-            Grid.Row="1"
-            Grid.RowSpan="3"
-            Padding="12"
-            Spacing="8"
-            Visibility="{x:Bind Model.ShowWrongAnswer, Mode=OneWay}">
-            <animations:Implicit.ShowAnimations>
-                <animations:TranslationAnimation
-                    From="0, 10, 0"
-                    To="0, 0, 0"
-                    Duration="0:0:0.3" />
-                <animations:OpacityAnimation
-                    From="0"
-                    To="1.0"
-                    Duration="0:0:0.3" />
-            </animations:Implicit.ShowAnimations>
+                Text="{ex:Localize Key=CorrectAnswerTitle}"
+                Visibility="{x:Bind Model.ShowCorrectAnswer, Mode=OneWay}" />
             <TextBlock
                 HorizontalAlignment="Center"
                 Style="{ThemeResource TitleTextBlockStyle}"
-                Text="{ex:Localize Key=WrongAnswerTitle}" />
-            <html:MathWebView HtmlContent="{x:Bind Question.WrongResponse, Mode=OneWay}" />
+                Text="{ex:Localize Key=WrongAnswerTitle}"
+                Visibility="{x:Bind Model.ShowWrongAnswer, Mode=OneWay}" />
+            <html:MathWebView HtmlContent="{x:Bind Model.Response, Mode=OneWay}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"

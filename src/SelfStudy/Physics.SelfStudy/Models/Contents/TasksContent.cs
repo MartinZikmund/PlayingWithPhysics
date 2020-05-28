@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Physics.SelfStudy.Models.Contents
 {
-    public class TasksContent : HtmlContent
+    public class TasksContent : InputQuestionContent
     {
         public override ContentType Type => ContentType.Tasks;
     }
