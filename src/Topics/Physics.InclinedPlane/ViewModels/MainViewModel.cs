@@ -134,38 +134,38 @@ namespace Physics.InclinedPlane.ViewModels
 
         private async Task ShowValuesTableAsync(MotionViewModel viewModel)
         {
-            //if (_tableWindowIds.TryGetValue(viewModel, out var window))
-            //{
-            //    await window.TryShowAsync();
-            //    return;
-            //};
-            var newWindow = await AppWindow.TryCreateAsync();
-            var appWindowContentFrame = new Frame();
-            appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-            //var physicsService = new PhysicsService(Setup);
-            //var valuesTableService = new TableService(physicsService);
-            //var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
-            //valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 30);
-            //(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
-            // Attach the XAML content to the window.
-            ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
-            newWindow.Closed += NewWindow_Closed;
-            newWindow.Title = "Tabulka hodnot";
+            ////if (_tableWindowIds.TryGetValue(viewModel, out var window))
+            ////{
+            ////    await window.TryShowAsync();
+            ////    return;
+            ////};
+            //var newWindow = await AppWindow.TryCreateAsync();
+            //var appWindowContentFrame = new Frame();
+            //appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+            ////var physicsService = new PhysicsService(Setup);
+            ////var valuesTableService = new TableService(physicsService);
+            ////var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
+            ////valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 30);
+            ////(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+            //// Attach the XAML content to the window.
+            //ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+            //newWindow.Closed += NewWindow_Closed;
+            //newWindow.Title = "Tabulka hodnot";
 
-            //newWindow.TitleBar.BackgroundColor = ColorHelper.ToColor(viewModel.MotionInfo.Color);
-            newWindow.TitleBar.ForegroundColor = Colors.White;
-            newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-            newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-            newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-            newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-            newWindow.RequestSize(new Size(600, 400));
-            var shown = await newWindow.TryShowAsync();
-            if (shown)
-            {
-                _tableWindowIds.Add(viewModel, newWindow);
-            }
+            ////newWindow.TitleBar.BackgroundColor = ColorHelper.ToColor(viewModel.MotionInfo.Color);
+            //newWindow.TitleBar.ForegroundColor = Colors.White;
+            //newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            //newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+            //newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            //newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+            //newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+            //newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+            //newWindow.RequestSize(new Size(600, 400));
+            //var shown = await newWindow.TryShowAsync();
+            //if (shown)
+            //{
+            //    _tableWindowIds.Add(viewModel, newWindow);
+            //}
         }
 
         private void NewWindow_Closed(AppWindow sender, AppWindowClosedEventArgs args)
