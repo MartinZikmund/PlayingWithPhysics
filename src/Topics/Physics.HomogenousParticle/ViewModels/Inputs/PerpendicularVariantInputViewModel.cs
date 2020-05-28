@@ -13,16 +13,18 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new PerpendicularMotionSetup(Velocity, Angle, Charge, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new PerpendicularMotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
-        public float Velocity { get; set; } // n^6: 1<=n<=10
+        public float ChargeMultiple { get; set; }
 
-        public float Angle { get; set; } // 0<=alfa<=360, skoky po deseti stupních
+        public float MassMultiple { get; set; }
+        
+        public float VelocityMultiple { get; set; }
 
-        public float Charge { get; set; } // -1 nebo 1, bez velikosti
+        public float Induction { get; set; }
 
-        public PerpendicularInductionOrientation InductionOrientation { get; set; } // 180: do papíru, 0: z papíru
+        public PerpendicularInductionOrientation InductionOrientation { get; set; }
 
         public ObservableCollection<PerpendicularInductionOrientation> InductionOrientations { get; } =
             new ObservableCollection<PerpendicularInductionOrientation>() 

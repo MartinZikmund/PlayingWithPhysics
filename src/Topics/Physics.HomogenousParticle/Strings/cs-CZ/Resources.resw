@@ -165,4 +165,22 @@
   <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
     <value>Do papíru</value>
   </data>
+  <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
+    <value>Náboj částice</value>
+  </data>
+  <data name="PerpendicularInput_Induction" xml:space="preserve">
+    <value>Magnetická indukce</value>
+  </data>
+  <data name="PerpendicularInput_InductionOrientation" xml:space="preserve">
+    <value>Orientace indukčních čar</value>
+  </data>
+  <data name="PerpendicularInput_MassStart" xml:space="preserve">
+    <value>Hmotnost částice</value>
+  </data>
+  <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
+    <value>(násobek</value>
+  </data>
+  <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
+    <value>Rychlost</value>
+  </data>
 </root>
