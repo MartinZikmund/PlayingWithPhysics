@@ -141,7 +141,7 @@
   <data name="TryAgain" xml:space="preserve">
     <value>Zkusit znovu</value>
   </data>
-  <data name="WrongAsnwerTitle" xml:space="preserve">
+  <data name="WrongAnswerTitle" xml:space="preserve">
     <value>Špatně 😕</value>
   </data>
 </root>
