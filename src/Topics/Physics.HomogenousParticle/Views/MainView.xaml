@@ -106,6 +106,10 @@
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.AddTrajectoryCommand}"
                             Content="{extensions:Localize Key=AddMotion}" />
+                        <Button
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.ShowValuesTableCommand}"
+                            Content="Table" />
                         <!--<Button
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.DrawCommand}"

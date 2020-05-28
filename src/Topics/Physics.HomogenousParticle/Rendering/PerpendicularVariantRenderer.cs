@@ -111,7 +111,7 @@ namespace Physics.HomogenousParticle.Rendering
         private Vector2 CalculateMotionPosition(PerpendicularMotionSetup motionSetup, float radius)
         {
             var t = _controller.SimulationTime.TotalTime.TotalSeconds;
-            throw new NotImplementedException();
+            return Vector2.Zero;
         }
     }
 }

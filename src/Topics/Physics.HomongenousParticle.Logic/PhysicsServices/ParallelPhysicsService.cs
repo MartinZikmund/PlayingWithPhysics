@@ -19,7 +19,7 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         public float MaxT => 30;
 
-        public double ComputeX(float seconds)
+        public double ComputeX(double seconds)
         {
             var actualVelocity = _parallelMotionSetup.Velocity;
             var angular = Math.Cos(MathHelpers.DegreesToRadians(_parallelMotionSetup.InductionOrientation));
@@ -28,7 +28,7 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
                 xSize : -xSize;
         }
 
-        public double ComputeY(float seconds)
+        public double ComputeY(double seconds)
         {
             var actualVelocity = _parallelMotionSetup.Velocity;
             var angular = Math.Sin(-MathHelpers.DegreesToRadians(_parallelMotionSetup.InductionOrientation));

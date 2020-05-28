@@ -19,12 +19,17 @@ namespace Physics.HomogenousParticle.Logic.Tests
                 0.00091f,
                 2,
                 0.01f,
-                PerpendicularInductionOrientation.FromPaper,
+                PerpendicularInductionOrientation.IntoPaper,
                 "#000000");
             var physicsService = new PerpendicularPhysicsService(motionSetup);
 
-            Assert.Equal(0.0011375, physicsService.ComputeRadius(), 10);
-            Assert.Equal(1758241758.0, physicsService.ComputeOmega(), 0);
+            Assert.Equal(0.0011375m, physicsService.ComputeRadius(), 10);
+            Assert.True(Math.Abs(1758241758.0m - physicsService.ComputeOmega()) < 100);
+            Assert.Equal(0.0000000036m, physicsService.ComputeT(), 10);
+
+            var t1 = 0.0000000004;
+            Assert.Equal(0.000735662, physicsService.ComputeX(t1), 9);
+            Assert.Equal(0.000269913, physicsService.ComputeY(t1), 9);
         }
 
         [Fact]
@@ -35,12 +40,17 @@ namespace Physics.HomogenousParticle.Logic.Tests
                 0.00091f,
                 2,
                 0.01f,
-                PerpendicularInductionOrientation.FromPaper,
+                PerpendicularInductionOrientation.IntoPaper,
                 "#000000");
             var physicsService = new PerpendicularPhysicsService(motionSetup);
 
-            Assert.Equal(0.0011375, physicsService.ComputeRadius(), 10);            
-            Assert.Equal(0.0000000035, physicsService.ComputeT(), 10);
+            Assert.Equal(0.0011375m, physicsService.ComputeRadius(), 10);
+            Assert.True(Math.Abs(1758241758.0m - physicsService.ComputeOmega()) < 100);
+            Assert.Equal(0.0000000036m, physicsService.ComputeT(), 10);
+
+            var t1 = 0.0000000004;
+            Assert.Equal(0.000735662, physicsService.ComputeX(t1), 9);
+            Assert.Equal(-0.000269913, physicsService.ComputeY(t1), 9);
         }
 
         [Fact]
@@ -51,27 +61,38 @@ namespace Physics.HomogenousParticle.Logic.Tests
                 1.67f,
                 1,
                 0.1f,
-                PerpendicularInductionOrientation.FromPaper,
+                PerpendicularInductionOrientation.IntoPaper,
                 "#000000");
             var physicsService = new PerpendicularPhysicsService(motionSetup);
-
-            Assert.Equal(0.104375, physicsService.ComputeRadius(), 6);
             
+            Assert.Equal(0.104375m, physicsService.ComputeRadius(), 6);
+            Assert.True(Math.Abs(9580838.323m- physicsService.ComputeOmega()) < 10);
+            Assert.Equal(0.00000066m, physicsService.ComputeT(), 8);
+
+            var t1 = 0.00000048;
+            Assert.Equal(-0.103702405, physicsService.ComputeX(t1), 9);
+            Assert.Equal(0.116205123, physicsService.ComputeY(t1), 9);
         }
 
         [Fact]
         public void GoldValues()
         {
-            var motionSeutp = new PerpendicularMotionSetup(
+            var motionSetup = new PerpendicularMotionSetup(
                 3,
                 329,
                 3,
                 2,
-                PerpendicularInductionOrientation.FromPaper,
+                PerpendicularInductionOrientation.IntoPaper,
                 "#000000");
-            var physicsService = new PerpendicularPhysicsService(motionSeutp);
+            var physicsService = new PerpendicularPhysicsService(motionSetup);
 
-            Assert.Equal(1.0, physicsService.ComputeRadius(), 1);
+            Assert.Equal(1m, physicsService.ComputeRadius(), 1);
+            //Assert.True(Math.Abs(2912621.359m - physicsService.ComputeOmega()) < 100);
+            //Assert.Equal(0.0000022m, physicsService.ComputeT(), 7);
+
+            //var t1 = 0.0000012;
+            //Assert.Equal(-0.442520443, physicsService.ComputeX(t1), 9);
+            //Assert.Equal(1.896758416, physicsService.ComputeY(t1), 9);
         }
     }
 }

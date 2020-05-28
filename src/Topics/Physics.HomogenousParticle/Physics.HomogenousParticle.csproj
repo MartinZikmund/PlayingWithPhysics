@@ -156,8 +156,11 @@
     <Compile Include="UserControls\ZeroVariantInputControl.xaml.cs">
       <DependentUpon>ZeroVariantInputControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValuesTable\PerpendicularTableRow.cs" />
+    <Compile Include="ValuesTable\PerpendicularTableService.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\PerpendicularTableDialogViewModel.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
@@ -333,6 +336,10 @@
     <ProjectReference Include="..\Physics.HomongenousParticle.Logic\Physics.HomongenousParticle.Logic.csproj">
       <Project>{85553a30-6c09-40f6-8caf-9ce69f08b2c4}</Project>
       <Name>Physics.HomongenousParticle.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Physics.InclinedPlane.Logic\Physics.InclinedPlane.Logic.csproj">
+      <Project>{6EE0E550-A7D5-4D7D-9F55-812AA129E1A0}</Project>
+      <Name>Physics.InclinedPlane.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

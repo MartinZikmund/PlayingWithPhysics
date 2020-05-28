@@ -23,61 +23,69 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
             //return new Vector2((float)x, (float)y);
         }
 
-        public float MaxT => throw new NotImplementedException();
+        public float MaxT => (float)ComputeT();
 
-        public double ComputeX(float seconds)
+        public double ComputeX(double seconds) => (double)ComputeXDecimal((decimal)seconds);
+
+        public decimal ComputeXDecimal(decimal seconds)
         {
-            if (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper)
+            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
+                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple < 0))
             {
                 return
                     ComputeRadius() *
-                    Math.Cos(ComputeOmega() * seconds - Math.PI / 2);
+                    (decimal)Math.Cos((double)(ComputeOmega() * seconds - (decimal)Math.PI / 2));
             }
             else
             {
                 return
                     ComputeRadius() *
-                    Math.Cos(-ComputeOmega() * seconds - (3 * Math.PI / 2));
+                    (decimal)Math.Cos((double)(-ComputeOmega() * seconds - (3 * (decimal)Math.PI / 2)));
             }
         }
 
-        public double ComputeY(float seconds)
+        public double ComputeY(double seconds) => (double)ComputeYDecimal((decimal)seconds);
+
+        public decimal ComputeYDecimal(decimal seconds)
         {
             var r = ComputeRadius();
-            if (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper)
+            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
+                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple < 0))
             {
                 return
                     r *
-                    Math.Sin(ComputeOmega() * seconds - Math.PI / 2) +
+                    (decimal)Math.Sin((double)(ComputeOmega() * seconds - (decimal)Math.PI / 2)) +
                     r;
             }
             else
             {
                 return
                     r *
-                    Math.Cos(-ComputeOmega() * seconds - (3 * Math.PI / 2)) -
+                    (decimal)Math.Sin((double)(-ComputeOmega() * seconds - (3 * (decimal)Math.PI / 2))) -
                     r;
             }
         }
 
-        public double ComputeRadius()
+        public decimal ComputeRadius()
         {
-            var mv = _perpenducilarMotion.MassMultiple * _perpenducilarMotion.VelocityMultiple;
-            var Bq = _perpenducilarMotion.Induction * _perpenducilarMotion.ChargeMultiple * 1.6;
-            var fraction = mv / Bq;
-            var tenMultiple = (-27 + 6) - (0 - 19);
-            var tenPow = Math.Pow(10, tenMultiple);
+            var mv = (decimal)_perpenducilarMotion.MassMultiple * (decimal)_perpenducilarMotion.VelocityMultiple;
+            var Bq = (decimal)_perpenducilarMotion.Induction * (decimal)Math.Abs(_perpenducilarMotion.ChargeMultiple) * 1.6m;
+            var fraction = mv / Bq;            
+            var tenPow = 0.01m; //10 to power of (-27 + 6) - (0 - 19)
             return fraction * tenPow;
         }
 
-        public double ComputeOmega()
+        public decimal ComputeOmega()
         {
-            return _perpenducilarMotion.VelocityMultiple * Math.Pow(10, 6) / ComputeRadius();
+            var radius = ComputeRadius();
+            return (decimal)_perpenducilarMotion.VelocityMultiple * 1000000 / radius;
         }
 
-        public double ComputeT()
+        public decimal ComputeT()
         {
-            return ComputeOmega() / (2 * Math.PI);
+            return (2 * (decimal)Math.PI) / ComputeOmega();
         }
+
+        public decimal ComputeVelocity() => (decimal)_perpenducilarMotion.VelocityMultiple * 1000000;
     }
 }

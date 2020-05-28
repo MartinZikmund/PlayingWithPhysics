@@ -6,9 +6,9 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 {
     interface IPhysicsService
     {
-        double ComputeX(float seconds);
+        double ComputeX(double seconds);
 
-        double ComputeY(float seconds);
+        double ComputeY(double seconds);
 
         float MaxT { get; }
     }

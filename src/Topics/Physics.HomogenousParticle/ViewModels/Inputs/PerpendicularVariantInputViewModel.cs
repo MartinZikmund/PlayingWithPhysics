@@ -16,13 +16,13 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
             return new PerpendicularMotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
-        public float ChargeMultiple { get; set; }
+        public float ChargeMultiple { get; set; } = 1;
 
-        public float MassMultiple { get; set; }
-        
-        public float VelocityMultiple { get; set; }
+        public float MassMultiple { get; set; } = 1.67f;
 
-        public float Induction { get; set; }
+        public float VelocityMultiple { get; set; } = 1;
+
+        public float Induction { get; set; } = 0.1f;
 
         public PerpendicularInductionOrientation InductionOrientation { get; set; }
 
