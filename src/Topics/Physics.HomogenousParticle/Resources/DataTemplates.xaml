@@ -1,9 +1,11 @@
 ﻿<ResourceDictionary
+    x:Class="Physics.HomogenousParticle.Resources.DataTemplates"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ex="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HomogenousParticle.Resources"
+    xmlns:state="using:Physics.HomogenousParticle.ViewModels.State"
     xmlns:usercontrols="using:Physics.HomogenousParticle.UserControls">
-
 
     <DataTemplate x:Key="ZeroVariantInputDataTemplate">
         <usercontrols:ZeroVariantInputControl />
@@ -20,4 +22,33 @@
     <DataTemplate x:Key="RadiationVariantInputDataTemplate">
         <usercontrols:RadiationVariantInputControl />
     </DataTemplate>
+
+    <DataTemplate x:Key="ZeroVariantStateDataTemplate" x:DataType="state:ZeroVariantStateViewModel">
+        <Grid>
+            <TextBlock Text="{ex:Localize Key=ZeroVariant_StationaryExplanation}" TextWrapping="Wrap" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ParallelVariantStateDataTemplate" x:DataType="state:ParallelVariantStateViewModel">
+        <Grid>
+            <TextBlock Text="{ex:Localize Key=PerpendicularVariant_SimulationNotice}" TextWrapping="Wrap" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PerpendicularVariantStateDataTemplate" x:DataType="state:PerpendicularVariantStateViewModel">
+        <Grid>
+            <TextBlock Text="{ex:Localize Key=PerpendicularVariant_SimulationNotice}" TextWrapping="Wrap" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RadiationVariantStateDataTemplate" x:DataType="state:RadiationVariantStateViewModel">
+        <Grid />
+    </DataTemplate>
+
+    <local:VariantStateDataTemplateSelector
+        x:Key="VariantStateDataTemplateSelector"
+        Parallel="{StaticResource ParallelVariantStateDataTemplate}"
+        Perpendicular="{StaticResource PerpendicularVariantStateDataTemplate}"
+        Radiation="{StaticResource RadiationVariantStateDataTemplate}"
+        Zero="{StaticResource ZeroVariantStateDataTemplate}" />
 </ResourceDictionary>

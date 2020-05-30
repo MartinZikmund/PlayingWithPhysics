@@ -11,6 +11,6 @@ namespace Physics.HomogenousParticle.Services
         Zero,
         Parallel,
         Perpendicular,
-        Greek
+        Radiation
     }
 }

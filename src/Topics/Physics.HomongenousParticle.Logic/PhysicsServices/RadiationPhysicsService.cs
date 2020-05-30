@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Physics.HomongenousParticle.Logic.PhysicsServices
 {
-    public class RadioactivePhysicsService : IPhysicsService
+    public class RadiationPhysicsService : IPhysicsService
     {
-        private readonly RadioactiveMotionSetup _motionSetup;
+        private readonly RadiationMotionSetup _motionSetup;
 
-        public RadioactivePhysicsService(RadioactiveMotionSetup motionSetup)
+        public RadiationPhysicsService(RadiationMotionSetup motionSetup)
         {
             _motionSetup = motionSetup;
         }

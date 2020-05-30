@@ -8,6 +8,8 @@ namespace Physics.HomogenousParticle.Services
 {
     public interface IMotionSetup
     {
+        string Label { get; }
+
         string Color { get; }
     }
 }

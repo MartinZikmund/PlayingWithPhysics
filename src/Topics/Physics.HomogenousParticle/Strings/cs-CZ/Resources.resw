@@ -183,4 +183,25 @@
   <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
     <value>Rychlost</value>
   </data>
+  <data name="ParallelInput_InductionOrientation" xml:space="preserve">
+    <value>Orientace indukčních čar (v °)</value>
+  </data>
+  <data name="ParallelInput_MovementDirection" xml:space="preserve">
+    <value>Směr pohybu</value>
+  </data>
+  <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
+    <value>(v</value>
+  </data>
+  <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
+    <value>Přímý</value>
+  </data>
+  <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
+    <value>Opačný</value>
+  </data>
+  <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
+    <value>Rychlost pohybu částice je pouze ilustrační a neodpovídá realitě.</value>
+  </data>
+  <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
+    <value>Síla na částici je nulová, částice zůstává v klidu.</value>
+  </data>
 </root>

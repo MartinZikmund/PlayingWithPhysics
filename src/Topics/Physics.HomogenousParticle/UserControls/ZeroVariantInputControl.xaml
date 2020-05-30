@@ -10,8 +10,16 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="winui:NumberBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="SpinButtonPlacementMode" Value="Compact" />
+        </Style>
+    </UserControl.Resources>
+    <Grid ColumnSpacing="8" RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -21,7 +29,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -31,39 +39,30 @@
         <TextBlock
             Grid.Row="0"
             Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"
             Text="Náboj částice q" />
         <winui:NumberBox
             x:Name="ChargeNumberBox"
             Grid.Row="0"
             Grid.Column="1"
-            Margin="0,0,0,8"
             Maximum="3"
             Minimum="-3"
-            SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.Charge, Mode=TwoWay}" />
 
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"
             Text="Orientace indukčních čar B" />
         <winui:NumberBox
             x:Name="OrientationNumberBox"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,0,8"
             Maximum="360"
             Minimum="0"
-            SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
 
         <TextBlock
             Grid.Row="2"
             Grid.Column="0"
-            VerticalAlignment="Center"
             Text="{extensions:Localize Key=Color}" />
         <!--<Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <Button.Flyout>

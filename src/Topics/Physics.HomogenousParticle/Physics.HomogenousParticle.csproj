@@ -19,8 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <LangVersion>8.0</LangVersion>
-    <PackageCertificateThumbprint>
-    </PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>5260BBDCCDACF8CF740C844B6301DC738D40A9A6</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
@@ -28,7 +27,8 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateKeyFile>Physics.HomogenousParticle_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -143,6 +143,10 @@
     <Compile Include="Rendering\ZeroVariantRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\HomogenousParticleCanvasController.cs" />
+    <Compile Include="Resources\DataTemplates.xaml.cs">
+      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\VariantStateDataTemplateSelector.cs" />
     <Compile Include="UserControls\RadiationVariantInputControl.xaml.cs">
       <DependentUpon>RadiationVariantInputControl.xaml</DependentUpon>
     </Compile>
@@ -172,6 +176,13 @@
     <Compile Include="ViewModels\Inputs\ZeroVariantInputViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\State\IVariantStateViewModel.cs" />
+    <Compile Include="ViewModels\State\ParallelVariantStateViewModel.cs" />
+    <Compile Include="ViewModels\State\PerpendicularVariantStateViewModel.cs" />
+    <Compile Include="ViewModels\State\RadiationVariantStateViewModel.cs" />
+    <Compile Include="ViewModels\State\VariantStateViewModelBase.cs" />
+    <Compile Include="ViewModels\State\VariantStateViewModelFactory.cs" />
+    <Compile Include="ViewModels\State\ZeroVariantStateViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -336,10 +347,6 @@
     <ProjectReference Include="..\Physics.HomongenousParticle.Logic\Physics.HomongenousParticle.Logic.csproj">
       <Project>{85553a30-6c09-40f6-8caf-9ce69f08b2c4}</Project>
       <Name>Physics.HomongenousParticle.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Physics.InclinedPlane.Logic\Physics.InclinedPlane.Logic.csproj">
-      <Project>{6EE0E550-A7D5-4D7D-9F55-812AA129E1A0}</Project>
-      <Name>Physics.InclinedPlane.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

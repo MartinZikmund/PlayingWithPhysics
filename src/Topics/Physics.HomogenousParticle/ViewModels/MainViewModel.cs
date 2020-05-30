@@ -5,6 +5,7 @@ using Physics.HomogenousParticle.Services;
 using Physics.HomogenousParticle.ValuesTable;
 using Physics.HomogenousParticle.ViewInteractions;
 using Physics.HomogenousParticle.ViewModels.Inputs;
+using Physics.HomogenousParticle.ViewModels.State;
 using Physics.HomogenousParticle.Views;
 using Physics.HomongenousParticle.Logic.PhysicsServices;
 using Physics.Shared.UI.ViewModels;
@@ -98,7 +99,7 @@ namespace Physics.HomogenousParticle.ViewModels
                 case VelocityVariant.Perpendicular:
                     VariantInputViewModel = new PerpendicularVariantInputViewModel();
                     break;
-                case VelocityVariant.Greek:
+                case VelocityVariant.Radiation:
                     VariantInputViewModel = new RadiationVariantInputViewModel();
                     break;
             }
@@ -118,7 +119,7 @@ namespace Physics.HomogenousParticle.ViewModels
                 {
                     Motions.Clear();
                 }
-                Motions.Add(dialog.Setup);
+                Motions.Add(VariantStateViewModelFactory.Create(dialog.Setup));
                 RestartSimulation();
             }
         });
@@ -128,7 +129,7 @@ namespace Physics.HomogenousParticle.ViewModels
             _interaction = interaction;
         }
 
-        public ObservableCollection<IMotionSetup> Motions { get; } = new ObservableCollection<IMotionSetup>();
+        public ObservableCollection<IVariantStateViewModel> Motions { get; } = new ObservableCollection<IVariantStateViewModel>();
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
@@ -145,7 +146,7 @@ namespace Physics.HomogenousParticle.ViewModels
             if (_interaction == null) return;
             var controller = _interaction.PrepareController(SelectedVariant);
             SimulationPlayback.SetController(controller);
-            controller.StartSimulation(Motions.ToArray());
+            controller.StartSimulation(Motions.Select(m=>m.Motion).ToArray());
         }
     }
 }

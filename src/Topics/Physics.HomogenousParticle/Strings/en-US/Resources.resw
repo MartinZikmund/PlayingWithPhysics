@@ -177,4 +177,19 @@
   <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
     <value>Velocity</value>
   </data>
+  <data name="ParallelInput_InductionOrientation" xml:space="preserve">
+    <value>Induction orientation (in °)</value>
+  </data>
+  <data name="ParallelInput_MovementDirection" xml:space="preserve">
+    <value>Movement direction</value>
+  </data>
+  <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
+    <value>(in</value>
+  </data>
+  <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
+    <value>The velocity of the particle is adjusted for illustration purposes and does not match reality.</value>
+  </data>
+  <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
+    <value>No force is affecting the particle, hence it remains stationary.</value>
+  </data>
 </root>

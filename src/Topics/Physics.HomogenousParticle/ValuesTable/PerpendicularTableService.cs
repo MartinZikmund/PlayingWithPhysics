@@ -1,11 +1,7 @@
 ﻿using Physics.HomongenousParticle.Logic.PhysicsServices;
-using Physics.InclinedPlane.Logic.PhysicsServices;
 using Physics.Shared.UI.Services.ValuesTable;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Physics.HomogenousParticle.ValuesTable
 {

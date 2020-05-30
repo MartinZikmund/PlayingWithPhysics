@@ -10,8 +10,16 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="winui:NumberBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="SpinButtonPlacementMode" Value="Compact" />
+        </Style>
+    </UserControl.Resources>
+    <Grid ColumnSpacing="8" RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -20,7 +28,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -48,14 +56,16 @@
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">n</Run></TextBlock>
+            VerticalAlignment="Center">
+            <Run Text="{extensions:Localize Key=PerpendicularInput_VelocityStart}" />
+            <Run FontWeight="Bold" Text="v" />
+            <Run Text="{extensions:Localize Key=ParallelInput_VelocityNoteStart}" />
+            <Run Text="10" /><Run Typography.Variants="Superscript">n</Run><Run Text=")" />
+        </TextBlock>
         <winui:NumberBox
             x:Name="VelocityNumberBox"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,0,8"
-            SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
 
         <TextBlock

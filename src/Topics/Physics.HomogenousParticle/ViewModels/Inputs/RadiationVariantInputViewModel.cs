@@ -13,7 +13,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new RadioactiveMotionSetup(Velocity, Type, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+            return new RadiationMotionSetup(Velocity, Type, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
         public float Velocity { get; set; } = (float)Math.PI / 3; //v = pi/3

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Physics.HomogenousParticle.Services
 {
-    public class RadioactiveMotionSetup : MotionSetupBase
+    public class RadiationMotionSetup : MotionSetupBase
     {
-        public RadioactiveMotionSetup(float velocity, RadiationType type, string color)
+        public RadiationMotionSetup(float velocity, RadiationType type, string color)
         {
             Velocity = velocity;
             Type = type;

@@ -36,23 +36,23 @@ namespace Physics.HomogenousParticle.Rendering
         public void Update(ICanvasAnimatedControl sender)
         {
             var unit = sender.Size.Width / 1000;
-            
-            //if (_lastPosition == null)
-            //{
-            //    _lastPosition = new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f);
-            //}
-            //else
-            //{
-            //    var direction = new Vector2(
-            //        (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Cos(MathHelpers.DegreesToRadians(_motion.InductionOrientation))),
-            //        (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Sin(-MathHelpers.DegreesToRadians(_motion.InductionOrientation)))
-            //        );
-            //    if (_motion.Angle == ParallelVariantOrientation.Opposite)
-            //    {
-            //        direction *= -1;
-            //    }
-            //    _lastPosition += direction;
-            //}
+            var actualVelocity = _motion.Velocity;
+            if (_lastPosition == null)
+            {
+                _lastPosition = new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f);
+            }
+            else
+            {
+                var direction = new Vector2(
+                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Cos(MathHelpers.DegreesToRadians(_motion.InductionOrientation))),
+                    (float)(unit * actualVelocity * _controller.SimulationTime.ElapsedTime.TotalSeconds * Math.Sin(-MathHelpers.DegreesToRadians(_motion.InductionOrientation)))
+                    );
+                if (_motion.Angle == ParallelVariantOrientation.Opposite)
+                {
+                    direction *= -1;
+                }
+                _lastPosition += direction;
+            }
         }
 
         public void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)

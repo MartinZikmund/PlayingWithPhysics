@@ -5,14 +5,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:inputs="using:Physics.HomogenousParticle.ViewModels.Inputs"
+    xmlns:inputs1="using:Physics.HomongenousParticle.Logic"
     xmlns:local="using:Physics.HomogenousParticle.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:inputs1="using:Physics.HomongenousParticle.Logic"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
-
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="winui:NumberBox">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="SpinButtonPlacementMode" Value="Compact" />
+        </Style>
+    </UserControl.Resources>
+    <Grid ColumnSpacing="8" RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -23,73 +32,46 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"
-            Text="Náboj částice q" />
+
+        <TextBlock Grid.Row="0" Grid.Column="0">
+            <Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
+            <Run FontWeight="Bold" Text="q" />
+        </TextBlock>
         <winui:NumberBox
             x:Name="ChargeNumberBox"
             Grid.Row="0"
             Grid.Column="1"
-            Margin="0,0,0,8"
             Maximum="3"
             Minimum="-3"
-            SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.Charge, Mode=TwoWay}" />
 
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"
-            Text="Orientace indukčních čar B" />
-        <!--<winui:NumberBox x:Name="OrientationNumberBox" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="360" Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>-->
-        <winui:NumberBox
-            x:Name="OrientationNumberBox"
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="0,0,0,8"
-            Maximum="360"
-            Minimum="0"
-            SmallChange="1"
-            SpinButtonPlacementMode="Inline"
-            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
-
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"><Run>Velikost rychlosti v 10</Run><Run Typography.Variants="Superscript">n</Run></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0">
+            <Run Text="{extensions:Localize Key=PerpendicularInput_VelocityStart}" />
+            <Run FontWeight="Bold" Text="v" />
+            <Run Text="{extensions:Localize Key=ParallelInput_VelocityNoteStart}" />
+            <Run Text="10" /><Run Typography.Variants="Superscript">n</Run><Run Text=")" />
+        </TextBlock>
         <winui:NumberBox
             x:Name="VelocityNumberBox"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="1"
-            Margin="0,0,0,8"
             Maximum="6"
             Minimum="2"
-            SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
 
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center">
+        <TextBlock Grid.Row="2" Grid.Column="0">
             Úhel rychlosti
         </TextBlock>
         <ComboBox
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
-            Margin="0,0,0,8"
             HorizontalAlignment="Stretch"
             ItemsSource="{x:Bind Model.VariantOrientations}"
             SelectedItem="{x:Bind Model.SelectedOrientation, Mode=TwoWay}">
@@ -99,6 +81,20 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="{extensions:Localize Key=PerpendicularInput_InductionOrientation}" />
+        <!--<winui:NumberBox x:Name="OrientationNumberBox" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="360" Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>-->
+        <winui:NumberBox
+            x:Name="OrientationNumberBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            Maximum="360"
+            Minimum="0"
+            SmallChange="1"
+            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
 
         <TextBlock
             Grid.Row="4"

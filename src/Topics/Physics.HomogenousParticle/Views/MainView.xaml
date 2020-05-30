@@ -17,7 +17,7 @@
     xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    RequestedTheme="Dark"
+    RequestedTheme="Light"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
@@ -51,71 +51,81 @@
 
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
-                    <StackPanel
-                        Margin="12,0,8,0"
-                        Orientation="Vertical"
-                        Spacing="8">
-                        <StackPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-                            </TransitionCollection>
-                        </StackPanel.ChildrenTransitions>
-                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=ChooseVariant}" />
-                        <winui:RadioButtons MaxColumns="2" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
-                            <winui:RadioButtons.Transitions>
+                    <Grid Padding="12,0,12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical" Spacing="8">
+                            <StackPanel.ChildrenTransitions>
                                 <TransitionCollection>
                                     <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
                                 </TransitionCollection>
-                            </winui:RadioButtons.Transitions>
-                            <winui:RadioButtons.Resources>
-                                <Style TargetType="RadioButton">
-                                    <Setter Property="Padding" Value="12,0,0,4" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </StackPanel.ChildrenTransitions>
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=ChooseVariant}" />
+                            <winui:RadioButtons MaxColumns="2" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+                                <winui:RadioButtons.Transitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                                    </TransitionCollection>
+                                </winui:RadioButtons.Transitions>
+                                <winui:RadioButtons.Resources>
+                                    <Style TargetType="RadioButton">
+                                        <Setter Property="Padding" Value="12,0,0,4" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="16" />
+                                    </Style>
+                                </winui:RadioButtons.Resources>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v = 0" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v || B" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="v &#x27c2; B" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="{extensions:Localize Key=Radiation}" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </winui:RadioButtons>
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.AddTrajectoryCommand}"
+                                Content="{extensions:Localize Key=AddMotion}" />
+
+
+                        </StackPanel>
+                        <ListView
+                            Grid.Row="1"
+                            IsItemClickEnabled="False"
+                            ItemTemplateSelector="{StaticResource VariantStateDataTemplateSelector}"
+                            ItemsSource="{x:Bind Model.Motions}"
+                            SelectionMode="None">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,8" />
+                                    <Setter Property="Padding" Value="0" />
                                 </Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="16" />
-                                </Style>
-                            </winui:RadioButtons.Resources>
-
-                            <RadioButton>
-                                <RadioButton.Content>
-                                    <TextBlock Text="v = 0" />
-                                </RadioButton.Content>
-                            </RadioButton>
-
-                            <RadioButton>
-                                <RadioButton.Content>
-                                    <TextBlock Text="v || B" />
-                                </RadioButton.Content>
-                            </RadioButton>
-
-                            <RadioButton>
-                                <RadioButton.Content>
-                                    <TextBlock Text="v &#x27c2; B" />
-                                </RadioButton.Content>
-                            </RadioButton>
-
-                            <RadioButton>
-                                <RadioButton.Content>
-                                    <TextBlock Text="{extensions:Localize Key=Radiation}" />
-                                </RadioButton.Content>
-                            </RadioButton>
-                        </winui:RadioButtons>
-                        <Button
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.AddTrajectoryCommand}"
-                            Content="{extensions:Localize Key=AddMotion}" />
-                        <Button
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.ShowValuesTableCommand}"
-                            Content="Table" />
-                        <!--<Button
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.DrawCommand}"
-                            Content="{extensions:Localize Key=DrawMotion}" />-->
-
-                    </StackPanel>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
                 </ScrollViewer>
             </Border>
         </Grid>
