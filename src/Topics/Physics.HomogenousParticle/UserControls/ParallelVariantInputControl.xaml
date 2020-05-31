@@ -66,9 +66,10 @@
             Minimum="2"
             Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="2" Grid.Column="0">
-            Úhel rychlosti
-        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="{extensions:Localize Key=ParallelInput_MovementDirection}" />
         <ComboBox
             Grid.Row="2"
             Grid.Column="1"
@@ -85,15 +86,15 @@
         <TextBlock
             Grid.Row="3"
             Grid.Column="0"
-            Text="{extensions:Localize Key=PerpendicularInput_InductionOrientation}" />
-        <!--<winui:NumberBox x:Name="OrientationNumberBox" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="360" Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>-->
+            Text="{extensions:Localize Key=ParallelInput_InductionOrientation}" />
         <winui:NumberBox
             x:Name="OrientationNumberBox"
             Grid.Row="3"
             Grid.Column="1"
+            LargeChange="20"
             Maximum="360"
             Minimum="0"
-            SmallChange="1"
+            SmallChange="5"
             Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
 
         <TextBlock

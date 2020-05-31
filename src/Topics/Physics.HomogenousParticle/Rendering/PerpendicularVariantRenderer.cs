@@ -1,4 +1,5 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+﻿using Microsoft.Graphics.Canvas.Text;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousParticle.Services;
 using Physics.Shared.Helpers;
 using Physics.Shared.UI.Rendering;
@@ -83,8 +84,8 @@ namespace Physics.HomogenousParticle.Rendering
         }
 
         private void DrawInductionGrid(
-            ICanvasAnimatedControl sender, 
-            CanvasAnimatedDrawEventArgs args, 
+            ICanvasAnimatedControl sender,
+            CanvasAnimatedDrawEventArgs args,
             Action<ICanvasAnimatedControl, CanvasAnimatedDrawEventArgs, Vector2, Color> drawPoint)
         {
             var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_motions[0].Color);

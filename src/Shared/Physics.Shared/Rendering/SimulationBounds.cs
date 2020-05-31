@@ -1,4 +1,6 @@
-﻿namespace Physics.Shared.UI.Rendering
+﻿using System;
+
+namespace Physics.Shared.UI.Rendering
 {
     public struct SimulationBounds
     {
@@ -25,5 +27,9 @@
         public float Right { get; }
 
         public float Top { get; }
+
+        public float Height => Math.Abs(Top - Bottom);
+
+        public float Width => Math.Abs(Left - Right);
     }
 }

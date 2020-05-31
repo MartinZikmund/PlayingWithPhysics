@@ -154,8 +154,10 @@
     <Compile Include="Infrastructure\Topics\DifficultyOption.cs" />
     <Compile Include="Infrastructure\Topics\ITopicConfiguration.cs" />
     <Compile Include="Models\Navigation\SelfStudyNavigationModel.cs" />
+    <Compile Include="Rendering\AxesRenderer.cs" />
     <Compile Include="Rendering\BaseCanvasController.cs" />
     <Compile Include="Rendering\ICanvasController.cs" />
+    <Compile Include="Rendering\IRenderer.cs" />
     <Compile Include="Rendering\SimulationBounds.cs" />
     <Compile Include="Rendering\SimulationTime.cs" />
     <Compile Include="Services\Localization\Localizer.cs" />

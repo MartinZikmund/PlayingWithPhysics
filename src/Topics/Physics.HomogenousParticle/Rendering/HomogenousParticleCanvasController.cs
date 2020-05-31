@@ -26,6 +26,8 @@ namespace Physics.HomogenousParticle.Rendering
         {
         }
 
+        public SimulationBounds SimulationBoundsInPixels => _simulationBoundsInPixels;
+
         public override Task CreateResourcesAsync(CanvasAnimatedControl sender)
         {
             return Task.CompletedTask;

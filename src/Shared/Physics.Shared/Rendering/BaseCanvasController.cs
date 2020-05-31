@@ -47,6 +47,18 @@ namespace Physics.Shared.UI.Rendering
 
         public Task RunOnGameLoopAsync(DispatchedHandler agileCallback) => _canvasAnimatedControl.RunOnGameLoopThreadAsync(agileCallback).AsTask();
 
+        public virtual void Dispose()
+        {
+            if (_canvasAnimatedControl != null)
+            {
+                _canvasAnimatedControl.Draw -= Draw;
+                _canvasAnimatedControl.Update -= CanvasUpdate;
+                _canvasAnimatedControl.CreateResources -= CreateResources;
+            }
+            _canvasAnimatedControl = null;
+            Debug.WriteLine("Base canvas controller has been disposed.");
+        }
+
         protected void Restart()
         {
             SimulationTime.Restart();
@@ -66,18 +78,6 @@ namespace Physics.Shared.UI.Rendering
         private void CreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args)
         {
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
-        }
-
-        public virtual void Dispose()
-        {
-            if (_canvasAnimatedControl != null)
-            {
-                _canvasAnimatedControl.Draw -= Draw;
-                _canvasAnimatedControl.Update -= CanvasUpdate;
-                _canvasAnimatedControl.CreateResources -= CreateResources;
-            }
-            _canvasAnimatedControl = null;
-            Debug.WriteLine("Base canvas controller has been disposed.");
         }
     }
 }
