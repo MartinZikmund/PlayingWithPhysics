@@ -159,6 +159,7 @@
     <Compile Include="Rendering\ICanvasController.cs" />
     <Compile Include="Rendering\IRenderer.cs" />
     <Compile Include="Rendering\SimulationBounds.cs" />
+    <Compile Include="Rendering\SimulationPadding.cs" />
     <Compile Include="Rendering\SimulationTime.cs" />
     <Compile Include="Services\Localization\Localizer.cs" />
     <Compile Include="Services\Preferences\IPreferences.cs" />

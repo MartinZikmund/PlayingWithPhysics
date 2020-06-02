@@ -87,5 +87,13 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
         }
 
         public decimal ComputeVelocity() => (decimal)_perpenducilarMotion.VelocityMultiple * 1000000;
+
+        public double MinX() => (double)ComputeRadius() * Math.Sin(Math.PI);
+     
+        public double MaxX() => (double)ComputeRadius() * Math.Sin(0);
+
+        public double MinY() => (double)ComputeRadius() * Math.Sin(Math.PI / 2);
+
+        public double MaxY() => (double)ComputeRadius() * Math.Sin(3 * Math.PI / 2);
     }
 }

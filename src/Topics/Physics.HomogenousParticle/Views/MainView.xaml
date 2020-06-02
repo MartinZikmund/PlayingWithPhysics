@@ -50,7 +50,7 @@
             <sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
             <Border Grid.Row="1" Margin="0,12,0,0">
-                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid Padding="12,0,12,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
