@@ -80,31 +80,31 @@ namespace Physics.Shared.UI.Rendering
                 PaddingInPixels.Top,
                 YAxisColor);
 
-            var jumpSize = (float)CalculateJumpSizeForAxis((float)UnitDimensions.Height);
+            //var jumpSize = (float)CalculateJumpSizeForAxis((float)UnitDimensions.Height);
 
-            var originY = (float)(IsOriginAbsolute ? OriginPosition.Y : sender.Size.Height * OriginPosition.Y);
-            var minY = -originY / _unitToPixels;
-            var maxY = UnitDimensions.Height;
-            // up direction
-            for (float currentHeight = minY; currentHeight <= maxY; currentHeight += jumpSize)
-            {
-                drawing.DrawLine(
-                    x - 3,
-                    OriginPosition.Y + _unitToPixels * currentHeight,
-                    x + 3,
-                    OriginPosition.Y + _unitToPixels * currentHeight,
-                    Colors.Black);
+            //var originY = (float)(IsOriginAbsolute ? OriginPosition.Y : sender.Size.Height * OriginPosition.Y);
+            //var minY = -originY / _unitToPixels;
+            //var maxY = UnitDimensions.Height;
+            //// up direction
 
-                drawing.DrawText(
-                    currentHeight.ToString("0.#"),
-                    new Rect(
-                        0,
-                        OriginPosition.Y - _unitToPixels * currentHeight - 50,
-                        x,
-                        100),
-                    Colors.Black,
-                    _yAxisFormat);
-            }
+            //{
+            //    drawing.DrawLine(
+            //        x - 3,
+            //        OriginPosition.Y + _unitToPixels * currentHeight,
+            //        x + 3,
+            //        OriginPosition.Y + _unitToPixels * currentHeight,
+            //        Colors.Black);
+
+            //    drawing.DrawText(
+            //        currentHeight.ToString("0.#"),
+            //        new Rect(
+            //            0,
+            //            OriginPosition.Y - _unitToPixels * currentHeight - 50,
+            //            x,
+            //            100),
+            //        Colors.Black,
+            //        _yAxisFormat);
+            //}
 
             //    var jumps = (float)Math.Ceiling(UnitDimensions.Height / jumpSize);
             //var meters = jumps * jumpSize;
