@@ -47,10 +47,10 @@
             Grid.Row="2"
             Orientation="Horizontal"
             Spacing="4">
-            <Button
+            <!--<Button
                 Click="ButtonBase_OnClick"
                 Content="{extensions:Localize Key=ShowHideZeroes}"
-                Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />
+                Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />-->
             <Button Click="{x:Bind Model.CopyToClipboard}" Content="{extensions:Localize Key=CopyToClipboard}" />
         </StackPanel>
     </Grid>

@@ -3,8 +3,9 @@
     "path": "PlayingWithPhysics.sln",
     "projects": [
       "src\\SelfStudy\\Physics.SelfStudy\\Physics.SelfStudy.csproj",
-      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.Logic.csproj",
-      "src\\Shared\\Physics.Shared\\Physics.Shared.csproj",
+      "src\\SelfStudy\\Physics.Shared.SelfStudyEditor\\Physics.SelfStudy.Editor.csproj",
+      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.csproj",
+      "src\\Shared\\Physics.Shared\\Physics.Shared.UI.csproj",
       "src\\Topics\\Physics.HomogenousParticle\\Physics.HomogenousParticle.csproj",
       "src\\Topics\\Physics.HomongenousParticle.Logic\\Physics.HomongenousParticle.Logic.csproj"
     ]

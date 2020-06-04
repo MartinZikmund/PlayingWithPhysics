@@ -112,7 +112,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return ComputeV(time) * (float)Math.Sin(AngleInRad);
         }
 
-        public float Acceleration => Setup.Gravity * (float)Math.Sin(AngleInRad) - Setup.DriftCoefficient * (float)Math.Cos(AngleInRad);
+        public float Acceleration => Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.DriftCoefficient * (float)Math.Cos(AngleInRad));
         public float Time { get; set; } //To be replaced by drawing controller
         public float MaxT
         {
@@ -123,10 +123,10 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                     case FComputeVariant.MoreThanZero:
                         return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
                     case FComputeVariant.LessThanZero:
-                        if (TotalLength > Setup.Length)
+                        if (TotalLength < Setup.Length)
                             return V0 / -Acceleration;
                         else
-                            return (float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length;
+                            return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
                     default:
                         return Setup.Length / V0;
                 }

@@ -55,7 +55,7 @@
                 </Grid>
             </Grid>
             <Border Grid.Row="1" Margin="0,12,0,0">
-                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
                         <!--<TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>-->
                         <Button

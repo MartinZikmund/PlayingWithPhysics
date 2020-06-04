@@ -2,11 +2,7 @@
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Services.ValuesTable;
 using Physics.Shared.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 

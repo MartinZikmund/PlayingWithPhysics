@@ -36,8 +36,8 @@
             Grid.Column="0"
             Margin="0,0,16,0"
             VerticalAlignment="Center"
-            Text="Výška nakloněné roviny v" />
-        <winui:NumberBox x:Name="InclinedPlaneElevationNumberBox" Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="10" Value="{x:Bind Model.Elevation, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+            Text="Délka nakloněné roviny d" />
+        <winui:NumberBox x:Name="InclinedPlaneLengthNumberBox" Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="10" Value="{x:Bind Model.Length, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
 
         <TextBlock
             Grid.Row="1"
@@ -61,7 +61,7 @@
             Margin="0,0,16,0"
             VerticalAlignment="Center"
             Text="Koeficient smykového tření f" />
-        <winui:NumberBox x:Name="DriftCoefficientNumberBox" Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="1" Value="{x:Bind Model.DriftCoefficient, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        <winui:NumberBox x:Name="DriftCoefficientNumberBox" Grid.Row="3" Grid.Column="1" Minimum="0" Maximum="100" Value="{x:Bind Model.DriftCoefficient, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
         
         <TextBlock
             Grid.Row="4"

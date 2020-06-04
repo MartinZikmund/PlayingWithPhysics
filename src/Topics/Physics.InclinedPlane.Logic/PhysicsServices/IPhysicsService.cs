@@ -13,6 +13,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         float ComputeY(float time);
         float ComputeV(float time);
         float ComputeS(float time);
+        float ComputeEv(float time);
         float MaxT { get; }
         IMotionSetup Setup { get; set; }
     }

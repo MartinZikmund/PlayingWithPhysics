@@ -8,7 +8,6 @@ namespace Physics.InclinedPlane.Services
 {
     public interface IMotionSetup
     {
-        float Elevation { get; }
         float Angle { get; }
         float Mass { get; }
         float Length { get; }

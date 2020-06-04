@@ -35,21 +35,12 @@ namespace Physics.InclinedPlane.ViewModels
                 //RaisePropertyChanged();
             }
         }
-        public float Elevation { get; set; }
+
         public float Angle { get; set; }
         public float Mass { get; set; }
-        public float Length => (Elevation / (float)Math.Sin(Angle));
+        public float Length { get; set;}
         public abstract string Label { get; set; }
         public abstract Task<IMotionSetup> CreateMotionSetupAsync();
-        public void OnElevationChanged()
-        {
-            float maxElevtion = Length * 2;
-            if (Elevation > maxElevtion)
-            {
-                Elevation = maxElevtion;
-                new MessageDialog($"Výška v nakloněné může být maximálně dvojnásobkem délky d nakloněné roviny. Vámi zadaná hodnota bude nastavena na: {maxElevtion}.");
-            }
-        }
 
         public Visibility CustomDriftCoefficientInputVisibility { get; set; } = Visibility.Collapsed;
 

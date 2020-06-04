@@ -57,7 +57,7 @@ namespace Physics.InclinedPlane.Views
         //TODO: Translate button content
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            SwitchColumnsVisibility();
+            //SwitchColumnsVisibility();
         }
 
         private void SwitchColumnsVisibility()

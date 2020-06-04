@@ -20,21 +20,20 @@ namespace Physics.InclinedPlane.ValuesTable
         public IEnumerable<TableRow> CalculateTable(float timeInterval)
         {
             List<TableRow> table = new List<TableRow>();
-            float currentS = _physicsService.Setup.Length;
             float cycles = 0;
             float time = 0.0f;
             do
             {
                 time = Math.Min(timeInterval * cycles, _physicsService.MaxT);
                 //Add TableRow
+                float x = _physicsService.ComputeX(time);
+                float y = _physicsService.ComputeY(time);
                 float v = _physicsService.ComputeV(time);
                 float s = _physicsService.ComputeS(time);
-                //float ep = _physicsService.Compute(time);
+                float ev = _physicsService.ComputeEv(time);
 
-                TableRow valuesRow = new TableRow(time, v, s/*, ev*/);
+                TableRow valuesRow = new TableRow(time, x, y, v, s, ev);
                 table.Add(valuesRow);
-
-                currentS = s;
                 cycles++;
             } while (time < _physicsService.MaxT);
 

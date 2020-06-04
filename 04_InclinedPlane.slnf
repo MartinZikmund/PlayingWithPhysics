@@ -3,9 +3,10 @@
     "path": "PlayingWithPhysics.sln",
     "projects": [
       "src\\SelfStudy\\Physics.SelfStudy\\Physics.SelfStudy.csproj",
-      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.Logic.csproj",
-      "src\\Shared\\Physics.Shared\\Physics.Shared.csproj",
-      "src\\Topics\\Physics.InclinedPlane\\Physics.InclinedPlane.Logic\\Physics.InclinedPlane.Logic.csproj",
+      "src\\SelfStudy\\Physics.Shared.SelfStudyEditor\\Physics.SelfStudy.Editor.csproj",
+      "src\\Shared\\Physics.Shared.Logic\\Physics.Shared.csproj",
+      "src\\Shared\\Physics.Shared\\Physics.Shared.UI.csproj",
+      "src\\Topics\\Physics.InclinedPlane.Logic\\Physics.InclinedPlane.Logic.csproj",
       "src\\Topics\\Physics.InclinedPlane\\Physics.InclinedPlane.csproj"
     ]
   }
