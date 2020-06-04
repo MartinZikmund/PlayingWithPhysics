@@ -8,10 +8,10 @@
 
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin"
-    Publisher="CN=danie"
-    Version="0.2.21.0" />
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.2.23.0" />
 
-  <mp:PhoneIdentity PhoneProductId="e14f7cd5-197c-4cb5-875a-5b5969aa4248" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="83306459-9cd4-4605-b8f4-588115b85162" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>
