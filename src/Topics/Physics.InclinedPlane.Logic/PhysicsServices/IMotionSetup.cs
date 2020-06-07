@@ -13,6 +13,8 @@ namespace Physics.InclinedPlane.Services
         float Length { get; }
         float Gravity { get; }
         float DriftCoefficient { get; }
+        float FinishLength { get; set; }
+        float FinishDriftCoefficient { get; set; }
 
         string Color { get; }
     }

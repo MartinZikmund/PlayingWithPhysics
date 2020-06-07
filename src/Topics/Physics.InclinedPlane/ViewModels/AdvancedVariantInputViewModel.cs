@@ -1,4 +1,5 @@
 ﻿using Physics.InclinedPlane.Services;
+using Physics.Shared.UI.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace Physics.InclinedPlane.ViewModels
 {
@@ -13,7 +15,7 @@ namespace Physics.InclinedPlane.ViewModels
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            return new AdvancedMotionSetup(Angle, Mass, SelectedDriftCoefficient.Value, Length, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color), SelectedDriftCoefficient.Value);
+            return new AdvancedMotionSetup(Angle, Mass, SelectedDriftCoefficient.Value, Length, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color), FinishLength, FinishDriftCoefficient, SelectedGravityPreset.Value);
         }
 
         private GravityPreset _selectedGravityPreset;
@@ -46,11 +48,18 @@ namespace Physics.InclinedPlane.ViewModels
             new GravityPreset("Neptun (rovníkové tíhové zrychlení g)", 11f)
         };
 
-        public AdvancedVariantInputViewModel()
+        public AdvancedVariantInputViewModel(DifficultyOption difficulty)
         {
             SelectedGravityPreset = GravityPresetDefaults[0];
+            Difficulty = difficulty;
         }
 
+        public DifficultyOption Difficulty { get; private set; }
+        public bool IsAdvanced => (Difficulty == DifficultyOption.Advanced) ? true : false;
+        public Visibility GravityVisiblity => (IsAdvanced) ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility FinishVisible => (IsAdvanced) ? Visibility.Visible : Visibility.Collapsed;
+        public bool FinishChecked { get; set; }
+        public bool FinishContentEnabled => FinishChecked;
         public float Gravity { get; set; }
         public override string Label { get; set; }
     }

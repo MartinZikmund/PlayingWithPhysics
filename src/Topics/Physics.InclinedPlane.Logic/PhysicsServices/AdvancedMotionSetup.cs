@@ -8,8 +8,8 @@ namespace Physics.InclinedPlane.Services
 {
     public class AdvancedMotionSetup : MotionSetupBase
     {
-        public AdvancedMotionSetup(float angle, float mass, float driftCoefficient, float length, string color, float gravity = 9.81f)
-            : base(angle, mass, driftCoefficient, length, color, gravity)
+        public AdvancedMotionSetup(float angle, float mass, float driftCoefficient, float length, string color, float finishLength, float finishDriftCoefficient, float gravity = 9.81f)
+            : base(angle, mass, driftCoefficient, length, color, finishLength, finishDriftCoefficient, gravity)
         {
         }
     }

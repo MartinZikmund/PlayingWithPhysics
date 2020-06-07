@@ -4,11 +4,6 @@
     xmlns:local="using:Physics.InclinedPlane.Resources"
     xmlns:usercontrols="using:Physics.InclinedPlane.UserControls">
 
-
-    <DataTemplate x:Key="BasicVariantInputDataTemplate">
-        <usercontrols:BasicVariantInputControl />
-    </DataTemplate>
-
     <DataTemplate x:Key="AdvancedVariantInputDataTemplate">
         <usercontrols:AdvancedVariantInputControl />
     </DataTemplate>

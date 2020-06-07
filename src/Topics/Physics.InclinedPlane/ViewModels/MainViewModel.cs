@@ -67,25 +67,9 @@ namespace Physics.InclinedPlane.ViewModels
         //    }
         //}
 
-        public IVariantInputViewModel VariantInputViewModel
-        {
-            get
-            {
-
-                if (Difficulty == DifficultyOption.Easy)
-                {
-                    return new BasicVariantInputViewModel();
-                }
-                else
-                {
-                    return new AdvancedVariantInputViewModel();
-                }
-            }
-        }
-
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovement(VariantInputViewModel);
+            var dialog = new AddOrUpdateMovement(new AdvancedVariantInputViewModel(Difficulty));
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

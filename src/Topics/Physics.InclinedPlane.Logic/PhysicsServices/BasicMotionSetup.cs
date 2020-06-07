@@ -9,7 +9,7 @@ namespace Physics.InclinedPlane.Services
     public class BasicMotionSetup : MotionSetupBase
     {
         public BasicMotionSetup(float angle, float mass, float driftCoefficient, float length, string color)
-            : base(angle, mass, driftCoefficient, length, color, 9.81f)
+            : base(angle, mass, driftCoefficient, length, color, 0f, 0f, 9.81f)
         {
         }
     }

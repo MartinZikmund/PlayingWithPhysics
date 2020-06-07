@@ -84,32 +84,72 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBlock
-            Grid.Row="5"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            VerticalAlignment="Center"
-            Text="Grvitavce g" />
-        <winui:NumberBox x:Name="GravityNumberBox" Margin="0,0,0,8" Grid.Row="5" Grid.Column="1" Minimum="0" Maximum="90" Value="{x:Bind Model.Gravity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
-        <TextBlock
-            Grid.Row="6"
-            Grid.Column="0"
-            Margin="0,0,16,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Text="a nebo vyberte hodnotu" />
-        <ComboBox
-            Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch"
-                Margin="0,0,0,8"
-                ItemsSource="{x:Bind Model.GravityPresetDefaults}"
-                SelectedItem="{x:Bind Model.SelectedGravityPreset, Mode=TwoWay}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate x:DataType="inputs:GravityPreset">
-                    <TextBlock Text="{x:Bind Name}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Visibility="{x:Bind Model.GravityVisiblity}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,16,0"
+                VerticalAlignment="Center"
+                Text="Gravitace g" />
+            <winui:NumberBox x:Name="GravityNumberBox" Margin="0,0,0,8" Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="90" Value="{x:Bind Model.Gravity, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,0,16,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="a nebo vyberte hodnotu" />
+            <ComboBox
+                Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"
+                    Margin="0,0,0,8"
+                    ItemsSource="{x:Bind Model.GravityPresetDefaults}"
+                    SelectedItem="{x:Bind Model.SelectedGravityPreset, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="inputs:GravityPreset">
+                        <TextBlock Text="{x:Bind Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
 
+        <Grid Grid.Row="6" Grid.ColumnSpan="2" Visibility="{x:Bind Model.FinishVisible}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Content="S dojezdem?" Grid.Row="0" Grid.ColumnSpan="2" IsChecked="{x:Bind Model.FinishChecked, Mode=TwoWay}"/>
+            <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,0,16,0"
+                    VerticalAlignment="Center"
+                    Text="Délka vodorovné roviny d2" />
+            <winui:NumberBox x:Name="FinishPlaneLengthNumberBox" IsEnabled="{x:Bind Model.FinishContentEnabled, Mode=OneWay}" Margin="0,0,0,8" Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="10" Value="{x:Bind Model.FinishLength, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="0,0,16,0"
+                VerticalAlignment="Center"
+                Text="Součinitel smykového tření vodorovné roviny f2" />
+            <winui:NumberBox x:Name="FinishPlaneDriftCoefficientNumberBox" IsEnabled="{x:Bind Model.FinishContentEnabled, Mode=OneWay}" Margin="0,0,0,8" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="10" Value="{x:Bind Model.FinishDriftCoefficient, Mode=TwoWay}" SpinButtonPlacementMode="Inline"/>
+        </Grid>
+        
         <TextBlock
             Grid.Row="7"
             Grid.Column="0"
