@@ -158,8 +158,8 @@ namespace Physics.HomogenousParticle.Rendering
 
         private double ComputeSimulationX(float radius, float angularVelocity, double seconds)
         {
-            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple > 0) ||
-                (_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple < 0))
+            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple > 0) ||
+                (_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple < 0))
             {
                 return
                     radius *
@@ -175,9 +175,10 @@ namespace Physics.HomogenousParticle.Rendering
 
         private double ComputeSimulationY(float radius, float angularVelocity, double seconds)
         {
-            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple > 0) ||
-                (_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple < 0))
+            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple > 0) ||
+                (_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple < 0))
             {
+
                 return
                     radius *
                     Math.Sin(angularVelocity * seconds - Math.PI / 2);

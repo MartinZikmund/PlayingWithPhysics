@@ -95,6 +95,7 @@ namespace Physics.HomogenousParticle.Views
                     _canvasController.SetVariantRenderer(new PerpendicularVariantRenderer(_canvasController));
                     break;
                 case VelocityVariant.Radiation:
+                    _canvasController.SetVariantRenderer(new RadiationVariantRenderer(_canvasController));
                     break;
             }
             return _canvasController;

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HomogenousParticle.UserControls"
+    xmlns:logic="using:Physics.HomongenousParticle.Logic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -45,12 +46,14 @@
         <ComboBox
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalAlignment="Stretch">
-            <ComboBoxItem Content="α" Tag="0" />
-            <ComboBoxItem Content="β-" Tag="1" />
-            <ComboBoxItem Content="β+" Tag="2" />
-            <ComboBoxItem Content="γ" Tag="3" />
-            <ComboBoxItem Content="Neutron" Tag="4" />
+            HorizontalAlignment="Stretch"
+            ItemsSource="{x:Bind Model.Types}"
+            SelectedItem="{x:Bind Model.Type, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="logic:RadiationType">
+                    <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
 
         <TextBlock

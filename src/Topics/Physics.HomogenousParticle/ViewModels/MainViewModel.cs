@@ -119,7 +119,7 @@ namespace Physics.HomogenousParticle.ViewModels
                 {
                     Motions.Clear();
                 }
-                Motions.Add(VariantStateViewModelFactory.Create(dialog.Setup));
+                Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
                 RestartSimulation();
             }
         });
@@ -147,6 +147,12 @@ namespace Physics.HomogenousParticle.ViewModels
             var controller = _interaction.PrepareController(SelectedVariant);
             SimulationPlayback.SetController(controller);
             controller.StartSimulation(Motions.Select(m=>m.Motion).ToArray());
+        }
+
+        internal void Delete(RadiationVariantStateViewModel radiationVariantStateViewModel)
+        {
+            Motions.Remove(radiationVariantStateViewModel);
+            RestartSimulation();
         }
     }
 }
