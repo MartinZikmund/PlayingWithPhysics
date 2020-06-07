@@ -139,6 +139,7 @@
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\PerpendicularVariantRenderer.cs" />
     <Compile Include="Rendering\ParallelVariantRenderer.cs" />
+    <Compile Include="Rendering\RadiationVariantRenderer.cs" />
     <Compile Include="Rendering\ZeroVariantRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\HomogenousParticleCanvasController.cs" />

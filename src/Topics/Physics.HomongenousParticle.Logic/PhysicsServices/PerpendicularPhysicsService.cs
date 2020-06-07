@@ -29,8 +29,8 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         public decimal ComputeXDecimal(decimal seconds)
         {
-            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
-                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple < 0))
+            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
+                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple < 0))
             {
                 return
                     ComputeRadius() *
@@ -49,8 +49,8 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
         public decimal ComputeYDecimal(decimal seconds)
         {
             var r = ComputeRadius();
-            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
-                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple < 0))
+            if ((_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _perpenducilarMotion.ChargeMultiple > 0) ||
+                (_perpenducilarMotion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _perpenducilarMotion.ChargeMultiple < 0))
             {
                 return
                     r *
@@ -88,12 +88,12 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         public decimal ComputeVelocity() => (decimal)_perpenducilarMotion.VelocityMultiple * 1000000;
 
-        public double MinX() => (double)ComputeRadius() * Math.Sin(Math.PI);
-     
-        public double MaxX() => (double)ComputeRadius() * Math.Sin(0);
+        public double MinX() => -(double)ComputeRadius();
 
-        public double MinY() => (double)ComputeRadius() * Math.Sin(Math.PI / 2);
+        public double MaxX() => (double)ComputeRadius();
 
-        public double MaxY() => (double)ComputeRadius() * Math.Sin(3 * Math.PI / 2);
+        public double MinY() => -(double)ComputeRadius();
+
+        public double MaxY() => (double)ComputeRadius();
     }
 }

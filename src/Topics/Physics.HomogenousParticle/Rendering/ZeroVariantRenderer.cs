@@ -47,7 +47,6 @@ namespace Physics.HomogenousParticle.Rendering
                     FontSize = 14,
                     HorizontalAlignment = Microsoft.Graphics.Canvas.Text.CanvasHorizontalAlignment.Center,
                 };
-                args.DrawingSession.DrawText("", new Vector2((float)sender.Size.Width / 2f, (float)sender.Size.Height / 2f - 40), Colors.Black, format);
             }
         }        
     }
