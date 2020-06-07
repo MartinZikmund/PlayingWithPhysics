@@ -18,7 +18,47 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
             _motionSetup = motionSetup;
         }
 
-        public float MaxT => throw new NotImplementedException();
+        public double MinX =>
+            _motionSetup.Type switch
+            {
+                RadiationType.Alfa => ComputeX(MaxT),
+                RadiationType.BetaPlus => ComputeX(MaxT),
+                RadiationType.BetaMinus => ComputeX(0),
+                RadiationType.Neutron => ComputeX(0),
+                _ => throw new InvalidOperationException()
+            };
+
+        public double MinY =>
+            _motionSetup.Type switch
+            {
+                RadiationType.Alfa => ComputeX(0),
+                RadiationType.BetaPlus => ComputeX(0),
+                RadiationType.BetaMinus => ComputeX(0),
+                RadiationType.Neutron => ComputeY(0),
+                _ => throw new InvalidOperationException()
+            };
+
+        public double MaxX =>
+            _motionSetup.Type switch
+            {
+                RadiationType.Alfa => ComputeX(0),
+                RadiationType.BetaPlus => ComputeX(0),
+                RadiationType.BetaMinus => ComputeX(MaxT),
+                RadiationType.Neutron => ComputeX(MaxT),
+                _ => throw new InvalidOperationException()
+            };
+
+        public double MaxY =>
+            _motionSetup.Type switch
+            {
+                RadiationType.Alfa => ComputeX(MaxT),
+                RadiationType.BetaPlus => ComputeX(MaxT),
+                RadiationType.BetaMinus => ComputeX(MaxT),
+                RadiationType.Neutron => ComputeY(MaxT),
+                _ => throw new InvalidOperationException()
+            };
+
+        public float MaxT => 15;
 
         public double ComputeX(double seconds) =>
             _motionSetup.Type switch
