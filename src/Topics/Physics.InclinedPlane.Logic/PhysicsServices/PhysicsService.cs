@@ -116,7 +116,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             get
             {
-                if(TotalLength < Setup.Length)
+                if(Setup.FinishLength <= 0)
                 {
                     return Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.DriftCoefficient * (float)Math.Cos(AngleInRad));
                 }
@@ -137,7 +137,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                     case FComputeVariant.MoreThanZero:
                         return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
                     case FComputeVariant.LessThanZero:
-                        if (TotalLength < Setup.Length)
+                        if (MaxS < Setup.Length)
                             return V0 / -Acceleration;
                         else
                             return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
@@ -149,7 +149,20 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float V0 => 5;
         public float AngleInRad => MathHelpers.DegreesToRadians(Setup.Angle);
-        public float TotalLength => (_variant == FComputeVariant.LessThanZero) ? ((float)Math.Pow(V0, 2) / (-2 * Acceleration)) : Setup.Length;
+        public float MaxS
+        {
+            get
+            {
+                if (Setup.FinishLength > 0)
+                {
+                    throw new NotImplementedException();
+                }
+                else
+                {
+                    return Math.Min(V0*V0 / (-2 * Acceleration), Setup.Length);
+                }                
+            }
+        }
     }
 
     enum FComputeVariant
