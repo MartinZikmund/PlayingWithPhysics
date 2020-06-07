@@ -47,7 +47,7 @@ namespace Physics.HomogenousParticle.Logic.Tests
         public void AlphaX(double time, double expectedX)
         {
             var physicsService = new RadiationPhysicsService(
-                new RadiationMotionSetup(0, RadiationType.Alfa, "#000000"));
+                new RadiationMotionSetup(0, RadiationType.Alpha, "#000000"));
             var actualX = physicsService.ComputeX(time);
             Assert.Equal(expectedX, actualX, 4);
         }
@@ -114,7 +114,7 @@ namespace Physics.HomogenousParticle.Logic.Tests
         public void AlphaY(double time, double expectedY)
         {
             var physicsService = new RadiationPhysicsService(
-                new RadiationMotionSetup(0, RadiationType.Alfa, "#000000"));
+                new RadiationMotionSetup(0, RadiationType.Alpha, "#000000"));
             var actualY = physicsService.ComputeY(time);
             Assert.Equal(expectedY, actualY, 4);
         }

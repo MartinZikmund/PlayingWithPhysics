@@ -19,41 +19,37 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
         public double MinX(double phase1Length) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeX(MaxT),
+                RadiationType.Alpha => ComputeX(MaxT),
                 RadiationType.BetaPlus => ComputeX(MaxT),
                 RadiationType.BetaMinus => ComputeX(-phase1Length),
-                RadiationType.Neutron => ComputeX(-phase1Length),
-                _ => throw new InvalidOperationException()
+                _ => ComputeX(-phase1Length),
             };
 
         public double MinY(double phase1Length) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeY(-phase1Length),
+                RadiationType.Alpha => ComputeY(-phase1Length),
                 RadiationType.BetaPlus => ComputeY(-phase1Length),
                 RadiationType.BetaMinus => ComputeY(-phase1Length),
-                RadiationType.Neutron => ComputeY(-phase1Length),
-                _ => throw new InvalidOperationException()
+                _ => ComputeY(-phase1Length),
             };
 
         public double MaxX(double phase1Length) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeX(-phase1Length),
+                RadiationType.Alpha => ComputeX(-phase1Length),
                 RadiationType.BetaPlus => ComputeX(-phase1Length),
                 RadiationType.BetaMinus => ComputeX(MaxT),
-                RadiationType.Neutron => ComputeX(MaxT),
-                _ => throw new InvalidOperationException()
+                _ => ComputeX(MaxT),
             };
 
         public double MaxY(double phase1Length) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeY(MaxT),
+                RadiationType.Alpha => ComputeY(MaxT),
                 RadiationType.BetaPlus => ComputeY(MaxT),
                 RadiationType.BetaMinus => ComputeY(MaxT),
-                RadiationType.Neutron => ComputeY(MaxT),
-                _ => throw new InvalidOperationException()
+                _ => ComputeY(MaxT),
             };
 
         public float MaxT => 15;
@@ -61,21 +57,19 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
         public double ComputeX(double seconds) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeParticleCoordinate(seconds, Phase1X, AlphaPhase2X, AlphaPhase3X, ComputeAlphaPhase3StartTime),
+                RadiationType.Alpha => ComputeParticleCoordinate(seconds, Phase1X, AlphaPhase2X, AlphaPhase3X, ComputeAlphaPhase3StartTime),
                 RadiationType.BetaPlus => ComputeParticleCoordinate(seconds, Phase1X, BetaPlusPhase2X, BetaPlusPhase3X, ComputeBetaPhase3StartTime),
-                RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1X, BetaMinusPhase2X, BetaMinusPhase3X, ComputeBetaPhase3StartTime),
-                RadiationType.Neutron => ComputeParticleCoordinate(seconds, NeutronX, NeutronX, NeutronX, ()=> 0),
-                _ => throw new InvalidOperationException()
+                RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1X, BetaMinusPhase2X, BetaMinusPhase3X, ComputeBetaPhase3StartTime),                
+                _ => ComputeParticleCoordinate(seconds, NeutronX, NeutronX, NeutronX, ()=> 0),                
             };
 
         public double ComputeY(double seconds) =>
             _motionSetup.Type switch
             {
-                RadiationType.Alfa => ComputeParticleCoordinate(seconds, Phase1Y, AlphaPhase2Y, AlphaPhase3Y, ComputeAlphaPhase3StartTime),
+                RadiationType.Alpha => ComputeParticleCoordinate(seconds, Phase1Y, AlphaPhase2Y, AlphaPhase3Y, ComputeAlphaPhase3StartTime),
                 RadiationType.BetaPlus => ComputeParticleCoordinate(seconds, Phase1Y, BetaPlusPhase2Y, BetaPlusPhase3Y, ComputeBetaPhase3StartTime),
                 RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1Y, BetaMinusPhase2Y, BetaMinusPhase3Y, ComputeBetaPhase3StartTime),
-                RadiationType.Neutron => ComputeParticleCoordinate(seconds, NeutronY, NeutronY, NeutronY, () => 0),
-                _ => throw new InvalidOperationException()
+                _ => ComputeParticleCoordinate(seconds, NeutronY, NeutronY, NeutronY, () => 0),
             };
 
         private double ComputeParticleCoordinate(

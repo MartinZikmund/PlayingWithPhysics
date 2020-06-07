@@ -9,13 +9,13 @@ namespace Physics.HomogenousParticle.ViewModels.State
 {
     public static class VariantStateViewModelFactory
     {
-        public static IVariantStateViewModel Create(IMotionSetup setup) =>
+        public static IVariantStateViewModel Create(MainViewModel viewModel, IMotionSetup setup) =>
             setup switch
             {
                 ZeroMotionSetup _ => new ZeroVariantStateViewModel(setup),
                 ParallelMotionSetup _ => new ParallelVariantStateViewModel(setup),
                 PerpendicularMotionSetup _ => new PerpendicularVariantStateViewModel(setup),
-                RadiationMotionSetup _ => new RadiationVariantStateViewModel(setup),
+                RadiationMotionSetup _ => new RadiationVariantStateViewModel(viewModel, setup),
                 _ => throw new NotImplementedException(),               
             };
     }

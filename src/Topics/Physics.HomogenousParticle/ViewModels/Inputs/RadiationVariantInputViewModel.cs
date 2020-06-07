@@ -20,6 +20,15 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public RadiationType Type { get; set; }
 
+        public RadiationType[] Types = new[]
+        {
+            RadiationType.Alpha,
+            RadiationType.BetaPlus,
+            RadiationType.BetaMinus,
+            RadiationType.Gamma,
+            RadiationType.Neutron
+        };
+
         public override string Label { get; set; }
     }
 }

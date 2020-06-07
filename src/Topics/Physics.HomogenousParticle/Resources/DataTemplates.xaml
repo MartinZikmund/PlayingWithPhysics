@@ -62,7 +62,29 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RadiationVariantStateDataTemplate" x:DataType="state:RadiationVariantStateViewModel">
-        <Grid />
+        <Grid Padding="8" CornerRadius="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="{x:Bind Motion.Color, Mode=OneWay}" />
+            </Grid.Background>
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind Type, Converter={StaticResource EnumLocalizationConverter}, Mode=OneWay}" />
+            <Button Grid.Column="1">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Click="{x:Bind Delete}" Text="{ex:Localize Key=Delete}">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Delete" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <SymbolIcon Symbol="More" />
+            </Button>
+        </Grid>
+
     </DataTemplate>
 
     <local:VariantStateDataTemplateSelector
