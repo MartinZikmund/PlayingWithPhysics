@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Foundation;
 
 namespace Physics.Shared.UI.Rendering
 {
@@ -31,5 +32,7 @@ namespace Physics.Shared.UI.Rendering
         public float Height => Math.Abs(Top - Bottom);
 
         public float Width => Math.Abs(Left - Right);
+
+        public Size Size => new Size(Width, Height);
     }
 }

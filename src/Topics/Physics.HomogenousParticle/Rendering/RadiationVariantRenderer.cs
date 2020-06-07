@@ -53,6 +53,8 @@ namespace Physics.HomogenousParticle.Rendering
 
         public void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
+            args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
             var minDimension = Math.Min(sender.Size.Height, sender.Size.Height) - Padding;
             if (minDimension < 20) return;
 

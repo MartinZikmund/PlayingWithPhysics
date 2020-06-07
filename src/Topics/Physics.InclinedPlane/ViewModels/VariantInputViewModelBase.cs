@@ -36,10 +36,10 @@ namespace Physics.InclinedPlane.ViewModels
             }
         }
 
-        public float Angle { get; set; }
-        public float Mass { get; set; }
-        public float Length { get; set;}
-        public float FinishLength { get; set; }
+        public float Angle { get; set; } = 45;
+        public float Mass { get; set; } = 1;
+        public float Length { get; set; } = 5;
+        public float FinishLength { get; set; } = 0;
         public float FinishDriftCoefficient { get; set; }
         public abstract string Label { get; set; }
         public abstract Task<IMotionSetup> CreateMotionSetupAsync();

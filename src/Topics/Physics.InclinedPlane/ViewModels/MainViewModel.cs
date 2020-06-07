@@ -23,12 +23,16 @@ using MvvmCross.Base;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
+using Physics.InclinedPlane.ViewInteractions;
 
 namespace Physics.InclinedPlane.ViewModels
 {
     public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
     {
+        private IMainViewInteraction _interaction;
+
         private DifficultyOption Difficulty;
+
         public class NavigationModel
         {
             public DifficultyOption Difficulty { get; set; }
@@ -36,7 +40,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public MainViewModel()
         {
-            OnSelectedVariantIndexChanged();
+            
         }
 
         public override void Prepare(NavigationModel parameter)
@@ -44,28 +48,10 @@ namespace Physics.InclinedPlane.ViewModels
             Difficulty = parameter.Difficulty;
         }
 
-        public int SelectedVariantIndex { get; set; }
-
-        //public VelocityVariant SelectedVariant => (VelocityVariant)SelectedVariantIndex;
-
-        public void OnSelectedVariantIndexChanged() { }
-        //{
-        //    switch (SelectedVariant)
-        //    {
-        //        case VelocityVariant.Zero:
-        //            VariantInputViewModel = new ZeroVariantInputViewModel();
-        //            break;
-        //        case VelocityVariant.Parallel:
-        //            VariantInputViewModel = new ParallelVariantInputViewModel();
-        //            break;
-        //        case VelocityVariant.Perpendicular:
-        //            VariantInputViewModel = new PerpendicularVariantInputViewModel();
-        //            break;
-        //        case VelocityVariant.Greek:
-        //            VariantInputViewModel = new GreekVariantInputViewModel();
-        //            break;
-        //    }
-        //}
+        internal void SetViewInteraction(IMainViewInteraction interaction)
+        {
+            _interaction = interaction;
+        }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
@@ -75,9 +61,17 @@ namespace Physics.InclinedPlane.ViewModels
             {
                 Setup = dialog.Setup;
                 Motion = new MotionViewModel(Setup);
-                //RestartSimulation();
+                RestartSimulation();
             }
         });
+
+        private void RestartSimulation()
+        {
+            if (_interaction == null) return;
+            var controller = _interaction.PrepareController();
+            SimulationPlayback.SetController(controller);
+            controller.StartSimulation(Motion.MotionInfo);
+        }
 
         public IMotionSetup Setup { get; set; }
 
@@ -116,6 +110,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         private Dictionary<MotionViewModel, AppWindow> _tableWindowIds =
             new Dictionary<MotionViewModel, AppWindow>();
+
 
         private async Task ShowValuesTableAsync(MotionViewModel viewModel)
         {

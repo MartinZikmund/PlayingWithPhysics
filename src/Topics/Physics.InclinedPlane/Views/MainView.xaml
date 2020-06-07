@@ -1,17 +1,18 @@
 ﻿<views:BaseView
     x:Class="Physics.InclinedPlane.Views.MainView"
-    xmlns:views="using:Physics.Shared.Views"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.InclinedPlane.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:Physics.InclinedPlane.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="using:Physics.InclinedPlane.Services"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+    xmlns:views="using:Physics.Shared.Views"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -59,75 +60,132 @@
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
                         <!--<TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>-->
                         <Button
-                            Foreground="White"
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.AddTrajectoryCommand}"
-                            Content="{extensions:Localize Key=ChangeMotion}" />
-                        <NavigationViewItemSeparator/>
-                        <Grid Padding="8,4,4,6" Background="#c95d7c" Margin="8,0,8,0">
-                            <TextBlock Text="Aktuální hodnoty" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="White"/>
-                            <Button Foreground="White" HorizontalAlignment="Right" Command="{x:Bind Model.ShowValuesTableCommand}">
+                            Content="{extensions:Localize Key=ChangeMotion}"
+                            Foreground="White" />
+                        <NavigationViewItemSeparator />
+                        <Grid
+                            Margin="8,0,8,0"
+                            Padding="8,4,4,6"
+                            Background="#c95d7c">
+                            <TextBlock
+                                Foreground="White"
+                                Style="{ThemeResource SubtitleTextBlockStyle}"
+                                Text="Aktuální hodnoty" />
+                            <Button
+                                HorizontalAlignment="Right"
+                                Command="{x:Bind Model.ShowValuesTableCommand}"
+                                Foreground="White">
                                 <SymbolIcon Symbol="ViewAll" />
                             </Button>
                         </Grid>
                         <Grid Margin="16,8,8,0">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="t:" Grid.Row="0" Grid.Column="0" Foreground="White" FontSize="16" />
-                                <TextBlock Grid.Row="0" Grid.Column="1" Foreground="White" FontSize="16">
-                                    <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}"></Run>
-                                    <Run Text=" s"></Run>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Text="t:" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="16"
+                                    Foreground="White">
+                                    <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
+                                    <Run Text=" s" />
                                 </TextBlock>
-                                <TextBlock Text="v:" Grid.Row="0" Grid.Column="2" Foreground="White" FontSize="16"/>
-                                <TextBlock Grid.Row="0" Grid.Column="3" Foreground="White" FontSize="16">
-                                    <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}"></Run>
-                                    <Run Text=" m/s"></Run>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Text="v:" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    FontSize="16"
+                                    Foreground="White">
+                                    <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
+                                    <Run Text=" m/s" />
                                 </TextBlock>
-                                <TextBlock Text="x:" Grid.Row="1" Grid.Column="0" Foreground="White" FontSize="16"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="16">
-                                    <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}"/>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Text="x:" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="16"
+                                    Foreground="White">
+                                    <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
                                 </TextBlock>
-                                <TextBlock Text="y:" Grid.Row="1" Grid.Column="2" Foreground="White" FontSize="16"/>
-                                <TextBlock Grid.Row="1" Grid.Column="3" Foreground="White" FontSize="16">
-                                    <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}"/>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Text="y:" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    FontSize="16"
+                                    Foreground="White">
+                                    <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
                                 </TextBlock>
-                                <TextBlock Text="s:" Grid.Row="2" Grid.Column="0" Foreground="White" FontSize="16"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="16">
-                                    <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}"></Run>
-                                    <Run Text=" m"></Run>
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Foreground="White"
+                                    Text="s:" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="16"
+                                    Foreground="White">
+                                    <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
+                                    <Run Text=" m" />
                                 </TextBlock>
                             </Grid>
                         </Grid>
-                        <NavigationViewItemSeparator/>
-                        
+                        <NavigationViewItemSeparator />
+
                         <Button
                             Margin="8,8,8,0"
-                            Foreground="White"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.DrawCommand}"
-                            Content="{extensions:Localize Key=DrawMotion}" />
+                            Content="{extensions:Localize Key=DrawMotion}"
+                            Foreground="White" />
 
                     </StackPanel>
                 </ScrollViewer>
             </Border>
         </Grid>
-        <Grid Grid.Column="1" Padding="0">
+        <Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid x:Name="CanvasHolder" />
+            <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
             <InkCanvas x:Name="InkCanvas" />
             <InkToolbar
                 x:Name="inkToolbar"
@@ -135,133 +193,24 @@
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <Grid
-                x:Name="ControlsBar"
+            <sharedControls:SimulationControls
                 Grid.Row="1"
-                Padding="12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.Resources>
-                    <Storyboard x:Name="SpeedButtonStoryboardShow">
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimation
-                            Storyboard.TargetName="SpeedSldr"
-                            Storyboard.TargetProperty="Opacity"
-                            To="1"
-                            Duration="0:0:0.5" />
-                    </Storyboard>
-                    <Storyboard x:Name="SpeedButtonStoryboardHide">
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SpeedSldr" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimation
-                            Storyboard.TargetName="SpeedSldr"
-                            Storyboard.TargetProperty="Opacity"
-                            To="0"
-                            Duration="0:0:0.5" />
-                    </Storyboard>
-                </Grid.Resources>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <StackPanel.Resources>
-                        <Windows10version1809:Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="Button">
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Width" Value="32" />
-                            <Setter Property="Height" Value="32" />
-                            <Setter Property="CornerRadius" Value="16" />
-                        </Windows10version1809:Style>
-                    </StackPanel.Resources>
-                    <Button x:Name="RewindButton" IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToStartGlyph}" />
-                    </Button>
-                    <Button
-                        x:Name="BackButton"
-                        Padding="0"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource RewindGlyph}" />
-                    </Button>
-                    <Grid>
-                        <Button
-                            x:Name="PlayButton"
-                            Width="48"
-                            Height="48"
-                            Windows10version1809:CornerRadius="24"
-                            Command="{x:Bind Model.PauseToggleCommand}"
-                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PlayGlyph}" />
-                        </Button>
-                        <Button
-                            x:Name="PauseButton"
-                            Width="48"
-                            Height="48"
-                            Windows10version1809:CornerRadius="24"
-                            Command="{x:Bind Model.PauseToggleCommand}"
-                            Visibility="{x:Bind Model.IsPaused, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}">
-                            <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PauseGlyph}" />
-                        </Button>
-                    </Grid>
-                    <Button x:Name="ForwardButton" IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
-                    </Button>
-                    <!--<Button
-                        x:Name="SkipToEndButton"
-                        Click="SkipToEnd_Click"
-                        IsEnabled="True">
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToEndGlyph}" />
-                    </Button>-->
-                    <Button>
-                        <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
-                        <!--<Interactivity:Interaction.Behaviors>
-                            <Core:EventTriggerBehavior EventName="Click">
-                                <media:ControlStoryboardAction Storyboard="{StaticResource SpeedButtonStoryboard}" />
-                            </Core:EventTriggerBehavior>
-                        </Interactivity:Interaction.Behaviors>-->
-                    </Button>
-
-                    <Slider
-                        x:Name="SpeedSldr"
-                        Width="300"
-                        VerticalAlignment="Center"
-                        Maximum="3"
-                        Minimum="0.1"
-                        Opacity="0"
-                        StepFrequency="0.1"
-                        Visibility="Collapsed"
-                        Value="1" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Column="1"
-                    Orientation="Horizontal"
-                    Spacing="8">
-                    <Button Command="{x:Bind Model.ShareCommand}"
-                            Windows10version1809:CornerRadius="16">
-                        <SymbolIcon Margin="3,0,0,0" Symbol="Share" />
-                    </Button>
-                    <Button Windows10version1809:CornerRadius="16">
-                        <Button.Flyout>
-                            <Flyout>
-                                <winui:NumberBox
-                                    x:Name="StepSizeNumberBox"
-                                    Header="{extensions:Localize Key=JumpSize}"
-                                    LargeChange="0.1"
-                                    Minimum="0.1"
-                                    SmallChange="0.1"
-                                    SpinButtonPlacementMode="Inline"
-                                    Value="{x:Bind Model.StepSize, Mode=TwoWay}" />
-                            </Flyout>
-                        </Button.Flyout>
-                        <SymbolIcon Symbol="Setting" />
-                    </Button>
-                </StackPanel>
-            </Grid>
+                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
+                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
+                <sharedControls:SimulationControls.Background>
+                    <AcrylicBrush
+                        BackgroundSource="Backdrop"
+                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                        TintColor="{ThemeResource SystemChromeMediumColor}" />
+                </sharedControls:SimulationControls.Background>
+            </sharedControls:SimulationControls>
         </Grid>
     </Grid>
 </views:BaseView>

@@ -70,6 +70,8 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return ComputeS(time) * (float)Math.Cos(AngleInRad);
         }
 
+        public float MaxX => ComputeX(MaxT);
+
         public float Y0 => Setup.Length * (float)Math.Sin(AngleInRad);
         public float ComputeY(float time)
         {
