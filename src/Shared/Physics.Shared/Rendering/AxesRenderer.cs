@@ -85,24 +85,40 @@ namespace Physics.Shared.UI.Rendering
             var originY = (float)(IsOriginAbsolute ? OriginPosition.Y : sender.Size.Height * OriginPosition.Y);
             var minY = (int)(-originY / _unitToPixels) * _unitToPixels;
             var maxY = UnitDimensions.Height;
-            for (var currentHeight = minY; currentHeight <= maxY; currentHeight += jumpSize)
-            {
-                drawing.DrawLine(
-                    x - 3,
-                    OriginPosition.Y + _unitToPixels * currentHeight,
-                    x + 3,
-                    OriginPosition.Y + _unitToPixels * currentHeight,
-                    Colors.Black);
 
-                drawing.DrawText(
-                    currentHeight.ToString("0.#"),
-                    new Rect(
-                        0,
-                        OriginPosition.Y - _unitToPixels * currentHeight - 50,
-                        x,
-                        100),
-                    Colors.Black,
-                    _yAxisFormat);
+            for (var currentHeight = jumpSize; true; currentHeight += jumpSize)
+            {
+                bool drawn = false;
+                DrawVerticalTick(originY + _unitToPixels * currentHeight, -currentHeight);
+                DrawVerticalTick(originY - _unitToPixels * currentHeight, currentHeight);
+                void DrawVerticalTick(float position, float value)
+                {
+                    if (position > sender.Size.Height || position < 0)
+                    {
+                        return;
+                    }                    
+                    drawing.DrawLine(
+                        x - 3,
+                        position,
+                        x + 3,
+                        position,
+                        Colors.Black);
+                    drawn = true;
+
+                    drawing.DrawText(
+                        value.ToString("0.#####"),
+                        new Rect(
+                            x - 50,
+                            position - 50,
+                            50,
+                            100),
+                        Colors.Black,
+                        _yAxisFormat);
+                }
+                if (!drawn)
+                {
+                    break;
+                }
             }
 
             //    var jumps = (float)Math.Ceiling(UnitDimensions.Height / jumpSize);
@@ -126,25 +142,46 @@ namespace Physics.Shared.UI.Rendering
                 y,
                 XAxisColor);
 
-            //var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Width);
-            //var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
-            //var meters = jumps * jumpSize;
-            //for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
-            //{
-            //    drawing.DrawLine(
-            //        _controller.SimulationBoundsInPixels.Left + _meterToPixels * currentDistance,
-            //        _controller.SimulationBoundsInPixels.Bottom - 3 + XAxisOffset.Y,
-            //        _controller.SimulationBoundsInPixels.Left + _meterToPixels * currentDistance,
-            //        _controller.SimulationBoundsInPixels.Bottom + 3 + XAxisOffset.Y,
-            //        Colors.Gray);
+            var jumpSize = (float)CalculateJumpSizeForAxis((float)UnitDimensions.Height);
 
-            //    drawing.DrawText(
-            //        (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
-            //        _controller.SimulationBoundsInPixels.Left + _meterToPixels * currentDistance,
-            //        _controller.SimulationBoundsInPixels.Bottom + 12 + XAxisOffset.Y,
-            //        XMeasureColor,
-            //        _yAxisFormat);
-            //}
+            var originX = (float)(IsOriginAbsolute ? OriginPosition.X : sender.Size.Width * OriginPosition.X);
+            var minX = (int)(-originX / _unitToPixels) * _unitToPixels;
+            var maxX = UnitDimensions.Width;
+
+            for (var currentWidth = jumpSize; true; currentWidth += jumpSize)
+            {
+                bool drawn = false;
+                DrawHorizontalTick(originX - _unitToPixels * currentWidth, -currentWidth);
+                DrawHorizontalTick(originX + _unitToPixels * currentWidth, currentWidth);
+                void DrawHorizontalTick(float position, float value)
+                {
+                    if (position > sender.Size.Width || position < 0)
+                    {
+                        return;
+                    }
+                    drawing.DrawLine(
+                        position,
+                        y - 3,
+                        position,
+                        y + 3,
+                        Colors.Black);
+                    drawn = true;
+
+                    drawing.DrawText(
+                        value.ToString("0.#####"),
+                        new Rect(                           
+                            position - 50,
+                            y + 8,
+                            100,
+                            20),
+                        Colors.Black,
+                        _yAxisFormat);
+                }
+                if (!drawn)
+                {
+                    break;
+                }
+            }
         }
 
         private double CalculateJumpSizeForAxis(float range)
@@ -155,7 +192,7 @@ namespace Physics.Shared.UI.Rendering
                 var currentMultiplier = 1.0;
                 while (true)
                 {
-                    foreach (var allowedJumpSize in _allowedScaleJumps)
+                    foreach (var allowedJumpSize in _allowedScaleJumps.Reverse())
                     {
                         var scaleSize = allowedJumpSize * currentMultiplier;
                         if (upperBound / scaleSize > 20)

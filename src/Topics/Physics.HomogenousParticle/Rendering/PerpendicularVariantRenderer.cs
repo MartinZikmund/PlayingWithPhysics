@@ -84,6 +84,14 @@ namespace Physics.HomogenousParticle.Rendering
                 DrawTrajectory(sender, args);
                 var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_motion.Color);
                 _controller.DrawParticle(_currentMotionPosition + drawingOffset, color, args);
+
+
+                ArrowRenderer.Draw(
+                    _currentMotionPosition + drawingOffset,
+                    (float)Math.Min(sender.Size.Width, sender.Size.Height) / 30.0f * _motion.VelocityMultiple,
+                    GetArrowAngle(_controller.SimulationTime.TotalTime.TotalSeconds),
+                    sender,
+                    args.DrawingSession);
             }
         }
 
@@ -94,7 +102,7 @@ namespace Physics.HomogenousParticle.Rendering
             var angle = _motion.VelocityMultiple;
 
             var clockwise =
-                ((_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple > 0) ||
+                !((_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple > 0) ||
                 (_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple < 0));
             Microsoft.Graphics.Canvas.Geometry.CanvasPathBuilder builder = new Microsoft.Graphics.Canvas.Geometry.CanvasPathBuilder(sender);
 
@@ -148,10 +156,10 @@ namespace Physics.HomogenousParticle.Rendering
 
         private Vector2 CalculateMotionPosition(PerpendicularMotionSetup motionSetup, float radius)
         {
-            var angle = _motion.VelocityMultiple;
+            var angularVelocity = _motion.VelocityMultiple;
 
-            var realX = ComputeSimulationX(radius, angle, _controller.SimulationTime.TotalTime.TotalSeconds);
-            var realY = ComputeSimulationY(radius, angle, _controller.SimulationTime.TotalTime.TotalSeconds);
+            var realX = ComputeSimulationX(radius, angularVelocity, _controller.SimulationTime.TotalTime.TotalSeconds);
+            var realY = ComputeSimulationY(radius, angularVelocity, _controller.SimulationTime.TotalTime.TotalSeconds);
 
             return new Vector2((float)realX, (float)realY);
         }
@@ -170,6 +178,35 @@ namespace Physics.HomogenousParticle.Rendering
                 return
                     radius *
                     Math.Cos((-angularVelocity * seconds - (3 * (float)Math.PI / 2)));
+            }
+        }
+
+        private float AngularVelocity => _motion.VelocityMultiple;
+
+        private float GetArrowAngle(double seconds)
+        {
+            var angle = GetCurrentAngle(seconds);
+            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple > 0) ||
+                (_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple < 0))
+            {
+                return angle + (float)Math.PI / 2;
+            }
+            else
+            {
+                return angle - (float)Math.PI / 2;
+            }
+        }
+
+        private float GetCurrentAngle(double seconds)
+        {
+            if ((_motion.InductionOrientation == PerpendicularInductionOrientation.FromPaper && _motion.ChargeMultiple > 0) ||
+                (_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper && _motion.ChargeMultiple < 0))
+            {
+                return (float)(AngularVelocity * seconds - (float)Math.PI / 2);
+            }
+            else
+            {
+                return (float)(-AngularVelocity * seconds - (3 * (float)Math.PI / 2));
             }
         }
 
