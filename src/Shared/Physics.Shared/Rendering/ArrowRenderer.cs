@@ -12,6 +12,7 @@ namespace Physics.Shared.UI.Rendering
             Vector2 from,
             float length,
             float angle,
+            Color color,
             ICanvasAnimatedControl sender, 
             CanvasDrawingSession session)
         {
@@ -19,9 +20,9 @@ namespace Physics.Shared.UI.Rendering
                 (float)(from.X + Math.Cos(angle) * length),
                 (float)(from.Y + Math.Sin(angle) * length));
 
-            session.DrawLine(from, to, Colors.Black);
+            session.DrawLine(from, to, color);
 
-            DrawArrowTip(to, angle - (float)Math.PI, Colors.Black, session);
+            DrawArrowTip(to, angle - (float)Math.PI, color, session);
         }
 
         private static void DrawArrowTip(Vector2 point, double angle, Color color, CanvasDrawingSession session)

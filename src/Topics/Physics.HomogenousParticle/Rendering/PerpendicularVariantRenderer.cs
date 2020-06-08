@@ -90,6 +90,7 @@ namespace Physics.HomogenousParticle.Rendering
                     _currentMotionPosition + drawingOffset,
                     (float)Math.Min(sender.Size.Width, sender.Size.Height) / 30.0f * _motion.VelocityMultiple,
                     GetArrowAngle(_controller.SimulationTime.TotalTime.TotalSeconds),
+                    color,
                     sender,
                     args.DrawingSession);
             }
