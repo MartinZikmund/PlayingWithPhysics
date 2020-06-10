@@ -39,9 +39,9 @@ namespace Physics.InclinedPlane.ViewModels
 
         public void UpdateCurrentValues(float timeElapsed)
         {
-            if (timeElapsed > _physicsService.MaxT)
+            if (timeElapsed > _physicsService.CalculateMaxT())
             {
-                timeElapsed = _physicsService.MaxT;
+                timeElapsed = _physicsService.CalculateMaxT();
             }
 
             TimeElapsed = timeElapsed;

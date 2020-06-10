@@ -11,168 +11,346 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 {
     public class PhysicsService : IPhysicsService
     {
+        private float? _maxT = null;
+        private float? _maxS = null;
+        private float? _maxX = null;
+        private float? _inclinedAcceleration = null;
+        private float? _horizontalStartTime = null;
+        private float? _horizontalStartVelocity = null;
+        private float? _horizontalStartX = null;
+        private float? _horizontalAcceleration = null;
+        private float? _horizontalMaxX = null;
+        private float? _ft = null;
+        private float? _fp = null;
+
         public PhysicsService(IInclinedPlaneMotionSetup setup)
         {
             Setup = setup;
         }
 
-        private FComputeVariant _variant
+        public IInclinedPlaneMotionSetup Setup { get; set; }
+
+        public float AngleInRad => MathHelpers.DegreesToRadians(Setup.InclinedAngle);
+
+        #region Full motion calculations        
+
+        public float CalculateMaxX()
         {
-            get
+            if( _maxX == null)
             {
-                float diff = GetDifferenceOfFpFt();
-                if (diff > 0)
-                {
-                    return FComputeVariant.MoreThanZero;
-                }
-                else if (diff < 0)
-                {
-                    return FComputeVariant.LessThanZero;
-                }
-                else
-                {
-                    return FComputeVariant.Equal;
-                }
+                var maxT = CalculateMaxT();
+                _maxX = CalculateX(maxT);
+            }
+            return _maxX.Value;
+        }
+
+        public float CalculateS(float time)
+        {
+            time = Math.Min(time, CalculateMaxT());
+
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedS(time);
+            }
+            else
+            {
+                return Setup.InclinedLength + CalculateHorizontalX(CalculateHorizontalTime(time));
             }
         }
 
-        public IInclinedPlaneMotionSetup Setup { get; set; }
-
-        private float GetDifferenceOfFpFt()
+        public float CalculateX(float time)
         {
-            return ComputeFp() - ComputeFt();
+            time = Math.Min(time, CalculateMaxT());
+
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedX(time);
+            }
+            else
+            {
+                return CalculateHorizontalStartX() + CalculateHorizontalX(CalculateHorizontalTime(time));
+            }
         }
 
-        public string GetLabelForFs()
+        public float CalculateY(float time)
         {
-            switch (_variant)
+            time = Math.Min(time, CalculateMaxT());
+
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
             {
-                case FComputeVariant.MoreThanZero:
+                return CalculateInclinedY(time);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public float CalculateV(float time)
+        {
+            time = Math.Min(time, CalculateMaxT());
+
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedV(time);
+            }
+            else
+            {
+                return CalculateHorizontalVx(CalculateHorizontalTime(time));
+            }
+        }
+
+        public float CalculateMaxT()
+        {
+            if (_maxT == null)
+            {
+                switch (CalculateInclinedPlaneMovementType())
+                {
+                    case InclinedPlaneMovementType.Accelerating:
+                        return (-Setup.V0 + (float)Math.Sqrt((float)Math.Pow(Setup.V0, 2) + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength)) / CalculateInclinedAcceleration();
+                    case InclinedPlaneMovementType.Decelerating:
+                        if (CalculateMaxS() < Setup.InclinedLength)
+                            return Setup.V0 / -CalculateInclinedAcceleration();
+                        else
+                            return (-Setup.V0 + (float)Math.Sqrt((float)Math.Pow(Setup.V0, 2) + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength)) / CalculateInclinedAcceleration();
+                    default:
+                        return Setup.InclinedLength / Setup.V0;
+                }
+            }
+            return _maxT.Value;
+        }
+
+        public float CalculateVx(float time)
+        {
+            if (time > CalculateMaxT())
+            {
+                return 0;
+            }
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedVx(time);
+            }
+            return CalculateHorizontalVx(CalculateHorizontalTime(time));
+        }
+
+        public float CalculateVy(float time)
+        {
+            if (time > CalculateMaxT() || time > CalculateHorizontalStartTime())
+            {
+                return 0;
+            }
+            return CalculateInclinedVy(time);
+        }
+
+        public float CalculateMaxS()
+        {
+            if (_maxS == null)
+            {
+                throw new NotImplementedException();
+                //_maxS = Math.Min(Setup.V0 * Setup.V0 / (-2 * CalculateInclinedAcceleration()), Setup.InclinedLength);
+            }
+            return _maxS.Value;
+        }
+
+        #endregion
+
+        #region Inclined plane calculations
+
+        public float CalculateInclinedAcceleration()
+        {
+            if (_inclinedAcceleration == null)
+            {
+                _inclinedAcceleration = Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.InclinedDirftCoefficient * (float)Math.Cos(AngleInRad));
+            }
+            return _inclinedAcceleration.Value;
+        }
+
+        public float CalculateInclinedV(float time)
+        {
+            switch (CalculateInclinedPlaneMovementType())
+            {
+                case InclinedPlaneMovementType.Accelerating:
+                case InclinedPlaneMovementType.Decelerating:
+                    return Setup.V0 + CalculateInclinedAcceleration() * time;
+                default:
+                    return Setup.V0;
+            }
+        }
+
+        public float CalculateInclinedX(float time)
+        {
+            return CalculateInclinedS(time) * (float)Math.Cos(AngleInRad);
+        }
+        
+        public float CalculateInclinedY(float time)
+        {
+            return CalculateStartY() - CalculateS(time) * (float)Math.Sin(AngleInRad);
+        }
+
+        public float CalculateStartY() => Setup.InclinedLength * (float)Math.Sin(AngleInRad);
+
+        public float CalculateInclinedVx(float time)
+        {
+            //TODO
+            return CalculateInclinedV(time) * (float)Math.Cos(AngleInRad);
+        }
+
+        public float CalculateInclinedVy(float time)
+        {
+            //TODO
+            return CalculateV(time) * (float)Math.Sin(AngleInRad);
+        }
+
+        public float CalculateInclinedS(float time)
+        {
+            switch (CalculateInclinedPlaneMovementType())
+            {
+                case InclinedPlaneMovementType.Accelerating:
+                case InclinedPlaneMovementType.Decelerating:
+                    return Setup.V0 * time + (CalculateInclinedAcceleration() * (float)Math.Pow(time, 2) / 2);
+                default:
+                    return time * Setup.V0;
+            }
+        }
+
+        public float CalculateEk(float time)
+        {
+            return Setup.Mass * (float)Math.Pow(CalculateV(time), 2) / 2;
+        }
+
+        public float CalculateEv(float time) => Setup.Mass * (float)Math.Pow(CalculateV(time), 2) / 2;
+
+        #endregion
+
+        #region Horizontal calculations
+
+        public float CalculateHorizontalTime(float time)
+        {
+            return time - CalculateHorizontalStartTime();
+        }
+
+        public float CalculateHorizontalStartTime()
+        {
+            if (_horizontalStartTime == null)
+            {
+                throw new NotImplementedException();
+            }
+            return _horizontalStartTime.Value;
+        }
+
+        public float CalculateHorizontalStartVelocity()
+        {
+            if (_horizontalStartVelocity == null)
+            {
+                throw new NotImplementedException();
+            }
+            return _horizontalStartVelocity.Value;
+        }
+
+        public float CalculateHorizontalVx(float horizontalSeconds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float CalculateHorizontalStartX()
+        {
+            if (_horizontalStartX == null)
+            {
+                throw new NotImplementedException();
+            }
+            return _horizontalStartX.Value;
+        }
+
+        /// <summary>
+        /// Acceleration on horizontal plane.
+        /// </summary>
+        /// <returns>Acceleration.</returns>
+        public float CalculateHorizontalAcceleration()
+        {
+            if (_horizontalAcceleration == null)
+            {
+                _horizontalAcceleration = -Setup.Gravity * Setup.HorizontalDriftCoefficient;
+            }
+            return _horizontalAcceleration.Value;
+        }
+
+        public float CalculateHorizontalX(float horizontalSeconds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public float CalculateHorizontalMaxX()
+        {
+            if (_horizontalMaxX == null)
+            {
+                var stopX = CalculateHorizontalStopX();
+                _horizontalMaxX = Math.Max(stopX, Setup.HorizontalLength);
+            }
+            return _horizontalMaxX.Value;
+        }
+
+        public float CalculateHorizontalStopX()
+        {
+            var horizontalStartVelocity = CalculateHorizontalStartVelocity();
+            return horizontalStartVelocity * horizontalStartVelocity / (-2 * CalculateHorizontalAcceleration());
+        }
+
+        #endregion
+
+
+        private InclinedPlaneMovementType CalculateInclinedPlaneMovementType()
+        {
+            float diff = CalculateFp() - CalculateFt();
+            if (diff > 0)
+            {
+                return InclinedPlaneMovementType.Accelerating;
+            }
+            else if (diff < 0)
+            {
+                return InclinedPlaneMovementType.Decelerating;
+            }
+            else
+            {
+                return InclinedPlaneMovementType.Static;
+            }
+        }
+
+
+
+        private string GetLabelForFs()
+        {
+            switch (CalculateInclinedPlaneMovementType())
+            {
+                case InclinedPlaneMovementType.Accelerating:
                     return "Těleso se pohybuje zrychleně po nakloněnné rovině dolů se zrychlením a";
-                case FComputeVariant.LessThanZero:
+                case InclinedPlaneMovementType.Decelerating:
                     return "Tělěso po udělení počáteční rychlosti v0 rovnoměrně zpomalí";
                 default:
                     return "Těleso po udělení počáteční rychlosti v0 bude konat rovnoměrný pohyb rychlosti v0.";
             }
         }
 
-        public float ComputeFp()
+        private float CalculateFp()
         {
-            return Setup.Mass * Setup.Gravity * (float)Math.Sin(AngleInRad);
-        }
-        public float ComputeFt()
-        {
-            return Setup.InclinedDirftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
-        }
-
-        public float ComputeEk(float time) => Setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
-
-        public float ComputeX(float time)
-        {
-            return ComputeS(time) * (float)Math.Cos(AngleInRad);
-        }
-
-        public float MaxX => ComputeX(MaxT);
-
-        public float Y0 => Setup.InclinedLength * (float)Math.Sin(AngleInRad);
-        public float ComputeY(float time)
-        {
-            return Y0 - ComputeS(time) * (float)Math.Sin(AngleInRad);
-        }
-
-        public float ComputeS(float time)
-        {
-            switch (_variant)
+            if (_fp == null)
             {
-                case FComputeVariant.MoreThanZero:
-                case FComputeVariant.LessThanZero:
-                    return V0 * time + (Acceleration * (float)Math.Pow(time, 2) / 2);
-                default:
-                    return time * V0;
+                _fp = Setup.Mass * Setup.Gravity * (float)Math.Sin(AngleInRad);
             }
+            return _fp.Value;
         }
 
-        public float ComputeEv(float time) => Setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
-
-        public float ComputeV(float time)
+        private float CalculateFt()
         {
-            switch (_variant)
+            if (_ft == null)
             {
-                case FComputeVariant.MoreThanZero:
-                case FComputeVariant.LessThanZero:
-                    return V0 + Acceleration * time;
-                default:
-                    return V0;  
+                _ft = Setup.InclinedDirftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
             }
+            return _ft.Value;
         }
-
-        public float ComputeVx(float time)
-        {
-            return ComputeV(time) * (float)Math.Cos(AngleInRad);
-        }
-
-        public float ComputeVy(float time)
-        {
-            return ComputeV(time) * (float)Math.Sin(AngleInRad);
-        }
-
-        public float Acceleration
-        {
-            get
-            {
-                if(Setup.HorizontalLength <= 0)
-                {
-                    return Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.InclinedDirftCoefficient * (float)Math.Cos(AngleInRad));
-                }
-                else
-                {
-                    return Setup.Gravity * Setup.HorizontalDriftCoefficient;
-                }
-            }
-        }
-
-        public float Time { get; set; } //To be replaced by drawing controller
-        public float MaxT
-        {
-            get
-            {
-                switch (_variant)
-                {
-                    case FComputeVariant.MoreThanZero:
-                        return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.InclinedLength)) / Acceleration;
-                    case FComputeVariant.LessThanZero:
-                        if (MaxS < Setup.InclinedLength)
-                            return V0 / -Acceleration;
-                        else
-                            return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.InclinedLength)) / Acceleration;
-                    default:
-                        return Setup.InclinedLength / V0;
-                }
-            }
-        }
-
-        public float V0 => 5;
-        public float AngleInRad => MathHelpers.DegreesToRadians(Setup.InclinedAngle);
-        public float MaxS
-        {
-            get
-            {
-                if (Setup.HorizontalLength > 0)
-                {
-                    throw new NotImplementedException();
-                }
-                else
-                {
-                    return Math.Min(V0*V0 / (-2 * Acceleration), Setup.InclinedLength);
-                }                
-            }
-        }
-    }
-
-    enum FComputeVariant
-    {
-        LessThanZero,
-        MoreThanZero,
-        Equal
     }
 }

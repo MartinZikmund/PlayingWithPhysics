@@ -24,7 +24,7 @@ namespace Physics.InclinedPlane.ValuesTable
             float time;
             do
             {
-                time = Math.Min(timeInterval * cycles, _physicsService.MaxT);
+                time = Math.Min(timeInterval * cycles, _physicsService.CalculateMaxT());
                 //Add TableRow
                 float x = _physicsService.ComputeX(time);
                 float y = _physicsService.ComputeY(time);
@@ -35,7 +35,7 @@ namespace Physics.InclinedPlane.ValuesTable
                 TableRow valuesRow = new TableRow(time, x, y, v, s, ev);
                 table.Add(valuesRow);
                 cycles++;
-            } while (time < _physicsService.MaxT);
+            } while (time < _physicsService.CalculateMaxT());
 
             return table;
         }

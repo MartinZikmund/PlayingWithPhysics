@@ -9,12 +9,13 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 {
     public interface IPhysicsService
     {
-        float ComputeX(float time);
-        float ComputeY(float time);
-        float ComputeV(float time);
-        float ComputeS(float time);
-        float ComputeEv(float time);
-        float MaxT { get; }
+        float CalculateX(float time);
+        float CalculateY(float time);
+        float CalculateV(float time);
+        float CalculateS(float time);
+        float CalculateEv(float time);
+        float CalculateMaxT();
+
         IInclinedPlaneMotionSetup Setup { get; set; }
     }
 }

@@ -75,6 +75,8 @@ namespace Physics.InclinedPlane.ViewModels
 
         public float Mass { get; set; } = 1;
 
+        public float V0 { get; set; } = 5;
+
         public float InclinedLength { get; set; } = 5;
 
         public float InclinedAngle { get; set; } = 45;
@@ -148,12 +150,13 @@ namespace Physics.InclinedPlane.ViewModels
             {
                 return new InclinedPlaneMotionSetup(
                     Mass,
+                    V0,
+                    Gravity,
                     InclinedLength,
                     InclinedDriftCoefficient,
                     InclinedAngle,
                     HorizontalLength,
                     HorizontalDriftCoefficient,
-                    Gravity,
                     Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
             }
             else

@@ -10,15 +10,17 @@ namespace Physics.InclinedPlane.Services
     {
         public InclinedPlaneMotionSetup(
             float mass,
+            float v0,
+            float gravity,
             float inclinedLength, 
             float inclinedDriftCoefficient,
             float inclinedAngle, 
             float horizontalLength, 
             float horizontalDriftCoefficient, 
-            float gravity, 
             string color)
         {
             Mass = mass;
+            V0 = v0;
             InclinedAngle = inclinedAngle;
             InclinedDirftCoefficient = inclinedDriftCoefficient;
             InclinedLength = inclinedLength;
@@ -29,6 +31,8 @@ namespace Physics.InclinedPlane.Services
         }
 
         public float Mass { get; set; }
+
+        public float V0 { get; set; }
 
         public bool HasHorizontal => HorizontalLength > 0;
 

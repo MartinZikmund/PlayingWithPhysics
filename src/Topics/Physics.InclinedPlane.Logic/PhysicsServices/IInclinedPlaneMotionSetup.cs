@@ -8,19 +8,23 @@ namespace Physics.InclinedPlane.Services
 {
     public interface IInclinedPlaneMotionSetup
     {
+        float Mass { get; }
+
+        float V0 { get; }
+
+        bool HasHorizontal { get; }
+
         float InclinedAngle { get; }
 
         float InclinedLength { get; }
-                
-        float InclinedDirftCoefficient { get; }
-        
-        float HorizontalLength { get; set; }
-        
-        float HorizontalDriftCoefficient { get; set; }
 
         float Gravity { get; }
 
-        float Mass { get; }
+        float InclinedDirftCoefficient { get; }
+
+        float HorizontalLength { get; }
+
+        float HorizontalDriftCoefficient { get; }
 
         string Color { get; }
     }
