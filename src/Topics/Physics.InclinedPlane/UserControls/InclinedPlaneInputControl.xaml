@@ -13,24 +13,22 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style TargetType="winui:NumberBox">
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="SpinButtonPlacementMode" Value="Compact" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="SpinButtonPlacementMode" Value="Inline" />
             </Style>
-            <Style TargetType="ComboBox">
+            <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <GridLength x:Key="InputColumnWidth">100</GridLength>
+            <GridLength x:Key="InputColumnWidth">200</GridLength>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid ColumnSpacing="8" RowSpacing="8">
+    <Grid RowSpacing="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -45,10 +43,7 @@
         </Grid.ChildrenTransitions>
 
         <!--  General inputs  -->
-        <Grid
-            Grid.Row="0"
-            ColumnSpacing="8"
-            RowSpacing="8">
+        <Grid Grid.Row="0" ColumnSpacing="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -73,7 +68,7 @@
                 <Run FontWeight="SemiBold" Text="m" />
             </TextBlock>
             <winui:NumberBox
-                x:Name="InclinedPlaneMassNumberBox"
+                x:Name="MassNumberBox"
                 Grid.Row="0"
                 Grid.Column="1"
                 Maximum="90"
@@ -83,7 +78,7 @@
             <Grid
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                ColumnSpacing="8"
+                Margin="0,8,0,0"
                 RowSpacing="8"
                 Visibility="{x:Bind Model.IsAdvanced}">
                 <Grid.RowDefinitions>
