@@ -9,8 +9,6 @@ namespace Physics.InclinedPlane.ViewModels
 {
     public interface IVariantInputViewModel
     {
-        Task<IMotionSetup> CreateMotionSetupAsync();
-
-        string Label { get; set; }
+        Task<IInclinedPlaneMotionSetup> CreateMotionSetupAsync();
     }
 }

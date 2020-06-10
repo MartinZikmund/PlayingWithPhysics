@@ -20,11 +20,11 @@ namespace Physics.InclinedPlane.Rendering
         {
         }
 
-        public IMotionSetup Motion { get; private set; }
+        public IInclinedPlaneMotionSetup Motion { get; private set; }
 
         public PhysicsService PhysicsService { get; private set; }
 
-        public void StartSimulation(IMotionSetup motion)
+        public void StartSimulation(IInclinedPlaneMotionSetup motion)
         {
             if (motion is null)
             {

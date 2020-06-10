@@ -15,6 +15,6 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         float ComputeS(float time);
         float ComputeEv(float time);
         float MaxT { get; }
-        IMotionSetup Setup { get; set; }
+        IInclinedPlaneMotionSetup Setup { get; set; }
     }
 }

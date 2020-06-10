@@ -30,8 +30,8 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 }
             }
         }
-        public IMotionSetup Setup { get; set; }
-        public PhysicsService(IMotionSetup setup)
+        public IInclinedPlaneMotionSetup Setup { get; set; }
+        public PhysicsService(IInclinedPlaneMotionSetup setup)
         {
             Setup = setup;
         }    
@@ -60,7 +60,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         }
         public float ComputeFt()
         {
-            return Setup.DriftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
+            return Setup.InclinedDirftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
         }
 
         public float ComputeEk(float time) => Setup.Mass * (float)Math.Pow(ComputeV(time), 2) / 2;
@@ -72,7 +72,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float MaxX => ComputeX(MaxT);
 
-        public float Y0 => Setup.Length * (float)Math.Sin(AngleInRad);
+        public float Y0 => Setup.InclinedLength * (float)Math.Sin(AngleInRad);
         public float ComputeY(float time)
         {
             return Y0 - ComputeS(time) * (float)Math.Sin(AngleInRad);
@@ -118,13 +118,13 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             get
             {
-                if(Setup.FinishLength <= 0)
+                if(Setup.HorizontalLength <= 0)
                 {
-                    return Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.DriftCoefficient * (float)Math.Cos(AngleInRad));
+                    return Setup.Gravity * ((float)Math.Sin(AngleInRad) - Setup.InclinedDirftCoefficient * (float)Math.Cos(AngleInRad));
                 }
                 else
                 {
-                    return Setup.Gravity * Setup.FinishDriftCoefficient;
+                    return Setup.Gravity * Setup.HorizontalDriftCoefficient;
                 }
             }
         }
@@ -137,31 +137,31 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 switch (_variant)
                 {
                     case FComputeVariant.MoreThanZero:
-                        return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
+                        return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.InclinedLength)) / Acceleration;
                     case FComputeVariant.LessThanZero:
-                        if (MaxS < Setup.Length)
+                        if (MaxS < Setup.InclinedLength)
                             return V0 / -Acceleration;
                         else
-                            return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.Length)) / Acceleration;
+                            return (-V0 + (float)Math.Sqrt((float)Math.Pow(V0, 2) + 2 * Acceleration * Setup.InclinedLength)) / Acceleration;
                     default:
-                        return Setup.Length / V0;
+                        return Setup.InclinedLength / V0;
                 }
             }
         }
 
         public float V0 => 5;
-        public float AngleInRad => MathHelpers.DegreesToRadians(Setup.Angle);
+        public float AngleInRad => MathHelpers.DegreesToRadians(Setup.InclinedAngle);
         public float MaxS
         {
             get
             {
-                if (Setup.FinishLength > 0)
+                if (Setup.HorizontalLength > 0)
                 {
                     throw new NotImplementedException();
                 }
                 else
                 {
-                    return Math.Min(V0*V0 / (-2 * Acceleration), Setup.Length);
+                    return Math.Min(V0*V0 / (-2 * Acceleration), Setup.InclinedLength);
                 }                
             }
         }

@@ -145,21 +145,19 @@
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\SimulationRenderer.cs" />
     <Compile Include="Services\DriftCoefficientDefault.cs" />
-    <Compile Include="Services\GravityPreset.cs" />
-    <Compile Include="UserControls\AdvancedVariantInputControl.xaml.cs">
-      <DependentUpon>AdvancedVariantInputControl.xaml</DependentUpon>
+    <Compile Include="Services\GravityDefault.cs" />
+    <Compile Include="UserControls\InclinedPlaneInputControl.xaml.cs">
+      <DependentUpon>InclinedPlaneInputControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\InputControlContentTemplateSelector.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateTrajectoryViewModel.cs" />
-    <Compile Include="ViewModels\AdvancedVariantInputViewModel.cs" />
+    <Compile Include="ViewModels\InclinedPlaneInputViewModel.cs" />
     <Compile Include="ViewModels\IVariantInputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MotionViewModel.cs" />
-    <Compile Include="ViewModels\VariantInputViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -243,7 +241,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AdvancedVariantInputControl.xaml">
+    <Page Include="UserControls\InclinedPlaneInputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

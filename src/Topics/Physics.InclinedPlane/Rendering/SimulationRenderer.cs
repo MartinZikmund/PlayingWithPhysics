@@ -52,7 +52,7 @@ namespace Physics.InclinedPlane.Rendering
             var minY = 0;
             var maxY = physicsService.ComputeY(0);
 
-            if (_canvasController.Motion.FinishLength == 0)
+            if (_canvasController.Motion.HorizontalLength == 0)
             {
                 _padding = 60;
             }
@@ -68,9 +68,9 @@ namespace Physics.InclinedPlane.Rendering
         private void DrawInclinedPlane(CanvasRenderTarget sender, CanvasDrawingSession drawingSession)
         {
             var motion = _canvasController.Motion;
-            var angleInRad = MathHelpers.DegreesToRadians(motion.Angle);
-            var y = motion.Length * Math.Sin(angleInRad);
-            var x = motion.Length * Math.Cos(angleInRad);
+            var angleInRad = MathHelpers.DegreesToRadians(motion.InclinedAngle);
+            var y = motion.InclinedLength * Math.Sin(angleInRad);
+            var x = motion.InclinedLength * Math.Cos(angleInRad);
             drawingSession.DrawLine(
                 new Vector2(0, FlipY((float)y * _scalingRatio, sender)),
                 new Vector2((float)x * _scalingRatio, FlipY(0, sender)),

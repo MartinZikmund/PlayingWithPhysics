@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Physics.InclinedPlane.Services
 {
-    public class GravityPreset
+    public class GravityDefault
     {
-        public GravityPreset(string name, float value)
+        public GravityDefault(string name, float value)
         {
             Name = name;
             Value = value;
         }
 
         public string Name { get; set; }
+
         public float Value { get; set; }
     }
 }

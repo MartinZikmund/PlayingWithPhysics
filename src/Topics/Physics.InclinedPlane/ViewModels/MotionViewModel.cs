@@ -12,15 +12,15 @@ namespace Physics.InclinedPlane.ViewModels
     public class MotionViewModel : Physics.Shared.ViewModels.ViewModelBase
     {
         private IPhysicsService _physicsService;
-        public MotionViewModel(IMotionSetup motion)
+        public MotionViewModel(IInclinedPlaneMotionSetup motion)
         {
             MotionInfo = motion ?? throw new ArgumentNullException(nameof(motion));
             UpdateCurrentValues(0);
         }
 
-        private IMotionSetup _motionInfo;
+        private IInclinedPlaneMotionSetup _motionInfo;
 
-        public IMotionSetup MotionInfo
+        public IInclinedPlaneMotionSetup MotionInfo
         {
             get
             {

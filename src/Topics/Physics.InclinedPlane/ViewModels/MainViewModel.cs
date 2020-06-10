@@ -55,7 +55,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovement(new AdvancedVariantInputViewModel(Difficulty));
+            var dialog = new AddOrUpdateMovement(new InclinedPlaneInputViewModel(Difficulty));
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -73,7 +73,7 @@ namespace Physics.InclinedPlane.ViewModels
             controller.StartSimulation(Motion.MotionInfo);
         }
 
-        public IMotionSetup Setup { get; set; }
+        public IInclinedPlaneMotionSetup Setup { get; set; }
 
         public MotionViewModel Motion {get; set;}
 

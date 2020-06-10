@@ -144,6 +144,30 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
+  <data name="Input_Angle" xml:space="preserve">
+    <value>Úhel</value>
+  </data>
+  <data name="Input_DriftCoefficient" xml:space="preserve">
+    <value>Součinitel smykového tření</value>
+  </data>
+  <data name="Input_General" xml:space="preserve">
+    <value>Obecné</value>
+  </data>
+  <data name="Input_Gravity" xml:space="preserve">
+    <value>Tíhové zrychlení</value>
+  </data>
+  <data name="Input_HorizontalPlane" xml:space="preserve">
+    <value>Dojezd</value>
+  </data>
+  <data name="Input_InclinedPlane" xml:space="preserve">
+    <value>Nakloněná rovina</value>
+  </data>
+  <data name="Input_Length" xml:space="preserve">
+    <value>Délka</value>
+  </data>
+  <data name="Input_Mass" xml:space="preserve">
+    <value>Hmotnost</value>
+  </data>
   <data name="JumpSize" xml:space="preserve">
     <value>Volba kroku vykreslování</value>
   </data>

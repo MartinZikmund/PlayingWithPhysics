@@ -141,6 +141,30 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="Input_Angle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="Input_DriftCoefficient" xml:space="preserve">
+    <value>Drift coefficient</value>
+  </data>
+  <data name="Input_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Input_Gravity" xml:space="preserve">
+    <value>Gravity</value>
+  </data>
+  <data name="Input_HorizontalPlane" xml:space="preserve">
+    <value>Horizontal plane</value>
+  </data>
+  <data name="Input_InclinedPlane" xml:space="preserve">
+    <value>Inclined plane</value>
+  </data>
+  <data name="Input_Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Input_Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
   <data name="JumpSize" xml:space="preserve">
     <value>Jump Size</value>
   </data>

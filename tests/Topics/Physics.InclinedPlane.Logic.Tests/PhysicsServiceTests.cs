@@ -29,7 +29,7 @@ namespace Physics.InclinedPlane.Logic.Tests
         [Theory]
         public void AcceleratingMotionWithoutFinish(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new AdvancedMotionSetup(45, 1, 0.8f, 10, "#000000", 0, 0));
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 0.8f, 10, "#000000", 0, 0));
             Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
             Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
             Assert.Equal(expectedY, physicsService.ComputeY(t), 1);
@@ -60,7 +60,7 @@ namespace Physics.InclinedPlane.Logic.Tests
         [Theory]
         public void StableMotionWithoutFinish(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new AdvancedMotionSetup(45, 1, 1f, 10, "#000000", 0, 0));
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 1f, 10, "#000000", 0, 0));
             Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
             Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
             Assert.Equal(expectedY, physicsService.ComputeY(t), 1);
@@ -89,7 +89,7 @@ namespace Physics.InclinedPlane.Logic.Tests
         [Theory]
         public void DecceleratingMotionWithoutFinish1(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new AdvancedMotionSetup(45, 1, 1.4f, 10, "#000000", 0, 0));
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 1.4f, 10, "#000000", 0, 0));
             Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
             Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
             Assert.Equal(expectedY, physicsService.ComputeY(t), 1);

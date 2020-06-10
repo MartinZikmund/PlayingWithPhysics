@@ -1,10 +1,1 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.InclinedPlane.Resources"
-    xmlns:usercontrols="using:Physics.InclinedPlane.UserControls">
-
-    <DataTemplate x:Key="AdvancedVariantInputDataTemplate">
-        <usercontrols:AdvancedVariantInputControl />
-    </DataTemplate>
-</ResourceDictionary>
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />

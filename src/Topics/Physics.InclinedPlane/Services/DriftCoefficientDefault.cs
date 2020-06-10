@@ -15,6 +15,7 @@ namespace Physics.InclinedPlane.Services
         }
 
         public string Name { get; set; }
+
         public float Value { get; set; }
     }
 }

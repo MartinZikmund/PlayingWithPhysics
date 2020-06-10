@@ -41,7 +41,7 @@ namespace Physics.InclinedPlane.Dialogs
 
         public IVariantInputViewModel Model { get; private set; }
 
-        public IMotionSetup Setup { get; set; }
+        public IInclinedPlaneMotionSetup Setup { get; set; }
 
         private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
