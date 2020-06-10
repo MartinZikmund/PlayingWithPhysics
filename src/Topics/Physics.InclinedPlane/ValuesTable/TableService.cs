@@ -21,7 +21,7 @@ namespace Physics.InclinedPlane.ValuesTable
         {
             List<TableRow> table = new List<TableRow>();
             float cycles = 0;
-            float time = 0.0f;
+            float time;
             do
             {
                 time = Math.Min(timeInterval * cycles, _physicsService.MaxT);

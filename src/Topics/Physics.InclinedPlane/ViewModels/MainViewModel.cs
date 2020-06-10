@@ -30,8 +30,8 @@ namespace Physics.InclinedPlane.ViewModels
     public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
     {
         private IMainViewInteraction _interaction;
-
         private DifficultyOption Difficulty;
+        private InclinedPlaneInputViewModel _inputViewModel;
 
         public class NavigationModel
         {
@@ -46,6 +46,7 @@ namespace Physics.InclinedPlane.ViewModels
         public override void Prepare(NavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
+            _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
         internal void SetViewInteraction(IMainViewInteraction interaction)
@@ -53,9 +54,10 @@ namespace Physics.InclinedPlane.ViewModels
             _interaction = interaction;
         }
 
+
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovement(new InclinedPlaneInputViewModel(Difficulty));
+            var dialog = new AddOrUpdateMovement(_inputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

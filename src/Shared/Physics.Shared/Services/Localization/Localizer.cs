@@ -35,5 +35,7 @@ namespace Physics.Shared.UI.Localization
             }
             return result;
         }
+
+        public string this[string key] => GetString(key);        
     }
 }

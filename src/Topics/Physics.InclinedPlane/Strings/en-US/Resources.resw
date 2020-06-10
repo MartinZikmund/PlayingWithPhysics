@@ -135,11 +135,107 @@
   <data name="DrawMotion" xml:space="preserve">
     <value>Draw motion</value>
   </data>
+  <data name="Drift_MetalMetalDry" xml:space="preserve">
+    <value>Kov – kov (dry)</value>
+  </data>
+  <data name="Drift_MetalMetalOiled" xml:space="preserve">
+    <value>Kov – kov (oiled)</value>
+  </data>
+  <data name="Drift_MetalMetalWet" xml:space="preserve">
+    <value>Kov – kov (wet)</value>
+  </data>
+  <data name="Drift_MetalOakDry" xml:space="preserve">
+    <value>Kov – oak wood (dry)</value>
+  </data>
+  <data name="Drift_MetalOakWet" xml:space="preserve">
+    <value>Kov – oak wood (wet)</value>
+  </data>
+  <data name="Drift_NylonNylon" xml:space="preserve">
+    <value>Nylon – nylon</value>
+  </data>
+  <data name="Drift_SkinMetalDry" xml:space="preserve">
+    <value>Skin – metal (dry)</value>
+  </data>
+  <data name="Drift_SkinMetalOiled" xml:space="preserve">
+    <value>Skin – metal (oiled)</value>
+  </data>
+  <data name="Drift_SkinMetalWet" xml:space="preserve">
+    <value>Skin – metal (wet)</value>
+  </data>
+  <data name="Drift_SkinOak" xml:space="preserve">
+    <value>Skin – dub</value>
+  </data>
+  <data name="Drift_SteelAgateDry" xml:space="preserve">
+    <value>Steel – agate (dry)</value>
+  </data>
+  <data name="Drift_SteelAgateOiled" xml:space="preserve">
+    <value>Steel – agate (oiled)</value>
+  </data>
+  <data name="Drift_SteelSilicaDry" xml:space="preserve">
+    <value>Steel – agate (oiled)</value>
+  </data>
+  <data name="Drift_TeflonTeflon" xml:space="preserve">
+    <value>Teflon – teflon</value>
+  </data>
+  <data name="Drift_TireConcreteDry" xml:space="preserve">
+    <value>Tire – beton (dry)</value>
+  </data>
+  <data name="Drift_TireConcreteWet" xml:space="preserve">
+    <value>Tire – beton (wet)</value>
+  </data>
+  <data name="Drift_VeryWellPolishedSurfaces" xml:space="preserve">
+    <value>Very well polished surfaces</value>
+  </data>
+  <data name="Drift_WoodStone" xml:space="preserve">
+    <value>Wood – stone</value>
+  </data>
+  <data name="Drift_WoodWoodDry" xml:space="preserve">
+    <value>Wood – wood (dry)</value>
+  </data>
+  <data name="Drift_WoodWoodSoaped" xml:space="preserve">
+    <value>Wood – wood (soaped)</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Easy difficulty</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="Gravity_Earth45" xml:space="preserve">
+    <value>Earth – 45 north latitude</value>
+  </data>
+  <data name="Gravity_EarthEquatorSeaLevel" xml:space="preserve">
+    <value>Earth – equator, sea level</value>
+  </data>
+  <data name="Gravity_EarthPole" xml:space="preserve">
+    <value>Earth – pole</value>
+  </data>
+  <data name="Gravity_EarthPrague" xml:space="preserve">
+    <value>Earth – Prague</value>
+  </data>
+  <data name="Gravity_Jupiter" xml:space="preserve">
+    <value>Jupiter – equator</value>
+  </data>
+  <data name="Gravity_Mars" xml:space="preserve">
+    <value>Mars – equator</value>
+  </data>
+  <data name="Gravity_Mercury" xml:space="preserve">
+    <value>Mercury – equator</value>
+  </data>
+  <data name="Gravity_Neptune" xml:space="preserve">
+    <value>Neptune – equator</value>
+  </data>
+  <data name="Gravity_Saturn" xml:space="preserve">
+    <value>Saturn – equator</value>
+  </data>
+  <data name="Gravity_Sun" xml:space="preserve">
+    <value>Sun – equator</value>
+  </data>
+  <data name="Gravity_Uranus" xml:space="preserve">
+    <value>Uranus – equator</value>
+  </data>
+  <data name="Gravity_Venus" xml:space="preserve">
+    <value>Venus – equator</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Angle</value>

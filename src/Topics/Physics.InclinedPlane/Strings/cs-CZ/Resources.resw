@@ -138,11 +138,107 @@
   <data name="DrawMotion" xml:space="preserve">
     <value>Vykresli pohyb</value>
   </data>
+  <data name="Drift_MetalMetalDry" xml:space="preserve">
+    <value>Kov – kov (suchý)</value>
+  </data>
+  <data name="Drift_MetalMetalOiled" xml:space="preserve">
+    <value>Kov – kov (olej)</value>
+  </data>
+  <data name="Drift_MetalMetalWet" xml:space="preserve">
+    <value>Kov – kov (mokrý)</value>
+  </data>
+  <data name="Drift_MetalOakDry" xml:space="preserve">
+    <value>Kov – dubové dřevo (suché)</value>
+  </data>
+  <data name="Drift_MetalOakWet" xml:space="preserve">
+    <value>Kov – dubové dřevo (mokré)</value>
+  </data>
+  <data name="Drift_NylonNylon" xml:space="preserve">
+    <value>Nylon – nylon</value>
+  </data>
+  <data name="Drift_SkinMetalDry" xml:space="preserve">
+    <value>Kůže – kov (suché)</value>
+  </data>
+  <data name="Drift_SkinMetalOiled" xml:space="preserve">
+    <value>Kůže – kov (olej)</value>
+  </data>
+  <data name="Drift_SkinMetalWet" xml:space="preserve">
+    <value>Kůže – kov (mokrý)</value>
+  </data>
+  <data name="Drift_SkinOak" xml:space="preserve">
+    <value>Kůže – dub</value>
+  </data>
+  <data name="Drift_SteelAgateDry" xml:space="preserve">
+    <value>Ocel – achát (suché)</value>
+  </data>
+  <data name="Drift_SteelAgateOiled" xml:space="preserve">
+    <value>Ocel – achát (olej)</value>
+  </data>
+  <data name="Drift_SteelSilicaDry" xml:space="preserve">
+    <value>Ocel – achát (olej)</value>
+  </data>
+  <data name="Drift_TeflonTeflon" xml:space="preserve">
+    <value>Teflon – teflon</value>
+  </data>
+  <data name="Drift_TireConcreteDry" xml:space="preserve">
+    <value>Pneumatika – beton (suché)</value>
+  </data>
+  <data name="Drift_TireConcreteWet" xml:space="preserve">
+    <value>Pneumatika – beton (mokré)</value>
+  </data>
+  <data name="Drift_VeryWellPolishedSurfaces" xml:space="preserve">
+    <value>Velmi dobře vyleštěné plochy</value>
+  </data>
+  <data name="Drift_WoodStone" xml:space="preserve">
+    <value>Dřevo – kámen</value>
+  </data>
+  <data name="Drift_WoodWoodDry" xml:space="preserve">
+    <value>Dřevo – dřevo (suché)</value>
+  </data>
+  <data name="Drift_WoodWoodSoaped" xml:space="preserve">
+    <value>Dřevo – dřevo (namydlené)</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Základní varianta</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
+  </data>
+  <data name="Gravity_Earth45" xml:space="preserve">
+    <value>Země – 45° zeměpisné šířky</value>
+  </data>
+  <data name="Gravity_EarthEquatorSeaLevel" xml:space="preserve">
+    <value>Země – rovník, úroveň mořské hladiny</value>
+  </data>
+  <data name="Gravity_EarthPole" xml:space="preserve">
+    <value>Země – zemský pól</value>
+  </data>
+  <data name="Gravity_EarthPrague" xml:space="preserve">
+    <value>Země – Praha</value>
+  </data>
+  <data name="Gravity_Jupiter" xml:space="preserve">
+    <value>Jupiter – rovník</value>
+  </data>
+  <data name="Gravity_Mars" xml:space="preserve">
+    <value>Mars – rovník</value>
+  </data>
+  <data name="Gravity_Mercury" xml:space="preserve">
+    <value>Merkur – rovník</value>
+  </data>
+  <data name="Gravity_Neptune" xml:space="preserve">
+    <value>Neptun – rovník</value>
+  </data>
+  <data name="Gravity_Saturn" xml:space="preserve">
+    <value>Saturn – rovník</value>
+  </data>
+  <data name="Gravity_Sun" xml:space="preserve">
+    <value>Slunce – rovník</value>
+  </data>
+  <data name="Gravity_Uranus" xml:space="preserve">
+    <value>Uran – rovník</value>
+  </data>
+  <data name="Gravity_Venus" xml:space="preserve">
+    <value>Venuše – rovník</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Úhel</value>

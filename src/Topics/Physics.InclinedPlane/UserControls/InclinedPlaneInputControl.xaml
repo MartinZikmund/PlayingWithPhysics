@@ -25,11 +25,12 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <GridLength x:Key="InputColumnWidth">320</GridLength>
+            <GridLength x:Key="InputColumnWidth">280</GridLength>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid RowSpacing="8">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -46,10 +47,6 @@
         <Grid Grid.Row="0" ColumnSpacing="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -61,11 +58,10 @@
                 </TransitionCollection>
             </Grid.ChildrenTransitions>
 
-            <!--<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Input_General}" />-->
-
             <TextBlock Grid.Row="0" Grid.Column="0">
                 <Run Text="{extensions:Localize Key=Input_Mass}" />
                 <Run FontWeight="SemiBold" Text="m" />
+                <Run Text="(kg)" />
             </TextBlock>
             <winui:NumberBox
                 x:Name="MassNumberBox"
@@ -74,11 +70,24 @@
                 Maximum="90"
                 Minimum="0"
                 Value="{x:Bind Model.Mass, Mode=TwoWay}" />
-
+        </Grid>
+        <Grid Grid.Row="1" ColumnSpacing="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource InputColumnWidth}" />
+            </Grid.ColumnDefinitions>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
             <Grid
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                Margin="0,8,0,0"
+                ColumnSpacing="8"
                 RowSpacing="8"
                 Visibility="{x:Bind Model.IsAdvanced}">
                 <Grid.RowDefinitions>
@@ -93,6 +102,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Gravity}" />
                     <Run FontWeight="SemiBold" Text="g" />
+                    <Run Text="(m/s" /><Run Text="2" Typography.Variants="Superscript" /><Run Text=")" />
                 </TextBlock>
                 <winui:NumberBox
                     x:Name="GravityNumberBox"
@@ -118,7 +128,8 @@
                                 <TextBlock
                                     Grid.Column="1"
                                     HorizontalAlignment="Right"
-                                    Opacity="0.5">
+                                    Opacity="0.5"
+                                    Visibility="{x:Bind HasValue}">
                                     <Run Text="{x:Bind FormattedValue}" />
                                     <Run Text="m/s" /><Run Text="2" Typography.Variants="Superscript" />
                                 </TextBlock>
@@ -131,7 +142,7 @@
 
         <!--  Inclined plane inputs  -->
         <Grid
-            Grid.Row="1"
+            Grid.Row="2"
             ColumnSpacing="8"
             RowSpacing="8">
             <Grid.RowDefinitions>
@@ -157,6 +168,7 @@
             <TextBlock Grid.Row="1" Grid.Column="0">
                 <Run Text="{extensions:Localize Key=Input_Angle}" />
                 <Run FontWeight="SemiBold" Text="α" />
+                <Run Text="(°)" />
             </TextBlock>
             <winui:NumberBox
                 x:Name="InclinedPlaneAngleNumberBox"
@@ -170,6 +182,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0">
                 <Run Text="{extensions:Localize Key=Input_Length}" />
                 <Run FontWeight="SemiBold" Text="d" />
+                <Run Text="(m)" />
             </TextBlock>
             <winui:NumberBox
                 x:Name="InclinedPlaneLengthNumberBox"
@@ -220,7 +233,7 @@
 
         <!--  Horizontal plane inputs  -->
         <Grid
-            Grid.Row="2"
+            Grid.Row="3"
             ColumnSpacing="8"
             RowSpacing="8"
             Visibility="{x:Bind Model.IsAdvanced}">
@@ -269,6 +282,7 @@
                         FontWeight="SemiBold"
                         Text="2"
                         Typography.Variants="Subscript" />
+                    <Run Text="(m)" />
                 </TextBlock>
                 <winui:NumberBox
                     x:Name="HorizontalPlaneLengthNumberBox"
@@ -321,11 +335,11 @@
 
 
         <TextBlock
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0"
             Text="{extensions:Localize Key=Color}" />
         <GridView
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.ColumnSpan="2"
             ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
             SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
