@@ -14,6 +14,8 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         private float? _maxT = null;
         private float? _maxS = null;
         private float? _maxX = null;
+        private bool? _willReachInclinedEnd = null;
+        private float? _inclinedMaxT = null;
         private float? _inclinedAcceleration = null;
         private float? _horizontalStartTime = null;
         private float? _horizontalStartVelocity = null;
@@ -36,7 +38,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float CalculateMaxX()
         {
-            if( _maxX == null)
+            if (_maxX == null)
             {
                 var maxT = CalculateMaxT();
                 _maxX = CalculateX(maxT);
@@ -108,21 +110,23 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             if (_maxT == null)
             {
-                switch (CalculateInclinedPlaneMovementType())
+                // inclined plane
+                var inclinedPlaneMaxT = CalculateInclinedMaxT();
+                var inclinedPlaneEndReached = WillReachInclinedEnd();
+
+                if (!inclinedPlaneEndReached || !Setup.HasHorizontal)
                 {
-                    case InclinedPlaneMovementType.Accelerating:
-                        return (-Setup.V0 + (float)Math.Sqrt((float)Math.Pow(Setup.V0, 2) + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength)) / CalculateInclinedAcceleration();
-                    case InclinedPlaneMovementType.Decelerating:
-                        if (CalculateMaxS() < Setup.InclinedLength)
-                            return Setup.V0 / -CalculateInclinedAcceleration();
-                        else
-                            return (-Setup.V0 + (float)Math.Sqrt((float)Math.Pow(Setup.V0, 2) + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength)) / CalculateInclinedAcceleration();
-                    default:
-                        return Setup.InclinedLength / Setup.V0;
+                    return inclinedPlaneMaxT;
                 }
+
+                // get horizontal end time
+                var horizontalEndTime = CalculateHorizontalEndTime();
+
+                return inclinedPlaneMaxT + horizontalEndTime;
             }
             return _maxT.Value;
         }
+
 
         public float CalculateVx(float time)
         {
@@ -161,6 +165,60 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         #region Inclined plane calculations
 
+        public float CalculateInclinedMaxT()
+        {
+            if (_inclinedMaxT == null)
+            {
+                var D = Setup.V0 * Setup.V0 + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength;
+                switch (CalculateInclinedPlaneMovementType())
+                {
+                    case InclinedPlaneMovementType.Accelerating:
+                    case InclinedPlaneMovementType.Decelerating:
+                        if (D < 0)
+                        {
+                            // will stop before end
+                            _inclinedMaxT = Setup.V0 / -CalculateInclinedAcceleration();
+                        }
+                        else
+                        {
+                            _inclinedMaxT = (-Setup.V0 + (float)Math.Sqrt(D)) / CalculateInclinedAcceleration();
+                        }
+                        break;
+                    default:
+                        _inclinedMaxT = Setup.InclinedLength / Setup.V0;
+                        break;
+                }
+            }
+            return _inclinedMaxT.Value;
+        }
+
+        public bool WillReachInclinedEnd()
+        {
+            if (_willReachInclinedEnd == null)
+            {
+                var D = Setup.V0 * Setup.V0 + 2 * CalculateInclinedAcceleration() * Setup.InclinedLength;
+                switch (CalculateInclinedPlaneMovementType())
+                {
+                    case InclinedPlaneMovementType.Accelerating:
+                    case InclinedPlaneMovementType.Decelerating:
+                        if (D < 0)
+                        {
+                            // will stop before end                           
+                            _willReachInclinedEnd = false;
+                        }
+                        else
+                        {
+                            _willReachInclinedEnd = true;
+                        }
+                        break;
+                    default:
+                        _willReachInclinedEnd = true;
+                        break;
+                }
+            }
+            return _willReachInclinedEnd.Value;
+        }
+
         public float CalculateInclinedAcceleration()
         {
             if (_inclinedAcceleration == null)
@@ -186,7 +244,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             return CalculateInclinedS(time) * (float)Math.Cos(AngleInRad);
         }
-        
+
         public float CalculateInclinedY(float time)
         {
             return CalculateStartY() - CalculateS(time) * (float)Math.Sin(AngleInRad);
@@ -238,7 +296,15 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             if (_horizontalStartTime == null)
             {
-                throw new NotImplementedException();
+                if (WillReachInclinedEnd())
+                {
+                    _horizontalStartTime = CalculateInclinedMaxT();
+                }
+                else
+                {
+                    //"invalid" time
+                    _horizontalStartTime = float.MaxValue;
+                }
             }
             return _horizontalStartTime.Value;
         }
@@ -247,21 +313,35 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         {
             if (_horizontalStartVelocity == null)
             {
-                throw new NotImplementedException();
+                if (WillReachInclinedEnd())
+                {
+                    _horizontalStartVelocity = CalculateInclinedV(CalculateInclinedMaxT());
+                }
+                else
+                {
+                    _horizontalStartVelocity = 0;
+                }
             }
             return _horizontalStartVelocity.Value;
         }
 
         public float CalculateHorizontalVx(float horizontalSeconds)
         {
-            throw new NotImplementedException();
+            return CalculateHorizontalStartVelocity() + CalculateHorizontalAcceleration() * horizontalSeconds;
         }
 
         public float CalculateHorizontalStartX()
         {
             if (_horizontalStartX == null)
             {
-                throw new NotImplementedException();
+                if (WillReachInclinedEnd())
+                {
+                    _horizontalStartX = CalculateInclinedX(CalculateInclinedMaxT());
+                }
+                else
+                {
+                    _horizontalStartX = 0;
+                }
             }
             return _horizontalStartX.Value;
         }
@@ -281,7 +361,9 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         public float CalculateHorizontalX(float horizontalSeconds)
         {
-            throw new NotImplementedException();
+            var v2 = CalculateHorizontalStartVelocity();
+            var x = v2 * horizontalSeconds + CalculateHorizontalAcceleration() * horizontalSeconds / 2;
+            return Math.Min(CalculateHorizontalMaxX(), x);
         }
 
         public float CalculateHorizontalMaxX()
@@ -300,8 +382,21 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return horizontalStartVelocity * horizontalStartVelocity / (-2 * CalculateHorizontalAcceleration());
         }
 
-        #endregion
+        public float CalculateHorizontalEndTime()
+        {
+            var v2 = CalculateHorizontalStartVelocity();
+            var D = v2 * v2 + 2 * CalculateHorizontalAcceleration() * Setup.HorizontalLength;
+            if (D >= 0)
+            {
+                return (-v2 + (float)Math.Sqrt(D)) / CalculateHorizontalAcceleration();
+            }
+            else
+            {
+                return v2 / (-CalculateHorizontalAcceleration());
+            }
+        }
 
+        #endregion
 
         private InclinedPlaneMovementType CalculateInclinedPlaneMovementType()
         {
@@ -319,8 +414,6 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 return InclinedPlaneMovementType.Static;
             }
         }
-
-
 
         private string GetLabelForFs()
         {

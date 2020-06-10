@@ -26,11 +26,11 @@ namespace Physics.InclinedPlane.ValuesTable
             {
                 time = Math.Min(timeInterval * cycles, _physicsService.CalculateMaxT());
                 //Add TableRow
-                float x = _physicsService.ComputeX(time);
-                float y = _physicsService.ComputeY(time);
-                float v = _physicsService.ComputeV(time);
-                float s = _physicsService.ComputeS(time);
-                float ev = _physicsService.ComputeEv(time);
+                float x = _physicsService.CalculateX(time);
+                float y = _physicsService.CalculateY(time);
+                float v = _physicsService.CalculateV(time);
+                float s = _physicsService.CalculateS(time);
+                float ev = _physicsService.CalculateEv(time);
 
                 TableRow valuesRow = new TableRow(time, x, y, v, s, ev);
                 table.Add(valuesRow);

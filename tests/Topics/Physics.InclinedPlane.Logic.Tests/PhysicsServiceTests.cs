@@ -7,7 +7,6 @@ namespace Physics.InclinedPlane.Logic.Tests
 {
     public class PhysicsServiceTests
     {
-
         [InlineData(0.0, 0.0, 0.0, 7.1, 5.0)]
         [InlineData(0.1, 0.5, 0.4, 6.7, 5.1)]
         [InlineData(0.2, 1.0, 0.7, 6.3, 5.3)]
@@ -25,15 +24,16 @@ namespace Physics.InclinedPlane.Logic.Tests
         [InlineData(1.4, 8.4, 5.9, 1.2, 6.9)]
         [InlineData(1.5, 9.1, 6.4, 0.7, 7.1)]
         [InlineData(1.6, 9.8, 6.9, 0.2, 7.2)]
-        [InlineData(1.7, 10.5, 7.4, -0.4, 7.4)]
+        [InlineData(1.8, 10, 7.1, 0, 7.3)]
+        [InlineData(30, 10, 7.1, 0, 7.3)]
         [Theory]
         public void AcceleratingMotionWithoutFinish(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 0.8f, 10, "#000000", 0, 0));
-            Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
-            Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
-            Assert.Equal(expectedY, physicsService.ComputeY(t), 1);
-            Assert.Equal(expectedV, physicsService.ComputeV(t), 1);
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(1, 5, 9.81f, 10, 0.8f, 45, 0, 0, "#000000"));
+            Assert.Equal(expectedS, physicsService.CalculateS(t), 1);
+            Assert.Equal(expectedX, physicsService.CalculateX(t), 1);
+            Assert.Equal(expectedY, physicsService.CalculateY(t), 1);
+            Assert.Equal(expectedV, physicsService.CalculateV(t), 1);
         }
 
         [InlineData(0.0, 0.0, 0.0, 7.1, 5.0)]
@@ -57,14 +57,15 @@ namespace Physics.InclinedPlane.Logic.Tests
         [InlineData(1.8, 9.0, 6.4, 0.7, 5.0)]
         [InlineData(1.9, 9.5, 6.7, 0.4, 5.0)]
         [InlineData(2.0, 10.0, 7.1, 0.0, 5.0)]
+        [InlineData(30, 10.0, 7.1, 0.0, 5.0)]
         [Theory]
         public void StableMotionWithoutFinish(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 1f, 10, "#000000", 0, 0));
-            Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
-            Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
-            Assert.Equal(expectedY, physicsService.ComputeY(t), 1);
-            Assert.Equal(expectedV, physicsService.ComputeV(t), 1);
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(1, 5, 9.81f, 10, 1f, 45, 0, 0, "#000000"));
+            Assert.Equal(expectedS, physicsService.CalculateS(t), 1);
+            Assert.Equal(expectedX, physicsService.CalculateX(t), 1);
+            Assert.Equal(expectedY, physicsService.CalculateY(t), 1);
+            Assert.Equal(expectedV, physicsService.CalculateV(t), 1);
         }
 
         [InlineData(0.0, 0.0, 0.0, 7.1, 5.0)]
@@ -86,14 +87,15 @@ namespace Physics.InclinedPlane.Logic.Tests
         [InlineData(1.6, 4.4, 3.1, 3.9, 0.6)]
         [InlineData(1.7, 4.5, 3.2, 3.9, 0.3)]
         [InlineData(1.8, 4.5, 3.2, 3.9, 0.0)]
+        [InlineData(30, 4.5, 3.2, 3.9, 0.0)]
         [Theory]
         public void DecceleratingMotionWithoutFinish1(float t, double expectedS, double expectedX, double expectedY, double expectedV)
         {
-            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(45, 1, 1.4f, 10, "#000000", 0, 0));
-            Assert.Equal(expectedS, physicsService.ComputeS(t), 1);
-            Assert.Equal(expectedX, physicsService.ComputeX(t), 1);
-            Assert.Equal(expectedY, physicsService.ComputeY(t), 1);
-            Assert.Equal(expectedV, physicsService.ComputeV(t), 1);
+            var physicsService = new PhysicsService(new InclinedPlaneMotionSetup(1, 5, 9.81f, 10, 1.4f, 45, 0, 0, "#000000"));
+            Assert.Equal(expectedS, physicsService.CalculateS(t), 1);
+            Assert.Equal(expectedX, physicsService.CalculateX(t), 1);
+            Assert.Equal(expectedY, physicsService.CalculateY(t), 1);
+            Assert.Equal(expectedV, physicsService.CalculateV(t), 1);
         }
     }
 }
