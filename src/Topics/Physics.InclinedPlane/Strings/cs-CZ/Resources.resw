@@ -171,6 +171,9 @@
   <data name="JumpSize" xml:space="preserve">
     <value>Volba kroku vykreslování</value>
   </data>
+  <data name="ManualInput" xml:space="preserve">
+    <value>Ruční zadání</value>
+  </data>
   <data name="Motions" xml:space="preserve">
     <value>Pohyby</value>
   </data>

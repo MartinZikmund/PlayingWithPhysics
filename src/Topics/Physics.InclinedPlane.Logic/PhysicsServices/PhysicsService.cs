@@ -11,6 +11,11 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 {
     public class PhysicsService : IPhysicsService
     {
+        public PhysicsService(IInclinedPlaneMotionSetup setup)
+        {
+            Setup = setup;
+        }
+
         private FComputeVariant _variant
         {
             get
@@ -30,11 +35,8 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
                 }
             }
         }
+
         public IInclinedPlaneMotionSetup Setup { get; set; }
-        public PhysicsService(IInclinedPlaneMotionSetup setup)
-        {
-            Setup = setup;
-        }    
 
         private float GetDifferenceOfFpFt()
         {

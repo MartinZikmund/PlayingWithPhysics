@@ -1,6 +1,7 @@
 ﻿using MvvmCross.ViewModels;
 using Physics.InclinedPlane.Services;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI;
@@ -56,7 +57,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public ObservableCollection<GravityDefault> GravityDefaults { get; } = new ObservableCollection<GravityDefault>()
         {
-            new GravityDefault("Manuální zadání", 0.0f),
+            new GravityDefault(Localizer.Instance.GetString("ManualInput"), null),
             new GravityDefault("Země na rovníku v úrovni mořské hladiny", 9.78f),
             new GravityDefault("Země 45° zeměpisné šířky", 9.80665f),
             new GravityDefault("Země (Zemský pól)", 9.832f),
@@ -85,7 +86,7 @@ namespace Physics.InclinedPlane.ViewModels
         {
             if (SelectedInclinedDriftCoefficient != DriftCoefficientDefaults[0])
             {
-                InclinedDriftCoefficient = SelectedInclinedDriftCoefficient.Value;
+                InclinedDriftCoefficient = SelectedInclinedDriftCoefficient?.Value ?? 0.5f;
             }
         }
 
@@ -101,7 +102,7 @@ namespace Physics.InclinedPlane.ViewModels
         {
             if (SelectedHorizontalDriftCoefficient != DriftCoefficientDefaults[0])
             {
-                HorizontalDriftCoefficient = SelectedHorizontalDriftCoefficient.Value;
+                HorizontalDriftCoefficient = SelectedHorizontalDriftCoefficient?.Value ?? 0.5f;
             }
         }
 
@@ -113,7 +114,7 @@ namespace Physics.InclinedPlane.ViewModels
         {
             if (SelectedGravity != GravityDefaults[0])
             {
-                Gravity = SelectedGravity.Value;
+                Gravity = SelectedGravity?.Value ?? 9.81f;
             }
         }
 

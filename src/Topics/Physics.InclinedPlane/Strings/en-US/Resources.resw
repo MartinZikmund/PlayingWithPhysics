@@ -168,6 +168,9 @@
   <data name="JumpSize" xml:space="preserve">
     <value>Jump Size</value>
   </data>
+  <data name="ManualInput" xml:space="preserve">
+    <value>Manual input</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Inclined Plane</value>
   </data>

@@ -8,7 +8,7 @@ namespace Physics.InclinedPlane.Services
 {
     public class DriftCoefficientDefault
     {
-        public DriftCoefficientDefault(string name, float value)
+        public DriftCoefficientDefault(string name, float? value)
         {
             Name = name;
             Value = value;
@@ -16,6 +16,10 @@ namespace Physics.InclinedPlane.Services
 
         public string Name { get; set; }
 
-        public float Value { get; set; }
+        public float? Value { get; }
+
+        public bool HasValue => Value != null;
+
+        public string FormattedValue => Value?.ToString("0.00") ?? string.Empty;
     }
 }
