@@ -16,6 +16,8 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         float CalculateEv(float time);
         float CalculateMaxT();
 
+        float CalculateHorizontalStartX();
+
         IInclinedPlaneMotionSetup Setup { get; set; }
     }
 }

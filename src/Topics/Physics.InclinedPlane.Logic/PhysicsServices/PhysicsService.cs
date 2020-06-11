@@ -362,7 +362,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         public float CalculateHorizontalX(float horizontalSeconds)
         {
             var v2 = CalculateHorizontalStartVelocity();
-            var x = v2 * horizontalSeconds + CalculateHorizontalAcceleration() * horizontalSeconds / 2;
+            var x = v2 * horizontalSeconds + CalculateHorizontalAcceleration() * horizontalSeconds * horizontalSeconds / 2;
             return Math.Min(CalculateHorizontalMaxX(), x);
         }
 

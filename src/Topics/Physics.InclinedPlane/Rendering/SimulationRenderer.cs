@@ -50,7 +50,7 @@ namespace Physics.InclinedPlane.Rendering
             
             var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_canvasController.Motion.Color);
 
-            if (t < _canvasController.PhysicsService.CalculateHorizontalStartTime())
+            if (t <= _canvasController.PhysicsService.CalculateHorizontalStartTime() || !_canvasController.Motion.HasHorizontal)
             {
                 var rectangle = CanvasGeometry.CreateRectangle(target, new Rect(0, 0, 24, 24)).Transform(Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-_canvasController.Motion.InclinedAngle))).Transform(
                     Matrix3x2.CreateTranslation(x, y));
@@ -100,14 +100,16 @@ namespace Physics.InclinedPlane.Rendering
 
         private void DrawFloor(CanvasRenderTarget sender, CanvasDrawingSession drawingSession)
         {
-            drawingSession.DrawLine(
-                new Vector2(
-                    0,
-                    1),
-                new Vector2(
-                    (float)sender.Size.Width,
-                    1),
-                Colors.Black);
+            if (_canvasController.Motion.HasHorizontal) {
+                drawingSession.DrawLine(
+                    new Vector2(
+                        _canvasController.PhysicsService.CalculateHorizontalStartX() * _scalingRatio,
+                        1),
+                    new Vector2(
+                        (float)sender.Size.Width,
+                        1),
+                    Colors.Black);
+            }
         }
     }
 }
