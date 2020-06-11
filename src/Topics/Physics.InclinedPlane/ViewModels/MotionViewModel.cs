@@ -45,10 +45,10 @@ namespace Physics.InclinedPlane.ViewModels
             }
 
             TimeElapsed = timeElapsed;
-            CurrentSpeed = _physicsService.ComputeV(timeElapsed);
-            DistanceTraveled = _physicsService.ComputeS(timeElapsed);
-            CurrentX = _physicsService.ComputeX(timeElapsed);
-            CurrentY = _physicsService.ComputeY(timeElapsed);
+            CurrentSpeed = _physicsService.CalculateV(timeElapsed);
+            DistanceTraveled = _physicsService.CalculateS(timeElapsed);
+            CurrentX = _physicsService.CalculateX(timeElapsed);
+            CurrentY = _physicsService.CalculateY(timeElapsed);
         }
 
         public float TimeElapsed { get; private set; } = 0;

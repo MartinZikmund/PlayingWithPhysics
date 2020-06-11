@@ -4,6 +4,7 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using System;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 
@@ -13,9 +14,9 @@ namespace Physics.InclinedPlane.ViewModels
     {
         public InclinedPlaneInputViewModel(DifficultyOption difficulty)
         {
-            SelectedGravity = GravityDefaults[0];
+            SelectedGravity = GravityDefaults[1];
             SelectedInclinedDriftCoefficient = DriftCoefficientDefaults[0];
-            SelectedHorizontalDriftCoefficient= DriftCoefficientDefaults[0];
+            SelectedHorizontalDriftCoefficient = DriftCoefficientDefaults[0];
             Difficulty = difficulty;
         }
 
@@ -104,9 +105,9 @@ namespace Physics.InclinedPlane.ViewModels
 
         public bool HorizontalEnabled { get; set; }
 
-        public float HorizontalLength { get; set; } = 0;
+        public float HorizontalLength { get; set; } = 10;
 
-        public float HorizontalDriftCoefficient { get; set; }
+        public float HorizontalDriftCoefficient { get; set; } = 0.5f;
 
         public void OnHorizontalDriftCoefficientChanged()
         {
@@ -127,7 +128,7 @@ namespace Physics.InclinedPlane.ViewModels
             }
         }
 
-        public float Gravity { get; set; }
+        public float Gravity { get; set; } = 9.81f;
 
         public GravityDefault SelectedGravity { get; set; }
 
@@ -148,16 +149,32 @@ namespace Physics.InclinedPlane.ViewModels
             var isValid = await ValidateAsync();
             if (isValid)
             {
-                return new InclinedPlaneMotionSetup(
-                    Mass,
-                    V0,
-                    Gravity,
-                    InclinedLength,
-                    InclinedDriftCoefficient,
-                    InclinedAngle,
-                    HorizontalLength,
-                    HorizontalDriftCoefficient,
-                    Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+                if (HorizontalEnabled)
+                {
+                    return new InclinedPlaneMotionSetup(
+                        Mass,
+                        V0,
+                        Gravity,
+                        InclinedLength,
+                        InclinedDriftCoefficient,
+                        InclinedAngle,
+                        HorizontalLength,
+                        HorizontalDriftCoefficient,
+                        Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+                }
+                else
+                {
+                    return new InclinedPlaneMotionSetup(
+                        Mass,
+                        V0,
+                        Gravity,
+                        InclinedLength,
+                        InclinedDriftCoefficient,
+                        InclinedAngle,
+                        0,
+                        0,
+                        Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
+                }
             }
             else
             {
@@ -167,6 +184,14 @@ namespace Physics.InclinedPlane.ViewModels
 
         private Task<bool> ValidateAsync()
         {
+            StringBuilder validationErrors = new StringBuilder();
+            if (HorizontalEnabled)
+            {
+                if (HorizontalDriftCoefficient <= 0)
+                {
+                    validationErrors.Append(Localizer.Instance["Validation_HorizontalDriftCoefficientMustBePositive"]);
+                }
+            }
             return Task.FromResult(true);
         }
     }

@@ -258,6 +258,9 @@
   <data name="Input_InclinedPlane" xml:space="preserve">
     <value>Nakloněná rovina</value>
   </data>
+  <data name="Input_InitialSpeed" xml:space="preserve">
+    <value>Počáteční rychlost</value>
+  </data>
   <data name="Input_Length" xml:space="preserve">
     <value>Délka</value>
   </data>

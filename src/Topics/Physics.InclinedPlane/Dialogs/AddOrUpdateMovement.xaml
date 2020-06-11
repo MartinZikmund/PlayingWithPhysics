@@ -16,7 +16,7 @@
         <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMovement" />
     </ContentDialog.Resources>
     <ScrollViewer
-        Padding="12"
+        Padding="0"
         HorizontalScrollBarVisibility="Auto"
         HorizontalScrollMode="Auto"
         VerticalScrollBarVisibility="Auto"
