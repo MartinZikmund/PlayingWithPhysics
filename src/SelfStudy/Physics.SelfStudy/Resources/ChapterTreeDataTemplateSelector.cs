@@ -28,7 +28,7 @@ namespace Physics.SelfStudy.Resources
         protected override DataTemplate SelectTemplateCore(object item) =>
             item switch
             {
-                TextContent _ => Text,
+                ParagraphContent _ => Text,
                 AdditionalResourcesContent _ => AdditionalResources,
                 KnowledgeCheckContent _ => KnowledgeCheck,
                 LiteratureContent _ => Literature,

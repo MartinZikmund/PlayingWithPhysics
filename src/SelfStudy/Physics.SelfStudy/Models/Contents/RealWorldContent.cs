@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Physics.SelfStudy.Models.Contents
 {
-    public class RealWorldContent : HtmlContent
+    public class RealWorldContent : Abstract.TextContent
     {
         public override ContentType Type => ContentType.RealWorld;
     }

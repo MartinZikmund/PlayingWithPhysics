@@ -50,7 +50,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             switch (enumValue)
             {
                 case ContentType.Text:
-                    content = new TextContent() { Title = "Untitled" };
+                    content = new ParagraphContent() { Title = "Untitled" };
                     break;
                 case ContentType.AdditionalResources:
                     content = new AdditionalResourcesContent() { Title = "Untitled" };

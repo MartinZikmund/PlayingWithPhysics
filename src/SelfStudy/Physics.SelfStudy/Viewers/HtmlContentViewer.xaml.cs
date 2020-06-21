@@ -15,20 +15,20 @@ namespace Physics.SelfStudy.Viewers
             this.InitializeComponent();
         }
 
-        public HtmlContent HtmlContent
+        public TextContent HtmlContent
         {
-            get { return (HtmlContent)GetValue(HtmlContentProperty); }
+            get { return (TextContent)GetValue(HtmlContentProperty); }
             set { SetValue(HtmlContentProperty, value); }
         }
 
         public static readonly DependencyProperty HtmlContentProperty =
-            DependencyProperty.Register("HtmlContent", typeof(HtmlContent), typeof(HtmlContentViewer), new PropertyMetadata(null, OnHtmlContentChanged));
+            DependencyProperty.Register("HtmlContent", typeof(TextContent), typeof(HtmlContentViewer), new PropertyMetadata(null, OnHtmlContentChanged));
 
         private static void OnHtmlContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue is HtmlContent content)
+            if (e.NewValue is TextContent content)
             {
-                ((HtmlContentViewer)d).Web.HtmlContent = content.Html;
+                ((HtmlContentViewer)d).Web.HtmlContent = content.Text;
             }
         }
     }

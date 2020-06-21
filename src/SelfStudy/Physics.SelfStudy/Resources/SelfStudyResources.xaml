@@ -40,7 +40,7 @@
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="TextListItemTemplate" x:DataType="contents:TextContent">
+    <DataTemplate x:Key="TextListItemTemplate" x:DataType="contents:ParagraphContent">
         <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Viewbox Width="20" Height="20">
                 <SymbolIcon Symbol="Character" />
@@ -63,8 +63,12 @@
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="HtmlViewerTemplate" x:DataType="abstract:HtmlContent">
+    <DataTemplate x:Key="HtmlViewerTemplate" x:DataType="abstract:TextContent">
         <viewers:HtmlContentViewer HtmlContent="{x:Bind}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="LaTeXViewerTemplate" x:DataType="abstract:TextContent">
+        <viewers:LaTeXViewer ChapterContent="{x:Bind}" />
     </DataTemplate>
 
     <DataTemplate x:Key="KnowledgeCheckViewerTemplate" x:DataType="abstract:MultipleChoiceQuestionContent">
@@ -77,6 +81,7 @@
 
     <local:ContentViewerDataTemplateSelector
         x:Key="ContentViewerDataTemplateSelector"
+        LaTeXViewer="{StaticResource LaTeXViewerTemplate}"
         HtmlViewer="{StaticResource HtmlViewerTemplate}"
         InputQuestion="{StaticResource InputQuestionViewerTemplate}"
         KnowledgeCheckViewer="{StaticResource KnowledgeCheckViewerTemplate}" />

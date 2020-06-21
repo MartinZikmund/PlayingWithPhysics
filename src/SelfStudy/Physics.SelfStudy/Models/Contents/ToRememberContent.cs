@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Physics.SelfStudy.Models.Contents
 {
-    public class ToRememberContent : HtmlContent
+    public class ToRememberContent : Abstract.TextContent
     {
         public override ContentType Type => ContentType.ToRemember;
     }

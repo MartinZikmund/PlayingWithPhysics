@@ -50,7 +50,7 @@ namespace Physics.SelfStudy.Json
                 case ContentType.ToRemember:
                     return JsonConvert.DeserializeObject<ToRememberContent>(jsonString);
                 case ContentType.Text:
-                    return JsonConvert.DeserializeObject<TextContent>(jsonString);
+                    return JsonConvert.DeserializeObject<ParagraphContent>(jsonString);
                 default:
                     throw new InvalidOperationException("Unsupported content type.");
             }

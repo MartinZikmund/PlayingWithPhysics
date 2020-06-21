@@ -12,7 +12,7 @@ namespace Physics.SelfStudy.Editor.Resources
 {
     public class EditorDataTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate HtmlContent { get; set; }
+        public DataTemplate TextContent { get; set; }
 
         public DataTemplate InputQuestion { get; set; }
 
@@ -25,7 +25,7 @@ namespace Physics.SelfStudy.Editor.Resources
         private DataTemplate GetTemplateForItem(object item) =>
             item switch
             {
-                HtmlContent html => HtmlContent,
+                Models.Contents.Abstract.TextContent text => TextContent,
                 InputQuestionContent input => InputQuestion,
                 KnowledgeCheckContent knowledgeCheck => KnowledgeCheck,
                 null => null,

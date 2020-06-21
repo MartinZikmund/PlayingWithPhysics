@@ -145,8 +145,8 @@
     <Compile Include="EditorHostControl.xaml.cs">
       <DependentUpon>EditorHostControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Editors\HtmlEditor.xaml.cs">
-      <DependentUpon>HtmlEditor.xaml</DependentUpon>
+    <Compile Include="Editors\TextEditor.xaml.cs">
+      <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editors\InputQuestionEditor.xaml.cs">
       <DependentUpon>InputQuestionEditor.xaml</DependentUpon>
@@ -238,7 +238,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Editors\HtmlEditor.xaml">
+    <Page Include="Editors\TextEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

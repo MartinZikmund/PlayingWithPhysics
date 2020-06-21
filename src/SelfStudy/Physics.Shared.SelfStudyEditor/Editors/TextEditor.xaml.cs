@@ -23,21 +23,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Physics.SelfStudy.Editor.Editors
 {
-    public sealed partial class HtmlEditor : UserControl, INotifyPropertyChanged
+    public sealed partial class TextEditor : UserControl, INotifyPropertyChanged
     {
-        public HtmlEditor()
+        public TextEditor()
         {
             this.InitializeComponent();
-            this.DataContextChanged += HtmlEditor_DataContextChanged;
+            this.DataContextChanged += TextEditor_DataContextChanged;
         }
 
-        public HtmlContent ViewModel { get; private set; }
+        public TextContent ViewModel { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void HtmlEditor_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void TextEditor_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            ViewModel = args.NewValue as HtmlContent;
+            ViewModel = args.NewValue as TextContent;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ViewModel)));
         }
     }
