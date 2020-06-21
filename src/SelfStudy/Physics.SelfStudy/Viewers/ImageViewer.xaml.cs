@@ -33,19 +33,19 @@ namespace Physics.SelfStudy.Viewers
 
         public string ImagePath { get; private set; }
 
-        public ImageContent Content
+        public ImageContent Image
         {
-            get { return (ImageContent)GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
+            get { return (ImageContent)GetValue(ImageProperty); }
+            set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(ImageContent), typeof(ContentHeader), new PropertyMetadata(null, ImageContentChanged));
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.Register(nameof(Image), typeof(ImageContent), typeof(ImageViewer), new PropertyMetadata(null, ImageContentChanged));
 
         private static void ImageContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var viewer = (ImageViewer)d;
-            if ( e.NewValue is ImageContent content )
+            if (e.NewValue is ImageContent content)
             {
                 viewer.ImagePath = Path.Combine(StudyModeGlobals.ImageFolderPath, content.ImageName);
                 viewer.PropertyChanged?.Invoke(viewer, new PropertyChangedEventArgs(nameof(ImagePath)));

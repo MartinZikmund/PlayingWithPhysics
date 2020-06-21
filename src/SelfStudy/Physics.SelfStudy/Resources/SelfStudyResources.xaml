@@ -87,7 +87,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ImageViewerTemplate" x:DataType="contents:ImageContent">
-        <viewers:ImageViewer Content="{x:Bind}" />
+        <viewers:ImageViewer Image="{x:Bind}" />
     </DataTemplate>
 
     <local:ContentViewerDataTemplateSelector
