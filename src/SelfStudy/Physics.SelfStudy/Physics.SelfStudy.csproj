@@ -134,6 +134,7 @@
     <Compile Include="Models\Contents\Abstract\InputQuestionContent.cs" />
     <Compile Include="Models\Contents\Chapter.cs" />
     <Compile Include="Models\Contents\Abstract\MultipleChoiceQuestionContent.cs" />
+    <Compile Include="Models\Contents\ImageContent.cs" />
     <Compile Include="Models\Contents\ParagraphContent.cs" />
     <Compile Include="Models\Contents\ContentType.cs" />
     <Compile Include="Models\Contents\Abstract\TextContent.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\Contents\IContent.cs" />
     <Compile Include="Models\Contents\QuestionType.cs" />
     <Compile Include="Models\Contents\ContentBase.cs" />
+    <Compile Include="Models\StudyModeGlobals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ChapterTreeDataTemplateSelector.cs" />
     <Compile Include="Resources\ContentViewerDataTemplateSelector.cs" />
@@ -159,6 +161,9 @@
     </Compile>
     <Compile Include="Viewers\HtmlContentViewer.xaml.cs">
       <DependentUpon>HtmlContentViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\ImageViewer.xaml.cs">
+      <DependentUpon>ImageViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Viewers\InputQuestionViewer.xaml.cs">
       <DependentUpon>InputQuestionViewer.xaml</DependentUpon>
@@ -245,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\HtmlContentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\ImageViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

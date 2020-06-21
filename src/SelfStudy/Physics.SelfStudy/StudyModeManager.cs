@@ -28,16 +28,16 @@ namespace Physics.SelfStudy
             await HtmlHelpers.InitializeAsync();
         }
 
-        public static async Task OpenStudyModeAsync(Uri backingFileUri)
+        public static async Task OpenStudyModeAsync(Uri backingFileUri, string imageFolderPath)
         {
-            await InitializeAsync();
+            await InitializeAsync();            
 
             var resourceLoader = new ResourceLoader("Physics.SelfStudy/Resources");
 
             // open new application view
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
-            appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri);
+            appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri + "|" + imageFolderPath);
 
             // Attach the XAML content to the window.
             ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);

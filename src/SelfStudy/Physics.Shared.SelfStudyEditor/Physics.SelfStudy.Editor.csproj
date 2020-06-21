@@ -145,6 +145,9 @@
     <Compile Include="EditorHostControl.xaml.cs">
       <DependentUpon>EditorHostControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editors\ImageEditor.xaml.cs">
+      <DependentUpon>ImageEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editors\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,8 @@
     </Compile>
     <Compile Include="ViewModels\AppShellViewModel.cs" />
     <Compile Include="Infrastructure\Workspace.cs" />
+    <Compile Include="ViewModels\ChapterViewModel.cs" />
+    <Compile Include="ViewModels\ContentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -235,6 +240,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="EditorHostControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editors\ImageEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,6 +25,8 @@ namespace Physics.SelfStudy.Resources
 
         public DataTemplate Text { get; set; }
 
+        public DataTemplate Image { get; set; }
+
         protected override DataTemplate SelectTemplateCore(object item) =>
             item switch
             {
@@ -34,9 +36,13 @@ namespace Physics.SelfStudy.Resources
                 LiteratureContent _ => Literature,
                 RealWorldContent _ => RealWorld,
                 TasksContent _ => Tasks,
+                ImageContent _ => Image,
                 ToRememberContent _ => ToRemember,
                 null => null,
                 _ => throw new NotImplementedException(),
             };
+
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container) => 
+            SelectTemplateCore(item);
     }
 }

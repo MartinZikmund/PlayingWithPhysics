@@ -12,6 +12,8 @@ namespace Physics.SelfStudy.Editor.Resources
 {
     public class EditorDataTemplateSelector : DataTemplateSelector
     {
+        public DataTemplate ImageContent { get; set; }
+
         public DataTemplate TextContent { get; set; }
 
         public DataTemplate InputQuestion { get; set; }
@@ -25,6 +27,7 @@ namespace Physics.SelfStudy.Editor.Resources
         private DataTemplate GetTemplateForItem(object item) =>
             item switch
             {
+                ImageContent image => ImageContent,
                 Models.Contents.Abstract.TextContent text => TextContent,
                 InputQuestionContent input => InputQuestion,
                 KnowledgeCheckContent knowledgeCheck => KnowledgeCheck,

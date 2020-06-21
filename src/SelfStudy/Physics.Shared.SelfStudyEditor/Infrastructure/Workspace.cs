@@ -37,14 +37,16 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             {
                 // prompt user to save changes or cancel
                 var dialog = new ContentDialog();
-                dialog.Title = "Do you want to save changes?";
-                dialog.Content = $"There are unsaved changes in project {CurrentProject.BackingFile.Name}";
+                dialog.Title = "Save changes";
+                dialog.Content = CurrentProject.BackingFile != null ?
+                    $"Do you want to save changes in {CurrentProject.BackingFile.Name}?" :
+                    $"Do you want to save the current project?";
                 dialog.DefaultButton = ContentDialogButton.Close;
                 dialog.CloseButtonText = "Cancel";
                 dialog.SecondaryButtonText = "No";
                 dialog.PrimaryButtonText = "Yes";
                 dialog.IsPrimaryButtonEnabled = true;
-                dialog.IsSecondaryButtonEnabled = true;
+                dialog.IsSecondaryButtonEnabled = true;                
                 var result = await dialog.ShowAsync();
                 if (result == ContentDialogResult.None)
                 {

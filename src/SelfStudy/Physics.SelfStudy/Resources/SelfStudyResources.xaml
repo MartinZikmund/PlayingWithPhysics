@@ -56,6 +56,13 @@
         </StackPanel>
     </DataTemplate>
 
+    <DataTemplate x:Key="ImageListItemTemplate" x:DataType="contents:ImageContent">
+        <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
+            <SymbolIcon Symbol="Camera" />
+            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+        </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="RealWorldListItemTemplate" x:DataType="contents:RealWorldContent">
         <StackPanel Orientation="Horizontal" Style="{StaticResource ListItemStackPanelStyle}">
             <Image Width="20" Source="ms-appx:///Physics.SelfStudy/Assets/Icons/realworld.png" />
@@ -79,8 +86,13 @@
         <viewers:InputQuestionViewer Question="{x:Bind}" />
     </DataTemplate>
 
+    <DataTemplate x:Key="ImageViewerTemplate" x:DataType="contents:ImageContent">
+        <viewers:ImageViewer Content="{x:Bind}" />
+    </DataTemplate>
+
     <local:ContentViewerDataTemplateSelector
         x:Key="ContentViewerDataTemplateSelector"
+        ImageViewer="{StaticResource ImageViewerTemplate}"
         LaTeXViewer="{StaticResource LaTeXViewerTemplate}"
         HtmlViewer="{StaticResource HtmlViewerTemplate}"
         InputQuestion="{StaticResource InputQuestionViewerTemplate}"
@@ -93,6 +105,7 @@
         Literature="{StaticResource LiteratureListItemTemplate}"
         RealWorld="{StaticResource RealWorldListItemTemplate}"
         Tasks="{StaticResource TasksListItemTemplate}"
+        Image="{StaticResource ImageListItemTemplate}"
         Text="{StaticResource TextListItemTemplate}"
         ToRemember="{StaticResource ToRememberListItemTemplate}" />
 </ResourceDictionary>

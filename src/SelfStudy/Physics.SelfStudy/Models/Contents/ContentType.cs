@@ -8,6 +8,7 @@ namespace Physics.Shared.SelfStudy.Models
     {
         Chapter,
         Text,
+        Image,
         AdditionalResources,
         KnowledgeCheck,
         Literature,

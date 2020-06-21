@@ -7,7 +7,7 @@
     xmlns:editors="using:Physics.SelfStudy.Editor.Editors"
     xmlns:local="using:Physics.SelfStudy.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:contents1="using:Physics.SelfStudy.Editor.ViewModels"
     x:DefaultBindMode="OneWay"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
@@ -72,7 +72,7 @@
             Grid.Row="1"
             DisplayMode="Inline"
             IsPaneOpen="True"
-            PaneBackground="{ThemeResource AppThemeColor}">
+            PaneBackground="#1F1F1F">
             <SplitView.Pane>
                 <Grid
                     Padding="12"
@@ -89,7 +89,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="Chapters" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Chapters" />
                         <Button
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
@@ -106,32 +106,51 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="contents:Chapter">
+                                <DataTemplate x:DataType="contents1:ChapterViewModel">
                                     <Grid ColumnSpacing="12">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <SymbolIcon Symbol="AlignLeft" />
+                                        <SymbolIcon Symbol="AlignCenter" />
                                         <TextBox
                                             Grid.Column="1"
                                             Padding="8"
                                             HorizontalAlignment="Stretch"
                                             BorderThickness="0"
                                             InputScope="Default"
-                                            Text="{x:Bind Title, Mode=TwoWay}" />
+                                            Text="{x:Bind Chapter.Title, Mode=TwoWay}" />
+                                        <Button Grid.Column="2">
+                                            <Button.Flyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem Click="{x:Bind MoveUp}" Icon="Up" Text="Move up" />
+                                                    <MenuFlyoutItem Click="{x:Bind MoveDown}" Text="Move down">
+                                                        <MenuFlyoutItem.Icon>
+                                                            <SymbolIcon Symbol="Up" RenderTransformOrigin="0.5,0.5">
+                                                                <SymbolIcon.RenderTransform>
+                                                                    <RotateTransform Angle="180" />
+                                                                </SymbolIcon.RenderTransform>
+                                                            </SymbolIcon>
+                                                        </MenuFlyoutItem.Icon>
+                                                    </MenuFlyoutItem>
+                                                    <MenuFlyoutItem Click="{x:Bind Delete}" Icon="Delete" Text="Delete" />
+                                                </MenuFlyout>
+                                            </Button.Flyout>
+                                            <SymbolIcon Symbol="More" />
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
-                    <Grid Grid.Row="1" RowSpacing="8">
+                    <Grid Grid.Row="1" RowSpacing="8" Visibility="{x:Bind ViewModel.Workspace.CurrentProject.IsChapterSelected}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="Chapter contents" />
+                        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedChapter.Chapter.Title, Mode=OneWay}" />
                         <Button
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
@@ -139,6 +158,7 @@
                             <Button.Flyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Text">Text</MenuFlyoutItem>
+                                    <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Image">Image</MenuFlyoutItem>
                                     <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="AdditionalResources">Additional Resources</MenuFlyoutItem>
                                     <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="KnowledgeCheck">Knowledge Check</MenuFlyoutItem>
                                     <MenuFlyoutItem Command="{x:Bind ViewModel.Workspace.CurrentProject.AddSectionCommand}" CommandParameter="Literature">Literature</MenuFlyoutItem>
@@ -150,39 +170,79 @@
                         </Button>
                         <ListView
                             Grid.Row="2"
-                            ItemTemplateSelector="{StaticResource ChapterListDataTemplateSelector}"
                             ItemsSource="{x:Bind ViewModel.Workspace.CurrentProject.SelectedChapter.Contents, Mode=OneWay}"
-                            SelectedItem="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent, Mode=TwoWay}" />
+                            SelectedItem="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent, Mode=TwoWay}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="contents1:ContentViewModel">
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ContentControl Content="{x:Bind Content}" ContentTemplateSelector="{StaticResource ChapterListDataTemplateSelector}" />
+                                        <Button Grid.Column="1">
+                                            <Button.Flyout>
+                                                <MenuFlyout>
+                                                    <MenuFlyoutItem Click="{x:Bind MoveUp}" Icon="Up" Text="Move up" />
+                                                    <MenuFlyoutItem Click="{x:Bind MoveDown}" Text="Move down">
+                                                        <MenuFlyoutItem.Icon>
+                                                            <SymbolIcon Symbol="Up" RenderTransformOrigin="0.5,0.5">
+                                                                <SymbolIcon.RenderTransform>
+                                                                    <RotateTransform Angle="180" />
+                                                                </SymbolIcon.RenderTransform>
+                                                            </SymbolIcon>
+                                                        </MenuFlyoutItem.Icon>
+                                                    </MenuFlyoutItem>
+                                                    <MenuFlyoutItem Click="{x:Bind Delete}" Icon="Delete" Text="Delete" />
+                                                </MenuFlyout>
+                                            </Button.Flyout>
+                                            <SymbolIcon Symbol="More" />
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </Grid>
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox
-                            BorderThickness="0,0,0,1"
-                            InputScope="Default"
-                            PlaceholderText="Section title"
-                            Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <Button Grid.Column="1" Command="{x:Bind ViewModel.Workspace.CurrentProject.DeleteSelectedSectionCommand, Mode=OneWay}">
-                            <SymbolIcon Symbol="Delete" />
-                        </Button>
+                    <Grid Visibility="{x:Bind ViewModel.Workspace.CurrentProject.NoContentSelected, Mode=OneWay}">
+                        <TextBlock Foreground="#DDD" Text="Select a chapter section in left pane." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Grid>
-                    <local:EditorHostControl
+                    <Grid Visibility="{x:Bind ViewModel.Workspace.CurrentProject.IsContentSelected, Mode=OneWay}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox
+                                FontSize="18"
+                                BorderThickness="0,0,0,1"
+                                InputScope="Default"
+                                PlaceholderText="Section title"
+                                Text="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent.Content.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button Grid.Column="1" Command="{x:Bind ViewModel.Workspace.CurrentProject.DeleteSelectedSectionCommand, Mode=OneWay}">
+                                <SymbolIcon Symbol="Delete" />
+                            </Button>
+                        </Grid>
+                        <local:EditorHostControl                        
                         Grid.Row="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
-                        EditedContent="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent, Mode=OneWay}" />
+                        EditedContent="{x:Bind ViewModel.Workspace.CurrentProject.SelectedContent.Content, Mode=OneWay}" />
+                    </Grid>
                 </Grid>
             </SplitView.Content>
         </SplitView>

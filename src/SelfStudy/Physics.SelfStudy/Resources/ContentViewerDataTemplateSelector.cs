@@ -12,6 +12,8 @@ namespace Physics.SelfStudy.Resources
 {
     public class ContentViewerDataTemplateSelector : DataTemplateSelector
     {
+        public DataTemplate ImageViewer { get; set; }
+
         public DataTemplate LaTeXViewer { get; set; }
 
         public DataTemplate HtmlViewer { get; set; }
@@ -29,6 +31,7 @@ namespace Physics.SelfStudy.Resources
         private DataTemplate GetTemplate(object item) =>
             item switch
             {
+                ImageContent image => ImageViewer,
                 Models.Contents.Abstract.TextContent text when text.IsHtml => HtmlViewer,
                 Models.Contents.Abstract.TextContent text when !text.IsHtml => LaTeXViewer,
                 InputQuestionContent inputQuestion => InputQuestion,

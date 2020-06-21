@@ -19,9 +19,11 @@ namespace Physics.SelfStudy.ViewModels
         {            
         }
 
-        public async Task LoadAsync(Uri uri)
+        public async Task LoadAsync(string argument)
         {
-            var backingFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            var paramParts = argument.Split("|");            
+            var backingFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri(paramParts[0]));
+            StudyModeGlobals.ImageFolderPath = paramParts[1];
             var chapters = await StudyModeManager.ReadDefinitionFileAsync(backingFile);
             Chapters = new ObservableCollection<Chapter>(chapters);
             SelectedChapter = Chapters[0];

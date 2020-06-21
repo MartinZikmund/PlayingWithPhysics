@@ -13,7 +13,7 @@ namespace Physics.SelfStudy.Models.Contents
     {
         public string Title { get; set; }
 
-        public ObservableCollection<IContent> Contents { get; } = new ObservableCollection<IContent>();
+        public IContent[] Contents { get; set; } = Array.Empty<IContent>();
 
         public override ContentType Type => ContentType.Chapter;
     }

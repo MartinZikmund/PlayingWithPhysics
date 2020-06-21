@@ -30,7 +30,7 @@ namespace Physics.SelfStudy.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.LoadAsync((Uri)e.Parameter);
+            await ViewModel.LoadAsync((string)e.Parameter);
         }
     }
 }

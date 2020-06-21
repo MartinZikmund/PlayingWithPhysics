@@ -41,6 +41,8 @@ namespace Physics.SelfStudy.Json
                     return JsonConvert.DeserializeObject<AdditionalResourcesContent>(jsonString);
                 case ContentType.KnowledgeCheck:
                     return JsonConvert.DeserializeObject<KnowledgeCheckContent>(jsonString);
+                case ContentType.Image:
+                    return JsonConvert.DeserializeObject<ImageContent>(jsonString);
                 case ContentType.Literature:
                     return JsonConvert.DeserializeObject<LiteratureContent>(jsonString);
                 case ContentType.RealWorld:
