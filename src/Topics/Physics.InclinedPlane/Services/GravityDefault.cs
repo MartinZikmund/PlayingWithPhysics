@@ -20,6 +20,6 @@ namespace Physics.InclinedPlane.Services
 
         public bool HasValue => Value != null;
 
-        public string FormattedValue => Value?.ToString("0.00") ?? string.Empty;
+        public string FormattedValue => Value?.ToString("0.##") ?? string.Empty;
     }
 }

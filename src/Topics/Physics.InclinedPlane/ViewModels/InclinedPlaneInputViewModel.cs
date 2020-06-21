@@ -71,7 +71,8 @@ namespace Physics.InclinedPlane.ViewModels
             new GravityDefault(Localizer.Instance["Gravity_Jupiter"], 23.12f),
             new GravityDefault(Localizer.Instance["Gravity_Saturn"], 8.96f),
             new GravityDefault(Localizer.Instance["Gravity_Uranus"], 8.69f),
-            new GravityDefault(Localizer.Instance["Gravity_Neptune"], 11f)
+            new GravityDefault(Localizer.Instance["Gravity_Neptune"], 11f),
+            new GravityDefault(Localizer.Instance["Gravity_Moon"], 1.62f)
         };
 
         public float Mass { get; set; } = 1;
