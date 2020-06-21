@@ -11,7 +11,7 @@
     <AssemblyName>Physics.SelfStudy</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -127,12 +127,16 @@
       <DependentUpon>MathWebView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Json\ContentConverter.cs" />
+    <Compile Include="LaTeX\CsharpMathXaml.cs" />
+    <Compile Include="LaTeX\LaTeXView.xaml.cs">
+      <DependentUpon>LaTeXView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Contents\Abstract\InputQuestionContent.cs" />
     <Compile Include="Models\Contents\Chapter.cs" />
     <Compile Include="Models\Contents\Abstract\MultipleChoiceQuestionContent.cs" />
-    <Compile Include="Models\Contents\TextContent.cs" />
+    <Compile Include="Models\Contents\ParagraphContent.cs" />
     <Compile Include="Models\Contents\ContentType.cs" />
-    <Compile Include="Models\Contents\Abstract\HtmlContent.cs" />
+    <Compile Include="Models\Contents\Abstract\TextContent.cs" />
     <Compile Include="Models\Contents\Abstract\SelectQuestionChapterContent.cs" />
     <Compile Include="Models\Contents\AdditionalResourcesContent.cs" />
     <Compile Include="Models\Contents\KnowledgeCheckContent.cs" />
@@ -159,6 +163,9 @@
     <Compile Include="Viewers\InputQuestionViewer.xaml.cs">
       <DependentUpon>InputQuestionViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Viewers\LaTeXViewer.xaml.cs">
+      <DependentUpon>LaTeXViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Viewers\MultipleChoiceQuestionViewer.xaml.cs">
       <DependentUpon>MultipleChoiceQuestionViewer.xaml</DependentUpon>
     </Compile>
@@ -172,6 +179,9 @@
     <EmbeddedResource Include="Properties\Physics.SelfStudy.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CSharpMath.SkiaSharp">
+      <Version>0.4.2</Version>
+    </PackageReference>
     <PackageReference Include="Fody">
       <Version>6.1.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -201,6 +211,9 @@
     <PackageReference Include="ReactiveUI">
       <Version>11.4.1</Version>
     </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>2.80.0-preview.14</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Html\Layout.html" />
@@ -219,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LaTeX\LaTeXView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\SelfStudyResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\InputQuestionViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\LaTeXViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

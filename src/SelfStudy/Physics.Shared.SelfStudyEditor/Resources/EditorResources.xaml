@@ -5,8 +5,8 @@
     xmlns:editors="using:Physics.SelfStudy.Editor.Editors"
     xmlns:local="using:Physics.SelfStudy.Editor.Resources">
 
-    <DataTemplate x:Key="HtmlContentEditorTemplate">
-        <editors:HtmlEditor />
+    <DataTemplate x:Key="TextContentEditorTemplate">
+        <editors:TextEditor />
     </DataTemplate>
 
     <DataTemplate x:Key="KnowledgeCheckEditorTemplate">
@@ -19,7 +19,7 @@
 
     <local:EditorDataTemplateSelector
         x:Key="EditorDataTemplateSelector"
-        HtmlContent="{StaticResource HtmlContentEditorTemplate}"
+        TextContent="{StaticResource TextContentEditorTemplate}"
         InputQuestion="{StaticResource InputQuestionEditorTemplate}"
         KnowledgeCheck="{StaticResource KnowledgeCheckEditorTemplate}" />
 

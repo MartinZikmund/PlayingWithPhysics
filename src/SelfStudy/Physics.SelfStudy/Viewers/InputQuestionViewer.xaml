@@ -8,7 +8,7 @@
     xmlns:ex="using:Physics.Shared.Extensions"
     xmlns:html="using:Physics.SelfStudy.Html"
     xmlns:local="using:Physics.SelfStudy.Viewers"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:latex="using:Physics.SelfStudy.LaTeX"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -30,7 +30,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <html:MathWebView HtmlContent="{x:Bind Question.Question, Mode=OneWay}" />
+            <latex:LaTeXView LaTeX="{x:Bind Question.Question, Mode=OneWay}" />
 
             <Grid
                 Grid.Row="1"
@@ -45,11 +45,11 @@
                     VerticalAlignment="Center"
                     PlaceholderText="{x:Bind Model.Placeholder}"
                     Value="{x:Bind Model.NumericInput, Mode=TwoWay}" />
-                <html:MathWebView
+                <latex:LaTeXView 
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    HtmlContent="{x:Bind Question.Unit, Mode=OneWay}" />
+                    LaTeX="{x:Bind Question.Unit, Mode=OneWay}" />
             </Grid>
 
             <Grid
@@ -66,11 +66,11 @@
                     InputScope="Text"
                     PlaceholderText="{x:Bind Model.Placeholder}"
                     Text="{x:Bind Model.TextualInput, Mode=TwoWay}" />
-                <html:MathWebView
+                <latex:LaTeXView 
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    HtmlContent="{x:Bind Question.Unit, Mode=OneWay}" />
+                    LaTeX="{x:Bind Question.Unit, Mode=OneWay}" />
             </Grid>
 
             <Button
@@ -107,7 +107,7 @@
                 Style="{ThemeResource TitleTextBlockStyle}"
                 Text="{ex:Localize Key=WrongAnswerTitle}"
                 Visibility="{x:Bind Model.ShowWrongAnswer, Mode=OneWay}" />
-            <html:MathWebView HtmlContent="{x:Bind Model.Response, Mode=OneWay}" />
+            <latex:LaTeXView LaTeX="{x:Bind Model.Response, Mode=OneWay}" />
             <Button
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"

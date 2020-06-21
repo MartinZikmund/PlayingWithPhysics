@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="Physics.SelfStudy.Viewers.LaTeXViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.SelfStudy.Viewers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local1="using:Physics.SelfStudy.LaTeX"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel>
+        <local:ContentHeader Content="{x:Bind ChapterContent, Mode=OneWay}" />
+        <local1:LaTeXView x:Name="Display" />
+    </StackPanel>
+</UserControl>
