@@ -92,6 +92,7 @@ namespace Physics.InclinedPlane.ViewModels
         public float StepSize { get; set; } = 0.1f;
 
         public bool IsPaused { get; set; } = true;
+        public Visibility ShowCurrentValuesGrid => (Setup != null) ? Visibility.Visible : Visibility.Collapsed;
 
         public ICommand PauseToggleCommand => GetOrCreateCommand(PauseToggle);
 

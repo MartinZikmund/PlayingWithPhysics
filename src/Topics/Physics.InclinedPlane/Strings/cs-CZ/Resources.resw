@@ -225,6 +225,9 @@
   <data name="Gravity_Mercury" xml:space="preserve">
     <value>Merkur – rovník</value>
   </data>
+  <data name="Gravity_Moon" xml:space="preserve">
+    <value>Měsíc – rovník</value>
+  </data>
   <data name="Gravity_Neptune" xml:space="preserve">
     <value>Neptun – rovník</value>
   </data>
@@ -239,6 +242,12 @@
   </data>
   <data name="Gravity_Venus" xml:space="preserve">
     <value>Venuše – rovník</value>
+  </data>
+  <data name="Horizontal_Disable" xml:space="preserve">
+    <value>S dojezdem</value>
+  </data>
+  <data name="Horizontal_Enable" xml:space="preserve">
+    <value>Bez dojezdu</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Úhel</value>

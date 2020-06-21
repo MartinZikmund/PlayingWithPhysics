@@ -58,19 +58,20 @@
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Margin="12,0,8,0" Orientation="Vertical">
-                        <!--<TextBlock Margin="8,8,8,0" FontSize="24" Foreground="White" Text="{extensions:Localize Key=AddYourMotions}"></TextBlock>-->
                         <Button
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.AddTrajectoryCommand}"
                             Content="{extensions:Localize Key=ChangeMotion}"
                             Foreground="White" />
-                        <NavigationViewItemSeparator />
-                        <Grid
+                        <StackPanel Visibility="{x:Bind Model.ShowCurrentValuesGrid, Mode=OneWay}">
+                            <NavigationViewItemSeparator />
+                            <Grid
                             Margin="8,0,8,0"
                             Padding="8,4,4,6"
                             Background="#c95d7c">
                             <TextBlock
+                                Margin="0,3,0,0"
                                 Foreground="White"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"
                                 Text="Aktuální hodnoty" />
@@ -80,98 +81,98 @@
                                 Foreground="White">
                                 <SymbolIcon Symbol="ViewAll" />
                             </Button>
-                        </Grid>
-                        <Grid Margin="16,8,8,0">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    FontSize="16"
-                                    Foreground="White"
-                                    Text="t:" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    FontSize="16"
-                                    Foreground="White">
-                                    <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
-                                    <Run Text=" s" />
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    FontSize="16"
-                                    Foreground="White"
-                                    Text="v:" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="3"
-                                    FontSize="16"
-                                    Foreground="White">
-                                    <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
-                                    <Run Text=" m/s" />
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    FontSize="16"
-                                    Foreground="White"
-                                    Text="x:" />
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    FontSize="16"
-                                    Foreground="White">
-                                    <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    FontSize="16"
-                                    Foreground="White"
-                                    Text="y:" />
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="3"
-                                    FontSize="16"
-                                    Foreground="White">
-                                    <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    FontSize="16"
-                                    Foreground="White"
-                                    Text="s:" />
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    FontSize="16"
-                                    Foreground="White">
-                                    <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
-                                    <Run Text=" m" />
-                                </TextBlock>
                             </Grid>
-                        </Grid>
-                        <NavigationViewItemSeparator />
-
-                        <Button
-                            Margin="8,8,8,0"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.DrawCommand}"
-                            Content="{extensions:Localize Key=DrawMotion}"
-                            Foreground="White" />
+                            <Grid Margin="16,8,8,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="t:" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
+                                        <Run Text=" s" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="v:" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
+                                        <Run Text=" m/s" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="x:" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="y:" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="3"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="s:" />
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
+                                        <Run Text=" m" />
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+                            <NavigationViewItemSeparator />
+                            <Button
+                                Margin="8,8,8,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.DrawCommand}"
+                                Content="{extensions:Localize Key=DrawMotion}"
+                                Foreground="White" />
+                        </StackPanel>
 
                     </StackPanel>
                 </ScrollViewer>
