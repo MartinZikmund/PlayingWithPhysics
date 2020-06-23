@@ -1,4 +1,5 @@
 ﻿using Physics.SelfStudy.Editor.Infrastructure;
+using Physics.SelfStudy.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Core.Preview;
 using Windows.UI.ViewManagement;
@@ -45,7 +47,7 @@ namespace Physics.SelfStudy.Editor
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             await StudyModeManager.InitializeAsync();
-
+            StudyModeGlobals.ImageFolderPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "TestImages");
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (Window.Current.Content != AppShell.Instance)

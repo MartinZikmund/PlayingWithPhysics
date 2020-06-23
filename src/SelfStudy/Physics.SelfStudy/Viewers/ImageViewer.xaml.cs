@@ -28,7 +28,7 @@ namespace Physics.SelfStudy.Viewers
         public ImageViewer()
         {
             this.InitializeComponent();
-            this.DataContext = this;
+            Root.DataContext = this;
         }
 
         public string ImagePath { get; private set; }

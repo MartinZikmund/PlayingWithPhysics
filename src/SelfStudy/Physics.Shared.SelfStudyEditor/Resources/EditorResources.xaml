@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:editors="using:Physics.SelfStudy.Editor.Editors"
-    xmlns:local="using:Physics.SelfStudy.Editor.Resources">
+    xmlns:local="using:Physics.SelfStudy.Editor.Resources" xmlns:abstract="using:Physics.SelfStudy.Models.Contents.Abstract">
 
     <DataTemplate x:Key="ImageEditorTemplate">
         <editors:ImageEditor />
@@ -13,8 +13,8 @@
         <editors:TextEditor />
     </DataTemplate>
 
-    <DataTemplate x:Key="KnowledgeCheckEditorTemplate">
-        <editors:KnowledgeCheckEditor />
+    <DataTemplate x:Key="KnowledgeCheckEditorTemplate" x:DataType="abstract:MultipleChoiceQuestionContent">
+        <editors:KnowledgeCheckEditor Question="{x:Bind}" />
     </DataTemplate>
 
     <DataTemplate x:Key="InputQuestionEditorTemplate">

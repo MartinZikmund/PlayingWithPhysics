@@ -10,7 +10,7 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <StackPanel Padding="12" Spacing="8">
+    <StackPanel Padding="12" Spacing="8" x:Name="Root">
         <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <CheckBox Content="Use numeric input" IsChecked="{x:Bind ViewModel.HasNumericInput, Mode=TwoWay}" />
         <controls:NumberBox

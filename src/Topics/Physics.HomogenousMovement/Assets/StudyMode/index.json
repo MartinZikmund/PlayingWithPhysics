@@ -5,7 +5,7 @@
       {
         "Type": "RealWorld",
         "Title": "Úvod",
-        "Text": "\\textit{Napětí by se dalo téměř krájet. \rSkupina rytířů vkládá do velkého koše poslední zátěž a přesouvá se \rke šlapacímu kolu. \rNa povel se začnou pomalu pohybovat a stroj se zachvěje. \rRameno trebuchetu se jen neochotně sklání k zemi.}\r\r\\\\\r\rOpatrně ho zajistí mohutnou pojistkou.\r\r\\\\\r\rNěkolik mužů umístí těžký kámen do koženého vaku.\r\r\\\\\r\rVšichni ustoupí do bezpečné vzdálenosti od mohutné dřevěné konstrukce.\r\r\\\\\r\rTrhnutí lanem a kámen letí vstříc nepřátelské pevnosti.\r\r\\\\\r\rDesítky očí se nemohou odtrhnout od projektilu.\r\r\\\\\r\rDoletí?\r\r\\\\\r\rPokud se těleso bude pohybovat v blízkosti Země (nebo jakékoliv jiné planety), bude na něj působit tíhová síla. Abychom si celou situaci zjednodušili, tak budeme předpokládat, že těleso se pohybuje v těsné blízkosti povrchu Země a jeho trajektorie bude velmi malá (oboje vzhledem k rozměrům Země).",
+        "Text": "\\par \\textit{Napětí by se dalo téměř krájet. \rSkupina rytířů vkládá do velkého koše poslední zátěž a přesouvá se \rke šlapacímu kolu. \rNa povel se začnou pomalu pohybovat a stroj se zachvěje. \rRameno trebuchetu se jen neochotně sklání k zemi.} \\\\\r\rOpatrně ho zajistí mohutnou pojistkou.\\\\\r\rNěkolik mužů umístí těžký kámen do koženého vaku.\\\\\r\rVšichni ustoupí do bezpečné vzdálenosti od mohutné dřevěné konstrukce.\\\\\r\rTrhnutí lanem a kámen letí vstříc nepřátelské pevnosti.\\\\\r\rDesítky očí se nemohou odtrhnout od projektilu.\\\\\r\rDoletí?\\\\\r\rPokud se těleso bude pohybovat v blízkosti Země (nebo jakékoliv jiné planety), bude na něj působit tíhová síla. Abychom si celou situaci zjednodušili, tak budeme předpokládat, že těleso se pohybuje v těsné blízkosti povrchu Země a jeho trajektorie bude velmi malá (oboje vzhledem k rozměrům Země).",
         "IsHtml": false
       },
       {
@@ -76,9 +76,9 @@
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
         "Question": "Jaké vztahy platí pro velikost okamžité rychlosti $v$ a pro dráhu $s$ v čase $t$?",
-        "CorrectResponse": "Vztahy v= konst. a s=vt platí pro rovnoměrný pohyb, vztahy v=v_0+gt a s=v_0 t+1/2 gt^2 pro rovnoměrně zrychlený pohyb s nenulovou počáteční rychlostí. Pro volný pád, tedy pro pohyb rovnoměrně zrychlený s nulovou počáteční rychlostí, platí vztahy v=gt a s=1/2 gt^2.",
-        "WrongResponse": null,
-        "CorrectAnswerIndex": -1,
+        "CorrectResponse": "Vztahy $v= \\text{konst.}$ a $s=vt$ platí pro rovnoměrný pohyb, vztahy $v=v_0+gt$ a $s=v_0 t+1/2 gt^2$ pro rovnoměrně zrychlený pohyb s nenulovou počáteční rychlostí. Pro volný pád, tedy pro pohyb rovnoměrně zrychlený s nulovou počáteční rychlostí, platí vztahy $v=gt$ a $s=1/2 gt^2$.",
+        "WrongResponse": "",
+        "CorrectAnswerIndex": 1,
         "Options": [
           "$v= konst$ a $s = vt$",
           "$v=gt$ a $s=\\frac{gt^2}{2}$",
@@ -118,7 +118,7 @@
         "Unit": "$\\mathrm{m}$",
         "Placeholder": null,
         "Question": "Šikmá věž v Pise je vysoká přibližně $56\\,\\mathrm{m}$. Jak dlouho by letěla k Zemi kovová koule, kterou bychom volně svrhli z jejího vrcholu? Řeš výpočtem i s pomocí aplikace, tíhové zrychlení je  $10\\,\\mathrm{m}.\\mathrm{s}^{–2}$, hodnotu zaokrouhli na desetiny sekundy.",
-        "CorrectResponse": "<strong>Výpočet:</strong><br />$h = 56\\,\\mathrm{m}$, $g= 10\\,\\mathrm{m}.\\mathrm{s}^{–2}$, $t_d= ?$<br />$$t_d=\\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot 56}{10}} = 3,3 s$$<strong>Pomocí aplikace:</strong><br />Volný pád, počáteční souřadnice $x_0\\,(\\mathrm{m}) = 0{,}00$, počáteční souřadnice $y_0\\,(\\mathrm{m}) = 56{,}00$, tíhové zrychlení  $g\\,(\\mathrm{m}/\\mathrm{s}^2) = 10$. Z tabulky hodnot $3,3\\,\\mathrm{s}$.",
+        "CorrectResponse": "\\bf{Výpočet:}\r$h = 56\\,\\mathrm{m}$, $g= 10\\,\\mathrm{m}.\\mathrm{s}^{–2}$, $t_d= ?$\r\r$$t_d=\\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot 56}{10}} = 3,3 s$$\\bf{Pomocí aplikace:} Volný pád, počáteční souřadnice $x_0\\,(\\mathrm{m}) = 0{,}00$, počáteční souřadnice $y_0\\,(\\mathrm{m}) = 56{,}00$, tíhové zrychlení  $g\\,(\\mathrm{m}/\\mathrm{s}^2) = 10$. Z tabulky hodnot $3,3\\,\\mathrm{s}$.",
         "WrongResponse": "",
         "AllowedAnswers": [
           "3.3",
@@ -134,9 +134,43 @@
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "<p>Pohyb, kdy je těleso vrženo počáteční rychlostí $v_0$, \rkterá má opačný směr než je směr tíhového zrychlení $g$, \rnazveme svislý vrh (nebo svislý vrh vzhůru).</p>\r\r<p>V první polovině pohybu se těleso pohybuje rovnoměrně zpomaleným \rpřímočarým pohybem. Velikost rychlosti v se zmenšuje a v nejvyšším bodě \rtrajektorie je nulová. V druhé polovině pohybu se těleso pohybuje volným pádem, \rtedy rovnoměrně zrychleným přímočarým pohybem.</p>\r\r<p>Velikost okamžité rychlosti v při stoupání v čase $t$ je dána vztahem po výpočet \rokamžité rychlosti rovnoměrně zpomaleného pohybu $v=v_0-gt$, kde $v_0$ je velikost \rpočáteční rychlosti, $g$ velikost tíhového zrychlení a $gt$ je velikost rychlosti volného pádu.</p>\r\r<p>Okamžitou výšku y tělesa v čase t určíme ze vztahu $y=v_0 t-1/2 gt^2$, kde $v_0$ t je dráha \rrovnoměrného pohybu při stálé rychlosti $v_0$ a $1/2 gt^2$ je dráha volného pádu.\r\r<p>Odvodíme si vztah po výpočet maximální výšky, které těleso při svislém vrhu dosáhne. \rTuto výšku budeme značit $h$ a nazývat výška vrhu. V této výšce je okamžitá rychlost nulová. \rČas potřebný k dosažení výšky vrhu nazveme doba výstupu $t_v$. \r\r<p>$v_0-gt_v=0$, odtud vyjádříme $t_v=v_0/g$</p>\r",
+        "Title": "Svislý vrh - úvod",
+        "Text": "\\par Pohyb, kdy je těleso vrženo počáteční rychlostí $v_0$, \rkterá má opačný směr než je směr tíhového zrychlení $g$, \rnazveme svislý vrh (nebo svislý vrh vzhůru).\\\\\r\r\\par V první polovině pohybu se těleso pohybuje rovnoměrně zpomaleným \rpřímočarým pohybem. Velikost rychlosti v se zmenšuje a v nejvyšším bodě \rtrajektorie je nulová. V druhé polovině pohybu se těleso pohybuje volným pádem, \rtedy rovnoměrně zrychleným přímočarým pohybem.\\\\\r\r\\par Velikost okamžité rychlosti v při stoupání v čase $t$ je dána vztahem po výpočet \rokamžité rychlosti rovnoměrně zpomaleného pohybu $v=v_0-gt$, kde $v_0$ je velikost \rpočáteční rychlosti, $g$ velikost tíhového zrychlení a $gt$ je velikost rychlosti volného pádu.\\\\\r\r\\par Okamžitou výšku y tělesa v čase t určíme ze vztahu $y=v_0 t-1/2 gt^2$, kde $v_0$ t je dráha rovnoměrného pohybu při stálé rychlosti $v_0$ a $1/2 gt^2$ je dráha volného pádu.\\\\\r\r\\par Odvodíme si vztah po výpočet maximální výšky, které těleso při svislém vrhu dosáhne. \rTuto výšku budeme značit $h$ a nazývat výška vrhu. V této výšce je okamžitá rychlost nulová. \rČas potřebný k dosažení výšky vrhu nazveme doba výstupu $t_v$. \\\\\r\r\\par $v_0-gt_v=0$, odtud vyjádříme $t_v=v_0/g$\r",
         "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "$h=v_0 t_v-1/2 gt_v^2$, po dosazení $t_v$ a úpravách je",
+        "CorrectResponse": "$h =v_0 t_v-\\frac{1}{2} gt_v^2 = v_0 \\frac{v_0}{g}-\\frac{1}{2} g(\\frac{v_g}{g})^2 = \\frac{v_0^2}{g}-\\frac{v_0^2}{2g} = \\frac{v_0^2}{2g}$",
+        "WrongResponse": "",
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "$h = \\frac{v_0^2}{g}$",
+          "$h = \\frac{2v_0}{g^2}$",
+          "$h = \\frac{v_0}{g^2}$",
+          "$h = \\frac{v_0^2}{2g}$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Pokračování",
+        "Text": "Z výšky h těleso padá volným pádem k zemi a dopadne za dobu $t_d$ (doba dopadu). Výšku $h$ urazí za čas dopadu, tedy $h=1/2 gt_d^2$. Pro čas dopadu dostáváme $t_d=\\sqrt{\\frac{2h}{g}}=\\sqrt{\\frac{2}{g}\\cdot\\frac{v_2^2}{2g}}=\\frac{v_0}{g}=t_v$.\rDoba volného pádu $t_d$ je stejně velká jako doba výstupu $t_v$. Čas pohybu tělesa $t_p$ by tak šel vypočítat ze vztahu $t_p=2v_0/g$.\rKdyž je doba volného pádu $t_d$ stejně velké jako doba výstupu $t_v$, můžeme odvodit i velikost rychlosti dopadu $v_d=gt_d=gt_v=g \\frac{v_0}{g}=v_0$.\rTěleso tedy dopadne stejně velkou rychlostí, jakou bylo vrženo vzhůru.\rVolejbalista, který dělá „bloky“, koná svislý vrh. Zrovna tak basketbalista, který doskakuje pod košem.\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Úloha: Karlovarský minerální pramen",
+        "HasNumericInput": true,
+        "Unit": "$\\mathrm{ms^{-1}}$",
+        "Placeholder": null,
+        "Question": "Karlovarský minerální pramen Vřídlo tryská až do výšky 12 metrů. Jakou maximální rychlostí tryská voda ze země? Řeš výpočtem i s pomocí aplikace, tíhové zrychlení je $10\\,\\mathrm{ms^{–2}}$, hodnotu zaokrouhli na celé metry za sekundu.",
+        "CorrectResponse": "\\par \\bf{Výpočet:} $h= 12\\,\\mathrm{m}, g= 10\\,\\mathrm{m \\cdot s^{–2}}, v_0= ?$\r$$v_0=v_d=\\sqrt{2gh}=\\sqrt{2 \\cdot 10 \\cdot 12}= 15\\,\\mathrm{m \\cdot s^{–1}}$$\\\\\r\r\\bf{Aplikace:} Svislý vrh, počáteční souřadnice $x_0 (m) = 0,00$, počáteční souřadnice $y_0 (m) = 0,00$, tíhové zrychlení $g (\\mathrm{m \\cdot s^{-2}}) = 10$. Pro rychlost $v (\\mathrm{m \\cdot s^{-1}}) = 15$ je maximální souřadnice $y = 11,25 m$, pro $v (\\mathrm{m \\cdot s^{-1}}) = 16$ je $12,8\\,\\mathrm{m}$.",
+        "WrongResponse": "",
+        "AllowedAnswers": [
+          "15"
+        ],
+        "Tolerance": 0.0
       }
     ],
     "Type": "Chapter"
@@ -144,6 +178,17 @@
   {
     "Title": "3. Vodorovný vrh",
     "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "Udělíme-li tělesu počáteční rychlost\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "Obr_tema_1_01.png",
+        "Title": "Image"
+      }
     ],
     "Type": "Chapter"
   },

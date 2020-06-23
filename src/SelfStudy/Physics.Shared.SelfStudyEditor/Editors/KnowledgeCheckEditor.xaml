@@ -9,11 +9,11 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <StackPanel Padding="12" Spacing="8">
-        <TextBox Header="Question" Text="{x:Bind ViewModel.Question, Mode=TwoWay}" />
+    <StackPanel Padding="12" Spacing="8" x:Name="Root">
+        <TextBox Header="Question" Text="{x:Bind Question.Question, Mode=TwoWay}" />
         <ListView
             Header="Options"
-            ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}"
+            ItemsSource="{x:Bind Question.Options, Mode=OneWay}"
             SelectedIndex="{x:Bind SelectedOptionIndex, Mode=TwoWay}" />
         <StackPanel Orientation="Horizontal" Spacing="8">
             <TextBox
@@ -25,19 +25,19 @@
         <Button Click="{x:Bind DeleteSelectedOption}">Delete selected</Button>
         <ComboBox
             Header="Correct answer"
-            ItemsSource="{x:Bind ViewModel.Options, Mode=OneWay}"
-            SelectedIndex="{x:Bind ViewModel.CorrectAnswerIndex, Mode=TwoWay}" />
+            ItemsSource="{x:Bind Question.Options, Mode=OneWay}"
+            SelectedIndex="{x:Bind Question.CorrectAnswerIndex, Mode=TwoWay}" />
         <TextBox
             Height="100"
             TextWrapping="Wrap"            
             AcceptsReturn="True"
             Header="Correct response"
-            Text="{x:Bind ViewModel.CorrectResponse, Mode=TwoWay}" />
+            Text="{x:Bind Question.CorrectResponse, Mode=TwoWay}" />
         <TextBox
             Height="100"
             TextWrapping="Wrap"
             AcceptsReturn="True"
             Header="Wrong response"
-            Text="{x:Bind ViewModel.WrongResponse, Mode=TwoWay}" />
+            Text="{x:Bind Question.WrongResponse, Mode=TwoWay}" />
     </StackPanel>
 </UserControl>

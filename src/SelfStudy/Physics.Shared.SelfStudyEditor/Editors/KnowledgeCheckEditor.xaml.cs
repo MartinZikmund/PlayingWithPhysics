@@ -1,4 +1,5 @@
 ﻿using Physics.SelfStudy.Models.Contents;
+using Physics.SelfStudy.Models.Contents.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,15 +22,24 @@ namespace Physics.SelfStudy.Editor.Editors
 {
     public sealed partial class KnowledgeCheckEditor : UserControl, INotifyPropertyChanged
     {
-        private string _layoutContents;
-
         public KnowledgeCheckEditor()
         {
             this.InitializeComponent();
-            this.DataContextChanged += HtmlEditor_DataContextChanged;
         }
 
-        public KnowledgeCheckContent ViewModel { get; private set; }
+        public MultipleChoiceQuestionContent Question
+        {
+            get { return (MultipleChoiceQuestionContent)GetValue(QuestionProperty); }
+            set { SetValue(QuestionProperty, value); }
+        }
+
+        public static readonly DependencyProperty QuestionProperty =
+            DependencyProperty.Register(nameof(Question), typeof(MultipleChoiceQuestionContent), typeof(KnowledgeCheckEditor), new PropertyMetadata(null, QuestionChanged));
+
+        private static void QuestionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
 
         public string NewItemText { get; set; }
 
@@ -37,26 +47,20 @@ namespace Physics.SelfStudy.Editor.Editors
 
         public void AddOption()
         {
-            ViewModel.Options.Add(NewItemText);
-            ViewModel.ForceUpdate();
+            Question.Options.Add(NewItemText);
+            Question.ForceUpdate();
             NewItemText = "";
         }
 
         public void DeleteSelectedOption()
         {
-            if (SelectedOptionIndex >= 0 && SelectedOptionIndex < ViewModel.Options.Count)
+            if (SelectedOptionIndex >= 0 && SelectedOptionIndex < Question.Options.Count)
             {
-                ViewModel.Options.RemoveAt(SelectedOptionIndex);
-                ViewModel.ForceUpdate();
+                Question.Options.RemoveAt(SelectedOptionIndex);
+                Question.ForceUpdate();
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private void HtmlEditor_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            ViewModel = args.NewValue as KnowledgeCheckContent;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ViewModel)));
-        }
     }
 }

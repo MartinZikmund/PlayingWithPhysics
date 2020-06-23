@@ -9,6 +9,6 @@ namespace Physics.SelfStudy.Models.Contents
 
         public string ImageName { get; set; }
 
-        public string Title { get; set; }
+        public string Title { get; set; } = "Image";
     }
 }

@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Image Stretch="Uniform" Source="{Binding ImagePath, Mode=OneWay}" />
+    <Grid x:Name="Root">
+        <Image Margin="8" Stretch="Uniform" Source="{Binding ImagePath, Mode=OneWay}" />
     </Grid>
 </UserControl>

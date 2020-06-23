@@ -21,7 +21,24 @@ namespace Physics.SelfStudy.Models.Contents.Abstract
 
         public string WrongResponse { get; set; }
 
-        public int CorrectAnswerIndex { get; set; }
+        private int _correctAnswerIndex;
+
+        public int CorrectAnswerIndex
+        {
+            get
+            {
+                return _correctAnswerIndex;
+            }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    _correctAnswerIndex = value;
+                    OnPropertyChanged(nameof(CorrectAnswerIndex));
+                }
+            }
+        }
 
         public ObservableCollection<string> Options { get; set; } = new ObservableCollection<string>();
     }
