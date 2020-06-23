@@ -66,8 +66,10 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            RequestedTheme="Dark"
-            Text="{x:Bind ViewModel.Workspace.CurrentProject.BackingFile.Name, Mode=OneWay}" />
+            RequestedTheme="Dark">
+            <Run Text="{x:Bind ViewModel.Workspace.CurrentProject.BackingFile.Name, Mode=OneWay}" />
+            <Run Text="{x:Bind ViewModel.ProjectDirtyMark}" />
+        </TextBlock>
         <SplitView
             Grid.Row="1"
             DisplayMode="Inline"

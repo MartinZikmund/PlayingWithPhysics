@@ -17,6 +17,8 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 {
     public class Project : ViewModelBase
     {
+        private string _lastSavedSerializedContents = "";
+
         public StorageFile BackingFile { get; set; }
 
         public ObservableCollection<ChapterViewModel> Chapters { get; } = new ObservableCollection<ChapterViewModel>();
@@ -101,7 +103,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
 
         public bool IsContentSelected => SelectedContent != null;
 
-        public bool IsDirty { get; private set; } = true;
+        public bool IsDirty => _lastSavedSerializedContents != SerializeProject();
 
         private Project()
         {
@@ -171,7 +173,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             if (file != null)
             {
                 BackingFile = file;
-                await SaveToBackingFileAsync();
+                await SaveToBackingFileAsync();                
             }
         }
 
@@ -179,6 +181,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
         {
             var contents = SerializeProject();
             await FileIO.WriteTextAsync(BackingFile, contents);
+            _lastSavedSerializedContents = contents;
         }
 
         public async Task DiscardAsync()
@@ -195,7 +198,12 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             return fileName;
         }
 
-        public static Project CreateNew() => new Project();
+        public static Project CreateNew()
+        {
+            var project = new Project();
+            project.ResetDirtyState();
+            return project;
+        }
 
         public static async Task<Project> LoadAsync(StorageFile projectFile)
         {
@@ -207,7 +215,13 @@ namespace Physics.SelfStudy.Editor.Infrastructure
             {
                 project.Chapters.Add(new ChapterViewModel(project, content));
             }
+            project.ResetDirtyState();
             return project;
+        }
+
+        private void ResetDirtyState()
+        {
+            _lastSavedSerializedContents = SerializeProject();
         }
 
         public async Task PreviewAsync()
@@ -234,7 +248,7 @@ namespace Physics.SelfStudy.Editor.Infrastructure
                 c.Chapter.Contents = c.Contents.Select(content => content.Content).ToArray();
                 return c.Chapter;
             }).ToArray();            
-            return JsonConvert.SerializeObject(chapters);
+            return JsonConvert.SerializeObject(chapters, Formatting.Indented);
         }
     }
 }

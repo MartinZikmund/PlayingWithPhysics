@@ -31,6 +31,7 @@
             Background="#FCFCFC"
             DisplayMode="Inline"
             IsPaneOpen="True"
+            OpenPaneLength="240"
             PaneBackground="{ThemeResource AppThemeColor}">
             <SplitView.Pane>
                 <Grid Padding="8" RequestedTheme="{x:Bind ViewModel.PaneRequestedTheme}">
@@ -60,6 +61,7 @@
                                     <TextBlock
                                         Grid.Column="1"
                                         Padding="8"
+                                        TextWrapping="Wrap"
                                         HorizontalAlignment="Stretch"
                                         Text="{x:Bind Title, Mode=TwoWay}" />
                                 </Grid>
