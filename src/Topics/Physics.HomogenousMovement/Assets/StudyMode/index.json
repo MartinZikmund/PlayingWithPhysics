@@ -222,9 +222,11 @@
         "Unit": "m",
         "Placeholder": null,
         "Question": "Letadlo, které se používá k hašení lesních požárů, létá rychlostí $180\\,\\mathrm{km/h}$ ($50\\,\\mathrm{m/s}$). Jak daleko před požárem muselo vypustit vodu, když letělo ve výšce $30\\,\\mathrm{m}$. Řeš pomocí výpočtu i pomocí aplikace. Tíhové zrychlení je $10\\,\\mathrm{m \\cdot s^{–2}}$, výsledek zaokrouhli na celé metry.",
-        "CorrectResponse": "",
+        "CorrectResponse": "\\par \\bf{Výpočet:} $v= 50\\,\\mathrm{m \\cdot s^{–1}}, h= 30\\,\\mathrm{m}, g= 10\\,\\mathrm{m \\cdot s^{–2}}, d= ?$\\\\\r\r$d=v_0 \\sqrt{\\frac{2h}{g}} =50\\sqrt{\\frac{2 \\cdot 30}{10}} = 122\\,\\mathrm{m}$ \\\\\r\r\\par \\bf{Aplikace:} Vodorovný vrh, rychlost $v\\,(\\mathrm{m \\cdot s^{-1}}) = 50$, počáteční souřadnice $x0\\,(\\mathrm{m}) = 0,00$, počáteční souřadnice $y0\\,(\\mathrm{m}) = 30,00$, tíhové zrychlení $g\\,(\\mathrm{m \\cdot s^{-2}}) = 10$. Souřadnice $x$ na konci vrhu je $122,47\\,\\mathrm{m}$.",
         "WrongResponse": "",
-        "AllowedAnswers": [],
+        "AllowedAnswers": [
+          "122"
+        ],
         "Tolerance": 0.0
       }
     ],
@@ -232,7 +234,109 @@
   },
   {
     "Title": "4. Šikmý vrh",
-    "Contents": [],
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Uvod",
+        "Text": "Pokud tělesu udělíme počáteční rychlost $\\vec{v_0}$ ve směru, která svírá s vodorovným směrem ostrý úhel $α$, a během pohybu na těleso bude působit pouze tíhová síla ve směru tíhového zrychlení $\\vec{g}$, bude konat šikmý vrh. Úhel $α$ budeme nazývat elevační úhel.\rRovnoměrný přímočarý pohyb ve směru rychlosti  $\\vec{v_0}$ se skládá s volným pádem ve směru tíhového zrychlení  $\\vec{g}$. Těleso se bude pohybovat tak, že v čase t se od původního směru odchýlí ve směru $g$ (proti směru osy $y$) o dráhu volného pádu $s=\\frac{1}{2} gt^2$. Trajektorií šikmého vrhu je parabola, která bude mít vrchol v nejvyšším bodě trajektorie.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "Obr_tema_1_02.png",
+        "Title": "Image"
+      },
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "\\par Pro popis šikmého vrhu umístíme těleso na počátku pohybu do souřadnic $x_0=0$ a $y_0=0$. Složky počáteční rychlosti mají velikosti $v_0x=v_0\\cos{α}$ a $v_0y=v_0\\sin{α}$.\rV čase t pak mají složky rychlosti velikosti $v_x=v_0\\cos{α}$ a $v_y=v_0\\sin{α}-gt$, souřadnice pak\r$x=v_0t\\cos{α}$ a $y=v_0 t \\sin{α}-1/2 gt^2$\rOdvodíme si vztah pro délku vrhu $d$. V okamžiku dopadu má těleso souřadnice $x=d$, $y=0$, doba pohybu tělesa $t_d$.\\\\\r\r$$v_0 t_d  sin{α}-\\frac{1}{2} gt_d^2=0$$\r$$v_0 t_d  sin{α}=\\frac{1}{2} gt_d^2$$\r$$t_d=\\frac{2v_0  sin{α}}{g}$$\r\\par Po dosazení do vztahu pro souřadnici $x=v_0 t \\cos{α}$ dostáváme vztah\\\\\r\r$$d=\\frac{2v_0 \\sin{α} \\cos{α}}{g}=\\frac{v_0^2  \\sin{2α}}{g}$$\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování: Délka šikmého vrhu",
+        "Text": "Délka šimého vrhu $d=\\frac{v_0^2  \\sin{2α}}{g}$\\\\\r\rZe vztahu vyplývá, že délka vrhu závisí na velikosti počáteční rychlosti $v_0$ a na elevačním úhlu $α$.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Úloha: Elevační úhel",
+        "HasNumericInput": true,
+        "Unit": "$^\\degree$",
+        "Placeholder": null,
+        "Question": "Při jakém elevačním úhlu dosáhne těleso při stejné počáteční rychlosti největší délky vrhu? Zkuste odvodit ze vzorce nebo vyzkoušejte v aplikaci.",
+        "CorrectResponse": "\\par Elevační úhel je v rozmezí $0°$ až $90°$, největší hodnota funkce $sin 2α$ je pro $45°$.\\\\\r\r\\par \\bf{Aplikace:} Šikmý vrh, počáteční souřadnice $x0\\,(\\mathrm{m}) = 0,00$, počáteční souřadnice $y0\\,(\\mathrm{m}) = 0,00$. Bez ohledu na volbu ostatních parametrů bude největší délka vrhu při $45°$.\r",
+        "WrongResponse": "",
+        "AllowedAnswers": [
+          "45"
+        ],
+        "Tolerance": 0.0
+      },
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "\\par Můžeme též odvodit vztah pro výšku vrhu $h$. Nachází-li se těleso v nejvyšším bodě trajektorie, má velikost rychlosti ve směru osy $y$ nulovou hodnotu. Dobu potřebnou k dosažení nejvyššího bodu označíme $t_h$.\\\\\r\r$$v_0 \\sin{α} - gt_h=0$$\r$$t_h=\\frac{v_0 \\sin{α})}{g}=\\frac{t_d}{2}$$\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Dosazením do vztahu pro souřadnici $y=v_0 t \\sin{α}-\\frac{1}{2} gt^2$ dostáváme vztah",
+        "CorrectResponse": "$h=v_0 t_h \\sin{α}-\\frac{1}{2} gt_h^2= v_0 \\frac{v_0  sin{α}}{g} \\sin{α}-\\frac{1}{2}  g(\\frac{v_0  \\sin{α}}{g})^2= \\\\ \\frac{v_0^2  \\sin^2{α}}{g}-\\frac{v_0^2 \\sin^2{α}}{2g}=\\frac{v_0^2 \\sin^2{α}}{2g}$",
+        "WrongResponse": "",
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "$h = \\frac{v_0^2\\sin^2{α}}{g}$",
+          "$h = \\frac{2v_0^2\\sin^2{α}}{g}$",
+          "$h = \\frac{v_0^2\\sin^2{α}}{2g}$",
+          "$h = \\frac{2v_0\\sin^2{α}}{g}$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "\\par Se šikmým vrhem se setkáme ve sportu a ve vojenství. Ve vojenské terminologii se místo pojmu délka vrhu používá dostřel. Ze studia této kapitoly víme, že těleso vržené šikmo vzhůru se pohybuje po trajektorii ve tvaru části paraboly za předpokladu, že zanedbáme odporu vzduchu. Ten ale nelze vždy zanedbat, a tak se v praxi tělesa pohybují po tzv. balistické křivce.",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Při pohybu po balistické křivce, tedy bez zanedbání odporu vzduchu,",
+        "CorrectResponse": "Pokud odpor vzduchu nelze zanedbat, bude se ve směru osy těleso pohybovat pohybem zpomaleným, a tedy i dostřel bude menší než délka vrhu.",
+        "WrongResponse": "",
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "bude dostřel delší než délka šikmého vrhu",
+          "bude dostřel stejný jako délka šikmého vrhu",
+          "bude dostřel kratší než délka šikmého vrhu"
+        ]
+      },
+      {
+        "Type": "Image",
+        "ImageName": "Obr_tema_1_03.png",
+        "Title": "Image"
+      },
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "\\par Balistická křivka není osově souměrná.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Úloha: Trebuchet",
+        "HasNumericInput": true,
+        "Unit": "$m \\cdot s^{-1}$",
+        "Placeholder": null,
+        "Question": "K obléhání středověkých pevností se používal stroj nazývaný trebuchet, který uměl vrhat různé předměty. Předpokládejme, že vystřelil kámen pod elevačním úhlem $30°$ a ten dopadl do vzdálenosti $100\\,\\mathrm{m}$ přibližně ve stejné výšce. Jak velkou rychlostí  trebuchet vystřeloval projektily? Řeš pomocí výpočtu i pomocí aplikace. Tíhové zrychlení je $10\\,\\mathrm{m \\cdot s^{–2}}$ , výsledek zaokrouhli na celé metry za sekundu.",
+        "CorrectResponse": "\\par \\bf{Výpočet:} $α= 30°$, $d = 100\\,\\mathrm{m}$, $g= 10\\,\\mathrm{m \\cdot s^{–2}}$, $v_0 = ?$\\\\\r\r$$d=\\frac{v_0^2 \\sin{2α}}{g}$$\r$$dg=v_0^2 \\sin{2α}$$\r$$v_0^2=\\sqrt{dg}{\\sin2α}$$\r$$v_0=\\sqrt{\\frac{dg}{\\sin2α}}=\\sqrt{\\frac{100 \\cdot 10}{\\sin{(2 \\cdot 60)}}}=34\\,\\mathrm{m \\cdot s^{–1}}$$\r\\par \\bf{Aplikace:} Šikmý vrh, počáteční souřadnice $x0\\,(\\mathrm{m}) = 0,00$, počáteční souřadnice $y0\\,(\\mathrm{m}) = 0,00$, úhel $(°) = 30$. Pro rychlost $v\\,(\\mathrm{m \\cdot s^{-1}})$ je souřadnice $x$ rovna $100,11\\,\\mathrm{m}$.",
+        "WrongResponse": "",
+        "AllowedAnswers": [
+          "34"
+        ],
+        "Tolerance": 0.0
+      }
+    ],
     "Type": "Chapter"
   },
   {

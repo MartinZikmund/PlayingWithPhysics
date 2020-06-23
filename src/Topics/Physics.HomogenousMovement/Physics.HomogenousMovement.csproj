@@ -256,6 +256,9 @@
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
     <Content Include="Assets\Menu\circle.png" />
+    <Content Include="Assets\StudyMode\Obr_tema_1_01.png" />
+    <Content Include="Assets\StudyMode\Obr_tema_1_02.png" />
+    <Content Include="Assets\StudyMode\Obr_tema_1_03.png" />
     <Content Include="Assets\volnypad.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />

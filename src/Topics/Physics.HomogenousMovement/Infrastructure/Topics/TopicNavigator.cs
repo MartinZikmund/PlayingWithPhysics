@@ -7,6 +7,8 @@ using Windows.System;
 using Physics.HomogenousMovement.Models;
 using Physics.SelfStudy;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Windows.ApplicationModel;
+using System.IO;
 
 namespace Physics.HomogenousMovement.Infrastructure.Topics
 {
@@ -33,7 +35,7 @@ namespace Physics.HomogenousMovement.Infrastructure.Topics
 
         public async Task GoToStudyModeAsync()
         {
-            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"));
+            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
         }
     }
 }
