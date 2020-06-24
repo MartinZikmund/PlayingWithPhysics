@@ -208,10 +208,10 @@
     <value>α</value>
   </data>
   <data name="RadiationType_BetaMinus" xml:space="preserve">
-    <value>β+</value>
+    <value>β-</value>
   </data>
   <data name="RadiationType_BetaPlus" xml:space="preserve">
-    <value>β-</value>
+    <value>β+</value>
   </data>
   <data name="RadiationType_Gamma" xml:space="preserve">
     <value>γ</value>

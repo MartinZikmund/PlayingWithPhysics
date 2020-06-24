@@ -112,12 +112,19 @@ namespace Physics.HomogenousParticle.ViewModels
             var dialog = new AddOrUpdateMotionDialog(VariantInputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
-            {                
+            {                                
                 if (SelectedVariant == VelocityVariant.Zero || 
                     SelectedVariant == VelocityVariant.Parallel || 
                     SelectedVariant == VelocityVariant.Perpendicular)
                 {
                     Motions.Clear();
+                }
+                if (SelectedVariant == VelocityVariant.Radiation)
+                {
+                    if (Motions.Any(m=>!(m.Motion is RadiationMotionSetup)))
+                    {
+                        Motions.Clear();
+                    }   
                 }
                 Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
                 RestartSimulation();

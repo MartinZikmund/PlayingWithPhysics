@@ -113,7 +113,7 @@ namespace Physics.InclinedPlane.Rendering
                         PadX(_canvasController.PhysicsService.CalculateHorizontalStartX() * _scalingRatio),
                         FlipY(sender,0)),
                     new Vector2(
-                        PadX((float)sender.Size.Width),
+                        PadX((float)sender.Size.Width - _padding * 2),
                         FlipY(sender,0)),
                     Colors.Black);
             }

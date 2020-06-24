@@ -37,8 +37,10 @@
         <Grid
             x:Name="MenuPane"
             Grid.Column="0"
-            Background="{ThemeResource AppThemeColor}"
             RequestedTheme="Light">
+            <Grid.Background>
+                <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
+            </Grid.Background>
             <Windows10version1903:Grid.Shadow>
                 <ThemeShadow />
             </Windows10version1903:Grid.Shadow>

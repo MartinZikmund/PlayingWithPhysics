@@ -19,7 +19,13 @@
             <ColumnDefinition Width="*" MinWidth="320" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="{ThemeResource AppThemeColor}">
+        <Grid Grid.Column="0" x:Name="MenuPane">
+            <Windows10version1809:Grid.Shadow>
+                <ThemeShadow />
+            </Windows10version1809:Grid.Shadow>
+            <Grid.Background>
+                <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" BackgroundSource="HostBackdrop" TintOpacity="0.85" FallbackColor="{ThemeResource AppThemeColor}" />
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -29,6 +35,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+
                 <Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
                 <Grid
                     x:Name="TitleBlock"
@@ -165,13 +172,6 @@
                                     </TextBlock>
                                 </Grid>
                             </Grid>
-                            <NavigationViewItemSeparator />
-                            <Button
-                                Margin="8,8,8,0"
-                                HorizontalAlignment="Stretch"
-                                Command="{x:Bind Model.DrawCommand}"
-                                Content="{extensions:Localize Key=DrawMotion}"
-                                Foreground="White" />
                         </StackPanel>
 
                     </StackPanel>

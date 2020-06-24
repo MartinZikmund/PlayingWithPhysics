@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Physics.InclinedPlane.ViewInteractions;
+using Physics.InclinedPlane.Rendering;
 
 namespace Physics.InclinedPlane.ViewModels
 {
@@ -32,6 +33,7 @@ namespace Physics.InclinedPlane.ViewModels
         private IMainViewInteraction _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
+        private DispatcherTimer _timer = new DispatcherTimer();
 
         public class NavigationModel
         {
@@ -40,7 +42,8 @@ namespace Physics.InclinedPlane.ViewModels
 
         public MainViewModel()
         {
-            
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            _timer.Tick += _timer_Tick;
         }
 
         public override void Prepare(NavigationModel parameter)
@@ -70,9 +73,10 @@ namespace Physics.InclinedPlane.ViewModels
         private void RestartSimulation()
         {
             if (_interaction == null) return;
-            var controller = _interaction.PrepareController();
-            SimulationPlayback.SetController(controller);
-            controller.StartSimulation(Motion.MotionInfo);
+            _controller = _interaction.PrepareController();
+            SimulationPlayback.SetController(_controller);
+            _controller.StartSimulation(Motion.MotionInfo);
+            _timer.Start();
         }
 
         public IInclinedPlaneMotionSetup Setup { get; set; }
@@ -98,8 +102,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<MotionViewModel>(ShowValuesTableAsync);
         private void PauseToggle()
-        {
-            throw new NotImplementedException();
+        {            
             IsPaused = !IsPaused;
             if (IsPaused)
             {
@@ -113,7 +116,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         private Dictionary<MotionViewModel, AppWindow> _tableWindowIds =
             new Dictionary<MotionViewModel, AppWindow>();
-
+        private InclinedPlaneCanvasController _controller;
 
         private async Task ShowValuesTableAsync(MotionViewModel viewModel)
         {
@@ -166,6 +169,16 @@ namespace Physics.InclinedPlane.ViewModels
             });
         }
 
+        private void _timer_Tick(object sender, object e)
+        {
+            if (_timer.IsEnabled && _controller != null)
+            {
+                float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+
+                Motion?.UpdateCurrentValues(timeElapsed);                
+            }
+        }
+
         //private async Task CloseAppViewForMotionAsync(MainViewModel viewModel)
         //{
         //    if (_tableWindowIds.TryGetValue(viewModel, out var appView))
@@ -187,7 +200,7 @@ namespace Physics.InclinedPlane.ViewModels
         public override void ViewDestroy(bool viewFinishing = true)
         {
             base.ViewDestroy(viewFinishing);
-            //_timer.Stop();
+            _timer.Stop();
         }
     }
 }

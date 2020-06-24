@@ -70,7 +70,7 @@
             <Grid.Background>
                 <SolidColorBrush Color="{x:Bind Motion.Color, Mode=OneWay}" />
             </Grid.Background>
-            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind Type, Converter={StaticResource EnumLocalizationConverter}, Mode=OneWay}" />
+            <TextBlock Foreground="White" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind Type, Converter={StaticResource EnumLocalizationConverter}, Mode=OneWay}" />
             <Button Grid.Column="1">
                 <Button.Flyout>
                     <MenuFlyout>
