@@ -52,6 +52,7 @@
             <Run FontWeight="Bold" Text="q" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
             <Run Text="10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
+            <Run Text="[C]"/>
         </TextBlock>
         <winui:NumberBox
             x:Name="ChargeNumberBox"
@@ -73,6 +74,7 @@
             <Run FontWeight="Bold" Text="m" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
             <Run Text="10" /><Run Text="&#8315;27" Typography.Variants="Superscript" /><Run Text=")" />
+            <Run Text="[kg]"/>
         </TextBlock>
         <winui:NumberBox
             x:Name="MassNumberBox"
@@ -94,6 +96,8 @@
             <Run FontWeight="Bold" Text="v" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
             <Run Text="10" /><Run Text="6" Typography.Variants="Superscript" /><Run Text=")" />
+            <Run Text="[m*s" />
+            <Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text="]" />
         </TextBlock>
         <winui:NumberBox
             x:Name="VelocityNumberBox"
@@ -110,7 +114,7 @@
             VerticalAlignment="Center"
             xml:space="default">
             <Run Text="{extensions:Localize Key=PerpendicularInput_Induction}" />
-            <Run FontWeight="Bold" Text="B" />
+            <Run FontWeight="Bold" Text="B [T]" />
         </TextBlock>
         <winui:NumberBox
             x:Name="InductionNumberBox"
