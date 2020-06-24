@@ -46,6 +46,11 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return _maxX.Value;
         }
 
+        public float CalculateTotalWidth()
+        {
+            return CalculateInclinedWidth() + Setup.HorizontalLength;
+        }
+
         public float CalculateS(float time)
         {
             time = Math.Min(time, CalculateMaxT());
@@ -164,6 +169,11 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         #endregion
 
         #region Inclined plane calculations
+
+        public float CalculateInclinedWidth()
+        {
+            return Setup.InclinedLength * (float)Math.Cos(AngleInRad);
+        }
 
         public float CalculateInclinedMaxT()
         {

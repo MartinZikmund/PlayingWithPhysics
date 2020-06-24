@@ -32,14 +32,12 @@ namespace Physics.InclinedPlane.Rendering
             var renderTarget = new CanvasRenderTarget(sender, (float)sender.Size.Width - _padding * 2, (float)sender.Size.Height - _padding * 2, 96.0f);
             using (var drawingSession = renderTarget.CreateDrawingSession())
             {
-                drawingSession.Transform = Matrix3x2.CreateScale(new Vector2(1, -1)) * Matrix3x2.CreateTranslation(new Vector2(0, (float)renderTarget.Size.Height));
-                drawingSession.Units = CanvasUnits.Dips;
                 drawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
                 DrawFloor(renderTarget, drawingSession);
                 DrawInclinedPlane(renderTarget, drawingSession);
                 DrawObject(renderTarget, drawingSession);
             }
-            args.DrawingSession.DrawImage(renderTarget, new Vector2(_padding, _padding), renderTarget.Bounds );
+            args.DrawingSession.DrawImage(renderTarget, new Vector2(_padding, _padding), renderTarget.Bounds);
         }
 
         private void DrawObject(CanvasRenderTarget target, CanvasDrawingSession session)
@@ -53,23 +51,28 @@ namespace Physics.InclinedPlane.Rendering
             if (t <= _canvasController.PhysicsService.CalculateHorizontalStartTime() || !_canvasController.Motion.HasHorizontal)
             {
                 var rectangle = CanvasGeometry.CreateRectangle(target, new Rect(0, 0, 24, 24)).Transform(Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(-_canvasController.Motion.InclinedAngle))).Transform(
-                    Matrix3x2.CreateTranslation(x, y));
+                    Matrix3x2.CreateTranslation(x, FlipY(target, y)));
                 //apply angle                
                 session.FillGeometry(rectangle, color);
             }
             else
             {
                 session.FillRectangle(
-                    new Rect(x - 12, y, 24, 24),
+                    new Rect(x - 12, FlipY(target, y + 24), 24, 24),
                     color);
             }
+        }
+
+        private float FlipY(CanvasRenderTarget target, float y)
+        {
+            return (float)target.Bounds.Height - y;
         }
 
         public void Update(ICanvasAnimatedControl sender)
         {
             var physicsService = _canvasController.PhysicsService;
             var minX = 0;
-            var maxX = physicsService.CalculateMaxX();
+            var maxX = physicsService.CalculateTotalWidth();
             var minY = 0;
             var maxY = physicsService.CalculateY(0);
 
@@ -90,11 +93,11 @@ namespace Physics.InclinedPlane.Rendering
         {
             var motion = _canvasController.Motion;
             var angleInRad = MathHelpers.DegreesToRadians(motion.InclinedAngle);
-            var y = motion.InclinedLength * Math.Sin(angleInRad);
+            var y =(float)motion.InclinedLength * (float)Math.Sin(angleInRad);
             var x = motion.InclinedLength * Math.Cos(angleInRad);
             drawingSession.DrawLine(
-                new Vector2(0, (float)y * _scalingRatio),
-                new Vector2((float)x * _scalingRatio, 0),
+                new Vector2(0, FlipY(sender, (float)y * _scalingRatio)),
+                new Vector2((float)x * _scalingRatio, FlipY(sender,0)),
                 Colors.Black);
         }
 
@@ -104,10 +107,10 @@ namespace Physics.InclinedPlane.Rendering
                 drawingSession.DrawLine(
                     new Vector2(
                         _canvasController.PhysicsService.CalculateHorizontalStartX() * _scalingRatio,
-                        1),
+                        FlipY(sender,1)),
                     new Vector2(
                         (float)sender.Size.Width,
-                        1),
+                        FlipY(sender,1)),
                     Colors.Black);
             }
         }
