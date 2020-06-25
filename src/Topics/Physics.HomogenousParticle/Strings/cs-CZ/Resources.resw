@@ -199,7 +199,7 @@
     <value>Opačný</value>
   </data>
   <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
-    <value>Rychlost pohybu částice je pouze ilustrační a neodpovídá realitě.</value>
+    <value>Rychlost animovaného pohybu částice je pouze ilustrační a neodpovídá realitě.</value>
   </data>
   <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
     <value>Síla na částici je nulová, částice zůstává v klidu.</value>

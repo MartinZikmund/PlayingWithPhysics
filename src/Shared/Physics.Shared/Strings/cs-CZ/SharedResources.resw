@@ -126,6 +126,9 @@
   <data name="CorrectAnswerTitle" xml:space="preserve">
     <value>Správně 🎉!</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Časový interval (s)</value>
   </data>

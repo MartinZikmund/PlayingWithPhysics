@@ -126,6 +126,9 @@
   <data name="CorrectAnswerTitle" xml:space="preserve">
     <value>Correct 🎉!</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
   </data>
