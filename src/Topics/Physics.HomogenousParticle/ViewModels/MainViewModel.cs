@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.HomogenousMovement.ViewModels;
 using Physics.HomogenousParticle.Dialogs;
+using Physics.HomogenousParticle.Models;
 using Physics.HomogenousParticle.Services;
 using Physics.HomogenousParticle.ValuesTable;
 using Physics.HomogenousParticle.ViewInteractions;
@@ -28,21 +29,12 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.HomogenousParticle.ViewModels
 {
-    public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
+    public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>
     {
         private IMainViewInteraction _interaction;
 
-        public class NavigationModel
-        {
-        }
-
-        public MainViewModel(DifficultyOption difficulty)
-        {
-            OnSelectedVariantIndexChanged();
-            if (difficulty == DifficultyOption.Easy)
-            {
-                RadiationVisibility = Visibility.Collapsed;
-            }
+        public MainViewModel()
+        {            
         }
 
         public Visibility RadiationVisibility { get; set; }
@@ -85,8 +77,13 @@ namespace Physics.HomogenousParticle.ViewModels
             //}
         }
 
-        public override void Prepare(NavigationModel parameter)
+        public override void Prepare(SimulationNavigationModel parameter)
         {
+            OnSelectedVariantIndexChanged();
+            if (parameter.Difficulty == DifficultyOption.Easy)
+            {
+                RadiationVisibility = Visibility.Collapsed;
+            }
         }
 
         public int SelectedVariantIndex { get; set; }

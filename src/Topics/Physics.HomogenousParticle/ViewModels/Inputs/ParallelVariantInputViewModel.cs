@@ -39,7 +39,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public ParallelVariantOrientation SelectedOrientation { get; set; }
 
-        public float Charge { get; set; } = 0.1f; // -3<=q<=3, not 0
+        public float Charge { get; set; } = 1f; // -3<=q<=3, not 0
 
         public float InductionOrientation { get; set; } // 0 <= B <= 360
 

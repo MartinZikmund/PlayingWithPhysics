@@ -49,7 +49,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
+            <sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
             <Border Grid.Row="1" Margin="0,12,0,0">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

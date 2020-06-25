@@ -44,7 +44,7 @@
             <Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
             <Run FontWeight="Bold" Text="q" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
-            <Run Text="1,6*10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
+            <Run Text="1,6×10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
             <Run Text="[C]"/>
             
             <!--<Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
@@ -62,7 +62,7 @@
             <Run Text="{extensions:Localize Key=PerpendicularInput_VelocityStart}" />
             <Run FontWeight="Bold" Text="v" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
-            <Run Text="10" /><Run Text="n" Typography.Variants="Superscript" /><Run Text=")" /><Run Text=" [m*s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text="]" />
+            <Run Text="10" /><Run Text="n" Typography.Variants="Superscript" /><Run Text=")" /><Run Text=" [m.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text="]" />
             
             
             

@@ -136,6 +136,7 @@
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
+    <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\PerpendicularVariantRenderer.cs" />
     <Compile Include="Rendering\ParallelVariantRenderer.cs" />
@@ -355,9 +356,7 @@
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

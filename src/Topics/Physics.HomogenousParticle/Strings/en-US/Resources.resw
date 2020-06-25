@@ -178,10 +178,10 @@
     <value>Velocity</value>
   </data>
   <data name="ParallelInput_InductionOrientation" xml:space="preserve">
-    <value>Induction orientation (in °)</value>
+    <value>Induction orientation [°]</value>
   </data>
   <data name="ParallelInput_MovementDirection" xml:space="preserve">
-    <value>Movement direction</value>
+    <value>Direction of movement relative to induction lines</value>
   </data>
   <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
     <value>(in</value>

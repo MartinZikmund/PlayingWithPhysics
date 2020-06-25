@@ -184,7 +184,7 @@
     <value>Rychlost</value>
   </data>
   <data name="ParallelInput_InductionOrientation" xml:space="preserve">
-    <value>Orientace indukčních čar (v °)</value>
+    <value>Orientace indukčních čar [°]</value>
   </data>
   <data name="ParallelInput_MovementDirection" xml:space="preserve">
     <value>Směr pohybu vůči indukčním čarám</value>

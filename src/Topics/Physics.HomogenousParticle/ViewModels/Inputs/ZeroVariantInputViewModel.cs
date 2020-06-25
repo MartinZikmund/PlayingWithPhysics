@@ -21,7 +21,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
             return new ZeroMotionSetup(Charge, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 
-        public float Charge { get; set; } = 0.1f; // -3<=q<=3, not 0
+        public float Charge { get; set; } = 1f; // -3<=q<=3, not 0
 
         public float InductionOrientation { get; set; } // 0<=B<=360
 

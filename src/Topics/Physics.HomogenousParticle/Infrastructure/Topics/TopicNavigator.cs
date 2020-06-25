@@ -3,6 +3,7 @@ using Physics.HomogenousParticle.ViewModels;
 using System;
 using System.Threading.Tasks;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.HomogenousParticle.Models;
 
 namespace Physics.HomogenousParticle.Infrastructure.Topics
 {

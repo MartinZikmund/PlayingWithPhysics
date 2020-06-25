@@ -35,7 +35,7 @@
                 Margin="-12,0,52,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="20"
+                FontSize="{x:Bind FontSize}"
                 FontWeight="Bold"
                 Foreground="White"
                 Style="{ThemeResource SubheaderTextBlockStyle}"
