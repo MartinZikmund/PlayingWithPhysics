@@ -21,6 +21,7 @@ using Physics.Shared.Views;
 using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Windows.Foundation.Metadata;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -43,8 +44,12 @@ namespace Physics.HomogenousMovement.Views
             DataContextChanged += MainMenuView_DataContextChanged;
             //_canvasController = new GamificationCanvasController(AnimatedCanvas);
             this.Unloaded += MainView_Unloaded;
-            StepSizeNumberBox.SetupFormatting();
             SetupNumberBoxFormattings();
+            if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.ThemeShadow"))
+            {
+                MenuPane.Translation = new System.Numerics.Vector3(0, 0, 16);
+                ((ThemeShadow)MenuPane.Shadow).Receivers.Add(SecondPane);
+            }
         }
 
         private void SetupNumberBoxFormattings()
@@ -77,52 +82,6 @@ namespace Physics.HomogenousMovement.Views
                 Model = model;
                 Model.SetViewInteraction(this);
             }
-        }
-
-        private void Pause_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Pause();
-            PlayButton.Visibility = Visibility.Visible;
-            PauseButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void Play_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Play();
-            PlayButton.Visibility = Visibility.Collapsed;
-            PauseButton.Visibility = Visibility.Visible;
-        }
-        private void Backward_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.Rewind(Model.StepSize);
-        }
-
-        private void Forward_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.FastForward(Model.StepSize);
-        }
-
-        private void SpeedSldr_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
-        {
-            if (_canvasController != null)
-                _canvasController.SimulationTime.SimulationSpeed = (float)SpeedSldr.Value;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (SpeedSldr.Opacity == 0)
-            {
-                SpeedButtonStoryboardShow.Begin();
-            }
-            else
-            {
-                SpeedButtonStoryboardHide.Begin();
-            }
-        }
-
-        private void Rewind_Click(object sender, RoutedEventArgs e)
-        {
-            _canvasController.SimulationTime.Restart();
         }
 
         public GamificationCanvasController Initialize(DifficultyOption difficulty, ISoundPlayer soundPlayer)

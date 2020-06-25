@@ -20,10 +20,6 @@ namespace Physics.HomogenousParticle.Rendering
     {
         private const int RelativeRadiusToMinDimension = 3;
 
-        private const int InductionDistance = 40;
-
-
-
         private PerpendicularMotionSetup _motion;
         private PerpendicularPhysicsService _physicsService;
         private Vector2 _currentMotionPosition;
@@ -119,40 +115,15 @@ namespace Physics.HomogenousParticle.Rendering
 
         private void DrawInductionDirection(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+            var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_motion.Color);
             if (_motion.InductionOrientation == PerpendicularInductionOrientation.IntoPaper)
             {
-                DrawInductionGrid(sender, args, DrawInductionCross);
+                _controller.DrawInductionGrid(sender, args, _controller.DrawInductionCross, 0, 0, (int)sender.Size.Width, (int)sender.Size.Height, color);
             }
             else
             {
-                DrawInductionGrid(sender, args, DrawInductionDot);
+                _controller.DrawInductionGrid(sender, args, _controller.DrawInductionDot, 0, 0, (int)sender.Size.Width, (int)sender.Size.Height, color);
             }
-        }
-
-        private void DrawInductionGrid(
-            ICanvasAnimatedControl sender,
-            CanvasAnimatedDrawEventArgs args,
-            Action<ICanvasAnimatedControl, CanvasAnimatedDrawEventArgs, Vector2, Color> drawPoint)
-        {
-            var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_motion.Color);
-            for (var y = InductionDistance / 2; y < sender.Size.Height; y += InductionDistance)
-            {
-                for (int x = InductionDistance / 2; x < sender.Size.Width; x += InductionDistance)
-                {
-                    drawPoint(sender, args, new Vector2(x, y), Colors.Gray);
-                }
-            }
-        }
-
-        private void DrawInductionCross(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Vector2 point, Color color)
-        {
-            args.DrawingSession.DrawLine(point - new Vector2(0, 5), point + new Vector2(0, 5), color);
-            args.DrawingSession.DrawLine(point - new Vector2(5, 0), point + new Vector2(5, 0), color);
-        }
-
-        private void DrawInductionDot(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Vector2 point, Color color)
-        {
-            args.DrawingSession.DrawCircle(point, 2, color);
         }
 
         private Vector2 CalculateMotionPosition(PerpendicularMotionSetup motionSetup, float radius)

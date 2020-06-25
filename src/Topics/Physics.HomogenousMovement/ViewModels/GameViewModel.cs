@@ -140,7 +140,7 @@ namespace Physics.HomogenousMovement.ViewModels
             {
                 treeDistances.Add(_randomizer.Next(0, castleDistance));
             }
-            CurrentGame = new GameSetup(castleDistance, _randomizer.Next(20, castleDistance), treeDistances.ToArray());
+            CurrentGame = new GameSetup(castleDistance, _randomizer.Next(50, castleDistance - 50), treeDistances.ToArray());
             await _gameController.StartNewGameAsync(CurrentGame);
             _gameController.CannonAngle = Angle;
         }

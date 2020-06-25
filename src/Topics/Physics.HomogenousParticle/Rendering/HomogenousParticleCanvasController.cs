@@ -8,12 +8,14 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Physics.Shared.UI.Rendering;
 using Color = Windows.UI.Color;
+using Windows.UI;
 
 namespace Physics.HomogenousParticle.Rendering
 {
     public class HomogenousParticleCanvasController : BaseCanvasController
     {
         private const int ArrowDistance = 80;
+        private const int InductionDistance = 40;
 
         protected int SimulationPadding { get; set; } = 52;
 
@@ -229,6 +231,36 @@ namespace Physics.HomogenousParticle.Rendering
             var y1 = (float)a * x1 + (float)b;
 
             return new Line2d(new Point2d(point.X, point.Y), new Point2d(x1, y1));
+        }
+
+        internal void DrawInductionGrid(
+            ICanvasAnimatedControl sender,
+            CanvasAnimatedDrawEventArgs args,
+            Action<ICanvasAnimatedControl, CanvasAnimatedDrawEventArgs, Vector2, Color> drawPoint,
+            int startX,
+            int startY,
+            int endX,
+            int endY,
+            Color color)
+        {
+            for (var y = startY + InductionDistance / 2; y < endY; y += InductionDistance)
+            {
+                for (int x = startX + InductionDistance / 2; x < endX; x += InductionDistance)
+                {
+                    drawPoint(sender, args, new Vector2(x, y), Colors.Gray);
+                }
+            }
+        }
+
+        internal void DrawInductionCross(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Vector2 point, Color color)
+        {
+            args.DrawingSession.DrawLine(point - new Vector2(0, 5), point + new Vector2(0, 5), color);
+            args.DrawingSession.DrawLine(point - new Vector2(5, 0), point + new Vector2(5, 0), color);
+        }
+
+        internal void DrawInductionDot(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args, Vector2 point, Color color)
+        {
+            args.DrawingSession.DrawCircle(point, 2, color);
         }
     }
 }
