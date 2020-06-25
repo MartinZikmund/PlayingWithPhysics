@@ -100,7 +100,7 @@
                                     </RadioButton.Content>
                                 </RadioButton>
 
-                                <RadioButton>
+                                <RadioButton Visibility="{x:Bind Model.RadiationVisibility}">
                                     <RadioButton.Content>
                                         <TextBlock Text="{extensions:Localize Key=Radiation}" />
                                     </RadioButton.Content>

@@ -187,13 +187,13 @@
     <value>Orientace indukčních čar (v °)</value>
   </data>
   <data name="ParallelInput_MovementDirection" xml:space="preserve">
-    <value>Směr pohybu</value>
+    <value>Směr pohybu vůči indukčním čarám</value>
   </data>
   <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
     <value>(v</value>
   </data>
   <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
-    <value>Přímý</value>
+    <value>Stejný</value>
   </data>
   <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
     <value>Opačný</value>

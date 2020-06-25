@@ -25,7 +25,6 @@
 
     <DataTemplate x:Key="ZeroVariantStateDataTemplate" x:DataType="state:ZeroVariantStateViewModel">
         <Grid>
-            <TextBlock Text="{ex:Localize Key=ZeroVariant_StationaryExplanation}" TextWrapping="Wrap" />
         </Grid>
     </DataTemplate>
 
@@ -39,22 +38,17 @@
         <StackPanel Spacing="8">
             <TextBlock Text="{ex:Localize Key=PerpendicularVariant_SimulationNotice}" TextWrapping="Wrap" />
             <TextBlock>
-                <Run FontWeight="Bold" Text="T:" />
-                <Run Text="{x:Bind T, Mode=OneWay}" />
-                <Run Text="s" />
-            </TextBlock>
-            <TextBlock>
                 <Run FontWeight="Bold" Text="ω:" />
                 <Run Text="{x:Bind Omega, Mode=OneWay}" />
                 <Run Text="s" /><Run Text="&#8315;" /><Run Text="1" Typography.Variants="Superscript" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Velocity:" />
+                <Run FontWeight="Bold" Text="v:" />
                 <Run Text="{x:Bind Velocity, Mode=OneWay}" />
                 <Run Text="m/s" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Radius:" />
+                <Run FontWeight="Bold" Text="r:" />
                 <Run Text="{x:Bind Radius, Mode=OneWay}" />
                 <Run Text="m" />
             </TextBlock>

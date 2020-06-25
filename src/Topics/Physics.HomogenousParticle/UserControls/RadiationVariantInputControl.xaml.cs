@@ -26,7 +26,7 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += RadiationVariantInputControl_DataContextChanged;
-            VelocityNumberBox.SetupFormatting(smallChange: 0.1);
+            //VelocityNumberBox.SetupFormatting(smallChange: 0.1);
         }
 
         private void RadiationVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

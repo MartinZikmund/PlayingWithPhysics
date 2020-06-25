@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Popups;
 
 namespace Physics.HomogenousParticle.ViewModels.Inputs
 {
@@ -13,6 +14,11 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
+            if (ChargeMultiple == 0)
+            {
+                await new MessageDialog("Násebek nesmí být 0").ShowAsync();
+                return null;
+            }
             return new PerpendicularMotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
         }
 

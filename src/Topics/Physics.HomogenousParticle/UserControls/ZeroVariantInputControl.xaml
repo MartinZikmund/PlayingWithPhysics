@@ -38,8 +38,13 @@
         </Grid.ChildrenTransitions>
         <TextBlock
             Grid.Row="0"
-            Grid.Column="0"
-            Text="Náboj částice q" />
+            Grid.Column="0">
+            <Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
+            <Run FontWeight="Bold" Text="q" />
+            <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
+            <Run Text="1.6*10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
+            <Run Text="[C]"/>
+        </TextBlock>
         <winui:NumberBox
             x:Name="ChargeNumberBox"
             Grid.Row="0"
@@ -50,8 +55,10 @@
 
         <TextBlock
             Grid.Row="1"
-            Grid.Column="0"
-            Text="Orientace indukčních čar B" />
+            Grid.Column="0">
+            <Run Text="Orientace indukčních čar" />
+            <Run FontWeight="Bold" Text="B" />
+        </TextBlock>
         <winui:NumberBox
             x:Name="OrientationNumberBox"
             Grid.Row="1"

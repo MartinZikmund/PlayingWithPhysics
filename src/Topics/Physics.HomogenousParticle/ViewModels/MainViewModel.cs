@@ -8,6 +8,7 @@ using Physics.HomogenousParticle.ViewModels.Inputs;
 using Physics.HomogenousParticle.ViewModels.State;
 using Physics.HomogenousParticle.Views;
 using Physics.HomongenousParticle.Logic.PhysicsServices;
+using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.ViewModels;
 using System;
@@ -35,10 +36,16 @@ namespace Physics.HomogenousParticle.ViewModels
         {
         }
 
-        public MainViewModel()
+        public MainViewModel(DifficultyOption difficulty)
         {
             OnSelectedVariantIndexChanged();
+            if (difficulty == DifficultyOption.Easy)
+            {
+                RadiationVisibility = Visibility.Collapsed;
+            }
         }
+
+        public Visibility RadiationVisibility { get; set; }
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
