@@ -86,6 +86,10 @@ namespace Physics.HomogenousMovement.Rendering
             await RunOnGameLoopAsync(() =>
             {
                 _game = game;
+                _motions = Array.Empty<MotionInfo>();
+                _trajectories = Array.Empty<TrajectoryData>();
+                Pause();
+                Restart();
                 CalculateMaxima();
             });
         }
