@@ -129,16 +129,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 maxY = Math.Max(trajectory.MaxY, maxY);
             }
-
-            // adjust maximum to make measures square
-            if ((maxX - minX) > (maxY - minY))
-            {
-                maxY = minY + (maxX - minX);
-            }
-            else
-            {
-                maxX = minX + (maxY - minY);
-            }
+            
             _simulationBoundsInMeters = new RectangleF(minX, minY, maxX - minX, maxY - minY);
         }
 
@@ -301,7 +292,8 @@ namespace Physics.HomogenousMovement.Rendering
         {
             var drawing = args.DrawingSession;
             drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top, YMeasureColor);
-            var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Height);
+
+            var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Height, _simulationBoundsInMeters.Width);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Height / jumpSize);
             var meters = jumps * jumpSize;
             for (float currentHeight = jumpSize; meters - currentHeight > -0.01; currentHeight += jumpSize)
@@ -329,7 +321,8 @@ namespace Physics.HomogenousMovement.Rendering
         {
             var drawing = args.DrawingSession;
             drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, XMeasureColor);
-            var jumpSize = CalculateJumpSizeForAxis(_simulationBoundsInMeters.Width);
+
+            var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Width, _simulationBoundsInMeters.Height);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;
             for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
@@ -350,8 +343,25 @@ namespace Physics.HomogenousMovement.Rendering
             }
         }
 
+        private float CalculateOptimalJumpSize(float requestedAxis, float otherAxis)
+        {
+            var requestedJump = CalculateJumpSizeForAxis(requestedAxis);
+            var otherJump = CalculateJumpSizeForAxis(otherAxis);
+
+            if ( Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
+            {
+                //too big difference between axis, draw independently
+                return requestedJump;
+            }
+            return Math.Min(requestedJump, otherJump);
+        }
+
         private float CalculateJumpSizeForAxis(float range)
         {
+            if (range == 0)
+            {
+                return 1f;
+            }
             if (range <= 1)
             {
                 return 0.1f;
@@ -374,7 +384,7 @@ namespace Physics.HomogenousMovement.Rendering
             }
             else if (range <= 50)
             {
-                return 10;
+                return 5f;
             }
             else
             {

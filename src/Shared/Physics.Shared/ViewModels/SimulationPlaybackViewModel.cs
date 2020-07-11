@@ -36,9 +36,9 @@ namespace Physics.Shared.UI.ViewModels
 
         public bool IsPaused => _canvasController?.IsPaused ?? false;
 
-        public float JumpSize { get; set; }
+        public float JumpSize { get; set; } = 0.5f;
 
-        public float PlaybackSpeed { get; set; }
+        public float PlaybackSpeed { get; set; } = 1.0f;
 
         private void JumpBack() => _canvasController.Rewind(JumpSize);
 

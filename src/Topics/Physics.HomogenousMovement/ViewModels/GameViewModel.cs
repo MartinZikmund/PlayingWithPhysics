@@ -29,7 +29,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private IGameViewInteraction _gameViewInteraction;
         private GamificationCanvasController _gameController;
 
-        private float _v0 = 20;
+        private float _v0 = 50;
         private float _angle = 45;
         private float _gravity = GravityConstants.Earth;
 
@@ -118,6 +118,8 @@ namespace Physics.HomogenousMovement.ViewModels
                     Angle,
                     Gravity);
             Motions.Add(new MotionInfoViewModel(projectileMotion) { Label = ResourceLoader.GetForCurrentView().GetString("Fire") });
+
+            SimulationPlayback.PlayCommand.Execute(null);
             await StartSimulationAsync();
         }
 
