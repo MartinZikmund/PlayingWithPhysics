@@ -154,10 +154,10 @@
     <value>Choose variant</value>
   </data>
   <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
-    <value>From paper</value>
+    <value>From display</value>
   </data>
   <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
-    <value>Into paper</value>
+    <value>Into display</value>
   </data>
   <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
     <value>Particle charge</value>

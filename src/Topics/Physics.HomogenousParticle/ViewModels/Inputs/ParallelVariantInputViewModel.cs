@@ -29,7 +29,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
                 colorSerialized);
         }
 
-        public float Velocity { get; set; } // 10^n: 2<=n<=6
+        public float Velocity { get; set; } = 2; // 10^n: 2<=n<=6
 
         public ParallelVariantOrientation[] VariantOrientations { get; } = new ParallelVariantOrientation[]
         {

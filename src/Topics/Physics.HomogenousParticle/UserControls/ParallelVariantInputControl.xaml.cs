@@ -27,7 +27,7 @@ namespace Physics.HomogenousParticle.UserControls
             this.InitializeComponent();
             DataContextChanged += ParalllelVariantInputControl_DataContextChanged;
             ChargeNumberBox.SetupFormatting(smallChange: 1);
-            VelocityNumberBox.SetupFormatting(smallChange: 1);
+            VelocityNumberBox.SetupFormatting(smallChange: 1, integerDigits: 1, fractionDigits: 0, increment: 1);
             OrientationNumberBox.SetupFormatting();
         }
 
