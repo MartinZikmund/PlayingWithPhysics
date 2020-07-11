@@ -26,6 +26,7 @@ using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Physics.Shared.Services.Preferences;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels;
+using Windows.UI.Popups;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
@@ -213,6 +214,11 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
         {
+            if (Motions.Count == 5)
+            {
+                await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Zkopírování se nezdařilo.").ShowAsync();
+                return;
+            }
             var duplicateMotion = arg.MotionInfo.Clone();
             duplicateMotion.Label =
                 $"{duplicateMotion.Label} ({ResourceLoader.GetForCurrentView().GetString("Copy")})";
