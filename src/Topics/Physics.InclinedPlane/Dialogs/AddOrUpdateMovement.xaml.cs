@@ -25,7 +25,7 @@ namespace Physics.InclinedPlane.Dialogs
         {
             this.InitializeComponent();
             Model = viewModel;
-            SetupNumberBoxFormattings();
+            //SetupNumberBoxFormattings();
         }
 
         private void SetupNumberBoxFormattings()
