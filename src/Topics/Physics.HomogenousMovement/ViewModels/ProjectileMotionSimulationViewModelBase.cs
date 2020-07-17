@@ -185,16 +185,17 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task AddTrajectoryAsync()
         {
+            if (Motions.Count >= 5)
+            {
+                await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Vytvoření pohybu se nezdařilo.").ShowAsync();
+                return;
+            }
             var dialogViewModel = new AddOrUpdateMotionViewModel(Difficulty, Motions.Select(m => m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
-            {
+            {                
                 Motions.Add(new MotionInfoViewModel(dialogViewModel.ResultMotionInfo));
-                if (Motions.Count == 5)
-                {
-                    AddTrajectoryButtonEnabled = false;
-                }
                 await StartSimulationAsync();
             }
         }
@@ -214,7 +215,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
         {
-            if (Motions.Count == 5)
+            if (Motions.Count >= 5)
             {
                 await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Zkopírování se nezdařilo.").ShowAsync();
                 return;
