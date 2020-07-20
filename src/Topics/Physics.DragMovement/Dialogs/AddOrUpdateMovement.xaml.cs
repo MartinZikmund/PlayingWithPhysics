@@ -1,4 +1,6 @@
-﻿using Physics.DragMovement.ViewModels;
+﻿using CSharpMath.Atom.Atoms;
+using Physics.DragMovement.ViewModels;
+using Physics.Shared.UI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +26,19 @@ namespace Physics.DragMovement.Dialogs
         {
             this.InitializeComponent();
             Model = viewModel;
+            SetupNumberBoxFormattings();
+        }
+
+        private void SetupNumberBoxFormattings()
+        {
+            StartXNumberBox.SetupFormatting(fractionDigits: 2);
+            StartYNumberBox.SetupFormatting(fractionDigits: 2);
+            MassNumberBox.SetupFormatting(fractionDigits: 2);
+            AreaNumberBox.SetupFormatting(fractionDigits: 2);
+            HateCoefficientNumberBox.SetupFormatting(fractionDigits: 2);
+            HateCoefficientNumberBox.SmallChange = 0.1;
+            SpeedNumberBox.SetupFormatting(fractionDigits: 2);
+            ElevationAngleNumberBox.SetupFormatting(fractionDigits: 2);
         }
 
         public AddOrUpdateMotionViewModel Model { get; }

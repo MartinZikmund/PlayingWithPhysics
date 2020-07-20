@@ -141,6 +141,9 @@
   <data name="AppName1" xml:space="preserve">
     <value>Playing with Physics: Projectile motions</value>
   </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
   <data name="BreakDownMotions" xml:space="preserve">
     <value>Break down motions</value>
   </data>
@@ -219,6 +222,9 @@
   <data name="EditMotion1" xml:space="preserve">
     <value>Edit motion</value>
   </data>
+  <data name="ElevationAngle" xml:space="preserve">
+    <value>Elevation angle</value>
+  </data>
   <data name="Fire" xml:space="preserve">
     <value>Fire!</value>
   </data>
@@ -242,6 +248,9 @@
   </data>
   <data name="Gravity1" xml:space="preserve">
     <value>Gravity</value>
+  </data>
+  <data name="HateCoefficient" xml:space="preserve">
+    <value>Hate coefficient</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Horizontal throw</value>

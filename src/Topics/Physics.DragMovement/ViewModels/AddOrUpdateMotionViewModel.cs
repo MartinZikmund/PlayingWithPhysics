@@ -105,6 +105,24 @@ namespace Physics.DragMovement.ViewModels
                 return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
             }
         }
+        
+        public Visibility IsSpeedEnabled
+        {
+            get
+            {
+                bool isAdvanced = (Difficulty == DifficultyOption.Advanced);
+                return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+        
+        public Visibility IsElevationAngleEnabled
+        {
+            get
+            {
+                bool isAdvanced = (Difficulty == DifficultyOption.Advanced);
+                return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         public int SelectedMotionIndex { get; set; }
 

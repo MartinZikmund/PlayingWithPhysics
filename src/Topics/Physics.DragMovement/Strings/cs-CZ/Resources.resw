@@ -129,6 +129,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby tělesa v odporujícím prostředí</value>
   </data>
+  <data name="Area" xml:space="preserve">
+    <value>Plocha průřezu tělesa</value>
+  </data>
   <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
     <value>Chybný formát vstupních hodnot</value>
   </data>
@@ -171,17 +174,23 @@
   <data name="EditMotion" xml:space="preserve">
     <value>Upravit vrh</value>
   </data>
+  <data name="ElevationAngle" xml:space="preserve">
+    <value>Elevační úhel</value>
+  </data>
   <data name="Fire" xml:space="preserve">
     <value>Pal!</value>
   </data>
   <data name="FreeFall" xml:space="preserve">
-    <value>Volný pád</value>
+    <value>Volně puštěné těleso</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
   <data name="Gravity" xml:space="preserve">
     <value>Tíhové zrychlení</value>
+  </data>
+  <data name="HateCoefficient" xml:space="preserve">
+    <value>Součinitel odporu</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Vodorovný vrh</value>
@@ -250,7 +259,7 @@
     <value>Zobrazit tabulku hodnot</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Rychlost</value>
+    <value>Počáteční rychlost</value>
   </data>
   <data name="StudyText" xml:space="preserve">
     <value>Studijní text</value>

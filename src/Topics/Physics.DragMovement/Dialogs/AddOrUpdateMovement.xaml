@@ -38,7 +38,7 @@
                 </winui:RadioButtons.Transitions>
                 <winui:RadioButtons.Resources>
                     <Style TargetType="RadioButton">
-                        <Setter Property="Padding" Value="8,0,0,0" />
+                        <Setter Property="Padding" Value="-8,6,0,8" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                     </Style>
@@ -91,6 +91,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -98,29 +99,13 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" VerticalAlignment="Center">
-                    <Run Text="{extensions:Localize Key=Speed}" />
-                    <Run>v</Run><Run Typography.Variants="Subscript">0</Run>
-                    <Run>(m/s)</Run>
-                </TextBlock>
-
-                <winui:NumberBox
-                    x:Name="V0NumberBox"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    VerticalAlignment="Bottom"
-                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
-                    Maximum="2000"
-                    Minimum="0"
-                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                <TextBlock Grid.Row="1" VerticalAlignment="Center">
                     <Run Text="{extensions:Localize Key=Origin}" />
-                    <Run Text="x" /><Run Typography.Variants="Subscript">0</Run>
+                    <Run FontWeight="Bold" Text="x" /><Run FontWeight="Bold" Typography.Variants="Subscript">0</Run>
                     (m)</TextBlock>
 
                 <winui:NumberBox
                     x:Name="StartXNumberBox"
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsX0Enabled, Mode=TwoWay}"
@@ -128,14 +113,14 @@
                     Minimum="0"
                     Value="{x:Bind Model.X0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                <TextBlock Grid.Row="2" VerticalAlignment="Center">
+                <TextBlock Grid.Row="1" VerticalAlignment="Center">
                     <Run Text="{extensions:Localize Key=Origin}" />
-                    <Run Text="y" /><Run Typography.Variants="Subscript">0</Run>
+                    <Run FontWeight="Bold" Text="y" /><Run FontWeight="Bold" Typography.Variants="Subscript">0</Run>
                     (m)</TextBlock>
 
                 <winui:NumberBox
                     x:Name="StartYNumberBox"
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsY0Enabled, Mode=TwoWay}"
@@ -143,14 +128,15 @@
                     Minimum="0"
                     Value="{x:Bind Model.Y0, Mode=TwoWay}" />
 
-                <TextBlock Grid.Row="3" VerticalAlignment="Center">
+                <TextBlock Grid.Row="2" VerticalAlignment="Center">
                     <Run Text="{extensions:Localize Key=Mass}" />
+                    <Run FontWeight="Bold" Text="m" />
                     <Run Text="(kg)" />
                 </TextBlock>
 
                 <winui:NumberBox
                     x:Name="MassNumberBox"
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
@@ -158,59 +144,76 @@
                     Minimum="0.0001"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
-                <TextBlock Grid.Row="4" VerticalAlignment="Center">
-                    <Run Text="{extensions:Localize Key=Angle}" />
-                    <Run Text="(°)" />
+                <TextBlock Grid.Row="3" VerticalAlignment="Center">
+                    <Run Text="{extensions:Localize Key=Area}" />
+                    <Run FontWeight="Bold" Text="S"/>
+                    <Run Text="(m" /><Run Text="2" Typography.Variants="Superscript" /><Run Text=")" />
                 </TextBlock>
 
                 <winui:NumberBox
-                    x:Name="AngleNumberBox"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    IsEnabled="{x:Bind Model.IsAngleEnabled, Mode=TwoWay}"
-                    Maximum="90"
-                    Minimum="-90"
-                    Value="{x:Bind Model.Angle, Mode=TwoWay}" />
-
-                <TextBlock Grid.Row="5" VerticalAlignment="Center">
-                    <Run Text="{extensions:Localize Key=Gravity}" />
-                    <Run Text="g (m/s" /><Run Text="2" Typography.Variants="Superscript" /><Run Text=")" />
-
-                </TextBlock>
-
-                <winui:NumberBox
-                    x:Name="GravityNumberBox"
-                    Grid.Row="5"
+                    x:Name="AreaNumberBox"
+                    Grid.Row="3"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     Maximum="50"
-                    Minimum="1"
+                    Minimum="0.001"
                     Value="{x:Bind Model.Gravity, Mode=TwoWay}" />
 
-                <TextBlock
+                <TextBlock Grid.Row="4" VerticalAlignment="Center">
+                    <Run Text="{extensions:Localize Key=HateCoefficient}" />
+                    <Run FontWeight="Bold" Text="C" />
+                </TextBlock>
+
+                <winui:NumberBox
+                    x:Name="HateCoefficientNumberBox"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Maximum="50"
+                    Minimum="0.001"
+                    Value="{x:Bind Model.Gravity, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="5" VerticalAlignment="Center" Visibility="{x:Bind Model.IsSpeedEnabled, Mode=OneWay}">
+                    <Run Text="{extensions:Localize Key=Speed}" />
+                    <Run FontWeight="Bold">v</Run><Run FontWeight="Bold" Typography.Variants="Subscript">0</Run>
+                    <Run>(m/s)</Run>
+                </TextBlock>
+
+                <winui:NumberBox
+                    Visibility="{x:Bind Model.IsSpeedEnabled, Mode=OneWay}"
+                    x:Name="SpeedNumberBox"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    VerticalAlignment="Bottom"
+                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
+                    Maximum="2000"
+                    Minimum="0"
+                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Grid.Row="6" VerticalAlignment="Center" Visibility="{x:Bind Model.IsElevationAngleEnabled, Mode=OneWay}">
+                    <Run Text="{extensions:Localize Key=ElevationAngle}" />
+                    <Run FontWeight="Bold" Text="&#x3B1;"/>
+                    <Run Text="(&#xB0;)"/>
+                </TextBlock>
+
+                <winui:NumberBox
+                    Visibility="{x:Bind Model.IsElevationAngleEnabled, Mode=OneWay}"
+                    x:Name="ElevationAngleNumberBox"
                     Grid.Row="6"
+                    Grid.Column="1"
+                    VerticalAlignment="Bottom"
+                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
+                    Maximum="2000"
+                    Minimum="0"
+                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock
+                    Grid.Row="7"
                     Grid.Column="0"
                     VerticalAlignment="Center"
                     Text="{extensions:Localize Key=Color}" />
-                <!--<Button Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                    <Button.Flyout>
-                        <Flyout>
-                            <ColorPicker Color="{x:Bind Model.Color, Mode=TwoWay}">
-                            </ColorPicker>
-                        </Flyout>
-                    </Button.Flyout>
-                    <StackPanel Orientation="Horizontal">
-                        <Border CornerRadius="12" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Border.Background>
-                                <SolidColorBrush Color="{x:Bind Model.Color, Mode=TwoWay}" />
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Margin="8,0,0,0" Text="Vyber barvu"></TextBlock>
-                    </StackPanel>
-                </Button>-->
                 <GridView
-                    Grid.Row="7"
+                    Grid.Row="8"
                     Grid.ColumnSpan="2"
                     ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
                     SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
@@ -224,7 +227,6 @@
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
-
             </Grid>
         </StackPanel>
     </ScrollViewer>
