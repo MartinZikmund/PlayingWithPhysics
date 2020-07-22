@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="Physics.DragMovement.Views.ValuesTablePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.DragMovement.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:toolkitPrimitives="using:Microsoft.Toolkit.Uwp.UI.Controls.Primitives"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <toolkit:DataGrid
+            x:Name="ValuesTable"
+            Padding="12"
+            AutoGenerateColumns="True"
+            AutoGeneratingColumn="ValuesTable_AutoGeneratingColumn"
+            ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}"
+            FrozenColumnCount="1"
+            IsReadOnly="True"
+            ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
+        <TextBlock
+            Grid.Row="1"
+            Margin="1,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Text="{extensions:Localize Key=IntervalForTable}" />
+        <controls:NumberBox
+            x:Name="TimeIntervalNumberBox2"
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Minimum="0.1"
+            SmallChange="0.1"
+            SpinButtonPlacementMode="Inline"
+            Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            Spacing="4">
+            <Button
+                Click="ButtonBase_OnClick"
+                Content="{extensions:Localize Key=ShowHideZeroes}"
+                Visibility="{x:Bind Model.ButtonVisibility, Mode=OneWay}" />
+            <Button Click="{x:Bind Model.CopyToClipboard}" Content="{extensions:Localize Key=CopyToClipboard}" />
+        </StackPanel>
+    </Grid>
+</Page>
