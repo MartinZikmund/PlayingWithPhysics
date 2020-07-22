@@ -37,6 +37,10 @@ namespace Physics.HomogenousParticle.Views
         public MainView()
         {
             this.InitializeComponent();
+            InkCanvas.InkPresenter.InputDeviceTypes =
+             Windows.UI.Core.CoreInputDeviceTypes.Mouse |
+             Windows.UI.Core.CoreInputDeviceTypes.Pen |
+             Windows.UI.Core.CoreInputDeviceTypes.Touch;
             this.Loaded += MainView_Loaded;
             DataContextChanged += MainView_DataContextChanged;            
             if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.ThemeShadow"))
