@@ -267,4 +267,10 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Can't render more than 5 motions at once. Plese remove one.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Can't add another motion</value>
+  </data>
 </root>

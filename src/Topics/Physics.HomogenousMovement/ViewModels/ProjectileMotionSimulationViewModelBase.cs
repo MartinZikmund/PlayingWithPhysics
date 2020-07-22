@@ -185,9 +185,10 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task AddTrajectoryAsync()
         {
+            var resourceLoader = ResourceLoader.GetForCurrentView();
             if (Motions.Count >= 5)
             {
-                await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Vytvoření pohybu se nezdařilo.").ShowAsync();
+                await new MessageDialog(resourceLoader.GetString("TooManyMotionsDescription"), resourceLoader.GetString("TooManyMotionsTitle")).ShowAsync();
                 return;
             }
             var dialogViewModel = new AddOrUpdateMotionViewModel(Difficulty, Motions.Select(m => m.Label).ToArray());
@@ -215,14 +216,15 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task DuplicateTrajectoryAsync(MotionInfoViewModel arg)
         {
+            var resourceLoader = ResourceLoader.GetForCurrentView();
             if (Motions.Count >= 5)
             {
-                await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Zkopírování se nezdařilo.").ShowAsync();
+                await new MessageDialog(resourceLoader.GetString("TooManyMotionsDescription"), resourceLoader.GetString("TooManyMotionsTitle")).ShowAsync();
                 return;
             }
             var duplicateMotion = arg.MotionInfo.Clone();
             duplicateMotion.Label =
-                $"{duplicateMotion.Label} ({ResourceLoader.GetForCurrentView().GetString("Copy")})";
+                $"{duplicateMotion.Label} ({resourceLoader.GetString("Copy")})";
             var dialogViewModel = new AddOrUpdateMotionViewModel(duplicateMotion, Difficulty, Motions.Select(m => m.Label).ToArray());
             var dialog = new AddOrUpdateMotionDialog(dialogViewModel);
             var result = await dialog.ShowAsync();

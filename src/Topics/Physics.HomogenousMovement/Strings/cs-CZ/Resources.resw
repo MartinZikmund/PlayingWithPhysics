@@ -273,4 +273,10 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Není možné vykreslovat více než 5 pohybů najednou.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Vytvoření pohybu se nezdařilo.</value>
+  </data>
 </root>
