@@ -174,8 +174,14 @@
   <data name="Drift_SteelAgateOiled" xml:space="preserve">
     <value>Ocel – achát (olej)</value>
   </data>
+  <data name="Drift_SteelIce" xml:space="preserve">
+    <value>Ocel – led</value>
+  </data>
   <data name="Drift_SteelSilicaDry" xml:space="preserve">
     <value>Ocel – achát (olej)</value>
+  </data>
+  <data name="Drift_StoneIce" xml:space="preserve">
+    <value>Kámen – led (Curling)</value>
   </data>
   <data name="Drift_TeflonTeflon" xml:space="preserve">
     <value>Teflon – teflon</value>
@@ -188,6 +194,9 @@
   </data>
   <data name="Drift_VeryWellPolishedSurfaces" xml:space="preserve">
     <value>Velmi dobře vyleštěné plochy</value>
+  </data>
+  <data name="Drift_WoodSnow" xml:space="preserve">
+    <value>Dřevo – led (sníh)</value>
   </data>
   <data name="Drift_WoodStone" xml:space="preserve">
     <value>Dřevo – kámen</value>
@@ -244,10 +253,10 @@
     <value>Venuše – rovník</value>
   </data>
   <data name="Horizontal_Disable" xml:space="preserve">
-    <value>S dojezdem</value>
+    <value>Bez dojezdu</value>
   </data>
   <data name="Horizontal_Enable" xml:space="preserve">
-    <value>Bez dojezdu</value>
+    <value>S dojezdem</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Úhel</value>

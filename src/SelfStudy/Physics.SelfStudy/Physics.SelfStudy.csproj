@@ -185,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CSharpMath.SkiaSharp">
-      <Version>0.4.2-ci-d835e936d8914035590944da508e889a9e5b196f</Version>
+      <Version>0.4.2</Version>
     </PackageReference>
     <PackageReference Include="Fody">
       <Version>6.2.0</Version>

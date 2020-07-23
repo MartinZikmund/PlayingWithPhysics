@@ -136,7 +136,7 @@
     <value>Angle</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Projectile motions</value>
+    <value>Playing with Physics: Drag</value>
   </data>
   <data name="AppName1" xml:space="preserve">
     <value>Playing with Physics: Projectile motions</value>
@@ -349,7 +349,7 @@
     <value>Select a motion to see current values.</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Projectile motions</value>
+    <value>Drag</value>
   </data>
   <data name="ShortAppName1" xml:space="preserve">
     <value>Projectile motions</value>

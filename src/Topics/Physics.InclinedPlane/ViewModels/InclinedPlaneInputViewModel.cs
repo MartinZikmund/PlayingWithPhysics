@@ -38,13 +38,15 @@ namespace Physics.InclinedPlane.ViewModels
             new DriftCoefficientDefault(Localizer.Instance["Drift_WoodWoodDry"], 0.4f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_WoodWoodSoaped"], 0.2f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_WoodStone"], 0.4f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_WoodSnow"], 0.035f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_SteelAgateDry"], 0.2f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_SteelAgateOiled"], 0.11f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_SteelSilicaDry"], 0.5f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_SteelIce"], 0.027f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_MetalOakDry"], 0.55f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_MetalOakWet"], 0.25f),
-            new DriftCoefficientDefault(Localizer.Instance["Drift_MetalMetalDry"], 0.17f),
-            new DriftCoefficientDefault(Localizer.Instance["Drift_MetalMetalWet"], 0.3f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_MetalMetalDry"], 0.3f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_MetalMetalWet"], 0.17f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_MetalMetalOiled"], 0.05f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_SkinOak"], 0.32f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_SkinMetalDry"], 0.56f),
@@ -55,6 +57,8 @@ namespace Physics.InclinedPlane.ViewModels
             new DriftCoefficientDefault(Localizer.Instance["Drift_TeflonTeflon"], 0.07f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_NylonNylon"], 0.25f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_VeryWellPolishedSurfaces"], 0.03f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_StoneIce"], 0.03f),
+
         };
 
         public ObservableCollection<GravityDefault> GravityDefaults { get; } = new ObservableCollection<GravityDefault>()

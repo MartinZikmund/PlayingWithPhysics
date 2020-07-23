@@ -171,8 +171,14 @@
   <data name="Drift_SteelAgateOiled" xml:space="preserve">
     <value>Steel – agate (oiled)</value>
   </data>
+  <data name="Drift_SteelIce" xml:space="preserve">
+    <value>Steel – ice</value>
+  </data>
   <data name="Drift_SteelSilicaDry" xml:space="preserve">
     <value>Steel – agate (oiled)</value>
+  </data>
+  <data name="Drift_StoneIce" xml:space="preserve">
+    <value>Stone – ice (Curling)</value>
   </data>
   <data name="Drift_TeflonTeflon" xml:space="preserve">
     <value>Teflon – teflon</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="Drift_VeryWellPolishedSurfaces" xml:space="preserve">
     <value>Very well polished surfaces</value>
+  </data>
+  <data name="Drift_WoodSnow" xml:space="preserve">
+    <value>Wood – ice (snow)</value>
   </data>
   <data name="Drift_WoodStone" xml:space="preserve">
     <value>Wood – stone</value>
