@@ -188,14 +188,14 @@ namespace Physics.Shared.UI.Rendering
         {
             if (range <= 1)
             {
-                var upperBound = (float)Math.Ceiling(range);
+                var upperBound = range;
                 var currentMultiplier = 1.0;
                 while (true)
                 {
                     foreach (var allowedJumpSize in _allowedScaleJumps.Reverse())
                     {
                         var scaleSize = allowedJumpSize * currentMultiplier;
-                        if (upperBound / scaleSize > 20)
+                        if (upperBound / scaleSize > 10)
                         {
                             return scaleSize;
                         }

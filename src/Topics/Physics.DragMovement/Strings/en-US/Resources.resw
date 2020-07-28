@@ -130,7 +130,7 @@
     <value>Angle</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Projectile motions</value>
+    <value>Playing with Physics: Drag</value>
   </data>
   <data name="Area" xml:space="preserve">
     <value>Area</value>
@@ -256,7 +256,7 @@
     <value>Select a motion to see current values.</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Projectile motions</value>
+    <value>Drag</value>
   </data>
   <data name="ShowHideIrrelevantColumns" xml:space="preserve">
     <value>Show/Hide Irrelevant Columns</value>

@@ -29,15 +29,17 @@ namespace Physics.InclinedPlane.Rendering
 
         public void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-            var renderTarget = new CanvasRenderTarget(sender, (float)sender.Size.Width - 2 * _padding, (float)sender.Size.Height - _padding, 96.0f);
-            using (var drawingSession = renderTarget.CreateDrawingSession())
+            using (var renderTarget = new CanvasRenderTarget(sender, (float)sender.Size.Width - 2 * _padding, (float)sender.Size.Height - _padding, 96.0f))
             {
-                drawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
-                DrawFloor(renderTarget, drawingSession);
-                DrawInclinedPlane(renderTarget, drawingSession);
-                DrawObject(renderTarget, drawingSession);
+                using (var drawingSession = renderTarget.CreateDrawingSession())
+                {
+                    drawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
+                    DrawFloor(renderTarget, drawingSession);
+                    DrawInclinedPlane(renderTarget, drawingSession);
+                    DrawObject(renderTarget, drawingSession);
+                }
+                args.DrawingSession.DrawImage(renderTarget, new Vector2(_padding, _padding), renderTarget.Bounds);
             }
-            args.DrawingSession.DrawImage(renderTarget, new Vector2(_padding, _padding), renderTarget.Bounds);
         }
 
         private void DrawObject(CanvasRenderTarget target, CanvasDrawingSession session)

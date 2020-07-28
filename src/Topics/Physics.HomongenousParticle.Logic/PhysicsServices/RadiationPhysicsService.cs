@@ -59,7 +59,8 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
             {
                 RadiationType.Alpha => ComputeParticleCoordinate(seconds, Phase1X, AlphaPhase2X, AlphaPhase3X, ComputeAlphaPhase3StartTime),
                 RadiationType.BetaPlus => ComputeParticleCoordinate(seconds, Phase1X, BetaPlusPhase2X, BetaPlusPhase3X, ComputeBetaPhase3StartTime),
-                RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1X, BetaMinusPhase2X, BetaMinusPhase3X, ComputeBetaPhase3StartTime),                
+                RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1X, BetaMinusPhase2X, BetaMinusPhase3X, ComputeBetaPhase3StartTime),     
+                RadiationType.Gamma => ComputeParticleCoordinate(seconds, GammaX, GammaX, GammaX, () => 0),
                 _ => ComputeParticleCoordinate(seconds, NeutronX, NeutronX, NeutronX, ()=> 0),                
             };
 
@@ -69,7 +70,8 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
                 RadiationType.Alpha => ComputeParticleCoordinate(seconds, Phase1Y, AlphaPhase2Y, AlphaPhase3Y, ComputeAlphaPhase3StartTime),
                 RadiationType.BetaPlus => ComputeParticleCoordinate(seconds, Phase1Y, BetaPlusPhase2Y, BetaPlusPhase3Y, ComputeBetaPhase3StartTime),
                 RadiationType.BetaMinus => ComputeParticleCoordinate(seconds, Phase1Y, BetaMinusPhase2Y, BetaMinusPhase3Y, ComputeBetaPhase3StartTime),
-                _ => ComputeParticleCoordinate(seconds, NeutronY, NeutronY, NeutronY, () => 0),
+                RadiationType.Gamma => ComputeParticleCoordinate(seconds, GammaY, GammaY, GammaY, () => -2),
+                _ => ComputeParticleCoordinate(seconds, NeutronY, NeutronY, NeutronY, () => -2),
             };
 
         private double ComputeParticleCoordinate(
@@ -78,7 +80,12 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
             Func<double, double> phase2,
             Func<double, double> phase3,
             Func<double> phase3StartTime)
-        {            
+        {           
+            if (_motionSetup.Type == RadiationType.Gamma || _motionSetup.Type == RadiationType.Neutron)
+            {
+                return phase1(seconds);
+            }
+
             if (seconds < 0)
             {
                 return phase1(seconds);
@@ -170,12 +177,29 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
             return 0;
         }
 
+        private double GammaX(double seconds) => 0;
+
+        private double GammaY(double seconds)
+        {
+            var v = Math.PI / 3;
+            return v * seconds;
+        }
+
         private double NeutronX(double seconds) => 0;
 
         private double NeutronY(double seconds)
         {
+            var startY = NeutronMinCalc();
+            var gammaY = GammaY(seconds);
+
+            var diff = gammaY - startY;
+            return startY + diff * 0.85;
+        }
+
+        private double NeutronMinCalc()
+        {
             var v = Math.PI / 3;
-            return v * seconds;
+            return v * -2;
         }
     }
 }
