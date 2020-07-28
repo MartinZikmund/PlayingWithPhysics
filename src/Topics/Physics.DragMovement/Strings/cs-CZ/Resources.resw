@@ -123,6 +123,9 @@
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Pokročilá varianta</value>
   </data>
+  <data name="AerodynamicShape" xml:space="preserve">
+    <value>aerodynamický tvar</value>
+  </data>
   <data name="Angle" xml:space="preserve">
     <value>Úhel</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
     <value>Chybný formát vstupních hodnot</value>
+  </data>
+  <data name="Ball" xml:space="preserve">
+    <value>koule</value>
   </data>
   <data name="BreakDownMotions" xml:space="preserve">
     <value>Rozklad pohybu</value>
@@ -162,6 +168,12 @@
   <data name="Delete" xml:space="preserve">
     <value>Smazat</value>
   </data>
+  <data name="Density" xml:space="preserve">
+    <value>Hustota</value>
+  </data>
+  <data name="Diameter" xml:space="preserve">
+    <value>Průměr</value>
+  </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Zkopírovat</value>
   </data>
@@ -188,9 +200,6 @@
   </data>
   <data name="Gravity" xml:space="preserve">
     <value>Tíhové zrychlení</value>
-  </data>
-  <data name="HateCoefficient" xml:space="preserve">
-    <value>Součinitel odporu</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Vodorovný vrh</value>
@@ -219,8 +228,14 @@
   <data name="NewGame" xml:space="preserve">
     <value>Nová hra</value>
   </data>
+  <data name="NoResistance" xml:space="preserve">
+    <value>bez odporu</value>
+  </data>
   <data name="Origin" xml:space="preserve">
     <value>Počáteční souřadnice</value>
+  </data>
+  <data name="Parachute" xml:space="preserve">
+    <value>dutá polokoule (padák)</value>
   </data>
   <data name="PauseAfterChanges" xml:space="preserve">
     <value>Pozastavit po změnách</value>
@@ -233,6 +248,9 @@
   </data>
   <data name="ProjectileMotion" xml:space="preserve">
     <value>Šikmý vrh</value>
+  </data>
+  <data name="ResistanceCoefficient" xml:space="preserve">
+    <value>Součinitel odporu</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
@@ -263,6 +281,9 @@
   </data>
   <data name="StudyText" xml:space="preserve">
     <value>Studijní text</value>
+  </data>
+  <data name="ThinLayer" xml:space="preserve">
+    <value>tenká deska</value>
   </data>
   <data name="TopicName" xml:space="preserve">
     <value>Pohyby tělesa v odporujícím prostředí</value>

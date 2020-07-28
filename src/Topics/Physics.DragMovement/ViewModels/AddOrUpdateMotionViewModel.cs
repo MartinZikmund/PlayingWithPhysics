@@ -1,9 +1,11 @@
 ﻿using Physics.DragMovement.Logic.PhysicsServices;
 using Physics.Shared.Logic.Constants;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -26,6 +28,7 @@ namespace Physics.DragMovement.ViewModels
         private float _v0;
         private float _mass = 1;
         private float _angle;
+        private float _area;
         private float _gravity = GravityConstants.Earth;
         private Color _color = ColorHelper.ToColor("#0063B1");
         private bool _autogenerateLabel = true;
@@ -44,6 +47,7 @@ namespace Physics.DragMovement.ViewModels
             Mass = motionInfo.Mass;
             SelectedMotionIndex = (int)motionInfo.Type;
             Difficulty = difficulty;
+            SelectedResistanceCoefficient = ResistanceCoefficients[0];
             DisableUnusedInputs();
         }
 
@@ -53,6 +57,7 @@ namespace Physics.DragMovement.ViewModels
             SelectedMotionIndex = (int)MovementType.FreeFall;
             SetLocalizedAndNumberedLabelName();
             Difficulty = difficulty;
+            SelectedResistanceCoefficient = ResistanceCoefficients[0];
             //Set localized and numbered label text
             var resLoader = ResourceLoader.GetForCurrentView();
             var movementType = (MovementType)SelectedMotionIndex;
@@ -105,7 +110,7 @@ namespace Physics.DragMovement.ViewModels
                 return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
             }
         }
-        
+
         public Visibility IsSpeedEnabled
         {
             get
@@ -114,7 +119,7 @@ namespace Physics.DragMovement.ViewModels
                 return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
             }
         }
-        
+
         public Visibility IsElevationAngleEnabled
         {
             get
@@ -192,6 +197,65 @@ namespace Physics.DragMovement.ViewModels
             ColorHelper.ToColor("#498205"),
             ColorHelper.ToColor("#515C6B"),
         };
+
+        public void OnResistanceCoefficientChanged()
+        {
+            var selectedValue = SelectedResistanceCoefficient?.Value ?? -1;
+            if (Math.Abs(ResistanceCoefficient - selectedValue) > 0.01)
+            {
+                SelectedResistanceCoefficient = ResistanceCoefficients[0];
+            }
+        }
+
+        public ObservableCollection<ResistanceCoefficient> ResistanceCoefficients { get; } = new ObservableCollection<ResistanceCoefficient>()
+        {
+            new ResistanceCoefficient(Localizer.Instance["NoResistance"], 0f),
+            new ResistanceCoefficient(Localizer.Instance["AerodynamicShape"], 0.037f),
+            new ResistanceCoefficient(Localizer.Instance["Ball"], 0.5f),
+            new ResistanceCoefficient(Localizer.Instance["ThinLayer"], 1.2f),
+            new ResistanceCoefficient(Localizer.Instance["Parachute"], 1.3f)
+        };
+
+        public ResistanceCoefficient SelectedResistanceCoefficient { get; set; }
+
+        public void OnSelectedResistanceCoefficientChanged()
+        {
+            //Ball selected, enable density and diameter, disable weight, area
+            if (SelectedResistanceCoefficient == ResistanceCoefficients[2])
+            {
+                SetInputsForBall();
+            } else
+            {
+                SetInputsForOtherShapes();
+            }
+            ResistanceCoefficient = SelectedResistanceCoefficient?.Value ?? 0f;
+        }
+
+        public void SetInputsForBall()
+        {
+            IsDensityInputEnabled = Visibility.Visible;
+            IsDiameterInputEnabled = Visibility.Visible;
+            IsAreaInputEnabled = Visibility.Collapsed;
+            IsMassInputEnabled = Visibility.Collapsed;
+        }
+        
+        public void SetInputsForOtherShapes()
+        {
+            IsDensityInputEnabled = Visibility.Collapsed;
+            IsDiameterInputEnabled = Visibility.Collapsed;
+            IsAreaInputEnabled = Visibility.Visible;
+            IsMassInputEnabled = Visibility.Visible;
+        }
+
+        public float Diameter { get; set; }
+        public float Density { get; set; }
+
+        public Visibility IsDensityInputEnabled { get; set;  }
+        public Visibility IsDiameterInputEnabled { get; set;  }
+        public Visibility IsAreaInputEnabled { get; set;  }
+        public Visibility IsMassInputEnabled { get; set;  }
+
+        public float ResistanceCoefficient { get; set; } = 0f;
 
         public Color Color
         {
@@ -278,6 +342,19 @@ namespace Physics.DragMovement.ViewModels
                 if (!float.IsNaN(value) && value != _gravity)
                 {
                     _gravity = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public float Area
+        {
+            get => _area;
+            set
+            {
+                if (!float.IsNaN(value) && value != _area)
+                {
+                    _area = value;
                     RaisePropertyChanged();
                 }
             }

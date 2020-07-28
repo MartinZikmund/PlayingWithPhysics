@@ -120,106 +120,67 @@
   <data name="AddMotion" xml:space="preserve">
     <value>Add motion</value>
   </data>
-  <data name="AddMotion1" xml:space="preserve">
-    <value>Add motion</value>
-  </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Advanced difficulty</value>
   </data>
-  <data name="AdvancedDifficulty1" xml:space="preserve">
-    <value>Advanced difficulty</value>
+  <data name="AerodynamicShape" xml:space="preserve">
+    <value>aerodynamický tvar</value>
   </data>
   <data name="Angle" xml:space="preserve">
-    <value>Angle</value>
-  </data>
-  <data name="Angle1" xml:space="preserve">
     <value>Angle</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Projectile motions</value>
   </data>
-  <data name="AppName1" xml:space="preserve">
-    <value>Playing with Physics: Projectile motions</value>
-  </data>
   <data name="Area" xml:space="preserve">
     <value>Area</value>
   </data>
-  <data name="BreakDownMotions" xml:space="preserve">
-    <value>Break down motions</value>
+  <data name="Ball" xml:space="preserve">
+    <value>koule</value>
   </data>
-  <data name="BreakDownMotions1" xml:space="preserve">
+  <data name="BreakDownMotions" xml:space="preserve">
     <value>Break down motions</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Cancel1" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="CastleDistance" xml:space="preserve">
-    <value>Castle distance</value>
-  </data>
-  <data name="CastleDistance1" xml:space="preserve">
     <value>Castle distance</value>
   </data>
   <data name="ChooseColor" xml:space="preserve">
     <value>Choose color</value>
   </data>
-  <data name="ChooseColor1" xml:space="preserve">
-    <value>Choose color</value>
-  </data>
   <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Close1" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
   </data>
-  <data name="Color1" xml:space="preserve">
-    <value>Color</value>
-  </data>
   <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="Copy1" xml:space="preserve">
     <value>Copy</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy to clipboard</value>
   </data>
-  <data name="CopyToClipboard1" xml:space="preserve">
-    <value>Copy to clipboard</value>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="Delete1" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Density" xml:space="preserve">
+    <value>Density</value>
+  </data>
+  <data name="Diameter" xml:space="preserve">
+    <value>Diameter</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Duplicate</value>
-  </data>
-  <data name="Duplicate1" xml:space="preserve">
     <value>Duplicate</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Easy difficulty</value>
   </data>
-  <data name="EasyDifficulty1" xml:space="preserve">
-    <value>Easy difficulty</value>
-  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Edit1" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="EditMotion" xml:space="preserve">
-    <value>Edit motion</value>
-  </data>
-  <data name="EditMotion1" xml:space="preserve">
     <value>Edit motion</value>
   </data>
   <data name="ElevationAngle" xml:space="preserve">
@@ -228,202 +189,112 @@
   <data name="Fire" xml:space="preserve">
     <value>Fire!</value>
   </data>
-  <data name="Fire1" xml:space="preserve">
-    <value>Fire!</value>
-  </data>
   <data name="FreeFall" xml:space="preserve">
-    <value>Free fall</value>
-  </data>
-  <data name="FreeFall1" xml:space="preserve">
     <value>Free fall</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
-  <data name="Game1" xml:space="preserve">
-    <value>Game</value>
-  </data>
   <data name="Gravity" xml:space="preserve">
     <value>Gravity</value>
   </data>
-  <data name="Gravity1" xml:space="preserve">
-    <value>Gravity</value>
-  </data>
-  <data name="HateCoefficient" xml:space="preserve">
-    <value>Hate coefficient</value>
-  </data>
   <data name="HorizontalMotion" xml:space="preserve">
-    <value>Horizontal throw</value>
-  </data>
-  <data name="HorizontalMotion1" xml:space="preserve">
     <value>Horizontal throw</value>
   </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
   </data>
-  <data name="IntervalForTable1" xml:space="preserve">
-    <value>Time interval (s)</value>
-  </data>
   <data name="InvalidInput" xml:space="preserve">
-    <value>Invalid input</value>
-  </data>
-  <data name="InvalidInput1" xml:space="preserve">
     <value>Invalid input</value>
   </data>
   <data name="JumpSize" xml:space="preserve">
     <value>Jump size</value>
   </data>
-  <data name="JumpSize1" xml:space="preserve">
-    <value>Jump size</value>
-  </data>
   <data name="Label" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="Label1" xml:space="preserve">
     <value>Label</value>
   </data>
   <data name="Mass" xml:space="preserve">
     <value>Mass</value>
   </data>
-  <data name="Mass1" xml:space="preserve">
-    <value>Mass</value>
-  </data>
   <data name="Missed" xml:space="preserve">
-    <value>Missed...</value>
-  </data>
-  <data name="Missed1" xml:space="preserve">
     <value>Missed...</value>
   </data>
   <data name="Motion" xml:space="preserve">
     <value>Motion</value>
   </data>
-  <data name="Motion1" xml:space="preserve">
-    <value>Motion</value>
-  </data>
   <data name="NewGame" xml:space="preserve">
     <value>New game</value>
   </data>
-  <data name="NewGame1" xml:space="preserve">
-    <value>New game</value>
+  <data name="NoResistance" xml:space="preserve">
+    <value>bez odporu</value>
   </data>
   <data name="Origin" xml:space="preserve">
     <value>Origin</value>
   </data>
-  <data name="Origin1" xml:space="preserve">
-    <value>Origin</value>
+  <data name="Parachute" xml:space="preserve">
+    <value>dutá polokoule (padák)</value>
   </data>
   <data name="PauseAfterChanges" xml:space="preserve">
-    <value>Pause after changes</value>
-  </data>
-  <data name="PauseAfterChanges1" xml:space="preserve">
     <value>Pause after changes</value>
   </data>
   <data name="PickColor" xml:space="preserve">
     <value>Pick...</value>
   </data>
-  <data name="PickColor1" xml:space="preserve">
-    <value>Pick...</value>
-  </data>
   <data name="ProjectileMotion" xml:space="preserve">
     <value>Projectile motion</value>
   </data>
-  <data name="ProjectileMotion1" xml:space="preserve">
-    <value>Projectile motion</value>
+  <data name="ResistanceCoefficient" xml:space="preserve">
+    <value>Resistance Coefficient</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Save1" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="SelectedMotion" xml:space="preserve">
     <value>Selected motion</value>
   </data>
-  <data name="SelectedMotion1" xml:space="preserve">
-    <value>Selected motion</value>
-  </data>
   <data name="SelectMotionTip" xml:space="preserve">
-    <value>Select a motion to see current values.</value>
-  </data>
-  <data name="SelectMotionTip1" xml:space="preserve">
     <value>Select a motion to see current values.</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Projectile motions</value>
   </data>
-  <data name="ShortAppName1" xml:space="preserve">
-    <value>Projectile motions</value>
-  </data>
   <data name="ShowHideIrrelevantColumns" xml:space="preserve">
-    <value>Show/Hide Irrelevant Columns</value>
-  </data>
-  <data name="ShowHideIrrelevantColumns1" xml:space="preserve">
     <value>Show/Hide Irrelevant Columns</value>
   </data>
   <data name="ShowHideZeroes" xml:space="preserve">
     <value>Show/hide zero columns</value>
   </data>
-  <data name="ShowHideZeroes1" xml:space="preserve">
-    <value>Show/hide zero columns</value>
-  </data>
   <data name="ShowValues" xml:space="preserve">
-    <value>Show values</value>
-  </data>
-  <data name="ShowValues1" xml:space="preserve">
     <value>Show values</value>
   </data>
   <data name="ShowValuesTable" xml:space="preserve">
     <value>Show values table</value>
   </data>
-  <data name="ShowValuesTable1" xml:space="preserve">
-    <value>Show values table</value>
-  </data>
   <data name="Speed" xml:space="preserve">
-    <value>Speed</value>
-  </data>
-  <data name="Speed1" xml:space="preserve">
     <value>Speed</value>
   </data>
   <data name="StudyText" xml:space="preserve">
     <value>Study text</value>
   </data>
-  <data name="StudyText1" xml:space="preserve">
-    <value>Study text</value>
+  <data name="ThinLayer" xml:space="preserve">
+    <value>tenká deska</value>
   </data>
   <data name="TopicName" xml:space="preserve">
-    <value>Projectile motion</value>
-  </data>
-  <data name="TopicName1" xml:space="preserve">
     <value>Projectile motion</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="Version1" xml:space="preserve">
-    <value>Version</value>
-  </data>
   <data name="VerticalMotion" xml:space="preserve">
-    <value>Vertical throw</value>
-  </data>
-  <data name="VerticalMotion1" xml:space="preserve">
     <value>Vertical throw</value>
   </data>
   <data name="WallDistance" xml:space="preserve">
     <value>Wall distance</value>
   </data>
-  <data name="WallDistance1" xml:space="preserve">
-    <value>Wall distance</value>
-  </data>
   <data name="WallHeight" xml:space="preserve">
     <value>Wall height</value>
   </data>
-  <data name="WallHeight1" xml:space="preserve">
-    <value>Wall height</value>
-  </data>
   <data name="YouWin" xml:space="preserve">
-    <value>You win!</value>
-  </data>
-  <data name="YouWin1" xml:space="preserve">
     <value>You win!</value>
   </data>
 </root>

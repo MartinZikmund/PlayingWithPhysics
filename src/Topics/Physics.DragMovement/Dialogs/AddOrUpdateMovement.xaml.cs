@@ -33,10 +33,11 @@ namespace Physics.DragMovement.Dialogs
         {
             StartXNumberBox.SetupFormatting(fractionDigits: 2);
             StartYNumberBox.SetupFormatting(fractionDigits: 2);
+            DiameterNumberBox.SetupFormatting(fractionDigits: 2);
+            DensityNumberBox.SetupFormatting(fractionDigits: 2);
             MassNumberBox.SetupFormatting(fractionDigits: 2);
             AreaNumberBox.SetupFormatting(fractionDigits: 2);
-            HateCoefficientNumberBox.SetupFormatting(fractionDigits: 2);
-            HateCoefficientNumberBox.SmallChange = 0.1;
+            ResistanceCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001);
             SpeedNumberBox.SetupFormatting(fractionDigits: 2);
             ElevationAngleNumberBox.SetupFormatting(fractionDigits: 2);
         }
