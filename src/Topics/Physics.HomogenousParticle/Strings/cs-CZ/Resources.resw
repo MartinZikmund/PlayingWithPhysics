@@ -142,7 +142,7 @@
     <value>Studijní text</value>
   </data>
   <data name="AddMotion" xml:space="preserve">
-    <value>Přidat pohyb</value>
+    <value>Změnit parametry</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
@@ -160,7 +160,7 @@
     <value>Vyberte variantu</value>
   </data>
   <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
-    <value>Z dsipleje</value>
+    <value>Z displeje</value>
   </data>
   <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
     <value>Do displeje</value>
@@ -178,7 +178,7 @@
     <value>Hmotnost částice</value>
   </data>
   <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
-    <value>(násobek</value>
+    <value>(mocnina</value>
   </data>
   <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
     <value>Rychlost</value>
@@ -230,5 +230,8 @@
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>
+  </data>
+  <data name="AddMotionRadiation" xml:space="preserve">
+    <value>Přidat pohyb</value>
   </data>
 </root>

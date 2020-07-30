@@ -136,7 +136,7 @@
     <value>Study text</value>
   </data>
   <data name="AddMotion" xml:space="preserve">
-    <value>Add motion</value>
+    <value>Change parameters</value>
   </data>
   <data name="DrawMotion" xml:space="preserve">
     <value>Draw motion</value>
@@ -218,5 +218,8 @@
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Particle speed at origin is</value>
+  </data>
+  <data name="AddMotionRadiation" xml:space="preserve">
+    <value>Add motion</value>
   </data>
 </root>

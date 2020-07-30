@@ -10,6 +10,7 @@ using Physics.HomogenousParticle.ViewModels.State;
 using Physics.HomogenousParticle.Views;
 using Physics.HomongenousParticle.Logic.PhysicsServices;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.ViewModels;
 using System;
@@ -160,6 +161,7 @@ namespace Physics.HomogenousParticle.ViewModels
             controller.StartSimulation(Motions.Select(m=>m.Motion).ToArray());
         }
 
+        public string LocalizedAddMotionText => (SelectedVariant == VelocityVariant.Radiation) ? Localizer.Instance["AddMotionRadiation"] : Localizer.Instance["AddMotion"];
         internal void Delete(RadiationVariantStateViewModel radiationVariantStateViewModel)
         {
             Motions.Remove(radiationVariantStateViewModel);

@@ -181,22 +181,22 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         private double GammaY(double seconds)
         {
-            var v = Math.PI / 3;
-            return v * seconds;
+            var startY = GammaMinCalc();
+            var neutronY = NeutronY(seconds);
+
+            var diff = neutronY - startY;
+            return startY + diff * 1.2;
         }
 
         private double NeutronX(double seconds) => 0;
 
         private double NeutronY(double seconds)
-        {
-            var startY = NeutronMinCalc();
-            var gammaY = GammaY(seconds);
-
-            var diff = gammaY - startY;
-            return startY + diff * 0.85;
+        {var v = Math.PI / 3;
+            return v * seconds;
+            
         }
 
-        private double NeutronMinCalc()
+        private double GammaMinCalc()
         {
             var v = Math.PI / 3;
             return v * -2;
