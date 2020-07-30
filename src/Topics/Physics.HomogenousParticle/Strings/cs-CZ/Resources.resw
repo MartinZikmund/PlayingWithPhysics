@@ -219,4 +219,16 @@
   <data name="RadiationType_Neutron" xml:space="preserve">
     <value>Neutron</value>
   </data>
+  <data name="AccelerationInfo" xml:space="preserve">
+    <value>Zrychlení částice je</value>
+  </data>
+  <data name="ElectronWeightInfo" xml:space="preserve">
+    <value>Hmotnost elektronu odpovídá násobku 0,00091.</value>
+  </data>
+  <data name="ProtonWeightInfo" xml:space="preserve">
+    <value>Hmotnost protonu odpovídá násobku 1,67.</value>
+  </data>
+  <data name="StartSpeedInfo" xml:space="preserve">
+    <value>Počáteční rychlost částice je</value>
+  </data>
 </root>

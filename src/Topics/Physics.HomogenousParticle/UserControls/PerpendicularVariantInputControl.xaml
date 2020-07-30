@@ -86,9 +86,18 @@
             SpinButtonPlacementMode="Hidden"
             Value="{x:Bind Model.MassMultiple, Mode=TwoWay}" />
 
+        <StackPanel Margin="0" Padding="0" Grid.Row="2" Orientation="Horizontal">
+            <Image Width="20" Source="/Assets/info.png" Margin="0,0,12,0"></Image>
+            <StackPanel>
+                <TextBlock FontWeight="Light" Text="{extensions:Localize Key=ProtonWeightInfo}"/>
+                <TextBlock FontWeight="Light" Text="{extensions:Localize Key=ElectronWeightInfo}"/>
+            </StackPanel>
+        </StackPanel>
+
+
         <!--  Particle velocity  -->
         <TextBlock
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="0"
             VerticalAlignment="Center"
             xml:space="default">
@@ -100,7 +109,7 @@
         </TextBlock>
         <winui:NumberBox
             x:Name="VelocityNumberBox"
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="1"
             Maximum="10"
             Minimum="1"
@@ -108,7 +117,7 @@
 
         <!--  Induction size  -->
         <TextBlock
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="0"
             VerticalAlignment="Center"
             xml:space="default">
@@ -118,7 +127,7 @@
         </TextBlock>
         <winui:NumberBox
             x:Name="InductionNumberBox"
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="1"
             LargeChange="0.1"
             Maximum="2"
@@ -128,12 +137,12 @@
 
         <!--  Induction orientation  -->
         <TextBlock
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="0"
             VerticalAlignment="Center"
             Text="{extensions:Localize Key=PerpendicularInput_InductionOrientation}" />
         <ComboBox
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="1"
             HorizontalAlignment="Stretch"
             ItemsSource="{x:Bind Model.InductionOrientations}"
@@ -148,12 +157,12 @@
         <!--  Color  -->
 
         <TextBlock
-            Grid.Row="5"
+            Grid.Row="7"
             Grid.Column="0"
             VerticalAlignment="Center"
             Text="{extensions:Localize Key=Color}" />
         <GridView
-            Grid.Row="6"
+            Grid.Row="8"
             Grid.ColumnSpan="2"
             ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
             SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">

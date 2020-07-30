@@ -207,4 +207,16 @@
   <data name="RadiationType_Neutron" xml:space="preserve">
     <value>Neutron</value>
   </data>
+  <data name="AccelerationInfo" xml:space="preserve">
+    <value>Particle acceleration is</value>
+  </data>
+  <data name="ElectronWeightInfo" xml:space="preserve">
+    <value>Calculations are actually a 0.00091-multiple of your input.</value>
+  </data>
+  <data name="ProtonWeightInfo" xml:space="preserve">
+    <value>Calculations are actually a 1.67-multiple of your input.</value>
+  </data>
+  <data name="StartSpeedInfo" xml:space="preserve">
+    <value>Particle speed at origin is</value>
+  </data>
 </root>
