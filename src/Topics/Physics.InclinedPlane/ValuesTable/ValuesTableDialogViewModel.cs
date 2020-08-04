@@ -43,34 +43,50 @@ namespace Physics.InclinedPlane.ValuesTable
                 eventArgs.Column.Header = "y (m)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "VX")
-            {
-                eventArgs.Column.Header = "vx (m/s)";
-            }
+            
+            //if (eventArgs.Column.Header.ToString() == "VX")
+            //{
+            //    eventArgs.Column.Header = "vx (m/s)";
+            //}
 
-            if (eventArgs.Column.Header.ToString() == "VY")
-            {
-                eventArgs.Column.Header = "vy (m/s)";
-            }
+            //if (eventArgs.Column.Header.ToString() == "VY")
+            //{
+            //    eventArgs.Column.Header = "vy (m/s)";
+            //}
 
             if (eventArgs.Column.Header.ToString() == "V")
             {
                 eventArgs.Column.Header = "v (m/s)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "EP")
+            if (eventArgs.Column.Header.ToString() == "S")
             {
-                eventArgs.Column.Header = "Ep (J)";
+                eventArgs.Column.Header = "s (m)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "EK")
+            if (eventArgs.Column.Header.ToString() == "Ek")
             {
                 eventArgs.Column.Header = "Ek (J)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "EPEK")
+            if (eventArgs.Column.Header.ToString() == "Ep")
             {
-                eventArgs.Column.Header = "Ep + Ek (J)";
+                eventArgs.Column.Header = "Ep (J)";
+            }
+
+            if (eventArgs.Column.Header.ToString() == "Em")
+            {
+                eventArgs.Column.Header = "Em (J)";
+            }
+
+            if (eventArgs.Column.Header.ToString() == "U")
+            {
+                eventArgs.Column.Header = "U (J)";
+            }
+            
+            if (eventArgs.Column.Header.ToString() == "E")
+            {
+                eventArgs.Column.Header = "E (J)";
             }
         }
 

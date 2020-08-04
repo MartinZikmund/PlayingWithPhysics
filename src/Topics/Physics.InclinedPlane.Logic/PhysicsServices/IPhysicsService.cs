@@ -13,7 +13,11 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
         float CalculateY(float time);
         float CalculateV(float time);
         float CalculateS(float time);
-        float CalculateEv(float time);
+        float CalculateEk(float time);
+        float CalculateEp(float time);
+        float CalculateEm(float time);
+        float CalculateE();
+        float CalculateU(float time);
         float CalculateMaxT();
 
         float CalculateHorizontalStartX();

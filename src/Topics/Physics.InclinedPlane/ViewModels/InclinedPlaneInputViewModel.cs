@@ -57,7 +57,7 @@ namespace Physics.InclinedPlane.ViewModels
             new DriftCoefficientDefault(Localizer.Instance["Drift_TeflonTeflon"], 0.07f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_NylonNylon"], 0.25f),
             new DriftCoefficientDefault(Localizer.Instance["Drift_VeryWellPolishedSurfaces"], 0.03f),
-            new DriftCoefficientDefault(Localizer.Instance["Drift_StoneIce"], 0.03f),
+            new DriftCoefficientDefault(Localizer.Instance["Drift_StoneIce"], 0.03f)
 
         };
 

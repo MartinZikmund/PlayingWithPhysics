@@ -30,9 +30,13 @@ namespace Physics.InclinedPlane.ValuesTable
                 float y = _physicsService.CalculateY(time);
                 float v = _physicsService.CalculateV(time);
                 float s = _physicsService.CalculateS(time);
-                float ev = _physicsService.CalculateEv(time);
+                float ek = _physicsService.CalculateEk(time);
+                float ep = _physicsService.CalculateEp(time);
+                float em = _physicsService.CalculateEm(time);
+                float u = _physicsService.CalculateU(time);
+                float e = _physicsService.CalculateE();
 
-                TableRow valuesRow = new TableRow(time, x, y, v, s, ev);
+                TableRow valuesRow = new TableRow(time, x, y, v, s, ek, ep, em, u, e);
                 table.Add(valuesRow);
                 cycles++;
             } while (time < _physicsService.CalculateMaxT());

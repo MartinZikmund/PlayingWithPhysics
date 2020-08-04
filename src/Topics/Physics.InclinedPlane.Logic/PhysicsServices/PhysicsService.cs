@@ -286,12 +286,11 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             }
         }
 
-        public float CalculateEk(float time)
-        {
-            return Setup.Mass * (float)Math.Pow(CalculateV(time), 2) / 2;
-        }
-
-        public float CalculateEv(float time) => Setup.Mass * (float)Math.Pow(CalculateV(time), 2) / 2;
+        public float CalculateEk(float time) => Setup.Mass * (float)Math.Pow(CalculateV(time), 2) / 2;
+        public float CalculateEp(float time) => Setup.Mass * Setup.Gravity * CalculateY(time);
+        public float CalculateEm(float time) => CalculateEk(time) + CalculateEp(time);
+        public float CalculateE() => CalculateEm(0f);
+        public float CalculateU(float time) => CalculateE() - CalculateEm(time);
 
         #endregion
 

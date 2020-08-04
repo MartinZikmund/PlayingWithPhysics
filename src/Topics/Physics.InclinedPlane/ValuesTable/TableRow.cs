@@ -16,16 +16,24 @@ namespace Physics.InclinedPlane.ValuesTable
         public string Y { get; set; }
         public string V { get; set; }
         public string S { get; set; }
+        public string Ek { get; set; }
+        public string Ep { get; set; }
+        public string Em { get; set; }
+        public string U { get; set; }
         public string E { get; set; }
 
-        public TableRow(float time, float x, float y, float v, float s, float ev)
+        public TableRow(float time, float x, float y, float v, float s, float ek, float ep, float em, float u, float e)
         {
             Time = time.ToString(ZeroFormatting);
             X = x.ToString(ZeroFormatting);
             Y = y.ToString(ZeroFormatting);
             V = v.ToString(ZeroFormatting);
             S = s.ToString(ZeroFormatting);
-            E = ev.ToString(ZeroFormatting);
+            Ek = ek.ToString(ZeroFormatting);
+            Ep = ep.ToString(ZeroFormatting);
+            Em = em.ToString(ZeroFormatting);
+            U = u.ToString(ZeroFormatting);
+            E = e.ToString(ZeroFormatting);
         }
 
         protected override IEnumerable<string> GetCellValuesInOrder()
