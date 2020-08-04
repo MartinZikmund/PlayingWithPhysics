@@ -58,6 +58,8 @@ namespace Physics.DragMovement.ViewModels
             SetLocalizedAndNumberedLabelName();
             Difficulty = difficulty;
             SelectedResistanceCoefficient = ResistanceCoefficients[0];
+            SelectedGravityCoefficient = GravityCoefficients[0];
+            SelectedEnvironmentDensity = EnvironmentDensities[0];
             //Set localized and numbered label text
             var resLoader = ResourceLoader.GetForCurrentView();
             var movementType = (MovementType)SelectedMotionIndex;
@@ -231,6 +233,40 @@ namespace Physics.DragMovement.ViewModels
             ResistanceCoefficient = SelectedResistanceCoefficient?.Value ?? 0f;
         }
 
+        public ObservableCollection<GravityCoefficient> GravityCoefficients { get; } = new ObservableCollection<GravityCoefficient>()
+        {
+            new GravityCoefficient(Localizer.Instance["Gravity_Earth"], 9.8f),
+            new GravityCoefficient(Localizer.Instance["Gravity_Mars"], 3.7f),
+            new GravityCoefficient(Localizer.Instance["Gravity_Venus"], 8.9f),
+            new GravityCoefficient(Localizer.Instance["Gravity_Moon"], 1.6f)
+        };
+
+        public GravityCoefficient SelectedGravityCoefficient { get; set; }
+
+        public float GravityCoefficient { get; set; } = 0f;
+
+        public void OnSelectedGravityCoefficientChanged()
+        {
+            GravityCoefficient = SelectedGravityCoefficient?.Value ?? 0f;
+        }
+
+        public ObservableCollection<EnvironmentDensity> EnvironmentDensities { get; } = new ObservableCollection<EnvironmentDensity>()
+        {
+            new EnvironmentDensity(Localizer.Instance["Gravity_Earth"], 1.3f),
+            new EnvironmentDensity(Localizer.Instance["Gravity_Mars"], 0.02f),
+            new EnvironmentDensity(Localizer.Instance["Gravity_Venus"], 65f),
+            new EnvironmentDensity(Localizer.Instance["Gravity_Moon"], 0f)
+        };
+
+        public EnvironmentDensity SelectedEnvironmentDensity { get; set; }
+
+        public float EnvironmentDensity { get; set; } = 0f;
+
+        public void OnSelectedEnvironmentDensityChanged()
+        {
+            EnvironmentDensity = SelectedEnvironmentDensity?.Value ?? 0f;
+        }
+
         public void SetInputsForBall()
         {
             IsDensityInputEnabled = Visibility.Visible;
@@ -254,6 +290,8 @@ namespace Physics.DragMovement.ViewModels
         public Visibility IsDiameterInputEnabled { get; set;  }
         public Visibility IsAreaInputEnabled { get; set;  }
         public Visibility IsMassInputEnabled { get; set;  }
+        public Visibility IsGravityCoefficientEnabled { get; set; }
+        public Visibility IsEnvironmentDensityEnabled { get; set; }
 
         public float ResistanceCoefficient { get; set; } = 0f;
 

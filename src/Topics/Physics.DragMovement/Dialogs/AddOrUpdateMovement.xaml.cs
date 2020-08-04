@@ -35,6 +35,8 @@ namespace Physics.DragMovement.Dialogs
             StartYNumberBox.SetupFormatting(fractionDigits: 2);
             DiameterNumberBox.SetupFormatting(fractionDigits: 2);
             DensityNumberBox.SetupFormatting(fractionDigits: 2);
+            GravityCoefficientNumberBox.SetupFormatting(fractionDigits: 2);
+            EnvironmentDensityNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.001);
             MassNumberBox.SetupFormatting(fractionDigits: 2);
             AreaNumberBox.SetupFormatting(fractionDigits: 2);
             ResistanceCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001);

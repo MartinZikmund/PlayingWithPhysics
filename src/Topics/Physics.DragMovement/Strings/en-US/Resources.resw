@@ -198,6 +198,18 @@
   <data name="Gravity" xml:space="preserve">
     <value>Gravity</value>
   </data>
+  <data name="Gravity_Earth" xml:space="preserve">
+    <value>Earth</value>
+  </data>
+  <data name="Gravity_Mars" xml:space="preserve">
+    <value>Mars</value>
+  </data>
+  <data name="Gravity_Moon" xml:space="preserve">
+    <value>Moon</value>
+  </data>
+  <data name="Gravity_Venus" xml:space="preserve">
+    <value>Venus</value>
+  </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Horizontal throw</value>
   </data>
@@ -241,7 +253,7 @@
     <value>Pick...</value>
   </data>
   <data name="ProjectileMotion" xml:space="preserve">
-    <value>Projectile motion</value>
+    <value>Throw</value>
   </data>
   <data name="ResistanceCoefficient" xml:space="preserve">
     <value>Resistance Coefficient</value>
