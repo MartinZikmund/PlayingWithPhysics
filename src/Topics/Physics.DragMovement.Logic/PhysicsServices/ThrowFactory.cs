@@ -8,17 +8,9 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 {
     public static class MotionFactory
     {
-        public static MotionInfo CreateFreeFall(Vector2 origin, float mass, float timeFrame,
-             string color, float g = GravityConstants.Earth) =>
-            new MotionInfo(MovementType.FreeFall, origin, mass, 0, 0, color, g);
+        public static MotionInfo CreateFreeFall(Vector2 origin, float resistance, float mass, float area, float originSpeed, float elevationAngle, float gravity, float environmentDensity, float diameter, float shapeDensity, string color) =>
+            new MotionInfo(MovementType.FreeFall, origin, resistance, mass, area, originSpeed, elevationAngle, gravity, environmentDensity, diameter, shapeDensity, color);
 
-        public static MotionInfo CreateUpwardMotion(Vector2 origin, float mass, float timeFrame, float v0,
-            string color, float g = GravityConstants.Earth) => new MotionInfo(MovementType.VerticalMotion, origin, mass, v0, 90, color, g);
-
-        public static MotionInfo CreateHorizontalMotion(Vector2 origin, float mass, float timeFrame, float v0,
-             string color, float g = GravityConstants.Earth) => new MotionInfo(MovementType.HorizontalMotion, origin, mass, v0, 0, color, g);
-
-        public static MotionInfo CreateProjectileMotion(Vector2 origin, float mass, float timeFrame, float v0,
-             string color, float angle, float g = GravityConstants.Earth) => new MotionInfo(MovementType.ProjectileMotion, origin, mass, v0, angle, color, g);
+        public static MotionInfo CreateProjectileMotion(Vector2 origin, float resistance, float mass, float area, float originSpeed, float elevationAngle, float gravity, float environmentDensity, float diameter, float shapeDensity, string color) => new MotionInfo(MovementType.ProjectileMotion, origin, resistance, mass, area, originSpeed, elevationAngle, gravity, environmentDensity, diameter, shapeDensity, color);
     }
 }

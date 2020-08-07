@@ -9,44 +9,52 @@ namespace Physics.DragMovement.Logic.PhysicsServices
     public enum MovementType
     {
         FreeFall,
-        VerticalMotion,
-        HorizontalMotion,
         ProjectileMotion
     }
 
     public class MotionInfo
     {
-        public MotionInfo(MovementType movementType, Vector2 origin, float mass, float v0, float angle, string color, float g = GravityConstants.Earth)
-        {
-            if (mass == 0f)
-                throw new ArgumentException("Hmotnost musí být větší než 1 kg.");
-            Type = movementType;
-            Mass = mass;
-            Origin = origin;
-            V0 = v0;
-            Angle = angle;
-            Color = color;
-            G = g;
-        }
 
         public MotionInfo()
         {
         }
+        public MotionInfo(MovementType movementType, Vector2 origin, float resistance, float mass, float area, float originSpeed, float elevationAngle, float gravity, float environmentDensity, float diameter, float shapeDensity, string color)
+        {
+            if (mass == 0f)
+                throw new ArgumentException("Hmotnost musí být větší než 1 kg.");
+            Type = movementType;
+            Origin = origin;
+            Resistance = resistance;
+            Mass = mass;
+            Area = area;
+            OriginSpeed = originSpeed;
+            ElevationAngle = elevationAngle;
+            G = gravity;
+            EnvironmentDensity = environmentDensity;
+            Diameter = diameter;
+            ShapeDensity = shapeDensity;
+            Color = color;
+        }
 
         public MotionInfo Clone()
         {
-            return new MotionInfo(this.Type, Origin, Mass, V0, Angle, Color, G)
+            return new MotionInfo(this.Type, Origin, Resistance, Mass, Area, OriginSpeed, ElevationAngle, G, EnvironmentDensity, Diameter, ShapeDensity, Color)
             {
-                Label = Label,
+                Label = Label
             };
         }
 
         public MovementType Type { get; set; }
         public Vector2 Origin { get; set; }
-        public float G { get; set; }
-        public float V0 { get; set; }
+        public float Resistance { get; set; }
         public float Mass { get; set; }
-        public float Angle { get; set; }
+        public float Area { get; set; }
+        public float OriginSpeed { get; set; }
+        public float ElevationAngle { get; set; }
+        public float G { get; set; }
+        public float EnvironmentDensity { get; set; }
+        public float Diameter { get; set; }
+        public float ShapeDensity { get; set; }
         public string Color { get; set; }
         public string Label { get; set; }
     }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+using Physics.DragMovement.Rendering;
 using Physics.DragMovement.ViewInteractions;
 using Physics.DragMovement.ViewModels;
+using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.Views;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,7 @@ namespace Physics.DragMovement.Views
     /// </summary>
     public sealed partial class MainView : BaseView, IMainViewInteraction
     {
-        //private HomogenousParticleCanvasController _canvasController;
+        private DragMovementCanvasController _canvasController;
         private CanvasAnimatedControl _animatedCanvas;
 
         public MainView()
@@ -96,5 +98,13 @@ namespace Physics.DragMovement.Views
         //    }
         //    return _canvasController;
         //}
+
+        public DragMovementCanvasController Initialize(DifficultyOption difficulty)
+        {
+            _animatedCanvas = new CanvasAnimatedControl();
+            CanvasHolder.Children.Add(_animatedCanvas);
+            _canvasController = new DragMovementCanvasController(_animatedCanvas);
+            return _canvasController;
+        }
     }
 }

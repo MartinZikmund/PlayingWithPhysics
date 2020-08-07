@@ -91,7 +91,7 @@ namespace Physics.DragMovement.ValuesTable
             Clipboard.SetContent(dataPackage);
         }
 
-        public Visibility ButtonVisibility => (_type == MovementType.FreeFall || _type == MovementType.VerticalMotion)
+        public Visibility ButtonVisibility => (_type == MovementType.FreeFall)
             ? Visibility.Visible
             : Visibility.Collapsed;
     }

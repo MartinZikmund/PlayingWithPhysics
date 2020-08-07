@@ -38,7 +38,7 @@ namespace Physics.DragMovement.Dialogs
             GravityCoefficientNumberBox.SetupFormatting(fractionDigits: 2);
             EnvironmentDensityNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.001);
             MassNumberBox.SetupFormatting(fractionDigits: 2);
-            AreaNumberBox.SetupFormatting(fractionDigits: 2);
+            AreaNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
             ResistanceCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001);
             SpeedNumberBox.SetupFormatting(fractionDigits: 2);
             ElevationAngleNumberBox.SetupFormatting(fractionDigits: 2);
@@ -47,10 +47,7 @@ namespace Physics.DragMovement.Dialogs
         public AddOrUpdateMotionViewModel Model { get; }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-        }
-
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
+            Model?.SaveCommand.Execute(args);
         }
     }
 }

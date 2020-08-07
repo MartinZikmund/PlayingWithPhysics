@@ -295,7 +295,7 @@
                     IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
                     Maximum="2000"
                     Minimum="0"
-                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Value="{x:Bind Model.Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <!-- Gravity -->
                 <TextBlock Grid.Row="8" VerticalAlignment="Center" Visibility="{x:Bind Model.IsGravityCoefficientEnabled, Mode=OneWay}">

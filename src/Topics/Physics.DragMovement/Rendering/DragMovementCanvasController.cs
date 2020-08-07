@@ -1,29 +1,23 @@
 ﻿using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
-using Microsoft.Graphics.Canvas.Geometry;
-using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
-using Physics.HomogenousMovement.PhysicsServices;
+using Physics.DragMovement.Logic.PhysicsServices;
+using Physics.Shared.UI.Rendering;
 using System;
-using System.Diagnostics;
-using System.Numerics;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Graphics.Canvas.Text;
-using Physics.HomogenousMovement.Logic.PhysicsServices;
-using Physics.HomogenousMovement.ViewModels;
-using System.Collections.Generic;
-using Microsoft.Toolkit.Uwp.Helpers;
-using Windows.UI.Xaml;
-using Physics.Shared.UI.Rendering;
 
-namespace Physics.HomogenousMovement.Rendering
+namespace Physics.DragMovement.Rendering
 {
-    public class HomogenousMovementCanvasController : BaseCanvasController, IDisposable
+
+    public class DragMovementCanvasController : BaseCanvasController, IDisposable
     {
         private const int BallRadius = 5;
         protected MotionInfo[] _motions = Array.Empty<MotionInfo>();
@@ -54,7 +48,7 @@ namespace Physics.HomogenousMovement.Rendering
             FontSize = 12
         };
 
-        public HomogenousMovementCanvasController(CanvasAnimatedControl canvasAnimatedControl)
+        public DragMovementCanvasController(CanvasAnimatedControl canvasAnimatedControl)
             : base(canvasAnimatedControl)
         {
         }
@@ -123,14 +117,13 @@ namespace Physics.HomogenousMovement.Rendering
                 minX = Math.Min(motion.Origin.X, minX);
             }
             minX = Math.Min(minX, maxX);
-
             var minY = 0f;
             var maxY = 0f;
             foreach (var trajectory in _trajectories)
             {
                 maxY = Math.Max(trajectory.MaxY, maxY);
             }
-            
+
             _simulationBoundsInMeters = new RectangleF(minX, minY, maxX - minX, maxY - minY);
         }
 
@@ -349,7 +342,7 @@ namespace Physics.HomogenousMovement.Rendering
             var requestedJump = CalculateJumpSizeForAxis(requestedAxis);
             var otherJump = CalculateJumpSizeForAxis(otherAxis);
 
-            if ( Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
+            if (Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
             {
                 //too big difference between axis, draw independently
                 return requestedJump;

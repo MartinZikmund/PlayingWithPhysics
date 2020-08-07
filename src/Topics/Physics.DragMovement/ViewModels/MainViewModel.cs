@@ -26,14 +26,14 @@ namespace Physics.DragMovement.ViewModels
 
         public async void SetViewInteraction(IMainViewInteraction mainViewInteraction)
         {
-            //_mainViewInteraction = mainViewInteraction;
-            //_controller = _mainViewInteraction.Initialize(Difficulty);
-            //SimulationPlayback.SetController(_controller);
-            //if (_startWithController)
-            //{
-            //    await Task.Delay(1000);
-            //    await StartSimulationAsync();
-            //}
+            _mainViewInteraction = mainViewInteraction;
+            _controller = _mainViewInteraction.Initialize(Difficulty);
+            SimulationPlayback.SetController(_controller);
+            if (_startWithController)
+            {
+                await Task.Delay(1000);
+                await StartSimulationAsync();
+            }
         }
 
         public MainViewModel(IMvxMainThreadAsyncDispatcher dispatcher, IPreferences preferences) : base(dispatcher, preferences)

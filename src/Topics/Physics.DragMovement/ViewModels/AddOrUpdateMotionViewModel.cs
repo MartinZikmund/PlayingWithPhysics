@@ -40,8 +40,8 @@ namespace Physics.DragMovement.ViewModels
             Label = motionInfo.Label;
             Gravity = motionInfo.G;
             Color = ColorHelper.ToColor(motionInfo.Color);
-            V0 = motionInfo.V0;
-            Angle = motionInfo.Angle;
+            V0 = motionInfo.OriginSpeed;
+            Angle = motionInfo.ElevationAngle;
             X0 = motionInfo.Origin.X;
             Y0 = motionInfo.Origin.Y;
             Mass = motionInfo.Mass;
@@ -402,20 +402,6 @@ namespace Physics.DragMovement.ViewModels
         {
             switch (MovementType)
             {
-                case MovementType.VerticalMotion:
-                    IsY0Enabled = true;
-                    IsX0Enabled = true;
-                    IsV0Enabled = true;
-                    IsMassEnabled = true;
-                    IsAngleEnabled = false;
-                    break;
-                case MovementType.HorizontalMotion:
-                    IsY0Enabled = true;
-                    IsV0Enabled = true;
-                    IsX0Enabled = true;
-                    IsMassEnabled = true;
-                    IsAngleEnabled = false;
-                    break;
                 case MovementType.ProjectileMotion:
                     IsY0Enabled = true;
                     IsX0Enabled = true;
@@ -439,29 +425,28 @@ namespace Physics.DragMovement.ViewModels
             {
                 MovementType.FreeFall => MotionFactory.CreateFreeFall(
                     new Vector2(X0, Y0),
+                    ResistanceCoefficient,
                     Mass,
-                    0,
-                    ColorHelper.ToHex(Color), Gravity),
-                MovementType.VerticalMotion =>
-                MotionFactory.CreateUpwardMotion(
-                    new Vector2(X0, Y0),
-                    Mass,
-                    0,
+                    Area,
                     V0,
-                    ColorHelper.ToHex(Color), Gravity),
-                MovementType.HorizontalMotion => MotionFactory.CreateHorizontalMotion(
-                    new Vector2(X0, Y0),
-                    Mass,
-                    0,
-                    V0,
-                    ColorHelper.ToHex(Color), Gravity),
+                    Angle,
+                    GravityCoefficient,
+                    EnvironmentDensity,
+                    Diameter,
+                    Density,
+                    ColorHelper.ToHex(Color)),
                 MovementType.ProjectileMotion => MotionFactory.CreateProjectileMotion(
                     new Vector2(X0, Y0),
+                    ResistanceCoefficient,
                     Mass,
-                    0,
+                    Area,
                     V0,
-                    ColorHelper.ToHex(Color),
-                    Angle, Gravity),
+                    Angle,
+                    GravityCoefficient,
+                    EnvironmentDensity,
+                    Diameter,
+                    Density,
+                    ColorHelper.ToHex(Color)),
                 _ => throw new ArgumentNullException()
             };
     }

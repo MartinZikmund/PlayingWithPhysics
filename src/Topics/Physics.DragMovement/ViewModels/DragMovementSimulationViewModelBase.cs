@@ -3,6 +3,7 @@ using MvvmCross.Base;
 using Physics.DragMovement.Dialogs;
 using Physics.DragMovement.Logic.PhysicsServices;
 using Physics.DragMovement.Models;
+using Physics.DragMovement.Rendering;
 using Physics.DragMovement.ValuesTable;
 using Physics.DragMovement.Views;
 using Physics.Shared.Services.Preferences;
@@ -34,7 +35,7 @@ namespace Physics.DragMovement.ViewModels
         private readonly IMvxMainThreadAsyncDispatcher _dispatcher;
         private readonly IPreferences _preferences;
         protected bool _startWithController = false;
-        //protected DragMovementCanvasController _controller;
+        protected DragMovementCanvasController _controller;
 
         //private LaunchInfo _launchInfo = null;
         private DispatcherTimer _timer = new DispatcherTimer();
@@ -46,7 +47,6 @@ namespace Physics.DragMovement.ViewModels
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             _timer.Tick += _timer_Tick;
         }
-
 
         public virtual bool PauseAfterChanges
         {
@@ -60,52 +60,17 @@ namespace Physics.DragMovement.ViewModels
             }
         }
 
-        private void MainView_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
-        {
-            //var launchInfo = new LaunchInfo();
-            //launchInfo.Motions = Motions.Select(t => t.MotionInfo).ToList();
-            //args.Request.Data.SetWebLink(LaunchUriManager.Serialize("hsf1", launchInfo));
-            //args.Request.Data.Properties.Title = "Share this motion's uri";
-            //args.Request.Data.Properties.Description = "This motion and it's settings will be shared as a URI which let's other users make use of it.";
-        }
-
         public override void Prepare(SimulationNavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
             RaisePropertyChanged(nameof(IsAdvanced));
-            //_launchInfo = parameter.LaunchInfo;
         }
-
-        public override async Task Initialize()
-        {
-            //if (_launchInfo != null)
-            //{
-            //    await LoadLaunchInfoAsync(_launchInfo);
-            //}
-        }
-
-        //public async Task LoadLaunchInfoAsync(LaunchInfo launchInfo)
-        //{
-        //    if (launchInfo?.Motions != null && launchInfo.Motions.Count > 0)
-        //    {
-        //        Motions.Clear();
-
-        //        for (int movementId = 0; movementId < launchInfo.Motions.Count; movementId++)
-        //        {
-        //            Motions.Add(new MotionInfoViewModel(launchInfo.Motions[movementId]));
-        //        }
-
-        //        await StartSimulationAsync();
-        //    }
-        //}
 
         public DifficultyOption Difficulty { get; set; }
 
         public bool IsAdvanced => Difficulty == DifficultyOption.Advanced;
 
         public float StepSize { get; set; } = 0.1f;
-
-        public ICommand ShareCommand => GetOrCreateCommand(DataTransferManager.ShowShareUI);
 
         public bool DrawTrajectoriesContinously { get; set; } = true;
 
@@ -234,22 +199,22 @@ namespace Physics.DragMovement.ViewModels
 
         protected async Task StartSimulationAsync()
         {
-            //if (_controller == null)
-            //{
-            //    _startWithController = true;
-            //    return;
-            //}
+            if (_controller == null)
+            {
+                _startWithController = true;
+                return;
+            }
 
-            //_timer.Start();
-            //if (PauseAfterChanges)
-            //{
-            //    IsPaused = true;
-            //    _controller.Pause();
-            //}
-            //await _controller.RunOnGameLoopAsync(() =>
-            //{
-            //    _controller.StartNewSimulation(DrawTrajectoriesContinously, BreakDownMotions, Motions.Select(t => t.MotionInfo).ToArray());
-            //});
+            _timer.Start();
+            if (PauseAfterChanges)
+            {
+                IsPaused = true;
+                _controller.Pause();
+            }
+            await _controller.RunOnGameLoopAsync(() =>
+            {
+                _controller.StartNewSimulation(DrawTrajectoriesContinously, BreakDownMotions, Motions.Select(t => t.MotionInfo).ToArray());
+            });
         }
 
         private Dictionary<MotionInfoViewModel, AppWindow> _tableWindowIds =
@@ -331,7 +296,6 @@ namespace Physics.DragMovement.ViewModels
         public override void ViewAppearing()
         {
             base.ViewAppearing();
-            DataTransferManager.GetForCurrentView().DataRequested += MainView_DataRequested;
         }
 
         public override void ViewDisappearing()
@@ -341,7 +305,6 @@ namespace Physics.DragMovement.ViewModels
             {
                 CloseAppViewForMotionAsync(motion);
             }
-            DataTransferManager.GetForCurrentView().DataRequested -= MainView_DataRequested;
         }
 
         public override void ViewDestroy(bool viewFinishing = true)
