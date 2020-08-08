@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Physics.DragMovement.Logic.PhysicsServices
 {
-    public struct ValueRow
+    public class ValueRow
     {
         public float Time;
         public float Acceleration;
@@ -17,7 +17,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
     public class PhysicsService : IPhysicsService
     {
         public List<ValueRow> MotionValues = new List<ValueRow>();
-        private const float Delta = 1 / 1000;
+        private const float Delta = 1 / 1000.0f;
         private float LastVelocty = 0f;
 
         private const int MinTrajectoryJumps = 50;
@@ -59,13 +59,14 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             //lastY is Origin.Y at the beginning, goes down to 0 with FreeFall
             float lastY = MotionValues.Last().Y;
             float lastTime = MotionValues.Last().Time;
-            while (lastY >= 0)
+            float lastSpeed = MotionValues.Last().Speed;
+            while (lastY > 0)
             {
-                float lastSpeed = MotionValues.Last().Speed;
                 float newTime = lastTime + Delta;
-                float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2)/throwInfo.Mass);
+                float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
                 float newSpeed = lastSpeed + newAcceleration * Delta;
                 float newY = lastY - newSpeed * Delta;
+
                 //Fill row of values
                 ValueRow row = new ValueRow
                 {
@@ -74,9 +75,11 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     Speed = newSpeed,
                     Y = newY
                 };
+                MotionValues.Add(row);
+
                 lastTime = newTime;
                 lastY = newY;
-                MotionValues.Add(row);
+                lastSpeed = newSpeed;
             }
         }
 
@@ -93,20 +96,46 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         {
             if (timeMoment < MaxT)
             {
-                return MotionValues[(int)(timeMoment / Delta)].Y;
+                var foundRow = FindRow(timeMoment);
+                if (foundRow != null)
+                {
+                    return foundRow.Y;
+                }
             }
             return 0f;
         }
 
         public float ComputeV(float timeMoment)
         {
-            if (timeMoment < MaxT)
+            var foundRow = FindRow(timeMoment);
+            if (foundRow != null)
             {
-                return MotionValues[(int)(timeMoment / Delta)].Speed;
+                return foundRow.Speed;
             }
             return 0f;
         }
 
+        public ValueRow FindRow(float timeMoment)
+        {
+            if (timeMoment < MaxT)
+            {
+                for (int rowIndex = 0; rowIndex < MotionValues.Count; rowIndex++)
+                {
+                    var row = MotionValues[rowIndex];
+                    if (row.Time > timeMoment)
+                    {
+                        if (rowIndex == 0)
+                        {
+                            return row;
+                        }
+
+                        return MotionValues[rowIndex - 1];
+                    }
+                }
+                return MotionValues.Last();
+            }
+            return null;
+        }
         public float AngleInRad => (float)Math.PI * MotionInfo.ElevationAngle / 180.0f;
 
         private float ComputeTMax()
