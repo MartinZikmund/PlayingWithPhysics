@@ -179,7 +179,6 @@ namespace Physics.DragMovement.ViewModels
                     SetLocalizedAndNumberedLabelName();
                 }
             }
-
         }
 
         public bool IsV0Enabled { get; set; }

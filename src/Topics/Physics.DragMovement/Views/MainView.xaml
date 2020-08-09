@@ -9,6 +9,7 @@
     xmlns:views="using:Physics.Shared.Views"
     xmlns:viewModels="using:Physics.DragMovement.ViewModels"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    x:Name="Page"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
