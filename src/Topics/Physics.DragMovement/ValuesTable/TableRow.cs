@@ -15,13 +15,15 @@ namespace Physics.DragMovement.ValuesTable
         public string X { get; set; }
         public string Y { get; set; }
         public string V { get; set; }
+        public string A { get; set; }
 
-        public TableRow(float time, float x, float y, float v)
+        public TableRow(float time, float x, float y, float v, float a)
         {
             Time = time.ToString(ZeroFormatting);
             X = x.ToString(ZeroFormatting);
             Y = y.ToString(ZeroFormatting);
             V = v.ToString(ZeroFormatting);
+            A = a.ToString(ZeroFormatting);
         }
 
         protected override IEnumerable<string> GetCellValuesInOrder()
@@ -29,6 +31,7 @@ namespace Physics.DragMovement.ValuesTable
             yield return Time;
             yield return X;
             yield return Y;
+            yield return A;
             yield return V;
         }
     }

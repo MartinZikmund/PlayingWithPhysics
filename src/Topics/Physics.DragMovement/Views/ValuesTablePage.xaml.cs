@@ -65,7 +65,7 @@ namespace Physics.DragMovement.Views
         {
             var xColumn = ValuesTable.Columns[1];
             var v0Column = ValuesTable.Columns[4];
-            if (xColumn != null && v0Column != null)
+            if (xColumn != null)
             {
                 Visibility newVisibility = Visibility.Visible;
                 if (xColumn.Visibility == Visibility.Collapsed)
@@ -77,7 +77,6 @@ namespace Physics.DragMovement.Views
                     newVisibility = Visibility.Collapsed;
                 }
                 xColumn.Visibility = newVisibility;
-                v0Column.Visibility = newVisibility;
             }
         }
 

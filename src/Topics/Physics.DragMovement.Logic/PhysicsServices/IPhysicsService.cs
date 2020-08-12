@@ -9,6 +9,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         float ComputeX(float timeMoment);
         float ComputeY(float timeMoment);
         float ComputeV(float timeMoment);
+        float ComputeAcceleration(float timeMoment);
         float MaxX { get; }
         float MaxT { get; }
         float MaxY { get; }

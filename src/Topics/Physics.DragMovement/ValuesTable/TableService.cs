@@ -30,8 +30,9 @@ namespace Physics.DragMovement.ValuesTable
                 float x = _physicsService.ComputeX(time);
                 float y = _physicsService.ComputeY(time);
                 float v = _physicsService.ComputeV(time);
+                float a = _physicsService.ComputeAcceleration(time);
 
-                TableRow valuesRow = new TableRow(time, x, y, v);
+                TableRow valuesRow = new TableRow(time, x, y, v, a);
                 table.Add(valuesRow);
 
                 currentY = y;

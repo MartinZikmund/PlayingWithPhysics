@@ -62,7 +62,7 @@ namespace Physics.DragMovement.Views
             if (Model != model)
             {
                 Model = model;
-                //Model.SetViewInteraction(this);
+                Model.SetViewInteraction(this);
             }
         }
 

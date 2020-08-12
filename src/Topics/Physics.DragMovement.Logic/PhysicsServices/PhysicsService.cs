@@ -115,6 +115,16 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             return 0f;
         }
 
+        public float ComputeAcceleration(float timeMoment)
+        {
+            var foundRow = FindRow(timeMoment);
+            if (foundRow != null)
+            {
+                return foundRow.Acceleration;
+            }
+            return 0f;
+        }
+
         public ValueRow FindRow(float timeMoment)
         {
             if (timeMoment < MaxT)

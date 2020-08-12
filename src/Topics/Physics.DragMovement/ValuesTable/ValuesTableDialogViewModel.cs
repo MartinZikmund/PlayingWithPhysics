@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 
 namespace Physics.DragMovement.ValuesTable
 {
@@ -75,6 +77,11 @@ namespace Physics.DragMovement.ValuesTable
             if (eventArgs.Column.Header.ToString() == "EPEK")
             {
                 eventArgs.Column.Header = "Ep + Ek (J)";
+            }
+
+            if (eventArgs.Column.Header.ToString() == "A")
+            {
+                eventArgs.Column.Header = "a (m/s²)";
             }
         }
 

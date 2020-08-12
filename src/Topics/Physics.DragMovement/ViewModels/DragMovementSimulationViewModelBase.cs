@@ -76,20 +76,20 @@ namespace Physics.DragMovement.ViewModels
 
         private void _timer_Tick(object sender, object e)
         {
-            //if (_timer.IsEnabled && _controller != null)
-            //{
-            //    float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+            if (_timer.IsEnabled && _controller != null)
+            {
+                float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
 
-            //    if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime > _controller.TrajectoryStopTime)
-            //    {
-            //        timeElapsed = (float)_controller.TrajectoryStopTime.Value.TotalSeconds;
-            //    }
+                if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime > _controller.TrajectoryStopTime)
+                {
+                    timeElapsed = (float)_controller.TrajectoryStopTime.Value.TotalSeconds;
+                }
 
-            //    foreach (var motion in Motions)
-            //    {
-            //        motion.UpdateCurrentValues(timeElapsed);
-            //    }
-            //}
+                foreach (var motion in Motions)
+                {
+                    motion.UpdateCurrentValues(timeElapsed);
+                }
+            }
         }
 
         public ObservableCollection<MotionInfoViewModel> Motions { get; } =
@@ -113,15 +113,15 @@ namespace Physics.DragMovement.ViewModels
 
         private void PauseToggle()
         {
-            //IsPaused = !IsPaused;
-            //if (IsPaused)
-            //{
-            //    _controller.Pause();
-            //}
-            //else
-            //{
-            //    _controller.Play();
-            //}
+            IsPaused = !IsPaused;
+            if (IsPaused)
+            {
+                _controller.Pause();
+            }
+            else
+            {
+                _controller.Play();
+            }
         }
 
         public ICommand StartNewSimulationCommand => GetOrCreateAsyncCommand(StartSimulationAsync);
