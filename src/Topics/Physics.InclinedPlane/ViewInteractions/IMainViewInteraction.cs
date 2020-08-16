@@ -4,6 +4,6 @@ namespace Physics.InclinedPlane.ViewInteractions
 {
     public interface IMainViewInteraction
     {
-        InclinedPlaneCanvasController PrepareController();
+        InclinedPlaneSkiaController PrepareController();
     }
 }

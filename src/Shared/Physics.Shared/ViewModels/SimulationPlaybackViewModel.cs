@@ -6,11 +6,11 @@ namespace Physics.Shared.UI.ViewModels
 {
     public class SimulationPlaybackViewModel : ViewModelBase
     {
-        private BaseCanvasController _canvasController;
+        private IRenderingPlayback _renderingPlayback;
 
-        public void SetController(BaseCanvasController canvasController)
+        public void SetController(IRenderingPlayback canvasController)
         {
-            _canvasController = canvasController;
+            _renderingPlayback = canvasController;
             RaisePropertyChanged(nameof(IsPaused));
         }
 
@@ -30,32 +30,35 @@ namespace Physics.Shared.UI.ViewModels
         {
         }
 
-        private void JumpToStart() => _canvasController.SimulationTime.Restart();
+        private void JumpToStart() => _renderingPlayback?.SimulationTime.Restart();
 
-        private void JumpForward() => _canvasController.FastForward(JumpSize);
+        private void JumpForward() => _renderingPlayback?.FastForward(JumpSize);
 
-        public bool IsPaused => _canvasController?.IsPaused ?? false;
+        public bool IsPaused => _renderingPlayback?.IsPaused ?? false;
 
         public float JumpSize { get; set; } = 0.5f;
 
         public float PlaybackSpeed { get; set; } = 1.0f;
 
-        private void JumpBack() => _canvasController.Rewind(JumpSize);
+        private void JumpBack() => _renderingPlayback?.Rewind(JumpSize);
 
         private void OnPlaybackSpeedChanged()
         {
-            _canvasController.SimulationTime.SimulationSpeed = PlaybackSpeed;
+            if (_renderingPlayback != null)
+            {
+                _renderingPlayback.SimulationTime.SimulationSpeed = PlaybackSpeed;
+            }
         }
 
         private void Pause()
         {
-            _canvasController?.Pause();
+            _renderingPlayback?.Pause();
             RaisePropertyChanged(nameof(IsPaused));
         }
 
         private void Play()
         {
-            _canvasController?.Play();
+            _renderingPlayback?.Play();
             RaisePropertyChanged(nameof(IsPaused));
         }
     }

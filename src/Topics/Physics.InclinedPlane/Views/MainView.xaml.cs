@@ -2,6 +2,7 @@
 using Physics.InclinedPlane.Rendering;
 using Physics.InclinedPlane.ViewInteractions;
 using Physics.InclinedPlane.ViewModels;
+using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.Views;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
@@ -16,8 +17,8 @@ namespace Physics.InclinedPlane.Views
     /// </summary>
     public sealed partial class MainView : BaseView, IMainViewInteraction
     {
-        private CanvasAnimatedControl _animatedCanvas;
-        private InclinedPlaneCanvasController _canvasController;
+        private SkiaCanvas _animatedCanvas;
+        private InclinedPlaneSkiaController _canvasController;
 
         public MainView()
         {
@@ -49,24 +50,23 @@ namespace Physics.InclinedPlane.Views
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
         {
             _canvasController?.Dispose();
-            _animatedCanvas?.RemoveFromVisualTree();
             _animatedCanvas = null;
         }
 
-        public InclinedPlaneCanvasController PrepareController()
+        public InclinedPlaneSkiaController PrepareController()
         {
             if (_animatedCanvas == null)
             {
-                _animatedCanvas = new CanvasAnimatedControl();
+                _animatedCanvas = new SkiaCanvas();
                 CanvasHolder.Children.Add(_animatedCanvas);
             }
 
             if (_canvasController == null)
             {
-                _canvasController = new InclinedPlaneCanvasController(_animatedCanvas);
+                _canvasController = new InclinedPlaneSkiaController(_animatedCanvas);
             }
 
-            _canvasController.SetVariantRenderer(new SimulationRenderer(_canvasController));
+            _canvasController.SetVariantRenderer(new SkiaSimulationRenderer(_canvasController));
             return _canvasController;
         }
     }

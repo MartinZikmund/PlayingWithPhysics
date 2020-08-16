@@ -136,6 +136,8 @@
     <Compile Include="Controls\SkewedMenuHeader.xaml.cs">
       <DependentUpon>SkewedMenuHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Rendering\IRenderingPlayback.cs" />
+    <Compile Include="Rendering\Skia\SkiaCanvas.cs" />
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
     <Compile Include="Converters\EnumLocalizationConverter.cs" />
     <Compile Include="Converters\NativeConverters.cs" />
@@ -163,6 +165,12 @@
     <Compile Include="Rendering\SimulationBounds.cs" />
     <Compile Include="Rendering\SimulationPadding.cs" />
     <Compile Include="Rendering\SimulationTime.cs" />
+    <Compile Include="Rendering\Skia\Infrastructure\IRenderLoop.cs" />
+    <Compile Include="Rendering\Skia\Infrastructure\RenderLoop.cs" />
+    <Compile Include="Rendering\Skia\SkiaCanvas.Events.cs" />
+    <Compile Include="Rendering\Skia\SkiaCanvas.uwp.cs" />
+    <Compile Include="Rendering\Skia\SkiaCanvasController.cs" />
+    <Compile Include="Rendering\Skia\SkiaEventHandler.cs" />
     <Compile Include="Services\Localization\Localizer.cs" />
     <Compile Include="Services\Preferences\IPreferences.cs" />
     <Compile Include="Services\Preferences\PreferenceLocality.cs" />
@@ -222,6 +230,9 @@
     </PackageReference>
     <PackageReference Include="ReactiveUI">
       <Version>11.4.17</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>2.80.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.25.0</Version>

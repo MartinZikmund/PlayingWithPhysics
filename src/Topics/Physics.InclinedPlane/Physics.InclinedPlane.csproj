@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>EEB036E5BCCCB1337928438A5BF1530FD89690CB</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>5260BBDCCDACF8CF740C844B6301DC738D40A9A6</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
@@ -142,8 +142,11 @@
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\InclinedPlaneCanvasController.cs" />
+    <Compile Include="Rendering\InclinedPlaneSkiaController.cs" />
+    <Compile Include="Rendering\ISkiaVariantRenderer.cs" />
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\SimulationRenderer.cs" />
+    <Compile Include="Rendering\SkiaSimulationRenderer.cs" />
     <Compile Include="Services\DriftCoefficientDefault.cs" />
     <Compile Include="Services\GravityDefault.cs" />
     <Compile Include="UserControls\InclinedPlaneInputControl.xaml.cs">
