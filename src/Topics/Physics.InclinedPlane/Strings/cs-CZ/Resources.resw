@@ -124,7 +124,7 @@
     <value>Pokročilá varianta</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby po nakloněné rovině</value>
+    <value>Hrátky s fyzikou: Translační pohyb tělesa po nakloněné rovině</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
@@ -298,7 +298,7 @@
     <value>Uložit</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyby po nakloněné rovině</value>
+    <value>Translační pohyb tělesa po nakloněné rovině</value>
   </data>
   <data name="StudyText" xml:space="preserve">
     <value>Studijní text</value>
