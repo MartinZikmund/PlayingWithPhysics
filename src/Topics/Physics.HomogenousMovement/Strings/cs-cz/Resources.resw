@@ -127,13 +127,13 @@
     <value>Úhel</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby v homogenním tíhovém poli</value>
+    <value>Hrátky s fyzikou: Pohyby těles v homogenním tíhovém poli</value>
   </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Časový interval (s)</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyby v homogenním tíhovém poli</value>
+    <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
   <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
     <value>Chybný formát vstupních hodnot</value>
@@ -229,7 +229,7 @@
     <value>Studijní text</value>
   </data>
   <data name="TopicName" xml:space="preserve">
-    <value>Pohyby v homogenním tíhovém poli Země</value>
+    <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Verze</value>
@@ -238,7 +238,7 @@
     <value>Svislý vrh</value>
   </data>
   <data name="PohybyVHomogennímTíhovémPoliTextBlock.Text" xml:space="preserve">
-    <value>Pohyby v homogenním tíhovém poli</value>
+    <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Zkopírovat</value>
