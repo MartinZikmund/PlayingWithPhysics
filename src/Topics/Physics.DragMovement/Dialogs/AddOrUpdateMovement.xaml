@@ -274,7 +274,6 @@
                     Grid.Row="6"
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
-                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
                     Maximum="2000"
                     Minimum="0"
                     Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -292,7 +291,6 @@
                     Grid.Row="7"
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
-                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
                     Maximum="2000"
                     Minimum="0"
                     Value="{x:Bind Model.Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
