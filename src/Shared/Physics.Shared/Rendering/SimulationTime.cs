@@ -1,10 +1,33 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Graphics.Canvas.UI;
 
 namespace Physics.Shared.UI.Rendering
 {
     public class SimulationTime
     {
+        private readonly Stopwatch _stopwatch;
+        private long _lastElapsedMilliseconds = 0;
+
+        public SimulationTime()
+        {
+            _stopwatch = new Stopwatch();
+        }
+
+        internal void Start()
+        {
+            _stopwatch.Start();
+        }
+
+        internal void OnUpdateStarting()
+        {
+            var currentElapsed = _stopwatch.ElapsedMilliseconds;
+            ElapsedTime = TimeSpan.FromMilliseconds(currentElapsed - _lastElapsedMilliseconds);
+            _lastElapsedMilliseconds = currentElapsed;
+            TotalTime = TimeSpan.FromMilliseconds(currentElapsed);
+            UpdateCount++;
+        }
+
         public TimeSpan TotalTime { get; private set; } = TimeSpan.Zero;
 
         public TimeSpan ElapsedTime { get; private set; } = TimeSpan.Zero;
@@ -15,6 +38,7 @@ namespace Physics.Shared.UI.Rendering
 
         public void Restart()
         {            
+            _stopwatch.Restart();
             TotalTime = TimeSpan.Zero;
         }
 

@@ -33,6 +33,7 @@ namespace Physics.InclinedPlane.ViewModels
         private IMainViewInteraction _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
+        private InclinedPlaneSkiaController _controller;
         private DispatcherTimer _timer = new DispatcherTimer();
 
         public class NavigationModel
@@ -116,7 +117,6 @@ namespace Physics.InclinedPlane.ViewModels
 
         private Dictionary<MotionViewModel, AppWindow> _tableWindowIds =
             new Dictionary<MotionViewModel, AppWindow>();
-        private InclinedPlaneCanvasController _controller;
 
         private async Task ShowValuesTableAsync(MotionViewModel viewModel)
         {
