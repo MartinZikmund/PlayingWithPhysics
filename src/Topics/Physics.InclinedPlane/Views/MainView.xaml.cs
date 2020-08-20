@@ -66,7 +66,7 @@ namespace Physics.InclinedPlane.Views
                 _canvasController = new InclinedPlaneSkiaController(_animatedCanvas);
             }
 
-            _canvasController.SetVariantRenderer(new SkiaSimulationRenderer(_canvasController));
+            _canvasController.SetVariantRenderer(new GameRenderer(_canvasController));
             return _canvasController;
         }
     }

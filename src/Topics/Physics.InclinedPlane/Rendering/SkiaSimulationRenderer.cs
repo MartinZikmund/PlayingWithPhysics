@@ -25,6 +25,14 @@ namespace Physics.InclinedPlane.Rendering
             FilterQuality = SKFilterQuality.High
         };
 
+        private SKPaint _boxPaint = new SKPaint()
+        {
+            Color = SKColors.Black,
+            StrokeWidth = 2,
+            IsAntialias = true,
+            FilterQuality = SKFilterQuality.High
+        };
+
         public SkiaSimulationRenderer(InclinedPlaneSkiaController canvasController)
         {
             _canvasController = canvasController;
@@ -52,27 +60,34 @@ namespace Physics.InclinedPlane.Rendering
             var y = _canvasController.PhysicsService.CalculateY(t) * _scalingRatio;
 
             var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_canvasController.Motion.Color);
-
+            _boxPaint.Color = new SKColor(color.R, color.G, color.B);
             if (t <= _canvasController.PhysicsService.CalculateHorizontalStartTime() || !_canvasController.Motion.HasHorizontal)
             {
-                var leftTop = new SKPoint(-12, 0);
-                var rightBottom = new SKPoint(12, 24);
-                var matrix =
-                    SKMatrix.Concat(
-                    SKMatrix.CreateRotation(MathHelpers.DegreesToRadians(180 + _canvasController.Motion.InclinedAngle)),
-                    SKMatrix.CreateTranslation(PadX(x), FlipY(imageInfo, y)));
-                surface.Canvas.DrawPoints(SKPointMode.Polygon, new SKPoint[] { matrix.MapPoint(leftTop), matrix.MapPoint(rightBottom) }, _linePaint);
-                //    .CreateRectangle(target, new Rect(-12, 0, 24, 24))
-                //        .Transform(Matrix3x2.CreateRotation(MathHelpers.DegreesToRadians(180 + _canvasController.Motion.InclinedAngle)))
-                //        .Transform(Matrix3x2.CreateTranslation(PadX(x), FlipY(target, y)));
-                ////apply angle                
-                //surface.Canvas.Draw.FillGeometry(rectangle, color);
+                //var leftTop = new SKPoint(-12, 0);
+                //var rightBottom = new SKPoint(12, 24);
+                //var matrix =
+                //    SKMatrix.Concat(
+                //    SKMatrix.CreateRotation(MathHelpers.DegreesToRadians(180 + _canvasController.Motion.InclinedAngle)),
+                //    SKMatrix.CreateTranslation(PadX(x), FlipY(imageInfo, y)));
+                float rad = MathHelpers.DegreesToRadians(_canvasController.Motion.InclinedAngle);
+                using (SKPath pathRotated = new SKPath())
+                {
+                    var centerPoint = new SKPoint(PadX(x) + (float)Math.Cos(rad - Math.PI / 2) * 12, FlipY(imageInfo, y) + (float)Math.Sin(rad - Math.PI / 2) * 12);
+                    int cx = (int)centerPoint.X;
+                    int cy = (int)centerPoint.Y;
+                    pathRotated.MoveTo(SkiaHelpers.RotatePoint(centerPoint - new SKPoint(12,12), cx, cy, rad));
+                    pathRotated.LineTo(SkiaHelpers.RotatePoint(centerPoint - new SKPoint(12, -12), cx, cy, rad));
+                    pathRotated.LineTo(SkiaHelpers.RotatePoint(centerPoint + new SKPoint(12, 12), cx, cy, rad));
+                    pathRotated.LineTo(SkiaHelpers.RotatePoint(centerPoint + new SKPoint(12, -12), cx, cy, rad));
+                    pathRotated.LineTo(SkiaHelpers.RotatePoint(centerPoint - new SKPoint(12, 12), cx, cy, rad));
+                    surface.Canvas.DrawPath(pathRotated, _boxPaint);
+                }
             }
             else
             {
                 var left = PadX(x - 12);
                 var top = FlipY(imageInfo, y + 24);
-                surface.Canvas.DrawRect(new SKRect(left, top, left + 24, top + 24), _linePaint);
+                surface.Canvas.DrawRect(new SKRect(left, top, left + 24, top + 24), _boxPaint);
             }
         }
 

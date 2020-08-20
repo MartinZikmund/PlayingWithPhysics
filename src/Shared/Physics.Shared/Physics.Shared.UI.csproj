@@ -171,6 +171,7 @@
     <Compile Include="Rendering\Skia\SkiaCanvas.uwp.cs" />
     <Compile Include="Rendering\Skia\SkiaCanvasController.cs" />
     <Compile Include="Rendering\Skia\SkiaEventHandler.cs" />
+    <Compile Include="Rendering\Skia\SkiaHelpers.cs" />
     <Compile Include="Services\Localization\Localizer.cs" />
     <Compile Include="Services\Preferences\IPreferences.cs" />
     <Compile Include="Services\Preferences\PreferenceLocality.cs" />
