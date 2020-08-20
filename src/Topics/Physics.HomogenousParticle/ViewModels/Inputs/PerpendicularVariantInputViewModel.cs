@@ -12,6 +12,8 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 {
     public class PerpendicularVariantInputViewModel : VariantInputViewModelBase
     {
+        private float _massMultiple = 1;
+
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
             if (ChargeMultiple == 0)
@@ -24,7 +26,24 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
 
         public float ChargeMultiple { get; set; } = 1;
 
-        public float MassMultiple { get; set; } = 1.67f;
+        public float MassMultiple
+        {
+            get
+            {
+                return _massMultiple;
+            }
+            set
+            {
+                if (value < 1f && value != 0.000545f)
+                {
+                    _massMultiple = 1f;
+                }
+                else
+                {
+                    _massMultiple = value;
+                }
+            }
+        }
 
         public float VelocityMultiple { get; set; } = 1;
 

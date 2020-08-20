@@ -25,8 +25,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             Type = movementType;
             Origin = origin;
             Resistance = resistance;
-            Mass = mass;
-            Area = area;
+            _mass = mass;
+            _area = area;
             OriginSpeed = originSpeed;
             ElevationAngle = elevationAngle;
             G = gravity;
@@ -47,8 +47,37 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         public MovementType Type { get; set; }
         public Vector2 Origin { get; set; }
         public float Resistance { get; set; }
-        public float Mass { get; set; }
-        public float Area { get; set; }
+        public float Mass
+        {
+            get
+            {
+                if (_mass >= 0)
+                {
+                    return _mass;
+                }
+                else
+                {
+                    return ShapeDensity * (4 / 3 * (float)Math.PI * (float)Math.Pow(Diameter, 3));
+                }
+            }
+        }
+        private float _mass = -1;
+        public float Area
+        {
+            get
+            {
+                if (_area >= 0)
+                {
+                    return _area;
+                }
+                else
+                {
+                    return (float)Math.PI * (float)Math.Pow(Diameter, 2);
+                }
+            }
+        }
+        
+        public float _area = -1;
         public float OriginSpeed { get; set; }
         public float ElevationAngle { get; set; }
         public float G { get; set; }

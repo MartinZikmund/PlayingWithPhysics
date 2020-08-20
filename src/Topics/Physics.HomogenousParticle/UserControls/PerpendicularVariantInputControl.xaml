@@ -73,7 +73,7 @@
             <Run Text="{extensions:Localize Key=PerpendicularInput_MassStart}" />
             <Run FontWeight="Bold" Text="m" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
-            <Run Text="10" /><Run Text="&#8315;27" Typography.Variants="Superscript" /><Run Text=")" />
+            <!--<Run Text="10" /><Run Text="&#8315;27" Typography.Variants="Superscript" /><Run Text=")" />-->
             <Run Text="[kg]"/>
         </TextBlock>
         <winui:NumberBox
@@ -81,17 +81,14 @@
             Grid.Row="1"
             Grid.Column="1"
             LargeChange="1"
-            Maximum="400"
-            Minimum="0.00091"
+            Maximum="300"
+            Minimum="0"
             SpinButtonPlacementMode="Hidden"
             Value="{x:Bind Model.MassMultiple, Mode=TwoWay}" />
 
         <StackPanel Margin="0" Padding="0" Grid.Row="2" Orientation="Horizontal">
             <Image Width="20" Source="/Assets/info.png" Margin="0,0,12,0"></Image>
-            <StackPanel>
-                <TextBlock FontWeight="Light" Text="{extensions:Localize Key=ProtonWeightInfo}"/>
-                <TextBlock FontWeight="Light" Text="{extensions:Localize Key=ElectronWeightInfo}"/>
-            </StackPanel>
+            <TextBlock FontWeight="Light" Text="{extensions:Localize Key=ElectronWeightInfo}"/>
         </StackPanel>
 
 

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.WebUI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
@@ -38,16 +39,20 @@ namespace Physics.DragMovement.ViewModels
             _existingNames = existingNames;
             _autogenerateLabel = false; // Do not autogenerate for edit mode.
             Label = motionInfo.Label;
-            Gravity = motionInfo.G;
+            GravityCoefficient = motionInfo.G;
             Color = ColorHelper.ToColor(motionInfo.Color);
             V0 = motionInfo.OriginSpeed;
             Angle = motionInfo.ElevationAngle;
             X0 = motionInfo.Origin.X;
             Y0 = motionInfo.Origin.Y;
             Mass = motionInfo.Mass;
+            ResistanceCoefficient = motionInfo.Resistance;
+            Density = motionInfo.ShapeDensity;
+            Diameter = motionInfo.Diameter;
+            Area = motionInfo.Area;
+            EnvironmentDensity = motionInfo.EnvironmentDensity;
             SelectedMotionIndex = (int)motionInfo.Type;
             Difficulty = difficulty;
-            SelectedResistanceCoefficient = ResistanceCoefficients[0];
             DisableUnusedInputs();
         }
 
@@ -201,10 +206,10 @@ namespace Physics.DragMovement.ViewModels
 
         public void OnResistanceCoefficientChanged()
         {
-            var selectedValue = SelectedResistanceCoefficient?.Value ?? -1;
-            if (Math.Abs(ResistanceCoefficient - selectedValue) > 0.01)
+            var found = ResistanceCoefficients.FirstOrDefault(element => element.Value == ResistanceCoefficient);
+            if (found != null)
             {
-                SelectedResistanceCoefficient = ResistanceCoefficients[0];
+                SelectedResistanceCoefficient = found;
             }
         }
 
@@ -249,6 +254,15 @@ namespace Physics.DragMovement.ViewModels
             GravityCoefficient = SelectedGravityCoefficient?.Value ?? 0f;
         }
 
+        public void OnGravityCoefficientChanged()
+        {
+            var found = GravityCoefficients.FirstOrDefault(element => element.Value == GravityCoefficient);
+            if (found != null)
+            {
+                SelectedGravityCoefficient = found;
+            }
+        }
+
         public ObservableCollection<EnvironmentDensity> EnvironmentDensities { get; } = new ObservableCollection<EnvironmentDensity>()
         {
             new EnvironmentDensity(Localizer.Instance["Gravity_Earth"], 1.3f),
@@ -264,6 +278,15 @@ namespace Physics.DragMovement.ViewModels
         public void OnSelectedEnvironmentDensityChanged()
         {
             EnvironmentDensity = SelectedEnvironmentDensity?.Value ?? 0f;
+        }
+
+        public void OnEnvironmentDensityChanged()
+        {
+            var found = EnvironmentDensities.FirstOrDefault(element => element.Value == EnvironmentDensity);
+            if (found != null)
+            {
+                SelectedEnvironmentDensity = found;
+            }
         }
 
         public void SetInputsForBall()
@@ -284,14 +307,12 @@ namespace Physics.DragMovement.ViewModels
 
         public float Diameter { get; set; }
         public float Density { get; set; }
-
         public Visibility IsDensityInputEnabled { get; set;  }
         public Visibility IsDiameterInputEnabled { get; set;  }
         public Visibility IsAreaInputEnabled { get; set;  }
         public Visibility IsMassInputEnabled { get; set;  }
         public Visibility IsGravityCoefficientEnabled { get; set; }
         public Visibility IsEnvironmentDensityEnabled { get; set; }
-
         public float ResistanceCoefficient { get; set; } = 0f;
 
         public Color Color

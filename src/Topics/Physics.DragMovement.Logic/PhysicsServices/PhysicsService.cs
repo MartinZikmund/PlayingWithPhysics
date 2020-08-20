@@ -125,6 +125,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             return 0f;
         }
 
+        public float Resistance => MotionInfo.Resistance;
+
         public ValueRow FindRow(float timeMoment)
         {
             if (timeMoment < MaxT)

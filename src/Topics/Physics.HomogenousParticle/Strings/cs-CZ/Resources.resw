@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyb částice v homogenním magnetickém poli</value>
+    <value>Hrátky s fyzikou: Pohyby částic v homogenním magnetickém poli</value>
   </data>
   <data name="ChooseMotion.Text" xml:space="preserve">
     <value>Vyber variantu</value>
@@ -127,7 +127,7 @@
     <value>Vykresli pohyb</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyb částice v homogenním magnetickém poli</value>
+    <value>Pohyby částic v homogenním magnetickém poli</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Základní varianta</value>
@@ -223,10 +223,10 @@
     <value>Zrychlení částice je</value>
   </data>
   <data name="ElectronWeightInfo" xml:space="preserve">
-    <value>Hmotnost elektronu odpovídá násobku 0,00091.</value>
+    <value>Hmotnost elektronu zadejte pomocí čísla 0,000545.</value>
   </data>
   <data name="ProtonWeightInfo" xml:space="preserve">
-    <value>Hmotnost protonu odpovídá násobku 1,67.</value>
+    <value>násobky hmotnosti nukleonu</value>
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>

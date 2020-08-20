@@ -13,6 +13,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         float MaxX { get; }
         float MaxT { get; }
         float MaxY { get; }
+        float Resistance { get; }
         MotionInfo MotionInfo { get; }
 
         //TrajectoryData CreateTrajectoryData();

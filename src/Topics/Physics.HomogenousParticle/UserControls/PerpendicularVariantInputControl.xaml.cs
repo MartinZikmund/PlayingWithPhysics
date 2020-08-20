@@ -28,7 +28,7 @@ namespace Physics.HomogenousParticle.UserControls
             DataContextChanged += PerpendicularVariantInputControl_DataContextChanged;
             ChargeNumberBox.SetupFormatting(smallChange: 1, fractionDigits: 0, increment: 1);
             VelocityNumberBox.SetupFormatting(smallChange: 1, fractionDigits: 0, increment: 1);
-            MassNumberBox.SetupFormatting(smallChange: 0.00001, fractionDigits: 5, increment: 0.00001);
+            MassNumberBox.SetupFormatting(smallChange: 0.000001, fractionDigits: 6, increment: 0.000001);
             InductionNumberBox.SetupFormatting(smallChange: 0.01, fractionDigits: 2, increment: 0.01);
         }
 

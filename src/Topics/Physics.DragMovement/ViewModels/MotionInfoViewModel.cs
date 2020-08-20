@@ -54,7 +54,7 @@ namespace Physics.DragMovement.ViewModels
             }
 
             TimeElapsed = timeElapsed.ToString("0.##") + " s";
-            CurrentSpeed = _physicsService.ComputeV(timeElapsed).ToString("0.##") + " m/s";
+            CurrentSpeed = _physicsService.ComputeV(timeElapsed - 0.001f).ToString("0.##") + " m/s";
             CurrentX = _physicsService.ComputeX(timeElapsed).ToString("0.##") + " m";
             CurrentY = _physicsService.ComputeY(timeElapsed).ToString("0.##") + " m";
         }
