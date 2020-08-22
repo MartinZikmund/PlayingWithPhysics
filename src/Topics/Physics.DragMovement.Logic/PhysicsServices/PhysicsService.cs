@@ -11,7 +11,12 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         public float Time;
         public float Acceleration;
         public float Speed;
+        public float X;
         public float Y;
+        public float Vx;
+        public float Vy;
+        public float Ep;
+        public float Ek;
     }
 
     public class PhysicsService : IPhysicsService
@@ -25,25 +30,28 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 
         public MotionInfo MotionInfo { get; }
         public float MaxT { get; }
-
         public float MaxX { get; }
-
         public float MaxV { get; }
-
         public float MaxY { get; }
-
         public float MinX { get; }
 
         public PhysicsService(MotionInfo throwInfo)
         {
             MotionInfo = throwInfo;
-            FillTable(throwInfo);
+            if (throwInfo.Type == MovementType.FreeFall)
+            {
+                FillFreeFallInfo(throwInfo);
+            }
+            else
+            {
+                FillProjectileMotionInfo(throwInfo);
+            }
             MinX = MotionInfo.Origin.X;
             MaxT = ComputeTMax();
             MaxX = ComputeXMax();
             MaxY = ComputeYMax();
         }
-        public void FillTable(MotionInfo throwInfo)
+        public void FillFreeFallInfo(MotionInfo throwInfo)
         {
             //Fill t = 0 row
             ValueRow rowZero = new ValueRow
@@ -83,11 +91,92 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             }
         }
 
+        public void FillProjectileMotionInfo(MotionInfo throwInfo)
+        {
+            //Fill t = 0 row
+            ValueRow rowZero = new ValueRow
+            {
+                Time = 0f,
+                Acceleration = throwInfo.G,
+                Speed = 0f,
+                X = throwInfo.Origin.X,
+                Y = throwInfo.Origin.Y,
+                //Projectile
+                Vx = throwInfo.OriginSpeed * (float)Math.Cos(throwInfo.ElevationAngle),
+                Vy = throwInfo.OriginSpeed * (float)Math.Sin(throwInfo.ElevationAngle),
+                Ep = throwInfo.Mass * throwInfo.G * throwInfo.Origin.Y,
+                Ek = 0.5f * throwInfo.Mass * (float)Math.Pow(throwInfo.OriginSpeed, 2)
+            };
+            MotionValues.Add(rowZero);
+
+            //Fill rest of table
+            //lastY is Origin.Y at the beginning, goes down to 0 with FreeFall
+            var lastValue = MotionValues.Last();
+
+            float lastVx = lastValue.Vx;
+            float lastVy = lastValue.Vy;
+            float lastX = lastValue.X;
+            float lastY = lastValue.Y;
+            float lastTime = lastValue.Time;
+            float lastSpeed = lastValue.Speed;
+            while (lastY > 0)
+            {
+                float newTime = lastTime + Delta;
+                float newVx = lastVx - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                float newVy = 0;
+                if (lastVy > 0)
+                {
+                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                }
+                else if (lastVy < 0)
+                {
+                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                }
+                else
+                {
+                    newVy = lastVy;
+                }
+                float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
+                float newSpeed = lastSpeed + newAcceleration * Delta;
+                float newX = lastX - lastVy * Delta;
+                float newY = lastY - lastVy * Delta;
+
+                //Fill row of values
+                ValueRow row = new ValueRow
+                {
+                    Time = newTime,
+                    X = newX,
+                    Y = newY,
+                    Acceleration = newAcceleration,
+                    Speed = newSpeed,
+                    Vx = lastVx,
+                    Vy = lastVy
+                };
+                MotionValues.Add(row);
+
+                lastTime = newTime;
+                lastX = newX;
+                lastY = newY;
+                lastSpeed = newSpeed;
+                lastVx = newVx;
+                lastVy = newVy;
+            }
+        }
+
         public float ComputeX(float timeMoment)
         {
             if (MotionInfo.Type == MovementType.FreeFall)
             {
                 return MotionInfo.Origin.X;
+            }
+
+            if (timeMoment < MaxT)
+            {
+                var foundRow = FindRow(timeMoment);
+                if (foundRow != null)
+                {
+                    return foundRow.X;
+                }
             }
             return 0f;
         }
@@ -114,6 +203,9 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             }
             return 0f;
         }
+
+        public float OriginVx => MotionInfo.OriginSpeed * (float)Math.Cos(MotionInfo.ElevationAngle);
+        public float OriginVy => MotionInfo.OriginSpeed * (float)Math.Cos(MotionInfo.ElevationAngle);
 
         public float ComputeAcceleration(float timeMoment)
         {

@@ -122,7 +122,7 @@ namespace Physics.DragMovement.ViewModels
         {
             get
             {
-                bool isAdvanced = (Difficulty == DifficultyOption.Advanced);
+                bool isAdvanced = (Difficulty == DifficultyOption.Advanced && MovementType == MovementType.ProjectileMotion);
                 return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -131,7 +131,7 @@ namespace Physics.DragMovement.ViewModels
         {
             get
             {
-                bool isAdvanced = (Difficulty == DifficultyOption.Advanced);
+                bool isAdvanced = (Difficulty == DifficultyOption.Advanced && MovementType == MovementType.ProjectileMotion);
                 return isAdvanced ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -425,7 +425,6 @@ namespace Physics.DragMovement.ViewModels
                 case MovementType.ProjectileMotion:
                     IsY0Enabled = true;
                     IsX0Enabled = true;
-
                     IsV0Enabled = true;
                     IsMassEnabled = true;
                     IsAngleEnabled = true;
