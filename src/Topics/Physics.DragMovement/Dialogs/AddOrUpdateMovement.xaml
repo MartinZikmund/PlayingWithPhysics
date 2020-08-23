@@ -186,7 +186,7 @@
                            VerticalAlignment="Center"
                            Visibility="{x:Bind Model.IsDiameterInputEnabled, Mode=TwoWay}">
                     <Run Text="{extensions:Localize Key=Diameter}" />
-                    <Run FontWeight="Bold" Text="r" />
+                    <Run FontWeight="Bold" Text="d" />
                     <Run Text="(m)" />
                 </TextBlock>
 
@@ -217,7 +217,7 @@
                     Visibility="{x:Bind Model.IsDensityInputEnabled, Mode=TwoWay}"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
-                    Maximum="1000"
+                    Maximum="100000"
                     Minimum="0.0001"
                     Value="{x:Bind Model.Density, Mode=TwoWay}" />
 
@@ -237,7 +237,7 @@
                     Visibility="{x:Bind Model.IsMassInputEnabled, Mode=TwoWay}"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
-                    Maximum="1000"
+                    Maximum="100000"
                     Minimum="0.0001"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
