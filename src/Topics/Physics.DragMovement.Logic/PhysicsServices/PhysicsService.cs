@@ -121,9 +121,9 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             
             float lastTime = lastValue.Time;
             float lastSpeed = lastValue.Speed;
-            while (lastY > 0)
+            while (lastY >   0)
             {
-                float newVx = lastVx - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVx, 2) / throwInfo.Mass)) * Delta;
+                float newVx = lastVx - ((float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVx, 2) / throwInfo.Mass)) * Delta;
                 float newVy;
                 if (lastVy > 0)
                 {
@@ -138,8 +138,12 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     newVy = lastVy;
                 }
 
-                float newX = lastX - newVx * Delta;
-                float newY = lastY - newVy * Delta;
+                float newX = lastX + newVx * Delta;
+                float newY = lastY + newVy * Delta;
+                if (newY < 0)
+                {
+                    newY = 0;
+                }
 
                 float newTime = lastTime + Delta;
                 float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
@@ -174,7 +178,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                 return MotionInfo.Origin.X;
             }
 
-            if (timeMoment < MaxT)
+            if (timeMoment <= MaxT)
             {
                 var foundRow = FindRow(timeMoment);
                 if (foundRow != null)
@@ -182,12 +186,12 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     return foundRow.X;
                 }
             }
-            return 0f;
+            return MotionValues.Last().X;
         }
 
         public float ComputeY(float timeMoment)
         {
-            if (timeMoment < MaxT)
+            if (timeMoment <= MaxT)
             {
                 var foundRow = FindRow(timeMoment);
                 if (foundRow != null)
@@ -195,7 +199,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     return foundRow.Y;
                 }
             }
-            return 0f;
+            return MotionValues.Last().Y;
         }
 
         public float ComputeV(float timeMoment)
