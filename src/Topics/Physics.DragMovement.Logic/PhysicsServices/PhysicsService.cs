@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.Shared.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -98,8 +99,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             {
                 X = throwInfo.Origin.X,
                 Y = throwInfo.Origin.Y,
-                Vx = throwInfo.OriginSpeed * (float)Math.Cos(throwInfo.ElevationAngle),
-                Vy = throwInfo.OriginSpeed * (float)Math.Sin(throwInfo.ElevationAngle),
+                Vx = throwInfo.OriginSpeed * (float)Math.Cos(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle)),
+                Vy = throwInfo.OriginSpeed * (float)Math.Sin(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle)),
                 Time = 0f,
                 Acceleration = throwInfo.G,
                 Speed = 0f,
@@ -122,23 +123,23 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             float lastSpeed = lastValue.Speed;
             while (lastY > 0)
             {
-                float newX = lastX - lastVy * Delta;
-                float newY = lastY - lastVy * Delta;
-                
-                float newVx = lastVx - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                float newVx = lastVx - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVx, 2) / throwInfo.Mass)) * Delta;
                 float newVy;
                 if (lastVy > 0)
                 {
-                    newVy = lastVy - (throwInfo.G + (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                    newVy = lastVy - (throwInfo.G + (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVy, 2) / throwInfo.Mass)) * Delta;
                 }
                 else if (lastVy < 0)
                 {
-                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass)) * Delta;
+                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVy, 2) / throwInfo.Mass)) * Delta;
                 }
                 else
                 {
                     newVy = lastVy;
                 }
+
+                float newX = lastX - newVx * Delta;
+                float newY = lastY - newVy * Delta;
 
                 float newTime = lastTime + Delta;
                 float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
@@ -206,9 +207,6 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             }
             return 0f;
         }
-
-        public float OriginVx => MotionInfo.OriginSpeed * (float)Math.Cos(MotionInfo.ElevationAngle);
-        public float OriginVy => MotionInfo.OriginSpeed * (float)Math.Cos(MotionInfo.ElevationAngle);
 
         public float ComputeAcceleration(float timeMoment)
         {
