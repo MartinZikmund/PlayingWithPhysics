@@ -17,6 +17,12 @@ namespace Physics.InclinedPlane.Rendering
         {
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+            _renderer?.Dispose();
+        }
+
         public IInclinedPlaneMotionSetup Motion { get; private set; }
 
         public PhysicsService PhysicsService { get; private set; }

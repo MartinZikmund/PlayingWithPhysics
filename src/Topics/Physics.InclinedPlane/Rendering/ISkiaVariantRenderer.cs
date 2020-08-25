@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Physics.InclinedPlane.Rendering
 {
-    public interface ISkiaVariantRenderer
+    public interface ISkiaVariantRenderer : IDisposable
     {
         void Update(SkiaCanvas sender);
 
