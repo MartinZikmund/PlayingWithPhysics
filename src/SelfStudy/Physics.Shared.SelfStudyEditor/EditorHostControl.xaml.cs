@@ -81,6 +81,7 @@ namespace Physics.SelfStudy.Editor
                 }
             };
             var serialized = JsonConvert.SerializeObject(EditedContent);
+
             var deserialized = JsonConvert.DeserializeObject<IContent>(serialized, options);
             ViewerControl.Content = deserialized;
         }

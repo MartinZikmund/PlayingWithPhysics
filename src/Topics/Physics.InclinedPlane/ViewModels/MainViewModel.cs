@@ -71,7 +71,7 @@ namespace Physics.InclinedPlane.ViewModels
             }
         });
 
-        private void RestartSimulation()
+        protected virtual void RestartSimulation()
         {
             if (_interaction == null) return;
             _controller = _interaction.PrepareController();

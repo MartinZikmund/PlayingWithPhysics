@@ -181,6 +181,7 @@
   <ItemGroup>
     <Content Include="Assets\Game\kamen_1.png" />
     <Content Include="Assets\Game\kamen_2.png" />
+    <Content Include="Assets\Game\kolo.png" />
     <Content Include="Assets\Game\plocha.png" />
     <Content Include="Assets\Game\pozadi_stadion.png" />
     <Content Include="Assets\Game\rampa.png" />

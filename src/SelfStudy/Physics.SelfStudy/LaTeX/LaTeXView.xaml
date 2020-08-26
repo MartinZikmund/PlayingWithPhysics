@@ -15,7 +15,6 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"            
             TextColor="Black"
-            LaTeX="{x:Bind LaTeX, Mode=OneWay}"
             FontSize="15"/>
     </Grid>
 </UserControl>
