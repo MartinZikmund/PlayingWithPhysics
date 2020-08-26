@@ -95,6 +95,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -169,6 +170,34 @@
                                         Foreground="White">
                                         <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
                                         <Run Text=" m" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="Ft:" />
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="3"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.Ft, Mode=OneWay}" />
+                                        <Run Text=" N" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Foreground="White"
+                                        Text="Fp:" />
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="16"
+                                        Foreground="White">
+                                        <Run Text="{x:Bind Model.Motion.Fp, Mode=OneWay}" />
+                                        <Run Text=" N" />
                                     </TextBlock>
                                 </Grid>
                             </Grid>

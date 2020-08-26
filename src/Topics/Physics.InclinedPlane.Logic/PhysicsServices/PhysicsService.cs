@@ -88,7 +88,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             var x = CalculateInclinedX(time);
             var horizontalStartX = CalculateHorizontalStartX();
             var xDiff = horizontalStartX - x;
-            return (float)Math.Cos(MathHelpers.DegreesToRadians(Setup.InclinedAngle)) * xDiff;
+            return xDiff / (float)Math.Cos(MathHelpers.DegreesToRadians(Setup.InclinedAngle));
         }
 
         public float CalculateRemainingInclinedX(float time)
@@ -428,7 +428,7 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         private InclinedPlaneMovementType CalculateInclinedPlaneMovementType()
         {
-            float diff = CalculateFp() - CalculateFt();
+            float diff = CalculateInclinedFp() - CalculateInclinedFt();
             if (diff > 0)
             {
                 return InclinedPlaneMovementType.Accelerating;
@@ -456,7 +456,38 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             }
         }
 
-        private float CalculateFp()
+        public float CalculateFp(float time)
+        {
+            if (time > CalculateMaxT())
+            {
+                return 0;
+            }
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedFp();
+            }
+            return CalculateHorizontalFp();
+        }
+
+        public float CalculateFt(float time)
+        {
+            if (time > CalculateMaxT())
+            {
+                return 0;
+            }
+            var horizontalStartTime = CalculateHorizontalStartTime();
+            if (time <= horizontalStartTime)
+            {
+                return CalculateInclinedFt();
+            }
+            return CalculateHorizontalFt();
+        }
+
+        public float CalculateHorizontalFp() => 0;
+
+
+        private float CalculateInclinedFp()
         {
             if (_fp == null)
             {
@@ -465,13 +496,18 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             return _fp.Value;
         }
 
-        private float CalculateFt()
+        private float CalculateInclinedFt()
         {
             if (_ft == null)
             {
                 _ft = Setup.InclinedDirftCoefficient * Setup.Mass * Setup.Gravity * (float)Math.Cos(AngleInRad);
             }
             return _ft.Value;
+        }
+
+        private float CalculateHorizontalFt()
+        {
+            return Setup.HorizontalDriftCoefficient * Setup.Mass * Setup.Gravity;
         }
     }
 }

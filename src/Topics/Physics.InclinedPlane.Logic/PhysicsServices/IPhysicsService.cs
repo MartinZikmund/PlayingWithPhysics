@@ -28,6 +28,10 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         float CalculateTotalWidth();
 
+        float CalculateFt(float time);
+
+        float CalculateFp(float time);
+
         IInclinedPlaneMotionSetup Setup { get; set; }
     }
 }

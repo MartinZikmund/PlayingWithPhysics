@@ -99,7 +99,9 @@ namespace Physics.InclinedPlane.Rendering
             DrawTvBox(sender, args);
             DrawRamp(sender, args);
             DrawTarget(sender, args);
-            if (_canvasController.Motion != null)
+            DrawHorizontalPlane(sender, args);
+            DrawInclinedPlane(sender, args);
+            if (_canvasController.Motion != null && _gameInfo.State != GameState.PlaceStone)
             {
                 DrawSituation(sender, args);
             }
@@ -158,10 +160,10 @@ namespace Physics.InclinedPlane.Rendering
                     bigText = Localizer.Instance.GetString("PlaceStone");
                     break;
                 case GameState.Simulation:
-                    bigText = Localizer.Instance.GetString("ThrowInProgress");
+                    bigText = string.Format(Localizer.Instance.GetString("ThrowInProgress"), CalculateDistanceFromTarget().ToString("00.00") + " m");
                     break;
                 case GameState.ThrowEnded:
-                    bigText = string.Format(Localizer.Instance.GetString("ThrowDistance"));
+                    bigText = string.Format(Localizer.Instance.GetString("ThrowDistance"), CalculateDistanceFromTarget().ToString("00.00") + " m");
                     break;
                 case GameState.GameEnded:
                     bigText = string.Format(Localizer.Instance.GetString("GameResults"), _gameInfo.AverageDistance);
@@ -236,7 +238,7 @@ namespace Physics.InclinedPlane.Rendering
                     }
 
                     var y = (float)Math.Tan(MathHelpers.DegreesToRadians(30)) * remainingInclinedRenderX;
-
+                    System.Diagnostics.Debug.WriteLine(remainingInclinedLength);
                     surface.Canvas.DrawBitmap(
                         _stoneRamp,
                         new SKRect(
@@ -254,22 +256,32 @@ namespace Physics.InclinedPlane.Rendering
 
             var remainingInclinedRenderX = horizontalStartRenderX - renderX;
 
-            var remainingInclinedLength = (float)Math.Acos(MathHelpers.DegreesToRadians(30)) * remainingInclinedRenderX / _renderingScale / _meterToPixelRatio;
+            var remainingInclinedLength = remainingInclinedRenderX / (float)Math.Cos(MathHelpers.DegreesToRadians(30)) / _renderingScale / _meterToPixelRatio;
 
             if (remainingInclinedLength <= 0 || remainingInclinedLength >= 12)
             {
                 return null;
             }
+            System.Diagnostics.Debug.WriteLine("Calc " + remainingInclinedLength);
+
 
             return remainingInclinedLength;
+        }
+
+        public float CalculateDistanceFromTarget()
+        {
+            var t = (float)_canvasController.SimulationTime.TotalTime.TotalSeconds;
+            t = Math.Min(t, _canvasController.PhysicsService.CalculateMaxT());
+            var x = _canvasController.PhysicsService.CalculateX(t);
+
+            var targetCenterX = _canvasController.PhysicsService.CalculateHorizontalStartX() + 28.35;
+            return (float)Math.Abs(targetCenterX - x);
         }
 
         private float GetHorizontalPlaneY() => _gameTop + 830 * _renderingScale;
 
         private void DrawSituation(SkiaCanvas sender, SKSurface args)
-        {
-            DrawHorizontalPlane(sender, args);
-            DrawInclinedPlane(sender, args);
+        {        
             DrawObject(sender, args);
         }
 

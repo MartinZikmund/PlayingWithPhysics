@@ -71,6 +71,8 @@ namespace Physics.InclinedPlane.ViewModels
 
         public ICommand StartNewGameCommand => GetOrCreateCommand(() =>
         {
+            Motion = null;
+            _timer.Stop();
             _gameInfo = new GameInfo();
             (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
         });
@@ -108,6 +110,7 @@ namespace Physics.InclinedPlane.ViewModels
             }
             else if (_gameInfo.State == GameState.ThrowEnded)
             {
+                _gameInfo.ThrowCount++;
                 _gameInfo.State = GameState.PlaceStone;
             }
         }
@@ -203,11 +206,26 @@ namespace Physics.InclinedPlane.ViewModels
 
         private void _timer_Tick(object sender, object e)
         {
-            if (_timer.IsEnabled && _controller != null)
+            if (_timer.IsEnabled && _controller != null && _gameInfo.State == GameState.Simulation)
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
 
                 Motion?.UpdateCurrentValues(timeElapsed);
+
+                if (timeElapsed >= _controller.PhysicsService.CalculateMaxT())
+                {
+                    var renderer = (GameRenderer)_controller.Renderer;
+                    _gameInfo.AddFinishedThrow(renderer.CalculateDistanceFromTarget());
+                    if (_gameInfo.ThrowCount != _gameInfo.TotalThrows)
+                    {
+                        _gameInfo.State = GameState.ThrowEnded;
+                    }
+                    else
+                    {
+                        _gameInfo.State = GameState.GameEnded;
+                    }
+                    _timer.Stop();
+                }
             }
         }
 

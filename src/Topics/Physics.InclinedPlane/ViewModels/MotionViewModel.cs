@@ -50,6 +50,8 @@ namespace Physics.InclinedPlane.ViewModels
             DistanceTraveled = _physicsService.CalculateS(timeElapsed).ToString("0.##");
             CurrentX = _physicsService.CalculateX(timeElapsed).ToString("0.##");
             CurrentY = _physicsService.CalculateY(timeElapsed).ToString("0.##");
+            Ft = _physicsService.CalculateFt(timeElapsed).ToString("0.##");
+            Fp = _physicsService.CalculateFp(timeElapsed).ToString("0.##");
         }
 
         public string TimeElapsed { get; private set; } = "";
@@ -61,5 +63,9 @@ namespace Physics.InclinedPlane.ViewModels
         public string CurrentX { get; private set; } = "";
 
         public string CurrentY { get; private set; } = "";
+
+        public string Ft { get; private set; } = "";
+
+        public string Fp { get; private set; } = "";
     }
 }

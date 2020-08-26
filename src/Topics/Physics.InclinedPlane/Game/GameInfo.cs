@@ -10,12 +10,20 @@ namespace Physics.InclinedPlane.Game
     {
         public GameState State { get; set; }
 
-        public int ThrowCount { get; set; }
+        public int ThrowCount { get; set; } = 1;        
 
         public int TotalThrows => 3;
 
-        public float TotalDistance { get; set; }
+        public float? TotalDistance { get; private set; }
 
-        public float AverageDistance => ThrowCount > 0 ? TotalDistance / ThrowCount : float.NaN;
+        public int FinishedThrows { get; private set; }
+
+        public void AddFinishedThrow(float distance)
+        {
+            FinishedThrows++;
+            TotalDistance = (TotalDistance ?? 0) + distance;
+        }
+
+        public float AverageDistance => TotalDistance != null ? TotalDistance.Value / FinishedThrows : float.NaN;
     }
 }
