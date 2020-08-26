@@ -22,6 +22,10 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
 
         float CalculateHorizontalStartX();
 
+        float CalculateRemainingInclinedLength(float time);
+
+        float CalculateRemainingInclinedX(float time);
+
         float CalculateTotalWidth();
 
         IInclinedPlaneMotionSetup Setup { get; set; }

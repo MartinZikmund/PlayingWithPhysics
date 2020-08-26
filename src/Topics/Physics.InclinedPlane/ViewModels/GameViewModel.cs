@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Base;
 using Physics.InclinedPlane.Dialogs;
+using Physics.InclinedPlane.Game;
 using Physics.InclinedPlane.Logic.PhysicsServices;
 using Physics.InclinedPlane.Rendering;
 using Physics.InclinedPlane.Services;
@@ -69,6 +70,8 @@ namespace Physics.InclinedPlane.ViewModels
                 RestartSimulation();
             }
         });
+
+        private GameInfo _gameInfo = new GameInfo();
 
         protected void RestartSimulation()
         {

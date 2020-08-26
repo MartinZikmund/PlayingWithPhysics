@@ -1,4 +1,6 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using Physics.InclinedPlane.Game;
+using Physics.Shared.UI.Localization;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
+using Windows.UI;
 
 namespace Physics.InclinedPlane.Rendering
 {
@@ -35,7 +38,25 @@ namespace Physics.InclinedPlane.Rendering
             StrokeWidth = 2,
             IsAntialias = true,
             FilterQuality = SKFilterQuality.High
-        };        
+        };
+
+        private SKPaint _bigTvBoxTextPaint = new SKPaint()
+        {
+            IsAntialias = true,
+            TextSize = 30,
+            Color = new SKColor(255, 255, 255),
+            TextAlign = SKTextAlign.Center,
+            IsStroke = false
+        };
+
+        private SKPaint _smallTvBoxTextPaint = new SKPaint()
+        {
+            IsAntialias = true,
+            TextSize = 14,
+            Color = new SKColor(255, 255, 255),
+            TextAlign = SKTextAlign.Center,
+            IsStroke = false
+        };
 
         private float _renderingScale;
         private float _meterToPixelRatio;
@@ -43,9 +64,16 @@ namespace Physics.InclinedPlane.Rendering
         private float _gameLeft;
         private float _gameTop;
 
+        private GameInfo _gameInfo;
+
         public GameRenderer(InclinedPlaneSkiaController canvasController)
         {
             _canvasController = canvasController;
+        }
+
+        public void StartGame(GameInfo gameInfo)
+        {
+            _gameInfo = gameInfo;
         }
 
         public void Draw(SkiaCanvas sender, SKSurface args)
@@ -96,13 +124,42 @@ namespace Physics.InclinedPlane.Rendering
             var tvBoxSize = new SKSize(_tvBox.Width * _renderingScale, _tvBox.Height * _renderingScale);
             var backgroundSize = new SKSize(_stadiumBackground.Width * _renderingScale, _stadiumBackground.Height * _renderingScale);
 
+            var tvBoxCenterX = sender.ScaledSize.Width / 2;
+            var tvBoxCenterY = sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height / 2;
+
             args.Canvas.DrawBitmap(
                 _tvBox,
                 new SKRect(
                     sender.ScaledSize.Width / 2 - tvBoxSize.Width / 2,
                     sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
                     sender.ScaledSize.Width / 2 + tvBoxSize.Width / 2,
-                    sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height));
+                    sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height));            
+
+            string bigText = "";
+            switch (_gameInfo.State)
+            {
+                case GameState.PlaceStone:
+                    bigText = Localizer.Instance.GetString("PlaceStone");
+                    break;
+                case GameState.Simulation:
+                    bigText = Localizer.Instance.GetString("ThrowInProgress");
+                    break;
+                case GameState.ThrowEnded:
+                    bigText = string.Format(Localizer.Instance.GetString("ThrowDistance"));
+                    break;
+                case GameState.GameEnded:
+                    bigText = string.Format(Localizer.Instance.GetString("GameResults"), _gameInfo.AverageDistance);
+                    break;
+            }
+
+            string averageDistance = string.Format(Localizer.Instance.GetString("TvBoxAverageDistance"), float.IsNaN(_gameInfo.AverageDistance) ? "__.__ m" : _gameInfo.AverageDistance.ToString("00.00") + " m");
+            string throwCounter = string.Format(Localizer.Instance.GetString("TvBoxThrowCounter"), _gameInfo.ThrowCount);
+
+            args.Canvas.DrawText(
+                bigText,
+                tvBoxCenterX,
+                tvBoxCenterY,
+                _bigTvBoxTextPaint);
         }
 
         private void DrawRamp(SkiaCanvas sender, SKSurface args)
@@ -172,17 +229,19 @@ namespace Physics.InclinedPlane.Rendering
             if (t <= _canvasController.PhysicsService.CalculateHorizontalStartTime())
             {
                 var stoneRampSize = new SKSize(_stoneRamp.Width * _renderingScale, _stoneRamp.Height * _renderingScale);
-                
-                var x = _canvasController.PhysicsService.CalculateX(t) * _meterToPixelRatio * _renderingScale;
+
+                var remainingInclinedX = _canvasController.PhysicsService.CalculateRemainingInclinedX(t);
+                var remainingInclinedRenderX = remainingInclinedX * _meterToPixelRatio * _renderingScale;
+
                 var y = _canvasController.PhysicsService.CalculateY(t) * _meterToPixelRatio * _renderingScale;
 
                 surface.Canvas.DrawBitmap(
                     _stoneRamp,
                     new SKRect(
-                        x - stoneRampSize.Width / 2,
-                        GetHorizontalPlaneY() - y - stoneRampSize.Height / 2,
-                        x + stoneRampSize.Width / 2,
-                        GetHorizontalPlaneY() - y + stoneRampSize.Height / 2));
+                        GetHorizontalPlaneStartRenderX() - remainingInclinedRenderX - stoneRampSize.Width / 2,
+                        GetHorizontalPlaneY() - 6f * _renderingScale - y - stoneRampSize.Height / 2,
+                        GetHorizontalPlaneStartRenderX() - remainingInclinedRenderX + stoneRampSize.Width / 2,
+                        GetHorizontalPlaneY() - 6f * _renderingScale - y + stoneRampSize.Height / 2));
             }
             else
             {

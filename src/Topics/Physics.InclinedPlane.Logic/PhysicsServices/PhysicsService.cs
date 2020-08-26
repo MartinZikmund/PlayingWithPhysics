@@ -81,6 +81,25 @@ namespace Physics.InclinedPlane.Logic.PhysicsServices
             }
         }
 
+        public float CalculateRemainingInclinedLength(float time)
+        {
+            time = Math.Min(time, CalculateMaxT());
+            
+            var x = CalculateInclinedX(time);
+            var horizontalStartX = CalculateHorizontalStartX();
+            var xDiff = horizontalStartX - x;
+            return (float)Math.Cos(MathHelpers.DegreesToRadians(Setup.InclinedAngle)) * xDiff;
+        }
+
+        public float CalculateRemainingInclinedX(float time)
+        {
+            time = Math.Min(time, CalculateMaxT());
+
+            var x = CalculateInclinedX(time);
+            var horizontalStartX = CalculateHorizontalStartX();
+            return horizontalStartX - x;
+        }
+
         public float CalculateY(float time)
         {
             time = Math.Min(time, CalculateMaxT());
