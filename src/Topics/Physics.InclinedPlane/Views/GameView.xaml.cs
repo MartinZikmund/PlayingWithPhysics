@@ -4,6 +4,7 @@ using Physics.InclinedPlane.ViewInteractions;
 using Physics.InclinedPlane.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.Views;
+using SkiaSharp;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,7 +24,7 @@ namespace Physics.InclinedPlane.Views
 
         public GameView()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
             DataContextChanged += GameView_DataContextChanged;
             if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.ThemeShadow"))
             {
@@ -55,6 +56,9 @@ namespace Physics.InclinedPlane.Views
             if (_animatedCanvas == null)
             {
                 _animatedCanvas = new SkiaCanvas();
+                _animatedCanvas.PointerMoved += _animatedCanvas_PointerMoved;
+                _animatedCanvas.PointerExited += _animatedCanvas_PointerExited;
+                _animatedCanvas.PointerPressed += _animatedCanvas_PointerPressed;
                 _animatedCanvas.Unloaded += _animatedCanvas_Unloaded;
                 CanvasHolder.Children.Add(_animatedCanvas);
             }
@@ -66,6 +70,23 @@ namespace Physics.InclinedPlane.Views
 
             _canvasController.SetVariantRenderer(new GameRenderer(_canvasController));
             return _canvasController;
+        }
+
+        private void _animatedCanvas_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Model.PreviewStone(null);
+        }
+
+        private void _animatedCanvas_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            var point = e.GetCurrentPoint(_animatedCanvas);
+            Model.CanvasTapped((float)point.Position.X);
+        }
+
+        private void _animatedCanvas_PointerMoved(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            var point = e.GetCurrentPoint(_animatedCanvas);
+            Model.PreviewStone((float)point.Position.X);
         }
 
         private void _animatedCanvas_Unloaded(object sender, RoutedEventArgs e)

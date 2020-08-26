@@ -9,6 +9,7 @@ using Physics.InclinedPlane.ViewInteractions;
 using Physics.InclinedPlane.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,14 @@ namespace Physics.InclinedPlane.ViewModels
             _timer.Tick += _timer_Tick;
         }
 
+        public void PreviewStone(float? x)
+        {
+            if (_gameInfo.State == GameState.PlaceStone)
+            {
+                ((GameRenderer)_controller.Renderer).PreviewStoneXInRenderCoordinates = x;
+            }
+        }
+
         public override void Prepare(NavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
@@ -56,39 +65,51 @@ namespace Physics.InclinedPlane.ViewModels
             _interaction = interaction;
             _controller = _interaction.PrepareController();
             SimulationPlayback.SetController(_controller);
+            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
         }
 
 
-        public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
+        public ICommand StartNewGameCommand => GetOrCreateCommand(() =>
         {
-            var dialog = new AddOrUpdateMovement(_inputViewModel);
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                Setup = dialog.Setup;
-                Motion = new MotionViewModel(Setup);
-                RestartSimulation();
-            }
+            _gameInfo = new GameInfo();
+            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
         });
 
         private GameInfo _gameInfo = new GameInfo();
 
-        protected void RestartSimulation()
+        protected void RestartSimulation(float inclinedLength)
         {
             Motion = new MotionViewModel(new InclinedPlaneMotionSetup(
                 19.1f,
                 0,
                 9.81f,
-                6,
+                inclinedLength,
                 0.4f,
                 30,
                 36,
                 0.03f,
                 "#000000"));
             if (_interaction == null) return;
-            
+
             _controller.StartSimulation(Motion.MotionInfo);
             _timer.Start();
+        }
+
+        internal void CanvasTapped(float x)
+        {
+            if (_gameInfo.State == GameState.PlaceStone)
+            {
+                var placement = ((GameRenderer)_controller.Renderer).CalculateInclinedPlanePlacement(x);
+                if (placement != null)
+                {
+                    RestartSimulation(placement.Value);
+                    _gameInfo.State = GameState.Simulation;
+                }
+            }
+            else if (_gameInfo.State == GameState.ThrowEnded)
+            {
+                _gameInfo.State = GameState.PlaceStone;
+            }
         }
 
         public IInclinedPlaneMotionSetup Setup { get; set; }
@@ -214,6 +235,6 @@ namespace Physics.InclinedPlane.ViewModels
             _timer.Stop();
         }
 
-        
+
     }
 }

@@ -68,8 +68,8 @@
                         <Button
                             Margin="8,8,8,0"
                             HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.AddTrajectoryCommand}"
-                            Content="{extensions:Localize Key=ChangeMotion}"
+                            Command="{x:Bind Model.StartNewGameCommand}"
+                            Content="{extensions:Localize Key=StartNewGame}"
                             Foreground="White" />
                         <StackPanel Visibility="{x:Bind Model.ShowCurrentValuesGrid, Mode=OneWay}">
                             <NavigationViewItemSeparator />

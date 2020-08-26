@@ -1,4 +1,5 @@
 ﻿using Physics.InclinedPlane.Game;
+using Physics.Shared.Helpers;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -49,19 +50,27 @@ namespace Physics.InclinedPlane.Rendering
             IsStroke = false
         };
 
-        private SKPaint _smallTvBoxTextPaint = new SKPaint()
+        private SKPaint _tvBoxTextPaintLeft = new SKPaint()
         {
             IsAntialias = true,
             TextSize = 14,
             Color = new SKColor(255, 255, 255),
-            TextAlign = SKTextAlign.Center,
+            TextAlign = SKTextAlign.Left,
+            IsStroke = false
+        };
+
+        private SKPaint _tvBoxTextPaintRight = new SKPaint()
+        {
+            IsAntialias = true,
+            TextSize = 14,
+            Color = new SKColor(255, 255, 255),
+            TextAlign = SKTextAlign.Right,
             IsStroke = false
         };
 
         private float _renderingScale;
         private float _meterToPixelRatio;
 
-        private float _gameLeft;
         private float _gameTop;
 
         private GameInfo _gameInfo;
@@ -70,6 +79,8 @@ namespace Physics.InclinedPlane.Rendering
         {
             _canvasController = canvasController;
         }
+
+        public float? PreviewStoneXInRenderCoordinates { get; set; }
 
         public void StartGame(GameInfo gameInfo)
         {
@@ -92,6 +103,8 @@ namespace Physics.InclinedPlane.Rendering
             {
                 DrawSituation(sender, args);
             }
+
+            DrawStonePreview(sender, args);
         }
 
         private void DrawBackground(SkiaCanvas sender, SKSurface args)
@@ -126,6 +139,9 @@ namespace Physics.InclinedPlane.Rendering
 
             var tvBoxCenterX = sender.ScaledSize.Width / 2;
             var tvBoxCenterY = sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height / 2;
+            var tvBoxLeftX = sender.ScaledSize.Width / 2 - tvBoxSize.Width / 2 + 140 * _renderingScale;
+            var tvBoxBottomY = sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + 310 * _renderingScale;
+            var tvBoxRightX = sender.ScaledSize.Width / 2 - tvBoxSize.Width / 2 + 500 * _renderingScale;
 
             args.Canvas.DrawBitmap(
                 _tvBox,
@@ -133,7 +149,7 @@ namespace Physics.InclinedPlane.Rendering
                     sender.ScaledSize.Width / 2 - tvBoxSize.Width / 2,
                     sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
                     sender.ScaledSize.Width / 2 + tvBoxSize.Width / 2,
-                    sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height));            
+                    sender.ScaledSize.Height / 2 - backgroundSize.Height / 2 + tvBoxSize.Height));
 
             string bigText = "";
             switch (_gameInfo.State)
@@ -152,20 +168,31 @@ namespace Physics.InclinedPlane.Rendering
                     break;
             }
 
-            string averageDistance = string.Format(Localizer.Instance.GetString("TvBoxAverageDistance"), float.IsNaN(_gameInfo.AverageDistance) ? "__.__ m" : _gameInfo.AverageDistance.ToString("00.00") + " m");
-            string throwCounter = string.Format(Localizer.Instance.GetString("TvBoxThrowCounter"), _gameInfo.ThrowCount);
+            var averageDistance = string.Format(Localizer.Instance.GetString("TvBoxAverageDistance"), float.IsNaN(_gameInfo.AverageDistance) ? "__.__ m" : _gameInfo.AverageDistance.ToString("00.00") + " m");
+            var throwCounter = string.Format(Localizer.Instance.GetString("TvBoxThrowCounter"), _gameInfo.ThrowCount, _gameInfo.TotalThrows);
 
             args.Canvas.DrawText(
                 bigText,
                 tvBoxCenterX,
                 tvBoxCenterY,
                 _bigTvBoxTextPaint);
+
+            args.Canvas.DrawText(
+                throwCounter,
+                tvBoxLeftX,
+                tvBoxBottomY,
+                _tvBoxTextPaintLeft);
+
+            args.Canvas.DrawText(
+                averageDistance,
+                tvBoxRightX,
+                tvBoxBottomY,
+                _tvBoxTextPaintRight);
         }
 
         private void DrawRamp(SkiaCanvas sender, SKSurface args)
         {
             var rampSize = new SKSize(_ramp.Width * _renderingScale, _ramp.Height * _renderingScale);
-            var backgroundSize = new SKSize(_stadiumBackground.Width * _renderingScale, _stadiumBackground.Height * _renderingScale);
 
             args.Canvas.DrawBitmap(
                 _ramp,
@@ -187,6 +214,54 @@ namespace Physics.InclinedPlane.Rendering
                     GetHorizontalPlaneY() + 5 * _renderingScale - targetSize.Height / 2,
                     1450 * _renderingScale + targetSize.Width / 2,
                     GetHorizontalPlaneY() + 5 * _renderingScale + targetSize.Height / 2));
+        }
+
+        private void DrawStonePreview(SkiaCanvas sender, SKSurface surface)
+        {
+            if (_gameInfo.State == GameState.PlaceStone && PreviewStoneXInRenderCoordinates != null)
+            {
+                var horizontalStartRenderX = GetHorizontalPlaneStartRenderX();
+                if (PreviewStoneXInRenderCoordinates.Value < horizontalStartRenderX)
+                {
+                    // can draw
+                    var stoneRampSize = new SKSize(_stoneRamp.Width * _renderingScale, _stoneRamp.Height * _renderingScale);
+
+                    var remainingInclinedRenderX = horizontalStartRenderX - PreviewStoneXInRenderCoordinates.Value;
+
+                    var remainingInclinedLength = Math.Acos(MathHelpers.DegreesToRadians(30)) * remainingInclinedRenderX / _renderingScale / _meterToPixelRatio;
+
+                    if (remainingInclinedLength <= 0 || remainingInclinedLength >= 12)
+                    {
+                        return;
+                    }
+
+                    var y = (float)Math.Tan(MathHelpers.DegreesToRadians(30)) * remainingInclinedRenderX;
+
+                    surface.Canvas.DrawBitmap(
+                        _stoneRamp,
+                        new SKRect(
+                            GetHorizontalPlaneStartRenderX() - remainingInclinedRenderX - stoneRampSize.Width / 2,
+                            GetHorizontalPlaneY() - 6f * _renderingScale - y - stoneRampSize.Height / 2,
+                            GetHorizontalPlaneStartRenderX() - remainingInclinedRenderX + stoneRampSize.Width / 2,
+                            GetHorizontalPlaneY() - 6f * _renderingScale - y + stoneRampSize.Height / 2));
+                }
+            }
+        }
+
+        public float? CalculateInclinedPlanePlacement(float renderX)
+        {
+            var horizontalStartRenderX = GetHorizontalPlaneStartRenderX();
+
+            var remainingInclinedRenderX = horizontalStartRenderX - renderX;
+
+            var remainingInclinedLength = (float)Math.Acos(MathHelpers.DegreesToRadians(30)) * remainingInclinedRenderX / _renderingScale / _meterToPixelRatio;
+
+            if (remainingInclinedLength <= 0 || remainingInclinedLength >= 12)
+            {
+                return null;
+            }
+
+            return remainingInclinedLength;
         }
 
         private float GetHorizontalPlaneY() => _gameTop + 830 * _renderingScale;
@@ -291,8 +366,10 @@ namespace Physics.InclinedPlane.Rendering
             EnsureBitmaps();
             _renderingScale = CalculateRenderingScale(sender);
             _meterToPixelRatio = 32.09f;
-            _gameLeft = 0;
             _gameTop = sender.ScaledSize.Height / 2 - (1080 / 2) * _renderingScale;
+            _bigTvBoxTextPaint.TextSize = 30 * _renderingScale;
+            _tvBoxTextPaintLeft.TextSize = 14 * _renderingScale;
+            _tvBoxTextPaintRight.TextSize = 14 * _renderingScale;
         }
 
         private void EnsureBitmaps()

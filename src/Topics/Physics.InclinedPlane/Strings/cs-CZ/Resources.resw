@@ -213,6 +213,9 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
+  <data name="GameResults" xml:space="preserve">
+    <value>Konec hry!</value>
+  </data>
   <data name="Gravity_Earth45" xml:space="preserve">
     <value>Země – 45° zeměpisné šířky</value>
   </data>
@@ -294,13 +297,31 @@
   <data name="Motions" xml:space="preserve">
     <value>Pohyby</value>
   </data>
+  <data name="PlaceStone" xml:space="preserve">
+    <value>Umistěte kámen</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Translační pohyb tělesa po nakloněné rovině</value>
   </data>
+  <data name="StartNewGame" xml:space="preserve">
+    <value>Začít novou hru</value>
+  </data>
   <data name="StudyText" xml:space="preserve">
     <value>Studijní text</value>
+  </data>
+  <data name="ThrowDistance" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ThrowInProgress" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="TvBoxAverageDistance" xml:space="preserve">
+    <value>Průměrná vzdálenost: {0}</value>
+  </data>
+  <data name="TvBoxThrowCounter" xml:space="preserve">
+    <value>Kolo: {0}/{1}</value>
   </data>
 </root>

@@ -13,8 +13,6 @@ namespace Physics.InclinedPlane.Rendering
 {
     public class InclinedPlaneCanvasController : BaseCanvasController
     {
-        private IVariantRenderer _renderer;
-
         public InclinedPlaneCanvasController(CanvasAnimatedControl canvasAnimatedControl) :
             base(canvasAnimatedControl)
         {
@@ -23,6 +21,8 @@ namespace Physics.InclinedPlane.Rendering
         public IInclinedPlaneMotionSetup Motion { get; private set; }
 
         public PhysicsService PhysicsService { get; private set; }
+
+        public IVariantRenderer Renderer { get; set; }
 
         public void StartSimulation(IInclinedPlaneMotionSetup motion)
         {
@@ -38,7 +38,7 @@ namespace Physics.InclinedPlane.Rendering
 
         public void SetVariantRenderer(IVariantRenderer renderer)
         {
-            _renderer = renderer;
+            Renderer = renderer;
         }
 
         public override Task CreateResourcesAsync(CanvasAnimatedControl sender)
@@ -49,14 +49,14 @@ namespace Physics.InclinedPlane.Rendering
 
         public override void Update(ICanvasAnimatedControl sender)
         {
-            _renderer.Update(sender);
+            Renderer?.Update(sender);
         }
 
         public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Antialiasing = Microsoft.Graphics.Canvas.CanvasAntialiasing.Antialiased;
             args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
-            _renderer.Draw(sender, args);
+            Renderer?.Draw(sender, args);
         }
     }
 }

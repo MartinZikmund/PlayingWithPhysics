@@ -10,8 +10,6 @@ namespace Physics.InclinedPlane.Rendering
 {
     public class InclinedPlaneSkiaController : SkiaCanvasController
     {
-        private ISkiaVariantRenderer _renderer;
-
         public InclinedPlaneSkiaController(SkiaCanvas canvasAnimatedControl) :
             base(canvasAnimatedControl)
         {
@@ -20,12 +18,14 @@ namespace Physics.InclinedPlane.Rendering
         public override void Dispose()
         {
             base.Dispose();
-            _renderer?.Dispose();
+            Renderer?.Dispose();
         }
 
         public IInclinedPlaneMotionSetup Motion { get; private set; }
 
         public PhysicsService PhysicsService { get; private set; }
+
+        public ISkiaVariantRenderer Renderer { get; set; }
 
         public void StartSimulation(IInclinedPlaneMotionSetup motion)
         {
@@ -41,18 +41,18 @@ namespace Physics.InclinedPlane.Rendering
 
         public void SetVariantRenderer(ISkiaVariantRenderer renderer)
         {
-            _renderer = renderer;
+            Renderer = renderer;
         }
 
         public override void Update(SkiaCanvas sender)
         {
-            _renderer.Update(sender);
+            Renderer?.Update(sender);
         }
 
         public override void Draw(SkiaCanvas sender, SKSurface args)
         {
             args.Canvas.Clear(new SKColor(255, 244, 244, 244));
-            _renderer.Draw(sender, args);
+            Renderer?.Draw(sender, args);
         }
     }
 }
