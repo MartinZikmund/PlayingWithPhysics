@@ -210,6 +210,9 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="GameResults" xml:space="preserve">
+    <value>Game over!</value>
+  </data>
   <data name="Gravity_Earth45" xml:space="preserve">
     <value>Earth – 45 north latitude</value>
   </data>
@@ -288,10 +291,28 @@
   <data name="ManualInput" xml:space="preserve">
     <value>Manual input</value>
   </data>
+  <data name="PlaceStone" xml:space="preserve">
+    <value>Place stone</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Inclined Plane</value>
   </data>
+  <data name="StartNewGame" xml:space="preserve">
+    <value>Start new game</value>
+  </data>
   <data name="StudyText" xml:space="preserve">
     <value>Study text</value>
+  </data>
+  <data name="ThrowDistance" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ThrowInProgress" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="TvBoxAverageDistance" xml:space="preserve">
+    <value>Average distance: {0}</value>
+  </data>
+  <data name="TvBoxThrowCounter" xml:space="preserve">
+    <value>Round: {0}/{1}</value>
   </data>
 </root>

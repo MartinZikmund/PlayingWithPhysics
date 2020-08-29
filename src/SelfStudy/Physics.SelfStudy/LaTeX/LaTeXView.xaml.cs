@@ -58,6 +58,14 @@ namespace Physics.SelfStudy.LaTeX
 
         // Using a DependencyProperty as the backing store for LaTeX.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LaTeXProperty =
-            DependencyProperty.Register("LaTeX", typeof(string), typeof(LaTeXView), new PropertyMetadata(""));
+            DependencyProperty.Register("LaTeX", typeof(string), typeof(LaTeXView), new PropertyMetadata("", OnLaTeXChanged));
+
+        private static void OnLaTeXChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var view = (LaTeXView)d;
+            string text = e.NewValue?.ToString() ?? "";
+            text = text.Replace("%", "\\%").Replace("\\\\%", "\\%"); //TODO: Ugly, fix this
+            view.View.LaTeX = text;
+        }
     }
 }

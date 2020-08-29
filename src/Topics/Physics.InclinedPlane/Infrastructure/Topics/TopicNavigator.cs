@@ -22,13 +22,13 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
 
         public bool HasStudyMode => true;
 
-        public bool HasGame => false;
+        public bool HasGame => true;
 
         public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, MainViewModel.NavigationModel>(new MainViewModel.NavigationModel { Difficulty = option });
 
-        public Task GoToGameAsync()
+        public async Task GoToGameAsync()
         {
-            throw new NotImplementedException();
+            await _navigationService.Navigate<GameViewModel, GameViewModel.NavigationModel>(new GameViewModel.NavigationModel { Difficulty = DifficultyOption.Advanced });
         }
 
         public Task GoToStudyModeAsync()

@@ -26,8 +26,9 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>EC09D63CABB90A0C892D7B9C69AF87BF3C12CCE9</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>Physics.SelfStudy.Editor_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>CEE658D4A835F2F7248BC2D709DB0AE70EC425B7</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">

@@ -1,34 +1,33 @@
-﻿using System;
-using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.DataTransfer;
+﻿using MvvmCross.Base;
 using Physics.InclinedPlane.Dialogs;
-using Physics.Shared.UI.ViewModels;
-using Physics.InclinedPlane.UserControls;
-using Physics.Shared.UI.Infrastructure.Topics;
-using System.Collections.ObjectModel;
-using Physics.InclinedPlane.Services;
-using System.Threading.Tasks;
-using Windows.UI.WindowManagement;
-using Physics.InclinedPlane.Views;
+using Physics.InclinedPlane.Game;
 using Physics.InclinedPlane.Logic.PhysicsServices;
+using Physics.InclinedPlane.Rendering;
+using Physics.InclinedPlane.Services;
 using Physics.InclinedPlane.ValuesTable;
-using Microsoft.Toolkit.Uwp.Helpers;
-using Windows.UI;
-using Windows.Foundation;
-using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
-using Windows.UI.Xaml.Hosting;
-using Windows.ApplicationModel.Core;
-using MvvmCross.Base;
+using Physics.InclinedPlane.ViewInteractions;
+using Physics.InclinedPlane.Views;
+using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.ViewModels;
+using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
-using Physics.InclinedPlane.ViewInteractions;
-using Physics.InclinedPlane.Rendering;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 
 namespace Physics.InclinedPlane.ViewModels
 {
-    public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
+    public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>
     {
         private IMainViewInteraction _interaction;
         private DifficultyOption Difficulty;
@@ -41,10 +40,18 @@ namespace Physics.InclinedPlane.ViewModels
             public DifficultyOption Difficulty { get; set; }
         }
 
-        public MainViewModel()
+        public GameViewModel()
         {
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             _timer.Tick += _timer_Tick;
+        }
+
+        public void PreviewStone(float? x)
+        {
+            if (_gameInfo.State == GameState.PlaceStone)
+            {
+                ((GameRenderer)_controller.Renderer).PreviewStoneXInRenderCoordinates = x;
+            }
         }
 
         public override void Prepare(NavigationModel parameter)
@@ -56,33 +63,61 @@ namespace Physics.InclinedPlane.ViewModels
         internal void SetViewInteraction(IMainViewInteraction interaction)
         {
             _interaction = interaction;
+            _controller = _interaction.PrepareController();
+            SimulationPlayback.SetController(_controller);
+            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
         }
 
 
-        public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
+        public ICommand StartNewGameCommand => GetOrCreateCommand(() =>
         {
-            var dialog = new AddOrUpdateMovement(_inputViewModel);
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                Setup = dialog.Setup;
-                Motion = new MotionViewModel(Setup);
-                RestartSimulation();
-            }
+            Motion = null;
+            _timer.Stop();
+            _gameInfo = new GameInfo();
+            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
         });
 
-        protected virtual void RestartSimulation()
+        private GameInfo _gameInfo = new GameInfo();
+
+        protected void RestartSimulation(float inclinedLength)
         {
+            Motion = new MotionViewModel(new InclinedPlaneMotionSetup(
+                19.1f,
+                0,
+                9.81f,
+                inclinedLength,
+                0.4f,
+                30,
+                36,
+                0.03f,
+                "#000000"));
             if (_interaction == null) return;
-            _controller = _interaction.PrepareController();
-            SimulationPlayback.SetController(_controller);
+
             _controller.StartSimulation(Motion.MotionInfo);
             _timer.Start();
         }
 
+        internal void CanvasTapped(float x)
+        {
+            if (_gameInfo.State == GameState.PlaceStone)
+            {
+                var placement = ((GameRenderer)_controller.Renderer).CalculateInclinedPlanePlacement(x);
+                if (placement != null)
+                {
+                    RestartSimulation(placement.Value);
+                    _gameInfo.State = GameState.Simulation;
+                }
+            }
+            else if (_gameInfo.State == GameState.ThrowEnded)
+            {
+                _gameInfo.ThrowCount++;
+                _gameInfo.State = GameState.PlaceStone;
+            }
+        }
+
         public IInclinedPlaneMotionSetup Setup { get; set; }
 
-        public MotionViewModel Motion {get; set;}
+        public MotionViewModel Motion { get; set; }
 
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
@@ -103,7 +138,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<MotionViewModel>(ShowValuesTableAsync);
         private void PauseToggle()
-        {            
+        {
             IsPaused = !IsPaused;
             if (IsPaused)
             {
@@ -171,11 +206,26 @@ namespace Physics.InclinedPlane.ViewModels
 
         private void _timer_Tick(object sender, object e)
         {
-            if (_timer.IsEnabled && _controller != null)
+            if (_timer.IsEnabled && _controller != null && _gameInfo.State == GameState.Simulation)
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
 
-                Motion?.UpdateCurrentValues(timeElapsed);                
+                Motion?.UpdateCurrentValues(timeElapsed);
+
+                if (timeElapsed >= _controller.PhysicsService.CalculateMaxT())
+                {
+                    var renderer = (GameRenderer)_controller.Renderer;
+                    _gameInfo.AddFinishedThrow(renderer.CalculateDistanceFromTarget());
+                    if (_gameInfo.ThrowCount != _gameInfo.TotalThrows)
+                    {
+                        _gameInfo.State = GameState.ThrowEnded;
+                    }
+                    else
+                    {
+                        _gameInfo.State = GameState.GameEnded;
+                    }
+                    _timer.Stop();
+                }
             }
         }
 
@@ -202,5 +252,7 @@ namespace Physics.InclinedPlane.ViewModels
             base.ViewDestroy(viewFinishing);
             _timer.Stop();
         }
+
+
     }
 }

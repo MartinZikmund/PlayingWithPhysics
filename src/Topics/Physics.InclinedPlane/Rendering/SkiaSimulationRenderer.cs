@@ -12,6 +12,7 @@ namespace Physics.InclinedPlane.Rendering
 {
     public class SkiaSimulationRenderer : ISkiaVariantRenderer
     {
+        private bool _isDisposed = false;
         private readonly InclinedPlaneSkiaController _canvasController;
         private SimulationBounds _simulationBounds;
         private float _scalingRatio;
@@ -40,6 +41,11 @@ namespace Physics.InclinedPlane.Rendering
 
         public void Draw(SkiaCanvas sender, SKSurface args)
         {
+            if (_scalingRatio < 0 || _isDisposed)
+            {
+                return;
+            }
+
             var imageInfo = new SKImageInfo((int)(sender.ScaledSize.Width - 2 * _padding), (int)(sender.ScaledSize.Height - _padding), SKImageInfo.PlatformColorType, SKAlphaType.Premul);
             using (var surface = SKSurface.Create(imageInfo))
             {
@@ -100,6 +106,13 @@ namespace Physics.InclinedPlane.Rendering
 
         public void Update(SkiaCanvas surface)
         {
+            var reducedSize = surface.ScaledSize.ReduceBy(_padding * 2);
+            if (reducedSize.Height < 50 || reducedSize.Width < 50)
+            {               
+                _scalingRatio = -1;
+                return;
+            }
+
             var physicsService = _canvasController.PhysicsService;
             var minX = 0;
             var maxX = physicsService.CalculateTotalWidth();
@@ -144,6 +157,12 @@ namespace Physics.InclinedPlane.Rendering
                         FlipY(info, 0)),
                     _linePaint);
             }
+        }
+
+        public void Dispose()
+        {
+            _isDisposed = true;
+            _boxPaint?.Dispose();
         }
     }
 }
