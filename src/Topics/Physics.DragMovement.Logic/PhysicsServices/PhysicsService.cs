@@ -121,7 +121,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             
             float lastTime = lastValue.Time;
             float lastSpeed = lastValue.Speed;
-            while (lastY >   0)
+            while (lastY > 0 || lastVy > 0)
             {
                 float newVx = lastVx - ((float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVx, 2) / throwInfo.Mass)) * Delta;
                 float newVy;

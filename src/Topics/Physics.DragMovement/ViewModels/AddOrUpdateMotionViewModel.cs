@@ -47,6 +47,7 @@ namespace Physics.DragMovement.ViewModels
             Y0 = motionInfo.Origin.Y;
             Mass = motionInfo.Mass;
             ResistanceCoefficient = motionInfo.Resistance;
+            OnResistanceCoefficientChanged();
             Density = motionInfo.ShapeDensity;
             Diameter = motionInfo.Diameter;
             Area = motionInfo.Area;
@@ -209,7 +210,7 @@ namespace Physics.DragMovement.ViewModels
             var found = ResistanceCoefficients.FirstOrDefault(element => element.Value == ResistanceCoefficient);
             if (found != null)
             {
-                SelectedResistanceCoefficient = found;
+                        SelectedResistanceCoefficient = found;
             }
         }
 
@@ -445,8 +446,8 @@ namespace Physics.DragMovement.ViewModels
                 MovementType.FreeFall => MotionFactory.CreateFreeFall(
                     new Vector2(X0, Y0),
                     ResistanceCoefficient,
-                    Mass,
-                    Area,
+                    (ResistanceCoefficient== ResistanceCoefficients[2].Value) ? -1 : Mass,
+                    (ResistanceCoefficient == ResistanceCoefficients[2].Value) ? -1 : Area,
                     V0,
                     Angle,
                     GravityCoefficient,
@@ -457,8 +458,8 @@ namespace Physics.DragMovement.ViewModels
                 MovementType.ProjectileMotion => MotionFactory.CreateProjectileMotion(
                     new Vector2(X0, Y0),
                     ResistanceCoefficient,
-                    Mass,
-                    Area,
+                    (ResistanceCoefficient == ResistanceCoefficients[2].Value) ? -1 : Mass,
+                    (ResistanceCoefficient == ResistanceCoefficients[2].Value) ? -1 : Area,
                     V0,
                     Angle,
                     GravityCoefficient,
