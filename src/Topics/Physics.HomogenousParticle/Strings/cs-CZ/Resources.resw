@@ -178,7 +178,7 @@
     <value>Hmotnost částice</value>
   </data>
   <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
-    <value>(mocnina</value>
+    <value>(násobek</value>
   </data>
   <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
     <value>Rychlost</value>
@@ -233,5 +233,14 @@
   </data>
   <data name="AddMotionRadiation" xml:space="preserve">
     <value>Přidat pohyb</value>
+  </data>
+  <data name="ParallelInput_Form" xml:space="preserve">
+    <value>ve tvaru</value>
+  </data>
+  <data name="ParallelInput_NInfo" xml:space="preserve">
+    <value>volte n</value>
+  </data>
+  <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
+    <value>násobky hmotnosti nukleonu</value>
   </data>
 </root>

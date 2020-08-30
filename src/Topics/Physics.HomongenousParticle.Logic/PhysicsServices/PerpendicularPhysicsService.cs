@@ -68,9 +68,9 @@ namespace Physics.HomongenousParticle.Logic.PhysicsServices
 
         public decimal ComputeRadius()
         {
-            var mv = (decimal)_perpenducilarMotion.MassMultiple * (decimal)_perpenducilarMotion.VelocityMultiple;
+            var mv = (decimal)_perpenducilarMotion.MassMultiple * 1.67m * (decimal)_perpenducilarMotion.VelocityMultiple;
             var Bq = (decimal)_perpenducilarMotion.Induction * (decimal)Math.Abs(_perpenducilarMotion.ChargeMultiple) * 1.6m;
-            var fraction = mv / Bq;            
+            var fraction = mv / Bq;   
             var tenPow = 0.01m; //10 to power of (-27 + 6) - (0 - 19)
             return fraction * tenPow;
         }

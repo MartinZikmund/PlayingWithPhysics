@@ -222,4 +222,13 @@
   <data name="AddMotionRadiation" xml:space="preserve">
     <value>Add motion</value>
   </data>
+  <data name="ParallelInput_Form" xml:space="preserve">
+    <value>in form</value>
+  </data>
+  <data name="ParallelInput_NInfo" xml:space="preserve">
+    <value>choose n</value>
+  </data>
+  <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
+    <value>multiple of nucleon mass</value>
+  </data>
 </root>
