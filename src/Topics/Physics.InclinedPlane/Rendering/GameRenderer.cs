@@ -28,7 +28,7 @@ namespace Physics.InclinedPlane.Rendering
         private SKBitmap _stadiumBackground;
         private SKBitmap _ramp;
         private SKBitmap _tvBox;
-        private SKBitmap _floor;
+        //private SKBitmap _floor;
         private SKBitmap _stoneRamp;
         private SKBitmap _stoneFlat;
         private SKBitmap _target;
@@ -95,7 +95,7 @@ namespace Physics.InclinedPlane.Rendering
             }
             args.Canvas.Clear(SKColors.Black);
             DrawBackground(sender, args);
-            DrawFloor(sender, args);
+            //DrawFloor(sender, args);
             DrawTvBox(sender, args);
             DrawRamp(sender, args);
             DrawTarget(sender, args);
@@ -121,18 +121,18 @@ namespace Physics.InclinedPlane.Rendering
                     sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
         }
 
-        private void DrawFloor(SkiaCanvas sender, SKSurface args)
-        {
-            var backgroundSize = new SKSize(_floor.Width * _renderingScale, _floor.Height * _renderingScale);
+        //private void DrawFloor(SkiaCanvas sender, SKSurface args)
+        //{
+        //    var backgroundSize = new SKSize(_floor.Width * _renderingScale, _floor.Height * _renderingScale);
 
-            args.Canvas.DrawBitmap(
-                _floor,
-                new SKRect(
-                    sender.ScaledSize.Width / 2 - backgroundSize.Width / 2,
-                    sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
-                    sender.ScaledSize.Width / 2 + backgroundSize.Width / 2,
-                    sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
-        }
+        //    args.Canvas.DrawBitmap(
+        //        _floor,
+        //        new SKRect(
+        //            sender.ScaledSize.Width / 2 - backgroundSize.Width / 2,
+        //            sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
+        //            sender.ScaledSize.Width / 2 + backgroundSize.Width / 2,
+        //            sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
+        //}
 
         private void DrawTvBox(SkiaCanvas sender, SKSurface args)
         {
@@ -389,10 +389,10 @@ namespace Physics.InclinedPlane.Rendering
             if (_stadiumBackground == null)
             {
                 var gameAssetsPath = Path.Combine(Package.Current.InstalledPath, "Assets", "Game");
-                _stadiumBackground = SKBitmap.Decode(Path.Combine(gameAssetsPath, "pozadi_stadion.png"));
+                _stadiumBackground = SKBitmap.Decode(Path.Combine(gameAssetsPath, "pozadi_merge.jpg"));
                 _ramp = SKBitmap.Decode(Path.Combine(gameAssetsPath, "rampa.png"));
                 _tvBox = SKBitmap.Decode(Path.Combine(gameAssetsPath, "tv_kostka.png"));
-                _floor = SKBitmap.Decode(Path.Combine(gameAssetsPath, "plocha.png"));
+                //_floor = SKBitmap.Decode(Path.Combine(gameAssetsPath, "plocha.png"));
                 _stoneRamp = SKBitmap.Decode(Path.Combine(gameAssetsPath, "kamen_2.png"));
                 _stoneFlat = SKBitmap.Decode(Path.Combine(gameAssetsPath, "kamen_1.png"));
                 _target = SKBitmap.Decode(Path.Combine(gameAssetsPath, "kolo.png"));
@@ -402,7 +402,7 @@ namespace Physics.InclinedPlane.Rendering
         public void Dispose()
         {
             _isDisposed = true;
-            _floor?.Dispose();
+            //_floor?.Dispose();
             _ramp?.Dispose();
             _stadiumBackground?.Dispose();
             _stoneFlat?.Dispose();
