@@ -20,7 +20,7 @@ namespace Physics.DragMovement
         public App()
         {
             this.InitializeComponent();
-            AppCenter.Start("1d9d6ae2-9f90-4992-9ec2-a9811882f3dc",
+            AppCenter.Start("0e9f31ca-d429-4990-9a07-5e1358264e78",
                    typeof(Analytics), typeof(Crashes));
         }
     }

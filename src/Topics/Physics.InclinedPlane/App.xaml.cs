@@ -33,7 +33,7 @@ namespace Physics.InclinedPlane
         public App()
         {
             this.InitializeComponent();
-            AppCenter.Start("1d9d6ae2-9f90-4992-9ec2-a9811882f3dc",
+            AppCenter.Start("a6b20ac1-6216-4862-9c2a-dccf5b6df820",
                    typeof(Analytics), typeof(Crashes));
         }   
     }
