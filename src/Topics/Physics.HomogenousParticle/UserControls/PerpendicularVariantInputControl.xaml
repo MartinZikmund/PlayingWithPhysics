@@ -72,7 +72,7 @@
             xml:space="default">
             <Run Text="{extensions:Localize Key=PerpendicularInput_MassStart}" />
             <Run FontWeight="Bold" Text="m" />
-            <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
+            <Run Text="(" /><Run Text="{extensions:Localize Key=PerpendicularInput_MassMultipleOf}" /><Run Text=")" />
             <!--<Run Text="10" /><Run Text="&#8315;27" Typography.Variants="Superscript" /><Run Text=")" />-->
             <Run Text="[kg]"/>
         </TextBlock>
