@@ -291,7 +291,7 @@
                     Grid.Row="7"
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
-                    Maximum="2000"
+                    Maximum="90"
                     Minimum="0"
                     Value="{x:Bind Model.Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 

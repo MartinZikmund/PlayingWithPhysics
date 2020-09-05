@@ -94,16 +94,18 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 
         public void FillProjectileMotionInfo(MotionInfo throwInfo)
         {
+            var originVx = throwInfo.OriginSpeed * (float)Math.Cos(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle));
+            var originVy = throwInfo.OriginSpeed * (float)Math.Sin(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle));
             //Fill t = 0 row
             ValueRow rowZero = new ValueRow
             {
                 X = throwInfo.Origin.X,
                 Y = throwInfo.Origin.Y,
-                Vx = throwInfo.OriginSpeed * (float)Math.Cos(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle)),
-                Vy = throwInfo.OriginSpeed * (float)Math.Sin(MathHelpers.DegreesToRadians(throwInfo.ElevationAngle)),
+                Vx = originVx,
+                Vy = originVy,
                 Time = 0f,
                 Acceleration = throwInfo.G,
-                Speed = 0f,
+                Speed = throwInfo.OriginSpeed,
                 Ep = throwInfo.Mass * throwInfo.G * throwInfo.Origin.Y,
                 Ek = 0.5f * throwInfo.Mass * (float)Math.Pow(throwInfo.OriginSpeed, 2)
             };
@@ -147,7 +149,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 
                 float newTime = lastTime + Delta;
                 float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
-                float newSpeed = lastSpeed + newAcceleration * Delta;
+                float newSpeed = (float)Math.Sqrt(Math.Pow(newVx, 2) + Math.Pow(newVy, 2));
 
                 //Fill row of values
                 ValueRow row = new ValueRow
@@ -209,7 +211,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             {
                 return foundRow.Speed;
             }
-            return 0f;
+            var lastY = MotionValues.Last().Speed;
+            return lastY;
         }
 
         public float ComputeAcceleration(float timeMoment)
