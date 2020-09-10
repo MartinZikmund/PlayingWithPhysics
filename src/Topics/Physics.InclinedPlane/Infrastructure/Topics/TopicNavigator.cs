@@ -8,6 +8,9 @@ using Physics.Shared.Logic;
 using Physics.InclinedPlane.ViewModels;
 using Physics.InclinedPlane.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.SelfStudy;
+using Windows.ApplicationModel;
+using System.IO;
 
 namespace Physics.InclinedPlane.Infrastructure.Topics
 {
@@ -31,9 +34,9 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
             await _navigationService.Navigate<GameViewModel, GameViewModel.NavigationModel>(new GameViewModel.NavigationModel { Difficulty = DifficultyOption.Advanced });
         }
 
-        public Task GoToStudyModeAsync()
+        public async Task GoToStudyModeAsync()
         {
-            throw new NotImplementedException();
+            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
         }
 
         public Task OpenStudyTextAsync()

@@ -1,12 +1,15 @@
 ﻿using MvvmCross.Navigation;
 using Physics.DragMovement.Models;
 using Physics.DragMovement.ViewModels;
+using Physics.SelfStudy;
 using Physics.Shared.UI.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 
 namespace Physics.DragMovement.Infrastructure.Topics
 {
@@ -30,9 +33,9 @@ namespace Physics.DragMovement.Infrastructure.Topics
             throw new NotImplementedException();
         }
 
-        public Task GoToStudyModeAsync()
+        public async Task GoToStudyModeAsync()
         {
-            throw new NotImplementedException();
+            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
         }
 
         public Task OpenStudyTextAsync()
