@@ -319,7 +319,7 @@ namespace Physics.DragMovement.Rendering
             var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Width, _simulationBoundsInMeters.Height);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;
-            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
+            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize*2)
             {
                 drawing.DrawLine(
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
