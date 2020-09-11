@@ -185,10 +185,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CSharpMath.SkiaSharp">
-      <Version>0.4.2</Version>
+      <Version>0.5.0-alpha4</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.2.0</Version>
+      <Version>6.2.5</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -196,13 +196,13 @@
       <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
-      <Version>6.1.0</Version>
+      <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
-      <Version>6.1.0</Version>
+      <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.4.2</Version>
+      <Version>2.4.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.4.1.1</Version>
@@ -211,10 +211,10 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.8</Version>
+      <Version>3.2.9</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>11.4.17</Version>
+      <Version>11.5.35</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
       <Version>2.80.1</Version>

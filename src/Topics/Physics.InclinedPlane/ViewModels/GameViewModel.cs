@@ -86,7 +86,7 @@ namespace Physics.InclinedPlane.ViewModels
                 0,
                 9.81f,
                 inclinedLength,
-                0.4f,
+                0.45f,
                 30,
                 36,
                 0.03f,

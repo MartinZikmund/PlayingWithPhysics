@@ -4,6 +4,9 @@ using System;
 using System.Threading.Tasks;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.HomogenousParticle.Models;
+using System.IO;
+using Windows.ApplicationModel;
+using Physics.SelfStudy;
 
 namespace Physics.HomogenousParticle.Infrastructure.Topics
 {
@@ -27,14 +30,13 @@ namespace Physics.HomogenousParticle.Infrastructure.Topics
             throw new NotImplementedException();
         }
 
-        public Task GoToStudyModeAsync()
+        public async Task GoToStudyModeAsync()
         {
-            throw new NotImplementedException();
+            await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
         }
 
-        public Task OpenStudyTextAsync()
+        public async Task OpenStudyTextAsync()
         {
-            throw new NotImplementedException();
         }
     }
 }
