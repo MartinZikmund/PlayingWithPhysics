@@ -388,7 +388,7 @@ namespace Physics.InclinedPlane.Rendering
         {
             if (_stadiumBackground == null)
             {
-                var gameAssetsPath = Path.Combine(Package.Current.InstalledPath, "Assets", "Game");
+                var gameAssetsPath = Path.Combine(Package.Current.InstalledLocation.Path, "Assets", "Game");
                 _stadiumBackground = SKBitmap.Decode(Path.Combine(gameAssetsPath, "pozadi_merge.jpg"));
                 _ramp = SKBitmap.Decode(Path.Combine(gameAssetsPath, "rampa.png"));
                 _tvBox = SKBitmap.Decode(Path.Combine(gameAssetsPath, "tv_kostka.png"));
