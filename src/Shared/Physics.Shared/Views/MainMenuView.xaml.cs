@@ -1,4 +1,6 @@
-﻿using Physics.Shared.ViewModels;
+﻿using Physics.Shared.UI.Controls;
+using Physics.Shared.UI.Localization;
+using Physics.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -45,6 +47,19 @@ namespace Physics.Shared.Views
         private void MainMenuView_DataContextChanged(Windows.UI.Xaml.FrameworkElement sender, Windows.UI.Xaml.DataContextChangedEventArgs args)
         {
             Model = (MainMenuViewModel)args.NewValue;
+        }
+
+        private async void AboutAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new ContentDialog();                        
+            dialog.Content = new AboutApp();
+            dialog.IsPrimaryButtonEnabled = true;
+            dialog.PrimaryButtonText = Localizer.Instance["Close"];
+            dialog.PrimaryButtonClick += (s, e) =>
+            {
+                dialog.Hide();
+            };
+            await dialog.ShowAsync();
         }
     }
 }

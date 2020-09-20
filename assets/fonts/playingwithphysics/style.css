@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'playingwithphysics';
-  src:  url('fonts/playingwithphysics.eot?d5rh7t');
-  src:  url('fonts/playingwithphysics.eot?d5rh7t#iefix') format('embedded-opentype'),
-    url('fonts/playingwithphysics.ttf?d5rh7t') format('truetype'),
-    url('fonts/playingwithphysics.woff?d5rh7t') format('woff'),
-    url('fonts/playingwithphysics.svg?d5rh7t#playingwithphysics') format('svg');
+  src:  url('fonts/playingwithphysics.eot?2m1ysj');
+  src:  url('fonts/playingwithphysics.eot?2m1ysj#iefix') format('embedded-opentype'),
+    url('fonts/playingwithphysics.ttf?2m1ysj') format('truetype'),
+    url('fonts/playingwithphysics.woff?2m1ysj') format('woff'),
+    url('fonts/playingwithphysics.svg?2m1ysj#playingwithphysics') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'playingwithphysics' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-help:before {
+  content: "\e90c";
+}
 .icon-pause:before {
   content: "\e90b";
 }

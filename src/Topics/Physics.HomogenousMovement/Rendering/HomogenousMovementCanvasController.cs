@@ -85,6 +85,10 @@ namespace Physics.HomogenousMovement.Rendering
 
             PrepareTrajectories();
 
+            if (_physicsServices.Any())
+            {
+                MaxTime = TimeSpan.FromSeconds(_physicsServices.Max(ps => ps.MaxT));
+            }
             Restart();
 
             OnSimulationStarting();
@@ -130,7 +134,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 maxY = Math.Max(trajectory.MaxY, maxY);
             }
-            
+
             _simulationBoundsInMeters = new RectangleF(minX, minY, maxX - minX, maxY - minY);
         }
 
@@ -349,7 +353,7 @@ namespace Physics.HomogenousMovement.Rendering
             var requestedJump = CalculateJumpSizeForAxis(requestedAxis);
             var otherJump = CalculateJumpSizeForAxis(otherAxis);
 
-            if ( Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
+            if (Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
             {
                 //too big difference between axis, draw independently
                 return requestedJump;

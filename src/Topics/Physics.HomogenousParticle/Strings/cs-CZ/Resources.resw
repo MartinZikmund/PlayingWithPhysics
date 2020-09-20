@@ -138,9 +138,6 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
-  <data name="StudyText" xml:space="preserve">
-    <value>Studijní text</value>
-  </data>
   <data name="AddMotion" xml:space="preserve">
     <value>Změnit parametry</value>
   </data>
@@ -242,5 +239,8 @@
   </data>
   <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
     <value>násobky hmotnosti nukleonu</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Materiál pomůže vytvořit představu a přehled pohybů nabitých části v homogenním magnetickém poli. Pohyby budou simulovány s využitém volby směru magnetického pole a volby směru a velikosti rychlostí. Materiál dále umožní pochopit odlišnost chování částic v magnetickém a elektrickém poli. Součástí materiálu budou i teoretické výpočty hodnot uvedených v animaci a tím propojí vizuální efekt animace s teoretickými předpoklady pohybu. Materiál bude také možné využít při studiu základních vlastností atomových jader (určování hmotnosti).</value>
   </data>
 </root>

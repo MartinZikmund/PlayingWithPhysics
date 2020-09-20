@@ -6,7 +6,7 @@ using Windows.UI.Core;
 
 namespace Physics.Shared.UI.Rendering.Skia
 {
-    public abstract class SkiaCanvasController : IRenderingPlayback, IDisposable
+    public abstract class SkiaCanvasController : ICanvasController, IDisposable
     {
         private bool _simluationInitiated = false;
 
@@ -14,6 +14,7 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         protected SkiaCanvasController(SkiaCanvas canvasAnimatedControl)
         {
+            SimulationTime = new SimulationTime(this);
             _canvas = canvasAnimatedControl ?? throw new ArgumentNullException(nameof(canvasAnimatedControl));
             _canvas.Draw += Draw;
             _canvas.Update += CanvasUpdate;
@@ -21,7 +22,9 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         public bool IsPaused { get; private set; }
 
-        public SimulationTime SimulationTime { get; } = new SimulationTime();
+        public SimulationTime SimulationTime { get; }
+
+        public TimeSpan? MaxTime { get; set; }
 
         public void Play() => IsPaused = false;
 

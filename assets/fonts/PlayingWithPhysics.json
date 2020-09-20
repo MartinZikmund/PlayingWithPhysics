@@ -2,18 +2,26 @@
   "metadata": {
     "name": "PlayingWithPhysics",
     "lastOpened": 0,
-    "created": 1586356019878
+    "created": 1600592642891
   },
   "iconSets": [
     {
       "selection": [
+        {
+          "order": 15,
+          "id": 12,
+          "name": "help",
+          "prevSize": 32,
+          "code": 59660,
+          "tempChar": ""
+        },
         {
           "order": 13,
           "id": 11,
           "name": "pause",
           "prevSize": 32,
           "code": 59659,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 12,
@@ -21,7 +29,7 @@
           "name": "skiptostart",
           "prevSize": 32,
           "code": 59658,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 11,
@@ -29,7 +37,7 @@
           "name": "speed",
           "prevSize": 32,
           "code": 59653,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 10,
@@ -37,7 +45,7 @@
           "name": "skiptoend",
           "prevSize": 32,
           "code": 59654,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 9,
@@ -45,7 +53,7 @@
           "name": "fastforward",
           "prevSize": 32,
           "code": 59655,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 8,
@@ -53,7 +61,7 @@
           "name": "rewind",
           "prevSize": 32,
           "code": 59656,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 7,
@@ -61,7 +69,7 @@
           "name": "play",
           "prevSize": 32,
           "code": 59657,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 6,
@@ -69,7 +77,7 @@
           "name": "cannon",
           "prevSize": 32,
           "code": 59652,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 2,
@@ -77,7 +85,7 @@
           "name": "game",
           "prevSize": 32,
           "code": 59648,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 3,
@@ -85,7 +93,7 @@
           "name": "advanced",
           "prevSize": 32,
           "code": 59649,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "order": 4,
@@ -93,15 +101,15 @@
           "name": "easy",
           "prevSize": 32,
           "code": 59650,
-          "tempChar": ""
+          "tempChar": ""
         },
         {
-          "order": 5,
+          "order": 14,
           "id": 0,
           "name": "studytext",
           "prevSize": 32,
           "code": 59651,
-          "tempChar": ""
+          "tempChar": ""
         }
       ],
       "id": 0,
@@ -115,6 +123,21 @@
       "height": 1024,
       "prevSize": 32,
       "icons": [
+        {
+          "id": 12,
+          "paths": [
+            "M512 88c-233.805 0-424 190.195-424 424s190.195 424 424 424c233.805 0 424-190.195 424-424s-190.195-424-424-424zM512 158.665c195.575 0 353.335 157.76 353.335 353.335s-157.76 353.335-353.335 353.335c-195.575 0-353.335-157.76-353.335-353.335s157.76-353.335 353.335-353.335zM512 300c-77.705 0-141.335 63.63-141.335 141.335h70.665c0-39.475 31.195-70.665 70.665-70.665s70.665 31.195 70.665 70.665c0 27.050-17.39 51.070-43.065 59.625l-14.355 4.415c-28.845 9.525-48.585 37.13-48.585 67.355v45.27h70.665v-45.27l14.355-4.415c54.38-18.080 91.645-69.7 91.645-126.98 0-77.705-63.63-141.335-141.335-141.335zM476.665 653.335v70.665h70.665v-70.665z"
+          ],
+          "attrs": [
+            {}
+          ],
+          "grid": 0,
+          "tags": [
+            "icons8-help"
+          ],
+          "isMulticolor": false,
+          "isMulticolor2": false
+        },
         {
           "id": 11,
           "paths": [
@@ -300,7 +323,6 @@
       "colorThemes": []
     }
   ],
-  "uid": -1,
   "preferences": {
     "showGlyphs": true,
     "showCodes": true,
@@ -328,6 +350,8 @@
       "color": 0,
       "bgColor": 16777215
     },
-    "historySize": 50
-  }
+    "historySize": 50,
+    "gridSize": 16
+  },
+  "uid": -1
 }

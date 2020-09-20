@@ -9,8 +9,7 @@ using System;
 namespace Physics.Shared.UI.Rendering.Skia
 {
     public partial class SkiaCanvas : SKNativeView
-    {
-        public readonly SimulationTime GameTime = new SimulationTime();
+    {       
         private readonly object _renderLock = new object();
 
         private int _uiThreadId;
@@ -71,7 +70,6 @@ namespace Physics.Shared.UI.Rendering.Skia
                     InitializeSimulationLoop(() => OnUpdateLock(), e, true);
                 });
             }
-            GameTime.Start();
         }
 
         private void SetupInput()
@@ -108,7 +106,6 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         private void OnUpdate()
         {
-            GameTime.OnUpdateStarting();
             BeforeUpdate();
 
             // Note that run loop should be run on Main Thread.

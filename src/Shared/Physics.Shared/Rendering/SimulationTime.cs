@@ -7,11 +7,13 @@ namespace Physics.Shared.UI.Rendering
     public class SimulationTime
     {
         private readonly Stopwatch _stopwatch;
+        private readonly ICanvasController _canvasController;
         private long _lastElapsedMilliseconds = 0;
 
-        public SimulationTime()
+        public SimulationTime(ICanvasController canvasController)
         {
             _stopwatch = new Stopwatch();
+            _canvasController = canvasController;
         }
 
         internal void Start()
@@ -49,13 +51,13 @@ namespace Physics.Shared.UI.Rendering
 
         public void FastForward(float time)
         {
-            TotalTime = TimeSpan.FromSeconds(Math.Max(0.0, TotalTime.TotalSeconds + time));
+            TotalTime = TimeSpan.FromSeconds(Math.Min(TotalTime.TotalSeconds + time, _canvasController.MaxTime?.TotalSeconds ?? double.MaxValue));
         }
 
         internal void UpdateFromCanvas(CanvasTimingInformation updateTimingInformation)
         {
             ElapsedTime = updateTimingInformation.ElapsedTime * SimulationSpeed;
-            TotalTime += ElapsedTime;
+            TotalTime = TimeSpan.FromSeconds(Math.Min(TotalTime.TotalSeconds + ElapsedTime.TotalSeconds, _canvasController.MaxTime?.TotalSeconds ?? double.MaxValue));
             UpdateCount = updateTimingInformation.UpdateCount;
         }
     }

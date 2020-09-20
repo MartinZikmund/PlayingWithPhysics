@@ -33,6 +33,7 @@ namespace Physics.InclinedPlane.Rendering
 
             Motion = motion;
             PhysicsService = new PhysicsService(motion);
+            MaxTime = TimeSpan.FromSeconds(PhysicsService.CalculateMaxT());
             SimulationTime.Restart();
         }
 

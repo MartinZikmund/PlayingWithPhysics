@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:Physics.Shared.Views"
+    xmlns:views="using:Physics.Shared.Views" xmlns:controls="using:Physics.Shared.UI.Controls"
     Background="{StaticResource AppThemeColor}"
     mc:Ignorable="d">
 
@@ -187,7 +187,7 @@
                             x:Name="SecondDifficulty"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
-                            Background="#dcdcdc"
+                            Background="#ededed"
                             Command="{x:Bind Model.GoToAdvancedCommand}"
                             Visibility="{x:Bind Model.HasAdvancedDifficulty}">
                             <Button.Content>
@@ -209,7 +209,7 @@
                             x:Name="GameButton"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
-                            Background="#bfbfbf"
+                            Background="#cdcdcd"
                             Command="{x:Bind Model.GameModeCommand}"
                             Visibility="{x:Bind Model.HasGame}">
                             <Button.Content>
@@ -231,7 +231,7 @@
                             x:Name="StudyTextButton"
                             Grid.Column="2"
                             HorizontalAlignment="Stretch"
-                            Background="#a2a2a2"
+                            Background="#bfbfbf"
                             Command="{x:Bind Model.GoToStudyModeCommand}"
                             Visibility="{x:Bind Model.HasStudyMode}">
                             <Button.Content>
@@ -244,6 +244,26 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=StudyText}"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            x:Name="AboutAppButton"
+                            Grid.Column="2"
+                            HorizontalAlignment="Stretch"
+                            Background="#a1a1a1" Click="AboutAppButton_Click">
+                            <Button.Content>
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource AboutGlyph}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Text="{extensions:Localize Key=AboutApp}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
                                 </StackPanel>
@@ -277,14 +297,6 @@
                             Text="{extensions:Localize Key=ShortAppName}"
                             TextWrapping="Wrap" />
                     </Grid>
-                    <TextBlock
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                        Opacity="0.5"
-                        Text="{x:Bind Model.Version}" />
                 </Grid>
             </ScrollViewer>
         </Grid>

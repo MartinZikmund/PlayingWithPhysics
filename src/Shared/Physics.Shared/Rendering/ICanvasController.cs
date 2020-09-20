@@ -6,6 +6,6 @@ namespace Physics.Shared.UI.Rendering
 {
     public interface ICanvasController : IRenderingPlayback, IDisposable
     {
-        Task RunOnGameLoopAsync(DispatchedHandler agileCallback);
+        TimeSpan? MaxTime { get; set; }
     }
 }

@@ -123,6 +123,10 @@
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Advanced difficulty</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>During the translational motion of a body along an inclined plane, the motion depends on many parameters (angle, coefficient of friction).
+The program allows the selection of basic parameters, plots the forces acting on the body, the resultant forces and acceleration. Animates the entire movement and prints a table of values.</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Inclined Plane</value>
   </data>
@@ -299,9 +303,6 @@
   </data>
   <data name="StartNewGame" xml:space="preserve">
     <value>Start new game</value>
-  </data>
-  <data name="StudyText" xml:space="preserve">
-    <value>Study text</value>
   </data>
   <data name="ThrowDistance" xml:space="preserve">
     <value>{0}</value>
