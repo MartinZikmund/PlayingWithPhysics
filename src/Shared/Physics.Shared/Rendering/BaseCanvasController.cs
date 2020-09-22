@@ -15,6 +15,7 @@ namespace Physics.Shared.UI.Rendering
 
         protected BaseCanvasController(CanvasAnimatedControl canvasAnimatedControl)
         {
+            SimulationTime = new SimulationTime(this);
             _canvasAnimatedControl = canvasAnimatedControl ?? throw new ArgumentNullException(nameof(canvasAnimatedControl));
             _canvasAnimatedControl.Draw += Draw;
             _canvasAnimatedControl.Update += CanvasUpdate;
@@ -23,7 +24,9 @@ namespace Physics.Shared.UI.Rendering
         
         public bool IsPaused { get; private set; }
 
-        public SimulationTime SimulationTime { get; } = new SimulationTime();
+        public SimulationTime SimulationTime { get; }
+
+        public TimeSpan? MaxTime { get; set; }
 
         public void Play() => IsPaused = false;
 

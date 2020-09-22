@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Physics.SelfStudy.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:extensions="using:Physics.Shared.Extensions"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Light"
     mc:Ignorable="d">
@@ -40,7 +40,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <controls:SkewedMenuHeader ShowBackButton="False" Text="Self study" />
+                    <controls:SkewedMenuHeader ShowBackButton="False" Text="{extensions:Localize Key=StudyText}" />
                     <ListView
                         Grid.Row="2"
                         ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}"

@@ -21,6 +21,7 @@ namespace Physics.Shared.ViewModels
         private ICommand _goToAdvancedCommand;
         private ICommand _goToStudyModeCommand;
         private ICommand _gameModeCommand;
+        private ICommand _aboutAppCommand;
 
         public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
 
@@ -34,10 +35,9 @@ namespace Physics.Shared.ViewModels
 
         public ICommand GoToAdvancedCommand => _goToAdvancedCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Advanced);
 
-        public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);
+        public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);        
 
-        public ICommand GoToStudyModeCommand =>
-            _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
+        public ICommand GoToStudyModeCommand => _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
 
         private bool IsCurrentCultureCzech =>
 #if DEBUG
@@ -50,17 +50,5 @@ namespace Physics.Shared.ViewModels
 
         private ICommand CreateTopicDifficultyCommand(DifficultyOption difficulty) =>
             new MvxAsyncCommand(() => _topicNavigator.GoToDifficultyAsync(difficulty));
-
-        public string Version
-        {
-            get
-            {
-                Package package = Package.Current;
-                PackageId packageId = package.Id;
-                PackageVersion version = packageId.Version;
-
-                return "Verze: " + string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
-            }
-        }
     }
 }

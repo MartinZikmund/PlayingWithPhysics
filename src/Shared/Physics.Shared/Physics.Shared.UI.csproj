@@ -130,6 +130,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\AboutApp.xaml.cs">
+      <DependentUpon>AboutApp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SimulationControls.xaml.cs">
       <DependentUpon>SimulationControls.xaml</DependentUpon>
     </Compile>
@@ -198,7 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fody">
-      <Version>6.2.5</Version>
+      <Version>6.2.6</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -218,10 +221,10 @@
       <Version>2.4.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>7.0.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>7.0.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -233,7 +236,7 @@
       <Version>11.5.35</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
-      <Version>2.80.1</Version>
+      <Version>2.80.2</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.25.0</Version>
@@ -243,6 +246,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\AboutApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SimulationControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -273,8 +280,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\creativecommons.png" />
+    <Content Include="Assets\eu.png" />
     <Content Include="Assets\Fonts\NeoEuler.otf" />
     <Content Include="Assets\logo.language-en-US.png" />
+    <Content Include="Assets\msmt.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\logo.language-cs-CZ.png" />

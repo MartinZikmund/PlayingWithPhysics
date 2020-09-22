@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>BD8370C30909AC1BF8C3D55E24890319BDD2596D</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>415819A59C1B41F86B79BF5280E5EA80E1E93102</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
@@ -290,7 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fody">
-      <Version>6.2.5</Version>
+      <Version>6.2.6</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -316,13 +316,13 @@
       <Version>2.4.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>7.0.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.2.9</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
-      <Version>2.80.1</Version>
+      <Version>2.80.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

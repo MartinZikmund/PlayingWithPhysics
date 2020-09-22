@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutApp" xml:space="preserve">
+    <value>O aplikaci</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Barva</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="ShowHideZeroes" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
+  </data>
+  <data name="StudyText" xml:space="preserve">
+    <value>Samostudium</value>
   </data>
   <data name="TryAgain" xml:space="preserve">
     <value>Zkusit znovu</value>

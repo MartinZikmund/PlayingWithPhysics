@@ -225,9 +225,6 @@
   <data name="Speed" xml:space="preserve">
     <value>Rychlost</value>
   </data>
-  <data name="StudyText" xml:space="preserve">
-    <value>Studijní text</value>
-  </data>
   <data name="TopicName" xml:space="preserve">
     <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
@@ -278,5 +275,10 @@
   </data>
   <data name="TooManyMotionsTitle" xml:space="preserve">
     <value>Vytvoření pohybu se nezdařilo.</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Tělesa pohybující se v těsné blízkosti Země můžeme považovat za tělesa pohybující se v homogenním tíhovém poli.
+Animace umožní volbu základních pohybů (volný pád, svislý vrh, vodorovný vrh, šikmý vrh) a volbu počátečních parametrů (počáteční rychlost, elevační úhel, výška). Program automaticky přizpůsobí měřítko a výstupem bude též tabulka hodnot včetně vypočtených parametrů.
+Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využít ho pro řešení konkrétních úloh.</value>
   </data>
 </root>

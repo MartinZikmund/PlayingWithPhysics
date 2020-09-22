@@ -123,6 +123,10 @@
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Pokročilá varianta</value>
   </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Při translačním pohybu tělesa po nakloněné rovině závisí pohyb na mnoha parametrech (úhel, součinitel tření).
+Program umožní volbu základních parametrů, vykreslí působící síly působící na těleso, výslednici sil a zrychlení. Animuje celý pohyb a vypíše tabulku hodnot.</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Translační pohyb tělesa po nakloněné rovině</value>
   </data>
@@ -308,9 +312,6 @@
   </data>
   <data name="StartNewGame" xml:space="preserve">
     <value>Začít novou hru</value>
-  </data>
-  <data name="StudyText" xml:space="preserve">
-    <value>Studijní text</value>
   </data>
   <data name="ThrowDistance" xml:space="preserve">
     <value>{0}</value>
