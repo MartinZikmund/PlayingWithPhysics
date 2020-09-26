@@ -120,6 +120,12 @@
   <data name="AboutApp" xml:space="preserve">
     <value>O aplikaci</value>
   </data>
+  <data name="AppInfoAddress" xml:space="preserve">
+    <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
+  </data>
+  <data name="AppProjectInfo" xml:space="preserve">
+    <value>Aplikace „{0}“ byla vytvořena v rámci projektu „Hrátky s fyzikou“, který je spolufinancován Evropskou unií. Registrační číslo projektu je CZ.02.3.68/0.0/0.0/18_067/0012381. Publikováno pod licencí Creative Commons 4.0 ve variantě BY-NC-SA.</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Zavřít</value>
   </data>

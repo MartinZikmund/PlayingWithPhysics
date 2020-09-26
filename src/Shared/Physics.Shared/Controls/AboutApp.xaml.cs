@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel;
+﻿using Physics.Shared.UI.Localization;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.Shared.UI.Controls
@@ -19,6 +20,14 @@ namespace Physics.Shared.UI.Controls
                 PackageVersion version = packageId.Version;
 
                 return "Verze: " + string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            }
+        }
+
+        public string AppInfoText
+        {
+            get
+            {
+                return string.Format(Localizer.Instance.GetString("AppProjectInfo"), Localizer.Instance.GetString("AppName"));
             }
         }
     }

@@ -10,19 +10,19 @@
     xmlns:services="using:Physics.InclinedPlane.Services"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:views="using:Physics.Shared.Views"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="*" MinWidth="240" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" x:Name="MenuPane">
-            <Windows10version1809:Grid.Shadow>
+            <Windows10version1903:Grid.Shadow>
                 <ThemeShadow />
-            </Windows10version1809:Grid.Shadow>
+            </Windows10version1903:Grid.Shadow>
             <Grid.Background>
                 <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" BackgroundSource="HostBackdrop" TintOpacity="0.85" FallbackColor="{ThemeResource AppThemeColor}" />
             </Grid.Background>
@@ -50,7 +50,7 @@
                     </Border>
                     <TextBlock
                         x:Name="TitleTextBlock"
-                        Margin="-28,0,52,0"
+                        Margin="-14,0,52,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="18"
@@ -62,121 +62,42 @@
                         TextWrapping="Wrap" />
                 </Grid>
             </Grid>
-            <Border Grid.Row="1" Margin="0,12,0,0">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                    <StackPanel Margin="12,0,8,0" Orientation="Vertical">
-                        <Button
-                            Margin="8,8,8,0"
-                            HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.StartNewGameCommand}"
-                            Content="{extensions:Localize Key=StartNewGame}"
-                            Foreground="White" />
-                        <StackPanel Visibility="{x:Bind Model.ShowCurrentValuesGrid, Mode=OneWay}">
-                            <NavigationViewItemSeparator />
-                            <Grid
-                            Margin="8,0,8,0"
-                            Padding="8,4,4,6"
-                            Background="#c95d7c">
-                                <TextBlock
-                                Margin="0,3,0,0"
-                                Foreground="White"
-                                Style="{ThemeResource SubtitleTextBlockStyle}"
-                                Text="Aktuální hodnoty" />
-                                <Button
-                                HorizontalAlignment="Right"
-                                Command="{x:Bind Model.ShowValuesTableCommand}"
-                                Foreground="White">
-                                    <SymbolIcon Symbol="ViewAll" />
-                                </Button>
-                            </Grid>
-                            <Grid Margin="16,8,8,0">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Foreground="White"
-                                        Text="t:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
-                                        <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
-                                        <Run Text=" s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Foreground="White"
-                                        Text="v:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
-                                        <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
-                                        <Run Text=" m/s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Foreground="White"
-                                        Text="x:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
-                                        <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Foreground="White"
-                                        Text="y:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
-                                        <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Foreground="White"
-                                        Text="s:" />
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
-                                        <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
-                                        <Run Text=" m" />
-                                    </TextBlock>
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-
+            <StackPanel Padding="12" Grid.Row="1" Margin="0,0,0,0" Spacing="16">
+                <Button
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Command="{x:Bind Model.StartNewGameCommand}"
+                    Content="{extensions:Localize Key=StartNewGame}"
+                    Foreground="White" />
+                <StackPanel Orientation="Vertical" RequestedTheme="Dark" Spacing="16" Grid.Column="2">
+                    <StackPanel Spacing="4" VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="{extensions:Localize Key=Input_InclinedPlane}" FontWeight="Bold" />
+                        <TextBlock>                        
+                        <Run FontWeight="SemiBold" Text="{extensions:Localize Key=Input_DriftCoefficient}" /><Run FontWeight="SemiBold" Text=":" />
+                        <Run Text="0.45" />
+                        </TextBlock>
+                        <TextBlock>                        
+                        <Run FontWeight="SemiBold" Text="{extensions:Localize Key=Input_Length}" /><Run FontWeight="SemiBold" Text=":" />
+                        <Run Text="12 m" />
+                        </TextBlock>
+                        <TextBlock>
+                        <Run FontWeight="SemiBold" Text="{extensions:Localize Key=Input_Angle}" /><Run FontWeight="SemiBold" Text=":" />
+                        <Run Text="30 °" />
+                        </TextBlock>
                     </StackPanel>
-                </ScrollViewer>
-            </Border>
+                    <StackPanel Spacing="4" VerticalAlignment="Top" Orientation="Vertical">
+                        <TextBlock Text="{extensions:Localize Key=Input_HorizontalPlane}" FontWeight="Bold" />
+                        <TextBlock>
+                        <Run FontWeight="SemiBold" Text="{extensions:Localize Key=Input_DriftCoefficient}" /><Run FontWeight="SemiBold" Text=":" />                        
+                        <Run Text="0.03" />
+                        </TextBlock>
+                        <TextBlock>                        
+                        <Run FontWeight="SemiBold" Text="{extensions:Localize Key=TargetDistance}" />
+                        <Run Text="28.35 m" />
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Grid>
         <Grid
             x:Name="SecondPane"
@@ -187,7 +108,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
-            <sharedControls:SimulationControls
+            <!--<sharedControls:SimulationControls
                 Grid.Row="1"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
@@ -204,7 +125,7 @@
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
                 </sharedControls:SimulationControls.Background>
-            </sharedControls:SimulationControls>
+            </sharedControls:SimulationControls>-->
         </Grid>
     </Grid>
 </views:BaseView>

@@ -121,7 +121,7 @@
     <value>Přidat vrh</value>
   </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá varianta</value>
+    <value>Pokročilá úroveň</value>
   </data>
   <data name="Angle" xml:space="preserve">
     <value>Úhel</value>
@@ -160,7 +160,7 @@
     <value>Smazat</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní varianta</value>
+    <value>Základní úroveň</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Upravit</value>
