@@ -1,11 +1,15 @@
 ﻿using MvvmCross.Navigation;
+using Physics.ElectricParticle.Models;
+using Physics.ElectricParticle.ViewModels;
 using Physics.SelfStudy;
 using Physics.Shared.UI.Infrastructure.Topics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 
 namespace Physics.ElectricParticle.Infrastructure.Topics
 {

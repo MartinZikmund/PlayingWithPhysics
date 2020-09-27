@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccelerationInfo" xml:space="preserve">
+    <value>Particle acceleration is</value>
+  </data>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Change parameters</value>
+  </data>
+  <data name="AddMotionRadiation" xml:space="preserve">
+    <value>Add motion</value>
+  </data>
+  <data name="AdvancedDifficulty" xml:space="preserve">
+    <value>Advanced difficulty</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>The material will help to create an idea and overview of the movements of charged parts in a homogeneous magnetic field. The movements will be simulated using the choice of the direction of the magnetic field and the choice of the direction and magnitude of the velocities. The material also makes it possible to understand the difference in the behavior of particles in magnetic and electric fields. The material will also include theoretical calculations of the values given in the animation and thus connect the visual effect of the animation with the theoretical assumptions of movement. It will also be possible to use the material in the study of the basic properties of atomic nuclei (determination of mass).</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Playing with Physics: Electric Field</value>
+  </data>
+  <data name="ChargePolarity_Negative" xml:space="preserve">
+    <value>negative</value>
+  </data>
+  <data name="ChargePolarity_Positive" xml:space="preserve">
+    <value>positive</value>
+  </data>
+  <data name="DrawMotion" xml:space="preserve">
+    <value>Draw motion</value>
+  </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>Easy difficulty</value>
+  </data>
+  <data name="ElectronWeightInfo" xml:space="preserve">
+    <value>Electron weight should be inputted as 0,000545.</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="ParallelInput_Form" xml:space="preserve">
+    <value>in form</value>
+  </data>
+  <data name="ParallelInput_InductionOrientation" xml:space="preserve">
+    <value>Induction orientation [°]</value>
+  </data>
+  <data name="ParallelInput_MovementDirection" xml:space="preserve">
+    <value>Direction of movement relative to induction lines</value>
+  </data>
+  <data name="ParallelInput_NInfo" xml:space="preserve">
+    <value>choose n</value>
+  </data>
+  <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
+    <value>(in</value>
+  </data>
+  <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
+    <value>Opposite</value>
+  </data>
+  <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
+    <value>From display</value>
+  </data>
+  <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
+    <value>Into display</value>
+  </data>
+  <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
+    <value>Particle charge</value>
+  </data>
+  <data name="PerpendicularInput_Induction" xml:space="preserve">
+    <value>Induction</value>
+  </data>
+  <data name="PerpendicularInput_InductionOrientation" xml:space="preserve">
+    <value>Induction orientation</value>
+  </data>
+  <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
+    <value>multiple of nucleon mass</value>
+  </data>
+  <data name="PerpendicularInput_MassStart" xml:space="preserve">
+    <value>Particle mass</value>
+  </data>
+  <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
+    <value>(multiple of</value>
+  </data>
+  <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
+    <value>Velocity</value>
+  </data>
+  <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
+    <value>The velocity of the particle is adjusted for illustration purposes and does not match reality.</value>
+  </data>
+  <data name="PlaneOrientation_Header" xml:space="preserve">
+    <value>Choose plane orientation</value>
+  </data>
+  <data name="PlaneOrientation_Horizontal" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="PlaneOrientation_Vertical" xml:space="preserve">
+    <value>Vertical</value>
+  </data>
+  <data name="ProtonWeightInfo" xml:space="preserve">
+    <value>multiples of nucleon weight</value>
+  </data>
+  <data name="Radiation" xml:space="preserve">
+    <value>Radiation</value>
+  </data>
+  <data name="RadiationType_Alpha" xml:space="preserve">
+    <value>α</value>
+  </data>
+  <data name="RadiationType_BetaMinus" xml:space="preserve">
+    <value>β-</value>
+  </data>
+  <data name="RadiationType_BetaPlus" xml:space="preserve">
+    <value>β+</value>
+  </data>
+  <data name="RadiationType_Gamma" xml:space="preserve">
+    <value>γ</value>
+  </data>
+  <data name="RadiationType_Neutron" xml:space="preserve">
+    <value>Neutron</value>
+  </data>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>Electric Field</value>
+  </data>
+  <data name="StartSpeedInfo" xml:space="preserve">
+    <value>Particle speed at origin is</value>
+  </data>
+  <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
+    <value>No force is affecting the particle, hence it remains stationary.</value>
+  </data>
+</root>

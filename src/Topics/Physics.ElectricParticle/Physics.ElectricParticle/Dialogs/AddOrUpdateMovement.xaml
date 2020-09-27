@@ -1,20 +1,32 @@
 ﻿<ContentDialog
-    x:Class="Physics.ElectricParticle.Dialogs.AddOrUpdateMovement"
+    x:Class="Physics.ElectricParticle.Dialogs.AddOrUpdateMotionDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.ElectricParticle.Dialogs"
-    xmlns:usercontrols="using:Physics.ElectricParticle.UserControls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:usercontrols="using:Physics.ElectricParticle.UserControls"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Title="{extensions:Localize Key=AddMotion}"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-    </Grid>
+    mc:Ignorable="d">
+    <ContentDialog.Resources>
+        <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMotionDialog" />
+    </ContentDialog.Resources>
+    <ScrollViewer
+        HorizontalScrollBarVisibility="Auto"
+        HorizontalScrollMode="Auto"
+        VerticalScrollBarVisibility="Auto"
+        VerticalScrollMode="Auto">
+        <StackPanel Spacing="8">
+            <ContentControl Content="{x:Bind Model, Mode=OneWay}">
+                <ContentControl.ContentTemplateSelector>
+                    <usercontrols:InputControlContentTemplateSelector />
+                </ContentControl.ContentTemplateSelector>
+            </ContentControl>
+        </StackPanel>
+    </ScrollViewer>
 </ContentDialog>

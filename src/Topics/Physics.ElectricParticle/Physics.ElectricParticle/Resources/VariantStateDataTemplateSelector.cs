@@ -1,5 +1,4 @@
-﻿    using Physics.HomogenousParticle.ViewModels.State;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Physics.HomogenousParticle.Resources
+namespace Physics.ElectricParticle.Resources
 {
     public class VariantStateDataTemplateSelector : DataTemplateSelector
     {
@@ -28,11 +27,11 @@ namespace Physics.HomogenousParticle.Resources
         private DataTemplate GetTemplate(object item) =>
             item switch
             {
-                ZeroVariantStateViewModel _ => Zero,
-                ParallelVariantStateViewModel _ => Parallel,
-                PerpendicularVariantStateViewModel _ => Perpendicular,
-                RadiationVariantStateViewModel _ => Radiation,
+                //ZeroVariantStateViewModel _ => Zero,
+                //ParallelVariantStateViewModel _ => Parallel,
+                //PerpendicularVariantStateViewModel _ => Perpendicular,
+                //RadiationVariantStateViewModel _ => Radiation,
                 _ => throw new NotImplementedException(),
-            };    
+            };
     }
 }

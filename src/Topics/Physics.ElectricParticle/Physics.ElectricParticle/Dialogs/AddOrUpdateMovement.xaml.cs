@@ -1,4 +1,6 @@
 ﻿using DynamicData.Annotations;
+using Physics.ElectricParticle.Logic;
+using Physics.ElectricParticle.ViewModels;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,7 @@ namespace Physics.ElectricParticle.Dialogs
         {
             this.InitializeComponent();
         }
-        public AddOrUpdateMovementViewModel Model { get; private set; }
+        public AddOrUpdateMotionViewModel Model { get; private set; }
         private void SetupNumberBoxFormattings()
         {
             //StartXNumberBox.SetupFormatting(fractionDigits: 2);

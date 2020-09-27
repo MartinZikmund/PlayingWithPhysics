@@ -1,0 +1,157 @@
+﻿<views:BaseView
+    x:Class="Physics.ElectricParticle.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.ElectricParticle.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+    xmlns:views="using:Physics.Shared.Views"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light"
+    mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid
+            x:Name="MenuPane"
+            Grid.Column="0"
+            RequestedTheme="Light">
+            <Grid.Background>
+                <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
+            </Grid.Background>
+            <Windows10version1903:Grid.Shadow>
+                <ThemeShadow />
+            </Windows10version1903:Grid.Shadow>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
+
+            <Border Grid.Row="1" Margin="0,12,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Padding="12,0,12,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Vertical" Spacing="8">
+                            <StackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                                </TransitionCollection>
+                            </StackPanel.ChildrenTransitions>
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=PlaneOrientation_Header}" />
+                            <winui:RadioButtons MaxColumns="2" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+                                <winui:RadioButtons.Transitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                                    </TransitionCollection>
+                                </winui:RadioButtons.Transitions>
+                                <winui:RadioButtons.Resources>
+                                    <Style TargetType="RadioButton">
+                                        <Setter Property="Padding" Value="12,0,0,4" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="16" />
+                                    </Style>
+                                </winui:RadioButtons.Resources>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Horizontal}" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+
+                                <RadioButton>
+                                    <RadioButton.Content>
+                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Vertical}" />
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </winui:RadioButtons>
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.AddTrajectoryCommand}"
+                                Content="{x:Bind Model.LocalizedAddMotionText, Mode=OneWay}" />
+
+
+                        </StackPanel>
+                        <!--<ListView
+                            Grid.Row="1"
+                            IsItemClickEnabled="False"
+                            ItemTemplateSelector="{StaticResource VariantStateDataTemplateSelector}"
+                            ItemsSource="{x:Bind Model.Motions}"
+                            SelectionMode="None">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,8" />
+                                    <Setter Property="Padding" Value="0" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>-->
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+        <Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
+            <InkCanvas x:Name="InkCanvas" />
+            <InkToolbar
+                x:Name="inkToolbar"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                RequestedTheme="Light"
+                TargetInkCanvas="{x:Bind InkCanvas}" />
+            <sharedControls:SimulationControls
+                Grid.Row="1"
+                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
+                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
+                <sharedControls:SimulationControls.Background>
+                    <AcrylicBrush
+                        BackgroundSource="Backdrop"
+                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                        TintColor="{ThemeResource SystemChromeMediumColor}" />
+                </sharedControls:SimulationControls.Background>
+            </sharedControls:SimulationControls>
+        </Grid>
+    </Grid>
+</views:BaseView>

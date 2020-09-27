@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.ElectricParticle.Resources"
+    xmlns:usercontrols="using:Physics.ElectricParticle.UserControls">
+
+    <DataTemplate x:Key="HorizontalVariantInputDataTemplate">
+        <usercontrols:HorizontalVariantInputControl />
+    </DataTemplate>
+
+    <DataTemplate x:Key="VerticalVariantInputDataTemplate">
+        <usercontrols:VerticalVariantInputControl />
+    </DataTemplate>
+</ResourceDictionary>
