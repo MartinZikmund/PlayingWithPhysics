@@ -6,24 +6,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:localization="using:Physics.Shared.UI.Localization" xmlns:extensions="using:Physics.Shared.Extensions"
     mc:Ignorable="d">
-
-    <Grid RowSpacing="16" ColumnSpacing="16" Padding="1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="80" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{extensions:Localize Key=AppName}" Grid.ColumnSpan="3" Style="{ThemeResource TitleTextBlockStyle}" />
-        <TextBlock x:Name="VersionTextBlock" Text="{x:Bind Version}" Style="{ThemeResource CaptionTextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="3" />
-        <TextBlock Grid.Row="2" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{extensions:Localize Key=AppDescription}" />
-        <Image Grid.Row="3" Grid.Column="2" Source="ms-appx:///Physics.Shared.UI/Assets/creativecommons.png" />
-        <Image Grid.Row="3" Source="ms-appx:///Physics.Shared.UI/Assets/msmt.jpg" />
-        <Image Grid.Row="3" Grid.Column="1" Source="ms-appx:///Physics.Shared.UI/Assets/eu.png" />
-    </Grid>
+    <ScrollViewer Padding="12" HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
+        <Grid RowSpacing="8" MaxWidth="400" ColumnSpacing="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Text="{extensions:Localize Key=AppName}" Grid.ColumnSpan="3" Style="{ThemeResource TitleTextBlockStyle}" />
+            <TextBlock x:Name="VersionTextBlock" Text="{x:Bind Version}" Style="{ThemeResource CaptionTextBlockStyle}" Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="3" />
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{extensions:Localize Key=AppDescription}" />
+            <TextBlock FontSize="12" Grid.Row="4" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{x:Bind AppInfoText}" />
+            <TextBlock FontSize="12" TextAlignment="Left" Grid.Row="5" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{extensions:Localize Key=AppInfoAddress}" />
+            <Image Grid.Row="3" Height="60" Grid.Column="2" Source="ms-appx:///Physics.Shared.UI/Assets/creativecommons.png" />
+            <Image Grid.Row="3" Height="60" Source="ms-appx:///Physics.Shared.UI/Assets/msmt.jpg" />
+            <Image Grid.Row="3" Height="100" Grid.Column="1" Source="ms-appx:///Physics.Shared.UI/Assets/eu.png" />
+        </Grid>
+    </ScrollViewer>
 </UserControl>

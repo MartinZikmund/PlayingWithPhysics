@@ -124,8 +124,12 @@
     <value>Advanced difficulty</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>During the translational motion of a body along an inclined plane, the motion depends on many parameters (angle, coefficient of friction).
-The program allows the selection of basic parameters, plots the forces acting on the body, the resultant forces and acceleration. Animates the entire movement and prints a table of values.</value>
+    <value>The application enables the simulation of movements on an inclined plane and the travel of a body along a horizontal plane following the end of an inclined plane. After entering the input conditions, it is possible to study the motion of the body on an inclined plane. The movement can be accelerated, slowed down or stopped at any time. The current values of physical quantities are displayed, it is possible to display them clearly in a table.
+Movement on an inclined plane with a range can be simulated in a fun way in a simple game.
+
+Content authors: Pavel Mládek, Pavel Jirman
+Developers: Martin Zikmund, Daniel Zikmund
+Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Inclined Plane</value>
@@ -256,11 +260,23 @@ The program allows the selection of basic parameters, plots the forces acting on
   <data name="Gravity_Venus" xml:space="preserve">
     <value>Venus – equator</value>
   </data>
+  <data name="HorizontalPlaneDriftCoefficient" xml:space="preserve">
+    <value>Horizontal drift coefficient:</value>
+  </data>
+  <data name="HorizontalPlaneLength" xml:space="preserve">
+    <value>Horizontal length:</value>
+  </data>
   <data name="Horizontal_Disable" xml:space="preserve">
     <value>Without horizontal plane</value>
   </data>
   <data name="Horizontal_Enable" xml:space="preserve">
     <value>With horizontal plane</value>
+  </data>
+  <data name="InclinedPlaneDriftCoefficient" xml:space="preserve">
+    <value>Inclined plane drift coefficient:</value>
+  </data>
+  <data name="InclinedPlaneLength" xml:space="preserve">
+    <value>Inclined plane length:</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Angle</value>
@@ -303,6 +319,9 @@ The program allows the selection of basic parameters, plots the forces acting on
   </data>
   <data name="StartNewGame" xml:space="preserve">
     <value>Start new game</value>
+  </data>
+  <data name="TargetDistance" xml:space="preserve">
+    <value>Target center distance:</value>
   </data>
   <data name="ThrowDistance" xml:space="preserve">
     <value>{0}</value>

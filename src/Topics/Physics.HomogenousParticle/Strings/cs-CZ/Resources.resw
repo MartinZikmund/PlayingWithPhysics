@@ -130,10 +130,10 @@
     <value>Pohyby částic v homogenním magnetickém poli</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní varianta</value>
+    <value>Základní úroveň</value>
   </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá varianta</value>
+    <value>Pokročilá úroveň</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>

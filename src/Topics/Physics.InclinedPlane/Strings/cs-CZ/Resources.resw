@@ -121,11 +121,15 @@
     <value>Přidejte první pohyb</value>
   </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá varianta</value>
+    <value>Pokročilá úroveň</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Při translačním pohybu tělesa po nakloněné rovině závisí pohyb na mnoha parametrech (úhel, součinitel tření).
-Program umožní volbu základních parametrů, vykreslí působící síly působící na těleso, výslednici sil a zrychlení. Animuje celý pohyb a vypíše tabulku hodnot.</value>
+    <value>Aplikace umožňuje simulaci pohybů na nakloněné rovině a dojezdu tělesa po vodorovné rovině navazující na konec nakloněné roviny. Po zadání vstupních podmínek lze studovat pohyb tělesa na nakloněné rovině. Pohyb lze kdykoliv zrychlit, zpomalit či zastavit. Jsou zobrazovány aktuální hodnoty fyzikálních veličin, je možnost si je přehledně zobrazit v tabulce.
+Pohyb na nakloněné rovině s dojezdem je možné simulovat zábavnou formou v jednoduché hře.
+
+Autoři obsahu: Pavel Mládek, Pavel Jirman
+Programátoři: Martin Zikmund, Daniel Zikmund
+Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Translační pohyb tělesa po nakloněné rovině</value>
@@ -212,7 +216,7 @@ Program umožní volbu základních parametrů, vykreslí působící síly půs
     <value>Dřevo – dřevo (namydlené)</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní varianta</value>
+    <value>Základní úroveň</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
@@ -259,11 +263,23 @@ Program umožní volbu základních parametrů, vykreslí působící síly půs
   <data name="Gravity_Venus" xml:space="preserve">
     <value>Venuše – rovník</value>
   </data>
+  <data name="HorizontalPlaneDriftCoefficient" xml:space="preserve">
+    <value>Součinitel třetí dojezdu:</value>
+  </data>
+  <data name="HorizontalPlaneLength" xml:space="preserve">
+    <value>Délka dojezdu:</value>
+  </data>
   <data name="Horizontal_Disable" xml:space="preserve">
     <value>Bez dojezdu</value>
   </data>
   <data name="Horizontal_Enable" xml:space="preserve">
     <value>S dojezdem</value>
+  </data>
+  <data name="InclinedPlaneDriftCoefficient" xml:space="preserve">
+    <value>Součinitel tření nakloněné roviny:</value>
+  </data>
+  <data name="InclinedPlaneLength" xml:space="preserve">
+    <value>Délka nakloněné roviny:</value>
   </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Úhel</value>
@@ -312,6 +328,9 @@ Program umožní volbu základních parametrů, vykreslí působící síly půs
   </data>
   <data name="StartNewGame" xml:space="preserve">
     <value>Začít novou hru</value>
+  </data>
+  <data name="TargetDistance" xml:space="preserve">
+    <value>Vzdálenost středu terče:</value>
   </data>
   <data name="ThrowDistance" xml:space="preserve">
     <value>{0}</value>
