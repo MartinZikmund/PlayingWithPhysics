@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Physics.HomogenousParticle.UserControls
+namespace Physics.ElectricParticle.UserControls
 {
     public class InputControlContentTemplateSelector : DataTemplateSelector
     {

@@ -29,8 +29,11 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
             get => _color;
             set
             {
-                _color = value;
-                RaisePropertyChanged();
+                if (value != _color)
+                {
+                    _color = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.ElectricParticle.ViewModels.Inputs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,14 @@ namespace Physics.ElectricParticle.UserControls
         public HorizontalVariantInputControl()
         {
             this.InitializeComponent();
+            DataContextChanged += HorizontalVariantInputControl_DataContextChanged;
         }
+
+        private void HorizontalVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            Model = (HorizontalVariantInputViewModel)args.NewValue;
+        }
+
+        public HorizontalVariantInputViewModel Model { get; private set; }
     }
 }

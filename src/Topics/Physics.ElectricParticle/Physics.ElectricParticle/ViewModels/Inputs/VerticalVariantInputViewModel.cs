@@ -2,6 +2,7 @@
 using Physics.Shared.UI.Localization;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,27 +16,40 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
     {
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            if (Charge == 0)
-            {
-                await new MessageDialog("Náboj nesmí být 0").ShowAsync();
-                return null;
-            }
+            //if (Charge == 0)
+            //{
+            //    await new MessageDialog("Náboj nesmí být 0").ShowAsync();
+            //    return null;
+            //}
             var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
-            return new ParallelMotionSetup(
-                Velocity,
-                SelectedOrientation,
-                Charge,
-                InductionOrientation,
-                colorSerialized);
+            return new MotionSetup(SelectedLeftPlaneChargePolarity, colorSerialized);
         }
 
-        public List<string> ChargePolarities = new List<string>() { Localizer.Instance["ChargePolarity_Positive"], Localizer.Instance["ChargePolarity_Negative"] };
+        public VerticalLeftPlaneChargePolarity SelectedLeftPlaneChargePolarity { get; set;  }
 
-        public float Velocity { get; set; } = 2; // 10^n: 2<=n<=
+        public ObservableCollection<VerticalLeftPlaneChargePolarity> LeftPlaneChargePolarities { get; } = new ObservableCollection<VerticalLeftPlaneChargePolarity>()
+        {
+            VerticalLeftPlaneChargePolarity.Positive,
+            VerticalLeftPlaneChargePolarity.Negative
+        };
 
-        public float Charge { get; set; } = 1f; // -3<=q<=3, not 0
+        public float Voltage { get; set; }
+        public float PlaneDistance { get; set; }
 
-        public float InductionOrientation { get; set; } // 0 <= B <= 360
+        public VerticalChargePolarity SelectedChargePolarity { get; set; }
+
+        public ObservableCollection<VerticalChargePolarity> ChargePolarities { get; } = new ObservableCollection<VerticalChargePolarity>()
+        {
+            VerticalChargePolarity.Positive,
+            VerticalChargePolarity.Negative
+        };
+
+        public float Velocity { get; set; }
+        public float Deviation { get; set; }
+        public float ChargeBase { get; set; }
+        public float ChargePower { get; set; }
+        public float MassBase { get; set; }
+        public float MassPower { get; set; }
 
         public override string Label { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using DynamicData.Annotations;
 using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.ViewModels;
+using Physics.ElectricParticle.ViewModels.Inputs;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Physics.ElectricParticle.Dialogs
 {
-    public sealed partial class AddOrUpdateMovement : ContentDialog
+    public sealed partial class AddOrUpdateMovementDialog : ContentDialog
     {
-        public AddOrUpdateMovement()
+        public AddOrUpdateMovementDialog(IVariantInputViewModel viewModel)
         {
             this.InitializeComponent();
+            Model = viewModel;
         }
-        public AddOrUpdateMotionViewModel Model { get; private set; }
+        public IVariantInputViewModel Model { get; private set; }
         private void SetupNumberBoxFormattings()
         {
             //StartXNumberBox.SetupFormatting(fractionDigits: 2);

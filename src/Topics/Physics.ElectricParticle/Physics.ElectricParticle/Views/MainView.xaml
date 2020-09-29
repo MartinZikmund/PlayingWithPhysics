@@ -96,7 +96,7 @@
                             <Button
                                 HorizontalAlignment="Stretch"
                                 Command="{x:Bind Model.AddTrajectoryCommand}"
-                                Content="{x:Bind Model.LocalizedAddMotionText, Mode=OneWay}" />
+                                Content="{extensions:Localize Key=AddMotion}" />
 
 
                         </StackPanel>

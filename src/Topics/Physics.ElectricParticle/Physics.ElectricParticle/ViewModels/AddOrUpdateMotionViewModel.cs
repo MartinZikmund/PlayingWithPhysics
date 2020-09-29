@@ -32,10 +32,10 @@ namespace Physics.ElectricParticle.ViewModels
                 return null;
             }
             //return new MotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
-            return new MotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, "#FF0000");
+            return new MotionSetup(ChargePolarity, "#FF0000");
 
         }
-
+        public VerticalLeftPlaneChargePolarity ChargePolarity { get; set; }
         public float ChargeMultiple { get; set; } = 1;
 
         public float MassMultiple

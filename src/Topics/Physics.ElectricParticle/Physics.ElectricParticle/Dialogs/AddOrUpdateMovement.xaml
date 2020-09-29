@@ -1,5 +1,5 @@
 ﻿<ContentDialog
-    x:Class="Physics.ElectricParticle.Dialogs.AddOrUpdateMotionDialog"
+    x:Class="Physics.ElectricParticle.Dialogs.AddOrUpdateMovementDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,7 @@
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
     mc:Ignorable="d">
     <ContentDialog.Resources>
-        <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMotionDialog" />
+        <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMovementDialog" />
     </ContentDialog.Resources>
     <ScrollViewer
         HorizontalScrollBarVisibility="Auto"

@@ -138,12 +138,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
-  <data name="ChargePolarity_Negative" xml:space="preserve">
-    <value>záporný</value>
-  </data>
-  <data name="ChargePolarity_Positive" xml:space="preserve">
-    <value>kladný</value>
-  </data>
   <data name="ChooseMotion.Text" xml:space="preserve">
     <value>Vyber variantu</value>
   </data>
@@ -251,6 +245,48 @@
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>
+  </data>
+  <data name="VerticalChargePolarity_Negative" xml:space="preserve">
+    <value>záporný</value>
+  </data>
+  <data name="VerticalChargePolarity_Positive" xml:space="preserve">
+    <value>kladný</value>
+  </data>
+  <data name="VerticalInput_Charge" xml:space="preserve">
+    <value>Náboj tělesa</value>
+  </data>
+  <data name="VerticalInput_ChargeBase" xml:space="preserve">
+    <value>základ čísla (mantisa)</value>
+  </data>
+  <data name="VerticalInput_ChargePolarity" xml:space="preserve">
+    <value>Polarita náboje</value>
+  </data>
+  <data name="VerticalInput_ChargePower" xml:space="preserve">
+    <value>mocnina čísla</value>
+  </data>
+  <data name="VerticalInput_LeftPlaneChargePolarity" xml:space="preserve">
+    <value>Polarita náboje levé desky</value>
+  </data>
+  <data name="VerticalInput_Mass" xml:space="preserve">
+    <value>Hmotnost tělesa</value>
+  </data>
+  <data name="VerticalLeftPlaneChargePolarity_Negative" xml:space="preserve">
+    <value>záporná</value>
+  </data>
+  <data name="VerticalLeftPlaneChargePolarity_Positive" xml:space="preserve">
+    <value>kladná</value>
+  </data>
+  <data name="VerticalVariant_Deviation" xml:space="preserve">
+    <value>Odchylka počáteční rychlosti od vodorovného směru</value>
+  </data>
+  <data name="VerticalVariant_PlaneDistance" xml:space="preserve">
+    <value>Vzdálenost desek</value>
+  </data>
+  <data name="VerticalVariant_Velocity" xml:space="preserve">
+    <value>Počáteční rychost tělesa</value>
+  </data>
+  <data name="VerticalVariant_VoltageBetweenPlanes" xml:space="preserve">
+    <value>Hodnota napětí mezi deskami</value>
   </data>
   <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
     <value>Síla na částici je nulová, částice zůstává v klidu.</value>

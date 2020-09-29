@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Physics.ElectricParticle.ViewModels.Inputs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Physics.Shared.UI.Helpers;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -22,6 +24,18 @@ namespace Physics.ElectricParticle.UserControls
         public VerticalVariantInputControl()
         {
             this.InitializeComponent();
+            DataContextChanged += VerticalVariantInputControl_DataContextChanged;
+            VoltageNumberBox.SetupFormatting(smallChange: 100);
+            PlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
+            ChargeBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
+            MassBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
         }
+
+        private void VerticalVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            Model = (VerticalVariantInputViewModel)args.NewValue;
+        }
+
+        public VerticalVariantInputViewModel Model { get; private set; }
     }
 }

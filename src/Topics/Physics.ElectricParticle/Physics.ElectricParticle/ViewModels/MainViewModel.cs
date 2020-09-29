@@ -1,8 +1,10 @@
 ﻿using Physics.ElectricParticle.Dialogs;
 using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.Models;
+using Physics.ElectricParticle.UserControls;
 using Physics.ElectricParticle.ValuesTable;
 using Physics.ElectricParticle.ViewInteractions;
+using Physics.ElectricParticle.ViewModels.Inputs;
 using Physics.ElectricParticle.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -82,49 +84,43 @@ namespace Physics.ElectricParticle.ViewModels
 
         public int SelectedVariantIndex { get; set; }
 
-        public VelocityVariant SelectedVariant => (VelocityVariant)SelectedVariantIndex;
+        public PlaneOrientation SelectedVariant => (PlaneOrientation)SelectedVariantIndex;
 
         public void OnSelectedVariantIndexChanged()
         {
-            //switch (SelectedVariant)
-            //{
-            //    case VelocityVariant.Zero:
-            //        VariantInputViewModel = new ZeroVariantInputViewModel();
-            //        break;
-            //    case VelocityVariant.Parallel:
-            //        VariantInputViewModel = new ParallelVariantInputViewModel();
-            //        break;
-            //    case VelocityVariant.Perpendicular:
-            //        VariantInputViewModel = new PerpendicularVariantInputViewModel();
-            //        break;
-            //    case VelocityVariant.Radiation:
-            //        VariantInputViewModel = new RadiationVariantInputViewModel();
-            //        break;
-            //}
+            switch (SelectedVariant)
+            {
+                case PlaneOrientation.Horizontal:
+                    VariantInputViewModel = new HorizontalVariantInputViewModel();
+                    break;
+                case PlaneOrientation.Vertical:
+                    VariantInputViewModel = new VerticalVariantInputViewModel();
+                    break;
+            }
         }
 
-        //public IVariantInputViewModel VariantInputViewModel { get; set; }
+        public IVariantInputViewModel VariantInputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovement();
+            var dialog = new AddOrUpdateMovementDialog(VariantInputViewModel);
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                if (SelectedVariant == VelocityVariant.Zero ||
-                    SelectedVariant == VelocityVariant.Parallel ||
-                    SelectedVariant == VelocityVariant.Perpendicular)
-                {
-                    Motions.Clear();
-                }
-                if (SelectedVariant == VelocityVariant.Radiation)
-                {
-                    //if (Motions.Any(m => !(m.Motion is RadiationMotionSetup)))
-                    //{
-                    //    Motions.Clear();
-                    //}
-                }
-                //Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
+                //if (SelectedVariant == VelocityVariant.Zero ||
+                //    SelectedVariant == VelocityVariant.Parallel ||
+                //    SelectedVariant == VelocityVariant.Perpendicular)
+                //{
+                //    Motions.Clear();
+                //}
+                //if (SelectedVariant == VelocityVariant.Radiation)
+                //{
+                //    //if (Motions.Any(m => !(m.Motion is RadiationMotionSetup)))
+                //    //{
+                //    //    Motions.Clear();
+                //    //}
+                //}
+                ////Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
                 RestartSimulation();
             }
         });
@@ -154,7 +150,7 @@ namespace Physics.ElectricParticle.ViewModels
             //controller.StartSimulation(Motions.Select(m => m.Motion).ToArray());
         }
 
-        public string LocalizedAddMotionText => (SelectedVariant == VelocityVariant.Radiation) ? Localizer.Instance["AddMotionRadiation"] : Localizer.Instance["AddMotion"];
+        //public string LocalizedAddMotionText => (SelectedVariant == VelocityVariant.Radiation) ? Localizer.Instance["AddMotionRadiation"] : Localizer.Instance["AddMotion"];
         //internal void Delete(RadiationVariantStateViewModel radiationVariantStateViewModel)
         //{
         //    Motions.Remove(radiationVariantStateViewModel);

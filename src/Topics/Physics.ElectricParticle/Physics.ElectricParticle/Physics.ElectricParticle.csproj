@@ -140,6 +140,9 @@
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\ElectricParticleCanvasController.cs" />
+    <Compile Include="Resources\DataTemplates.xaml.cs">
+      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\VariantStateDataTemplateSelector.cs" />
     <Compile Include="UserControls\HorizontalVariantInputControl.xaml.cs">
       <DependentUpon>HorizontalVariantInputControl.xaml</DependentUpon>

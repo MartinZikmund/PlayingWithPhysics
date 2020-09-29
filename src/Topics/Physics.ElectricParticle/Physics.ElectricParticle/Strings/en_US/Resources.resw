@@ -240,6 +240,42 @@
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Particle speed at origin is</value>
   </data>
+  <data name="VerticalChargePolarity_Negative" xml:space="preserve">
+    <value>negative</value>
+  </data>
+  <data name="VerticalChargePolarity_Positive" xml:space="preserve">
+    <value>positive</value>
+  </data>
+  <data name="VerticalInput_Charge" xml:space="preserve">
+    <value>Object charge</value>
+  </data>
+  <data name="VerticalInput_ChargeBase" xml:space="preserve">
+    <value>base</value>
+  </data>
+  <data name="VerticalInput_ChargePolarity" xml:space="preserve">
+    <value>Charge polarity</value>
+  </data>
+  <data name="VerticalInput_ChargePower" xml:space="preserve">
+    <value>power of</value>
+  </data>
+  <data name="VerticalInput_LeftPlaneChargePolarity" xml:space="preserve">
+    <value>Left plane charge polarity</value>
+  </data>
+  <data name="VerticalInput_Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="VerticalVariant_Deviation" xml:space="preserve">
+    <value>Origin speed and horizontal direction deviation</value>
+  </data>
+  <data name="VerticalVariant_PlaneDistance" xml:space="preserve">
+    <value>Plane distance</value>
+  </data>
+  <data name="VerticalVariant_Velocity" xml:space="preserve">
+    <value>Origin speed of object</value>
+  </data>
+  <data name="VerticalVariant_VoltageBetweenPlanes" xml:space="preserve">
+    <value>Voltage between planes</value>
+  </data>
   <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
     <value>No force is affecting the particle, hence it remains stationary.</value>
   </data>

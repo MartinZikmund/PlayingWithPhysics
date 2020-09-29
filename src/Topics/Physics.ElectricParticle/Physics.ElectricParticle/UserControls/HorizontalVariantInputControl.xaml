@@ -6,7 +6,7 @@
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:inputs="using:Physics.ElectricParticle.ViewModels.Inputs"
     xmlns:inputs1="using:Physics.ElectricParticle.Logic"
-    xmlns:local="using:Physics.HomogenousParticle.UserControls"
+    xmlns:local="using:Physics.ElectricParticle.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
@@ -43,21 +43,23 @@
         </Grid.ChildrenTransitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0">
-            <Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
-            <Run FontWeight="Bold" Text="q" />
-            <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
-            <Run Text="1,6×10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
-            <Run Text="[C]"/>
+            <Run Text="{extensions:Localize Key=VerticalInput_LeftPlaneChargePolarity}" />
         </TextBlock>
-        <winui:NumberBox
-            x:Name="ChargeNumberBox"
+        <ComboBox
+            x:Name="ChargePolarity"
             Grid.Row="0"
             Grid.Column="1"
-            Maximum="3"
-            Minimum="-3"
-            Value="{x:Bind Model.Charge, Mode=TwoWay}" />
+            HorizontalAlignment="Stretch"
+            ItemsSource="{x:Bind Model.LeftPlaneChargePolarities}"
+            SelectedItem="{x:Bind Model.SelectedLeftPlaneChargePolarity, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="inputs1:VerticalLeftPlaneChargePolarity">
+                    <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
-        <TextBlock Grid.Row="1" Grid.Column="0">
+        <!--<TextBlock Grid.Row="1" Grid.Column="0">
             <Run Text="{extensions:Localize Key=PerpendicularInput_VelocityStart}" />
             <Run FontWeight="Bold" Text="v" />
             <Run Text="{extensions:Localize Key=ParallelInput_Form}" />
@@ -100,7 +102,7 @@
             Maximum="360"
             Minimum="0"
             SmallChange="5"
-            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />
+            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />-->
 
         <TextBlock
             Grid.Row="4"
