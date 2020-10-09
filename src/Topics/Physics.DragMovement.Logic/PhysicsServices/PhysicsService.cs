@@ -18,6 +18,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         public float Vy;
         public float Ep;
         public float Ek;
+        public float F;
     }
 
     public class PhysicsService : IPhysicsService
@@ -60,7 +61,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                 Time = 0f,
                 Acceleration = throwInfo.G,
                 Speed = 0f,
-                Y = throwInfo.Origin.Y
+                Y = throwInfo.Origin.Y,
+                F = (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(0f, 2))
             };
             MotionValues.Add(rowZero);
 
@@ -72,7 +74,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             while (lastY > 0)
             {
                 float newTime = lastTime + Delta;
-                float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
+                float newAcceleration = throwInfo.G - (float)((float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2)) / throwInfo.Mass);
+                float newEnvironmentResistance = (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2));
                 float newSpeed = lastSpeed + newAcceleration * Delta;
                 float newY = lastY - newSpeed * Delta;
 
@@ -82,7 +85,8 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     Time = newTime,
                     Acceleration = newAcceleration,
                     Speed = newSpeed,
-                    Y = newY
+                    Y = newY,
+                    F = newEnvironmentResistance
                 };
                 MotionValues.Add(row);
 
@@ -149,6 +153,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 
                 float newTime = lastTime + Delta;
                 float newAcceleration = throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2) / throwInfo.Mass);
+                float newEnvironmentResistance = (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastSpeed, 2));
                 float newSpeed = (float)Math.Sqrt(Math.Pow(newVx, 2) + Math.Pow(newVy, 2));
 
                 //Fill row of values
@@ -161,6 +166,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                     Time = newTime,
                     Acceleration = newAcceleration,
                     Speed = newSpeed,
+                    F = newEnvironmentResistance
                 };
                 MotionValues.Add(row);
 
@@ -213,6 +219,17 @@ namespace Physics.DragMovement.Logic.PhysicsServices
             }
             var lastY = MotionValues.Last().Speed;
             return lastY;
+        }
+
+        public float ComputeF(float timeMoment)
+        {
+            var foundRow = FindRow(timeMoment);
+            if (foundRow != null)
+            {
+                return foundRow.F;
+            }
+            var lastF = MotionValues.Last().F;
+            return lastF;
         }
 
         public float ComputeAcceleration(float timeMoment)
