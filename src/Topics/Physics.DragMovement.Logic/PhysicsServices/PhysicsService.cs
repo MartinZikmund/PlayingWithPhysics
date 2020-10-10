@@ -135,13 +135,9 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                 {
                     newVy = lastVy - (throwInfo.G + (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVy, 2) / throwInfo.Mass)) * Delta;
                 }
-                else if (lastVy < 0)
-                {
-                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVy, 2) / throwInfo.Mass)) * Delta;
-                }
                 else
                 {
-                    newVy = lastVy;
+                    newVy = lastVy - (throwInfo.G - (float)(0.5 * throwInfo.EnvironmentDensity * throwInfo.Resistance * throwInfo.Area * Math.Pow(lastVy, 2) / throwInfo.Mass)) * Delta;
                 }
 
                 float newX = lastX + newVx * Delta;

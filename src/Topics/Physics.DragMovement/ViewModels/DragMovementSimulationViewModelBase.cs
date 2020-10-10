@@ -83,6 +83,7 @@ namespace Physics.DragMovement.ViewModels
                 if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime > _controller.TrajectoryStopTime)
                 {
                     timeElapsed = (float)_controller.TrajectoryStopTime.Value.TotalSeconds;
+                    SimulationPlayback.PauseCommand.Execute(null);
                 }
 
                 foreach (var motion in Motions)
