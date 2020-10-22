@@ -57,7 +57,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
                 }
                 else
                 {
-                    return ShapeDensity * (4 / 3 * (float)Math.PI * (float)Math.Pow(Diameter/2, 3));
+                    return ShapeDensity * (4 / 3.0f * (float)Math.PI * (float)Math.Pow(Diameter/2, 3));
                 }
             }
         }

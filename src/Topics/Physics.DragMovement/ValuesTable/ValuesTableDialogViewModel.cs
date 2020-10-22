@@ -83,6 +83,11 @@ namespace Physics.DragMovement.ValuesTable
             {
                 eventArgs.Column.Header = "a (m/s²)";
             }
+
+            if (eventArgs.Column.Header.ToString() == "F")
+            {
+                eventArgs.Column.Header = "F (N)";
+            }
         }
 
         public void CopyToClipboard()
