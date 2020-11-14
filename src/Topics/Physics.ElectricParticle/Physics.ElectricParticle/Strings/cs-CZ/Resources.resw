@@ -183,6 +183,12 @@
   <data name="Input_EnvironmentSetting" xml:space="preserve">
     <value>Prostředí mezi deskami</value>
   </data>
+  <data name="Input_PrimaryPlaneChargePolarity" xml:space="preserve">
+    <value>Polarita náboje levé desky</value>
+  </data>
+  <data name="Input_SecondaryPlaneChargePolarity" xml:space="preserve">
+    <value>Polarita náboje sekundární desky</value>
+  </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Svisle i vodorovně orientované nabité desky bez tíhového pole</value>
   </data>
@@ -234,17 +240,14 @@
   <data name="VerticalInput_ChargePower" xml:space="preserve">
     <value>mocnina čísla</value>
   </data>
-  <data name="VerticalInput_LeftPlaneChargePolarity" xml:space="preserve">
-    <value>Polarita náboje levé desky</value>
-  </data>
   <data name="VerticalInput_Mass" xml:space="preserve">
     <value>Hmotnost tělesa</value>
   </data>
   <data name="VerticalLeftPlaneChargePolarity_Negative" xml:space="preserve">
-    <value>záporná</value>
+    <value>záporný</value>
   </data>
   <data name="VerticalLeftPlaneChargePolarity_Positive" xml:space="preserve">
-    <value>kladná</value>
+    <value>kladný</value>
   </data>
   <data name="VerticalVariant_Deviation" xml:space="preserve">
     <value>Odchylka počáteční rychlosti od vodorovného směru</value>

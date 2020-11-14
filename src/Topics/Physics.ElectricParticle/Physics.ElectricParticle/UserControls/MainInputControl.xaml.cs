@@ -25,8 +25,8 @@ namespace Physics.ElectricParticle.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += MainInputControl_DataContextChanged;
-            VoltageNumberBox.SetupFormatting(smallChange: 100);
-            PlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
+            PrimaryVoltageNumberBox.SetupFormatting(smallChange: 100);
+            PrimaryPlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
             ChargeBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
             MassBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
         }

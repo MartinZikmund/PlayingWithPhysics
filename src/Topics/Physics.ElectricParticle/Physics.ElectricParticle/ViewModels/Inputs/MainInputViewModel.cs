@@ -8,45 +8,71 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.ElectricParticle.ViewModels.Inputs
 {
     public class MainInputViewModel : InputViewModelBase
     {
-        public MainInputViewModel()
+        private PlaneOrientation _variant;
+        public MainInputViewModel(PlaneOrientation variant)
         {
-            //SelectedEnvironmentSettingIndex = 0;
+            _variant = variant;
+            SelectedPrimaryPlaneChargePolarity = PrimaryPlaneChargePolarities[0];
+            SelectedChargePolarity = ChargePolarities[0];
+            //Advanced-1, secondary
+            SelectedSecondaryPlaneChargePolarity = SecondaryPlaneChargePolarities[0];
             SelectedEnvironmentSetting = EnvironmentSettings[0];
         }
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
-            //if (Charge == 0)
-            //{
-            //    await new MessageDialog("Náboj nesmí být 0").ShowAsync();
-            //    return null;
-            //}
             var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
-            return new MotionSetup(SelectedLeftPlaneChargePolarity, colorSerialized);
+            return new MotionSetup(
+                SelectedPrimaryPlaneChargePolarity,
+                PrimaryVoltage,
+                PrimaryPlaneDistance,
+                SelectedSecondaryPlaneChargePolarity,
+                SecondaryVoltage,
+                SecondaryPlaneDistance,
+                SelectedChargePolarity,
+                ChargeBase,
+                ChargePower,
+                MassBase,
+                MassPower,
+                Velocity,
+                Deviation,
+                SelectedEnvironmentSetting,
+                colorSerialized); ;
         }
 
-        public VerticalLeftPlaneChargePolarity SelectedLeftPlaneChargePolarity { get; set; }
-
-        public ObservableCollection<VerticalLeftPlaneChargePolarity> LeftPlaneChargePolarities { get; } = new ObservableCollection<VerticalLeftPlaneChargePolarity>()
+        public PrimaryPlaneChargePolarity SelectedPrimaryPlaneChargePolarity { get; set; }
+        public ObservableCollection<PrimaryPlaneChargePolarity> PrimaryPlaneChargePolarities { get; } = new ObservableCollection<PrimaryPlaneChargePolarity>()
         {
-            VerticalLeftPlaneChargePolarity.Positive,
-            VerticalLeftPlaneChargePolarity.Negative
+            PrimaryPlaneChargePolarity.Positive,
+            PrimaryPlaneChargePolarity.Negative
         };
+        public float PrimaryVoltage { get; set; }
+        public float PrimaryPlaneDistance { get; set; }
 
-        public float Voltage { get; set; }
-        public float PlaneDistance { get; set; }
-
-        public VerticalChargePolarity SelectedChargePolarity { get; set; }
-
-        public ObservableCollection<VerticalChargePolarity> ChargePolarities { get; } = new ObservableCollection<VerticalChargePolarity>()
+        //Advanced-1, secondary options
+        public Visibility AdvancedFirstOption { get => (_variant == PlaneOrientation.AdvancedVerticalHorizontal) ? Visibility.Visible : Visibility.Collapsed; }
+        public SecondaryPlaneChargePolarity SelectedSecondaryPlaneChargePolarity { get; set; }
+        public ObservableCollection<SecondaryPlaneChargePolarity> SecondaryPlaneChargePolarities { get; } = new ObservableCollection<SecondaryPlaneChargePolarity>()
         {
-            VerticalChargePolarity.Positive,
-            VerticalChargePolarity.Negative
+            SecondaryPlaneChargePolarity.Positive,
+            SecondaryPlaneChargePolarity.Negative
+        };
+        public float SecondaryVoltage { get; set; }
+        public float SecondaryPlaneDistance { get; set; }
+        //END: Advanced-1, secondary options
+        
+        //General input values
+        public ChargePolarity SelectedChargePolarity { get; set; }
+        public ObservableCollection<ChargePolarity> ChargePolarities { get; } = new ObservableCollection<ChargePolarity>()
+        {
+            ChargePolarity.Positive,
+            ChargePolarity.Negative
         };
 
         public float Velocity { get; set; }
@@ -56,7 +82,6 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
         public float MassBase { get; set; }
         public float MassPower { get; set; }
 
-        public int SelectedEnvironmentSettingIndex { get; set; }
         public EnvironmentSetting SelectedEnvironmentSetting { get; set; }
         public ObservableCollection<EnvironmentSetting> EnvironmentSettings { get; } = new ObservableCollection<EnvironmentSetting>()
         {
@@ -70,6 +95,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
             new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Water"], 81.0f)
         };
 
+        //Other props
         public override string Label { get; set; }
     }
 }

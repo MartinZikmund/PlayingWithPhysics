@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public enum VerticalLeftPlaneChargePolarity
+    public enum PrimaryPlaneChargePolarity
     {
-        Positive,
-        Negative
+        Negative = -1,
+        Positive = 1
     }
 }

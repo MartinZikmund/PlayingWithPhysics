@@ -33,7 +33,6 @@ namespace Physics.ElectricParticle.ViewModels
         public MainViewModel()
         {
         }
-
         public Visibility RadiationVisibility { get; set; }
         public Visibility EasyDifficultyInputsVisibility { get; set; }
         public Visibility AdvancedDifficultyInputsVisibility { get; set; }
@@ -81,7 +80,6 @@ namespace Physics.ElectricParticle.ViewModels
 
         public override void Prepare(SimulationNavigationModel parameter)
         {
-            OnSelectedVariantIndexChanged();
             _difficulty = parameter.Difficulty;
             if (_difficulty == DifficultyOption.Easy)
             {
@@ -113,29 +111,12 @@ namespace Physics.ElectricParticle.ViewModels
             }
         }
         public PlaneOrientation SelectedVariant { get; set; }
-            
-        public void OnSelectedVariantChanged()
-        {
-            Debug.WriteLine($"Variant: {SelectedVariant},");
-        }
 
-        public void OnSelectedVariantIndexChanged()
-        {
-            //switch (SelectedVariant)
-            //{
-            //    case PlaneOrientation.EasyVertical:
-            //        VariantInputViewModel = new MainInputViewModel();
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-
-        public IInputViewModel VariantInputViewModel { get; set; }
+        public IInputViewModel InputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovementDialog(VariantInputViewModel);
+            var dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(SelectedVariant));
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -171,8 +152,6 @@ namespace Physics.ElectricParticle.ViewModels
         }
 
         public string DrawingContent { get; set; }
-
-        public Visibility IsSecondStepVisible { get; set; } = Visibility.Visible;
 
         private void RestartSimulation()
         {

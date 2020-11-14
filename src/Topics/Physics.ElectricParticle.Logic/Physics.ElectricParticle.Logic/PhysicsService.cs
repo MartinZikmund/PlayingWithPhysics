@@ -9,9 +9,9 @@ namespace Physics.ElectricParticle.Logic
     {
         private readonly MotionSetup _motionSetup;
 
-        public PhysicsService(MotionSetup parallelMotionSetup)
+        public PhysicsService(MotionSetup motionSetup)
         {
-            _motionSetup = parallelMotionSetup;
+            _motionSetup = motionSetup;
         }
 
         public float MaxT => 30;
