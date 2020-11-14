@@ -5,11 +5,7 @@
     xmlns:local="using:Physics.ElectricParticle.Resources"
     xmlns:usercontrols="using:Physics.ElectricParticle.UserControls">
 
-    <DataTemplate x:Key="HorizontalVariantInputDataTemplate">
-        <usercontrols:HorizontalVariantInputControl />
-    </DataTemplate>
-
-    <DataTemplate x:Key="VerticalVariantInputDataTemplate">
-        <usercontrols:VerticalVariantInputControl />
+    <DataTemplate x:Key="MainInputDataTemplate">
+        <usercontrols:MainInputControl />
     </DataTemplate>
 </ResourceDictionary>

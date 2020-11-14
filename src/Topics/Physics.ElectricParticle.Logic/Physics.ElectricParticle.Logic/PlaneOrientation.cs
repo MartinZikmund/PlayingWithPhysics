@@ -6,7 +6,10 @@ namespace Physics.ElectricParticle.Logic
 {
     public enum PlaneOrientation
     {
-        Vertical,
-        Horizontal
+        EasyVertical,
+        EasyHorizontal,
+        EasyHorizontalWithGravity,
+        AdvancedVerticalHorizontal,
+        AdvancedVerticalWithGravity
     }
 }

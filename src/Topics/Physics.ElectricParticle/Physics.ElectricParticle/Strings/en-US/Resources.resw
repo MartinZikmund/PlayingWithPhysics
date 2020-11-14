@@ -135,6 +135,9 @@
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Electric Field</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>
   </data>
@@ -150,59 +153,47 @@
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Electron weight should be inputted as 0,000545.</value>
   </data>
+  <data name="EnvironmentSetting_Air" xml:space="preserve">
+    <value>air</value>
+  </data>
+  <data name="EnvironmentSetting_CastorOil" xml:space="preserve">
+    <value>castor oil</value>
+  </data>
+  <data name="EnvironmentSetting_Ethanol" xml:space="preserve">
+    <value>ethanol</value>
+  </data>
+  <data name="EnvironmentSetting_Glycerol" xml:space="preserve">
+    <value>glycerol</value>
+  </data>
+  <data name="EnvironmentSetting_Kerosene" xml:space="preserve">
+    <value>petrolej</value>
+  </data>
+  <data name="EnvironmentSetting_Methanol" xml:space="preserve">
+    <value>methanol</value>
+  </data>
+  <data name="EnvironmentSetting_Vacuum" xml:space="preserve">
+    <value>vacuum</value>
+  </data>
+  <data name="EnvironmentSetting_Water" xml:space="preserve">
+    <value>water</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
-  <data name="ParallelInput_Form" xml:space="preserve">
-    <value>in form</value>
+  <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
+    <value>Vertically and horizontally oriented charged planes without gravity</value>
   </data>
-  <data name="ParallelInput_InductionOrientation" xml:space="preserve">
-    <value>Induction orientation [°]</value>
+  <data name="PlaneOrientation_Advanced_VerticalWithGravity" xml:space="preserve">
+    <value>Vertically oriented charged planes with gravity</value>
   </data>
-  <data name="ParallelInput_MovementDirection" xml:space="preserve">
-    <value>Direction of movement relative to induction lines</value>
+  <data name="PlaneOrientation_Easy_Horizontal" xml:space="preserve">
+    <value>Horizontally oriented charged planes without gravity</value>
   </data>
-  <data name="ParallelInput_NInfo" xml:space="preserve">
-    <value>choose n</value>
+  <data name="PlaneOrientation_Easy_HorizontalWithGravity" xml:space="preserve">
+    <value>Horizontally oriented charged planes with gravity</value>
   </data>
-  <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
-    <value>(in</value>
-  </data>
-  <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
-    <value>Opposite</value>
-  </data>
-  <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
-    <value>From display</value>
-  </data>
-  <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
-    <value>Into display</value>
-  </data>
-  <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
-    <value>Particle charge</value>
-  </data>
-  <data name="PerpendicularInput_Induction" xml:space="preserve">
-    <value>Induction</value>
-  </data>
-  <data name="PerpendicularInput_InductionOrientation" xml:space="preserve">
-    <value>Induction orientation</value>
-  </data>
-  <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
-    <value>multiple of nucleon mass</value>
-  </data>
-  <data name="PerpendicularInput_MassStart" xml:space="preserve">
-    <value>Particle mass</value>
-  </data>
-  <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
-    <value>(multiple of</value>
-  </data>
-  <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
-    <value>Velocity</value>
-  </data>
-  <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
-    <value>The velocity of the particle is adjusted for illustration purposes and does not match reality.</value>
+  <data name="PlaneOrientation_Easy_Vertical" xml:space="preserve">
+    <value>Vertically oriented charged planes without gravity</value>
   </data>
   <data name="PlaneOrientation_Header" xml:space="preserve">
     <value>Choose plane orientation</value>
@@ -213,32 +204,14 @@
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>Vertical</value>
   </data>
-  <data name="ProtonWeightInfo" xml:space="preserve">
-    <value>multiples of nucleon weight</value>
-  </data>
-  <data name="Radiation" xml:space="preserve">
-    <value>Radiation</value>
-  </data>
-  <data name="RadiationType_Alpha" xml:space="preserve">
-    <value>α</value>
-  </data>
-  <data name="RadiationType_BetaMinus" xml:space="preserve">
-    <value>β-</value>
-  </data>
-  <data name="RadiationType_BetaPlus" xml:space="preserve">
-    <value>β+</value>
-  </data>
-  <data name="RadiationType_Gamma" xml:space="preserve">
-    <value>γ</value>
-  </data>
-  <data name="RadiationType_Neutron" xml:space="preserve">
-    <value>Neutron</value>
-  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Electric Field</value>
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Particle speed at origin is</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="VerticalChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>
@@ -275,8 +248,5 @@
   </data>
   <data name="VerticalVariant_VoltageBetweenPlanes" xml:space="preserve">
     <value>Voltage between planes</value>
-  </data>
-  <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
-    <value>No force is affecting the particle, hence it remains stationary.</value>
   </data>
 </root>

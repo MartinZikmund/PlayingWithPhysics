@@ -22,12 +22,12 @@ namespace Physics.ElectricParticle.Dialogs
 {
     public sealed partial class AddOrUpdateMovementDialog : ContentDialog
     {
-        public AddOrUpdateMovementDialog(IVariantInputViewModel viewModel)
+        public AddOrUpdateMovementDialog(IInputViewModel viewModel)
         {
             this.InitializeComponent();
             Model = viewModel;
         }
-        public IVariantInputViewModel Model { get; private set; }
+        public IInputViewModel Model { get; private set; }
         private void SetupNumberBoxFormattings()
         {
             //StartXNumberBox.SetupFormatting(fractionDigits: 2);

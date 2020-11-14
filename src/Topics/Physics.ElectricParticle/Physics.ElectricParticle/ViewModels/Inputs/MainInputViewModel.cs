@@ -12,8 +12,13 @@ using Windows.UI.Xaml.Controls;
 
 namespace Physics.ElectricParticle.ViewModels.Inputs
 {
-    public class VerticalVariantInputViewModel : VariantInputViewModelBase
+    public class MainInputViewModel : InputViewModelBase
     {
+        public MainInputViewModel()
+        {
+            //SelectedEnvironmentSettingIndex = 0;
+            SelectedEnvironmentSetting = EnvironmentSettings[0];
+        }
         public override async Task<IMotionSetup> CreateMotionSetupAsync()
         {
             //if (Charge == 0)
@@ -25,7 +30,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
             return new MotionSetup(SelectedLeftPlaneChargePolarity, colorSerialized);
         }
 
-        public VerticalLeftPlaneChargePolarity SelectedLeftPlaneChargePolarity { get; set;  }
+        public VerticalLeftPlaneChargePolarity SelectedLeftPlaneChargePolarity { get; set; }
 
         public ObservableCollection<VerticalLeftPlaneChargePolarity> LeftPlaneChargePolarities { get; } = new ObservableCollection<VerticalLeftPlaneChargePolarity>()
         {
@@ -50,6 +55,20 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
         public float ChargePower { get; set; }
         public float MassBase { get; set; }
         public float MassPower { get; set; }
+
+        public int SelectedEnvironmentSettingIndex { get; set; }
+        public EnvironmentSetting SelectedEnvironmentSetting { get; set; }
+        public ObservableCollection<EnvironmentSetting> EnvironmentSettings { get; } = new ObservableCollection<EnvironmentSetting>()
+        {
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Vacuum"], 1.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Air"], 1.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Kerosene"], 2.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_CastorOil"], 5.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Ethanol"], 24.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Methanol"], 34.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Glycerol"], 43.0f),
+            new EnvironmentSetting(Localizer.Instance["EnvironmentSetting_Water"], 81.0f)
+        };
 
         public override string Label { get; set; }
     }

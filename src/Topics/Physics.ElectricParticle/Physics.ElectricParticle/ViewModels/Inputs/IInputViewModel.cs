@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Physics.ElectricParticle.ViewModels.Inputs
 {
-    public interface IVariantInputViewModel
+    public interface IInputViewModel
     {
         Task<IMotionSetup> CreateMotionSetupAsync();
         string Label { get; set; }

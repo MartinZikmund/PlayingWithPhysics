@@ -12,6 +12,7 @@ using Physics.Shared.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,8 @@ namespace Physics.ElectricParticle.ViewModels
         }
 
         public Visibility RadiationVisibility { get; set; }
+        public Visibility EasyDifficultyInputsVisibility { get; set; }
+        public Visibility AdvancedDifficultyInputsVisibility { get; set; }
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
@@ -73,33 +76,62 @@ namespace Physics.ElectricParticle.ViewModels
             //}
         }
 
+        private DifficultyOption _difficulty;
+        private int _selectedVariantIndex;
+
         public override void Prepare(SimulationNavigationModel parameter)
         {
             OnSelectedVariantIndexChanged();
-            if (parameter.Difficulty == DifficultyOption.Easy)
+            _difficulty = parameter.Difficulty;
+            if (_difficulty == DifficultyOption.Easy)
             {
+                //Allow for basic variants enable inputs
+                EasyDifficultyInputsVisibility = Visibility.Visible;
+                AdvancedDifficultyInputsVisibility = Visibility.Collapsed;
                 RadiationVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                //Allow for advanced variants, enable advanced inputs
+                EasyDifficultyInputsVisibility = Visibility.Collapsed;
+                AdvancedDifficultyInputsVisibility = Visibility.Visible;
             }
         }
 
-        public int SelectedVariantIndex { get; set; }
-
-        public PlaneOrientation SelectedVariant => (PlaneOrientation)SelectedVariantIndex;
+        public int SelectedVariantIndex
+        {
+            get => _selectedVariantIndex;
+            set
+            {
+                int enumValue = value;
+                if (_difficulty == DifficultyOption.Advanced)
+                {
+                    enumValue += 3;
+                }
+                SelectedVariant = (PlaneOrientation)enumValue;
+                _selectedVariantIndex = enumValue;
+            }
+        }
+        public PlaneOrientation SelectedVariant { get; set; }
+            
+        public void OnSelectedVariantChanged()
+        {
+            Debug.WriteLine($"Variant: {SelectedVariant},");
+        }
 
         public void OnSelectedVariantIndexChanged()
         {
-            switch (SelectedVariant)
-            {
-                case PlaneOrientation.Horizontal:
-                    VariantInputViewModel = new HorizontalVariantInputViewModel();
-                    break;
-                case PlaneOrientation.Vertical:
-                    VariantInputViewModel = new VerticalVariantInputViewModel();
-                    break;
-            }
+            //switch (SelectedVariant)
+            //{
+            //    case PlaneOrientation.EasyVertical:
+            //        VariantInputViewModel = new MainInputViewModel();
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
-        public IVariantInputViewModel VariantInputViewModel { get; set; }
+        public IInputViewModel VariantInputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {

@@ -153,59 +153,50 @@
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Hmotnost elektronu zadejte pomocí čísla 0,000545.</value>
   </data>
+  <data name="EnvironmentSetting_Air" xml:space="preserve">
+    <value>vzduch</value>
+  </data>
+  <data name="EnvironmentSetting_CastorOil" xml:space="preserve">
+    <value>ricinový olej</value>
+  </data>
+  <data name="EnvironmentSetting_Ethanol" xml:space="preserve">
+    <value>ethanol</value>
+  </data>
+  <data name="EnvironmentSetting_Glycerol" xml:space="preserve">
+    <value>glycerol</value>
+  </data>
+  <data name="EnvironmentSetting_Kerosene" xml:space="preserve">
+    <value>petrolej</value>
+  </data>
+  <data name="EnvironmentSetting_Methanol" xml:space="preserve">
+    <value>methanol</value>
+  </data>
+  <data name="EnvironmentSetting_Vacuum" xml:space="preserve">
+    <value>vakuum</value>
+  </data>
+  <data name="EnvironmentSetting_Water" xml:space="preserve">
+    <value>voda</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
-  <data name="ParallelInput_Form" xml:space="preserve">
-    <value>ve tvaru</value>
+  <data name="Input_EnvironmentSetting" xml:space="preserve">
+    <value>Prostředí mezi deskami</value>
   </data>
-  <data name="ParallelInput_InductionOrientation" xml:space="preserve">
-    <value>Orientace indukčních čar [°]</value>
+  <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
+    <value>Svisle i vodorovně orientované nabité desky bez tíhového pole</value>
   </data>
-  <data name="ParallelInput_MovementDirection" xml:space="preserve">
-    <value>Směr pohybu vůči indukčním čarám</value>
+  <data name="PlaneOrientation_Advanced_VerticalWithGravity" xml:space="preserve">
+    <value>Svisle orientované nabité desky včetně tíhového pole</value>
   </data>
-  <data name="ParallelInput_NInfo" xml:space="preserve">
-    <value>volte n</value>
+  <data name="PlaneOrientation_Easy_Horizontal" xml:space="preserve">
+    <value>Vodorovně orientované nabité desky bez tíhového pole</value>
   </data>
-  <data name="ParallelInput_VelocityNoteStart" xml:space="preserve">
-    <value>(v</value>
+  <data name="PlaneOrientation_Easy_HorizontalWithGravity" xml:space="preserve">
+    <value>Vodorovně orientované nabíté desky včetně tíhového pole</value>
   </data>
-  <data name="ParallelVariantOrientation_Normal" xml:space="preserve">
-    <value>Stejný</value>
-  </data>
-  <data name="ParallelVariantOrientation_Opposite" xml:space="preserve">
-    <value>Opačný</value>
-  </data>
-  <data name="PerpendicularInductionOrientation_FromPaper" xml:space="preserve">
-    <value>Z displeje</value>
-  </data>
-  <data name="PerpendicularInductionOrientation_IntoPaper" xml:space="preserve">
-    <value>Do displeje</value>
-  </data>
-  <data name="PerpendicularInput_ChargeStart" xml:space="preserve">
-    <value>Náboj částice</value>
-  </data>
-  <data name="PerpendicularInput_Induction" xml:space="preserve">
-    <value>Magnetická indukce</value>
-  </data>
-  <data name="PerpendicularInput_InductionOrientation" xml:space="preserve">
-    <value>Orientace indukčních čar</value>
-  </data>
-  <data name="PerpendicularInput_MassMultipleOf" xml:space="preserve">
-    <value>násobky hmotnosti nukleonu</value>
-  </data>
-  <data name="PerpendicularInput_MassStart" xml:space="preserve">
-    <value>Hmotnost částice</value>
-  </data>
-  <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
-    <value>(násobek</value>
-  </data>
-  <data name="PerpendicularInput_VelocityStart" xml:space="preserve">
-    <value>Rychlost</value>
-  </data>
-  <data name="PerpendicularVariant_SimulationNotice" xml:space="preserve">
-    <value>Rychlost animovaného pohybu částice je pouze ilustrační a neodpovídá realitě.</value>
+  <data name="PlaneOrientation_Easy_Vertical" xml:space="preserve">
+    <value>Svisle orientované nabité desky bez tíhového pole</value>
   </data>
   <data name="PlaneOrientation_Header" xml:space="preserve">
     <value>Poloha rovnoběžných nabitých desek</value>
@@ -215,27 +206,6 @@
   </data>
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>svisle</value>
-  </data>
-  <data name="ProtonWeightInfo" xml:space="preserve">
-    <value>násobky hmotnosti nukleonu</value>
-  </data>
-  <data name="Radiation" xml:space="preserve">
-    <value>Záření</value>
-  </data>
-  <data name="RadiationType_Alpha" xml:space="preserve">
-    <value>α</value>
-  </data>
-  <data name="RadiationType_BetaMinus" xml:space="preserve">
-    <value>β-</value>
-  </data>
-  <data name="RadiationType_BetaPlus" xml:space="preserve">
-    <value>β+</value>
-  </data>
-  <data name="RadiationType_Gamma" xml:space="preserve">
-    <value>γ</value>
-  </data>
-  <data name="RadiationType_Neutron" xml:space="preserve">
-    <value>Neutron</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
@@ -287,8 +257,5 @@
   </data>
   <data name="VerticalVariant_VoltageBetweenPlanes" xml:space="preserve">
     <value>Hodnota napětí mezi deskami</value>
-  </data>
-  <data name="ZeroVariant_StationaryExplanation" xml:space="preserve">
-    <value>Síla na částici je nulová, částice zůstává v klidu.</value>
   </data>
 </root>

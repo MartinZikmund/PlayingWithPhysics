@@ -61,15 +61,6 @@ namespace Physics.ElectricParticle.ViewModels
 
         public float Induction { get; set; } = 0.1f;
 
-        public PerpendicularInductionOrientation InductionOrientation { get; set; }
-
-        public ObservableCollection<PerpendicularInductionOrientation> InductionOrientations { get; } =
-            new ObservableCollection<PerpendicularInductionOrientation>()
-            {
-                PerpendicularInductionOrientation.FromPaper,
-                PerpendicularInductionOrientation.IntoPaper
-            };
-
         //public override string Label { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Physics.ElectricParticle.Logic;
 
 namespace Physics.ElectricParticle.ViewModels.Inputs
 {
-    public abstract class VariantInputViewModelBase : ViewModelBase, IVariantInputViewModel
+    public abstract class InputViewModelBase : ViewModelBase, IInputViewModel
     {
         private Color _color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor("#0063B1");
 

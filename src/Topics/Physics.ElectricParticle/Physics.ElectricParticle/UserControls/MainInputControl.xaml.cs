@@ -19,23 +19,23 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Physics.ElectricParticle.UserControls
 {
-    public sealed partial class VerticalVariantInputControl : UserControl
+    public sealed partial class MainInputControl : UserControl
     {
-        public VerticalVariantInputControl()
+        public MainInputControl()
         {
             this.InitializeComponent();
-            DataContextChanged += VerticalVariantInputControl_DataContextChanged;
+            DataContextChanged += MainInputControl_DataContextChanged;
             VoltageNumberBox.SetupFormatting(smallChange: 100);
             PlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
             ChargeBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
             MassBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
         }
 
-        private void VerticalVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        private void MainInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            Model = (VerticalVariantInputViewModel)args.NewValue;
+            Model = (MainInputViewModel)args.NewValue;
         }
 
-        public VerticalVariantInputViewModel Model { get; private set; }
+        public MainInputViewModel Model { get; private set; }
     }
 }
