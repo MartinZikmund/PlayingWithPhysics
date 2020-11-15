@@ -267,7 +267,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fody">
-      <Version>6.2.6</Version>
+      <Version>6.3.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -284,13 +284,13 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.9</Version>
+      <Version>3.3.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Events">
-      <Version>11.5.35</Version>
+      <Version>12.1.5</Version>
     </PackageReference>
     <PackageReference Include="System.Reactive">
-      <Version>4.4.1</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
