@@ -25,7 +25,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>C46F44AF8BA3E1450169444B2BB09A711A153F43</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1EFFC339B7034AA91CD724AD2EEF88F4F67F6840</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <PackageCertificateKeyFile>Physics.DragMovement_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
@@ -139,14 +139,20 @@
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\DragMovementCanvasController.cs" />
+    <Compile Include="Rendering\GamificationCanvasController.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ViewInteractions\IGameViewInteraction.cs" />
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
     <Compile Include="ViewModels\DragMovementSimulationViewModelBase.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MotionInfoViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +166,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\jezero.jpg" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -226,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,6 +269,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
+      <Version>7.0.0-preview2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
       <Version>7.1.2</Version>
