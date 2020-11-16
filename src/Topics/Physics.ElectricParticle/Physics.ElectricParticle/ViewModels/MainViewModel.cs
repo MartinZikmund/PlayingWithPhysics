@@ -41,16 +41,10 @@ namespace Physics.ElectricParticle.ViewModels
 
         private async Task ShowValuesTableAsync()
         {
-            //TODO: FIX!!!!
-            //if (_tableWindowIds.TryGetValue(viewModel, out var window))
-            //{
-            //    await window.TryShowAsync();
-            //    return;
-            //};
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
             appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-            var physicsService = new PhysicsService(Motions[0] as MotionSetup);
+            var physicsService = new PhysicsService(Setup as MotionSetup);
             var valuesTableService = new TableService(physicsService);
             var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
             valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 20);
@@ -69,10 +63,6 @@ namespace Physics.ElectricParticle.ViewModels
             newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
             newWindow.RequestSize(new Size(600, 400));
             var shown = await newWindow.TryShowAsync();
-            //if (shown)
-            //{
-            //    _tableWindowIds.Add(viewModel, newWindow);
-            //}
         }
 
         private DifficultyOption _difficulty;
@@ -99,58 +89,43 @@ namespace Physics.ElectricParticle.ViewModels
         public int SelectedVariantIndex
         {
             get => _selectedVariantIndex;
+
             set
             {
-                int enumValue = value;
-                if (_difficulty == DifficultyOption.Advanced)
-                {
-                    enumValue += 3;
-                }
-                SelectedVariant = (PlaneOrientation)enumValue;
-                _selectedVariantIndex = enumValue;
+                _selectedVariantIndex = value;
             }
         }
-        public PlaneOrientation SelectedVariant { get; set; }
-
+        PlaneOrientation Variant => (PlaneOrientation)(_difficulty == DifficultyOption.Advanced ? _selectedVariantIndex + 3 : _selectedVariantIndex);
         public IInputViewModel InputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(SelectedVariant));
+            var dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(Variant));
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                //if (SelectedVariant == VelocityVariant.Zero ||
-                //    SelectedVariant == VelocityVariant.Parallel ||
-                //    SelectedVariant == VelocityVariant.Perpendicular)
-                //{
-                //    Motions.Clear();
-                //}
-                //if (SelectedVariant == VelocityVariant.Radiation)
-                //{
-                //    //if (Motions.Any(m => !(m.Motion is RadiationMotionSetup)))
-                //    //{
-                //    //    Motions.Clear();
-                //    //}
-                //}
-                ////Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
+                Setup = dialog.Setup;
+                Motion = new MotionViewModel(Setup);
                 RestartSimulation();
             }
         });
+
+        public MotionViewModel Motion { get; set; }
+
+        public IMotionSetup Setup { get; set; }
 
         internal void SetViewInteraction(IMainViewInteraction interaction)
         {
             _interaction = interaction;
         }
 
-        public ObservableCollection<IVariantStateViewModel> Motions { get; } = new ObservableCollection<IVariantStateViewModel>();
-
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
+
+        public Visibility ShowCurrentValues => (Setup != null) ? Visibility.Visible : Visibility.Collapsed;
         public void DrawMotion()
         {
         }
-
         public string DrawingContent { get; set; }
 
         private void RestartSimulation()

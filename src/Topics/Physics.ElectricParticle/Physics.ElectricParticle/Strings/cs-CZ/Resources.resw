@@ -138,6 +138,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
+  <data name="ChargePolarity_Negative" xml:space="preserve">
+    <value>záporný</value>
+  </data>
+  <data name="ChargePolarity_Positive" xml:space="preserve">
+    <value>kladný</value>
+  </data>
   <data name="ChooseMotion.Text" xml:space="preserve">
     <value>Vyber variantu</value>
   </data>
@@ -183,11 +189,44 @@
   <data name="Input_EnvironmentSetting" xml:space="preserve">
     <value>Prostředí mezi deskami</value>
   </data>
-  <data name="Input_PrimaryPlaneChargePolarity" xml:space="preserve">
-    <value>Polarita náboje levé desky</value>
+  <data name="Input_PlaneDistanceGeneral" xml:space="preserve">
+    <value>Vzdálenost desek</value>
   </data>
-  <data name="Input_SecondaryPlaneChargePolarity" xml:space="preserve">
-    <value>Polarita náboje sekundární desky</value>
+  <data name="Input_PlaneDistanceHorizontal" xml:space="preserve">
+    <value>Vzdálenost vodorovných desek</value>
+  </data>
+  <data name="Input_PlaneDistanceVertical" xml:space="preserve">
+    <value>Vzdálenost svislých desek</value>
+  </data>
+  <data name="Input_PlaneLabelBottom" xml:space="preserve">
+    <value>dolní</value>
+  </data>
+  <data name="Input_PlaneLabelLeft" xml:space="preserve">
+    <value>levé</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenGeneral" xml:space="preserve">
+    <value>Hodnota napětí mezi deskami</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenHorizontal" xml:space="preserve">
+    <value>Hodnota napětí mezi vodorovnými deskami</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenVertical" xml:space="preserve">
+    <value>Hodnota napětí mezi svislými deskami</value>
+  </data>
+  <data name="Input_PrimaryPlaneChargePolarity_FirstPart" xml:space="preserve">
+    <value>Polarita náboje</value>
+  </data>
+  <data name="Input_PrimaryPlaneChargePolarity_SecondPart" xml:space="preserve">
+    <value>desky</value>
+  </data>
+  <data name="Input_SecondaryPlaneChargePolarity_FirstPart" xml:space="preserve">
+    <value>Polarita náboje</value>
+  </data>
+  <data name="Input_SecondaryPlaneChargePolarity_SecondPart" xml:space="preserve">
+    <value>desky</value>
+  </data>
+  <data name="Input_VelocityDirection" xml:space="preserve">
+    <value>Směr rychlosti</value>
   </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Svisle i vodorovně orientované nabité desky bez tíhového pole</value>
@@ -205,7 +244,7 @@
     <value>Svisle orientované nabité desky bez tíhového pole</value>
   </data>
   <data name="PlaneOrientation_Header" xml:space="preserve">
-    <value>Poloha rovnoběžných nabitých desek</value>
+    <value>Poloha desek</value>
   </data>
   <data name="PlaneOrientation_Horizontal" xml:space="preserve">
     <value>vodorovně</value>
@@ -213,14 +252,32 @@
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>svisle</value>
   </data>
+  <data name="PrimaryPlaneChargePolarity_Negative" xml:space="preserve">
+    <value>záporný</value>
+  </data>
+  <data name="PrimaryPlaneChargePolarity_Positive" xml:space="preserve">
+    <value>kladný</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
+  </data>
+  <data name="SecondaryPlaneChargePolarity_Negative" xml:space="preserve">
+    <value>záporný</value>
+  </data>
+  <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
+    <value>kladný</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyb částice v homogenním elektrickém poli</value>
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>
+  </data>
+  <data name="VelocityDirection_VerticallyDown" xml:space="preserve">
+    <value>svisle dolů</value>
+  </data>
+  <data name="VelocityDirection_VerticallyUp" xml:space="preserve">
+    <value>svisle nahoru</value>
   </data>
   <data name="VerticalChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>

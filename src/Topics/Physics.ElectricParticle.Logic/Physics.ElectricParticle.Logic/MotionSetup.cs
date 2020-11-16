@@ -19,6 +19,7 @@ namespace Physics.ElectricParticle.Logic
                            float massPower,
                            float velocity,
                            float deviation,
+                           VelocityDirection velocityDirection,
                            EnvironmentSetting environmentSetting,
                            string color)
         {
@@ -35,6 +36,7 @@ namespace Physics.ElectricParticle.Logic
             MassPower = massPower;
             Velocity = velocity;
             Deviation = deviation;
+            VelocityDirection = velocityDirection;
             Environment = environmentSetting;
             Color = color;
         }
@@ -52,6 +54,7 @@ namespace Physics.ElectricParticle.Logic
         public float MassPower { get; set; }
         public float Velocity { get; set; }
         public float Deviation { get; set; }
+        public VelocityDirection VelocityDirection { get; set; }
         public EnvironmentSetting Environment { get; set; }
     }
 }

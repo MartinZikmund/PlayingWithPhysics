@@ -196,7 +196,7 @@
     <value>Vertically oriented charged planes without gravity</value>
   </data>
   <data name="PlaneOrientation_Header" xml:space="preserve">
-    <value>Choose plane orientation</value>
+    <value>Choose variant</value>
   </data>
   <data name="PlaneOrientation_Horizontal" xml:space="preserve">
     <value>Horizontal</value>

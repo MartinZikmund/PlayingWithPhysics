@@ -21,6 +21,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
             _variant = variant;
             SelectedPrimaryPlaneChargePolarity = PrimaryPlaneChargePolarities[0];
             SelectedChargePolarity = ChargePolarities[0];
+            SelectedVelocityDirection = VelocityDirections[0];
             //Advanced-1, secondary
             SelectedSecondaryPlaneChargePolarity = SecondaryPlaneChargePolarities[0];
             SelectedEnvironmentSetting = EnvironmentSettings[0];
@@ -42,6 +43,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
                 MassPower,
                 Velocity,
                 Deviation,
+                SelectedVelocityDirection,
                 SelectedEnvironmentSetting,
                 colorSerialized); ;
         }
@@ -77,10 +79,18 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
         public float Velocity { get; set; }
         public float Deviation { get; set; }
+        public Visibility DeviationVisibility { get => (_variant != PlaneOrientation.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
         public float ChargeBase { get; set; }
         public float ChargePower { get; set; }
         public float MassBase { get; set; }
         public float MassPower { get; set; }
+        public VelocityDirection SelectedVelocityDirection { get; set; }
+        public ObservableCollection<VelocityDirection> VelocityDirections { get; } = new ObservableCollection<VelocityDirection>()
+        {
+            VelocityDirection.VerticallyDown,
+            VelocityDirection.VerticallyUp
+        };
+        public Visibility VelocityDirectionVisibility { get => (_variant == PlaneOrientation.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
         public EnvironmentSetting SelectedEnvironmentSetting { get; set; }
         public ObservableCollection<EnvironmentSetting> EnvironmentSettings { get; } = new ObservableCollection<EnvironmentSetting>()
@@ -96,6 +106,60 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
         };
 
         //Other props
+        public string PrimaryPlaneLabel
+        {
+            get
+            {
+                int variantIndex = (int)_variant;
+                switch(variantIndex) {
+                    case 0:
+                    case 3:
+                    case 4:
+                        return Localizer.Instance["Input_PlaneLabelLeft"]; 
+                    default:
+                        return Localizer.Instance["Input_PlaneLabelBottom"];
+                }
+            }
+        }
+
+        public string PrimaryPlaneVoltageLabel
+        {
+            get
+            {
+                int variantIndex = (int)_variant;
+                switch (variantIndex)
+                {
+                    case 0:
+                    case 1:
+                        return Localizer.Instance["Input_PlaneVoltageBetweenGeneral"];
+                    case 2:
+                    case 3:
+                        return Localizer.Instance["Input_PlaneVoltageBetweenHorizontal"];
+                    default:
+                        return Localizer.Instance["Input_PlaneVoltageBetweenVertical"];
+                }
+            }
+        }
+
+        public string PrimaryPlaneDistanceLabel
+        {
+            get
+            {
+                int variantIndex = (int)_variant;
+                switch (variantIndex)
+                {
+                    case 0:
+                    case 1:
+                        return Localizer.Instance["Input_PlaneDistanceGeneral"];
+                    case 3:
+                    case 4:
+                        return Localizer.Instance["Input_PlaneDistanceVertical"];
+                    default:
+                        return Localizer.Instance["Input_PlaneDistanceHorizontal"];
+                }
+            }
+        }
+        public Thickness VariantBasedMargin => (_variant == PlaneOrientation.AdvancedVerticalHorizontal) ? new Thickness(0, 0, 20, 0) : new Thickness(0);
         public override string Label { get; set; }
     }
 }
