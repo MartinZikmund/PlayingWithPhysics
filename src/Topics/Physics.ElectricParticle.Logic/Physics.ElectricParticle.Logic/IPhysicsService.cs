@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ExtendedNumerics;
 
 namespace Physics.ElectricParticle.Logic
 {
     interface IPhysicsService
     {
-        double ComputeX(double seconds);
+		BigDecimal ComputeX(BigDecimal seconds);
 
-        double ComputeY(double seconds);
+		BigDecimal ComputeY(BigDecimal seconds);
 
-        float MaxT { get; }
+        BigDecimal MaxT { get; }
     }
 }

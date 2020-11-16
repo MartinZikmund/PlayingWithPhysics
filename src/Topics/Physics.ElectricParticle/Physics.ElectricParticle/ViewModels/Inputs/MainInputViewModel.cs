@@ -30,6 +30,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
         {
             var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
             return new MotionSetup(
+				_variant,
                 SelectedPrimaryPlaneChargePolarity,
                 PrimaryVoltage,
                 PrimaryPlaneDistance,
