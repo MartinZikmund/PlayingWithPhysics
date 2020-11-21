@@ -30,7 +30,7 @@ namespace Physics.Shared.UI.ViewModels
         {
         }
 
-        private void JumpToStart() => _renderingPlayback?.SimulationTime.Restart();
+        private void JumpToStart() => _renderingPlayback?.SimulationTime.Reset();
 
         private void JumpForward() => _renderingPlayback?.FastForward(JumpSize);
 

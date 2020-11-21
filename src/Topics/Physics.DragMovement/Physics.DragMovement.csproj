@@ -135,6 +135,9 @@
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gamification\GameInfo.cs" />
+    <Compile Include="Gamification\GameState.cs" />
+    <Compile Include="Gamification\RaftPhysicsService.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,7 +169,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\padak-01.png" />
+    <Content Include="Assets\Game\splash.wav" />
     <Content Include="Assets\Game\jezero.jpg" />
+    <Content Include="Assets\Game\leknin_1.png" />
+    <Content Include="Assets\Game\leknin_2.png" />
+    <Content Include="Assets\Game\vor.png" />
+    <Content Include="Assets\Game\vrtulnik.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />

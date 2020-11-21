@@ -89,7 +89,7 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 MaxTime = TimeSpan.FromSeconds(_physicsServices.Max(ps => ps.MaxT));
             }
-            Restart();
+            Reset();
 
             OnSimulationStarting();
 
