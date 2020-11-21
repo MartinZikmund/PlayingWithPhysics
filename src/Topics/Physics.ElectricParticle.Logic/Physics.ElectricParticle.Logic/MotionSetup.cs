@@ -6,7 +6,7 @@ namespace Physics.ElectricParticle.Logic
 {
     public class MotionSetup : MotionSetupBase
     {
-        public MotionSetup(PrimaryPlaneChargePolarity primaryPlaneChargePolarity,
+        public MotionSetup(PlaneOrientation variant, PrimaryPlaneChargePolarity primaryPlaneChargePolarity,
                            float primaryVoltage,
                            float primaryPlaneDistance,
                            SecondaryPlaneChargePolarity secondaryPlaneChargePolarity,
@@ -17,12 +17,13 @@ namespace Physics.ElectricParticle.Logic
                            float chargePower,
                            float massBase,
                            float massPower,
-                           float velocity,
-                           float deviation,
+						   float velocity,
+						   float deviation,
                            VelocityDirection velocityDirection,
                            EnvironmentSetting environmentSetting,
                            string color)
         {
+			Variant = variant;
             PrimaryPlaneChargePolarity = primaryPlaneChargePolarity;
             PrimaryVoltage = primaryVoltage;
             PrimaryPlaneDistance = primaryPlaneDistance;
@@ -35,12 +36,13 @@ namespace Physics.ElectricParticle.Logic
             MassBase = massBase;
             MassPower = massPower;
             Velocity = velocity;
-            Deviation = deviation;
+            Deviation = Shared.Helpers.MathHelpers.DegreesToRadians(deviation);
             VelocityDirection = velocityDirection;
             Environment = environmentSetting;
             Color = color;
         }
 
+		public PlaneOrientation Variant { get; set; }
         public PrimaryPlaneChargePolarity PrimaryPlaneChargePolarity { get; set; }
         public float PrimaryVoltage { get; set; }
         public float PrimaryPlaneDistance { get; set; }

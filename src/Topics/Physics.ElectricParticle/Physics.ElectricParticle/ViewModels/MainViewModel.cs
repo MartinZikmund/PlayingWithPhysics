@@ -105,6 +105,7 @@ namespace Physics.ElectricParticle.ViewModels
             if (result == ContentDialogResult.Primary)
             {
                 Setup = dialog.Setup;
+				var res = new PhysicsService(Setup as MotionSetup).PrimaryAxisCoordinate(0);
                 Motion = new MotionViewModel(Setup);
                 RestartSimulation();
             }

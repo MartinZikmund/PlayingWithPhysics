@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
+using ExtendedNumerics;
 
 namespace Physics.ElectricParticle.ValuesTable
 {
@@ -16,7 +17,7 @@ namespace Physics.ElectricParticle.ValuesTable
         public ValuesTableDialogViewModel(ITableService<TableRow> tableService)
             : base(tableService)
         {
-           // _type = movementType;
+			// _type = movementType;
         }
 
         internal void Reset(TableService tableService)
@@ -24,7 +25,6 @@ namespace Physics.ElectricParticle.ValuesTable
             _tableService = tableService;
             //_type = type;
             UpdateTable();
-            //OnPropertyChanged(nameof(ButtonVisibility));
         }
 
         public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)
@@ -44,6 +44,11 @@ namespace Physics.ElectricParticle.ValuesTable
                 eventArgs.Column.Header = "y (m)";
             }
 
+            if (eventArgs.Column.Header.ToString() == "V")
+            {
+                eventArgs.Column.Header = "v (m/s)";
+            }
+
             if (eventArgs.Column.Header.ToString() == "VX")
             {
                 eventArgs.Column.Header = "vx (m/s)";
@@ -54,10 +59,10 @@ namespace Physics.ElectricParticle.ValuesTable
                 eventArgs.Column.Header = "vy (m/s)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "V")
-            {
-                eventArgs.Column.Header = "v (m/s)";
-            }
+			if (eventArgs.Column.Header.ToString() == "A")
+			{
+				eventArgs.Column.Header = "a (m/s^2)";
+			}
 
             if (eventArgs.Column.Header.ToString() == "EP")
             {
@@ -69,9 +74,9 @@ namespace Physics.ElectricParticle.ValuesTable
                 eventArgs.Column.Header = "Ek (J)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "EPEK")
+            if (eventArgs.Column.Header.ToString() == "E")
             {
-                eventArgs.Column.Header = "Ep + Ek (J)";
+                eventArgs.Column.Header = "E (J)";
             }
         }
 
@@ -87,9 +92,5 @@ namespace Physics.ElectricParticle.ValuesTable
             dataPackage.SetText(clipboardContents.ToString());
             Clipboard.SetContent(dataPackage);
         }
-
-        //public Visibility ButtonVisibility => (_type == MovementType.FreeFall || _type == MovementType.VerticalMotion)
-        //    ? Visibility.Visible
-        //    : Visibility.Collapsed;
     }
 }

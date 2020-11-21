@@ -156,7 +156,7 @@
                                     <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
                                 </TransitionCollection>
                             </StackPanel.ChildrenTransitions>
-                            <Grid Margin="4,0,4,0" Padding="8,4,4,6" Background="#fdc700">
+                            <Grid Margin="4,0,4,0" Padding="8,4,4,6" Background="{x:Bind Model.Setup.Color, Mode=OneWay}">
                                 <TextBlock Margin="0,3,0,0" Foreground="#2B2B2B" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Aktuální hodnoty" />
                                 <Button
                                     HorizontalAlignment="Right"
