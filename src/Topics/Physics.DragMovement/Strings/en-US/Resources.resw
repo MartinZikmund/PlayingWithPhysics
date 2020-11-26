@@ -149,6 +149,9 @@ The program can be used to calculate movement time, height, distance and use it 
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CargoMass" xml:space="preserve">
+    <value>Cargo mass</value>
+  </data>
   <data name="CastleDistance" xml:space="preserve">
     <value>Castle distance</value>
   </data>
@@ -215,8 +218,14 @@ The program can be used to calculate movement time, height, distance and use it 
   <data name="Gravity_Venus" xml:space="preserve">
     <value>Venus</value>
   </data>
+  <data name="HelicopterHeight" xml:space="preserve">
+    <value>Helicopter height</value>
+  </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Horizontal throw</value>
+  </data>
+  <data name="Inputs" xml:space="preserve">
+    <value>Inputs</value>
   </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
@@ -260,6 +269,9 @@ The program can be used to calculate movement time, height, distance and use it 
   <data name="ProjectileMotion" xml:space="preserve">
     <value>Throw</value>
   </data>
+  <data name="RaftSpeed" xml:space="preserve">
+    <value>Raft speed</value>
+  </data>
   <data name="ResistanceCoefficient" xml:space="preserve">
     <value>Resistance Coefficient</value>
   </data>
@@ -271,6 +283,9 @@ The program can be used to calculate movement time, height, distance and use it 
   </data>
   <data name="SelectMotionTip" xml:space="preserve">
     <value>Select a motion to see current values.</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Drag</value>

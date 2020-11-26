@@ -79,7 +79,7 @@ namespace Physics.DragMovement.Rendering
 
             PrepareTrajectories();
 
-            Restart();
+            Reset();
 
             OnSimulationStarting();
 

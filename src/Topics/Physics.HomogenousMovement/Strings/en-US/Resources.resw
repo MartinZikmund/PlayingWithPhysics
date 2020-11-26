@@ -275,4 +275,7 @@
 The animation will allow the selection of basic movements (free fall, vertical litter, horizontal litter, oblique litter) and the selection of initial parameters (initial speed, elevation angle, height). The program automatically adjusts the scale and the output will also be a table of values, including the calculated parameters.
 The program can be used to calculate movement time, height, distance and use it to solve specific tasks.</value>
   </data>
+  <data name="RaftSpeed" xml:space="preserve">
+    <value>Raft speed</value>
+  </data>
 </root>

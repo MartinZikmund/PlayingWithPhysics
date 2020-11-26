@@ -152,6 +152,9 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
+  <data name="CargoMass" xml:space="preserve">
+    <value>Hmotnost nákladu</value>
+  </data>
   <data name="CastleDistance" xml:space="preserve">
     <value>Vzdálenost hradu</value>
   </data>
@@ -221,8 +224,14 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="Gravity_Venus" xml:space="preserve">
     <value>Venuše</value>
   </data>
+  <data name="HelicopterHeight" xml:space="preserve">
+    <value>Výška helikoptéry</value>
+  </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Vrh</value>
+  </data>
+  <data name="Inputs" xml:space="preserve">
+    <value>Zadané údaje</value>
   </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Časový interval (s)</value>
@@ -269,6 +278,9 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="ProjectileMotion" xml:space="preserve">
     <value>Vrh</value>
   </data>
+  <data name="RaftSpeed" xml:space="preserve">
+    <value>Rychlost voru</value>
+  </data>
   <data name="ResistanceCoefficient" xml:space="preserve">
     <value>Součinitel odporu</value>
   </data>
@@ -280,6 +292,9 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   </data>
   <data name="SelectMotionTip" xml:space="preserve">
     <value>Klikněte na vrh pro zobrazení hodnot.</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Nastavení</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby tělesa v odporujícím prostředí</value>
