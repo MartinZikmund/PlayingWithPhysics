@@ -37,7 +37,7 @@ namespace Physics.ElectricParticle.ValuesTable
 				//BigDecimal ep = _physicsService.ComputeY(time);
 				//BigDecimal e = _physicsService.ComputeY(time);
 
-				//var valuesRow = new TableRow(t, x,y, v, vx, vy, a, ep, ek, e);
+				//var valuesRo	 w = new TableRow(t, x,y, v, vx, vy, a, ep, ek, e);
                 table.Add(null);
 
                 cycles++;

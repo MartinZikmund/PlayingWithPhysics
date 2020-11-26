@@ -7,9 +7,9 @@ namespace Physics.ElectricParticle.Logic
 {
     interface IPhysicsService
     {
-		BigDecimal ComputeX(BigDecimal seconds);
+		BigDecimal ComputeX(decimal time);
 
-		BigDecimal ComputeY(BigDecimal seconds);
+		BigDecimal ComputeY(decimal time);
 
         BigDecimal MaxT { get; }
     }
