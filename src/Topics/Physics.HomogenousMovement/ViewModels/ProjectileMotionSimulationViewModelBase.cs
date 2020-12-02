@@ -116,9 +116,10 @@ namespace Physics.HomogenousMovement.ViewModels
             {
                 float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
 
-                if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime > _controller.TrajectoryStopTime)
+                if (_controller.TrajectoryStopTime != null && _controller.SimulationTime.TotalTime >= _controller.TrajectoryStopTime)
                 {
                     timeElapsed = (float)_controller.TrajectoryStopTime.Value.TotalSeconds;
+                    SimulationPlayback.PauseCommand.Execute(null);
                 }
 
                 foreach (var motion in Motions)

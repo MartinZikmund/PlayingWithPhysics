@@ -64,7 +64,7 @@ namespace Physics.DragMovement.Rendering
 
         protected float _meterSizeInPixels = 0;
 
-        public virtual TimeSpan? TrajectoryStopTime { get; } = null;
+        public virtual TimeSpan? TrajectoryStopTime { get; private set; } = null;
 
         public void StartNewSimulation(bool drawTrajectoriesContinuously, bool breakDownMotions, params MotionInfo[] throws)
         {
@@ -102,6 +102,10 @@ namespace Physics.DragMovement.Rendering
             }
             _trajectories = trajectories.ToArray();
             _physicsServices = physicsServices.ToArray();
+            if (_physicsServices.Count() > 0)
+            {
+                TrajectoryStopTime = TimeSpan.FromSeconds(_physicsServices.Max(s => s.MaxT));
+            }
         }
 
         protected virtual void CalculateMaxima()
@@ -250,10 +254,11 @@ namespace Physics.DragMovement.Rendering
                 }
             }
 
+            var ballX = MetersToPixelsX(lastPoint.X);
+            var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom                
+
             if (_breakDownMotions)
             {
-                var ballX = MetersToPixelsX(lastPoint.X);
-                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom                
                 var semiTransparentColor = Windows.UI.Color.FromArgb(150, movementColor.R, movementColor.G, movementColor.B);
                 args.DrawingSession.DrawLine(
                     new Vector2(MetersToPixelsX(minX), MetersToPixelsY(startPoint.Y)), new Vector2(MetersToPixelsX(maxX), MetersToPixelsY(startPoint.Y)), semiTransparentColor);
@@ -264,13 +269,8 @@ namespace Physics.DragMovement.Rendering
                 args.DrawingSession.DrawCircle(new Vector2(ballX, MetersToPixelsY(startPoint.Y)), BallRadius, semiTransparentColor);
             }
 
-            if (TrajectoryStopTime == null || SimulationTime.TotalTime <= TrajectoryStopTime)
-            {
-                //draw ball
-                var ballX = MetersToPixelsX(lastPoint.X);
-                var ballY = MetersToPixelsY(lastPoint.Y); //ball reference point is its horizontal center and vertical bottom
-                DrawBall(args, new Vector2(ballX, ballY), movementColor);
-            }
+            //draw ball            
+            DrawBall(args, new Vector2(ballX, ballY), movementColor);
         }
 
         protected virtual void DrawBall(CanvasAnimatedDrawEventArgs args, Vector2 centerPoint, Windows.UI.Color movementColor)
@@ -319,7 +319,7 @@ namespace Physics.DragMovement.Rendering
             var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Width, _simulationBoundsInMeters.Height);
             var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
             var meters = jumps * jumpSize;
-            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize*2)
+            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize * 2)
             {
                 drawing.DrawLine(
                     _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,

@@ -66,6 +66,7 @@ namespace Physics.Shared.ViewModels
 
     public abstract class ViewModelBase<TParameter>
         : MvxViewModel<TParameter>
+        where TParameter : class
     {
         private readonly Dictionary<string, ICommand> _commands = new Dictionary<string, ICommand>();
 

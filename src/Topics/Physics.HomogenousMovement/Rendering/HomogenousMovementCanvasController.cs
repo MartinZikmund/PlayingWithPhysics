@@ -70,7 +70,7 @@ namespace Physics.HomogenousMovement.Rendering
 
         protected float _meterSizeInPixels = 0;
 
-        public virtual TimeSpan? TrajectoryStopTime { get; } = null;
+        public virtual TimeSpan? TrajectoryStopTime { get; private set; } = null;
 
         public void StartNewSimulation(bool drawTrajectoriesContinuously, bool breakDownMotions, params MotionInfo[] throws)
         {
@@ -112,6 +112,11 @@ namespace Physics.HomogenousMovement.Rendering
             }
             _trajectories = trajectories.ToArray();
             _physicsServices = physicsServices.ToArray();
+
+            if (trajectories.Count() > 0)
+            {
+                TrajectoryStopTime = TimeSpan.FromSeconds(_physicsServices.Max(s => s.MaxT));
+            }
         }
 
         protected virtual void CalculateMaxima()
