@@ -79,7 +79,7 @@ namespace Physics.DragMovement.Rendering
 
             PrepareTrajectories();
 
-            Restart();
+            Reset();
 
             OnSimulationStarting();
 
@@ -192,7 +192,7 @@ namespace Physics.DragMovement.Rendering
         protected virtual void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 244, 244, 244));
-        }
+		}
 
         protected virtual void DrawOverlay(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {

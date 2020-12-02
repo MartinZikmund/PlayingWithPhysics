@@ -14,6 +14,7 @@
                 <resources:DataTemplates/>
                 <resources1:SelfStudyResources />
             </ResourceDictionary.MergedDictionaries>
+            <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
             <Color x:Key="AppThemeColor">#FD5800</Color>
             <Color x:Key="DarkAppThemeColor">#124E87</Color>
             <Color x:Key="AppTitleBarColor">#0D2B4A</Color>

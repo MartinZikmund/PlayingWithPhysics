@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public enum VerticalLeftPlaneChargePolarity
+    public enum VelocityDirection
     {
-        Positive,
-        Negative
+        VerticallyDown = 270,
+        VerticallyUp = 90
     }
 }

@@ -12,6 +12,7 @@ using Physics.Shared.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,23 +33,18 @@ namespace Physics.ElectricParticle.ViewModels
         public MainViewModel()
         {
         }
-
         public Visibility RadiationVisibility { get; set; }
+        public Visibility EasyDifficultyInputsVisibility { get; set; }
+        public Visibility AdvancedDifficultyInputsVisibility { get; set; }
 
         public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
         private async Task ShowValuesTableAsync()
         {
-            //TODO: FIX!!!!
-            //if (_tableWindowIds.TryGetValue(viewModel, out var window))
-            //{
-            //    await window.TryShowAsync();
-            //    return;
-            //};
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
             appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-            var physicsService = new PhysicsService(Motions[0] as MotionSetup);
+            var physicsService = new PhysicsService(Setup as MotionSetup);
             var valuesTableService = new TableService(physicsService);
             var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
             valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 20);
@@ -67,80 +63,71 @@ namespace Physics.ElectricParticle.ViewModels
             newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
             newWindow.RequestSize(new Size(600, 400));
             var shown = await newWindow.TryShowAsync();
-            //if (shown)
-            //{
-            //    _tableWindowIds.Add(viewModel, newWindow);
-            //}
         }
+
+        private DifficultyOption _difficulty;
+        private int _selectedVariantIndex;
 
         public override void Prepare(SimulationNavigationModel parameter)
         {
-            OnSelectedVariantIndexChanged();
-            if (parameter.Difficulty == DifficultyOption.Easy)
+            _difficulty = parameter.Difficulty;
+            if (_difficulty == DifficultyOption.Easy)
             {
+                //Allow for basic variants enable inputs
+                EasyDifficultyInputsVisibility = Visibility.Visible;
+                AdvancedDifficultyInputsVisibility = Visibility.Collapsed;
                 RadiationVisibility = Visibility.Collapsed;
             }
-        }
-
-        public int SelectedVariantIndex { get; set; }
-
-        public PlaneOrientation SelectedVariant => (PlaneOrientation)SelectedVariantIndex;
-
-        public void OnSelectedVariantIndexChanged()
-        {
-            switch (SelectedVariant)
+            else
             {
-                case PlaneOrientation.Horizontal:
-                    VariantInputViewModel = new HorizontalVariantInputViewModel();
-                    break;
-                case PlaneOrientation.Vertical:
-                    VariantInputViewModel = new VerticalVariantInputViewModel();
-                    break;
+                //Allow for advanced variants, enable advanced inputs
+                EasyDifficultyInputsVisibility = Visibility.Collapsed;
+                AdvancedDifficultyInputsVisibility = Visibility.Visible;
             }
         }
 
-        public IVariantInputViewModel VariantInputViewModel { get; set; }
+        public int SelectedVariantIndex
+        {
+            get => _selectedVariantIndex;
+
+            set
+            {
+                _selectedVariantIndex = value;
+            }
+        }
+        PlaneOrientation Variant => (PlaneOrientation)(_difficulty == DifficultyOption.Advanced ? _selectedVariantIndex + 3 : _selectedVariantIndex);
+        public IInputViewModel InputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
-            var dialog = new AddOrUpdateMovementDialog(VariantInputViewModel);
+            var dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(Variant));
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                //if (SelectedVariant == VelocityVariant.Zero ||
-                //    SelectedVariant == VelocityVariant.Parallel ||
-                //    SelectedVariant == VelocityVariant.Perpendicular)
-                //{
-                //    Motions.Clear();
-                //}
-                //if (SelectedVariant == VelocityVariant.Radiation)
-                //{
-                //    //if (Motions.Any(m => !(m.Motion is RadiationMotionSetup)))
-                //    //{
-                //    //    Motions.Clear();
-                //    //}
-                //}
-                ////Motions.Add(VariantStateViewModelFactory.Create(this, dialog.Setup));
+                Setup = dialog.Setup;
+				var res = new PhysicsService(Setup as MotionSetup).PrimaryAxisCoordinate(0);
+                Motion = new MotionViewModel(Setup);
                 RestartSimulation();
             }
         });
+
+        public MotionViewModel Motion { get; set; }
+
+        public IMotionSetup Setup { get; set; }
 
         internal void SetViewInteraction(IMainViewInteraction interaction)
         {
             _interaction = interaction;
         }
 
-        public ObservableCollection<IVariantStateViewModel> Motions { get; } = new ObservableCollection<IVariantStateViewModel>();
-
         public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
 
+
+        public Visibility ShowCurrentValues => (Setup != null) ? Visibility.Visible : Visibility.Collapsed;
         public void DrawMotion()
         {
         }
-
         public string DrawingContent { get; set; }
-
-        public Visibility IsSecondStepVisible { get; set; } = Visibility.Visible;
 
         private void RestartSimulation()
         {

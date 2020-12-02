@@ -24,23 +24,18 @@ namespace Physics.DragMovement.Infrastructure.Topics
 
         public bool HasStudyMode => true;
 
-        public bool HasGame => false;
+        public bool HasGame => true;
 
         public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-        public Task GoToGameAsync()
+        public async Task GoToGameAsync()
         {
-            throw new NotImplementedException();
+            await _navigationService.Navigate<GameViewModel, SimulationNavigationModel>(new SimulationNavigationModel() { Difficulty = DifficultyOption.Advanced });
         }
 
         public async Task GoToStudyModeAsync()
         {
             await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
-        }
-
-        public Task OpenStudyTextAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

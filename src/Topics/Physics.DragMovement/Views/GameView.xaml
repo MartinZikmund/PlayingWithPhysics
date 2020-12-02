@@ -1,0 +1,180 @@
+﻿<views:BaseView
+    xmlns:views="using:Physics.Shared.Views"
+    x:Class="Physics.DragMovement.Views.GameView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+	xmlns:extensions="using:Physics.Shared.Extensions" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+	mc:Ignorable="d"
+    Background="{StaticResource AppThemeColor}">
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<DrillInNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0"  x:Name="MenuPane" Padding="12" Background="{ThemeResource AppThemeColor}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Border Grid.Row="1">
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
+					<StackPanel Grid.Column="0" Orientation="Vertical">
+						<Grid RowSpacing="8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
+							<Grid Height="120">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Button Command="{x:Bind Model.GoBackCommand}" Style="{ThemeResource NavigationBackButtonNormalStyle}" />
+								<Image
+                                    Grid.Column="1"
+                                    Margin="0,0,0,20"
+                                    Source="ms-appx:///Physics.Shared.UI/Assets/logo.png" />
+							</Grid>
+							<Button
+                                Grid.Row="1"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Stretch">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<Viewbox
+                                        Width="16"
+                                        Height="16"
+                                        VerticalAlignment="Center">
+										<SymbolIcon Symbol="Refresh" />
+									</Viewbox>
+									<TextBlock Text="{extensions:Localize Key=NewGame}" />
+								</StackPanel>
+							</Button>
+							<StackPanel Grid.Row="2" Spacing="8">
+								<TextBlock Text="{extensions:Localize Key=Inputs}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+								<TextBlock>
+									<Run FontWeight="SemiBold" Text="{extensions:Localize Key=RaftSpeed}" /><Run Text=":" />
+									<Run Text="{x:Bind Model.CurrentGame.RaftSpeed, Mode=OneWay}" />
+									<Run Text="m/s" />
+								</TextBlock>
+								<TextBlock>
+									<Run FontWeight="SemiBold" Text="{extensions:Localize Key=HelicopterHeight}" /><Run Text=":" />
+									<Run Text="{x:Bind Model.CurrentGame.HelicopterAltitude, Mode=OneWay}" />
+									<Run Text="m" />
+								</TextBlock>
+							</StackPanel>
+							<StackPanel Grid.Row="3" Spacing="8">
+								<TextBlock Text="{extensions:Localize Key=Settings}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<TextBlock VerticalAlignment="Center">
+										<Run FontWeight="SemiBold" Text="{extensions:Localize Key=CargoMass}" /><Run Text=":" />
+									</TextBlock>
+									<controls:NumberBox SpinButtonPlacementMode="Inline" Value="{x:Bind Model.CurrentGame.CargoMass, Mode=TwoWay}" Minimum="1" Maximum="3" />
+									<TextBlock Text="kg" VerticalAlignment="Center" />
+								</StackPanel>
+							</StackPanel>
+
+							<Grid Grid.Row="4">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+								<Button
+									Click="{x:Bind Model.Start}"
+									Width="80"
+									Height="80"
+									Windows10version1809:CornerRadius="40"
+									RequestedTheme="Dark"
+									Visibility="{x:Bind Model.CurrentGame.IsStartVisible, Mode=OneWay}"
+									Margin="0,0,0,8"
+									HorizontalAlignment="Stretch"
+									Background="Green">
+										<StackPanel>
+											<SymbolIcon Symbol="Play" />
+											<TextBlock Text="Start" />
+										</StackPanel>
+								</Button>
+								<Button
+									Click="{x:Bind Model.Drop}"									
+									Width="80"
+									Height="80"
+									Windows10version1809:CornerRadius="40"
+									d:Visibility="Collapsed"
+									Visibility="{x:Bind Model.CurrentGame.IsDropVisible, Mode=OneWay}"
+									IsEnabled="{x:Bind Model.CurrentGame.IsDropEnabled, Mode=OneWay}"
+									RequestedTheme="Light"
+									Margin="0,0,0,8"
+									HorizontalAlignment="Stretch"
+									Background="DarkOrange">
+									<StackPanel>
+										<SymbolIcon Symbol="Download" />
+										<TextBlock Text="Drop" />
+									</StackPanel>
+								</Button>
+								<Button
+									Click="{x:Bind Model.Restart}"									
+									RequestedTheme="Dark"
+									Grid.Row="1"									
+									IsEnabled="{x:Bind Model.CurrentGame.IsRestartEnabled, Mode=OneWay}"
+									d:IsEnabled="False"
+									Margin="0,0,0,8"
+									HorizontalAlignment="Center"
+									Background="DarkRed">
+									<StackPanel>
+										<TextBlock Text="Restart" />
+									</StackPanel>
+								</Button>
+							</Grid>
+						</Grid>
+					</StackPanel>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+		<Grid Grid.Column="1" x:Name="SecondPane" Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="Letterbox" d:VerticalAlignment="Stretch">
+				<Grid.Background>
+					<LinearGradientBrush ColorInterpolationMode="ScRgbLinearInterpolation"  StartPoint="0.5,0" EndPoint="0.5,1">
+						<GradientStop Offset="0" Color="#0eb4cb" />
+						<GradientStop Offset="1" Color="#b8e9ef" />
+					</LinearGradientBrush>
+				</Grid.Background>
+			</Grid>
+			<Grid HorizontalAlignment="Center" VerticalAlignment="Center" d:VerticalAlignment="Stretch" x:Name="CanvasWrapper">
+				<Windows10version1903:Grid.Shadow>
+					<ThemeShadow />
+				</Windows10version1903:Grid.Shadow>
+				<Grid x:Name="CanvasHolder">
+
+				</Grid>
+				<InkCanvas x:Name="InkCanvas" />
+				<InkToolbar
+					x:Name="inkToolbar"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					RequestedTheme="Light"					
+					TargetInkCanvas="{x:Bind InkCanvas}" />
+			</Grid>
+		</Grid>
+	</Grid>
+</views:BaseView>

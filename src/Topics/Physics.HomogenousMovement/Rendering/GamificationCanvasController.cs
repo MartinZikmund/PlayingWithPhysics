@@ -89,7 +89,7 @@ namespace Physics.HomogenousMovement.Rendering
                 _motions = Array.Empty<MotionInfo>();
                 _trajectories = Array.Empty<TrajectoryData>();
                 Pause();
-                Restart();
+                Reset();
                 CalculateMaxima();
             });
         }

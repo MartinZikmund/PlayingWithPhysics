@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public enum PerpendicularInductionOrientation
+    public enum SecondaryPlaneChargePolarity
     {
-        IntoPaper,
-        FromPaper
+        Negative = -1,
+        Positive = 1
     }
 }

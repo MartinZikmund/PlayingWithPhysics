@@ -25,7 +25,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>230C65856B284C624BA151FF9D11B0AA20AC4D81</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>35927690F50B151DF779B27D316D6B752EE65C66</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
@@ -136,18 +136,27 @@
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gamification\GameInfo.cs" />
+    <Compile Include="Gamification\GameState.cs" />
+    <Compile Include="Gamification\RaftPhysicsService.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\DragMovementCanvasController.cs" />
+    <Compile Include="Rendering\GamificationCanvasController.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ViewInteractions\IGameViewInteraction.cs" />
     <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateMotionViewModel.cs" />
     <Compile Include="ViewModels\DragMovementSimulationViewModelBase.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MotionInfoViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -161,6 +170,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\padak-01.png" />
+    <Content Include="Assets\Game\splash.wav" />
+    <Content Include="Assets\Game\jezero.jpg" />
+    <Content Include="Assets\Game\leknin_1.png" />
+    <Content Include="Assets\Game\leknin_2.png" />
+    <Content Include="Assets\Game\vor.png" />
+    <Content Include="Assets\Game\vrtulnik.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -227,6 +243,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,11 +280,14 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>6.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
+      <Version>7.0.0-preview2</Version>
+    </PackageReference>
     <PackageReference Include="MvvmCross">
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.3.0</Version>
+      <Version>3.3.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

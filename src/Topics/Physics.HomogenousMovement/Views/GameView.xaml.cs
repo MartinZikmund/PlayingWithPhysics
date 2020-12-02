@@ -1,35 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.HomogenousMovement.Rendering;
 using Physics.HomogenousMovement.ViewInteractions;
 using Physics.HomogenousMovement.ViewModels;
-using Physics.Shared.Helpers;
 using Physics.Shared.Views;
 using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Windows.Foundation.Metadata;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Physics.HomogenousMovement.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GameView : BaseView, IGameViewInteraction
     {
         private GamificationCanvasController _canvasController;
@@ -58,11 +41,6 @@ namespace Physics.HomogenousMovement.Views
             V0NumberBox.SetupFormatting(fractionDigits: 2);
             AngleNumberBox.SetupFormatting(fractionDigits: 2);
             //GravityNumberBox.SmallChange = 0.1;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
         }
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)

@@ -62,9 +62,9 @@ namespace Physics.Shared.UI.Rendering
             Debug.WriteLine("Base canvas controller has been disposed.");
         }
 
-        protected void Restart()
+        protected void Reset()
         {
-            SimulationTime.Restart();
+            SimulationTime.Reset();
         }
 
         private void CanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)

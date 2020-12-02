@@ -9,9 +9,9 @@
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsDrag"
     Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
-    Version="0.9.6.0" />
+    Version="0.9.9.0" />
 
-  <mp:PhoneIdentity PhoneProductId="17cf7926-9df0-4533-a403-4af2b77d1dbc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="84baaf13-0c21-4fd8-ab35-271bd4ac69c5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>

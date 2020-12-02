@@ -311,7 +311,7 @@
       <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
-      <Version>6.1.1</Version>
+      <Version>7.0.0-preview2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.4.3</Version>
@@ -320,7 +320,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.3.0</Version>
+      <Version>3.3.1</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
       <Version>2.80.2</Version>

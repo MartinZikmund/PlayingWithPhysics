@@ -6,8 +6,6 @@ namespace Physics.ElectricParticle.Logic
 {
     public interface IMotionSetup
     {
-        string Label { get; }
-
         string Color { get; }
     }
 }

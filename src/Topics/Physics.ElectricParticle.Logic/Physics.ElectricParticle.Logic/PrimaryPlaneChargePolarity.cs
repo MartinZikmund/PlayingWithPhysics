@@ -4,11 +4,9 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public enum VelocityVariant
+    public enum PrimaryPlaneChargePolarity
     {
-        Zero,
-        Parallel,
-        Perpendicular,
-        Radiation
+        Negative = -1,
+        Positive = 1
     }
 }
