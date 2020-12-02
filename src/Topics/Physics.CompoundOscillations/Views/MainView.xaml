@@ -10,10 +10,9 @@
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
-    xmlns:local="using:Physics.CompoundOscillation"
+    xmlns:local="using:Physics.CompoundOscillations.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:Microsoft.Xaml.Interactions.Media"
-    xmlns:physicsServices="using:Physics.CompoundOscillations.PhysicsServices"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.CompoundOscillations.ViewModels"
     xmlns:views="using:Physics.Shared.Views"
@@ -72,19 +71,11 @@
 
 							<sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-							<StackPanel Grid.Row="1">
-								<CheckBox Content="{extensions:Localize Key=PauseAfterChanges}" IsChecked="{x:Bind Model.PauseAfterChanges, Mode=TwoWay}" />
-								<CheckBox
-                                    Content="{extensions:Localize Key=BreakDownMotions}"
-                                    IsChecked="{x:Bind Model.BreakDownMotions, Mode=TwoWay}"
-                                    Visibility="{x:Bind Model.IsAdvanced, Converter={StaticResource BoolToVisibilityConverter}}" />
-							</StackPanel>
 							<Button
                                 Grid.Row="2"
                                 Margin="0,0,0,8"
                                 HorizontalAlignment="Stretch"
-                                Command="{x:Bind Model.AddTrajectoryCommand}"
-                                IsEnabled="{x:Bind Model.AddTrajectoryButtonEnabled, Mode=OneWay}">
+								Click="{x:Bind Model.AddOscillation}">
 								<StackPanel Orientation="Horizontal" Spacing="8">
 									<Viewbox
                                         Width="16"
@@ -92,13 +83,13 @@
                                         VerticalAlignment="Center">
 										<SymbolIcon Symbol="Add" />
 									</Viewbox>
-									<TextBlock Text="{extensions:Localize Key=AddMotion}" />
+									<TextBlock Text="{extensions:Localize Key=AddOscillation}" />
 								</StackPanel>
 							</Button>
 							<ListView
                                 Grid.Row="3"
                                 IsItemClickEnabled="False"
-                                ItemsSource="{x:Bind Model.Motions}"
+                                ItemsSource="{x:Bind Model.Oscillations}"
                                 SelectionMode="None">
 								<ListView.ItemContainerStyle>
 									<Style TargetType="ListViewItem">
@@ -108,7 +99,7 @@
 									</Style>
 								</ListView.ItemContainerStyle>
 								<ListView.ItemTemplate>
-									<DataTemplate x:DataType="viewModels:MotionInfoViewModel">
+									<DataTemplate x:DataType="viewModels:OscillationInfoViewModel">
 										<Grid>
 											<Grid.RowDefinitions>
 												<RowDefinition Height="Auto" />
@@ -198,24 +189,10 @@
 												</TextBlock>
 												<TextBlock
                                                     Grid.Row="1"
-                                                    Grid.Column="0"
-                                                    Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="x: " />
-                                                    <Run Text="{x:Bind CurrentX, Mode=OneWay}" />
-												</TextBlock>
-												<TextBlock
-                                                    Grid.Row="1"
                                                     Grid.Column="1"
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="y: " />
                                                     <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
-												</TextBlock>
-												<TextBlock
-                                                    Grid.Row="0"
-                                                    Grid.Column="1"
-                                                    Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="v: " />
-                                                    <Run Text="{x:Bind CurrentSpeed, Mode=OneWay}" />
 												</TextBlock>
 											</Grid>
 										</Grid>

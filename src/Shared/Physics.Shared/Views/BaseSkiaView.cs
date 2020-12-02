@@ -11,8 +11,8 @@ using Windows.UI.Xaml.Media;
 
 namespace Physics.Shared.UI.Views
 {
-	public abstract class BaseSkiaView<TViewModel, TController> : BaseView, ISimulationViewInteraction<TController>
-		where TViewModel : class, ISetSimulationViewInteraction<TController>
+	public abstract class BaseSkiaView<TViewModel, TController> : BaseView
+		where TViewModel : class, IReceiveController<TController>
 		where TController : IDisposable
 	{
 		private const string InkCanvasName = "InkCanvas";
@@ -41,7 +41,8 @@ namespace Physics.Shared.UI.Views
 			if (Model != model)
 			{
 				Model = model;
-				Model.SetViewInteraction(this);
+				var controller = PrepareController();
+				Model.SetController(controller);
 			}
 		}
 
@@ -76,7 +77,7 @@ namespace Physics.Shared.UI.Views
 			}
 		}
 
-		public TController PrepareController()
+		private TController PrepareController()
 		{
 			var canvasHolder = FindName(CanvasHolderName) as Grid;
 			if (canvasHolder == null)

@@ -9,7 +9,12 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 		}
 
-		public override void Draw(SkiaCanvas sender, SKSurface args) => throw new System.NotImplementedException();
-		public override void Update(SkiaCanvas sender) => throw new System.NotImplementedException();
+		public override void Draw(SkiaCanvas sender, SKSurface args)
+		{
+		}
+
+		public override void Update(SkiaCanvas sender)
+		{
+		}
 	}
 }

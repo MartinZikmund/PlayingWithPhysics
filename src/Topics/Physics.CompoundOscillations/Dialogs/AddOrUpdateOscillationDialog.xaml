@@ -4,16 +4,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.CompoundOscillations.Dialogs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:extensions="using:Physics.Shared.Extensions" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
 	mc:Ignorable="d"
-    Title="{extensions:Localize Key=AddOscillation}"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Title="{x:Bind Model.DialogTitle, Mode=OneWay}"
+	d:Title="Add oscillation"
+	PrimaryButtonClick="{x:Bind Model.Save}"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}">
 
 	<ContentDialog.Resources>
-		<Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateMotionDialog" />
+		<Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateOscillationDialog" />
 	</ContentDialog.Resources>
-	<Grid>
-	</Grid>
+	<StackPanel Spacing="8">
+		<StackPanel.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+			</TransitionCollection>
+		</StackPanel.ChildrenTransitions>
+		<TextBox Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
+		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Amplitude}" Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
+		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Frequency}" Text="{x:Bind Model.Frequency, Mode=TwoWay}" />
+		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Phase}" Text="{x:Bind Model.Phase, Mode=TwoWay}" />
+		<GridView
+			Header="{extensions:Localize Key=Color}"
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
+            SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+			<GridView.ItemTemplate>
+				<DataTemplate>
+					<Border CornerRadius="2" Width="32" Height="32">
+						<Border.Background>
+							<SolidColorBrush Color="{Binding}" />
+						</Border.Background>
+					</Border>
+				</DataTemplate>
+			</GridView.ItemTemplate>
+		</GridView>
+	</StackPanel>
 </ContentDialog>

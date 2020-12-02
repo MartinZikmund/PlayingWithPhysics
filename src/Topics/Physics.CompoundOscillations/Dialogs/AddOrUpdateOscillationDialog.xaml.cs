@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Physics.CompoundOscillations.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -21,15 +22,15 @@ namespace Physics.CompoundOscillations.Dialogs
 	{
 		public AddOrUpdateOscillationDialog()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
+			DataContextChanged += AddOrUpdateOscillationDialog_DataContextChanged;
 		}
 
-		private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+		private void AddOrUpdateOscillationDialog_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
 		{
+			Model = args.NewValue as AddOrUpdateOscillationViewModel;
 		}
 
-		private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-		{
-		}
+		public AddOrUpdateOscillationViewModel Model { get; private set; }
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace Physics.CompoundOscillations.Logic
 {
-	public class OscillationPhysicsService
+	public class OscillationPhysicsService : IOscillationPhysicsService
 	{
 		private readonly OscillationInfo _oscillationInfo;
 
@@ -12,8 +12,8 @@ namespace Physics.CompoundOscillations.Logic
 		}
 
 		public double CalculateY(double timeInSeconds) =>
-			_oscillationInfo.Amplitude * Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequence + _oscillationInfo.Epsilon);
+			_oscillationInfo.Amplitude * Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.Phase);
 
-		public double CalculatePeriod() => 1 / _oscillationInfo.Frequence;
+		public double CalculatePeriod() => 1 / _oscillationInfo.Frequency;
 	}
 }

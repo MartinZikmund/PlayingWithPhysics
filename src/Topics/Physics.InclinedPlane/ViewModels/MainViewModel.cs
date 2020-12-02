@@ -25,7 +25,7 @@ using Physics.Shared.UI.Views.Interactions;
 
 namespace Physics.InclinedPlane.ViewModels
 {
-	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>, ISetSimulationViewInteraction<InclinedPlaneSkiaController>
+	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>, IReceiveController<InclinedPlaneSkiaController>
     {
         private ISimulationViewInteraction<InclinedPlaneSkiaController> _interaction;
         private DifficultyOption Difficulty;

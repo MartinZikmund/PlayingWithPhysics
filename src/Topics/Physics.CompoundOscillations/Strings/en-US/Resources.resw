@@ -120,6 +120,9 @@
   <data name="AddOscillation" xml:space="preserve">
     <value>Add oscillation</value>
   </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplitude</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>The composition of several harmonic oscillations creates an oscillation that may no longer be harmonic.
 The program allows to use the principle of superposition to compose harmonic oscillations, which will be specified by angular velocity. The result will be a time diagram of the compound oscillation. In the time diagram, it will be possible to step and display the individual deviations as well as the resulting deviation as the sum of the deviations.
@@ -133,6 +136,15 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Edit oscillation</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="Oscillation" xml:space="preserve">
+    <value>Oscillation</value>
+  </data>
+  <data name="Phase" xml:space="preserve">
+    <value>Phase</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Compound Oscillations</value>

@@ -6,8 +6,8 @@
 		{
 			Label = label;
 			Amplitude = amplitude;
-			Frequence = frequence;
-			Epsilon = epsilon;
+			Frequency = frequence;
+			Phase = epsilon;
 			Color = color;
 		}
 
@@ -15,9 +15,9 @@
 
         public double Amplitude { get; set; }
 
-		public double Frequence { get; set; }
+		public double Frequency { get; set; }
 
-		public double Epsilon { get; set; }
+		public double Phase { get; set; }
 
 		public string Color { get; set; }
     }

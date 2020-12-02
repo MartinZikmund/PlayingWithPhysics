@@ -150,6 +150,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Smazat</value>
   </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Duplikovat</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Základní úroveň</value>
   </data>
@@ -159,11 +162,23 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Skrýt</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Časový interval (s)</value>
   </data>
+  <data name="Label" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Zobrazit</value>
   </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Zobrazit odpověď</value>

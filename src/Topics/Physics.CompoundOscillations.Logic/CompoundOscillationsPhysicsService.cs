@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Physics.CompoundOscillations.Logic
 {
-	public class CompoundOscillationsPhysicsService
+	public class CompoundOscillationsPhysicsService : IOscillationPhysicsService
 	{
 		private readonly OscillationPhysicsService[] _oscillationPhysicsServices;
 

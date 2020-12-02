@@ -150,6 +150,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Easy difficulty</value>
   </data>
@@ -159,11 +162,23 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
   </data>
+  <data name="Label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
   </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Show answer</value>

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Helpers;
 
 namespace Physics.HomogenousMovement.ViewModels
 {
@@ -110,14 +111,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private void SetLocalizedAndNumberedLabelName()
         {
             var movementTypeName = ResourceLoader.GetForCurrentView().GetString(MovementType.ToString());
-            var currentId = 0;
-
-            string generatedName;
-            do
-            {
-                generatedName = $"{movementTypeName} #{++currentId}";
-            } while (_existingNames.Contains(generatedName));
-
+			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
             Label = generatedName;
         }
 

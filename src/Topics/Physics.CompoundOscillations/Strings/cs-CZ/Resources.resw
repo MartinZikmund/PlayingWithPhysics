@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddOscillation" xml:space="preserve">
-    <value>Přidání kmitání</value>
+    <value>Přidat kmitání</value>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplituda</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Složením několika harmonických kmitání vzniká kmitání, které již nemusí být harmonické.
@@ -132,7 +135,16 @@ Grafika: Petr Weinlich</value>
     <value>Hrátky s fyzikou: Skládání kmitání</value>
   </data>
   <data name="EditOscillation" xml:space="preserve">
-    <value>Úprava kmitání</value>
+    <value>Upravit kmitání</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frekvence</value>
+  </data>
+  <data name="Oscillation" xml:space="preserve">
+    <value>Kmitání</value>
+  </data>
+  <data name="Phase" xml:space="preserve">
+    <value>Fáze</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Skládání kmitání</value>
