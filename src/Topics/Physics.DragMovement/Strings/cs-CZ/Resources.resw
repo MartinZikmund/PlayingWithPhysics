@@ -120,9 +120,6 @@
   <data name="AddMotion" xml:space="preserve">
     <value>Přidat pohyb</value>
   </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá úroveň</value>
-  </data>
   <data name="AerodynamicShape" xml:space="preserve">
     <value>aerodynamický tvar</value>
   </data>
@@ -149,9 +146,6 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="BreakDownMotions" xml:space="preserve">
     <value>Rozklad pohybu</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Zrušit</value>
-  </data>
   <data name="CargoMass" xml:space="preserve">
     <value>Hmotnost nákladu</value>
   </data>
@@ -161,20 +155,8 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="ChooseColor" xml:space="preserve">
     <value>Vybrat barvu</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Zavřít</value>
-  </data>
-  <data name="Color" xml:space="preserve">
-    <value>Barva</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Kopie</value>
-  </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Zkopírovat do schránky</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Smazat</value>
   </data>
   <data name="Density" xml:space="preserve">
     <value>Hustota</value>
@@ -184,12 +166,6 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   </data>
   <data name="Duplicate" xml:space="preserve">
     <value>Zkopírovat</value>
-  </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní úroveň</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Upravit</value>
   </data>
   <data name="EditMotion" xml:space="preserve">
     <value>Upravit vrh</value>
@@ -283,9 +259,6 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   </data>
   <data name="ResistanceCoefficient" xml:space="preserve">
     <value>Součinitel odporu</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Uložit</value>
   </data>
   <data name="SelectedMotion" xml:space="preserve">
     <value>Vybraný vrh</value>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using MvvmCross;
 using MvvmCross.IoC;
@@ -26,8 +27,9 @@ namespace Physics.Shared.UI.Infrastructure.Setup
         {
             var list = new List<Assembly>();
             list.AddRange(base.GetViewAssemblies());
-            list.Add(typeof(DefaultAppSetup<>).Assembly);
-            return list.ToArray();
+			list.Add(typeof(DefaultAppSetup<>).Assembly);
+			list.Add(GetType().Assembly);
+            return list.Distinct().ToArray();
         }
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
@@ -35,7 +37,8 @@ namespace Physics.Shared.UI.Infrastructure.Setup
             var list = new List<Assembly>();
             list.AddRange(base.GetViewModelAssemblies());
             list.Add(typeof(MainMenuViewModel).Assembly);
-            return list.ToArray();
+			list.Add(GetType().Assembly);
+            return list.Distinct().ToArray();
         }
 
         protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)

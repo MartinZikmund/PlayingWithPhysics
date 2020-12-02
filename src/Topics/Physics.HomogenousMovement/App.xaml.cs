@@ -46,7 +46,7 @@ namespace Physics.HomogenousMovement
         }
     }
 
-    public class HomogenousMovementApp : PhysicsAppBase<CrossSetup, CrossApp>
+    public class HomogenousMovementApp : PhysicsAppBase<AppSetup, DefaultApp<AppStart>>
     {
     }
 }

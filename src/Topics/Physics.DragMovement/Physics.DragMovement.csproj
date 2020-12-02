@@ -25,10 +25,9 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>35927690F50B151DF779B27D316D6B752EE65C66</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>C30FC8111A02871B3C48E80003F52B88C4C95DCB</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <PackageCertificateKeyFile>
-    </PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Physics.DragMovement_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -130,9 +129,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\AppStart.cs" />
-    <Compile Include="Core\CrossApp.cs" />
-    <Compile Include="Core\CrossSetup.cs" />
+    <Compile Include="Core\AppSetup.cs" />
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>

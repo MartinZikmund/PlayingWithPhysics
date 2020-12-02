@@ -133,9 +133,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\AppStart.cs" />
-    <Compile Include="Core\CrossApp.cs" />
-    <Compile Include="Core\CrossSetup.cs" />
+    <Compile Include="Core\AppSetup.cs" />
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
@@ -158,7 +156,6 @@
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
-    <Compile Include="ViewInteractions\IMainViewInteraction.cs" />
     <Compile Include="ViewModels\AddOrUpdateTrajectoryViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\InclinedPlaneInputViewModel.cs" />

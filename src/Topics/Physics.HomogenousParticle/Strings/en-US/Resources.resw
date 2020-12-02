@@ -123,15 +123,6 @@
   <data name="ShortAppName" xml:space="preserve">
     <value>Magnetic Field</value>
   </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Easy difficulty</value>
-  </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Advanced difficulty</value>
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value>Game</value>
-  </data>
   <data name="AddMotion" xml:space="preserve">
     <value>Change parameters</value>
   </data>

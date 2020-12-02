@@ -32,6 +32,7 @@ namespace Physics.HomogenousMovement
     {
         private HomogenousMovementCanvasController _canvasController;
         private CanvasAnimatedControl _animatedCanvas;
+
         public MainView()
         {
             this.InitializeComponent();

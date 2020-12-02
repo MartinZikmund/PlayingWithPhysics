@@ -11,6 +11,7 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.SelfStudy;
 using Windows.ApplicationModel;
 using System.IO;
+using Physics.Shared.UI.ViewModels.Navigation;
 
 namespace Physics.InclinedPlane.Infrastructure.Topics
 {
@@ -27,7 +28,7 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
 
         public bool HasGame => true;
 
-        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, MainViewModel.NavigationModel>(new MainViewModel.NavigationModel { Difficulty = option });
+        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
         public async Task GoToGameAsync()
         {

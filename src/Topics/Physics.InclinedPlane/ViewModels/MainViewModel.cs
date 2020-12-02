@@ -4,42 +4,34 @@ using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Physics.InclinedPlane.Dialogs;
 using Physics.Shared.UI.ViewModels;
-using Physics.InclinedPlane.UserControls;
 using Physics.Shared.UI.Infrastructure.Topics;
-using System.Collections.ObjectModel;
 using Physics.InclinedPlane.Services;
 using System.Threading.Tasks;
 using Windows.UI.WindowManagement;
 using Physics.InclinedPlane.Views;
 using Physics.InclinedPlane.Logic.PhysicsServices;
 using Physics.InclinedPlane.ValuesTable;
-using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI;
 using Windows.Foundation;
-using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Windows.UI.Xaml.Hosting;
 using Windows.ApplicationModel.Core;
 using MvvmCross.Base;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
-using Physics.InclinedPlane.ViewInteractions;
 using Physics.InclinedPlane.Rendering;
+using Physics.Shared.UI.ViewModels.Navigation;
+using Physics.Shared.UI.Views.Interactions;
 
 namespace Physics.InclinedPlane.ViewModels
 {
-    public class MainViewModel : SimulationViewModelBase<MainViewModel.NavigationModel>
+	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>, ISetSimulationViewInteraction<InclinedPlaneSkiaController>
     {
-        private IMainViewInteraction _interaction;
+        private ISimulationViewInteraction<InclinedPlaneSkiaController> _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
         private InclinedPlaneSkiaController _controller;
-        private DispatcherTimer _timer = new DispatcherTimer();
-
-        public class NavigationModel
-        {
-            public DifficultyOption Difficulty { get; set; }
-        }
+        private DispatcherTimer _timer = new DispatcherTimer();        
 
         public MainViewModel()
         {
@@ -47,17 +39,16 @@ namespace Physics.InclinedPlane.ViewModels
             _timer.Tick += _timer_Tick;
         }
 
-        public override void Prepare(NavigationModel parameter)
+        public override void Prepare(DifficultyNavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
             _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
-        internal void SetViewInteraction(IMainViewInteraction interaction)
+        public void SetViewInteraction(ISimulationViewInteraction<InclinedPlaneSkiaController> interaction)
         {
             _interaction = interaction;
         }
-
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {

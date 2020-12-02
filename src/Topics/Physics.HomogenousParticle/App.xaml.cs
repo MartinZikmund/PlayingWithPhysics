@@ -1,20 +1,12 @@
 ﻿using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using MvvmCross.Platforms.Uap.Views;
 using Physics.HomogenousParticle.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using Physics.Shared.UI.Infrastructure;
 
 namespace Physics.HomogenousParticle
-{    /// <summary>
-     /// Provides application-specific behavior to supplement the default Application class.
-     /// </summary>
-    sealed partial class App : PhysicsApp
+{
+	sealed partial class App : PhysicsApp
     {
         public App()
         {
@@ -24,36 +16,7 @@ namespace Physics.HomogenousParticle
         }
     }
 
-    public class PhysicsApp : MvxApplication<CrossSetup, Core.CrossApp>
+    public class PhysicsApp : PhysicsAppBase<AppSetup, DefaultApp>
     {
-        protected override void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            base.OnWindowCreated(args);
-            SetupTitleBar();
-        }
-
-        protected override Frame CreateFrame()
-        {
-            var frame = base.CreateFrame();
-            frame.Transitions.Clear();
-            frame.Background = new SolidColorBrush((Color)Resources["AppThemeColor"]);
-            return frame;
-        }
-
-        private void SetupTitleBar()
-        {
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-
-            var appColor = ColorHelper.ToColor("#0D2B4A");
-            var inactiveForeground = Colors.LightGray;
-            titleBar.BackgroundColor = appColor;
-            titleBar.ButtonBackgroundColor = appColor;
-            titleBar.ForegroundColor = Colors.White;
-            titleBar.ButtonForegroundColor = Colors.White;
-            titleBar.InactiveBackgroundColor = appColor;
-            titleBar.InactiveForegroundColor = inactiveForeground;
-            titleBar.ButtonInactiveBackgroundColor = appColor;
-            titleBar.ButtonInactiveForegroundColor = inactiveForeground;
-        }
     }
 }

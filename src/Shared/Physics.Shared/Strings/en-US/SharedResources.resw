@@ -120,17 +120,26 @@
   <data name="AboutApp" xml:space="preserve">
     <value>About app</value>
   </data>
+  <data name="AdvancedDifficulty" xml:space="preserve">
+    <value>Advanced difficulty</value>
+  </data>
   <data name="AppInfoAddress" xml:space="preserve">
     <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
   </data>
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Application „{0}“ was created within the project „Hrátky s fyzikou“, which is financed by European Union. Registration number of the project is CZ.02.3.68/0.0/0.0/18_067/0012381. Published under Creative Commons 4.0, BY-NC-SA.</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Color</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy to clipboard</value>
@@ -141,8 +150,20 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>Easy difficulty</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
+  </data>
   <data name="IntervalForTable" xml:space="preserve">
     <value>Time interval (s)</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="ShowAnswer" xml:space="preserve">
     <value>Show answer</value>

@@ -146,8 +146,7 @@
     <Compile Include="Converters\HexToColorConverter.cs" />
     <Compile Include="Converters\MovementTypeToBoolValueConverter.cs" />
     <Compile Include="Core\AppStart.cs" />
-    <Compile Include="Core\CrossApp.cs" />
-    <Compile Include="Core\CrossSetup.cs" />
+    <Compile Include="Core\AppSetup.cs" />
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>

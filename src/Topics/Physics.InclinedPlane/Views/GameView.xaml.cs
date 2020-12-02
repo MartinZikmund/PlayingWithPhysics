@@ -1,23 +1,15 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
-using Physics.InclinedPlane.Rendering;
-using Physics.InclinedPlane.ViewInteractions;
+﻿using Physics.InclinedPlane.Rendering;
 using Physics.InclinedPlane.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
+using Physics.Shared.UI.Views.Interactions;
 using Physics.Shared.Views;
-using SkiaSharp;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Physics.InclinedPlane.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class GameView : BaseView, IMainViewInteraction
+	public sealed partial class GameView : BaseView, ISimulationViewInteraction<InclinedPlaneSkiaController>
     {
         private SkiaCanvas _animatedCanvas;
         private InclinedPlaneSkiaController _canvasController;

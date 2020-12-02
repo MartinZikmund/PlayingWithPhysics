@@ -120,32 +120,11 @@
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby částic v homogenním magnetickém poli</value>
   </data>
-  <data name="ChooseMotion.Text" xml:space="preserve">
-    <value>Vyber variantu</value>
-  </data>
-  <data name="DrawButton.Content" xml:space="preserve">
-    <value>Vykresli pohyb</value>
-  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby částic v homogenním magnetickém poli</value>
   </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní úroveň</value>
-  </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá úroveň</value>
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value>Hra</value>
-  </data>
   <data name="AddMotion" xml:space="preserve">
     <value>Změnit parametry</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Zrušit</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Uložit</value>
   </data>
   <data name="DrawMotion" xml:space="preserve">
     <value>Vykresli pohyb</value>

@@ -1,19 +1,16 @@
 ﻿using MvvmCross.Base;
-using Physics.InclinedPlane.Dialogs;
 using Physics.InclinedPlane.Game;
 using Physics.InclinedPlane.Logic.PhysicsServices;
 using Physics.InclinedPlane.Rendering;
 using Physics.InclinedPlane.Services;
 using Physics.InclinedPlane.ValuesTable;
-using Physics.InclinedPlane.ViewInteractions;
 using Physics.InclinedPlane.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels;
-using SkiaSharp;
+using Physics.Shared.UI.Views.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.Core;
@@ -27,9 +24,9 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.InclinedPlane.ViewModels
 {
-    public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>
+	public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>
     {
-        private IMainViewInteraction _interaction;
+        private ISimulationViewInteraction<InclinedPlaneSkiaController> _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
         private InclinedPlaneSkiaController _controller;
@@ -60,7 +57,7 @@ namespace Physics.InclinedPlane.ViewModels
             _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
-        internal void SetViewInteraction(IMainViewInteraction interaction)
+        internal void SetViewInteraction(ISimulationViewInteraction<InclinedPlaneSkiaController> interaction)
         {
             _interaction = interaction;
             _controller = _interaction.PrepareController();

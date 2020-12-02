@@ -139,7 +139,8 @@
     <Compile Include="Controls\SkewedMenuHeader.xaml.cs">
       <DependentUpon>SkewedMenuHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Topics\DifficultyNavigationModel.cs" />
+    <Compile Include="Infrastructure\DefaultAppStart.cs" />
+    <Compile Include="Infrastructure\DefaultApp.cs" />
     <Compile Include="Rendering\IRenderingPlayback.cs" />
     <Compile Include="Rendering\Skia\SkiaCanvas.cs" />
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
@@ -186,14 +187,18 @@
     <Compile Include="Services\ValuesTable\ITableService.cs" />
     <Compile Include="Services\ValuesTable\IValuesTableRow.cs" />
     <Compile Include="Services\ValuesTable\ValuesTableRowBase.cs" />
+    <Compile Include="ViewModels\Navigation\DifficultyNavigationModel.cs" />
     <Compile Include="ViewModels\SelfStudyViewModel.cs" />
     <Compile Include="ViewModels\SimulationPlaybackViewModel.cs" />
     <Compile Include="ViewModels\SimulationViewModelBase.cs" />
     <Compile Include="ViewModels\ValuesTableDialogViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\BaseSkiaView.cs" />
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="Views\Interactions\ISetSimulationViewInteraction.cs" />
+    <Compile Include="Views\Interactions\ISimulationViewInteraction.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
