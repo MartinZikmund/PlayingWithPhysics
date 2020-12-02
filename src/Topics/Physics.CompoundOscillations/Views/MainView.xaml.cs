@@ -10,7 +10,7 @@ namespace Physics.CompoundOscillations.Views
 		public MainView()
 		{
 			this.InitializeComponent();
-		}	
+		}
 	}
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, CompoundOscillationsController>

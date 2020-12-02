@@ -18,7 +18,7 @@ namespace Physics.Shared.UI.Views
 		private const string InkCanvasName = "InkCanvas";
 		private const string MenuPaneName = "MenuPane";
 		private const string SecondPaneName = "SecondPane";
-		private const string CanvasHolderName = "CanvasHolderName";
+		private const string CanvasHolderName = "CanvasHolder";
 
 		private const int MenuShadowHeight = 16;
 

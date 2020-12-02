@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 
 namespace Physics.HomogenousMovement.Logic.PhysicsServices
 {
-    public class TrajectoryData
+	public class TrajectoryData
     {
         public TrajectoryData(params TrajectoryPoint[] points)
         {
