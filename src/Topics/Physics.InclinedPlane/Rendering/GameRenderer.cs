@@ -87,7 +87,7 @@ namespace Physics.InclinedPlane.Rendering
             _gameInfo = gameInfo;
         }
 
-        public void Draw(SkiaCanvas sender, SKSurface args)
+        public void Draw(ISkiaCanvas sender, SKSurface args)
         {
             if (_isDisposed)
             {
@@ -109,7 +109,7 @@ namespace Physics.InclinedPlane.Rendering
             DrawStonePreview(sender, args);
         }
 
-        private void DrawBackground(SkiaCanvas sender, SKSurface args)
+        private void DrawBackground(ISkiaCanvas sender, SKSurface args)
         {
             var backgroundSize = new SKSize(_stadiumBackground.Width * _renderingScale, _stadiumBackground.Height * _renderingScale);
             args.Canvas.DrawBitmap(
@@ -121,7 +121,7 @@ namespace Physics.InclinedPlane.Rendering
                     sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
         }
 
-        //private void DrawFloor(SkiaCanvas sender, SKSurface args)
+        //private void DrawFloor(ISkiaCanvas sender, SKSurface args)
         //{
         //    var backgroundSize = new SKSize(_floor.Width * _renderingScale, _floor.Height * _renderingScale);
 
@@ -134,7 +134,7 @@ namespace Physics.InclinedPlane.Rendering
         //            sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
         //}
 
-        private void DrawTvBox(SkiaCanvas sender, SKSurface args)
+        private void DrawTvBox(ISkiaCanvas sender, SKSurface args)
         {
             var tvBoxSize = new SKSize(_tvBox.Width * _renderingScale, _tvBox.Height * _renderingScale);
             var backgroundSize = new SKSize(_stadiumBackground.Width * _renderingScale, _stadiumBackground.Height * _renderingScale);
@@ -192,7 +192,7 @@ namespace Physics.InclinedPlane.Rendering
                 _tvBoxTextPaintRight);
         }
 
-        private void DrawRamp(SkiaCanvas sender, SKSurface args)
+        private void DrawRamp(ISkiaCanvas sender, SKSurface args)
         {
             var rampSize = new SKSize(_ramp.Width * _renderingScale, _ramp.Height * _renderingScale);
 
@@ -205,7 +205,7 @@ namespace Physics.InclinedPlane.Rendering
                     _gameTop + 540 * _renderingScale + rampSize.Height));
         }
 
-        private void DrawTarget(SkiaCanvas sender, SKSurface args)
+        private void DrawTarget(ISkiaCanvas sender, SKSurface args)
         {
             var targetSize = new SKSize(_target.Width * _renderingScale, _target.Height * _renderingScale);
 
@@ -218,7 +218,7 @@ namespace Physics.InclinedPlane.Rendering
                     GetHorizontalPlaneY() + 5 * _renderingScale + targetSize.Height / 2));
         }
 
-        private void DrawStonePreview(SkiaCanvas sender, SKSurface surface)
+        private void DrawStonePreview(ISkiaCanvas sender, SKSurface surface)
         {
             if (_gameInfo.State == GameState.PlaceStone && PreviewStoneXInRenderCoordinates != null)
             {
@@ -280,12 +280,12 @@ namespace Physics.InclinedPlane.Rendering
 
         private float GetHorizontalPlaneY() => _gameTop + 830 * _renderingScale;
 
-        private void DrawSituation(SkiaCanvas sender, SKSurface args)
+        private void DrawSituation(ISkiaCanvas sender, SKSurface args)
         {        
             DrawObject(sender, args);
         }
 
-        private void DrawHorizontalPlane(SkiaCanvas sender, SKSurface surface)
+        private void DrawHorizontalPlane(ISkiaCanvas sender, SKSurface surface)
         {
             surface.Canvas.DrawLine(
                 new SKPoint(
@@ -297,7 +297,7 @@ namespace Physics.InclinedPlane.Rendering
                 _linePaint);
         }
 
-        private void DrawInclinedPlane(SkiaCanvas sender, SKSurface surface)
+        private void DrawInclinedPlane(ISkiaCanvas sender, SKSurface surface)
         {
             var angleInRad = Shared.Helpers.MathHelpers.DegreesToRadians(30);
             var y = (float)(InclinedPlaneLengthInPixels * _renderingScale * (float)Math.Sin(angleInRad));
@@ -308,7 +308,7 @@ namespace Physics.InclinedPlane.Rendering
                 _linePaint);
         }
 
-        private void DrawObject(SkiaCanvas sender, SKSurface surface)
+        private void DrawObject(ISkiaCanvas sender, SKSurface surface)
         {
             var t = (float)_canvasController.SimulationTime.TotalTime.TotalSeconds;
             t = Math.Min(t, _canvasController.PhysicsService.CalculateMaxT());
@@ -348,7 +348,7 @@ namespace Physics.InclinedPlane.Rendering
             }
         }
 
-        private float CalculateRenderingScale(SkiaCanvas sender)
+        private float CalculateRenderingScale(ISkiaCanvas sender)
         {
             return sender.ScaledSize.Width / 1920;
         }
@@ -373,7 +373,7 @@ namespace Physics.InclinedPlane.Rendering
             return 1700;
         }
 
-        public void Update(SkiaCanvas sender)
+        public void Update(ISkiaCanvas sender)
         {
             EnsureBitmaps();
             _renderingScale = CalculateRenderingScale(sender);

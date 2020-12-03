@@ -143,6 +143,8 @@
     <Compile Include="Infrastructure\DefaultAppStart.cs" />
     <Compile Include="Infrastructure\DefaultApp.cs" />
     <Compile Include="Rendering\IRenderingPlayback.cs" />
+    <Compile Include="Rendering\Skia\ISkiaCanvas.cs" />
+    <Compile Include="Rendering\Skia\NonUiSkiaCanvas.cs" />
     <Compile Include="Rendering\Skia\SkiaCanvas.cs" />
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
     <Compile Include="Converters\EnumLocalizationConverter.cs" />

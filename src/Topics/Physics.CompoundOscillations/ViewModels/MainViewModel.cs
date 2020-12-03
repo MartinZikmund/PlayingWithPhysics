@@ -79,7 +79,7 @@ namespace Physics.CompoundOscillations.ViewModels
 				{
 					Oscillations.Add(new OscillationInfoViewModel(dialogViewModel.Result));
 					//TODO:
-					//await StartSimulationAsync();
+					await StartSimulationAsync();
 				}
 			}
 			catch (Exception ex)
@@ -98,7 +98,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				arg.OscillationInfo = dialogViewModel.Result;
 				//TODO:
-				//await StartSimulationAsync();
+				await StartSimulationAsync();
 				//UpdateMotionAppWindow(arg);
 			}
 		}
@@ -114,8 +114,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			if (result == ContentDialogResult.Primary)
 			{
 				Oscillations.Add(new OscillationInfoViewModel(dialogViewModel.Result));
-				//TODO:
-				//await StartSimulationAsync();
+				await StartSimulationAsync();
 			}
 		}
 
@@ -124,7 +123,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			Oscillations.Remove(arg);
 			//TODO:
 			//await CloseAppViewForMotionAsync(arg);
-			//await StartSimulationAsync();
+			await StartSimulationAsync();
 		}
 
 		private async Task ShowValuesTableAsync(OscillationInfoViewModel viewModel)
@@ -162,6 +161,19 @@ namespace Physics.CompoundOscillations.ViewModels
 			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
 			newWindow.RequestSize(new Size(480, 300));
 			var shown = await newWindow.TryShowAsync();
+		}
+
+		private async Task StartSimulationAsync()
+		{
+			if (_controller == null)
+			{
+				return;
+			}
+			await _controller.RunOnGameLoopAsync(() =>
+			{
+				_controller.SetActiveOscillations(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
+				_controller.StartSimulation();
+			});
 		}
 	}
 }

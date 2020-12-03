@@ -3,6 +3,8 @@ using System.Diagnostics;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views.Interactions;
 using Physics.Shared.Views;
+using SkiaSharp;
+using SkiaSharp.Views.UWP;
 using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -22,7 +24,7 @@ namespace Physics.Shared.UI.Views
 
 		private const int MenuShadowHeight = 16;
 
-		private SkiaCanvas _skiaCanvas;
+		private ISkiaCanvas _skiaCanvas;
 		private TController _canvasController;
 
 		public BaseSkiaView()
@@ -87,8 +89,8 @@ namespace Physics.Shared.UI.Views
 
 			if (_skiaCanvas == null)
 			{
-				_skiaCanvas = new SkiaCanvas();
-				canvasHolder.Children.Add(_skiaCanvas);
+				_skiaCanvas = CreateSkiaCanvas();
+				canvasHolder.Children.Add((UIElement)_skiaCanvas);
 			}
 
 			if (_canvasController == null)
@@ -99,12 +101,14 @@ namespace Physics.Shared.UI.Views
 			return _canvasController;
 		}
 
+		protected virtual ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
+
 		private void ViewUnloaded(object sender, RoutedEventArgs e)
 		{
 			_canvasController?.Dispose();
 			_skiaCanvas = null;
 		}
 
-		protected abstract TController CreateController(SkiaCanvas canvas);
+		protected abstract TController CreateController(ISkiaCanvas canvas);
 	}
 }

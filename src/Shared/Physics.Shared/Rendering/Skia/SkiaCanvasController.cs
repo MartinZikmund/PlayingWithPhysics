@@ -1,4 +1,5 @@
 ﻿using SkiaSharp;
+using SkiaSharp.Views.UWP;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace Physics.Shared.UI.Rendering.Skia
     {
         private bool _simluationInitiated = false;
 
-        protected SkiaCanvas _canvas;
+        protected ISkiaCanvas _canvas;
 
-        protected SkiaCanvasController(SkiaCanvas canvasAnimatedControl)
+        protected SkiaCanvasController(ISkiaCanvas canvasAnimatedControl)
         {
             SimulationTime = new SimulationTime(this);
             _canvas = canvasAnimatedControl ?? throw new ArgumentNullException(nameof(canvasAnimatedControl));
@@ -40,9 +41,9 @@ namespace Physics.Shared.UI.Rendering.Skia
             SimulationTime.FastForward(time);
         }
 
-        public abstract void Draw(SkiaCanvas sender, SKSurface args);
+        public abstract void Draw(ISkiaCanvas sender, SKSurface args);
 
-        public abstract void Update(SkiaCanvas sender);
+        public abstract void Update(ISkiaCanvas sender);
 
         public async Task RunOnGameLoopAsync(DispatchedHandler agileCallback)
         {
@@ -65,7 +66,7 @@ namespace Physics.Shared.UI.Rendering.Skia
             SimulationTime.Reset();
         }
 
-        private void CanvasUpdate(SkiaCanvas sender, EventArgs e)
+        private void CanvasUpdate(ISkiaCanvas sender, EventArgs e)
         {
             if (!IsPaused && _simluationInitiated)
             {

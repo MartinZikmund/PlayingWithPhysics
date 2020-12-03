@@ -3,6 +3,7 @@ using Physics.InclinedPlane.Logic.PhysicsServices;
 using Physics.InclinedPlane.Services;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using SkiaSharp.Views.UWP;
 using System;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Physics.InclinedPlane.Rendering
 {
     public class InclinedPlaneSkiaController : SkiaCanvasController
     {
-        public InclinedPlaneSkiaController(SkiaCanvas canvasAnimatedControl) :
+        public InclinedPlaneSkiaController(ISkiaCanvas canvasAnimatedControl) :
             base(canvasAnimatedControl)
         {
         }
@@ -44,12 +45,12 @@ namespace Physics.InclinedPlane.Rendering
             Renderer = renderer;
         }
 
-        public override void Update(SkiaCanvas sender)
+        public override void Update(ISkiaCanvas sender)
         {
             Renderer?.Update(sender);
         }
 
-        public override void Draw(SkiaCanvas sender, SKSurface args)
+        public override void Draw(ISkiaCanvas sender, SKSurface args)
         {
             args.Canvas.Clear(new SKColor(255, 244, 244, 244));
             Renderer?.Draw(sender, args);

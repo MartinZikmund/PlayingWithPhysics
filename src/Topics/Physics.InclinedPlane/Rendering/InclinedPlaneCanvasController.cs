@@ -47,7 +47,6 @@ namespace Physics.InclinedPlane.Rendering
             return Task.CompletedTask;
         }
 
-
         public override void Update(ICanvasAnimatedControl sender)
         {
             Renderer?.Update(sender);

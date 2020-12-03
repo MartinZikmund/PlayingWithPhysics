@@ -8,7 +8,7 @@ using System;
 
 namespace Physics.Shared.UI.Rendering.Skia
 {
-    public partial class SkiaCanvas : SKNativeView
+    public partial class SkiaCanvas : SKNativeView, ISkiaCanvas
     {       
         private readonly object _renderLock = new object();
 

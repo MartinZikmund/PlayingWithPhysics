@@ -39,7 +39,7 @@ namespace Physics.InclinedPlane.Rendering
             _canvasController = canvasController;
         }
 
-        public void Draw(SkiaCanvas sender, SKSurface args)
+        public void Draw(ISkiaCanvas sender, SKSurface args)
         {
             if (_scalingRatio < 0 || _isDisposed)
             {
@@ -104,7 +104,7 @@ namespace Physics.InclinedPlane.Rendering
             return (float)target.Size.Height - y - _padding;
         }
 
-        public void Update(SkiaCanvas surface)
+        public void Update(ISkiaCanvas surface)
         {
             var reducedSize = surface.ScaledSize.ReduceBy(_padding * 2);
             if (reducedSize.Height < 50 || reducedSize.Width < 50)

@@ -15,6 +15,8 @@ namespace Physics.CompoundOscillations.Views
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, CompoundOscillationsController>
 	{
-		protected override CompoundOscillationsController CreateController(SkiaCanvas canvas) => new CompoundOscillationsController(canvas);
+		protected override ISkiaCanvas CreateSkiaCanvas() => new NonUiSkiaCanvas();
+
+		protected override CompoundOscillationsController CreateController(ISkiaCanvas canvas) => new CompoundOscillationsController(canvas);
 	}
 }

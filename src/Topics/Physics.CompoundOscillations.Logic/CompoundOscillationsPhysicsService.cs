@@ -17,13 +17,13 @@ namespace Physics.CompoundOscillations.Logic
 			_oscillationPhysicsServices = oscillations.Select(o => new OscillationPhysicsService(o)).ToArray();
 		}
 
-		public double CalculateY(double timeInSeconds)
+		public float CalculateY(float timeInSeconds)
 		{
 			if (_oscillationPhysicsServices.Length > 0)
 			{
 				return _oscillationPhysicsServices.Sum(o => o.CalculateY(timeInSeconds));
 			}
-			return 0.0;
+			return 0.0f;
 		}
 	}
 }

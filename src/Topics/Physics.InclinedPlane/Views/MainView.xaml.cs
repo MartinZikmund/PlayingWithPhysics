@@ -2,6 +2,7 @@
 using Physics.InclinedPlane.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views;
+using SkiaSharp.Views.UWP;
 
 namespace Physics.InclinedPlane.Views
 {
@@ -15,7 +16,7 @@ namespace Physics.InclinedPlane.Views
 
 	public abstract class MainViewBase : BaseSkiaView<MainViewModel, InclinedPlaneSkiaController>
 	{
-		protected override InclinedPlaneSkiaController CreateController(SkiaCanvas canvas)
+		protected override InclinedPlaneSkiaController CreateController(ISkiaCanvas canvas)
 		{
 			var controller = new InclinedPlaneSkiaController(canvas);
 			controller.SetVariantRenderer(new SkiaSimulationRenderer(controller));

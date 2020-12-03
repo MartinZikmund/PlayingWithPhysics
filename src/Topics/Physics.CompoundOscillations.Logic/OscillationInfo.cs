@@ -2,7 +2,7 @@
 {
 	public class OscillationInfo
     {
-		public OscillationInfo(string label, double amplitude, double frequence, double phase, string color)
+		public OscillationInfo(string label, float amplitude, float frequence, float phase, string color)
 		{
 			Label = label;
 			Amplitude = amplitude;
@@ -13,11 +13,11 @@
 
 		public string Label { get; set; }
 
-        public double Amplitude { get; set; }
+        public float Amplitude { get; set; }
 
-		public double Frequency { get; set; }
+		public float Frequency { get; set; }
 
-		public double Phase { get; set; }
+		public float Phase { get; set; }
 
 		public string Color { get; set; }
 

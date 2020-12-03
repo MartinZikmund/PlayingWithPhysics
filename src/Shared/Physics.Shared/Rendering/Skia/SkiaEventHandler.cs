@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Physics.Shared.UI.Rendering.Skia
 {
-    public delegate void SkiaEventHandler<TEventArgs>(SkiaCanvas canvs, TEventArgs args);
+    public delegate void SkiaEventHandler<TEventArgs>(ISkiaCanvas canvas, TEventArgs args);
 }

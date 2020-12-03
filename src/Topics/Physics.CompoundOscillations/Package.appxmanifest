@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="f6eaf933-0601-4f83-821f-94bd561c481b"
-    Publisher="CN=Martin"
-    Version="1.0.0.0" />
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsCompou"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.3.2.0" />
 
-  <mp:PhoneIdentity PhoneProductId="f6eaf933-0601-4f83-821f-94bd561c481b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="3f4f3665-7538-455b-b614-620900440e92" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Physics.CompoundOscillations</DisplayName>
-    <PublisherDisplayName>Martin</PublisherDisplayName>
+    <DisplayName>Playing with Physics: Compound Oscillations</DisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

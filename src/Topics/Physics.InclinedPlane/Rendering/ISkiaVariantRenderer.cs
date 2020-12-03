@@ -10,8 +10,8 @@ namespace Physics.InclinedPlane.Rendering
 {
     public interface ISkiaVariantRenderer : IDisposable
     {
-        void Update(SkiaCanvas sender);
+        void Update(ISkiaCanvas sender);
 
-        void Draw(SkiaCanvas sender, SKSurface args);
+        void Draw(ISkiaCanvas sender, SKSurface args);
     }
 }

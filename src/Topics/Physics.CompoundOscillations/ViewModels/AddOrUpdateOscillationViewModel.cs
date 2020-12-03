@@ -58,11 +58,11 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public Color Color { get; set; } = ColorHelper.ToColor("#0063B1");
 
-		public double Frequency { get; set; } = 1;
+		public float Frequency { get; set; } = 1;
 
-		public double Amplitude { get; set; } = 1;
+		public float Amplitude { get; set; } = 1;
 
-		public double Phase { get; set; } = 0;
+		public float Phase { get; set; } = 0;
 
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{

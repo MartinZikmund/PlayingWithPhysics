@@ -2,6 +2,6 @@
 {
 	public interface IOscillationPhysicsService
     {
-		double CalculateY(double timeInSeconds);
+		float CalculateY(float timeInSeconds);
     }
 }
