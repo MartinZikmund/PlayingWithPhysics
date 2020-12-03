@@ -25,26 +25,21 @@
             FrozenColumnCount="1"
             IsReadOnly="True"
             ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
-		<TextBlock
-            Grid.Row="1"
-            Margin="1,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Text="{extensions:Localize Key=IntervalForTable}" />
 		<controls:NumberBox
             x:Name="TimeIntervalNumberBox"
-            Grid.Row="1"
+            Grid.Row="2"
+			Header="{extensions:Localize Key=IntervalForTable}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Minimum="0.01"
-            SmallChange="0.01"
+            Minimum="0.1"
+            SmallChange="0.1"
             SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
 		<StackPanel
             Grid.Row="2"
             Orientation="Horizontal"
             Spacing="4">
-			<Button Click="{x:Bind Model.CopyToClipboard}" Content="{extensions:Localize Key=CopyToClipboard}" />
+			<Button VerticalAlignment="Bottom" Click="{x:Bind Model.CopyToClipboard}" Content="{extensions:Localize Key=CopyToClipboard}" />
 		</StackPanel>
 	</Grid>
 </Page>
