@@ -128,6 +128,12 @@
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\CompoundOscillationsController.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddOrUpdateOscillationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OscillationInfoViewModel.cs" />
@@ -265,6 +271,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialogs\AddOrUpdateOscillationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValuesTable\ValuesTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

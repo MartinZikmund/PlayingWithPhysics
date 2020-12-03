@@ -19,12 +19,10 @@ namespace Physics.CompoundOscillations.ViewModels
 		private const string AddOscillationKey = "AddOscillation";
 
 		private string[] _existingNames;
-		private bool _autogenerateLabel;
 
 		public AddOrUpdateOscillationViewModel(OscillationInfo oscillationInfo, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
 		{
 			DialogTitle = Localizer.Instance.GetString(EditOscillationKey);
-			_autogenerateLabel = false; // Do not autogenerate for edit mode.
 			Label = oscillationInfo.Label;
 			Color = ColorHelper.ToColor(oscillationInfo.Color);
 			Frequency = oscillationInfo.Frequency;
@@ -40,6 +38,8 @@ namespace Physics.CompoundOscillations.ViewModels
 			SetLocalizedAndNumberedLabelName();
 		}
 
+		public string DialogTitle { get; }
+
 		public Color[] AvailableColors { get; } = new Color[]
 		{
 			ColorHelper.ToColor("#0063B1"),
@@ -50,21 +50,19 @@ namespace Physics.CompoundOscillations.ViewModels
 			ColorHelper.ToColor("#515C6B"),
 		};
 
-		public string DialogTitle { get; set; }
+		public DifficultyOption Difficulty { get; }
+
+		public OscillationInfo Result { get; private set; }
 
 		public string Label { get; set; }
 
-		public Color Color { get; set; }
+		public Color Color { get; set; } = ColorHelper.ToColor("#0063B1");
 
-		public double Frequency { get; set; }
+		public double Frequency { get; set; } = 1;
 
-		public double Amplitude { get; set; }
+		public double Amplitude { get; set; } = 1;
 
-		public double Phase { get; set; }
-
-		public DifficultyOption Difficulty { get; private set; }
-
-		public OscillationInfo Result { get; private set; }
+		public double Phase { get; set; } = 0;
 
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{

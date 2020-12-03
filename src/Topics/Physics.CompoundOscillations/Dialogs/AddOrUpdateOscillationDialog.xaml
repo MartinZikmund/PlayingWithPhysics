@@ -22,9 +22,9 @@
 			</TransitionCollection>
 		</StackPanel.ChildrenTransitions>
 		<TextBox Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
-		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Amplitude}" Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
-		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Frequency}" Text="{x:Bind Model.Frequency, Mode=TwoWay}" />
-		<controls:NumberBox SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Phase}" Text="{x:Bind Model.Phase, Mode=TwoWay}" />
+		<controls:NumberBox x:Name="AmplitudeNumberBox" SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Amplitude}" Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
+		<controls:NumberBox x:Name="FrequencyNumberBox" SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Frequency}" Text="{x:Bind Model.Frequency, Mode=TwoWay}" />
+		<controls:NumberBox x:Name="PhaseNumberBox" SpinButtonPlacementMode="Inline" Header="{extensions:Localize Key=Phase}" Text="{x:Bind Model.Phase, Mode=TwoWay}" />
 		<GridView
 			Header="{extensions:Localize Key=Color}"
             Grid.Row="5"

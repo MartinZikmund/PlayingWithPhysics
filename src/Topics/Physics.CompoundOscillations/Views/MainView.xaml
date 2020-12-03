@@ -2,21 +2,13 @@
     x:Class="Physics.CompoundOscillations.Views.MainView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
-    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.CompoundOscillations.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.CompoundOscillations.ViewModels"
-    xmlns:views="using:Physics.Shared.Views"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     x:Name="Page"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Dark"
@@ -61,12 +53,14 @@
 								<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
 							</TransitionCollection>
 						</StackPanel.ChildrenTransitions>
-						<Grid>
+						<Grid RowSpacing="8">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
 								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
 							<sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
@@ -86,8 +80,18 @@
 									<TextBlock Text="{extensions:Localize Key=AddOscillation}" />
 								</StackPanel>
 							</Button>
-							<ListView
+
+							<TextBlock
                                 Grid.Row="3"
+                                Grid.Column="0"
+                                Style="{StaticResource InfoTextBlockStyle}">
+                                <Run Text="Simulation time: " />
+                                <Run Text="{x:Bind Model.TimeElapsed, Mode=OneWay}" />
+								<Run Text="s" />
+							</TextBlock>
+
+							<ListView
+                                Grid.Row="4"
                                 IsItemClickEnabled="False"
                                 ItemsSource="{x:Bind Model.Oscillations}"
                                 SelectionMode="None">
@@ -100,31 +104,43 @@
 								</ListView.ItemContainerStyle>
 								<ListView.ItemTemplate>
 									<DataTemplate x:DataType="viewModels:OscillationInfoViewModel">
-										<Grid>
+										<Grid ColumnSpacing="16" RowSpacing="8">
 											<Grid.RowDefinitions>
 												<RowDefinition Height="Auto" />
 												<RowDefinition Height="Auto" />
 											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="*" />
+											</Grid.ColumnDefinitions>
+											<Border Grid.RowSpan="2" Width="8" CornerRadius="2">
+												<Border.Background>
+													<SolidColorBrush Color="{x:Bind OscillationInfo.Color, Mode=OneWay}" />
+												</Border.Background>
+											</Border>
 											<Grid
-                                                Margin="0,4"
-                                                Padding="8"
+												Grid.Column="1"
                                                 ColumnSpacing="8"
                                                 CornerRadius="2"
                                                 RowSpacing="4">
 												<Grid.ColumnDefinitions>
 													<ColumnDefinition Width="*" />
 													<ColumnDefinition Width="Auto" />
-												</Grid.ColumnDefinitions>
-												<Grid.Background>
-													<SolidColorBrush Color="{x:Bind MotionInfo.Color, Mode=OneWay}" />
-												</Grid.Background>
+													<ColumnDefinition Width="Auto" />
+												</Grid.ColumnDefinitions>												
 
 												<TextBlock
                                                     VerticalAlignment="Center"
                                                     Style="{ThemeResource SubtitleTextBlockStyle}"
                                                     Text="{x:Bind Label, Mode=OneWay}"
-                                                    TextTrimming="CharacterEllipsis" />
+													FontWeight="SemiBold"
+													TextLineBounds="Tight"
+                                                    TextTrimming="CharacterEllipsis"
+													TextWrapping="NoWrap" />
 
+												<ToggleButton IsChecked="{x:Bind IsVisible, Mode=TwoWay}" Grid.Column="1">
+													<SymbolIcon Symbol="View" />
+												</ToggleButton>
 												<Button Grid.Column="2">
 													<Button.Flyout>
 														<MenuFlyout>
@@ -138,7 +154,7 @@
 															</MenuFlyoutItem>
 															<MenuFlyoutSeparator />
 															<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.EditTrajectoryCommand}"
+                                                                Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Edit}">
 																<MenuFlyoutItem.Icon>
@@ -146,7 +162,7 @@
 																</MenuFlyoutItem.Icon>
 															</MenuFlyoutItem>
 															<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DuplicateTrajectoryCommand}"
+                                                                Command="{Binding ElementName=Page, Path=Model.DuplicateOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Duplicate}">
 																<MenuFlyoutItem.Icon>
@@ -154,7 +170,7 @@
 																</MenuFlyoutItem.Icon>
 															</MenuFlyoutItem>
 															<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DeleteTrajectoryCommand}"
+                                                                Command="{Binding ElementName=Page, Path=Model.DeleteOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Delete}">
 																<MenuFlyoutItem.Icon>
@@ -166,11 +182,10 @@
 													<SymbolIcon Symbol="More" />
 												</Button>
 											</Grid>
-
-											<Grid
+											
+											<!--<Grid
                                                 Grid.Row="1"
-                                                Grid.ColumnSpan="4"
-                                                RowSpacing="4">
+												Grid.Column="1">
 												<Grid.RowDefinitions>
 													<RowDefinition Height="Auto" />
 													<RowDefinition Height="Auto" />
@@ -179,14 +194,6 @@
 													<ColumnDefinition Width="*" />
 													<ColumnDefinition Width="*" />
 												</Grid.ColumnDefinitions>
-
-												<TextBlock
-                                                    Grid.Row="0"
-                                                    Grid.Column="0"
-                                                    Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="t: " />
-                                                    <Run Text="{x:Bind TimeElapsed, Mode=OneWay}" />
-												</TextBlock>
 												<TextBlock
                                                     Grid.Row="1"
                                                     Grid.Column="1"
@@ -194,11 +201,27 @@
                                                     <Run Text="y: " />
                                                     <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
 												</TextBlock>
-											</Grid>
+											</Grid>-->
 										</Grid>
 									</DataTemplate>
 								</ListView.ItemTemplate>
 							</ListView>
+
+							<Button
+									Grid.Row="5"
+									Margin="0,0,0,8"
+									HorizontalAlignment="Stretch"
+									Command="{x:Bind Model.ShowCompoundOscillationValuesTableCommand}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<Viewbox
+                                        Width="16"
+                                        Height="16"
+                                        VerticalAlignment="Center">
+										<SymbolIcon Symbol="ViewAll" />
+									</Viewbox>
+									<TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleOscillations}" />
+								</StackPanel>
+							</Button>
 						</Grid>
 					</StackPanel>
 				</ScrollViewer>
@@ -223,6 +246,7 @@
                 TargetInkCanvas="{x:Bind InkCanvas}" />
 			<sharedControls:SimulationControls
                 Grid.Row="1"
+				d:Visibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"

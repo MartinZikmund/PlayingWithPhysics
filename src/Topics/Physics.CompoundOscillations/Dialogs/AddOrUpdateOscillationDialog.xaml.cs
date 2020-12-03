@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Physics.CompoundOscillations.ViewModels;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Physics.CompoundOscillations.ViewModels;
+using Physics.Shared.UI.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Physics.CompoundOscillations.Dialogs
 {
@@ -24,6 +11,19 @@ namespace Physics.CompoundOscillations.Dialogs
 		{
 			InitializeComponent();
 			DataContextChanged += AddOrUpdateOscillationDialog_DataContextChanged;
+			SetupNumberBoxFormattings();
+		}
+
+		public AddOrUpdateOscillationDialog(AddOrUpdateOscillationViewModel viewModel) : this()
+		{
+			DataContext = viewModel;
+		}
+
+		private void SetupNumberBoxFormattings()
+		{
+			AmplitudeNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 0.1);
+			FrequencyNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 0.1);
+			PhaseNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 0.1);
 		}
 
 		private void AddOrUpdateOscillationDialog_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

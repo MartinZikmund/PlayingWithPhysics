@@ -134,6 +134,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Compound Oscillations</value>
   </data>
+  <data name="CompoundOscillation" xml:space="preserve">
+    <value>Compound oscillation</value>
+  </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Edit oscillation</value>
   </data>
@@ -148,5 +151,8 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Compound Oscillations</value>
+  </data>
+  <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
+    <value>Show table of compound oscillation</value>
   </data>
 </root>

@@ -10,12 +10,12 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public OscillationInfoViewModel(OscillationInfo throwInfo)
 		{
-			MotionInfo = throwInfo ?? throw new ArgumentNullException(nameof(throwInfo));
+			OscillationInfo = throwInfo ?? throw new ArgumentNullException(nameof(throwInfo));
 		}
 
 		private OscillationInfo _oscillationInfo;
 
-		public OscillationInfo MotionInfo
+		public OscillationInfo OscillationInfo
 		{
 			get
 			{
@@ -34,10 +34,10 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public string Label
 		{
-			get => MotionInfo.Label;
+			get => OscillationInfo.Label;
 			set
 			{
-				MotionInfo.Label = value;
+				OscillationInfo.Label = value;
 				RaisePropertyChanged();
 			}
 		}
@@ -52,5 +52,7 @@ namespace Physics.CompoundOscillations.ViewModels
 		public string TimeElapsed { get; private set; }
 
 		public string CurrentY { get; private set; }
+
+		public bool IsVisible { get; set; } = true;
 	}
 }

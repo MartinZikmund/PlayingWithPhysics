@@ -2,12 +2,12 @@
 {
 	public class OscillationInfo
     {
-		public OscillationInfo(string label, double amplitude, double frequence, double epsilon, string color)
+		public OscillationInfo(string label, double amplitude, double frequence, double phase, string color)
 		{
 			Label = label;
 			Amplitude = amplitude;
 			Frequency = frequence;
-			Phase = epsilon;
+			Phase = phase;
 			Color = color;
 		}
 
@@ -20,5 +20,7 @@
 		public double Phase { get; set; }
 
 		public string Color { get; set; }
-    }
+
+		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, Phase, Color);
+	}
 }
