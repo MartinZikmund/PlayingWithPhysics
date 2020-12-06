@@ -76,7 +76,7 @@ namespace Physics.DragMovement.ViewModels
 
 		public void Restart()
 		{
-			_gameController.RestartAttempt();
+			_gameController.RestartAttempt();			
 		}
 
 		private async Task FireAsync()

@@ -3,11 +3,14 @@ using System.Numerics;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Physics.DragMovement.Gamification;
 using Physics.DragMovement.Logic.PhysicsServices;
 using Physics.Shared.Services.Sounds;
+using Physics.Shared.UI.Localization;
 using Windows.Foundation;
+using Windows.UI;
 
 namespace Physics.DragMovement.Rendering
 {
@@ -22,6 +25,13 @@ namespace Physics.DragMovement.Rendering
 
 		private const int ParaschuteHalfOpenTime = 2;
 		private const int ParaschuteFullOpenTime = 5;
+
+		private CanvasTextFormat _gameOverTextFormat = new CanvasTextFormat()
+		{
+			FontSize = 40,
+			FontWeight = new Windows.UI.Text.FontWeight() { Weight = 400 },
+			HorizontalAlignment = CanvasHorizontalAlignment.Center,
+		};
 
 		private readonly Random _randomizer = new Random();
 
@@ -103,17 +113,16 @@ namespace Physics.DragMovement.Rendering
 			{
 				DrawRaft(sender, args);
 
-				if (_game.State == GameState.Dropped || _game.State == GameState.Won)
+				if ((_game.State == GameState.Dropped && SimulationTime.TotalTime < _game.HitTime) || _game.State == GameState.Won)
 				{
-					if (SimulationTime.TotalTime < _game.HitTime)
-					{
-						DrawCargo(sender, args);
-					}
+					DrawCargo(sender, args);
 				}
 
 				DrawHelicopter(sender, args);
 
 				DrawOverlay(sender, args);
+
+				DrawGameOverText(sender, args);
 			}
 		}
 
@@ -148,6 +157,7 @@ namespace Physics.DragMovement.Rendering
 		internal void RestartAttempt()
 		{
 			_game.SetState(GameState.NotStarted);
+			StopHeliSound();
 			Reset();
 			Pause();
 		}
@@ -201,8 +211,8 @@ namespace Physics.DragMovement.Rendering
 			_game.HitTime = TimeSpan.FromSeconds(_game.DropTime.TotalSeconds + hitTime);
 			var raftPosition = _raftPhysicsService.GetX(_game.HitTime.TotalSeconds);
 			_game.WillDropOnRaft =
-				raftPosition >= (WorldWidth / 2 - RaftWidth / 2) &&
-				raftPosition <= (WorldWidth / 2 + RaftWidth / 2);
+				raftPosition >= (WorldWidth / 2 - RaftWidth * 0.45) &&
+				raftPosition <= (WorldWidth / 2 + RaftWidth * 0.45);
 			_game.SetState(GameState.Dropped);
 		}
 
@@ -282,6 +292,13 @@ namespace Physics.DragMovement.Rendering
 
 				var left = sender.Size.Width / 2 - actualWidth / 2;
 
+				if (_game.State == GameState.Won)
+				{
+					// move cargo with raft
+					var addX = _raftPhysicsService.GetX(SimulationTime.TotalTime.TotalSeconds) - _raftPhysicsService.GetX(_game.HitTime.TotalSeconds);
+					left += addX * _pixelsPerMeter;
+				}
+
 				var top = (WorldHeight - GetAltitudeInWorld(y)) * _pixelsPerMeter - actualHeight;
 
 				args.DrawingSession.DrawImage(image, new Rect(left, top, actualWidth, actualHeight), new Rect(0, 0, _paraschuteImages[0].Size.Width, _paraschuteImages[0].Size.Height), 1, CanvasImageInterpolation.MultiSampleLinear);
@@ -311,6 +328,18 @@ namespace Physics.DragMovement.Rendering
 			};
 		}
 
+		private void DrawGameOverText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+		{
+			if (_game.State == GameState.Won)
+			{
+				args.DrawingSession.DrawText(Localizer.Instance.GetString("YouWin"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.DarkGreen, _gameOverTextFormat);
+			}
+			else if (_game.State == GameState.Missed)
+			{
+				args.DrawingSession.DrawText(Localizer.Instance.GetString("Missed"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.Red, _gameOverTextFormat);
+			}
+		}
+
 		private double GetAltitudeInWorld(double altitude)
 		{
 			return altitude + UnderwaterDepth;
@@ -319,6 +348,11 @@ namespace Physics.DragMovement.Rendering
 		private double GetLeftHorizontalBound(ICanvasAnimatedControl sender)
 		{
 			return sender.Size.Width / 2 - WorldWidth / 2 * _pixelsPerMeter;
+		}
+
+		private void StopHeliSound()
+		{
+			_helicopterSoundPlayback.Disposable = null;
 		}
 
 		public override void Dispose()

@@ -23,7 +23,7 @@ namespace Physics.DragMovement.Gamification
 
 		public bool IsStartVisible => State == GameState.NotStarted;
 
-		public bool IsDropVisible => State >= GameState.Started;
+		public bool IsDropVisible => State == GameState.Started || State == GameState.Dropped;
 
 		public bool IsDropEnabled => State != GameState.Dropped;
 
