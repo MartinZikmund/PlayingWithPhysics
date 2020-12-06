@@ -56,7 +56,8 @@
 							<Button
                                 Grid.Row="1"
                                 Margin="0,0,0,8"
-                                HorizontalAlignment="Stretch">
+                                HorizontalAlignment="Stretch"
+								Command="{x:Bind Model.NewGameCommand}">
 								<StackPanel Orientation="Horizontal" Spacing="8">
 									<Viewbox
                                         Width="16"
@@ -71,7 +72,7 @@
 								<TextBlock Text="{extensions:Localize Key=Inputs}" Style="{ThemeResource SubtitleTextBlockStyle}" />
 								<TextBlock>
 									<Run FontWeight="SemiBold" Text="{extensions:Localize Key=RaftSpeed}" /><Run Text=":" />
-									<Run Text="{x:Bind Model.CurrentGame.RaftSpeed, Mode=OneWay}" />
+									<Run Text="{x:Bind Model.CurrentGame.FormattedRaftSpeed, Mode=OneWay}" />
 									<Run Text="m/s" />
 								</TextBlock>
 								<TextBlock>
@@ -152,13 +153,7 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			<Grid x:Name="Letterbox" d:VerticalAlignment="Stretch">
-				<Grid.Background>
-					<LinearGradientBrush ColorInterpolationMode="ScRgbLinearInterpolation"  StartPoint="0.5,0" EndPoint="0.5,1">
-						<GradientStop Offset="0" Color="#0eb4cb" />
-						<GradientStop Offset="1" Color="#b8e9ef" />
-					</LinearGradientBrush>
-				</Grid.Background>
+			<Grid x:Name="Letterbox" d:VerticalAlignment="Stretch" Background="#000011">
 			</Grid>
 			<Grid HorizontalAlignment="Center" VerticalAlignment="Center" d:VerticalAlignment="Stretch" x:Name="CanvasWrapper">
 				<Windows10version1903:Grid.Shadow>
@@ -172,7 +167,7 @@
 					x:Name="inkToolbar"
 					HorizontalAlignment="Center"
 					VerticalAlignment="Top"
-					RequestedTheme="Light"					
+					RequestedTheme="Dark"					
 					TargetInkCanvas="{x:Bind InkCanvas}" />
 			</Grid>
 		</Grid>

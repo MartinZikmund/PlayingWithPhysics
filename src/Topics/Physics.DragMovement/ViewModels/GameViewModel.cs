@@ -39,11 +39,11 @@ namespace Physics.DragMovement.ViewModels
 		/// </summary>
 		public override bool PauseAfterChanges { get => false; set { } }
 
-		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(3, 15), _randomizer.Next(90, 180));
+		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180));
 
 		private async Task StartNewGameAsync()
 		{			
-			CurrentGame = new GameInfo(_randomizer.Next(3, 8), _randomizer.Next(100, 200));
+			CurrentGame = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180));
 			await _gameController.StartNewGameAsync(CurrentGame);
 		}		
 

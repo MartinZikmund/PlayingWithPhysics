@@ -13,10 +13,14 @@ namespace Physics.DragMovement.Rendering
 	public class GamificationCanvasController : DragMovementCanvasController
 	{
 		private const int WorldHeight = 220;
+		private const int WorldWidth = 220;
 		private const int HelicopterHeight = 15;
 		private const int RaftWidth = 40;
 		private const int UnderwaterDepth = 10;
 		private const int CargoWidth = 10;
+
+		private const int ParaschuteHalfOpenTime = 2;
+		private const int ParaschuteFullOpenTime = 5;
 
 		private readonly Random _randomizer = new Random();
 
@@ -25,13 +29,17 @@ namespace Physics.DragMovement.Rendering
 		private CanvasBitmap _backgroundImage;
 		private CanvasBitmap[] _helicopterImages;
 		private CanvasBitmap _raftImage;
-		private CanvasBitmap _paraschuteFullOpen;
+		private CanvasBitmap[] _paraschuteImages;
 		private double _pixelsPerMeter = 1;
 
 		private GameInfo _game = null;
 		private RaftPhysicsService _raftPhysicsService = null;
-		private MotionInfo _dropMotion;
-		private PhysicsService _dropPhysicsService;
+		private MotionInfo _closedParachuteDropInfo;
+		private MotionInfo _halfOpenParachuteDropInfo;
+		private MotionInfo _fullOpenParachuteDropInfo;
+		private PhysicsService _closedParachutePhysicsService;
+		private PhysicsService _halfOpenParachutePhysicsService;
+		private PhysicsService _fullOpenParachutePhysicsService;
 
 		public GamificationCanvasController(CanvasAnimatedControl canvasAnimatedControl, ISoundPlayer soundPlayer) : base(canvasAnimatedControl)
 		{
@@ -66,14 +74,14 @@ namespace Physics.DragMovement.Rendering
 
 			if (_game != null)
 			{
-				DrawHelicopter(sender, args);
-
 				DrawRaft(sender, args);
 
 				if (_game.State == GameState.Dropped)
 				{
 					DrawCargo(sender, args);
 				}
+
+				DrawHelicopter(sender, args);
 
 				DrawOverlay(sender, args);
 			}
@@ -114,11 +122,11 @@ namespace Physics.DragMovement.Rendering
 		{
 			_game.SetState(GameState.Dropped);
 			_game.DropTime = SimulationTime.TotalTime;
-			_dropMotion = MotionFactory.CreateFreeFall(
+			_closedParachuteDropInfo = MotionFactory.CreateFreeFall(
 				new Vector2(0, (float)_game.HelicopterAltitude),
 				1.3f,
 				_game.CargoMass,
-				1,
+				0.1f,
 				0,
 				0,
 				9.81f,
@@ -126,7 +134,35 @@ namespace Physics.DragMovement.Rendering
 				0f,
 				0f,
 				"#000000");
-			_dropPhysicsService = new PhysicsService(_dropMotion);
+			_closedParachutePhysicsService = new PhysicsService(_closedParachuteDropInfo);
+			var halfOpenHeight = _closedParachutePhysicsService.ComputeY(ParaschuteHalfOpenTime);
+			_halfOpenParachuteDropInfo = MotionFactory.CreateFreeFall(
+				new Vector2(0, (float)halfOpenHeight),
+				1.3f,
+				_game.CargoMass,
+				0.5f,
+				0,
+				0,
+				9.81f,
+				1.3f,
+				0f,
+				0f,
+				"#000000");
+			_halfOpenParachutePhysicsService = new PhysicsService(_halfOpenParachuteDropInfo);
+			var fullOpenHeight = _halfOpenParachutePhysicsService.ComputeY(ParaschuteFullOpenTime - ParaschuteHalfOpenTime);
+			_fullOpenParachuteDropInfo = MotionFactory.CreateFreeFall(
+				new Vector2(0, (float)fullOpenHeight),
+				1.3f,
+				_game.CargoMass,
+				1f,
+				0,
+				0,
+				9.81f,
+				1.3f,
+				0f,
+				0f,
+				"#000000");
+			_fullOpenParachutePhysicsService = new PhysicsService(_fullOpenParachuteDropInfo);
 		}
 
 		private void DrawHelicopter(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -151,7 +187,7 @@ namespace Physics.DragMovement.Rendering
 			var secondPart = (int)(args.Timing.TotalTime.TotalSeconds / 0.03);
 			var spriteIndex = secondPart % _helicopterImages.Length;
 
-			args.DrawingSession.DrawImage(_helicopterImages[spriteIndex], new Rect(left, helicopterHeight + swivel, actualWidth, actualHeight));
+			args.DrawingSession.DrawImage(_helicopterImages[spriteIndex], new Rect(left, helicopterHeight + swivel, actualWidth, actualHeight), new Rect(0, 0, _helicopterImages[0].Size.Width, _helicopterImages[0].Size.Height), 1, CanvasImageInterpolation.MultiSampleLinear);
 		}
 
 		private void DrawRaft(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -170,27 +206,44 @@ namespace Physics.DragMovement.Rendering
 			var leftInMeters = centerX - RaftWidth / 2;
 			var left = leftInMeters * _pixelsPerMeter;
 
-			var top = (WorldHeight - UnderwaterDepth) * _pixelsPerMeter - actualHeight;
+			var top = (WorldHeight - UnderwaterDepth + 3f) * _pixelsPerMeter - actualHeight;
 
-			args.DrawingSession.DrawImage(_raftImage, new Rect(left, top, actualWidth, actualHeight));
+			args.DrawingSession.DrawImage(_raftImage, new Rect(GetLeftHorizontalBound(sender) + left, top, actualWidth, actualHeight));
 		}
 
 		private void DrawCargo(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
 		{
-			if (_dropPhysicsService != null)
+			if (_closedParachutePhysicsService != null)
 			{
 				var dropTime = SimulationTime.TotalTime - _game.DropTime;
-				var y = _dropPhysicsService.ComputeY((float)dropTime.TotalSeconds);
-				var actualWidth = _pixelsPerMeter * CargoWidth;
-				var scale = actualWidth / _paraschuteFullOpen.Size.Width;
+				CanvasBitmap image;
+				float y;
+				if (dropTime.TotalSeconds <= ParaschuteHalfOpenTime)
+				{
+					image = _paraschuteImages[2];
+					y = _closedParachutePhysicsService.ComputeY((float)dropTime.TotalSeconds);
+				}
+				else if (dropTime.TotalSeconds <= ParaschuteFullOpenTime)
+				{
+					image = _paraschuteImages[1];
+					y = _halfOpenParachutePhysicsService.ComputeY((float)dropTime.TotalSeconds - ParaschuteHalfOpenTime);
+				}
+				else
+				{
+					image = _paraschuteImages[0];
+					y = _fullOpenParachutePhysicsService.ComputeY((float)dropTime.TotalSeconds - ParaschuteFullOpenTime);
+				}
 
-				var actualHeight = _paraschuteFullOpen.Size.Height * scale;
+				var actualWidth = _pixelsPerMeter * CargoWidth;
+				var scale = actualWidth / _paraschuteImages[0].Size.Width;
+
+				var actualHeight = _paraschuteImages[0].Size.Height * scale;
 
 				var left = sender.Size.Width / 2 - actualWidth / 2;
 
 				var top = (WorldHeight - GetAltitudeInWorld(y)) * _pixelsPerMeter - actualHeight;
 
-				args.DrawingSession.DrawImage(_paraschuteFullOpen, new Rect(left, top, actualWidth, actualHeight));
+				args.DrawingSession.DrawImage(image, new Rect(left, top, actualWidth, actualHeight), new Rect(0, 0, _paraschuteImages[0].Size.Width, _paraschuteImages[0].Size.Height), 1, CanvasImageInterpolation.MultiSampleLinear);
 			}
 		}
 
@@ -207,12 +260,22 @@ namespace Physics.DragMovement.Rendering
 				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vrtulnik3.png"))
 			};
 			_raftImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vor.png"));
-			_paraschuteFullOpen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak-01.png"));
+			_paraschuteImages = new[]
+			{
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak-01.png")),
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak-02.png")),
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak-03.png")),
+			};
 		}
 
 		private double GetAltitudeInWorld(double altitude)
 		{
 			return altitude + UnderwaterDepth;
+		}
+
+		private double GetLeftHorizontalBound(ICanvasAnimatedControl sender)
+		{
+			return sender.Size.Width / 2 - WorldWidth / 2 * _pixelsPerMeter;
 		}
 	}
 }

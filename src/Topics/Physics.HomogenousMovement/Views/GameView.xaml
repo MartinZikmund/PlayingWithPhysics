@@ -15,8 +15,8 @@
     xmlns:physicsServices="using:Physics.HomogenousMovement.PhysicsServices"
     xmlns:viewModels="using:Physics.HomogenousMovement.ViewModels"
     xmlns:views="using:Physics.Shared.Views"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-    x:Name="Page"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+	x:Name="Page"
     Background="{StaticResource AppThemeColor}"
     RequestedTheme="Dark"
     mc:Ignorable="d">
@@ -56,9 +56,9 @@
             <Grid.Background>
                 <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
             </Grid.Background>
-            <Windows10version1809:Grid.Shadow>
+            <Windows10version1903:Grid.Shadow>
                 <ThemeShadow />
-            </Windows10version1809:Grid.Shadow>
+            </Windows10version1903:Grid.Shadow>
             <Border Grid.Row="1">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Grid.Column="0" Orientation="Vertical">
@@ -295,6 +295,7 @@
                 TargetInkCanvas="{x:Bind InkCanvas}" />
             <sharedControls:SimulationControls
                 Grid.Row="1"
+				d:Visibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"

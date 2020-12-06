@@ -4,7 +4,7 @@ namespace Physics.DragMovement.Logic.PhysicsServices
 {
 	public class RaftPhysicsService
     {
-		private const int StartX = 50;
+		private const int StartX = 20;
 		private const int EndX = 220;
 
 		private readonly GameInfo _gameInfo;

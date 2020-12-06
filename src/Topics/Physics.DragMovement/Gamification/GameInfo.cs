@@ -17,6 +17,8 @@ namespace Physics.DragMovement.Gamification
 
 		public double RaftSpeed { get; }
 
+		public string FormattedRaftSpeed => RaftSpeed.ToString("0.0");
+
 		public double HelicopterAltitude { get; }
 
 		public bool IsStartVisible => State == GameState.NotStarted;
