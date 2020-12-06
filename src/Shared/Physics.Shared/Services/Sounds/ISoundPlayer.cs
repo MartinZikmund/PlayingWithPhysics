@@ -11,5 +11,7 @@ namespace Physics.Shared.Services.Sounds
         Task PreloadSoundAsync(Uri sound, string name);
 
         void PlaySound(string name, double volume = 1.0);
-    }
+
+		IDisposable PlayIndefinitely(string name, double volume = 1.0);
+	}
 }

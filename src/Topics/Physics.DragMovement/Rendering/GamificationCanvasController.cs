@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -25,6 +26,8 @@ namespace Physics.DragMovement.Rendering
 		private readonly Random _randomizer = new Random();
 
 		private readonly ISoundPlayer _soundPlayer;
+
+		private SerialDisposable _helicopterSoundPlayback = new SerialDisposable();
 
 		private CanvasBitmap _backgroundImage;
 		private CanvasBitmap[] _helicopterImages;
@@ -59,6 +62,30 @@ namespace Physics.DragMovement.Rendering
 			});
 		}
 
+		public override void Update(ICanvasAnimatedControl sender)
+		{
+			base.Update(sender);
+			if (_game != null)
+			{
+				if (_game.State == GameState.Dropped)
+				{
+					if (SimulationTime.TotalTime >= _game.HitTime)
+					{
+						if (_game.WillDropOnRaft)
+						{
+							_game.SetState(GameState.Won);
+							_soundPlayer.PlaySound("Thud", 0.5);
+						}
+						else
+						{
+							_game.SetState(GameState.Missed);
+							_soundPlayer.PlaySound("Splash", 1);
+						}
+					}
+				}
+			}
+		}
+
 		public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
 		{
 			_pixelsPerMeter = sender.Size.Height / WorldHeight;
@@ -76,9 +103,12 @@ namespace Physics.DragMovement.Rendering
 			{
 				DrawRaft(sender, args);
 
-				if (_game.State == GameState.Dropped)
+				if (_game.State == GameState.Dropped || _game.State == GameState.Won)
 				{
-					DrawCargo(sender, args);
+					if (SimulationTime.TotalTime < _game.HitTime)
+					{
+						DrawCargo(sender, args);
+					}
 				}
 
 				DrawHelicopter(sender, args);
@@ -107,6 +137,10 @@ namespace Physics.DragMovement.Rendering
 			}
 
 			_game.SetState(GameState.Started);
+			if (_helicopterSoundPlayback.Disposable == null)
+			{
+				_helicopterSoundPlayback.Disposable = _soundPlayer.PlayIndefinitely("Heli", 0.5);
+			}
 			Reset();
 			Play();
 		}
@@ -120,7 +154,6 @@ namespace Physics.DragMovement.Rendering
 
 		internal void DropCargo()
 		{
-			_game.SetState(GameState.Dropped);
 			_game.DropTime = SimulationTime.TotalTime;
 			_closedParachuteDropInfo = MotionFactory.CreateFreeFall(
 				new Vector2(0, (float)_game.HelicopterAltitude),
@@ -163,6 +196,14 @@ namespace Physics.DragMovement.Rendering
 				0f,
 				"#000000");
 			_fullOpenParachutePhysicsService = new PhysicsService(_fullOpenParachuteDropInfo);
+
+			var hitTime = _fullOpenParachutePhysicsService.MaxT + ParaschuteFullOpenTime;
+			_game.HitTime = TimeSpan.FromSeconds(_game.DropTime.TotalSeconds + hitTime);
+			var raftPosition = _raftPhysicsService.GetX(_game.HitTime.TotalSeconds);
+			_game.WillDropOnRaft =
+				raftPosition >= (WorldWidth / 2 - RaftWidth / 2) &&
+				raftPosition <= (WorldWidth / 2 + RaftWidth / 2);
+			_game.SetState(GameState.Dropped);
 		}
 
 		private void DrawHelicopter(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -252,6 +293,8 @@ namespace Physics.DragMovement.Rendering
 			await base.CreateResourcesAsync(sender);
 
 			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/Splash.wav", UriKind.Absolute), "Splash");
+			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/Thud.wav", UriKind.Absolute), "Thud");
+			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/Heli.mp3", UriKind.Absolute), "Heli");
 
 			_backgroundImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/jezero.jpg"));
 			_helicopterImages = new[]{
@@ -276,6 +319,12 @@ namespace Physics.DragMovement.Rendering
 		private double GetLeftHorizontalBound(ICanvasAnimatedControl sender)
 		{
 			return sender.Size.Width / 2 - WorldWidth / 2 * _pixelsPerMeter;
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			_helicopterSoundPlayback.Disposable = null;
 		}
 	}
 }

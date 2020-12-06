@@ -31,6 +31,10 @@ namespace Physics.DragMovement.Gamification
 
 		public TimeSpan DropTime { get; set; }
 
+		public TimeSpan HitTime { get; set; }
+
+		public bool WillDropOnRaft { get; set; }
+
 		public int CargoMass
 		{
 			get => _cargoMass;

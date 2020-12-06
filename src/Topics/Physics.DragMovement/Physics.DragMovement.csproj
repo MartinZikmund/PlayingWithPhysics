@@ -167,6 +167,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\Heli.mp3" />
+    <Content Include="Assets\Game\Thud.wav" />
     <Content Include="Assets\Game\padak-01.png" />
     <Content Include="Assets\Game\padak-02.png" />
     <Content Include="Assets\Game\padak-03.png" />
