@@ -5,6 +5,7 @@ using SkiaSharp;
 using Physics.Shared.UI.Rendering.Skia.Infrastructure;
 using System.Threading;
 using System;
+using System.Threading.Tasks;
 
 namespace Physics.Shared.UI.Rendering.Skia
 {
@@ -85,6 +86,18 @@ namespace Physics.Shared.UI.Rendering.Skia
             _renderLoop.Start(onUpdate);
             Initialized?.Invoke(this, e.Surface);
         }
+
+		public async Task RunOnRenderThreadAsync(Action action)
+		{
+			if (Dispatcher.HasThreadAccess)
+			{
+				action();
+			}
+			else
+			{
+				await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, () => action());
+			}
+		}
 
         /// <summary>
         /// Platform-specific initialization steps.

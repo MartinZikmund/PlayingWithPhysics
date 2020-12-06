@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SkiaSharp;
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -18,5 +19,7 @@ namespace Physics.Shared.UI.Rendering.Skia
 		CoreDispatcher Dispatcher { get; }
 
 		SKSize ScaledSize { get; }
+
+		Task RunOnRenderThreadAsync(Action action);
 	}
 }

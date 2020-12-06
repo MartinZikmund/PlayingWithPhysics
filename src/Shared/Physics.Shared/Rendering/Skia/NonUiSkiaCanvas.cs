@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using SkiaSharp;
 using SKNativeView = SkiaSharp.Views.UWP.SKSwapChainPanel;
 
@@ -6,11 +8,24 @@ namespace Physics.Shared.UI.Rendering.Skia
 {
 	public class NonUiSkiaCanvas : SKNativeView, ISkiaCanvas
 	{
+		private ConcurrentQueue<Action> _waitingActions = new ConcurrentQueue<Action>();
+
 		public NonUiSkiaCanvas()
 		{
 			EnableRenderLoop = true;
 			DrawInBackground = true;
 			PaintSurface += OnNativeControlInitialized;
+		}
+
+		public async Task RunOnRenderThreadAsync(Action action)
+		{
+			var taskCompletionSource = new TaskCompletionSource<bool>();
+			_waitingActions.Enqueue(() =>
+			{
+				action();
+				taskCompletionSource.SetResult(true);
+			});
+			await taskCompletionSource.Task;
 		}
 
 		private void OnNativeControlInitialized(object sender, SkiaSharp.Views.UWP.SKPaintGLSurfaceEventArgs e)
@@ -22,6 +37,12 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 		private void OnRendering(object sender, SkiaSharp.Views.UWP.SKPaintGLSurfaceEventArgs e)
 		{
+			// Run waiting actions on rendering thread
+			while(_waitingActions.TryDequeue(out var action))
+			{
+				action();
+			}
+
 			Update?.Invoke(this, EventArgs.Empty);
 			var surface = e.Surface;
 			var canvas = surface.Canvas;
