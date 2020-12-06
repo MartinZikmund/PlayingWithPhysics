@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Nito.Disposables;
 using Windows.Media.Audio;
 using Windows.Media.Render;
 using Windows.Storage;
@@ -44,6 +45,16 @@ namespace Physics.Shared.Services.Sounds
             }
         }
 
+		public IDisposable PlayIndefinitely(string name, double volume = 1.0)
+		{
+			if (_fileInputs.TryGetValue(name, out var node))
+			{
+				PlayAudioNodeIndefinitely(node, volume);
+				return Disposable.Create(() => node.Stop());
+			}
+			return NoopDisposable.Instance;
+		}
+
         /// <summary>
         /// Retrieves audio file input node
         /// </summary>
@@ -71,7 +82,7 @@ namespace Physics.Shared.Services.Sounds
         {
             try
             {
-                audio.OutgoingGain = volume;
+                audio.OutgoingGain = volume;				
                 audio.Seek(TimeSpan.Zero);
                 audio.Start();
                 Debug.WriteLine("Audio played");
@@ -82,11 +93,31 @@ namespace Physics.Shared.Services.Sounds
             }
         }
 
-        /// <summary>
-        /// Creates audio graph component.
-        /// </summary>
-        /// <returns>Task.</returns>
-        private async Task CreateAudioGraphAsync()
+
+		/// <summary>
+		/// Plays audio node
+		/// </summary>
+		private void PlayAudioNodeIndefinitely(AudioFileInputNode audio, double volume)
+		{
+			try
+			{
+				audio.OutgoingGain = volume;
+				audio.LoopCount = null;
+				audio.Seek(TimeSpan.Zero);
+				audio.Start();
+				Debug.WriteLine("Audio played");
+			}
+			catch (Exception)
+			{
+				//ignored
+			}
+		}
+
+		/// <summary>
+		/// Creates audio graph component.
+		/// </summary>
+		/// <returns>Task.</returns>
+		private async Task CreateAudioGraphAsync()
         {
             var settings = new AudioGraphSettings(AudioRenderCategory.Media);
             var result = await AudioGraph.CreateAsync(settings);

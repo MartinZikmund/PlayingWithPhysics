@@ -292,7 +292,7 @@
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
                     Maximum="90"
-                    Minimum="0"
+                    Minimum="-90"
                     Value="{x:Bind Model.Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <!-- Gravity -->

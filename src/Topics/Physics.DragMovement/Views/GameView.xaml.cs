@@ -53,11 +53,16 @@ namespace Physics.DragMovement.Views
 
 		private void UpdateCanvasSize()
 		{
-			var squareSize = Math.Min(SecondPane.ActualWidth, SecondPane.ActualHeight);
-			if (squareSize > 100)
+			var aspectRatio = SecondPane.ActualWidth / SecondPane.ActualHeight;
+			if (aspectRatio < 1)
 			{
-				CanvasWrapper.Width = squareSize;
-				CanvasWrapper.Height = squareSize;
+				CanvasWrapper.Width = SecondPane.ActualWidth;
+				CanvasWrapper.Height = SecondPane.ActualWidth;
+			}
+			else
+			{
+				CanvasWrapper.Width = SecondPane.ActualWidth;
+				CanvasWrapper.Height = SecondPane.ActualHeight;
 			}
 		}
 

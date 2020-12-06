@@ -21,6 +21,8 @@ namespace Physics.Shared.UI.Rendering
             Top = top;
         }
 
+		public static SimulationBounds Empty { get; } = new SimulationBounds(0, 0, 0, 0);
+
         public float Left { get; }
 
         public float Bottom { get; }

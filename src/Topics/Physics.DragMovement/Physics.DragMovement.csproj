@@ -173,7 +173,9 @@
     <Content Include="Assets\Game\leknin_1.png" />
     <Content Include="Assets\Game\leknin_2.png" />
     <Content Include="Assets\Game\vor.png" />
-    <Content Include="Assets\Game\vrtulnik.png" />
+    <Content Include="Assets\Game\vrtulnik1.png" />
+    <Content Include="Assets\Game\vrtulnik2.png" />
+    <Content Include="Assets\Game\vrtulnik3.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />

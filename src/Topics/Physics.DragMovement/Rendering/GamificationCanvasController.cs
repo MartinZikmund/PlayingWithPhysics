@@ -10,8 +10,8 @@ using Windows.Foundation;
 
 namespace Physics.DragMovement.Rendering
 {
-    public class GamificationCanvasController : DragMovementCanvasController
-    {
+	public class GamificationCanvasController : DragMovementCanvasController
+	{
 		private const int WorldHeight = 220;
 		private const int HelicopterHeight = 15;
 		private const int RaftWidth = 40;
@@ -20,10 +20,10 @@ namespace Physics.DragMovement.Rendering
 
 		private readonly Random _randomizer = new Random();
 
-        private readonly ISoundPlayer _soundPlayer;
+		private readonly ISoundPlayer _soundPlayer;
 
 		private CanvasBitmap _backgroundImage;
-		private CanvasBitmap _helicopterImage;
+		private CanvasBitmap[] _helicopterImages;
 		private CanvasBitmap _raftImage;
 		private CanvasBitmap _paraschuteFullOpen;
 		private double _pixelsPerMeter = 1;
@@ -34,9 +34,9 @@ namespace Physics.DragMovement.Rendering
 		private PhysicsService _dropPhysicsService;
 
 		public GamificationCanvasController(CanvasAnimatedControl canvasAnimatedControl, ISoundPlayer soundPlayer) : base(canvasAnimatedControl)
-        {
-            _soundPlayer = soundPlayer;
-        }
+		{
+			_soundPlayer = soundPlayer;
+		}
 
 		internal async Task StartNewGameAsync(GameInfo game)
 		{
@@ -48,7 +48,7 @@ namespace Physics.DragMovement.Rendering
 				_raftPhysicsService = new RaftPhysicsService(game);
 				Pause();
 				CalculateMaxima();
-			});			
+			});
 		}
 
 		public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -64,23 +64,31 @@ namespace Physics.DragMovement.Rendering
 
 			DrawBackground(sender, args);
 
-			DrawHelicopter(sender, args);
-
-			DrawRaft(sender, args);
-
-			if (_game.State == GameState.Dropped)
+			if (_game != null)
 			{
-				DrawCargo(sender, args);
-			}
+				DrawHelicopter(sender, args);
 
-			DrawOverlay(sender, args);
+				DrawRaft(sender, args);
+
+				if (_game.State == GameState.Dropped)
+				{
+					DrawCargo(sender, args);
+				}
+
+				DrawOverlay(sender, args);
+			}
 		}
 
 		protected override void DrawBackground(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
 		{
 			args.DrawingSession.Clear(Windows.UI.Color.FromArgb(255, 68, 197, 214));
 
-			args.DrawingSession.DrawImage(_backgroundImage, new Rect(0, 0, sender.Size.Height, sender.Size.Height));
+			var actualWidth = sender.Size.Width;
+
+			var scale = actualWidth / _backgroundImage.Size.Width;
+			var actualHeight = scale * _backgroundImage.Size.Height;
+
+			args.DrawingSession.DrawImage(_backgroundImage, new Rect(0, sender.Size.Height - actualHeight, actualWidth, actualHeight));
 		}
 
 		internal void StartAttempt()
@@ -97,7 +105,7 @@ namespace Physics.DragMovement.Rendering
 
 		internal void RestartAttempt()
 		{
-			_game.SetState(GameState.NotStarted);			
+			_game.SetState(GameState.NotStarted);
 			Reset();
 			Pause();
 		}
@@ -124,9 +132,9 @@ namespace Physics.DragMovement.Rendering
 		private void DrawHelicopter(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
 		{
 			var actualHeight = _pixelsPerMeter * HelicopterHeight;
-			var scale = actualHeight / _helicopterImage.Size.Height;
+			var scale = actualHeight / _helicopterImages[0].Size.Height;
 
-			var actualWidth = _helicopterImage.Size.Width * scale;
+			var actualWidth = _helicopterImages[0].Size.Width * scale;
 
 			var centerX = sender.Size.Width / 2;
 			var left = centerX - actualWidth / 2;
@@ -140,7 +148,10 @@ namespace Physics.DragMovement.Rendering
 
 			var helicopterHeight = (WorldHeight - GetAltitudeInWorld(_game.HelicopterAltitude)) * _pixelsPerMeter - actualHeight;
 
-			args.DrawingSession.DrawImage(_helicopterImage, new Rect(left, helicopterHeight + swivel, actualWidth, actualHeight));
+			var secondPart = (int)(args.Timing.TotalTime.TotalSeconds / 0.03);
+			var spriteIndex = secondPart % _helicopterImages.Length;
+
+			args.DrawingSession.DrawImage(_helicopterImages[spriteIndex], new Rect(left, helicopterHeight + swivel, actualWidth, actualHeight));
 		}
 
 		private void DrawRaft(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -153,7 +164,7 @@ namespace Physics.DragMovement.Rendering
 			var actualWidth = _pixelsPerMeter * RaftWidth;
 			var scale = actualWidth / _raftImage.Size.Width;
 
-			var actualHeight = _helicopterImage.Size.Height * scale;
+			var actualHeight = _helicopterImages[0].Size.Height * scale;
 
 			var centerX = _raftPhysicsService.GetX(SimulationTime.TotalTime.TotalSeconds);
 			var leftInMeters = centerX - RaftWidth / 2;
@@ -175,7 +186,7 @@ namespace Physics.DragMovement.Rendering
 
 				var actualHeight = _paraschuteFullOpen.Size.Height * scale;
 
-				var left = sender.Size.Width / 2 - actualWidth / 2;				
+				var left = sender.Size.Width / 2 - actualWidth / 2;
 
 				var top = (WorldHeight - GetAltitudeInWorld(y)) * _pixelsPerMeter - actualHeight;
 
@@ -186,11 +197,15 @@ namespace Physics.DragMovement.Rendering
 		public override async Task CreateResourcesAsync(CanvasAnimatedControl sender)
 		{
 			await base.CreateResourcesAsync(sender);
-						
+
 			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/Splash.wav", UriKind.Absolute), "Splash");
 
 			_backgroundImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/jezero.jpg"));
-			_helicopterImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vrtulnik.png"));
+			_helicopterImages = new[]{
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vrtulnik1.png")),
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vrtulnik2.png")),
+				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vrtulnik3.png"))
+			};
 			_raftImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/vor.png"));
 			_paraschuteFullOpen = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak-01.png"));
 		}
