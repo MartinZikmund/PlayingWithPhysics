@@ -237,7 +237,7 @@
                     Visibility="{x:Bind Model.IsMassInputEnabled, Mode=TwoWay}"
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
-                    Maximum="100000"
+                    Maximum="200000"
                     Minimum="0.0001"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
@@ -256,7 +256,7 @@
                     Grid.Column="1"
                     Visibility="{x:Bind Model.IsAreaInputEnabled, Mode=TwoWay}"
                     VerticalAlignment="Center"
-                    Maximum="50"
+                    Maximum="1000"
                     Minimum="0.0001"
                     Value="{x:Bind Model.Area, Mode=TwoWay}" />
 
