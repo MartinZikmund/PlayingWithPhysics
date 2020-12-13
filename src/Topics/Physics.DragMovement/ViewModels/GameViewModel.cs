@@ -39,11 +39,33 @@ namespace Physics.DragMovement.ViewModels
 		/// </summary>
 		public override bool PauseAfterChanges { get => false; set { } }
 
-		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180));
+		private bool _areSoundsEnabled = true;
+
+		public bool AreSoundsEnabled
+		{
+			get
+			{
+				return _areSoundsEnabled;
+			}
+
+			set
+			{
+				SetProperty(ref _areSoundsEnabled, value);
+				if (CurrentGame != null)
+				{
+					CurrentGame.AreSoundsEnabled = value;
+				}
+			}
+		}
+
+		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180)) { AreSoundsEnabled = true };
 
 		private async Task StartNewGameAsync()
-		{			
-			CurrentGame = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180));
+		{
+			CurrentGame = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180))
+			{
+				AreSoundsEnabled = _areSoundsEnabled
+			};
 			await _gameController.StartNewGameAsync(CurrentGame);
 		}		
 

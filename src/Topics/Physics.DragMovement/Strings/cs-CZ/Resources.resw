@@ -137,9 +137,6 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="Area" xml:space="preserve">
     <value>Plocha průřezu tělesa</value>
   </data>
-  <data name="ArgumentExceptionErrorMessage" xml:space="preserve">
-    <value>Chybný formát vstupních hodnot</value>
-  </data>
   <data name="Ball" xml:space="preserve">
     <value>koule</value>
   </data>
@@ -152,20 +149,14 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="CastleDistance" xml:space="preserve">
     <value>Vzdálenost hradu</value>
   </data>
-  <data name="ChooseColor" xml:space="preserve">
-    <value>Vybrat barvu</value>
-  </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>Zkopírovat do schránky</value>
-  </data>
   <data name="Density" xml:space="preserve">
     <value>Hustota</value>
   </data>
   <data name="Diameter" xml:space="preserve">
     <value>Průměr</value>
   </data>
-  <data name="Duplicate" xml:space="preserve">
-    <value>Zkopírovat</value>
+  <data name="Drop" xml:space="preserve">
+    <value>Shodit</value>
   </data>
   <data name="EditMotion" xml:space="preserve">
     <value>Upravit vrh</value>
@@ -287,11 +278,17 @@ Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využ�
   <data name="Speed" xml:space="preserve">
     <value>Počáteční rychlost</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="ThinLayer" xml:space="preserve">
     <value>tenká deska</value>
   </data>
   <data name="TopicName" xml:space="preserve">
     <value>Pohyby tělesa v odporujícím prostředí</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Zkusit znovu</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Verze</value>

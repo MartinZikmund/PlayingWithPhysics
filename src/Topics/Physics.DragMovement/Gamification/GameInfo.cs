@@ -29,11 +29,15 @@ namespace Physics.DragMovement.Gamification
 
 		public bool IsRestartEnabled => State != GameState.NotStarted;
 
+		public bool IsWeightChangeEnabled => State <= GameState.Started;
+
 		public TimeSpan DropTime { get; set; }
 
 		public TimeSpan HitTime { get; set; }
 
 		public bool WillDropOnRaft { get; set; }
+
+		public bool AreSoundsEnabled { get; set; }
 
 		public int CargoMass
 		{
@@ -52,6 +56,7 @@ namespace Physics.DragMovement.Gamification
 			RaisePropertyChanged(nameof(IsDropVisible));
 			RaisePropertyChanged(nameof(IsDropEnabled));
 			RaisePropertyChanged(nameof(IsRestartEnabled));
+			RaisePropertyChanged(nameof(IsWeightChangeEnabled));
 		}
 	}
 }

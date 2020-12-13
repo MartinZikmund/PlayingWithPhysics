@@ -57,8 +57,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ImageListItemTemplate" x:DataType="contents:ImageContent">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Style="{StaticResource ListItemStackPanelStyle}">
-            <SymbolIcon Symbol="Camera" VerticalAlignment="Center" />
+        <StackPanel
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Style="{StaticResource ListItemStackPanelStyle}">
+            <SymbolIcon VerticalAlignment="Center" Symbol="Camera" />
             <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
         </StackPanel>
     </DataTemplate>
@@ -92,20 +95,20 @@
 
     <local:ContentViewerDataTemplateSelector
         x:Key="ContentViewerDataTemplateSelector"
-        ImageViewer="{StaticResource ImageViewerTemplate}"
-        LaTeXViewer="{StaticResource LaTeXViewerTemplate}"
         HtmlViewer="{StaticResource HtmlViewerTemplate}"
+        ImageViewer="{StaticResource ImageViewerTemplate}"
         InputQuestion="{StaticResource InputQuestionViewerTemplate}"
-        KnowledgeCheckViewer="{StaticResource KnowledgeCheckViewerTemplate}" />
+        KnowledgeCheckViewer="{StaticResource KnowledgeCheckViewerTemplate}"
+        LaTeXViewer="{StaticResource LaTeXViewerTemplate}" />
 
     <local:ChapterListDataTemplateSelector
         x:Key="ChapterListDataTemplateSelector"
         AdditionalResources="{StaticResource AdditionalResourcesListItemTemplate}"
+        Image="{StaticResource ImageListItemTemplate}"
         KnowledgeCheck="{StaticResource KnowledgeCheckListItemTemplate}"
         Literature="{StaticResource LiteratureListItemTemplate}"
         RealWorld="{StaticResource RealWorldListItemTemplate}"
         Tasks="{StaticResource TasksListItemTemplate}"
-        Image="{StaticResource ImageListItemTemplate}"
         Text="{StaticResource TextListItemTemplate}"
         ToRemember="{StaticResource ToRememberListItemTemplate}" />
 </ResourceDictionary>

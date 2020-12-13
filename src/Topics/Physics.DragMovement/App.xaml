@@ -13,8 +13,8 @@
                 <resources:SelfStudyResources />
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="AppThemeColor">#6b97ad</Color>
-			<Color x:Key="AppTitleBarColor">#0D2B4A</Color>
-			<Color x:Key="DarkAppThemeColor">#124E87</Color>
+            <Color x:Key="AppTitleBarColor">#0D2B4A</Color>
+            <Color x:Key="DarkAppThemeColor">#124E87</Color>
         </ResourceDictionary>
     </local:PhysicsApp.Resources>
 </local:PhysicsApp>
