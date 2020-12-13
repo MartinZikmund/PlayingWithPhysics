@@ -24,6 +24,8 @@ namespace Physics.DragMovement.Rendering
 		private const int UnderwaterDepth = 10;
 		private const int CargoWidth = 10;
 
+		private const float CargoArea = 2;
+
 		private readonly float[] _parachuteOpenTimes = new float[]
 		{
 			//0 - 1 - use image 0, 
@@ -193,19 +195,20 @@ namespace Physics.DragMovement.Rendering
 			_parachuteStateMotionInfos = new MotionInfo[_parachuteOpenTimes.Length];
 			_parachutePhysicsServices = new PhysicsService[_parachuteOpenTimes.Length];
 
-			var partialArea = 1.0f / _parachuteOpenTimes.Length;
+			var partialArea = CargoArea / _parachuteOpenTimes.Length;
 			var currentHeight = (float)_game.HelicopterAltitude;
+			var startSpeed = 0f;
 			var previousTime = 0f;
 			for (int parachuteStateId = 0; parachuteStateId < _parachuteOpenTimes.Length; parachuteStateId++)
 			{
 				var currentArea = (parachuteStateId + 1) * partialArea;
-				var motionInfo = MotionFactory.CreateFreeFall(
+				var motionInfo = MotionFactory.CreateProjectileMotion(
 					new Vector2(0, currentHeight),
 					1.3f,
 					_game.CargoMass,
 					currentArea,
-					0,
-					0,
+					startSpeed,
+					-90,
 					9.81f,
 					1.3f,
 					0f,
@@ -216,6 +219,7 @@ namespace Physics.DragMovement.Rendering
 				_parachutePhysicsServices[parachuteStateId] = physicsService;
 				var fallTime = _parachuteOpenTimes[parachuteStateId] - previousTime;
 				currentHeight = physicsService.ComputeY(fallTime);
+				startSpeed = physicsService.ComputeV(fallTime);
 				previousTime = _parachuteOpenTimes[parachuteStateId];
 			}
 
@@ -223,8 +227,8 @@ namespace Physics.DragMovement.Rendering
 			_game.HitTime = TimeSpan.FromSeconds(_game.DropTime.TotalSeconds + hitTime);
 			var raftPosition = _raftPhysicsService.GetX(_game.HitTime.TotalSeconds);
 			_game.WillDropOnRaft =
-				raftPosition >= (WorldWidth / 2 - RaftWidth * 0.45) &&
-				raftPosition <= (WorldWidth / 2 + RaftWidth * 0.45);
+				raftPosition >= (WorldWidth / 2 - RaftWidth * 0.36) &&
+				raftPosition <= (WorldWidth / 2 + RaftWidth * 0.36);
 			_game.SetState(GameState.Dropped);
 		}
 

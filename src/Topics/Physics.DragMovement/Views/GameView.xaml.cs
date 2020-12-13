@@ -4,6 +4,7 @@ using Physics.DragMovement.Rendering;
 using Physics.DragMovement.ViewInteractions;
 using Physics.DragMovement.ViewModels;
 using Physics.Shared.Services.Sounds;
+using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.Views;
@@ -68,6 +69,7 @@ namespace Physics.DragMovement.Views
 
 		private void SetupNumberBoxFormattings()
 		{
+			CargoMassNumberBox.SetupFormatting(increment: 15, smallChange: 15);
 			//GravityNumberBox.SetupFormatting(fractionDigits: 2);
 			//V0NumberBox.SetupFormatting(fractionDigits: 2);
 			//AngleNumberBox.SetupFormatting(fractionDigits: 2);

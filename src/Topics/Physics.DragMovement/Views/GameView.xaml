@@ -95,9 +95,10 @@
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <controls:NumberBox
+                                        x:Name="CargoMassNumberBox"
                                         IsEnabled="{x:Bind Model.CurrentGame.IsWeightChangeEnabled, Mode=OneWay}"
-                                        Maximum="3"
-                                        Minimum="1"
+                                        Maximum="45"
+                                        Minimum="15"
                                         SpinButtonPlacementMode="Inline"
                                         Value="{x:Bind Model.CurrentGame.CargoMass, Mode=TwoWay}" />
                                     <TextBlock VerticalAlignment="Center" Text="kg" />

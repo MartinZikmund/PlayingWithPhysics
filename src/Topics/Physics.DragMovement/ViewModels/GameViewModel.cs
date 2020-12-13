@@ -58,11 +58,11 @@ namespace Physics.DragMovement.ViewModels
 			}
 		}
 
-		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180)) { AreSoundsEnabled = true };
+		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(25, 40) / 10f, _randomizer.Next(100, 180)) { AreSoundsEnabled = true };
 
 		private async Task StartNewGameAsync()
 		{
-			CurrentGame = new GameInfo(_randomizer.Next(10, 25) / 10f, _randomizer.Next(100, 180))
+			CurrentGame = new GameInfo(_randomizer.Next(25, 40) / 10f, _randomizer.Next(100, 180))
 			{
 				AreSoundsEnabled = _areSoundsEnabled
 			};
@@ -84,8 +84,6 @@ namespace Physics.DragMovement.ViewModels
 
 		public ICommand NewGameCommand => GetOrCreateAsyncCommand(StartNewGameAsync);
 
-		public ICommand FireCommand => GetOrCreateAsyncCommand(FireAsync);
-
 		public void Start()
 		{
 			_gameController.StartAttempt();
@@ -99,30 +97,6 @@ namespace Physics.DragMovement.ViewModels
 		public void Restart()
 		{
 			_gameController.RestartAttempt();			
-		}
-
-		private async Task FireAsync()
-		{
-			//Motions.Clear();
-
-			//var shootSourceRelativeToCannonWidth = 0.9f;
-			////Calculate origin
-			//var cannonOperationalLength = (shootSourceRelativeToCannonWidth - GamificationCanvasController.CannonRotationPointRelativeToWidth) * GamificationCanvasController.CannonWidthInMeters;
-			//var sourceHeight = Math.Sin(MathHelpers.DegreesToRadians(Angle)) * cannonOperationalLength + GamificationCanvasController.CannonRelativeHeightToStand * GamificationCanvasController.CannonStandHeightInMeters;
-			//var sourceWidth = Math.Cos(MathHelpers.DegreesToRadians(Angle)) * cannonOperationalLength;
-
-			//var projectileMotion = MotionFactory.CreateProjectileMotion(
-			//		new Vector2((float)sourceWidth, (float)sourceHeight),
-			//		10,
-			//		0,
-			//		V0,
-			//		Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex((Color)Application.Current.Resources["AppThemeColor"]),
-			//		Angle,
-			//		Gravity);
-			//Motions.Add(new MotionInfoViewModel(projectileMotion) { Label = ResourceLoader.GetForCurrentView().GetString("Fire") });
-
-			//SimulationPlayback.PlayCommand.Execute(null);
-			//await StartSimulationAsync();
 		}
 	}
 }

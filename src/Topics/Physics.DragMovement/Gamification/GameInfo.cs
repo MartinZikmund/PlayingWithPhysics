@@ -5,7 +5,7 @@ namespace Physics.DragMovement.Gamification
 {
 	public class GameInfo : MvxNotifyPropertyChanged
 	{
-		private int _cargoMass = 1;
+		private int _cargoMass = 15;
 
 		public GameInfo(double raftSpeed, double helicopterHeight)
 		{
@@ -44,7 +44,7 @@ namespace Physics.DragMovement.Gamification
 			get => _cargoMass;
 			set
 			{
-				value = Math.Clamp(value, 1, 3);
+				value = Math.Clamp(value, 15, 45);
 				SetProperty(ref _cargoMass, value);
 			}
 		}
