@@ -123,6 +123,9 @@
   <data name="Amplitude" xml:space="preserve">
     <value>Amplituda</value>
   </data>
+  <data name="AngularSpeed" xml:space="preserve">
+    <value>Úhlová rychlost</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Složením několika harmonických kmitání vzniká kmitání, které již nemusí být harmonické.
 Program umožní pomocí principu superpozice složit harmonická kmitání, která budou zadána úhlovou rychlostí. Výsledkem bude časový diagram složeného kmitání. V časové diagramu bude možné krokovat a zobrazit jednotlivé výchylky i výslednou výchylku jako součet výchylek.
@@ -146,13 +149,13 @@ Grafika: Petr Weinlich</value>
   <data name="Oscillation" xml:space="preserve">
     <value>Kmitání</value>
   </data>
-  <data name="Phase" xml:space="preserve">
-    <value>Fáze</value>
-  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Skládání kmitání</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Zobrazit tabulku složeného kmitání</value>
+  </data>
+  <data name="StartPhase" xml:space="preserve">
+    <value>Počáteční fáze</value>
   </data>
 </root>

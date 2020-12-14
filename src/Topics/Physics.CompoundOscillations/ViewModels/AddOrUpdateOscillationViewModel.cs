@@ -60,6 +60,10 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public float Frequency { get; set; } = 1;
 
+		public float AngularSpeedInRad { get; set; } = 1;
+
+		public float AngularSpeedInDeg { get; set; } = 1;
+
 		public float Amplitude { get; set; } = 1;
 
 		public float Phase { get; set; } = 0;

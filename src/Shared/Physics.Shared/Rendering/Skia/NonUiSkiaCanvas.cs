@@ -12,9 +12,13 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 		public NonUiSkiaCanvas()
 		{
+			System.Diagnostics.Debug.WriteLine("Creating skia canvas");
+
 			EnableRenderLoop = true;
 			DrawInBackground = true;
 			PaintSurface += OnNativeControlInitialized;
+
+			System.Diagnostics.Debug.WriteLine("Finished skia canvas");
 		}
 
 		public async Task RunOnRenderThreadAsync(Action action)
@@ -54,7 +58,7 @@ namespace Physics.Shared.UI.Rendering.Skia
 			canvas.ResetMatrix();
 			canvas.SetMatrix(worldMatrix);
 			Draw?.Invoke(this, e.Surface);
-		}
+		}		
 
 		public SKSize ScaledSize => new SKSize(CanvasSize.Width / (float)ContentsScale, CanvasSize.Height / (float)ContentsScale);
 

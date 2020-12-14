@@ -24,9 +24,9 @@ namespace Physics.CompoundOscillations.Logic.Tests
 
 		private void VerifySingleOscillation(double amplitude, double frequence, double phase, double time, double expectedY)
 		{
-			var oscillationInfo = new OscillationInfo("Test", amplitude, frequence, phase, "#000000");
+			var oscillationInfo = new OscillationInfo("Test", (float)amplitude, (float)frequence, (float)phase, "#000000");
 			var physicsService = new OscillationPhysicsService(oscillationInfo);
-			var actualY = physicsService.CalculateY(time);
+			var actualY = physicsService.CalculateY((float)time);
 			Assert.Equal(expectedY, actualY, 4);
 		}
 	}
