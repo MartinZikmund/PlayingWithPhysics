@@ -18,10 +18,10 @@
         <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateOscillationDialog" />
         <GridLength x:Key="InputColumnWidth">240</GridLength>
     </ContentDialog.Resources>
-    <Grid ColumnSpacing="8">
+    <Grid Width="540" ColumnSpacing="8">
         <Grid.Resources>
             <Style TargetType="controls:NumberBox">
-                <Setter Property="SpinButtonPlacementMode" Value="Inline" />
+                <Setter Property="SpinButtonPlacementMode" Value="Compact" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Margin" Value="0,0,0,4" />
@@ -91,8 +91,8 @@
 
             <TextBlock Grid.Row="0" Grid.Column="1">
                 <Run Text="{extensions:Localize Key=AngularSpeed}" />
-                <Run Text="(°.s)" />
-            </TextBlock>
+                <Run Text="(°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text=")" />
+			</TextBlock>
             <controls:NumberBox
                 x:Name="AngularSpeedInDegNumberBox"
                 Grid.Row="1"
@@ -101,7 +101,7 @@
 
             <TextBlock Grid.Row="0" Grid.Column="2">
                 <Run Text="{extensions:Localize Key=AngularSpeed}" />
-                <Run Text="(rad.s" />
+                <Run Text="(rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text=")" />
             </TextBlock>
             <controls:NumberBox
                 x:Name="AngularSpeedInRadNumberBox"
@@ -110,17 +110,42 @@
                 Text="{x:Bind Model.AngularSpeedInRad, Mode=TwoWay}" />
         </Grid>
 
-        <TextBlock Grid.Row="3">
-            <Run Text="{extensions:Localize Key=Phase}" />
-            <Run Text="(rad)" />
-        </TextBlock>
-        <controls:NumberBox
-            x:Name="PhaseNumberBox"
-            Grid.Row="3"
-            Grid.Column="1"
-            Text="{x:Bind Model.Phase, Mode=TwoWay}" />
+		<Grid
+			Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Margin="0,8"
+            ColumnSpacing="8">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			
+			<TextBlock Grid.Row="0">
+				<Run Text="{extensions:Localize Key=StartPhase}" />
+	            <Run Text="(°)" />
+			</TextBlock>
+			<controls:NumberBox
+				x:Name="PhaseInDegNumberBox"
+				Grid.Row="1"
+				Grid.Column="0"
+				Text="{x:Bind Model.PhaseInDeg, Mode=TwoWay}" />
 
-        <GridView
+			<TextBlock Grid.Row="0" Grid.Column="1">
+				<Run Text="{extensions:Localize Key=StartPhase}" />
+	            <Run Text="(&#960; rad)" />
+			</TextBlock>
+			<controls:NumberBox
+				x:Name="PhaseInPiRadNumberBox"
+				Grid.Row="1"
+				Grid.Column="1"
+				Text="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+		</Grid>
+
+		<GridView
             Grid.Row="4"
             Grid.ColumnSpan="2"
             Header="{extensions:Localize Key=Color}"

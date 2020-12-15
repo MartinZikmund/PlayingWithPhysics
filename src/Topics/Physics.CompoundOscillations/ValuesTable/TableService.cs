@@ -26,8 +26,10 @@ namespace Physics.InclinedPlane.ValuesTable
 				time = timeInterval * cycles;
 				//Add TableRow
 				var y = _physicsService.CalculateY(time);
+				var v = _physicsService.CalculateV(time);
+				var a = _physicsService.CalculateA(time);
 
-				TableRow valuesRow = new TableRow(time, y);
+				TableRow valuesRow = new TableRow(time, y, v, a);
 				table.Add(valuesRow);
 				cycles++;
 			} while (cycles < MaxCycles || time < MaxTimeInSeconds);

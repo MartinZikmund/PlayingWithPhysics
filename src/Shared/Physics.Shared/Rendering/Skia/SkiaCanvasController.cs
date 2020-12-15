@@ -45,9 +45,9 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         public abstract void Update(ISkiaCanvas sender);
 
-        public async Task RunOnGameLoopAsync(DispatchedHandler agileCallback)
+        public async Task RunOnGameLoopAsync(Action action)
         {
-            await _canvas.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, agileCallback);
+            await _canvas.RunOnRenderThreadAsync(action);
         }
 
         public virtual void Dispose()

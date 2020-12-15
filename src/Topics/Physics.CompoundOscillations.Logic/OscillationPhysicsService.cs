@@ -13,7 +13,18 @@ namespace Physics.CompoundOscillations.Logic
 		}
 
 		public float CalculateY(float timeInSeconds) =>
-			_oscillationInfo.Amplitude * (float)Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.Phase);
+			_oscillationInfo.Amplitude * (float)Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad);
+
+		public float CalculateA(float timeInSeconds) =>
+			-_oscillationInfo.Amplitude *
+			(2 * (float)Math.PI * _oscillationInfo.Frequency) *
+			(2 * (float)Math.PI * _oscillationInfo.Frequency) *
+			(float)Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad);
+
+		public float CalculateV(float timeInSeconds) =>
+			_oscillationInfo.Amplitude *
+			(2 * (float)Math.PI * _oscillationInfo.Frequency) *
+			(float)Math.Cos(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad);
 
 		public float CalculatePeriod() => 1 / _oscillationInfo.Frequency;
 

@@ -7,7 +7,7 @@
 			Label = label;
 			Amplitude = amplitude;
 			Frequency = frequence;
-			Phase = phase;
+			PhaseInRad = phase;
 			Color = color;
 		}
 
@@ -17,10 +17,10 @@
 
 		public float Frequency { get; set; }
 
-		public float Phase { get; set; }
+		public float PhaseInRad { get; set; }
 
 		public string Color { get; set; }
 
-		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, Phase, Color);
+		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
 	}
 }

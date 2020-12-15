@@ -37,6 +37,16 @@ namespace Physics.InclinedPlane.ValuesTable
 			{
 				eventArgs.Column.Header = "y (m)";
 			}
+
+			if (eventArgs.Column.Header.ToString() == "V")
+			{
+				eventArgs.Column.Header = "v (m/s)";
+			}
+
+			if (eventArgs.Column.Header.ToString() == "A")
+			{
+				eventArgs.Column.Header = "a (m/s^2)";
+			}
 		}
 
 		public void CopyToClipboard()

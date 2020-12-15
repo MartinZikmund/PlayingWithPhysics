@@ -9,5 +9,12 @@ namespace Physics.Shared.Helpers
     public static class MathHelpers
     {
         public static float DegreesToRadians(float angleInDegrees) => (float) Math.PI * angleInDegrees / 180.0f;
+
+		public static float RadiansToDegrees(float angleInRadians) => angleInRadians * 180f / (float)Math.PI;
+
+		public static bool AlmostEqualTo(this float number, float otherNumber, float epsilon = 0.00001f)
+		{
+			return Math.Abs(number - otherNumber) < epsilon;
+		}
     }
 }

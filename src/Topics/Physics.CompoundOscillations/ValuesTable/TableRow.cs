@@ -16,16 +16,24 @@ namespace Physics.InclinedPlane.ValuesTable
 
 		public string Y { get; set; }
 
-        public TableRow(float time, double y)
+		public string V { get; set; }
+
+		public string A { get; set; }
+
+        public TableRow(float time, double y, double v, double a)
         {
             Time = time.ToString(TimeFormatting);
             Y = y.ToString(YFormatting);
-        }
+			V = v.ToString(YFormatting);
+			A = a.ToString(YFormatting);
+		}
 
         protected override IEnumerable<string> GetCellValuesInOrder()
         {
             yield return Time;
             yield return Y;
+			yield return V;
+			yield return A;
         }
     }
 }

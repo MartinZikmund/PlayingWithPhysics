@@ -14,7 +14,8 @@
         BackgroundSource="HostBackdrop"
         TintColor="{ThemeResource SystemChromeMediumColor}"
         TintOpacity=".7" />
-    <ResourceDictionary.ThemeDictionaries>
+	<x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
+	<ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FF1F1F1F" />
         </ResourceDictionary>

@@ -10,7 +10,7 @@ namespace Physics.Shared.UI.Helpers
 {
     public static class NumberBoxHelpers
     {
-        public static void SetupFormatting(this NumberBox numberBox, double increment = 0.1, int integerDigits = 1, int fractionDigits = 1, double smallChange = 1)
+        public static void SetupFormatting(this NumberBox numberBox, double increment = 0.1, int integerDigits = 1, int fractionDigits = 1, double smallChange = 1, double largeChange = 1)
         {
             IncrementNumberRounder rounder = new IncrementNumberRounder();
             rounder.Increment = increment;
@@ -28,6 +28,7 @@ namespace Physics.Shared.UI.Helpers
             }
             formatter.NumberRounder = rounder;
 
+			numberBox.LargeChange = largeChange;
             numberBox.SmallChange = smallChange;
             numberBox.NumberFormatter = formatter;
         }
