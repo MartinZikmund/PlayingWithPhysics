@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\AngryDirectorController.cs" />
     <Compile Include="Rendering\CompoundOscillationsController.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
@@ -143,8 +144,12 @@
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddOrUpdateOscillationViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OscillationInfoViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +160,14 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\background.png" />
+    <Content Include="Assets\Game\camera.png" />
+    <Content Include="Assets\Game\directorAngry.png" />
+    <Content Include="Assets\Game\directorAnnoyed.png" />
+    <Content Include="Assets\Game\directorHappy.png" />
+    <Content Include="Assets\Game\robotBody.png" />
+    <Content Include="Assets\Game\stick.png" />
+    <Content Include="Assets\Game\wheel.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -284,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ValuesTable\ValuesTablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

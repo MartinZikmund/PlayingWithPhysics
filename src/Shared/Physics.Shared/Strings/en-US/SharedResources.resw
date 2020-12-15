@@ -171,6 +171,9 @@
   <data name="Label" xml:space="preserve">
     <value>Label</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>

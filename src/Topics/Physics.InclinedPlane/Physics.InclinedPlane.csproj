@@ -144,7 +144,6 @@
     <Compile Include="Rendering\GameRenderer.cs" />
     <Compile Include="Rendering\InclinedPlaneCanvasController.cs" />
     <Compile Include="Rendering\InclinedPlaneSkiaController.cs" />
-    <Compile Include="Rendering\ISkiaVariantRenderer.cs" />
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\SimulationRenderer.cs" />
     <Compile Include="Rendering\SkiaSimulationRenderer.cs" />

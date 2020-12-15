@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<views:GameView
     x:Class="Physics.DragMovement.Views.GameView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -74,7 +74,7 @@
                                 <TextBlock Text="{extensions:Localize Key=NewGame}" />
                             </StackPanel>
                         </Button>
-                        <StackPanel Grid.Row="2" Spacing="8">
+                        <!--<StackPanel Grid.Row="2" Spacing="8">
                             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Inputs}" />
                             <TextBlock>
                                 <Run FontWeight="SemiBold" Text="{extensions:Localize Key=RaftSpeed}" /><Run Text=":" />
@@ -156,7 +156,7 @@
                                     <TextBlock Text="{extensions:Localize Key=TryAgain}" />
                                 </StackPanel>
                             </Button>
-                        </Grid>
+                        </Grid>-->
 
                         <ToggleButton
                             Grid.Row="5"
@@ -202,4 +202,4 @@
             </Grid>
         </Grid>
     </Grid>
-</views:BaseView>
+</views:GameView>

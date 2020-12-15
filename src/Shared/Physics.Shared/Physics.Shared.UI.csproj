@@ -145,6 +145,7 @@
     <Compile Include="Rendering\IRenderingPlayback.cs" />
     <Compile Include="Rendering\OptimalAxesRenderer.cs" />
     <Compile Include="Rendering\Skia\ISkiaCanvas.cs" />
+    <Compile Include="Rendering\Skia\ISkiaVariantRenderer.cs" />
     <Compile Include="Rendering\Skia\NonUiSkiaCanvas.cs" />
     <Compile Include="Rendering\Skia\SkiaCanvas.cs" />
     <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
@@ -327,6 +328,9 @@
       <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
       <Name>Physics.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Game\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

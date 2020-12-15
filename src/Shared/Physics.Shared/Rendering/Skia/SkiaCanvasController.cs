@@ -2,7 +2,9 @@
 using SkiaSharp.Views.UWP;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.UI.Core;
 
 namespace Physics.Shared.UI.Rendering.Skia
@@ -17,11 +19,12 @@ namespace Physics.Shared.UI.Rendering.Skia
         {
             SimulationTime = new SimulationTime(this);
             _canvas = canvasAnimatedControl ?? throw new ArgumentNullException(nameof(canvasAnimatedControl));
+			_canvas.Initialized += Initialized;
             _canvas.Draw += Draw;
             _canvas.Update += CanvasUpdate;
         }
 
-        public bool IsPaused { get; private set; }
+		public bool IsPaused { get; private set; }
 
         public SimulationTime SimulationTime { get; }
 
@@ -40,6 +43,8 @@ namespace Physics.Shared.UI.Rendering.Skia
         {
             SimulationTime.FastForward(time);
         }
+
+		public virtual void Initialized(ISkiaCanvas sender, SKSurface args) { }
 
         public abstract void Draw(ISkiaCanvas sender, SKSurface args);
 
@@ -75,6 +80,12 @@ namespace Physics.Shared.UI.Rendering.Skia
             _simluationInitiated = true;
 
             Update(sender);
-        }        
+        }
+
+		protected SKBitmap LoadImageFromPackage(string relativePath)
+		{
+			var path = Path.Combine(Package.Current.InstalledLocation.Path, relativePath);
+			return SKBitmap.Decode(path);
+		}
     }
 }

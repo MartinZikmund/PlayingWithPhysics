@@ -20,18 +20,15 @@ namespace Physics.CompoundOscillations.Infrastructure.Topics
 
         public bool HasStudyMode => false;
 
-        public bool HasGame => false;
+        public bool HasGame => true;
 
         public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
-        public Task GoToGameAsync()
-        {
-			throw new NotSupportedException("Game not yet supported.");
-            //await _navigationService.Navigate<GameViewModel, GameViewModel.NavigationModel>(new GameViewModel.NavigationModel { Difficulty = DifficultyOption.Advanced });
-        }
+		public async Task GoToGameAsync() =>
+			await _navigationService.Navigate<GameViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
 
-        public Task GoToStudyModeAsync()
+		public Task GoToStudyModeAsync()
         {
 			throw new NotSupportedException("Study mode not yet supported.");
             //await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));

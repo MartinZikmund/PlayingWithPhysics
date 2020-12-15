@@ -4,18 +4,12 @@ using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Storage;
-using Windows.UI;
 
 namespace Physics.InclinedPlane.Rendering
 {
-    public class GameRenderer : ISkiaVariantRenderer
+	public class GameRenderer : ISkiaVariantRenderer
     {
         private const float InclinedPlaneLengthInPixels = 413;
         private const float HorizontalPlaneLengthInPixels = 910;
