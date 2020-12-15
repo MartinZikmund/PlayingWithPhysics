@@ -149,6 +149,9 @@ Graphics: Petr Weinlich</value>
   <data name="Oscillation" xml:space="preserve">
     <value>Oscillation</value>
   </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Compound Oscillations</value>
   </data>

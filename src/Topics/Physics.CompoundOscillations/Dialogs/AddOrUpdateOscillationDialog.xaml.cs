@@ -24,9 +24,6 @@ namespace Physics.CompoundOscillations.Dialogs
 			AmplitudeNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 0.1);
 			FrequencyNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 0.1);
 			PhaseInDegNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 1);
-			PhaseInPiRadNumberBox.SetupFormatting(fractionDigits: 2, increment: 0.01, smallChange: 0.1);
-			AngularSpeedInDegNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 1);
-			AngularSpeedInRadNumberBox.SetupFormatting(fractionDigits: 2, increment: 0.01, smallChange: 0.01);
 		}
 
 		private void AddOrUpdateOscillationDialog_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

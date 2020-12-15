@@ -16,9 +16,9 @@
 
     <ContentDialog.Resources>
         <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddOrUpdateOscillationDialog" />
-        <GridLength x:Key="InputColumnWidth">240</GridLength>
+        <GridLength x:Key="InputColumnWidth">200</GridLength>
     </ContentDialog.Resources>
-    <Grid Width="540" ColumnSpacing="8">
+    <Grid ColumnSpacing="8" RowSpacing="8">
         <Grid.Resources>
             <Style TargetType="controls:NumberBox">
                 <Setter Property="SpinButtonPlacementMode" Value="Compact" />
@@ -33,10 +33,12 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -50,7 +52,6 @@
 
         <TextBox
             Grid.ColumnSpan="2"
-            Margin="0,0,0,8"
             PlaceholderText="{extensions:Localize Key=Label}"
             Text="{x:Bind Model.Label, Mode=TwoWay}" />
 
@@ -64,89 +65,73 @@
             Grid.Column="1"
             Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
 
-        <Grid
-            Grid.Row="2"
-            Grid.ColumnSpan="3"
-            Margin="0,8"
-            ColumnSpacing="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0">
+		<TextBlock Grid.Row="2" Grid.Column="0">
                 <Run Text="{extensions:Localize Key=Frequency}" />
                 <Run Text="(Hz)" />
-            </TextBlock>
-            <controls:NumberBox
+		</TextBlock>
+		<controls:NumberBox
                 x:Name="FrequencyNumberBox"
-                Grid.Row="1"
-                Grid.Column="0"
+                Grid.Row="2"
+                Grid.Column="1"
                 Text="{x:Bind Model.Frequency, Mode=TwoWay}" />
 
-            <TextBlock Grid.Row="0" Grid.Column="1">
-                <Run Text="{extensions:Localize Key=AngularSpeed}" />
-                <Run Text="(°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text=")" />
-			</TextBlock>
-            <controls:NumberBox
-                x:Name="AngularSpeedInDegNumberBox"
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="{x:Bind Model.AngularSpeedInDeg, Mode=TwoWay}" />
-
-            <TextBlock Grid.Row="0" Grid.Column="2">
-                <Run Text="{extensions:Localize Key=AngularSpeed}" />
-                <Run Text="(rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text=")" />
-            </TextBlock>
-            <controls:NumberBox
-                x:Name="AngularSpeedInRadNumberBox"
-                Grid.Row="1"
-                Grid.Column="2"
-                Text="{x:Bind Model.AngularSpeedInRad, Mode=TwoWay}" />
-        </Grid>
-
 		<Grid
-			Grid.Row="3"
-            Grid.ColumnSpan="3"
-            Margin="0,8"
+            Grid.Row="3"
+            Grid.Column="1"
+			Opacity="0.8"
+			Margin="0,-8,0,0"
             ColumnSpacing="8">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
+            <Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			
-			<TextBlock Grid.Row="0">
-				<Run Text="{extensions:Localize Key=StartPhase}" />
-	            <Run Text="(°)" />
+			<TextBlock>
+				<Run Text="{extensions:Localize Key=Period}" /><Run Text=":" />
+				<Run Text="{x:Bind Model.Period, Mode=OneWay}" />
+				<Run Text="s" />
 			</TextBlock>
-			<controls:NumberBox
-				x:Name="PhaseInDegNumberBox"
-				Grid.Row="1"
-				Grid.Column="0"
-				Text="{x:Bind Model.PhaseInDeg, Mode=TwoWay}" />
-
-			<TextBlock Grid.Row="0" Grid.Column="1">
-				<Run Text="{extensions:Localize Key=StartPhase}" />
-	            <Run Text="(&#960; rad)" />
-			</TextBlock>
-			<controls:NumberBox
-				x:Name="PhaseInPiRadNumberBox"
-				Grid.Row="1"
-				Grid.Column="1"
-				Text="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<TextBlock>
+						<Run Text="{extensions:Localize Key=AngularSpeed}" /><Run Text=":" />
+				</TextBlock>
+				<TextBlock Grid.Column="1">
+						<Run Text="{x:Bind Model.AngularSpeedInDeg, Mode=OneWay}" />
+						<Run Text="°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
+				</TextBlock>
+				<TextBlock Grid.Column="1" Grid.Row="1">
+						<Run Text="{x:Bind Model.AngularSpeedInRad, Mode=OneWay}" />
+						<Run Text="rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
+				</TextBlock>
+			</Grid>			
 		</Grid>
 
+
+		<TextBlock Grid.Row="4">
+				<Run Text="{extensions:Localize Key=StartPhase}" />
+	            <Run Text="(&#960; rad)" />
+		</TextBlock>
+		<controls:NumberBox
+				x:Name="PhaseInDegNumberBox"
+				Grid.Row="4"
+				Grid.Column="1"
+				Text="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+
+		<TextBlock Grid.Row="5" Grid.Column="1" Opacity="0.8" Margin="0,-8,0,0">
+					<Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
+					<Run Text="{x:Bind Model.PhaseInDeg, Mode=OneWay}" />
+					<Run Text="°" />
+		</TextBlock>
+
 		<GridView
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.ColumnSpan="2"
             Header="{extensions:Localize Key=Color}"
             ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
