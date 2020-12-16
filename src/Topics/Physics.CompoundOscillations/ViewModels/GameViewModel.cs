@@ -18,6 +18,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		private void NewGame()
 		{
+			_controller?.Reset();
 		}
 
 		public void SetController(AngryDirectorController controller) => _controller = controller;

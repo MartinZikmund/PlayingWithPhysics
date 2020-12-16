@@ -12,8 +12,14 @@ namespace Physics.CompoundOscillations.Logic
 			_oscillationInfo = oscillationInfo;
 		}
 
+		public float GetTimeAtDistance(float distance) =>
+			(distance - _oscillationInfo.PhaseInRad) / (2 * (float)Math.PI * _oscillationInfo.Frequency);
+
+		public float CalculateDistance(float timeInSeconds) =>
+			2 * (float)Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad;
+
 		public float CalculateY(float timeInSeconds) =>
-			_oscillationInfo.Amplitude * (float)Math.Sin(2 * Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad);
+			_oscillationInfo.Amplitude * (float)Math.Sin(2 * (float)Math.PI * timeInSeconds * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad);
 
 		public float CalculateA(float timeInSeconds) =>
 			-_oscillationInfo.Amplitude *

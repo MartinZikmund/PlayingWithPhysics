@@ -45,6 +45,7 @@ namespace Physics.CompoundOscillations.Rendering
 		private bool _isDisposed;
 
 		private OscillationPhysicsService _carPhysicsService = null;
+		private float _timeAtEnd = 0;
 
 		public AngryDirectorController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
@@ -76,9 +77,10 @@ namespace Physics.CompoundOscillations.Rendering
 			_carPhysicsService = new OscillationPhysicsService(new OscillationInfo(
 				"Car",
 				1,
-				0.25f,
-				0,
+				1f,
+				(float)Math.PI / 2,
 				""));
+			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -110,6 +112,11 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 		}
 
+		public void Reset()
+		{
+			SimulationTime.Reset();
+		}
+
 		public override void Dispose()
 		{
 			_isDisposed = true;
@@ -131,8 +138,15 @@ namespace Physics.CompoundOscillations.Rendering
 					sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
 		}
 
+		private SKPaint _circlePaint = new SKPaint() { Color = SKColors.Red, IsStroke = false };
+
 		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
 		{
+			var renderTime = SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd ? SimulationTime.TotalTime.TotalSeconds : _timeAtEnd;
+
+			var x = 71.14f * _renderingScale * _carPhysicsService.CalculateDistance((float)renderTime);
+			var y = _topY + 970 * _renderingScale - 46 * _renderingScale * _carPhysicsService.CalculateY((float)renderTime);
+			args.Canvas.DrawCircle(x, y, 5, _circlePaint);
 		}
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
