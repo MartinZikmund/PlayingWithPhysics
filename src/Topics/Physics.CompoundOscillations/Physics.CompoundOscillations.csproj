@@ -160,7 +160,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Game\background.png" />
+    <Content Include="Assets\Game\background.cs.png" />
+    <Content Include="Assets\Game\background.en.png" />
     <Content Include="Assets\Game\camera.png" />
     <Content Include="Assets\Game\directorAngry.png" />
     <Content Include="Assets\Game\directorAnnoyed.png" />

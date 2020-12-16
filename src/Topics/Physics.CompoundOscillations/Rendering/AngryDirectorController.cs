@@ -1,4 +1,6 @@
-﻿using System.Reactive.Disposables;
+﻿using System;
+using System.Globalization;
+using System.Reactive.Disposables;
 using Physics.CompoundOscillations.Logic;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
@@ -52,7 +54,14 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			// Load assets
 			var gameAssetsPath = "Assets/Game/";
-			_background = LoadImageFromPackage($"{gameAssetsPath}background.png").DisposeWith(_bitmapsDisposable);
+			if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.Equals("cs", StringComparison.InvariantCultureIgnoreCase))
+			{
+				_background = LoadImageFromPackage($"{gameAssetsPath}background.cs.png").DisposeWith(_bitmapsDisposable);
+			}
+			else
+			{
+				_background = LoadImageFromPackage($"{gameAssetsPath}background.en.png").DisposeWith(_bitmapsDisposable);
+			}
 			_camera = LoadImageFromPackage($"{gameAssetsPath}camera.png").DisposeWith(_bitmapsDisposable); ;
 			_stick = LoadImageFromPackage($"{gameAssetsPath}stick.png").DisposeWith(_bitmapsDisposable); ;
 			_wheel = LoadImageFromPackage($"{gameAssetsPath}wheel.png").DisposeWith(_bitmapsDisposable); ;
@@ -87,11 +96,18 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.Clear(SKColors.Black);
 
 			DrawBackground(sender, args);
-			DrawLabels(sender, args);
 			DrawRobot(sender, args);
 
 			DrawPlot(sender, args);
 			DrawDirector(sender, args);
+		}
+
+		private void DrawDirector(ISkiaCanvas sender, SKSurface args)
+		{
+		}
+
+		private void DrawPlot(ISkiaCanvas sender, SKSurface args)
+		{
 		}
 
 		public override void Dispose()
@@ -113,14 +129,6 @@ namespace Physics.CompoundOscillations.Rendering
 					sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
 					sender.ScaledSize.Width / 2 + backgroundSize.Width / 2,
 					sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
-		}
-
-		private void DrawLabels(ISkiaCanvas sender, SKSurface args)
-		{
-			SKRect textBounds = SKRect.Empty;
-			_labelPaint.MeasureText(_plotText, ref textBounds);
-			args.Canvas.DrawText(_plotText, 188 * _renderingScale, _topY + 378 * _renderingScale - textBounds.Height / 2, _labelPaint);
-			args.Canvas.DrawText(_directorText, 1585 * _renderingScale, _topY + 177 * _renderingScale, _labelPaint);
 		}
 
 		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
