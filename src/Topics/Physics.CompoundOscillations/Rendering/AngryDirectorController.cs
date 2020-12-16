@@ -1,4 +1,6 @@
 ﻿using System.Reactive.Disposables;
+using Physics.CompoundOscillations.Logic;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -6,6 +8,9 @@ namespace Physics.CompoundOscillations.Rendering
 {
 	public class AngryDirectorController : SkiaCanvasController
 	{
+		private const string DirectorLabelKey = "Director";
+		private const string PlotLabelKey = "Plot";
+
 		// Bitmap assets
 		private CompositeDisposable _bitmapsDisposable = new CompositeDisposable();
 		private SKBitmap _background = null;
@@ -26,14 +31,18 @@ namespace Physics.CompoundOscillations.Rendering
 			TextSize = 18,
 			Color = new SKColor(255, 255, 255),
 			TextAlign = SKTextAlign.Right,
-			IsStroke = false
+			IsStroke = false,
 		};
 
-		private string DirectorLabelKey = "Director";
-		private string PlotLabelKey = "Plot";
+		private string _plotText;
+		private string _directorText;
 
 		private float _renderingScale;
+		private float _topY;
+
 		private bool _isDisposed;
+
+		private OscillationPhysicsService _carPhysicsService = null;
 
 		public AngryDirectorController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
@@ -49,13 +58,24 @@ namespace Physics.CompoundOscillations.Rendering
 			_wheel = LoadImageFromPackage($"{gameAssetsPath}wheel.png").DisposeWith(_bitmapsDisposable); ;
 			_robotBody = LoadImageFromPackage($"{gameAssetsPath}robotBody.png").DisposeWith(_bitmapsDisposable); ;
 			_directorHappy = LoadImageFromPackage($"{gameAssetsPath}directorHappy.png").DisposeWith(_bitmapsDisposable); ;
-			_directorAnnoyed = LoadImageFromPackage($"{gameAssetsPath}directorAnnoyed.png").DisposeWith(_bitmapsDisposable); ;
+			_directorAnnoyed = LoadImageFromPackage($"{gameAssetsPath}directorAnnoyed.png").DisposeWith(_bitmapsDisposable);
 			_directorAngry = LoadImageFromPackage($"{gameAssetsPath}directorAngry.png").DisposeWith(_bitmapsDisposable);
+
+			_plotText = Localizer.Instance[PlotLabelKey];
+			_directorText = Localizer.Instance[DirectorLabelKey];
+
+			_carPhysicsService = new OscillationPhysicsService(new OscillationInfo(
+				"Car",
+				1,
+				0.25f,
+				0,
+				""));
 		}
 
 		public override void Update(ISkiaCanvas sender)
 		{
 			_renderingScale = CalculateRenderingScale(sender);
+			_topY = GetTopY(sender);
 		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
@@ -68,6 +88,10 @@ namespace Physics.CompoundOscillations.Rendering
 
 			DrawBackground(sender, args);
 			DrawLabels(sender, args);
+			DrawRobot(sender, args);
+
+			DrawPlot(sender, args);
+			DrawDirector(sender, args);
 		}
 
 		public override void Dispose()
@@ -93,12 +117,21 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawLabels(ISkiaCanvas sender, SKSurface args)
 		{
+			SKRect textBounds = SKRect.Empty;
+			_labelPaint.MeasureText(_plotText, ref textBounds);
+			args.Canvas.DrawText(_plotText, 188 * _renderingScale, _topY + 378 * _renderingScale - textBounds.Height / 2, _labelPaint);
+			args.Canvas.DrawText(_directorText, 1585 * _renderingScale, _topY + 177 * _renderingScale, _labelPaint);
+		}
 
+		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
+		{
 		}
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
 		{
 			return sender.ScaledSize.Width / 1920;
 		}
+
+		private float GetTopY(ISkiaCanvas sender) => sender.ScaledSize.Height / 2 - 1080 * _renderingScale / 2;
 	}
 }
