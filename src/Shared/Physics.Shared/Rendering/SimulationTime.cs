@@ -42,6 +42,7 @@ namespace Physics.Shared.UI.Rendering
         {            
             _stopwatch.Restart();
             TotalTime = TimeSpan.Zero;
+			UpdateCount = 0;
         }
 
         public void Rewind(float time)
@@ -58,7 +59,7 @@ namespace Physics.Shared.UI.Rendering
         {
             ElapsedTime = updateTimingInformation.ElapsedTime * SimulationSpeed;
             TotalTime = TimeSpan.FromSeconds(Math.Min(TotalTime.TotalSeconds + ElapsedTime.TotalSeconds, _canvasController.MaxTime?.TotalSeconds ?? double.MaxValue));
-            UpdateCount = updateTimingInformation.UpdateCount;
+            UpdateCount++;
         }
     }
 }

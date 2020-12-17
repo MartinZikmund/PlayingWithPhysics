@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reactive.Disposables;
 using Physics.CompoundOscillations.Logic;
@@ -23,6 +24,7 @@ namespace Physics.CompoundOscillations.Rendering
 		private SKBitmap _directorHappy = null;
 		private SKBitmap _directorAnnoyed = null;
 		private SKBitmap _directorAngry = null;
+		private SKBitmap[] _robots = null;
 
 		/// <summary>
 		/// Paint for labels
@@ -38,7 +40,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private string _plotText;
 		private string _directorText;
-
+		private OscillationInfo _oscillationInfo;
 		private float _renderingScale;
 		private float _topY;
 
@@ -71,15 +73,24 @@ namespace Physics.CompoundOscillations.Rendering
 			_directorAnnoyed = LoadImageFromPackage($"{gameAssetsPath}directorAnnoyed.png").DisposeWith(_bitmapsDisposable);
 			_directorAngry = LoadImageFromPackage($"{gameAssetsPath}directorAngry.png").DisposeWith(_bitmapsDisposable);
 
+			var robotBitmaps = new List<SKBitmap>();
+			for (int i = 1; i <= 18; i++)
+			{
+				var robotBitmap = LoadImageFromPackage($"{gameAssetsPath}robot_{i}.png").DisposeWith(_bitmapsDisposable);
+				robotBitmaps.Add(robotBitmap);
+			}
+			_robots = robotBitmaps.ToArray();
+
 			_plotText = Localizer.Instance[PlotLabelKey];
 			_directorText = Localizer.Instance[DirectorLabelKey];
 
-			_carPhysicsService = new OscillationPhysicsService(new OscillationInfo(
+			_oscillationInfo = new OscillationInfo(
 				"Car",
 				1,
-				1f,
+				0.5f,
 				(float)Math.PI / 2,
-				""));
+				"");
+			_carPhysicsService = new OscillationPhysicsService(_oscillationInfo);
 			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);
 		}
 
@@ -144,9 +155,20 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			var renderTime = SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd ? SimulationTime.TotalTime.TotalSeconds : _timeAtEnd;
 
-			var x = 71.14f * _renderingScale * _carPhysicsService.CalculateDistance((float)renderTime);
-			var y = _topY + 970 * _renderingScale - 46 * _renderingScale * _carPhysicsService.CalculateY((float)renderTime);
-			args.Canvas.DrawCircle(x, y, 5, _circlePaint);
+			var bottomCenterX = 71.14f * _renderingScale * _carPhysicsService.CalculateDistance((float)renderTime);
+			var bottomCenterY = _topY + 970 * _renderingScale - 46 * _renderingScale * _carPhysicsService.CalculateY((float)renderTime);
+
+			var period = 1 / _oscillationInfo.Frequency;
+			var partOfRotation = renderTime % period;
+			var partial = (int)(partOfRotation / period * 18);
+
+			var targetRect = new SKRect(
+					bottomCenterX - _renderingScale * _robots[0].Width / 2,
+					bottomCenterY - _renderingScale * _robots[0].Height,
+					bottomCenterX + _renderingScale * _robots[0].Width / 2,
+					bottomCenterY);
+
+			args.Canvas.DrawBitmap(_robots[partial], targetRect);
 		}
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
