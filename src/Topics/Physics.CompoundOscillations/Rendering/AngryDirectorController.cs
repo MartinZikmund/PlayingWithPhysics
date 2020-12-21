@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reactive.Disposables;
 using Physics.CompoundOscillations.Logic;
+using Physics.Shared.Helpers;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -242,7 +243,21 @@ namespace Physics.CompoundOscillations.Rendering
 					bottomCenterX + _renderingScale * _robots[0].Width / 2,
 					bottomCenterY);
 
-			args.Canvas.DrawBitmap(_robots[partial], targetRect);
+			var y = _carPhysicsService.CalculateY((float)renderTime);
+			float angle = 0.0f;
+			if (y < 0)
+			{
+				var part = y + 1;
+				angle = (part / y) * 45;
+			}
+			else
+			{
+				angle = (1 - y / 1) * 45;
+			}
+
+			using var image = SkiaHelpers.RotateBitmap(_robots[partial], angle);
+
+			args.Canvas.DrawBitmap(image, targetRect);
 		}
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
