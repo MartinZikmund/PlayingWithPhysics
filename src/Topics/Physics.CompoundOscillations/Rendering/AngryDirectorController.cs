@@ -272,15 +272,12 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			var bottomCenter = GetRobotBottomCenterPosition();
 
+			var centerX = bottomCenter.X;
+			var centerY = bottomCenter.Y - _robots[0].Height * _renderingScale / 2;
+
 			var period = 1 / _oscillationInfo.Frequency;
 			var partOfRotation = _renderTime % period;
 			var partial = (int)(partOfRotation / period * 18);
-
-			var targetRect = new SKRect(
-					bottomCenter.X - _renderingScale * _robots[0].Width / 2,
-					bottomCenter.Y - _renderingScale * _robots[0].Height,
-					bottomCenter.X + _renderingScale * _robots[0].Width / 2,
-					bottomCenter.Y);
 
 			var y = _carPhysicsService.CalculateY((float)_renderTime);
 			float angle = 0.0f;
@@ -294,7 +291,16 @@ namespace Physics.CompoundOscillations.Rendering
 				angle = (1 - y / 1) * 45;
 			}
 
+			angle = (float)Math.Atan(Math.Cos(2 * (float)Math.PI * (float)_renderTime * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad));
+
+			angle = -MathHelpers.RadiansToDegrees(angle) * .5f;
 			using var image = SkiaHelpers.RotateBitmap(_robots[partial], angle);
+
+			var targetRect = new SKRect(
+				centerX - _renderingScale * image.Width / 2,
+				centerY - _renderingScale * image.Height / 2,
+				centerX + _renderingScale * image.Width / 2,
+				centerY + _renderingScale * image.Height / 2);
 
 			args.Canvas.DrawBitmap(image, targetRect);
 		}
@@ -307,7 +313,7 @@ namespace Physics.CompoundOscillations.Rendering
 			}
 
 			var bottomCenterX = 71.14f * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].X;
-			var bottomCenterY = _topY + 970 * _renderingScale - 35 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
+			var bottomCenterY = _topY + 985 * _renderingScale - 40 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
 			return new SKPoint(bottomCenterX, bottomCenterY);
 		}
 
