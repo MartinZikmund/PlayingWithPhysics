@@ -73,7 +73,8 @@
                 x:Name="FrequencyNumberBox"
                 Grid.Row="2"
                 Grid.Column="1"
-                Text="{x:Bind Model.Frequency, Mode=TwoWay}" />
+				Minimum="0.1"
+                Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
 
 		<Grid
             Grid.Row="3"

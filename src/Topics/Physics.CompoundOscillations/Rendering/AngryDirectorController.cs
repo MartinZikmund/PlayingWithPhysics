@@ -477,7 +477,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private float CalculateRobotXFromOscillation(float xInRad) => 71.14f * _renderingScale * xInRad;
 
-		private float CalculateRobotYFromOscillation(float normalizedY) => _topY + 985 * _renderingScale - 40 * _renderingScale * normalizedY;
+		private float CalculateRobotYFromOscillation(float normalizedY) => _topY + 985 * _renderingScale - 42 * _renderingScale * normalizedY;
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
 		{
