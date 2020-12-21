@@ -37,7 +37,7 @@ namespace Physics.InclinedPlane.Rendering
 
             Motion = motion;
             PhysicsService = new PhysicsService(motion);
-            SimulationTime.Reset();
+            SimulationTime.Restart();
         }
 
         public void SetVariantRenderer(ISkiaVariantRenderer renderer)

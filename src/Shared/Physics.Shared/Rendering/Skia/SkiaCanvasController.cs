@@ -68,7 +68,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         protected void Restart()
         {
-            SimulationTime.Reset();
+            SimulationTime.Restart();
+			IsPaused = false;
         }
 
         private void CanvasUpdate(ISkiaCanvas sender, EventArgs e)

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reactive.Disposables;
+using Physics.CompoundOscillations.Game;
 using Physics.CompoundOscillations.Logic;
 using Physics.Shared.Helpers;
+using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -15,6 +17,11 @@ namespace Physics.CompoundOscillations.Rendering
 	{
 		private const string DirectorLabelKey = "Director";
 		private const string PlotLabelKey = "Plot";
+
+		private const float ClapTime = 1.5f;
+		private const float ClapMoveTime = 0.15f;
+
+		private readonly ISoundPlayer _soundPlayer;
 
 		// Bitmap assets
 		private CompositeDisposable _bitmapsDisposable = new CompositeDisposable();
@@ -28,6 +35,8 @@ namespace Physics.CompoundOscillations.Rendering
 		private SKBitmap _directorAngry = null;
 		private SKBitmap _stickWide;
 		private SKBitmap _stickNarrow;
+		private SKBitmap _clapTop;
+		private SKBitmap _clapBody;
 		private SKBitmap[] _robots = null;
 
 		/// <summary>
@@ -38,7 +47,7 @@ namespace Physics.CompoundOscillations.Rendering
 			IsAntialias = true,
 			TextSize = 18,
 			Color = new SKColor(255, 255, 255),
-			TextAlign = SKTextAlign.Right,
+			TextAlign = SKTextAlign.Left,
 			IsStroke = false,
 		};
 
@@ -66,6 +75,23 @@ namespace Physics.CompoundOscillations.Rendering
 			Color = SKColors.Black
 		};
 
+		private SKPaint _actionShotLinePaint = new SKPaint()
+		{
+			IsAntialias = true,
+			IsStroke = true,
+			StrokeWidth = 8,
+			Color = new SKColor(255, 0, 0, 80)
+		};
+
+		private SKPaint _accuracyTextPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			TextSize = 30,
+			Color = new SKColor(255, 255, 255),
+			TextAlign = SKTextAlign.Center,
+			IsStroke = false
+		};
+
 		private string _plotText;
 		private string _directorText;
 		private OscillationInfo _oscillationInfo;
@@ -81,14 +107,56 @@ namespace Physics.CompoundOscillations.Rendering
 		private List<SKPoint> _robotTrajectory = new List<SKPoint>();
 		private List<SKPoint> _compoundTrajectory = new List<SKPoint>();
 
-		public AngryDirectorController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
+		private GameInfo _gameInfo;
+
+		public AngryDirectorController(ISkiaCanvas canvasAnimatedControl, ISoundPlayer soundPlayer) : base(canvasAnimatedControl)
 		{
+			_soundPlayer = soundPlayer;
+		}
+
+		public void NewGame(GameInfo gameInfo)
+		{
+			if (gameInfo is null)
+			{
+				throw new ArgumentNullException(nameof(gameInfo));
+			}
+			_gameInfo = gameInfo;
+			SimulationTime.Reset();
+			Pause();
+			_oscillationInfo = new OscillationInfo(
+				"Car",
+				1,
+				0.5f,
+				(float)Math.PI / 2,
+				"");
+			_carPhysicsService = new OscillationPhysicsService(_oscillationInfo);
+			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);
+		}
+
+		public void StartGame()
+		{
+			ResetGame();
+			_gameInfo.CountdownStart = DateTimeOffset.UtcNow;
+			_gameInfo.State = GameState.Countdown;
+			Restart();
+		}
+
+		public void ResetGame()
+		{
+			_gameInfo?.Reset();
+			SimulationTime.Reset();
+			_compoundTrajectory.Clear();
+			_cameraTrajectory.Clear();
+			_robotTrajectory.Clear();
 		}
 
 		public float CameraHeight { get; set; }
 
 		public override void Initialized(ISkiaCanvas sender, SKSurface args)
 		{
+			// TODO: Allow async initialization in Skia
+			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/clap.wav", UriKind.Absolute), "Clap").GetAwaiter().GetResult();
+
 			// Load assets
 			var gameAssetsPath = "Assets/Game/";
 			if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.Equals("cs", StringComparison.InvariantCultureIgnoreCase))
@@ -107,6 +175,8 @@ namespace Physics.CompoundOscillations.Rendering
 			_directorAngry = LoadImageFromPackage($"{gameAssetsPath}directorAngry.png").DisposeWith(_bitmapsDisposable);
 			_stickWide = LoadImageFromPackage($"{gameAssetsPath}stickWide.png").DisposeWith(_bitmapsDisposable);
 			_stickNarrow = LoadImageFromPackage($"{gameAssetsPath}stickNarrow.png").DisposeWith(_bitmapsDisposable);
+			_clapTop = LoadImageFromPackage($"{gameAssetsPath}clapTop.png").DisposeWith(_bitmapsDisposable);
+			_clapBody = LoadImageFromPackage($"{gameAssetsPath}clapBody.png").DisposeWith(_bitmapsDisposable);
 
 			var robotBitmaps = new List<SKBitmap>();
 			for (int i = 1; i <= 18; i++)
@@ -118,15 +188,6 @@ namespace Physics.CompoundOscillations.Rendering
 
 			_plotText = Localizer.Instance[PlotLabelKey];
 			_directorText = Localizer.Instance[DirectorLabelKey];
-
-			_oscillationInfo = new OscillationInfo(
-				"Car",
-				1,
-				0.5f,
-				(float)Math.PI / 2,
-				"");
-			_carPhysicsService = new OscillationPhysicsService(_oscillationInfo);
-			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);			
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -134,14 +195,49 @@ namespace Physics.CompoundOscillations.Rendering
 			_renderingScale = CalculateRenderingScale(sender);
 			_topY = GetTopY(sender);
 
-			_renderTime = SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd ? SimulationTime.TotalTime.TotalSeconds : _timeAtEnd;
-			if (SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd)
+			_renderTime = 0;
+
+			if (_gameInfo?.State == GameState.Countdown)
 			{
+				var countdownTime = DateTime.UtcNow - _gameInfo.CountdownStart.Value;
+				if (countdownTime.TotalSeconds > (ClapTime - 0.02) && !_gameInfo.ClapSoundPlayed)
+				{
+					_gameInfo.ClapSoundPlayed = true;
+					if (_gameInfo.AreSoundsEnabled)
+					{
+						_soundPlayer.PlaySound("Clap");
+					}
+				}
+				if (countdownTime.TotalSeconds > ClapTime)
+				{
+					_gameInfo.State = GameState.Action;
+					_gameInfo.TimeAtActionStart = SimulationTime.TotalTime;
+				}
+			}
+
+			var actionTime = _gameInfo.TimeAtActionStart != null ? SimulationTime.TotalTime - _gameInfo.TimeAtActionStart.Value : (TimeSpan?)null;
+			if (_gameInfo?.State == GameState.Action)
+			{
+				_renderTime = actionTime.Value.TotalSeconds <= _timeAtEnd ? actionTime.Value.TotalSeconds : _timeAtEnd;
 				var robotX = _carPhysicsService.CalculateDistance((float)_renderTime);
 				var robotY = _carPhysicsService.CalculateY((float)_renderTime);
 				_robotTrajectory.Add(new SKPoint(robotX, robotY));
 				_cameraTrajectory.Add(new SKPoint(robotX, CameraHeight));
 				_compoundTrajectory.Add(new SKPoint(robotX, _robotTrajectory.Last().Y + _cameraTrajectory.Last().Y));
+			}
+
+			if (actionTime?.TotalSeconds > _timeAtEnd  && _gameInfo.State == GameState.Action)
+			{
+				_gameInfo.State = GameState.ReachedEnd;
+				var totalSum = 0.0f;
+				for (int i = 0; i < _compoundTrajectory.Count; i++)
+				{
+					totalSum += Math.Abs(_compoundTrajectory[i].Y);
+				}
+				var averageDistance = totalSum / _compoundTrajectory.Count;
+				var invert = 1 - averageDistance / 2;
+
+				_gameInfo.Accuracy = (int)Math.Round(invert * 100);
 			}
 		}
 
@@ -154,25 +250,86 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.Clear(SKColors.Black);
 
 			DrawBackground(sender, args);
-			
-			
-			DrawCamera(sender, args);
 
+			// Countdown
+			DrawCountdown(sender, args);
+
+			// Draw camera robot
+			DrawCamera(sender, args);
 			DrawRobot(sender, args);
 
+			// Draw real-time plot
 			DrawPlot(sender, args);
-			DrawDirector(sender, args);			
+
+			// Draw director's reaction
+			DrawDirector(sender, args);
 		}
 
-		private void DrawDirector(ISkiaCanvas sender, SKSurface args)
+		public override void Dispose()
 		{
+			_isDisposed = true;
+			base.Dispose();
+
+			// Dispose assets
+			_bitmapsDisposable.Dispose();
+		}
+
+		private void DrawBackground(ISkiaCanvas sender, SKSurface args)
+		{
+			var backgroundSize = new SKSize(_background.Width * _renderingScale, _background.Height * _renderingScale);
+			args.Canvas.DrawBitmap(
+				_background,
+				new SKRect(
+					sender.ScaledSize.Width / 2 - backgroundSize.Width / 2,
+					sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
+					sender.ScaledSize.Width / 2 + backgroundSize.Width / 2,
+					sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
+		}
+
+		private void DrawCountdown(ISkiaCanvas sender, SKSurface args)
+		{
+			if (_gameInfo?.State == GameState.Countdown)
+			{
+				var centerX = (float)sender.ScaledSize.Width / 2;
+				var centerY = GetTopY(sender) + 1080 * _renderingScale / 2;
+
+				var clapBodyX = centerX - _clapBody.Width / 2 * _renderingScale;
+				var clapBodyY = centerY - _clapBody.Height / 2 * _renderingScale;
+				var clapRect = new SKRect(
+					clapBodyX,
+					clapBodyY,
+					clapBodyX + _clapBody.Width * _renderingScale,
+					clapBodyY + _clapBody.Height * _renderingScale);
+
+				args.Canvas.DrawBitmap(_clapBody, clapRect);
+
+
+				var currentClapTime = Math.Min((DateTimeOffset.UtcNow - _gameInfo.CountdownStart.Value).TotalSeconds, ClapTime);
+				var angle = -20f;
+				if (currentClapTime > (ClapTime - ClapMoveTime))
+				{
+					var movePercentage = (currentClapTime - (ClapTime - ClapMoveTime)) / ClapMoveTime;
+					angle += (float)movePercentage * 20;
+				}
+				using var rotatedClapTop = SkiaHelpers.RotateBitmap(_clapTop, angle);
+
+				var clapTopX = centerX + 20 * _renderingScale - rotatedClapTop.Width / 2 * _renderingScale;
+				var clapTopY = clapBodyY + 150 * _renderingScale - rotatedClapTop.Height * _renderingScale;
+				var clapTopRect = new SKRect(
+					clapTopX,
+					clapTopY,
+					clapTopX + rotatedClapTop.Width * _renderingScale,
+					clapTopY + rotatedClapTop.Height * _renderingScale);
+
+				args.Canvas.DrawBitmap(rotatedClapTop, clapTopRect);
+			}
 		}
 
 		private void DrawCamera(ISkiaCanvas sender, SKSurface args)
 		{
 			var robotPosition = GetRobotBottomCenterPosition();
 
-			var cameraMidHeight = robotPosition.Y - 260 * _renderingScale;
+			var cameraMidHeight = robotPosition.Y - 278 * _renderingScale;
 			var cameraActualHeight = cameraMidHeight - CameraHeight * _renderingScale * 46;
 			var renderY = cameraActualHeight - _renderingScale * _camera.Height / 2;
 			var renderX = robotPosition.X - _camera.Width * _renderingScale / 3f;
@@ -198,6 +355,10 @@ namespace Physics.CompoundOscillations.Rendering
 				narrowStickLeftX + _stickNarrow.Width * _renderingScale,
 				midpointY);
 
+			//var actressX = 1600 * _renderingScale;
+			//var actionShotLineHeight = cameraActualHeight + 15 * _renderingScale;
+			//args.Canvas.DrawLine(new SKPoint(robotPosition.X, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
+
 			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
 			args.Canvas.DrawBitmap(_stickWide, wideStickRect);
 
@@ -210,7 +371,7 @@ namespace Physics.CompoundOscillations.Rendering
 			{
 				return;
 			}
-			
+
 			var robotPath = new SKPath();
 			var cameraPath = new SKPath();
 			var compoundPath = new SKPath();
@@ -239,35 +400,6 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.DrawPath(compoundPath, _compoundPlotPaint);
 		}
 
-		public void Reset()
-		{
-			SimulationTime.Reset();
-			_compoundTrajectory.Clear();
-			_cameraTrajectory.Clear();
-			_robotTrajectory.Clear();
-		}
-
-		public override void Dispose()
-		{
-			_isDisposed = true;
-			base.Dispose();
-
-			// Dispose assets
-			_bitmapsDisposable.Dispose();
-		}
-
-		private void DrawBackground(ISkiaCanvas sender, SKSurface args)
-		{
-			var backgroundSize = new SKSize(_background.Width * _renderingScale, _background.Height * _renderingScale);
-			args.Canvas.DrawBitmap(
-				_background,
-				new SKRect(
-					sender.ScaledSize.Width / 2 - backgroundSize.Width / 2,
-					sender.ScaledSize.Height / 2 - backgroundSize.Height / 2,
-					sender.ScaledSize.Width / 2 + backgroundSize.Width / 2,
-					sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
-		}
-
 		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
 		{
 			var bottomCenter = GetRobotBottomCenterPosition();
@@ -280,20 +412,10 @@ namespace Physics.CompoundOscillations.Rendering
 			var partial = (int)(partOfRotation / period * 18);
 
 			var y = _carPhysicsService.CalculateY((float)_renderTime);
-			float angle = 0.0f;
-			if (y < 0)
-			{
-				var part = y + 1;
-				angle = (part / y) * 45;
-			}
-			else
-			{
-				angle = (1 - y / 1) * 45;
-			}
 
-			angle = (float)Math.Atan(Math.Cos(2 * (float)Math.PI * (float)_renderTime * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad));
-
+			var angle = (float)Math.Atan(Math.Cos(2 * (float)Math.PI * (float)_renderTime * _oscillationInfo.Frequency + _oscillationInfo.PhaseInRad));
 			angle = -MathHelpers.RadiansToDegrees(angle) * .5f;
+
 			using var image = SkiaHelpers.RotateBitmap(_robots[partial], angle);
 
 			var targetRect = new SKRect(
@@ -305,17 +427,57 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.DrawBitmap(image, targetRect);
 		}
 
+		private void DrawDirector(ISkiaCanvas sender, SKSurface args)
+		{
+			if (_gameInfo.State == GameState.ReachedEnd)
+			{
+				SKBitmap directorImage;
+				if (_gameInfo.Accuracy < 50)
+				{
+					directorImage = _directorAngry;
+				}
+				else if (_gameInfo.Accuracy < 80)
+				{
+					directorImage = _directorAnnoyed;
+				}
+				else
+				{
+					directorImage = _directorHappy;
+				}
+
+				var directorX = 1600 * _renderingScale;
+				var directorY = GetTopY(sender) + 150 * _renderingScale;
+				var directorRect = new SKRect(
+					directorX,
+					directorY,
+					directorX + directorImage.Width * _renderingScale,
+					directorY + directorImage.Height * _renderingScale);
+
+				args.Canvas.DrawBitmap(directorImage, directorRect);
+
+
+				args.Canvas.DrawText(_gameInfo.Accuracy.ToString().PadLeft(3) + "%", 1530 * _renderingScale, GetTopY(sender) + 300 * _renderingScale, _accuracyTextPaint);
+			}
+		}
+
 		private SKPoint GetRobotBottomCenterPosition()
 		{
 			if (_robotTrajectory.Count == 0)
 			{
-				return SKPoint.Empty;
+				// Robot starts on top of a hill at PI/2
+				return new SKPoint(
+					CalculateRobotXFromOscillation((float)Math.PI / 2),
+					CalculateRobotYFromOscillation(1));
 			}
 
-			var bottomCenterX = 71.14f * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].X;
-			var bottomCenterY = _topY + 985 * _renderingScale - 40 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
+			var bottomCenterX = CalculateRobotXFromOscillation(_robotTrajectory[_robotTrajectory.Count - 1].X);
+			var bottomCenterY = CalculateRobotYFromOscillation(_robotTrajectory[_robotTrajectory.Count - 1].Y);
 			return new SKPoint(bottomCenterX, bottomCenterY);
 		}
+
+		private float CalculateRobotXFromOscillation(float xInRad) => 71.14f * _renderingScale * xInRad;
+
+		private float CalculateRobotYFromOscillation(float normalizedY) => _topY + 985 * _renderingScale - 40 * _renderingScale * normalizedY;
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)
 		{

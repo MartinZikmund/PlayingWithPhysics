@@ -43,7 +43,7 @@ namespace Physics.HomogenousParticle.Rendering
         public void StartSimulation(IMotionSetup[] motions)
         {
             _renderer?.StartSimulation(motions);
-            SimulationTime.Reset();
+            SimulationTime.Restart();
         }
 
         public override void Update(ICanvasAnimatedControl sender)

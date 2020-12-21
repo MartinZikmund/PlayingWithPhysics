@@ -17,6 +17,6 @@ namespace Physics.CompoundOscillations.Views
 	{
 		protected override ISkiaCanvas CreateSkiaCanvas() => new NonUiSkiaCanvas();
 
-		protected override AngryDirectorController CreateController(ISkiaCanvas canvas) => new AngryDirectorController(canvas);
+		protected override AngryDirectorController CreateController(ISkiaCanvas canvas) => Model.CreateController(canvas);
 	}
 }

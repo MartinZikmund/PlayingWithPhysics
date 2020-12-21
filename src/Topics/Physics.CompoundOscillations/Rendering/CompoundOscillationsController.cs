@@ -82,7 +82,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		public void StartSimulation()
 		{
-			SimulationTime.Reset();
+			SimulationTime.Restart();
 			Play();
 		}
 

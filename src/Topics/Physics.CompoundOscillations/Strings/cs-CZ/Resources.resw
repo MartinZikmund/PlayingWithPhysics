@@ -158,6 +158,9 @@ Grafika: Petr Weinlich</value>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Zobrazit tabulku složeného kmitání</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Počáteční fáze</value>
   </data>

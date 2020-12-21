@@ -38,7 +38,14 @@ namespace Physics.Shared.UI.Rendering
 
         public float SimulationSpeed { get; set; } = 1.0f;
 
-        public void Reset()
+		public void Reset()
+		{
+			_stopwatch.Reset();
+			TotalTime = TimeSpan.Zero;
+			UpdateCount = 0;
+		}
+
+        public void Restart()
         {            
             _stopwatch.Restart();
             TotalTime = TimeSpan.Zero;

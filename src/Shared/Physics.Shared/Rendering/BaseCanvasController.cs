@@ -64,7 +64,7 @@ namespace Physics.Shared.UI.Rendering
 
         protected void Reset()
         {
-            SimulationTime.Reset();
+            SimulationTime.Restart();
         }
 
         private void CanvasUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)

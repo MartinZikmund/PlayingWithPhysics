@@ -158,6 +158,9 @@ Graphics: Petr Weinlich</value>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Show table of compound oscillation</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Start phase</value>
   </data>

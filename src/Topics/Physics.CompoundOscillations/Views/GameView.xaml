@@ -236,7 +236,7 @@
 				<ThemeShadow />
 			</Windows10version1903:Grid.Shadow>
 			<Border Grid.Row="1">
-				<ScrollViewer VerticalScrollBarVisibility="Auto">
+				<ScrollViewer VerticalScrollBarVisibility="Auto" RequestedTheme="Dark">
 					<Grid RowSpacing="8">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
@@ -269,6 +269,22 @@
 									<SymbolIcon Symbol="Refresh" />
 								</Viewbox>
 								<TextBlock Text="{extensions:Localize Key=NewGame}" />
+							</StackPanel>
+						</Button>
+
+						<Button
+                            Grid.Row="2"
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.StartGameCommand}">
+							<StackPanel Orientation="Horizontal" Spacing="8">
+								<Viewbox
+                                    Width="16"
+                                    Height="16"
+                                    VerticalAlignment="Center">
+									<SymbolIcon Symbol="Play" />
+								</Viewbox>
+								<TextBlock Text="{extensions:Localize Key=Start}" />
 							</StackPanel>
 						</Button>
 
