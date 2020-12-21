@@ -120,10 +120,10 @@
 	            <Run Text="(&#960; rad)" />
 		</TextBlock>
 		<controls:NumberBox
-				x:Name="PhaseInDegNumberBox"
+				x:Name="PhaseInPiRadNumberBox"
 				Grid.Row="4"
 				Grid.Column="1"
-				Text="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+				Value="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="5" Grid.Column="1" Opacity="0.8" Margin="0,-8,0,0">
 					<Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />

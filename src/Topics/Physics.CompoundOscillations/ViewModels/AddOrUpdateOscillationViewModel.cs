@@ -62,13 +62,13 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public float Period => 1 / Frequency;
 
-		public float AngularSpeedInRad => PhysicsHelpers.FrequencyToAngularSpeedInRad(Frequency);
+		public string AngularSpeedInRad => PhysicsHelpers.FrequencyToAngularSpeedInRad(Frequency).ToString("0.0");
 
-		public float AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency);
+		public string AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency).ToString("0.0");
 
 		public float Amplitude { get; set; } = 1;
 
-		public float PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI);
+		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 
 		public float PhaseInPiRad { get; set; }
 

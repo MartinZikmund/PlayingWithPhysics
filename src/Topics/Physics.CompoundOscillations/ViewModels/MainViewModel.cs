@@ -62,6 +62,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			}
 
 			_controller = controller;
+			SimulationPlayback.SetController(_controller);
 		}
 
 		public ObservableCollection<OscillationInfoViewModel> Oscillations { get; } = new ObservableCollection<OscillationInfoViewModel>();

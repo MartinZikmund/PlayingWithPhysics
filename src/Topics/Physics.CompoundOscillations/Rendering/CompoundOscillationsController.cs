@@ -90,7 +90,8 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			if (_activeOscillations != null)
 			{
-				_verticalScale = (float)(sender.ScaledSize.Height - 2 * VerticalPadding) / (_maxY - _minY);
+				var verticalPadding = sender.ScaledSize.Height * 0.15;
+				_verticalScale = (float)(sender.ScaledSize.Height - 2 * verticalPadding) / (_maxY - _minY);
 			}
 		}
 

@@ -30,11 +30,19 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         public TimeSpan? MaxTime { get; set; }
 
-        public void Play() => IsPaused = false;
+		public void Play()
+		{
+			IsPaused = false;
+			SimulationTime.Start();
+		}
 
-        public void Pause() => IsPaused = true;
+		public void Pause()
+		{
+			IsPaused = true;
+			SimulationTime.Pause();
+		}
 
-        public void Rewind(float time)
+		public void Rewind(float time)
         {
             SimulationTime.Rewind(time);
         }

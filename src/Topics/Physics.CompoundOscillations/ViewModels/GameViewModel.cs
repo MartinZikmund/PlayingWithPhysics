@@ -34,7 +34,7 @@ namespace Physics.CompoundOscillations.ViewModels
 		public void SetController(AngryDirectorController controller)
 		{
 			_controller = controller;
-			_controller.CameraHeight = -1;
+			_controller.CameraHeight = -1;			
 			NewGame();
 		}
 

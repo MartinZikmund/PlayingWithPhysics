@@ -19,14 +19,20 @@ namespace Physics.Shared.UI.Rendering
         internal void Start()
         {
             _stopwatch.Start();
+			_lastElapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
         }
+
+		internal void Pause()
+		{
+			_stopwatch.Stop();
+		}
 
         internal void OnUpdateStarting()
         {
             var currentElapsed = _stopwatch.ElapsedMilliseconds;
-            ElapsedTime = TimeSpan.FromMilliseconds(currentElapsed - _lastElapsedMilliseconds);
+            ElapsedTime = TimeSpan.FromMilliseconds(currentElapsed - _lastElapsedMilliseconds) * SimulationSpeed;
             _lastElapsedMilliseconds = currentElapsed;
-            TotalTime = TimeSpan.FromMilliseconds(currentElapsed);
+			TotalTime += ElapsedTime;
             UpdateCount++;
         }
 
@@ -43,13 +49,15 @@ namespace Physics.Shared.UI.Rendering
 			_stopwatch.Reset();
 			TotalTime = TimeSpan.Zero;
 			UpdateCount = 0;
+			_lastElapsedMilliseconds = 0;
 		}
 
-        public void Restart()
+		public void Restart()
         {            
             _stopwatch.Restart();
             TotalTime = TimeSpan.Zero;
 			UpdateCount = 0;
+			_lastElapsedMilliseconds = 0;
         }
 
         public void Rewind(float time)
