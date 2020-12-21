@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reactive.Disposables;
 using Physics.CompoundOscillations.Logic;
 using Physics.Shared.UI.Localization;
@@ -38,20 +39,50 @@ namespace Physics.CompoundOscillations.Rendering
 			IsStroke = false,
 		};
 
+		private SKPaint _robotPlotPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			IsStroke = true,
+			StrokeWidth = 2,
+			Color = SKColors.Blue
+		};
+
+		private SKPaint _cameraPlotPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			IsStroke = true,
+			StrokeWidth = 2,
+			Color = SKColors.Green
+		};
+
+		private SKPaint _compoundPlotPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			IsStroke = true,
+			StrokeWidth = 4,
+			Color = SKColors.Black
+		};
+
 		private string _plotText;
 		private string _directorText;
 		private OscillationInfo _oscillationInfo;
 		private float _renderingScale;
 		private float _topY;
-
+		private double _renderTime;
 		private bool _isDisposed;
 
 		private OscillationPhysicsService _carPhysicsService = null;
 		private float _timeAtEnd = 0;
 
+		private List<SKPoint> _cameraTrajectory = new List<SKPoint>();
+		private List<SKPoint> _robotTrajectory = new List<SKPoint>();
+		private List<SKPoint> _compoundTrajectory = new List<SKPoint>();
+
 		public AngryDirectorController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
 		}
+
+		public float CameraHeight { get; set; }
 
 		public override void Initialized(ISkiaCanvas sender, SKSurface args)
 		{
@@ -91,13 +122,23 @@ namespace Physics.CompoundOscillations.Rendering
 				(float)Math.PI / 2,
 				"");
 			_carPhysicsService = new OscillationPhysicsService(_oscillationInfo);
-			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);
+			_timeAtEnd = _carPhysicsService.GetTimeAtDistance(6.5f * (float)Math.PI);			
 		}
 
 		public override void Update(ISkiaCanvas sender)
 		{
 			_renderingScale = CalculateRenderingScale(sender);
 			_topY = GetTopY(sender);
+
+			_renderTime = SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd ? SimulationTime.TotalTime.TotalSeconds : _timeAtEnd;
+			if (SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd)
+			{
+				var robotX = _carPhysicsService.CalculateDistance((float)_renderTime);
+				var robotY = _carPhysicsService.CalculateY((float)_renderTime);
+				_robotTrajectory.Add(new SKPoint(robotX, robotY));
+				_cameraTrajectory.Add(new SKPoint(robotX, CameraHeight));
+				_compoundTrajectory.Add(new SKPoint(robotX, _robotTrajectory.Last().Y + _cameraTrajectory.Last().Y));
+			}
 		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
@@ -121,11 +162,45 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawPlot(ISkiaCanvas sender, SKSurface args)
 		{
+			if (_robotTrajectory.Count == 0)
+			{
+				return;
+			}
+			
+			var robotPath = new SKPath();
+			var cameraPath = new SKPath();
+			var compoundPath = new SKPath();
+			var baseY = 260;
+			for (int i = 0; i < _robotTrajectory.Count; i++)
+			{
+				var x = _robotTrajectory[i].X * 71.14f * _renderingScale;
+				var robotY = _topY + baseY * _renderingScale - 46 * _renderingScale * _robotTrajectory[i].Y;
+				var cameraY = _topY + baseY * _renderingScale - 46 * _renderingScale * _cameraTrajectory[i].Y;
+				var compoundY = _topY + baseY * _renderingScale - 46 * _renderingScale * _compoundTrajectory[i].Y;
+				if (i == 0)
+				{
+					robotPath.MoveTo(new SKPoint(x, robotY));
+					cameraPath.MoveTo(new SKPoint(x, cameraY));
+					compoundPath.MoveTo(new SKPoint(x, compoundY));
+				}
+				else
+				{
+					robotPath.LineTo(new SKPoint(x, robotY));
+					cameraPath.LineTo(new SKPoint(x, cameraY));
+					compoundPath.LineTo(new SKPoint(x, compoundY));
+				}
+			}
+			args.Canvas.DrawPath(robotPath, _robotPlotPaint);
+			args.Canvas.DrawPath(cameraPath, _cameraPlotPaint);
+			args.Canvas.DrawPath(compoundPath, _compoundPlotPaint);
 		}
 
 		public void Reset()
 		{
 			SimulationTime.Reset();
+			_compoundTrajectory.Clear();
+			_cameraTrajectory.Clear();
+			_robotTrajectory.Clear();
 		}
 
 		public override void Dispose()
@@ -153,13 +228,12 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
 		{
-			var renderTime = SimulationTime.TotalTime.TotalSeconds <= _timeAtEnd ? SimulationTime.TotalTime.TotalSeconds : _timeAtEnd;
 
-			var bottomCenterX = 71.14f * _renderingScale * _carPhysicsService.CalculateDistance((float)renderTime);
-			var bottomCenterY = _topY + 970 * _renderingScale - 46 * _renderingScale * _carPhysicsService.CalculateY((float)renderTime);
+			var bottomCenterX = 71.14f * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].X;
+			var bottomCenterY = _topY + 970 * _renderingScale - 46 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
 
 			var period = 1 / _oscillationInfo.Frequency;
-			var partOfRotation = renderTime % period;
+			var partOfRotation = _renderTime % period;
 			var partial = (int)(partOfRotation / period * 18);
 
 			var targetRect = new SKRect(

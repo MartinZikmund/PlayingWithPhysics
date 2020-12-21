@@ -272,7 +272,7 @@
 							</StackPanel>
 						</Button>
 
-						<Slider Style="{StaticResource GameSliderStyle}" Minimum="0" Maximum="100" Value="50" SmallChange="5" Header="Ovladani kamery" VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="3" />
+						<Slider Style="{StaticResource GameSliderStyle}" Minimum="0" Maximum="100" Value="{x:Bind Model.CameraHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SmallChange="5" Header="Ovladani kamery" VerticalAlignment="Top" Height="240" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="3" />
 						<!--<StackPanel Grid.Row="2" Spacing="8">
 							<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Inputs}" />
 							<TextBlock>
