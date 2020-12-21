@@ -86,7 +86,7 @@ namespace Physics.CompoundOscillations.Rendering
 		private SKPaint _accuracyTextPaint = new SKPaint()
 		{
 			IsAntialias = true,
-			TextSize = 30,
+			TextSize = 24,
 			Color = new SKColor(255, 255, 255),
 			TextAlign = SKTextAlign.Center,
 			IsStroke = false
