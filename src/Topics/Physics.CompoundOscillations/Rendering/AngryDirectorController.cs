@@ -26,6 +26,8 @@ namespace Physics.CompoundOscillations.Rendering
 		private SKBitmap _directorHappy = null;
 		private SKBitmap _directorAnnoyed = null;
 		private SKBitmap _directorAngry = null;
+		private SKBitmap _stickWide;
+		private SKBitmap _stickNarrow;
 		private SKBitmap[] _robots = null;
 
 		/// <summary>
@@ -98,12 +100,13 @@ namespace Physics.CompoundOscillations.Rendering
 				_background = LoadImageFromPackage($"{gameAssetsPath}background.en.png").DisposeWith(_bitmapsDisposable);
 			}
 			_camera = LoadImageFromPackage($"{gameAssetsPath}camera.png").DisposeWith(_bitmapsDisposable); ;
-			_stick = LoadImageFromPackage($"{gameAssetsPath}stick.png").DisposeWith(_bitmapsDisposable); ;
 			_wheel = LoadImageFromPackage($"{gameAssetsPath}wheel.png").DisposeWith(_bitmapsDisposable); ;
 			_robotBody = LoadImageFromPackage($"{gameAssetsPath}robotBody.png").DisposeWith(_bitmapsDisposable); ;
 			_directorHappy = LoadImageFromPackage($"{gameAssetsPath}directorHappy.png").DisposeWith(_bitmapsDisposable); ;
 			_directorAnnoyed = LoadImageFromPackage($"{gameAssetsPath}directorAnnoyed.png").DisposeWith(_bitmapsDisposable);
 			_directorAngry = LoadImageFromPackage($"{gameAssetsPath}directorAngry.png").DisposeWith(_bitmapsDisposable);
+			_stickWide = LoadImageFromPackage($"{gameAssetsPath}stickWide.png").DisposeWith(_bitmapsDisposable);
+			_stickNarrow = LoadImageFromPackage($"{gameAssetsPath}stickNarrow.png").DisposeWith(_bitmapsDisposable);
 
 			var robotBitmaps = new List<SKBitmap>();
 			for (int i = 1; i <= 18; i++)
@@ -151,14 +154,54 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.Clear(SKColors.Black);
 
 			DrawBackground(sender, args);
+			
+			
+			DrawCamera(sender, args);
+
 			DrawRobot(sender, args);
 
 			DrawPlot(sender, args);
-			DrawDirector(sender, args);
+			DrawDirector(sender, args);			
 		}
 
 		private void DrawDirector(ISkiaCanvas sender, SKSurface args)
 		{
+		}
+
+		private void DrawCamera(ISkiaCanvas sender, SKSurface args)
+		{
+			var robotPosition = GetRobotBottomCenterPosition();
+
+			var cameraMidHeight = robotPosition.Y - 260 * _renderingScale;
+			var cameraActualHeight = cameraMidHeight - CameraHeight * _renderingScale * 46;
+			var renderY = cameraActualHeight - _renderingScale * _camera.Height / 2;
+			var renderX = robotPosition.X - _camera.Width * _renderingScale / 3f;
+			var renderRect = new SKRect(
+				renderX,
+				renderY,
+				renderX + _renderingScale * _camera.Width,
+				renderY + _renderingScale * _camera.Height);
+
+			var robotTopY = robotPosition.Y - (_robots[0].Height / 2);
+			var wideStickBottomY = robotPosition.Y - (_robots[0].Height / 2) * _renderingScale;
+			var wideStickLeftX = robotPosition.X - _stickWide.Width * _renderingScale / 2;
+			var midpointY = (cameraActualHeight - robotTopY) / 4 + robotTopY;
+			var wideStickRect = new SKRect(
+				wideStickLeftX,
+				midpointY,
+				wideStickLeftX + _stickWide.Width * _renderingScale,
+				wideStickBottomY);
+			var narrowStickLeftX = robotPosition.X - _stickNarrow.Width * _renderingScale / 2;
+			var narrowStickRect = new SKRect(
+				narrowStickLeftX,
+				cameraActualHeight,
+				narrowStickLeftX + _stickNarrow.Width * _renderingScale,
+				midpointY);
+
+			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
+			args.Canvas.DrawBitmap(_stickWide, wideStickRect);
+
+			args.Canvas.DrawBitmap(_camera, renderRect);
 		}
 
 		private void DrawPlot(ISkiaCanvas sender, SKSurface args)
@@ -225,25 +268,21 @@ namespace Physics.CompoundOscillations.Rendering
 					sender.ScaledSize.Height / 2 + backgroundSize.Height / 2));
 		}
 
-		private SKPaint _circlePaint = new SKPaint() { Color = SKColors.Red, IsStroke = false };
-
 		private void DrawRobot(ISkiaCanvas sender, SKSurface args)
 		{
-
-			var bottomCenterX = 71.14f * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].X;
-			var bottomCenterY = _topY + 970 * _renderingScale - 46 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
+			var bottomCenter = GetRobotBottomCenterPosition();
 
 			var period = 1 / _oscillationInfo.Frequency;
 			var partOfRotation = _renderTime % period;
 			var partial = (int)(partOfRotation / period * 18);
 
 			var targetRect = new SKRect(
-					bottomCenterX - _renderingScale * _robots[0].Width / 2,
-					bottomCenterY - _renderingScale * _robots[0].Height,
-					bottomCenterX + _renderingScale * _robots[0].Width / 2,
-					bottomCenterY);
+					bottomCenter.X - _renderingScale * _robots[0].Width / 2,
+					bottomCenter.Y - _renderingScale * _robots[0].Height,
+					bottomCenter.X + _renderingScale * _robots[0].Width / 2,
+					bottomCenter.Y);
 
-			var y = _carPhysicsService.CalculateY((float)renderTime);
+			var y = _carPhysicsService.CalculateY((float)_renderTime);
 			float angle = 0.0f;
 			if (y < 0)
 			{
@@ -258,6 +297,18 @@ namespace Physics.CompoundOscillations.Rendering
 			using var image = SkiaHelpers.RotateBitmap(_robots[partial], angle);
 
 			args.Canvas.DrawBitmap(image, targetRect);
+		}
+
+		private SKPoint GetRobotBottomCenterPosition()
+		{
+			if (_robotTrajectory.Count == 0)
+			{
+				return SKPoint.Empty;
+			}
+
+			var bottomCenterX = 71.14f * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].X;
+			var bottomCenterY = _topY + 970 * _renderingScale - 35 * _renderingScale * _robotTrajectory[_robotTrajectory.Count - 1].Y;
+			return new SKPoint(bottomCenterX, bottomCenterY);
 		}
 
 		private float CalculateRenderingScale(ISkiaCanvas sender)

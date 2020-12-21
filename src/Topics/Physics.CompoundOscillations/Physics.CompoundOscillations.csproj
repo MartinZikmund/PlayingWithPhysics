@@ -186,7 +186,8 @@
     <Content Include="Assets\Game\robot_7.png" />
     <Content Include="Assets\Game\robot_8.png" />
     <Content Include="Assets\Game\robot_9.png" />
-    <Content Include="Assets\Game\stick.png" />
+    <Content Include="Assets\Game\stickNarrow.png" />
+    <Content Include="Assets\Game\stickWide.png" />
     <Content Include="Assets\Game\wheel.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
