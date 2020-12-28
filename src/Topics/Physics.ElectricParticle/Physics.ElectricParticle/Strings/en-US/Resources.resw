@@ -144,6 +144,9 @@
   <data name="ChargePolarity_Positive" xml:space="preserve">
     <value>positive</value>
   </data>
+  <data name="CurrentValues" xml:space="preserve">
+    <value>Current values</value>
+  </data>
   <data name="DrawMotion" xml:space="preserve">
     <value>Draw motion</value>
   </data>
@@ -180,6 +183,15 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="ParticleType_AtomNucleus" xml:space="preserve">
+    <value>Atomové jádro</value>
+  </data>
+  <data name="ParticleType_ChargedBody" xml:space="preserve">
+    <value>Nabité tělísko</value>
+  </data>
+  <data name="ParticleType_Electron" xml:space="preserve">
+    <value>Elektron</value>
+  </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Vertically and horizontally oriented charged planes without gravity</value>
   </data>
@@ -203,6 +215,9 @@
   </data>
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>Vertical</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Set parameters</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Electric Field</value>

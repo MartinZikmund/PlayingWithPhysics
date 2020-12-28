@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:usercontrols="using:Physics.ElectricParticle.UserControls"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    Title="{extensions:Localize Key=AddMotion}"
+    Title="{extensions:Localize Key=SetParameters}"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"

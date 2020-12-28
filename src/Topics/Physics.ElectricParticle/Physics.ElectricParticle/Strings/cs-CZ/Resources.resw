@@ -147,6 +147,9 @@
   <data name="ChooseMotion.Text" xml:space="preserve">
     <value>Vyber variantu</value>
   </data>
+  <data name="CurrentValues" xml:space="preserve">
+    <value>Aktuální hodnoty</value>
+  </data>
   <data name="DrawButton.Content" xml:space="preserve">
     <value>Vykresli pohyb</value>
   </data>
@@ -228,6 +231,15 @@
   <data name="Input_VelocityDirection" xml:space="preserve">
     <value>Směr rychlosti</value>
   </data>
+  <data name="ParticleType_AtomNucleus" xml:space="preserve">
+    <value>Atomové jádro</value>
+  </data>
+  <data name="ParticleType_ChargedBody" xml:space="preserve">
+    <value>Nabité tělísko</value>
+  </data>
+  <data name="ParticleType_Electron" xml:space="preserve">
+    <value>Elektron</value>
+  </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Svisle i vodorovně orientované nabité desky bez tíhového pole</value>
   </data>
@@ -266,6 +278,9 @@
   </data>
   <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>kladný</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Nastavit parametry</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyb částice v homogenním elektrickém poli</value>

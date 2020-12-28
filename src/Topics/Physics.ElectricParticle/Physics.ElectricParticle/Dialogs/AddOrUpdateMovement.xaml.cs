@@ -1,26 +1,10 @@
-﻿using DynamicData.Annotations;
-using Physics.ElectricParticle.Logic;
-using Physics.ElectricParticle.ViewModels;
+﻿using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.ViewModels.Inputs;
-using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Physics.ElectricParticle.Dialogs
 {
-    public sealed partial class AddOrUpdateMovementDialog : ContentDialog
+	public sealed partial class AddOrUpdateMovementDialog : ContentDialog
     {
         public AddOrUpdateMovementDialog(IInputViewModel viewModel)
         {

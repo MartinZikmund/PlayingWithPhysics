@@ -1,6 +1,7 @@
 ﻿using Physics.ElectricParticle.Dialogs;
 using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.Models;
+using Physics.ElectricParticle.Rendering;
 using Physics.ElectricParticle.UserControls;
 using Physics.ElectricParticle.ValuesTable;
 using Physics.ElectricParticle.ViewInteractions;
@@ -9,6 +10,7 @@ using Physics.ElectricParticle.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.ViewModels;
+using Physics.Shared.UI.Views.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,9 +28,9 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.ElectricParticle.ViewModels
 {
-    public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>
+    public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<ElectricParticleCanvasController>
     {
-        private IMainViewInteraction _interaction;
+		private ElectricParticleCanvasController _controller;
 
         public MainViewModel()
         {
@@ -95,7 +97,9 @@ namespace Physics.ElectricParticle.ViewModels
                 _selectedVariantIndex = value;
             }
         }
-        PlaneOrientation Variant => (PlaneOrientation)(_difficulty == DifficultyOption.Advanced ? _selectedVariantIndex + 3 : _selectedVariantIndex);
+
+        InputVariant Variant => (InputVariant)(_difficulty == DifficultyOption.Advanced ? _selectedVariantIndex + 3 : _selectedVariantIndex);
+
         public IInputViewModel InputViewModel { get; set; }
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
@@ -107,7 +111,7 @@ namespace Physics.ElectricParticle.ViewModels
                 Setup = dialog.Setup;
 				var res = new PhysicsService(Setup as MotionSetup).PrimaryAxisCoordinate(0);
                 Motion = new MotionViewModel(Setup);
-                RestartSimulation();
+                //RestartSimulation();
             }
         });
 
@@ -115,33 +119,11 @@ namespace Physics.ElectricParticle.ViewModels
 
         public IMotionSetup Setup { get; set; }
 
-        internal void SetViewInteraction(IMainViewInteraction interaction)
-        {
-            _interaction = interaction;
-        }
-
-        public ICommand DrawCommand => GetOrCreateCommand(DrawMotion);
-
-
         public Visibility ShowCurrentValues => (Setup != null) ? Visibility.Visible : Visibility.Collapsed;
-        public void DrawMotion()
-        {
-        }
-        public string DrawingContent { get; set; }
 
-        private void RestartSimulation()
-        {
-            //if (_interaction == null) return;
-            //var controller = _interaction.PrepareController(SelectedVariant);
-            //SimulationPlayback.SetController(controller);
-            //controller.StartSimulation(Motions.Select(m => m.Motion).ToArray());
-        }
-
-        //public string LocalizedAddMotionText => (SelectedVariant == VelocityVariant.Radiation) ? Localizer.Instance["AddMotionRadiation"] : Localizer.Instance["AddMotion"];
-        //internal void Delete(RadiationVariantStateViewModel radiationVariantStateViewModel)
-        //{
-        //    Motions.Remove(radiationVariantStateViewModel);
-        //    RestartSimulation();
-        //}
-    }
+		public void SetController(ElectricParticleCanvasController controller)
+		{
+			_controller = controller;
+		}
+	}
 }

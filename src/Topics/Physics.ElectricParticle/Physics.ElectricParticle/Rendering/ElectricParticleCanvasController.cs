@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Physics.Shared.UI.Rendering.Skia;
+using SkiaSharp;
 
 namespace Physics.ElectricParticle.Rendering
 {
-    class ElectricParticleCanvasController
-    {
-    }
+	public class ElectricParticleCanvasController : SkiaCanvasController
+	{
+		public ElectricParticleCanvasController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
+		{
+		}
+
+		public override void Draw(ISkiaCanvas sender, SKSurface args)
+		{
+		}
+
+		public override void Update(ISkiaCanvas sender)
+		{
+		}
+	}
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public enum PlaneOrientation
+    public enum InputVariant
     {
         EasyVertical,
         EasyHorizontal,

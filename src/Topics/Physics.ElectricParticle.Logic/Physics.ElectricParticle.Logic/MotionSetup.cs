@@ -6,7 +6,7 @@ namespace Physics.ElectricParticle.Logic
 {
     public class MotionSetup : MotionSetupBase
     {
-        public MotionSetup(PlaneOrientation variant, PrimaryPlaneChargePolarity primaryPlaneChargePolarity,
+        public MotionSetup(InputVariant variant, PrimaryPlaneChargePolarity primaryPlaneChargePolarity,
                            float primaryVoltage,
                            float primaryPlaneDistance,
                            SecondaryPlaneChargePolarity secondaryPlaneChargePolarity,
@@ -42,7 +42,7 @@ namespace Physics.ElectricParticle.Logic
             Color = color;
         }
 
-		public PlaneOrientation Variant { get; set; }
+		public InputVariant Variant { get; set; }
         public PrimaryPlaneChargePolarity PrimaryPlaneChargePolarity { get; set; }
         public float PrimaryVoltage { get; set; }
         public float PrimaryPlaneDistance { get; set; }

@@ -41,13 +41,13 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.EasyVertical:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return PrimaryAxisCoordinate(time);
-				case PlaneOrientation.EasyHorizontal:
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontal:
+				case InputVariant.EasyHorizontalWithGravity:
 					return SecondaryAxisCoordinate(time);
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisCoordinate(time);
 			}
 			return 0;
@@ -57,13 +57,13 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.EasyVertical:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return SecondaryAxisCoordinate(time);
-				case PlaneOrientation.EasyHorizontal:
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontal:
+				case InputVariant.EasyHorizontalWithGravity:
 					return PrimaryAxisCoordinate(time);
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisCoordinate(time);
 			}
 			return 0;
@@ -95,13 +95,13 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.EasyVertical:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return PrimaryAxisVelocity(time);
-				case PlaneOrientation.EasyHorizontal:
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontal:
+				case InputVariant.EasyHorizontalWithGravity:
 					return SecondaryAxisVelocity(time);
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisVelocity(time);
 			}
 			return 0;
@@ -111,13 +111,13 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.EasyVertical:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return SecondaryAxisVelocity(time);
-				case PlaneOrientation.EasyHorizontal:
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontal:
+				case InputVariant.EasyHorizontalWithGravity:
 					return PrimaryAxisVelocity(time);
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisVelocity(time);
 			}
 			return 0;
@@ -152,13 +152,13 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.EasyVertical:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return PrimaryAxisAccelerationX(time);
-				case PlaneOrientation.EasyHorizontal:
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontal:
+				case InputVariant.EasyHorizontalWithGravity:
 					return 0.0; //change to method with g=0 return
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisAccelerationX(time);
 			}
 			return 0;
@@ -168,15 +168,15 @@ namespace Physics.ElectricParticle.Logic
 		{
 			switch (_setup.Variant)
 			{
-				case PlaneOrientation.EasyVertical:
+				case InputVariant.EasyVertical:
 					return 0.0; //change to method with g=0 return
-				case PlaneOrientation.AdvancedVerticalWithGravity:
+				case InputVariant.AdvancedVerticalWithGravity:
 					return -9.81; //do constant
-				case PlaneOrientation.EasyHorizontal:
+				case InputVariant.EasyHorizontal:
 					return PrimaryAxisAccelerationY(time);
-				case PlaneOrientation.EasyHorizontalWithGravity:
+				case InputVariant.EasyHorizontalWithGravity:
 					return PrimaryAxisAccelerationY(time) - 9.81;
-				case PlaneOrientation.AdvancedVerticalHorizontal:
+				case InputVariant.AdvancedVerticalHorizontal:
 					return PrimaryAxisAccelerationY(time);
 			}
 			return 0;

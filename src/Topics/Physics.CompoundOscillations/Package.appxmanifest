@@ -8,10 +8,10 @@
 
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsCompou"
-    Publisher="CN=marti"
-    Version="0.5.1.0" />
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.8.4.0" />
 
-  <mp:PhoneIdentity PhoneProductId="3f4f3665-7538-455b-b614-620900440e92" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="23c1fa86-be24-4482-b151-15f7439fb830" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Playing with Physics: Compound Oscillations</DisplayName>

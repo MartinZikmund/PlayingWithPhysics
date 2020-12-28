@@ -17,8 +17,10 @@ namespace Physics.ElectricParticle.UserControls
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            if (item == null)
-                return base.SelectTemplateCore(item, container);
+			if (item == null)
+			{
+				return base.SelectTemplateCore(item, container);
+			}
             var viewModelName = item.GetType().Name;
             var viewModelPrefix = viewModelName.Substring(0, viewModelName.Length - "viewModel".Length);
             return (DataTemplate)Application.Current.Resources[viewModelPrefix + "DataTemplate"];

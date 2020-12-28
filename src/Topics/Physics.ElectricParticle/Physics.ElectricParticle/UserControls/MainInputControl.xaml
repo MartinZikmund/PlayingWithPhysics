@@ -275,64 +275,33 @@
         <TextBlock Grid.Row="12" Grid.Column="0">
             <Run Text="{extensions:Localize Key=Input_EnvironmentSetting}" />
         </TextBlock>
-        <ComboBox
+		<ComboBox
             x:Name="EnvironmentSettings"
             Grid.Row="12"
             Grid.Column="1"
             HorizontalAlignment="Stretch"
             ItemsSource="{x:Bind Model.EnvironmentSettings}"
             SelectedItem="{x:Bind Model.SelectedEnvironmentSetting, Mode=TwoWay}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate x:DataType="inputs1:EnvironmentSetting">
-                    <Grid ColumnSpacing="8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
-                        <TextBlock
+			<ComboBox.ItemTemplate>
+				<DataTemplate x:DataType="inputs1:EnvironmentSetting">
+					<Grid ColumnSpacing="8">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+						<TextBlock
                             Grid.Column="1"
                             HorizontalAlignment="Right"
                             Opacity="0.5">
                             <Run Text="{x:Bind FormattedValue}" />
-                        </TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+						</TextBlock>
+					</Grid>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
 
-        <!--<TextBlock
-            Grid.Row="2"
-            Grid.Column="0"
-            Text="{extensions:Localize Key=ParallelInput_MovementDirection}" />
-        <ComboBox
-            Grid.Row="2"
-            Grid.Column="1"
-            HorizontalAlignment="Stretch"
-            ItemsSource="{x:Bind Model.VariantOrientations}"
-            SelectedItem="{x:Bind Model.SelectedOrientation, Mode=TwoWay}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate x:DataType="inputs1:ParallelVariantOrientation">
-                    <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="0"
-            Text="{extensions:Localize Key=ParallelInput_InductionOrientation}" />
-        <winui:NumberBox
-            x:Name="OrientationNumberBox"
-            Grid.Row="3"
-            Grid.Column="1"
-            LargeChange="20"
-            Maximum="360"
-            Minimum="0"
-            SmallChange="5"
-            Value="{x:Bind Model.InductionOrientation, Mode=TwoWay}" />-->
-
-        <TextBlock
+		<TextBlock
             Grid.Row="13"
             Grid.Column="0"
             VerticalAlignment="Center"
