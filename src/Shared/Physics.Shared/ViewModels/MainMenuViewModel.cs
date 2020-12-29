@@ -13,42 +13,47 @@ using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.Shared.ViewModels
 {
-    public class MainMenuViewModel : MvxViewModel
-    {
-        private readonly ITopicConfiguration _topicNavigator;
+	public class MainMenuViewModel : MvxViewModel
+	{
+		private readonly ITopicConfiguration _topicNavigator;
 
-        private ICommand _goToEasyCommand;
-        private ICommand _goToAdvancedCommand;
-        private ICommand _goToStudyModeCommand;
-        private ICommand _gameModeCommand;
-        private ICommand _aboutAppCommand;
+		private ICommand _goToEasyCommand;
+		private ICommand _goToAdvancedCommand;
+		private ICommand _goToStudyModeCommand;
+		private ICommand _gameModeCommand;
+		private ICommand _aboutAppCommand;
 
-        public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
+		public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
 
-        public bool HasGame => _topicNavigator.HasGame;
+		public bool HasGame => _topicNavigator.HasGame;
 
-        public bool HasStudyMode => _topicNavigator.HasStudyMode && IsCurrentCultureCzech;
+		public bool HasStudyMode => _topicNavigator.HasStudyMode && IsCurrentCultureCzech;
 
-        public bool HasAdvancedDifficulty => _topicNavigator.HasAdvancedDifficulty;
+		public bool HasAdvancedDifficulty => _topicNavigator.HasAdvancedDifficulty;
 
-        public ICommand GoToEasyCommand => _goToEasyCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Easy);
+		public ICommand GoToEasyCommand => _goToEasyCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Easy);
 
-        public ICommand GoToAdvancedCommand => _goToAdvancedCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Advanced);
+		public ICommand GoToAdvancedCommand => _goToAdvancedCommand ??= CreateTopicDifficultyCommand(DifficultyOption.Advanced);
 
-        public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);        
+		public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);
 
-        public ICommand GoToStudyModeCommand => _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
+		public ICommand GoToStudyModeCommand => _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
 
-        private bool IsCurrentCultureCzech =>
+		private bool IsCurrentCultureCzech =>
 #if DEBUG
-            true;
+			true;
 #else
             CultureInfo.CurrentUICulture
                 .TwoLetterISOLanguageName
                 .StartsWith("cs", StringComparison.InvariantCultureIgnoreCase);
 #endif
 
-        private ICommand CreateTopicDifficultyCommand(DifficultyOption difficulty) =>
-            new MvxAsyncCommand(() => _topicNavigator.GoToDifficultyAsync(difficulty));
-    }
+		private ICommand CreateTopicDifficultyCommand(DifficultyOption difficulty)
+		{
+			return new MvxAsyncCommand(async () =>
+			{
+				await _topicNavigator.GoToDifficultyAsync(difficulty);
+			});
+		}
+	}
 }

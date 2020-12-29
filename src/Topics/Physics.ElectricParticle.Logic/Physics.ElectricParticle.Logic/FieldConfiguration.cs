@@ -4,27 +4,24 @@
 	{
 		private FieldConfiguration(bool isVisible) => IsVisible = isVisible;
 
-		private FieldConfiguration(float minimum, float maximum, float step, int descriptionType)
+		private FieldConfiguration(float minimum, float maximum, int descriptionType)
 		{
 			Minimum = minimum;
 			Maximum = maximum;
-			Step = step;
 			DescriptionType = descriptionType;
 		}
 
 		public static FieldConfiguration CreateInvisible() =>
 			new FieldConfiguration(false);
 
-		public static FieldConfiguration CreateRestricted(float minimum, float maximum, float step, int descriptionType = 0) =>
-			new FieldConfiguration(minimum, maximum, step, descriptionType);
+		public static FieldConfiguration CreateRestricted(float minimum, float maximum, int descriptionType = 0) =>
+			new FieldConfiguration(minimum, maximum, descriptionType);
 
 		public bool IsVisible { get; set; } = true;
 
-		public float? Minimum { get; set; }
+		public double Minimum { get; set; }
 
-		public float? Maximum { get; set; }
-
-		public float? Step { get; set; }
+		public double Maximum { get; set; }
 
 		public int DescriptionType { get; set; }
 	}

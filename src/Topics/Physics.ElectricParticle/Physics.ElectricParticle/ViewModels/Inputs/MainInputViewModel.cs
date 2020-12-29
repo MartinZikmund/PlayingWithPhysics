@@ -9,25 +9,37 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 {
 	public class MainInputViewModel : InputViewModelBase
 	{
-		private InputVariant _variant;
+		private readonly InputVariant _inputVariant;
+
 		public MainInputViewModel(InputVariant variant)
 		{
-			_variant = variant;
+			_inputVariant = variant;
+
+			InitializeParticleTypes();			
+
 			SelectedPrimaryPlaneChargePolarity = PrimaryPlaneChargePolarities[0];
 			SelectedChargePolarity = ChargePolarities[0];
 			SelectedVelocityDirection = VelocityDirections[0];
 			//Advanced-1, secondary
 			SelectedSecondaryPlaneChargePolarity = SecondaryPlaneChargePolarities[0];
 			SelectedEnvironmentSetting = EnvironmentSettings[0];
+		}
 
-			ParticleTypes = VariantConfigurations.All.Where(v => v.InputVariant == variant).Select(v => v.ParticleType).OrderBy(v => (int)v).ToArray();
+		private void InitializeParticleTypes()
+		{
+			ParticleTypes = VariantConfigurations.All
+				.Where(v => v.InputVariant == _inputVariant)
+				.Select(v => v.ParticleType)
+				.OrderBy(v => (int)v)
+				.ToArray();
+			ParticleType = ParticleTypes[0];
 		}
 
 		public override async Task<IMotionSetup> CreateMotionSetupAsync()
 		{
 			var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
 			return new MotionSetup(
-				_variant,
+				_inputVariant,
 				SelectedPrimaryPlaneChargePolarity,
 				PrimaryVoltage,
 				PrimaryPlaneDistance,
@@ -43,12 +55,14 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				Deviation,
 				SelectedVelocityDirection,
 				SelectedEnvironmentSetting,
-				colorSerialized); ;
+				colorSerialized);
 		}
 
-		public ParticleType[] ParticleTypes { get; }
+		public ParticleType[] ParticleTypes { get; private set; }
 
-		public ParticleType ParticleType { get; set; }
+		public object ParticleType { get; set; }
+
+		public VariantConfiguration VariantConfiguration { get; set; }
 
 		public PrimaryPlaneChargePolarity SelectedPrimaryPlaneChargePolarity { get; set; }
 
@@ -63,7 +77,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		public float PrimaryPlaneDistance { get; set; }
 
 		//Advanced-1, secondary options
-		public Visibility AdvancedFirstOption { get => (_variant == InputVariant.AdvancedVerticalHorizontal) ? Visibility.Visible : Visibility.Collapsed; }
+		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontal) ? Visibility.Visible : Visibility.Collapsed; }
 
 		public SecondaryPlaneChargePolarity SelectedSecondaryPlaneChargePolarity { get; set; }
 
@@ -90,7 +104,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
 		public float Deviation { get; set; }
 
-		public Visibility DeviationVisibility { get => (_variant != InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
+		public Visibility DeviationVisibility { get => (_inputVariant != InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
 		public float ChargeBase { get; set; }
 
@@ -110,7 +124,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			VelocityDirection.VerticallyUp
 		};
 
-		public Visibility VelocityDirectionVisibility { get => (_variant == InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
+		public Visibility VelocityDirectionVisibility { get => (_inputVariant == InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
 		public EnvironmentSetting SelectedEnvironmentSetting { get; set; }
 
@@ -131,7 +145,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		{
 			get
 			{
-				int variantIndex = (int)_variant;
+				int variantIndex = (int)_inputVariant;
 				switch (variantIndex)
 				{
 					case 0:
@@ -148,13 +162,13 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		{
 			get
 			{
-				int variantIndex = (int)_variant;
+				int variantIndex = (int)_inputVariant;
 				switch (variantIndex)
 				{
 					case 0:
 					case 1:
-						return Localizer.Instance["Input_PlaneVoltageBetweenGeneral"];
 					case 2:
+						return Localizer.Instance["Input_PlaneVoltageBetweenGeneral"];
 					case 3:
 						return Localizer.Instance["Input_PlaneVoltageBetweenHorizontal"];
 					default:
@@ -167,21 +181,28 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		{
 			get
 			{
-				int variantIndex = (int)_variant;
+				int variantIndex = (int)_inputVariant;
 				switch (variantIndex)
 				{
 					case 0:
 					case 1:
+					case 2:
 						return Localizer.Instance["Input_PlaneDistanceGeneral"];
 					case 3:
-					case 4:
 						return Localizer.Instance["Input_PlaneDistanceVertical"];
 					default:
 						return Localizer.Instance["Input_PlaneDistanceHorizontal"];
 				}
 			}
 		}
-		public Thickness VariantBasedMargin => (_variant == InputVariant.AdvancedVerticalHorizontal) ? new Thickness(0, 0, 20, 0) : new Thickness(0);
+		public Thickness VariantBasedMargin => (_inputVariant == InputVariant.AdvancedVerticalHorizontal) ? new Thickness(0, 0, 20, 0) : new Thickness(0);
 		public override string Label { get; set; }
+
+		private void OnParticleTypeChanged()
+		{
+			VariantConfiguration = VariantConfigurations.All.FirstOrDefault(
+				c => c.InputVariant == _inputVariant &&
+				c.ParticleType == (ParticleType?)ParticleType);
+		}
 	}
 }

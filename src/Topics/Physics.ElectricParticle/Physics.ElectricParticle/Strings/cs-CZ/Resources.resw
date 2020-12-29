@@ -144,9 +144,6 @@
   <data name="ChargePolarity_Positive" xml:space="preserve">
     <value>kladný</value>
   </data>
-  <data name="ChooseMotion.Text" xml:space="preserve">
-    <value>Vyber variantu</value>
-  </data>
   <data name="CurrentValues" xml:space="preserve">
     <value>Aktuální hodnoty</value>
   </data>

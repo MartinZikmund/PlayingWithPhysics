@@ -183,14 +183,56 @@
   <data name="Game" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="Input_EnvironmentSetting" xml:space="preserve">
+    <value>Environment between planes</value>
+  </data>
+  <data name="Input_PlaneDistanceGeneral" xml:space="preserve">
+    <value>Plane distance</value>
+  </data>
+  <data name="Input_PlaneDistanceHorizontal" xml:space="preserve">
+    <value>Horizontal planes distance</value>
+  </data>
+  <data name="Input_PlaneDistanceVertical" xml:space="preserve">
+    <value>Vertical planes distance</value>
+  </data>
+  <data name="Input_PlaneLabelBottom" xml:space="preserve">
+    <value>bottom</value>
+  </data>
+  <data name="Input_PlaneLabelLeft" xml:space="preserve">
+    <value>left</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenGeneral" xml:space="preserve">
+    <value>Voltage between planes</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenHorizontal" xml:space="preserve">
+    <value>Voltage between horizontal planes</value>
+  </data>
+  <data name="Input_PlaneVoltageBetweenVertical" xml:space="preserve">
+    <value>Voltage between vertical planes</value>
+  </data>
+  <data name="Input_PrimaryPlaneChargePolarity_FirstPart" xml:space="preserve">
+    <value>Charge polarity</value>
+  </data>
+  <data name="Input_PrimaryPlaneChargePolarity_SecondPart" xml:space="preserve">
+    <value>plane</value>
+  </data>
+  <data name="Input_SecondaryPlaneChargePolarity_FirstPart" xml:space="preserve">
+    <value>Charge polarity</value>
+  </data>
+  <data name="Input_SecondaryPlaneChargePolarity_SecondPart" xml:space="preserve">
+    <value>plane</value>
+  </data>
+  <data name="Input_VelocityDirection" xml:space="preserve">
+    <value>Velocity direction</value>
+  </data>
   <data name="ParticleType_AtomNucleus" xml:space="preserve">
-    <value>Atomové jádro</value>
+    <value>Atom nucleus</value>
   </data>
   <data name="ParticleType_ChargedBody" xml:space="preserve">
-    <value>Nabité tělísko</value>
+    <value>Charged body</value>
   </data>
   <data name="ParticleType_Electron" xml:space="preserve">
-    <value>Elektron</value>
+    <value>Electron</value>
   </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Vertically and horizontally oriented charged planes without gravity</value>
@@ -216,6 +258,18 @@
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>Vertical</value>
   </data>
+  <data name="PrimaryPlaneChargePolarity_Negative" xml:space="preserve">
+    <value>negative</value>
+  </data>
+  <data name="PrimaryPlaneChargePolarity_Positive" xml:space="preserve">
+    <value>positive</value>
+  </data>
+  <data name="SecondaryPlaneChargePolarity_Negative" xml:space="preserve">
+    <value>negative</value>
+  </data>
+  <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
+    <value>positive</value>
+  </data>
   <data name="SetParameters" xml:space="preserve">
     <value>Set parameters</value>
   </data>
@@ -225,8 +279,11 @@
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Particle speed at origin is</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="VelocityDirection_VerticallyDown" xml:space="preserve">
+    <value>vertically down</value>
+  </data>
+  <data name="VelocityDirection_VerticallyUp" xml:space="preserve">
+    <value>vertically up</value>
   </data>
   <data name="VerticalChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>

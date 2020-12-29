@@ -8,15 +8,15 @@
 			{
 				InputVariant = InputVariant.EasyVertical,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5, 5, 1),
-				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
+				Q = FieldConfiguration.CreateRestricted(-5, 5),
+				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power),
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.EasyVertical,
 				ParticleType = ParticleType.AtomNucleus,
-				Q = FieldConfiguration.CreateRestricted(1, 150, 1),
-				M = FieldConfiguration.CreateRestricted(1, 300, 1, (int)WeightDescriptionType.Nukleus)
+				Q = FieldConfiguration.CreateRestricted(1, 150),
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
 			},
 			new VariantConfiguration()
 			{
@@ -29,15 +29,15 @@
 			{
 				InputVariant = InputVariant.EasyHorizontal,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5,5,1),
-				M = FieldConfiguration.CreateRestricted(1,10000, 1, (int)WeightDescriptionType.TenToMinus17Power)
+				Q = FieldConfiguration.CreateRestricted(-5,5),
+				M = FieldConfiguration.CreateRestricted(1,10000, (int)WeightDescriptionType.TenToMinus17Power)
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.EasyHorizontal,
 				ParticleType = ParticleType.AtomNucleus,
-				Q = FieldConfiguration.CreateRestricted(1, 150, 1),
-				M = FieldConfiguration.CreateRestricted(1, 300, 1, (int)WeightDescriptionType.Nukleus)
+				Q = FieldConfiguration.CreateRestricted(1, 150),
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
 			},
 			new VariantConfiguration()
 			{
@@ -50,22 +50,22 @@
 			{
 				InputVariant = InputVariant.EasyHorizontalWithGravity,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5,5,1),
-				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power)
+				Q = FieldConfiguration.CreateRestricted(-5,5),
+				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power)
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.AdvancedVerticalHorizontal,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5, 5, 1),
-				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
+				Q = FieldConfiguration.CreateRestricted(-5, 5),
+				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power),
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.AdvancedVerticalHorizontal,
 				ParticleType = ParticleType.AtomNucleus,
-				Q = FieldConfiguration.CreateRestricted(1, 150, 1),
-				M = FieldConfiguration.CreateRestricted(1, 300, 1, (int)WeightDescriptionType.Nukleus)
+				Q = FieldConfiguration.CreateRestricted(1, 150),
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
 			},
 			new VariantConfiguration()
 			{
@@ -78,8 +78,8 @@
 			{
 				InputVariant = InputVariant.AdvancedVerticalWithGravity,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5, 5, 1),
-				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power)
+				Q = FieldConfiguration.CreateRestricted(-5, 5),
+				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power)
 			}
 		};
 	}
