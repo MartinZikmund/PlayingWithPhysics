@@ -30,8 +30,6 @@ namespace Physics.ElectricParticle.UserControls
             SecondaryVoltageNumberBox.SetupFormatting(smallChange: 100);
             SecondaryPlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
             ChargeBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
-            MassBaseNumberBox.SetupFormatting(smallChange: 0.1, increment: 0.1);
-            ChargePowerNumberBox.SetupFormatting(smallChange: 1, increment: 1);
             MassPowerNumberBox.SetupFormatting(smallChange: 1, increment: 1);
             VelocityNumberBox.SetupFormatting(smallChange: 1, increment: 1);
             DeviationNumberBox.SetupFormatting(smallChange: 1, increment: 1);
