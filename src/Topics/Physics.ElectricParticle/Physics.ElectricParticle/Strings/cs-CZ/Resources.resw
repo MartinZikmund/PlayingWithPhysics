@@ -312,6 +312,12 @@
   <data name="VerticalInput_Mass" xml:space="preserve">
     <value>Hmotnost tělesa</value>
   </data>
+  <data name="VerticalInput_MassMultiple" xml:space="preserve">
+    <value>(násobek</value>
+  </data>
+  <data name="VerticalInput_MassMultipleNucleus" xml:space="preserve">
+    <value>(násobek hmotnosti nukleonu)</value>
+  </data>
   <data name="VerticalLeftPlaneChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
   </data>

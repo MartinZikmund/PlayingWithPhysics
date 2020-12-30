@@ -216,13 +216,21 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                 </Grid.ColumnDefinitions>
-                <TextBlock>
+				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=0}">
                     <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
                     <Run FontWeight="Bold" Text="m" />
-                    <Run Text="(kg)" />
+					<Run Text="{extensions:Localize Key=VerticalInput_MassMultiple}" />
+					<Run Text="10" /><Run Text="&#8315;17" Typography.Variants="Superscript" /><Run Text=")" />
+                    <Run Text="[kg]" />
                 </TextBlock>
+				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=1}">
+                    <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
+                    <Run FontWeight="Bold" Text="m" />
+					<Run Text="{extensions:Localize Key=VerticalInput_MassMultipleNucleus}" />
+                    <Run Text="[kg]" />
+				</TextBlock>
 
-                <winui:NumberBox
+				<winui:NumberBox
                     x:Name="MassPowerNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.M.Maximum, Mode=OneWay}"

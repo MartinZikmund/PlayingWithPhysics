@@ -8,4 +8,5 @@
     <converters:NativeBoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <converters:NativeInvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
     <converters:EnumLocalizationConverter x:Key="EnumLocalizationConverter" />
+	<converters:ValueMatchVisibilityConverter x:Key="ValueMatchVisibilityConverter" />
 </ResourceDictionary>

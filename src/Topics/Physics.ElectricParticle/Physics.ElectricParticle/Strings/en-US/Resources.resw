@@ -309,6 +309,12 @@
   <data name="VerticalInput_Mass" xml:space="preserve">
     <value>Mass</value>
   </data>
+  <data name="VerticalInput_MassMultiple" xml:space="preserve">
+    <value>(multiple of</value>
+  </data>
+  <data name="VerticalInput_MassMultipleNucleus" xml:space="preserve">
+    <value>(multiple of nucleus mass)</value>
+  </data>
   <data name="VerticalVariant_Deviation" xml:space="preserve">
     <value>Origin speed and horizontal direction deviation</value>
   </data>

@@ -139,6 +139,7 @@
     <Compile Include="Controls\SkewedMenuHeader.xaml.cs">
       <DependentUpon>SkewedMenuHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ValueMatchVisibilityConverter.cs" />
     <Compile Include="Helpers\UniqueNameGenerator.cs" />
     <Compile Include="Infrastructure\DefaultAppStart.cs" />
     <Compile Include="Infrastructure\DefaultApp.cs" />
