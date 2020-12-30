@@ -186,6 +186,12 @@
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
   </data>
+  <data name="Input_Charge" xml:space="preserve">
+    <value>Náboj</value>
+  </data>
+  <data name="Input_ChargeDetail" xml:space="preserve">
+    <value>(násobek elementárního náboje)</value>
+  </data>
   <data name="Input_EnvironmentSetting" xml:space="preserve">
     <value>Prostředí mezi deskami</value>
   </data>

@@ -17,11 +17,11 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
 			InitializeParticleTypes();			
 
-			SelectedPrimaryPlaneChargePolarity = PrimaryPlaneChargePolarities[0];
-			SelectedChargePolarity = ChargePolarities[0];
+			PrimaryPlanePolarity = Polarities[0];
+			ParticlePolarity = Polarities[0];
 			SelectedVelocityDirection = VelocityDirections[0];
 			//Advanced-1, secondary
-			SelectedSecondaryPlaneChargePolarity = SecondaryPlaneChargePolarities[0];
+			SelectedSecondaryPlaneChargePolarity = Polarities[0];
 			SelectedEnvironmentSetting = EnvironmentSettings[0];
 		}
 
@@ -37,23 +37,36 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
 		public override async Task<IMotionSetup> CreateMotionSetupAsync()
 		{
-			var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color);
+			PlaneSetup horizontalPlane = null;
+			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||
+				_inputVariant == InputVariant.EasyHorizontalWithGravity)
+			{
+				horizontalPlane = new PlaneSetup(PrimaryPlanePolarity, PrimaryPlaneVoltage, PrimaryPlaneDistance);
+			}
+
+			PlaneSetup verticalPlane = null;
+			if (_inputVariant == InputVariant.EasyVerticalNoGravity ||
+				_inputVariant == InputVariant.AdvancedVerticalWithGravity)
+			{
+				verticalPlane = new PlaneSetup(PrimaryPlanePolarity, PrimaryPlaneVoltage, PrimaryPlaneDistance);
+			}
+
+			// TODO: handle remaining cases
+
+			var particle = new ParticleSetup(
+				(ParticleType)ParticleType,
+				ParticlePolarity,
+				ChargeMultiplier,
+				MassMultiplier,
+				StartVelocity,
+				StartVelocityDeviation); //TODO: Handle velocity direction for edge case
+
+			var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Colors.Selected);
 			return new MotionSetup(
 				_inputVariant,
-				SelectedPrimaryPlaneChargePolarity,
-				PrimaryVoltage,
-				PrimaryPlaneDistance,
-				SelectedSecondaryPlaneChargePolarity,
-				SecondaryVoltage,
-				SecondaryPlaneDistance,
-				SelectedChargePolarity,
-				ChargeBase,
-				ChargePower,
-				MassBase,
-				MassPower,
-				Velocity,
-				Deviation,
-				SelectedVelocityDirection,
+				horizontalPlane,
+				verticalPlane,
+				particle,
 				SelectedEnvironmentSetting,
 				colorSerialized);
 		}
@@ -64,57 +77,40 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
 		public VariantConfiguration VariantConfiguration { get; set; }
 
-		public PrimaryPlaneChargePolarity SelectedPrimaryPlaneChargePolarity { get; set; }
+		public Polarity PrimaryPlanePolarity { get; set; }
 
-		public ObservableCollection<PrimaryPlaneChargePolarity> PrimaryPlaneChargePolarities { get; } = new ObservableCollection<PrimaryPlaneChargePolarity>()
+		public ObservableCollection<Polarity> Polarities { get; } = new ObservableCollection<Polarity>()
 		{
-			PrimaryPlaneChargePolarity.Positive,
-			PrimaryPlaneChargePolarity.Negative
+			Polarity.Positive,
+			Polarity.Negative
 		};
 
-		public float PrimaryVoltage { get; set; }
+		public float PrimaryPlaneVoltage { get; set; }
 
 		public float PrimaryPlaneDistance { get; set; }
 
 		//Advanced-1, secondary options
-		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontal) ? Visibility.Visible : Visibility.Collapsed; }
+		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
-		public SecondaryPlaneChargePolarity SelectedSecondaryPlaneChargePolarity { get; set; }
+		public Polarity SelectedSecondaryPlaneChargePolarity { get; set; }
 
-		public ObservableCollection<SecondaryPlaneChargePolarity> SecondaryPlaneChargePolarities { get; } = new ObservableCollection<SecondaryPlaneChargePolarity>()
-		{
-			SecondaryPlaneChargePolarity.Positive,
-			SecondaryPlaneChargePolarity.Negative
-		};
-
-		public float SecondaryVoltage { get; set; }
+		public float SecondaryPlaneVoltage { get; set; }
 
 		public float SecondaryPlaneDistance { get; set; }
 		//END: Advanced-1, secondary options
 
 		//General input values
-		public ChargePolarity SelectedChargePolarity { get; set; }
-		public ObservableCollection<ChargePolarity> ChargePolarities { get; } = new ObservableCollection<ChargePolarity>()
-		{
-			ChargePolarity.Positive,
-			ChargePolarity.Negative
-		};
+		public Polarity ParticlePolarity { get; set; }
 
-		public float Velocity { get; set; }
+		public float StartVelocity { get; set; }
 
-		public float Deviation { get; set; }
+		public float StartVelocityDeviation { get; set; }
 
 		public Visibility DeviationVisibility { get => (_inputVariant != InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
-		public float ChargeBase { get; set; }
-
-		public float ChargePower { get; set; }
-
 		public float ChargeMultiplier { get; set; }
 
-		public float MassBase { get; set; }
-
-		public float MassPower { get; set; }
+		public float MassMultiplier { get; set; }
 
 		public VelocityDirection SelectedVelocityDirection { get; set; }
 
@@ -195,10 +191,8 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				}
 			}
 		}
-		public Thickness VariantBasedMargin => (_inputVariant == InputVariant.AdvancedVerticalHorizontal) ? new Thickness(0, 0, 20, 0) : new Thickness(0);
-		public override string Label { get; set; }
 
-		private void OnParticleTypeChanged()
+		internal void OnParticleTypeChanged()
 		{
 			VariantConfiguration = VariantConfigurations.All.FirstOrDefault(
 				c => c.InputVariant == _inputVariant &&

@@ -26,7 +26,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Padding="0,0,20,0">
+    <Grid Padding="20,0,20,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -199,9 +199,10 @@
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                 </Grid.ColumnDefinitions>
                 <TextBlock>
-                    <Run Text="{extensions:Localize Key=VerticalInput_Charge}" />
+                    <Run Text="{extensions:Localize Key=Input_Charge}" />
                     <Run FontWeight="Bold" Text="Q" />
-                    <Run Text="(C)" />
+					<Run Text="{extensions:Localize Key=Input_ChargeDetails}" />
+                    <Run Text="[C]" />
                 </TextBlock>
                 <winui:NumberBox
                     x:Name="ChargeBaseNumberBox"
@@ -235,7 +236,7 @@
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.M.Maximum, Mode=OneWay}"
                     Minimum="{x:Bind Model.VariantConfiguration.M.Minimum, Mode=OneWay}"
-                    Value="{x:Bind Model.MassPower, Mode=TwoWay}" />
+                    Value="{x:Bind Model.MassMultiplier, Mode=TwoWay}" />
             </Grid>
 
             <Grid>
@@ -336,8 +337,8 @@
             <TextBlock VerticalAlignment="Center" Text="{extensions:Localize Key=Color}" />
             <GridView
                 Grid.ColumnSpan="2"
-                ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
-                SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+                ItemsSource="{x:Bind Model.Colors.Palette, Mode=OneWay}"
+                SelectedItem="{x:Bind Model.Colors.Selected, Mode=TwoWay}">
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Border Width="32" Height="32">

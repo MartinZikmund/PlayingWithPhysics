@@ -6,10 +6,10 @@ namespace Physics.ElectricParticle.Logic
 {
     public enum InputVariant
     {
-        EasyVertical,
-        EasyHorizontal,
+        EasyVerticalNoGravity,
+        EasyHorizontalNoGravity,
         EasyHorizontalWithGravity,
-        AdvancedVerticalHorizontal,
+        AdvancedVerticalHorizontalNoGravity,
         AdvancedVerticalWithGravity
     }
 }
