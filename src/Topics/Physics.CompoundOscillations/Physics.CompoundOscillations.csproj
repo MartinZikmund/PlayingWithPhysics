@@ -166,6 +166,8 @@
   <ItemGroup>
     <Content Include="Assets\Game\background.cs.png" />
     <Content Include="Assets\Game\background.en.png" />
+    <Content Include="Assets\Game\commentAngry.cs.png" />
+    <Content Include="Assets\Game\commentAngry.en.png" />
     <Content Include="Assets\Game\camera.png" />
     <Content Include="Assets\Game\directorAngry.png" />
     <Content Include="Assets\Game\directorAnnoyed.png" />
@@ -173,6 +175,10 @@
     <Content Include="Assets\Game\clap.wav" />
     <Content Include="Assets\Game\clapBody.png" />
     <Content Include="Assets\Game\clapTop.png" />
+    <Content Include="Assets\Game\commentHappy.cs.png" />
+    <Content Include="Assets\Game\commentHappy.en.png" />
+    <Content Include="Assets\Game\commentAnnoyed.cs.png" />
+    <Content Include="Assets\Game\commentAnnoyed.en.png" />
     <Content Include="Assets\Game\robotBody.png" />
     <Content Include="Assets\Game\robot_1.png" />
     <Content Include="Assets\Game\robot_10.png" />

@@ -39,6 +39,11 @@ namespace Physics.CompoundOscillations.Rendering
 		private SKBitmap _clapBody;
 		private SKBitmap[] _robots = null;
 
+		private SKBitmap _commentHappy = null;
+		private SKBitmap _commentAnnoyed = null;
+		private SKBitmap _commentAngry = null;
+
+
 		/// <summary>
 		/// Paint for labels
 		/// </summary>
@@ -159,14 +164,17 @@ namespace Physics.CompoundOscillations.Rendering
 
 			// Load assets
 			var gameAssetsPath = "Assets/Game/";
+			var culture = "en";
 			if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.Equals("cs", StringComparison.InvariantCultureIgnoreCase))
 			{
-				_background = LoadImageFromPackage($"{gameAssetsPath}background.cs.png").DisposeWith(_bitmapsDisposable);
+				culture = "cs";
 			}
-			else
-			{
-				_background = LoadImageFromPackage($"{gameAssetsPath}background.en.png").DisposeWith(_bitmapsDisposable);
-			}
+
+			_background = LoadImageFromPackage($"{gameAssetsPath}background.{culture}.png").DisposeWith(_bitmapsDisposable);
+			_commentHappy = LoadImageFromPackage($"{gameAssetsPath}commentHappy.{culture}.png").DisposeWith(_bitmapsDisposable);
+			_commentAngry = LoadImageFromPackage($"{gameAssetsPath}commentAngry.{culture}.png").DisposeWith(_bitmapsDisposable);
+			_commentAnnoyed = LoadImageFromPackage($"{gameAssetsPath}commentAnnoyed.{culture}.png").DisposeWith(_bitmapsDisposable);
+
 			_camera = LoadImageFromPackage($"{gameAssetsPath}camera.png").DisposeWith(_bitmapsDisposable); ;
 			_wheel = LoadImageFromPackage($"{gameAssetsPath}wheel.png").DisposeWith(_bitmapsDisposable); ;
 			_robotBody = LoadImageFromPackage($"{gameAssetsPath}robotBody.png").DisposeWith(_bitmapsDisposable); ;
@@ -190,6 +198,8 @@ namespace Physics.CompoundOscillations.Rendering
 			_directorText = Localizer.Instance[DirectorLabelKey];
 		}
 
+		private float _totalSum = 0.0f;
+
 		public override void Update(ISkiaCanvas sender)
 		{
 			_renderingScale = CalculateRenderingScale(sender);
@@ -210,6 +220,7 @@ namespace Physics.CompoundOscillations.Rendering
 				}
 				if (countdownTime.TotalSeconds > ClapTime)
 				{
+					_totalSum = 0f;
 					_gameInfo.State = GameState.Action;
 					_gameInfo.TimeAtActionStart = SimulationTime.TotalTime;
 				}
@@ -224,20 +235,17 @@ namespace Physics.CompoundOscillations.Rendering
 				_robotTrajectory.Add(new SKPoint(robotX, robotY));
 				_cameraTrajectory.Add(new SKPoint(robotX, CameraHeight));
 				_compoundTrajectory.Add(new SKPoint(robotX, _robotTrajectory.Last().Y + _cameraTrajectory.Last().Y));
+
+				_totalSum += Math.Abs(_compoundTrajectory[_compoundTrajectory.Count - 1].Y);
+				var averageDistance = _totalSum / _compoundTrajectory.Count;
+				var invert = 1 - averageDistance / 2;
+
+				_gameInfo.Accuracy = (int)Math.Round(invert * 100);
 			}
 
 			if (actionTime?.TotalSeconds > _timeAtEnd  && _gameInfo.State == GameState.Action)
 			{
-				_gameInfo.State = GameState.ReachedEnd;
-				var totalSum = 0.0f;
-				for (int i = 0; i < _compoundTrajectory.Count; i++)
-				{
-					totalSum += Math.Abs(_compoundTrajectory[i].Y);
-				}
-				var averageDistance = totalSum / _compoundTrajectory.Count;
-				var invert = 1 - averageDistance / 2;
-
-				_gameInfo.Accuracy = (int)Math.Round(invert * 100);
+				_gameInfo.State = GameState.ReachedEnd;				
 			}
 		}
 
@@ -251,12 +259,12 @@ namespace Physics.CompoundOscillations.Rendering
 
 			DrawBackground(sender, args);
 
-			// Countdown
-			DrawCountdown(sender, args);
-
 			// Draw camera robot
 			DrawCamera(sender, args);
 			DrawRobot(sender, args);
+
+			// Countdown
+			DrawCountdown(sender, args);
 
 			// Draw real-time plot
 			DrawPlot(sender, args);
@@ -356,9 +364,9 @@ namespace Physics.CompoundOscillations.Rendering
 				midpointY);
 
 			// Camera beam
-			var actressX = 1600 * _renderingScale;
+			var actressX = 1620 * _renderingScale;
 			var actionShotLineHeight = cameraActualHeight + 15 * _renderingScale;
-			args.Canvas.DrawLine(new SKPoint(robotPosition.X, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
+			args.Canvas.DrawLine(new SKPoint(robotPosition.X + 50 * _renderingScale, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
 
 			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
 			args.Canvas.DrawBitmap(_stickWide, wideStickRect);
@@ -430,20 +438,25 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawDirector(ISkiaCanvas sender, SKSurface args)
 		{
-			if (_gameInfo.State == GameState.ReachedEnd)
+			if (_gameInfo.State == GameState.ReachedEnd || _gameInfo.State == GameState.Action)
 			{
+				_accuracyTextPaint.TextSize = 50 * _renderingScale;
 				SKBitmap directorImage;
-				if (_gameInfo.Accuracy < 50)
+				SKBitmap commentImage;
+				if (_gameInfo.Accuracy < 60)
 				{
 					directorImage = _directorAngry;
+					commentImage = _commentAngry;
 				}
 				else if (_gameInfo.Accuracy < 80)
 				{
 					directorImage = _directorAnnoyed;
+					commentImage = _commentAnnoyed;
 				}
 				else
 				{
 					directorImage = _directorHappy;
+					commentImage = _commentHappy;
 				}
 
 				var directorX = 1600 * _renderingScale;
@@ -458,6 +471,16 @@ namespace Physics.CompoundOscillations.Rendering
 
 
 				args.Canvas.DrawText(_gameInfo.Accuracy.ToString().PadLeft(3) + "%", 1530 * _renderingScale, GetTopY(sender) + 300 * _renderingScale, _accuracyTextPaint);
+
+				var commentScale = 0.3f * _renderingScale;
+				var commentX = 1740 * _renderingScale;
+				var commentY = GetTopY(sender) + 100 * _renderingScale;
+				var commentRect = new SKRect(
+					commentX,
+					commentY,
+					commentX + commentImage.Width * commentScale,
+					commentY + commentImage.Height * commentScale);
+				args.Canvas.DrawBitmap(commentImage, commentRect);
 			}
 		}
 
