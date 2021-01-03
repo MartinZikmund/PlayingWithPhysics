@@ -27,7 +27,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public ICommand StartGameCommand => GetOrCreateCommand(StartGame);
 
-		private void NewGame() => _controller?.NewGame(CurrentGame = new GameInfo(_randomizer.Next(2, 8) / 10f) { AreSoundsEnabled = AreSoundsEnabled });
+		private void NewGame() => _controller?.NewGame(CurrentGame = new GameInfo(_randomizer.Next(5, 9) / 60f) { AreSoundsEnabled = AreSoundsEnabled });
 
 		private void StartGame() => _controller.StartGame();
 

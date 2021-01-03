@@ -23,12 +23,12 @@ namespace Physics.Shared.Logic.Geometry
         /// <summary>
         /// Conversion factor for converting Radians to Degrees
         /// </summary>
-        private const double RadToDeg = 180.0 / Math.PI;
+        private const double RadToDeg = 180.0 / System.Math.PI;
 
         /// <summary>
         /// Conversion factor for converting Degrees to Radians
         /// </summary>
-        private const double DegToRad = Math.PI / 180.0;
+        private const double DegToRad = System.Math.PI / 180.0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Angle"/> struct.

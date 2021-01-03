@@ -355,9 +355,10 @@ namespace Physics.CompoundOscillations.Rendering
 				narrowStickLeftX + _stickNarrow.Width * _renderingScale,
 				midpointY);
 
-			//var actressX = 1600 * _renderingScale;
-			//var actionShotLineHeight = cameraActualHeight + 15 * _renderingScale;
-			//args.Canvas.DrawLine(new SKPoint(robotPosition.X, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
+			// Camera beam
+			var actressX = 1600 * _renderingScale;
+			var actionShotLineHeight = cameraActualHeight + 15 * _renderingScale;
+			args.Canvas.DrawLine(new SKPoint(robotPosition.X, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
 
 			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
 			args.Canvas.DrawBitmap(_stickWide, wideStickRect);

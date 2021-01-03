@@ -22,7 +22,7 @@ namespace Physics.Shared.Logic.Geometry
         /// <summary>
         /// Degree to radians conversion factor
         /// </summary>
-        private const double DegToRad = Math.PI / 180.0;
+        private const double DegToRad = System.Math.PI / 180.0;
 
         /// <inheritdoc />
         public double ConversionFactor => DegToRad;

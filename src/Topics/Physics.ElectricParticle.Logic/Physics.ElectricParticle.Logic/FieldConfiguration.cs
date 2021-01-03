@@ -4,7 +4,7 @@
 	{
 		private FieldConfiguration(bool isVisible) => IsVisible = isVisible;
 
-		private FieldConfiguration(float minimum, float maximum, int descriptionType)
+		private FieldConfiguration(double minimum, double maximum, int descriptionType)
 		{
 			Minimum = minimum;
 			Maximum = maximum;
@@ -14,8 +14,11 @@
 		public static FieldConfiguration CreateInvisible() =>
 			new FieldConfiguration(false);
 
-		public static FieldConfiguration CreateRestricted(float minimum, float maximum, int descriptionType = 0) =>
+		public static FieldConfiguration CreateRestricted(double minimum, double maximum, int descriptionType = 0) =>
 			new FieldConfiguration(minimum, maximum, descriptionType);
+
+		public static FieldConfiguration CreateUnrestricted() =>
+			new FieldConfiguration(double.MinValue, double.MaxValue, 0);
 
 		public bool IsVisible { get; set; } = true;
 

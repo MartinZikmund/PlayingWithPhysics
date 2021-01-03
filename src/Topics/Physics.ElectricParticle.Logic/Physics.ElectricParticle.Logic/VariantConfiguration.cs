@@ -9,5 +9,7 @@
 		public FieldConfiguration Q { get; set; }
 
 		public FieldConfiguration M { get; set; }
+
+		public FieldConfiguration ParticlePolarity { get; set; } = FieldConfiguration.CreateUnrestricted();
     }
 }

@@ -146,6 +146,18 @@ Grafika: Petr Weinlich</value>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="LegendBlack" xml:space="preserve">
+    <value>⚫ Černá - Výsledná pozice kamery</value>
+  </data>
+  <data name="LegendBlue" xml:space="preserve">
+    <value>🔵 Modrá - Pohyb vozíku</value>
+  </data>
+  <data name="LegendGreen" xml:space="preserve">
+    <value>🟢 Zelená - Pohyb stativu</value>
+  </data>
   <data name="Oscillation" xml:space="preserve">
     <value>Kmitání</value>
   </data>
@@ -163,5 +175,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Počáteční fáze</value>
+  </data>
+  <data name="StickHeightControl" xml:space="preserve">
+    <value>Ovládání stativu</value>
   </data>
 </root>
