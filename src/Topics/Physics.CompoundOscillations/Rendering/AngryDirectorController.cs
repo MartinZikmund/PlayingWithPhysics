@@ -88,11 +88,28 @@ namespace Physics.CompoundOscillations.Rendering
 			Color = new SKColor(255, 0, 0, 80)
 		};
 
+		private SKPaint _actionShotThinLinePaint = new SKPaint()
+		{
+			IsAntialias = true,
+			IsStroke = true,
+			StrokeWidth = 3,
+			Color = new SKColor(0, 255, 0, 80)
+		};
+
 		private SKPaint _accuracyTextPaint = new SKPaint()
 		{
 			IsAntialias = true,
 			TextSize = 24,
 			Color = new SKColor(255, 255, 255),
+			TextAlign = SKTextAlign.Center,
+			IsStroke = false
+		};
+
+		private SKPaint _idealTextPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			TextSize = 14,
+			Color = new SKColor(0, 0, 0),
 			TextAlign = SKTextAlign.Center,
 			IsStroke = false
 		};
@@ -155,7 +172,7 @@ namespace Physics.CompoundOscillations.Rendering
 			_robotTrajectory.Clear();
 		}
 
-		public float CameraHeight { get; set; }
+		public float CameraHeight { get; set; } = -1;
 
 		public override void Initialized(ISkiaCanvas sender, SKSurface args)
 		{
@@ -367,6 +384,12 @@ namespace Physics.CompoundOscillations.Rendering
 			var actressX = 1620 * _renderingScale;
 			var actionShotLineHeight = cameraActualHeight + 15 * _renderingScale;
 			args.Canvas.DrawLine(new SKPoint(robotPosition.X + 50 * _renderingScale, actionShotLineHeight), new SKPoint(actressX, actionShotLineHeight), _actionShotLinePaint);
+
+			var robotStartY = CalculateRobotYFromOscillation(1);
+			var cameraIdealHeight = robotStartY - 278 * _renderingScale - (-1 * _renderingScale * 46) + 15 * _renderingScale;
+
+			args.Canvas.DrawLine(new SKPoint(actressX + 100 * _renderingScale, cameraIdealHeight), new SKPoint(actressX + 150 * _renderingScale, cameraIdealHeight), _actionShotThinLinePaint);
+			args.Canvas.DrawText("100 %", new SKPoint(actressX + 125, cameraIdealHeight), _idealTextPaint);
 
 			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
 			args.Canvas.DrawBitmap(_stickWide, wideStickRect);

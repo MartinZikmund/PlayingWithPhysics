@@ -27,14 +27,24 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public ICommand StartGameCommand => GetOrCreateCommand(StartGame);
 
-		private void NewGame() => _controller?.NewGame(CurrentGame = new GameInfo(_randomizer.Next(5, 9) / 60f) { AreSoundsEnabled = AreSoundsEnabled });
+		private void NewGame()
+		{
+			if (_controller == null)
+			{
+				return;
+			}
+			_controller.NewGame(CurrentGame = new GameInfo(_randomizer.Next(5, 9) / 60f) { AreSoundsEnabled = AreSoundsEnabled });
+		}
 
-		private void StartGame() => _controller.StartGame();
+		private void StartGame()
+		{
+			CameraHeight = 0;
+			_controller.StartGame();
+		}
 
 		public void SetController(AngryDirectorController controller)
 		{
 			_controller = controller;
-			_controller.CameraHeight = -1;			
 			NewGame();
 		}
 
@@ -48,7 +58,6 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				return _areSoundsEnabled;
 			}
-
 			set
 			{
 				SetProperty(ref _areSoundsEnabled, value);

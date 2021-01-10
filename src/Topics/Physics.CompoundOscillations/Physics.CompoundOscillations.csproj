@@ -20,7 +20,7 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
-    <PackageCertificateThumbprint>230C65856B284C624BA151FF9D11B0AA20AC4D81</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>35927690F50B151DF779B27D316D6B752EE65C66</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
