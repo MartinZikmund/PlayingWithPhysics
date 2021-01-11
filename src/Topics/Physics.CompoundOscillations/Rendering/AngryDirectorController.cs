@@ -93,7 +93,7 @@ namespace Physics.CompoundOscillations.Rendering
 			IsAntialias = true,
 			IsStroke = true,
 			StrokeWidth = 3,
-			Color = new SKColor(0, 255, 0, 80)
+			Color = new SKColor(0, 255, 0)
 		};
 
 		private SKPaint _accuracyTextPaint = new SKPaint()
@@ -109,7 +109,7 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			IsAntialias = true,
 			TextSize = 14,
-			Color = new SKColor(0, 0, 0),
+			Color = new SKColor(0, 255, 0),
 			TextAlign = SKTextAlign.Center,
 			IsStroke = false
 		};
@@ -389,7 +389,8 @@ namespace Physics.CompoundOscillations.Rendering
 			var cameraIdealHeight = robotStartY - 278 * _renderingScale - (-1 * _renderingScale * 46) + 15 * _renderingScale;
 
 			args.Canvas.DrawLine(new SKPoint(actressX + 100 * _renderingScale, cameraIdealHeight), new SKPoint(actressX + 150 * _renderingScale, cameraIdealHeight), _actionShotThinLinePaint);
-			args.Canvas.DrawText("100 %", new SKPoint(actressX + 125, cameraIdealHeight), _idealTextPaint);
+			_idealTextPaint.TextSize = 20 * _renderingScale;
+			args.Canvas.DrawText("100 %", new SKPoint(actressX + 180 * _renderingScale, cameraIdealHeight + 5 * _renderingScale), _idealTextPaint);
 
 			args.Canvas.DrawBitmap(_stickNarrow, narrowStickRect);
 			args.Canvas.DrawBitmap(_stickWide, wideStickRect);

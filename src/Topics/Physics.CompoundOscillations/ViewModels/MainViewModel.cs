@@ -172,6 +172,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			}
 			await _controller.RunOnGameLoopAsync(() =>
 			{
+				SimulationPlayback.Play();
 				_controller.SetActiveOscillations(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
 				_controller.StartSimulation();
 			});

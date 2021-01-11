@@ -1,0 +1,214 @@
+[
+  {
+    "Title": "Pohyb v odporujícím prostředí",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "První kosmonaut",
+        "Text": "\\par \\textit{Stísněný prostor kabiny ozařovaly plameny, které tančily za kruhovým okénkem. Dýchal zrychleně. Posledních pár minut neprobíhalo vůbec dobře a teď se v té kovové kouli řítil k zemi nadzvukovou rychlostí.\\\\\r\r\\par Za chvilku snad bude po všem.\\\\\r\r\\par Blížil se kritický okamžik přistání. V ramenou ucítil prudké škubnutí a na přístrojové desce se objevil nápis PŘIPRAVIT SE KE KATAPULTÁŽI! Nacházel se ve výšce 7500 metrů nad zemským povrchem.\\\\\r\r\\par Otvorem o průměru necelého jednoho metru se prohnalo katapultovací křeslo. Pilot se jen modlil, aby při tomto krkolomném manévru nepřišel o hlavu.\\\\\r\r\\par Křeslo padalo ještě další tři kilometry a ve výšce čtyř kilometrů se od něj pilot odpoutal a začal se pomalu snášet k zemi na osobním padáku.\\\\\r\r\\par Kde to je? To je Volha? Tady jsem přistát neměl! Hlavou mu proběhla vzpomínka na loňský incident s americkým špionážním letounem U-2, který byl sestřelen a jeho pilot zajat sověty. Nikde neviděl záchranný tým. Snad na něj nevezmou vesničané vidle a uvěří, že je jejich. Rukou psaný nápis CCCP na helmě by mu v tom měl pomoci.\\\\\r\r\\par Vítr ho přenesl přes řeku a snesl ho na pole, kde od samého rána pracovala babička s vnučkou.\\\\\r\r\\par „A kde jsi se tu vzal?“, přivítala ho babka.\\\\\r\r\\par Byl 12. duben 1961, Jurij Alexejevič Gagarin se právě vrátil z vesmíru.\\\\}",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Úvod",
+        "Text": "\\par Při pohybech v homogenním tíhovém poli jsme si úlohy často zjednodušovali zanedbáním odporové síly. Pokud se ale pohybujeme v atmosféře, tak ne vždy můžeme odpor vzduchu zanedbat. Ať už jde o pohyb volně puštěného tělesa z větší výšky, šikmý vrh velkou rychlostí, pád listu ze stromu či let parašutisty na padáku.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Velikost odporové síly",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při malých rychlostech je obtékání tělesa laminární a velikost odporové síly je přímo úměrná rychlosti. To však platí jen pro velmi malé rychlosti a jen pro tělesa malých rozměrů, takže se v praxi s tímto případem v podstatě nesetkáme.\\\\ \r\r\\par Při běžných rychlostech je obtékání tělesa turbulentní. Pro velikost odporové síly platí vztah $$F_o=\\frac{1}{2}C\\rho Sv^2,$$kde $C$ je součinitel odporu, $\\rho$ hustota prostředí, $S$ obsah průřezu tělesa kolmého ke směru pohybu (tzv. účinný průřez) a $v$ velikost rychlosti.\\\\\r\r\\par Tento vztah experimentálně odvodil Isaac Newton, proto se také někdy nazývá Newtonův zákon odporu.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Součinitel odporu $C$ závisí na tvaru tělesa. Tipnete si, který tvar má nejmenší součinitel odporu?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 4,
+        "Options": [
+          "dutá polokoule, jejíž dutina je po směru pohybu",
+          "rovná deska",
+          "koule",
+          "dutá polokoule, jejíž kulová plocha je po směru pohybu",
+          "kapkovitý tvar"
+        ]
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Když se podíváte do fyzikálních tabulek, naleznete tyto hodnoty:\\\\dutá polokoule 1,33 (obr. č. 1)\\\\tenká rovná deska 1,12 (obr. č. 2)\\\\koule 0,48 (obr. č. 3)\\\\vypuklá polokoule 0,34 (obr. č. 4)\\\\kapkovitý (aerodynamický tvar) 0,03 (obr. č. 5)\\\\\r\r\\par Nejmenší součinitel odporu $C$ má tedy kapkovitý tvar. Říkáme mu sice kapkovitý, ale kapky mají různé tvary. Mohl by to být tvar kapky, která se právě oddělila od zbytku kapaliny, např. kapka vody u kapajícího kohoutku.\\\\\r\r\\par Tabulka součinitele odporu $C$ obsahuje několik málo základních tvarů. Možná byste našli hodnoty i pro další tvary, ale většinou se součinitel odporu $C$ stanovuje experimentálně v aerodynamickém tunelu. Např. Škoda Octavia 4 liftback má součinitel odporu 0,24, combi 0,26.\\\\\r\r\\par U automobilů je žádoucí co nejmenší součinitel odporu $C$, protože snížením tohoto součinitele klesá spotřeba. Konstruktéři letadel, lodí i ponorek se také snaží tento součinitel co nejvíce snížit. Ryby se aerodynamickému tvaru blíží takřka dokonale.\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "RealWorld",
+        "Title": "K zamyšlení",
+        "Text": "\\par Zamyslete se, kdy je potřeba, aby byl součinitel odporu $C$ maximální.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Velikost odporové síly závisí na druhé mocnině rychlosti, takže pokud se rychlost zvýší dvakrát:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "zmenší se odporová síla na polovinu",
+          "odporová síla zůstane stejná",
+          "odporová síla se zvětší dvakrát",
+          "odporová síla se zvětší čtyřikrát",
+          "odporová síla se zvětší osmkrát"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro velké rychlosti, kdy je rychlost rovna rychlosti zvuku nebo větší, roste odporová síla se třetí mocninou rychlosti.\\\\ ",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Pro běžné rychlostí platí pro velikost odporové síly vztah $$F_o=\\frac{1}{2}C\\rho Sv^2,$$kde $C$ je součinitel odporu, $\\rho$ hustota prostředí, $S$ účinný průřez a $v$ velikost rychlosti.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Pád volně puštěného tělesa",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na těleso volně puštěné v odporujícím prostředí působí svisle dolů tíhová síla $F_G$ a svisle vzhůru odporová síla prostředí $F_o$. Vztlakovou sílu zanedbáme i zde.\\\\\r\r\\par Velikost tíhové síly se vypočítá:$$F_G=mg,$$ kde $m$ je hmotnost tělesa a $g$ je tíhové zrychlení.\\\\\r\r\\par Velikost odporové síly jsme probrali v předchozí kapitole:$$F_o=\\frac{1}{2}C\\rho Sv^2,$$kde $C$ je součinitel odporu, $\\rho$ hustota prostředí, $S$ účinný průřez a $v$ velikost rychlosti.\\\\\r\r\\par Protože nelze odvodit jednoduché vzorce pro výpočty souřadnic, rychlosti, doby pádu apod., ukážeme si, jak pracuje naše aplikace. Podobný postup můžeme použít, pokud bychom chtěli naprogramovat pohyby v odporujícím prostředí v některém z tabulkových procesorů, např. v MS Excel.\\\\\r\r\\par Výpočty budeme provádět po velmi krátkých časových intervalech (např. $\\Delta t=$ 0,001 s). Kratší časový interval znamená větší přesnost výpočtu.\\\\\r\r\\par V okamžiku, kdy těleso pustíme, působí na těleso pouze tíhová síla $F_G$. Zrychlení v tomto okamžiku označíme $a_0$ a je rovno tíhovému zrychlení $g$, tedy $a_0=g$. Protože těleso má v počátečním okamžiku nulovou rychlost ($v_0=0$), je odporová síla nulová ($F_{o0}=0$). Souřadnice $y$ bude rovna výšce $h$, ze které bude těleso vypuštěno, tedy $y_0=h$.\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "K výpočtu rychlosti a polohy v následujícím okamžiku využijeme vzorce pro výpočet rychlosti a dráhy rovnoměrně zrychleného pohybu. Která možnost je správně pro tento pohyb, je-li počáteční rychlost nulová?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "$v=at, s=\\frac{1}{2}at^2$",
+          "$v=at, s=vt$",
+          "$v=$ konst., $s=vt$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pokud počáteční rychlost a dráha nebudou nulové, platí vztahy:$$v=v_0+at,$$ $$s=s_0+v_0t+\\frac{1}{2}at^2.$$\\\\\r\r\\par Spojením výše uvedených vztahů získáme vztahy potřebné pro výpočet údajů v následujícím časovém okamžiku:$$a_{n+1}=g-\\frac{F_o}{m}=g-\\frac{\\frac{1}{2}at^2}{m},$$ $$v_{n+1}=v_n+a_n\\Delta t,$$ $$y_{n+1}=y_n-v_n\\Delta t+\\frac{1}{2}a_n\\Delta t^2.$$\\\\\r\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "RealWorld",
+        "Title": "K zamyšlení",
+        "Text": "\\par Člen $\\frac{1}{2}a_n\\Delta t^2$ v posledním vztahu lze zanedbat. Proč?\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Tyto výpočty provádíme tak dlouho, dokud není souřadnice $y$ rovna 0.\\\\ ",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Vrhy v odporujícím prostředí",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pokud bude mít těleso na počátku pohybu nějakou rychlost (a je jedno v jakém směru), hovoříme o vrhu. Postup výpočtů bude stejný jako u pádu volně puštěného tělesa, protože ani v tomto případě nelze odvodit jednoduché vzorce souřadnice, rychlost či dobu pádu.\\\\ ",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Počáteční rychlost vrhu $v_0$ rozložíme na vodorovnou složku $v_{x0}$ a svislou složku $v_{y0}$: $$v_{x0}=v_{0}\\cos{\\alpha},$$ $$v_{y0}=v_{0}\\sin{\\alpha},$$ kde $\\alpha$ je úhel, který svírá směr počáteční rychlost s vodorovnou rovinou. Pro zjednodušení budeme předpokládat, že vodorovná složka rychlosti bude pouze ve směru osy $x$.",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Která z následujících možností je správná?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "odporová síla bude na těleso působit pouze při pohybu vodorovným směrem",
+          "odporová síla bude na těleso působit pouze při pohybu svislým vodorovným směrem",
+          "odporová síla bude na těleso působit při pohybu vodorovným i svislým směrem"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Ve vodorovném směru, tedy ve směru osy $x$, působí proti pohybu tělesa pouze síla odporu prostředí $F_o$. Potřebné údaje v následujících okamžicích vypočteme: $$a_{xn+1}=\\frac{\\frac{1}{2}C\\rho Sv^2_{xn}}{m}$$ $$v_{xn+1}=v_{xn}-a_{xn}\\Delta t,$$ $$x_{n+1}=x_{n}+v_{xn}\\Delta t-\\frac{1}{2}a_{xn}\\Delta t^2.$$\\\\\r\r\\par Ve svislém směru působí na těleso kromě síly odporu prostředí $F_o$ také síla tíhová $F_G$.\\\\\r\r\\par Je-li $v_y$ kladná (těleso stoupá, tíhová síla i odpor prostředí působí svisle dolů a zmenšují svislou složku rychlosti), bude pro zrychlení (resp. zpomalení) platit: $$a_{yn+1}=g+\\frac{\\frac{1}{2}C\\rho Sv^2_{yn}}{m}.$$\\\\\r\r\\par Je-li $v_y$ záporná (těleso klesá, tíhová síla zvětšuje složku svislé rychlosti, odpor prostředí zmenšuje svislou složku rychlosti), bude pro zrychlení (resp. zpomalení) platit: $$a_{yn+1}=g-\\frac{\\frac{1}{2}C\\rho Sv^2_{yn}}{m}.$$\\\\\r\r\\par Rychlost, resp. souřadnice vypočteme ze vztahů: $$v_{yn+1}=v_{yn}-a_{yn}\\Delta t,$$ $$y_{n+1}=y_{n}-v_{yn}\\Delta t+\\frac{1}{2}a_{yn}\\Delta t^2.$$\\\\\r\r\\par Podobně jako u pádu volně puštěného tělesa lze při velmi malém $\\Delta t$ členy $\\frac{1}{2}a_{xn}\\Delta t^2$ resp. $\\frac{1}{2}a_{yn}\\Delta t^2$ zanedbat.\\\\\r\r\\par Tyto výpočty provádíme tak dlouho, dokud není souřadnice $y$ rovna 0.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaká bude velikost okamžité rychlosti $v_n$?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "$v_n=v_{xn}+v_{yn}$",
+          "$v_n=v^2_{xn}+v^2_{yn}$",
+          "$v_n=\\sqrt{v_{xn}+v_{yn}}$",
+          "$v_n=\\sqrt{v^2_{xn}+v^2_{yn}}$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Velikost okamžité rychlosti $v_n$ určíme z obrázku č. 2 jako délku přepony pravoúhlého trojúhelníku s odvěsnami $v_{xn}$ a $v_{yn}$. \\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par SVOBODA, E., BEDNAŘÍK M., ŠIROKÁ M. Fyzika pro gymnázia - Mechanika. 5., přeprac. vyd. Praha: Prometheus, 2013. ISBN 978-80-7196-431-5.\\\\\r\r\\par Obtékání těles reálnou tekutinou :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 04.12.2020]. Dostupné z: http://fyzika.jreichl.com/main.article/view/127-obtekani-teles-realnou-tekutinou\\\\\r\r\\par Obtékání těles reálnou tekutinou - FYZIKA 007. FYZIKA 007 [online]. [cit. 04.12.2020]. Dostupné z: http://www.fyzika007.cz/mechanika/obtekani-teles-realnou-kapalinou\\\\\r\r\\par POHYBY TĚLESA V ODPORUJÍCÍM PROSTŘEDÍ - Studijní text pro řešitele FO, kat. B [online]. [cit. 04.12.2020]. Dostupné z: http://fyzikalniolympiada.cz/texty/odpor.pdf\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Literature",
+        "Title": "Doporučená literatura",
+        "Text": "\\par Jaký tvar má dešťová kapka? : Meteopress | Předpověď počasí, aktuální počasí. Meteopress | Předpověď počasí, aktuální počasí [online]. Copyright © Meteopress s. r. o. 2020 [cit. 04.12.2020]. Dostupné z: https://www.meteopress.cz/vysvetleni/jaky-tvar-ma-destova-kapka/\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

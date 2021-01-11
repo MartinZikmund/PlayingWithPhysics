@@ -50,13 +50,13 @@ namespace Physics.Shared.UI.ViewModels
             }
         }
 
-        private void Pause()
+        public void Pause()
         {
             _renderingPlayback?.Pause();
             RaisePropertyChanged(nameof(IsPaused));
         }
 
-        private void Play()
+		public void Play()
         {
             _renderingPlayback?.Play();
             RaisePropertyChanged(nameof(IsPaused));
