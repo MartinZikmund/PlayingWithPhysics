@@ -309,7 +309,7 @@
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
                     Maximum="2000"
-                    Minimum="0"
+                    Minimum="0.01"
                     Value="{x:Bind Model.GravityCoefficient, Mode=TwoWay}" />
 
                 <ComboBox

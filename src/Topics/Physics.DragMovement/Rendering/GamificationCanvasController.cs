@@ -58,6 +58,7 @@ namespace Physics.DragMovement.Rendering
 		private CanvasBitmap _hitImage;
 		private CanvasBitmap _missImage;
 		private CanvasBitmap[] _parachuteImages;
+		private CanvasBitmap _parachuteHitImage;
 		private double _pixelsPerMeter = 1;
 
 		private GameInfo _game = null;
@@ -321,6 +322,7 @@ namespace Physics.DragMovement.Rendering
 
 				if (_game.State == GameState.Won)
 				{
+					image = _parachuteHitImage;
 					// move cargo with raft
 					var addX = _raftPhysicsService.GetX(SimulationTime.TotalTime.TotalSeconds) - _raftPhysicsService.GetX(_game.HitTime.TotalSeconds);
 					left += addX * _pixelsPerMeter;
@@ -356,6 +358,8 @@ namespace Physics.DragMovement.Rendering
 				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak_5.png")),
 				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak_6.png")),
 			};
+			_parachuteHitImage = await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak_hit.png"));
+
 
 			var gameAssetsPath = "Assets/Game/";
 			var culture = "en";
