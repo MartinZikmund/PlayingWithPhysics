@@ -140,6 +140,7 @@
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\CanvasBitamp.cs" />
     <Compile Include="Rendering\DragMovementCanvasController.cs" />
     <Compile Include="Rendering\GamificationCanvasController.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
@@ -169,6 +170,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Game\Heli.mp3" />
+    <Content Include="Assets\Game\Hit.cs.png" />
+    <Content Include="Assets\Game\Hit.en.png" />
+    <Content Include="Assets\Game\Miss.cs.png" />
+    <Content Include="Assets\Game\Miss.en.png" />
     <Content Include="Assets\Game\padak_1.png" />
     <Content Include="Assets\Game\padak_2.png" />
     <Content Include="Assets\Game\padak_3.png" />

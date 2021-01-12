@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Reactive.Disposables;
@@ -29,11 +30,11 @@ namespace Physics.DragMovement.Rendering
 		private readonly float[] _parachuteOpenTimes = new float[]
 		{
 			//0 - 1 - use image 0, 
-			1,
-			2,
-			3,
-			4,
-			5,
+			0.2f,
+			0.4f,
+			0.6f,
+			0.8f,
+			1f,
 			float.MaxValue
 			//5 - maxT - use image 5
 		};
@@ -54,6 +55,8 @@ namespace Physics.DragMovement.Rendering
 		private CanvasBitmap _backgroundImage;
 		private CanvasBitmap[] _helicopterImages;
 		private CanvasBitmap _raftImage;
+		private CanvasBitmap _hitImage;
+		private CanvasBitmap _missImage;
 		private CanvasBitmap[] _parachuteImages;
 		private double _pixelsPerMeter = 1;
 
@@ -143,12 +146,12 @@ namespace Physics.DragMovement.Rendering
 			{
 				DrawRaft(sender, args);
 
+				DrawHelicopter(sender, args);
+
 				if ((_game.State == GameState.Dropped && SimulationTime.TotalTime < _game.HitTime) || _game.State == GameState.Won)
 				{
 					DrawCargo(sender, args);
 				}
-
-				DrawHelicopter(sender, args);
 
 				DrawOverlay(sender, args);
 
@@ -353,18 +356,42 @@ namespace Physics.DragMovement.Rendering
 				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak_5.png")),
 				await CanvasBitmap.LoadAsync(sender, new Uri("ms-appx:///Assets/Game/padak_6.png")),
 			};
+
+			var gameAssetsPath = "Assets/Game/";
+			var culture = "en";
+			if (CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.Equals("cs", StringComparison.InvariantCultureIgnoreCase))
+			{
+				culture = "cs";
+			}
+
+			_missImage = await LoadImageFromPackageAsync($"{gameAssetsPath}Miss.{culture}.png");
+			_hitImage = await LoadImageFromPackageAsync($"{gameAssetsPath}Hit.{culture}.png");
 		}
 
 		private void DrawGameOverText(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
 		{
+			CanvasBitmap imageToDraw = null;
 			if (_game.State == GameState.Won)
 			{
-				args.DrawingSession.DrawText(Localizer.Instance.GetString("YouWin"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.DarkGreen, _gameOverTextFormat);
+				imageToDraw = _hitImage;				
 			}
 			else if (_game.State == GameState.Missed)
 			{
-				args.DrawingSession.DrawText(Localizer.Instance.GetString("Missed"), new Vector2((float)sender.Size.Width / 2, (float)sender.Size.Height / 2), Colors.Red, _gameOverTextFormat);
+				imageToDraw = _missImage;
 			}
+			else
+			{
+				return;
+			}
+
+			var centerX = (float)sender.Size.Width / 2;
+			var centerY = (float)sender.Size.Height / 2;
+			var sizeX = sender.Size.Width / 8;
+			var sizeY = sizeX / imageToDraw.Size.Width * imageToDraw.Size.Height;
+
+			args.DrawingSession.DrawImage(
+					imageToDraw,
+					new Rect((float)(centerX - sizeX / 2), (float)(centerY - sizeY / 2), sizeX, sizeY), new Rect(0, 0, imageToDraw.Size.Width, imageToDraw.Size.Height));
 		}
 
 		private double GetAltitudeInWorld(double altitude)

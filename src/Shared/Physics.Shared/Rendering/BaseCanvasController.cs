@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
+using Microsoft.Graphics.Canvas;
+using Windows.ApplicationModel;
+using System.IO;
 
 namespace Physics.Shared.UI.Rendering
 {
@@ -82,5 +85,11 @@ namespace Physics.Shared.UI.Rendering
         {
             args.TrackAsyncAction(CreateResourcesAsync(sender).AsAsyncAction());
         }
-    }
+
+		protected async Task<CanvasBitmap> LoadImageFromPackageAsync(string relativePath)
+		{
+			var path = Path.Combine(Package.Current.InstalledLocation.Path, relativePath);
+			return await CanvasBitmap.LoadAsync(_canvasAnimatedControl, path);
+		}
+	}
 }
