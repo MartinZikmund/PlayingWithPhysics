@@ -58,11 +58,11 @@ namespace Physics.DragMovement.ViewModels
 			}
 		}
 
-		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(25, 40) / 10f, _randomizer.Next(100, 180)) { AreSoundsEnabled = true };
+		public GameInfo CurrentGame { get; set; } = new GameInfo(_randomizer.Next(30, 50) / 10f, _randomizer.Next(100, 180)) { AreSoundsEnabled = true };
 
 		private async Task StartNewGameAsync()
 		{
-			CurrentGame = new GameInfo(_randomizer.Next(25, 40) / 10f, _randomizer.Next(100, 180))
+			CurrentGame = new GameInfo(_randomizer.Next(30, 50) / 10f, _randomizer.Next(100, 180))
 			{
 				AreSoundsEnabled = _areSoundsEnabled
 			};
