@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsCompou"
+    Name="adb98230-3106-41c2-8638-b54b69c5dd09"
     Publisher="CN=danie"
-    Version="0.9.9.0" />
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b2f2134c-1438-4b1d-8963-13de151db1f4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="adb98230-3106-41c2-8638-b54b69c5dd09" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Playing with Physics: Compound Oscillations</DisplayName>
-    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
+    <DisplayName>Physics.LissajousCurves</DisplayName>
+    <PublisherDisplayName>danie</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,15 +30,15 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Physics.CompoundOscillations.App">
+      EntryPoint="Physics.LissajousCurves.App">
       <uap:VisualElements
-        DisplayName="ms-resource:AppName"
+        DisplayName="Physics.LissajousCurves"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Physics.CompoundOscillations"
-        BackgroundColor="#3b787b">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#3b787b"/>
+        Description="Physics.LissajousCurves"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>

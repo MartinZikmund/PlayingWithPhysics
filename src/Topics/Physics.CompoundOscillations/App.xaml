@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="AppThemeColor">#3b787b</Color>
             <Color x:Key="AppTitleBarColor">#3b6d7b</Color>
-            <Color x:Key="DarkAppThemeColor">#3b6d7b</Color>
-        </ResourceDictionary>
+			<Color x:Key="DarkAppThemeColor">#3b6d7b</Color>
+		</ResourceDictionary>
     </Application.Resources>
 </local:PhysicsApp>

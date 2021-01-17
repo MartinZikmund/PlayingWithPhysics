@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Physics.CompoundOscillations.Logic;
+using Physics.LissajousCurves.Logic;
 using Physics.Shared.UI.Services.ValuesTable;
 
-namespace Physics.CompoundOscillations.ValuesTable
+namespace Physics.LissajousCurves.ValuesTable
 {
 	public class TableService : ITableService<TableRow>
 	{

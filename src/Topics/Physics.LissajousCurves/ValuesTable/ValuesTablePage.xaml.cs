@@ -1,9 +1,9 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using Physics.CompoundOscillations.ValuesTable;
+using Physics.LissajousCurves.ValuesTable;
 using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;
 
-namespace Physics.CompoundOscillations.Views
+namespace Physics.LissajousCurves.Views
 {
 	public sealed partial class ValuesTablePage : Page
 	{
