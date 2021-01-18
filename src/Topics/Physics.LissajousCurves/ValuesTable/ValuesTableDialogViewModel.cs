@@ -6,7 +6,7 @@ using Physics.Shared.UI.ViewModels;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 
-namespace Physics.CompoundOscillations.ValuesTable
+namespace Physics.LissajousCurves.ValuesTable
 {
 	public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRow>
 	{

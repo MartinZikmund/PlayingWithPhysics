@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Physics.InclinedPlane.ValuesTable
+namespace Physics.CompoundOscillations.ValuesTable
 {
     public class TableRow : ValuesTableRowBase
     {

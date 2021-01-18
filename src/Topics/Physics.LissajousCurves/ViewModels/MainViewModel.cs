@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Physics.CompoundOscillations.Dialogs;
-using Physics.CompoundOscillations.Logic;
-using Physics.CompoundOscillations.Rendering;
-using Physics.CompoundOscillations.Views;
-using Physics.CompoundOscillations.ValuesTable;
+using Physics.LissajousCurves.Dialogs;
+using Physics.LissajousCurves.Logic;
+using Physics.LissajousCurves.Rendering;
+using Physics.LissajousCurves.Views;
+using Physics.LissajousCurves.ValuesTable;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
@@ -22,7 +22,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 
-namespace Physics.CompoundOscillations.ViewModels
+namespace Physics.LissajousCurves.ViewModels
 {
 	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>,
 		IReceiveController<CompoundOscillationsController>
@@ -135,7 +135,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		private async Task ShowCompoundOscillationValuesTableAsync()
 		{
-			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsVisible).Select(o=>o.OscillationInfo).ToArray());
+			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
 			await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("CompoundOscillation"));
 		}
 
