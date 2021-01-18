@@ -173,7 +173,6 @@
     <Compile Include="ViewModels\Inputs\PerpendicularVariantInputViewModel.cs" />
     <Compile Include="ViewModels\Inputs\VariantInputViewModelBase.cs" />
     <Compile Include="ViewModels\Inputs\ZeroVariantInputViewModel.cs" />
-    <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\State\IVariantStateViewModel.cs" />
     <Compile Include="ViewModels\State\ParallelVariantStateViewModel.cs" />

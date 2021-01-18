@@ -165,7 +165,7 @@
         "Question": "O jaký pohyb se bude jednat, když na těleso, které bylo v klidu, začne působit tíhová síla?",
         "CorrectResponse": "",
         "WrongResponse": null,
-        "CorrectAnswerIndex": 0,
+        "CorrectAnswerIndex": 1,
         "Options": [
           "Rovnoměrný pohyb s nulovou počáteční rychlostí.",
           "Rovnoměrně zrychlený pohyb s nulovou počáteční rychlosti a stálým tíhovým zrychlením.",
@@ -217,7 +217,7 @@
         "Question": "O jaký pohyb se bude jednat, když na těleso, kterému byla udělena počáteční rychlost svisle vzhůru, začne působit tíhová síla? (odpověď se týká začátku pohybu)",
         "CorrectResponse": null,
         "WrongResponse": null,
-        "CorrectAnswerIndex": 0,
+        "CorrectAnswerIndex": 1,
         "Options": [
           "Rovnoměrný pohyb s nenulovou počáteční rychlostí.",
           "Rovnoměrně zpomalený pohyb s nenulovou počáteční rychlosti a stálým tíhovým zrychlením.",
@@ -237,7 +237,7 @@
         "Question": "O jaký pohyb se bude jednat, když na těleso, kterému byla udělena počáteční rychlost svisle dolů, začne působit tíhová síla?",
         "CorrectResponse": null,
         "WrongResponse": null,
-        "CorrectAnswerIndex": 0,
+        "CorrectAnswerIndex": 1,
         "Options": [
           "Rovnoměrný pohyb s nenulovou počáteční rychlostí.",
           "Rovnoměrně zrychlený pohyb s nenulovou počáteční rychlostí a stálým tíhovým zrychlením.",
@@ -253,8 +253,8 @@
       },
       {
         "Type": "KnowledgeCheck",
-        "Title": "Untitled",
-        "Question": "O jaký pohyb v magnetickém poli se bude jednat?",
+        "Title": "Kontrolní otázka",
+        "Question": "Nabité částici udělíme rychlost ve směru nebo proti směru indukčních čar. O jaký pohyb v magnetickém poli se bude jednat?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 0,
@@ -294,7 +294,7 @@
           "Rovnoměrný pohyb s nenulovou počáteční rychlostí.",
           "Nerovnoměrný pohyb s nenulovou počáteční rychlostí.",
           "Rovnoměrně zrychlený pohyb s nenulovou počáteční rychlostí a stálým tíhovým zrychlením.",
-          "Rovnoměrně zrychlený pohyb s nenulovou počáteční rychlostí a stálým tíhovým zrychlením."
+          "Rovnoměrně zpomalený pohyb s nenulovou počáteční rychlostí a stálým tíhovým zrychlením."
         ]
       },
       {
