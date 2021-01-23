@@ -13,9 +13,26 @@ namespace Physics.Shared.UI.Controls
             this.InitializeComponent();
             StepSizeNumberBox.SetupFormatting();
             StepSizeForwardNumberBox.SetupFormatting();
+			PreviewKeyDown += SimulationControls_KeyDown;
         }
 
-        public ICommand PlayCommand
+		private void SimulationControls_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+		{
+			if (e.Key == Windows.System.VirtualKey.Space)
+			{
+				e.Handled = true;
+				if (IsPaused)
+				{
+					PlayCommand?.Execute(null);
+				}
+				else
+				{
+					PauseCommand?.Execute(null);
+				}
+			}
+		}
+
+		public ICommand PlayCommand
         {
             get => (ICommand)GetValue(PlayCommandProperty);
             set => SetValue(PlayCommandProperty, value);
@@ -125,5 +142,5 @@ namespace Physics.Shared.UI.Controls
                 SpeedButtonStoryboardHide.Begin();
             }
         }
-    }
+	}
 }

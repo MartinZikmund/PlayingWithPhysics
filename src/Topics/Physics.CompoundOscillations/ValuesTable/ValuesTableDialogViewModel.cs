@@ -45,7 +45,7 @@ namespace Physics.CompoundOscillations.ValuesTable
 
 			if (eventArgs.Column.Header.ToString() == "A")
 			{
-				eventArgs.Column.Header = "a (m/s^2)";
+				eventArgs.Column.Header = "a (m/s²)";
 			}
 		}
 

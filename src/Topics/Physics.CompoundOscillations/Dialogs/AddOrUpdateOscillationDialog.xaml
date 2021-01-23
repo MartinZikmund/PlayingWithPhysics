@@ -33,12 +33,12 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -57,7 +57,6 @@
 
         <TextBlock Grid.Row="1">
             <Run Text="{extensions:Localize Key=Amplitude}" />
-            <Run Text="(m)" />
         </TextBlock>
         <controls:NumberBox
             x:Name="AmplitudeNumberBox"
@@ -65,73 +64,78 @@
             Grid.Column="1"
             Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="2" Grid.Column="0">
-                <Run Text="{extensions:Localize Key=Frequency}" />
-                <Run Text="(Hz)" />
-		</TextBlock>
-		<controls:NumberBox
-                x:Name="FrequencyNumberBox"
-                Grid.Row="2"
-                Grid.Column="1"
-				Minimum="0.1"
-                Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
+        <TextBlock Grid.Row="2" Grid.Column="0">
+            <Run Text="{extensions:Localize Key=Frequency}" />
+            <Run Text="(Hz)" />
+        </TextBlock>
+        <controls:NumberBox
+            x:Name="FrequencyNumberBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Minimum="0.1"
+            Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
 
-		<Grid
+        <Grid
             Grid.Row="3"
             Grid.Column="1"
-			Opacity="0.8"
-			Margin="0,-8,0,0"
-            ColumnSpacing="8">
+            Margin="0,-8,0,0"
+            ColumnSpacing="8"
+            Opacity="0.8">
             <Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
-			<TextBlock>
-				<Run Text="{extensions:Localize Key=Period}" /><Run Text=":" />
-				<Run Text="{x:Bind Model.Period, Mode=OneWay}" />
-				<Run Text="s" />
-			</TextBlock>
-			<Grid Grid.Row="1">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-				<TextBlock>
-						<Run Text="{extensions:Localize Key=AngularSpeed}" /><Run Text=":" />
-				</TextBlock>
-				<TextBlock Grid.Column="1">
-						<Run Text="{x:Bind Model.AngularSpeedInDeg, Mode=OneWay}" />
-						<Run Text="°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
-				</TextBlock>
-				<TextBlock Grid.Column="1" Grid.Row="1">
-						<Run Text="{x:Bind Model.AngularSpeedInRad, Mode=OneWay}" />
-						<Run Text="rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
-				</TextBlock>
-			</Grid>			
-		</Grid>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock>
+                <Run Text="{extensions:Localize Key=Period}" /><Run Text=":" />
+                <Run Text="{x:Bind Model.Period, Mode=OneWay}" />
+                <Run Text="s" />
+            </TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock>
+                    <Run Text="{extensions:Localize Key=AngularSpeed}" /><Run Text=":" />
+                </TextBlock>
+                <TextBlock Grid.Column="1">
+                    <Run Text="{x:Bind Model.AngularSpeedInDeg, Mode=OneWay}" />
+                    <Run Text="°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1">
+                    <Run Text="{x:Bind Model.AngularSpeedInRad, Mode=OneWay}" />
+                    <Run Text="rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
+                </TextBlock>
+            </Grid>
+        </Grid>
 
 
-		<TextBlock Grid.Row="4">
-				<Run Text="{extensions:Localize Key=StartPhase}" />
-	            <Run Text="(&#960; rad)" />
-		</TextBlock>
-		<controls:NumberBox
-				x:Name="PhaseInPiRadNumberBox"
-				Grid.Row="4"
-				Grid.Column="1"
-				Value="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+        <TextBlock Grid.Row="4">
+            <Run Text="{extensions:Localize Key=StartPhase}" />
+            <Run Text="(&#960; rad)" />
+        </TextBlock>
+        <controls:NumberBox
+            x:Name="PhaseInPiRadNumberBox"
+            Grid.Row="4"
+            Grid.Column="1"
+            Minimum="0.001"
+            Value="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="5" Grid.Column="1" Opacity="0.8" Margin="0,-8,0,0">
-					<Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
-					<Run Text="{x:Bind Model.PhaseInDeg, Mode=OneWay}" />
-					<Run Text="°" />
-		</TextBlock>
+        <TextBlock
+            Grid.Row="5"
+            Grid.Column="1"
+            Margin="0,-8,0,0"
+            Opacity="0.8">
+            <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
+            <Run Text="{x:Bind Model.PhaseInDeg, Mode=OneWay}" />
+            <Run Text="°" />
+        </TextBlock>
 
-		<GridView
+        <GridView
             Grid.Row="6"
             Grid.ColumnSpan="2"
             Header="{extensions:Localize Key=Color}"

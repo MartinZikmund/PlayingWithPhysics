@@ -1,7 +1,12 @@
-﻿using Physics.CompoundOscillations.Rendering;
+﻿using System;
+using Physics.CompoundOscillations.Rendering;
 using Physics.CompoundOscillations.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 
 namespace Physics.CompoundOscillations.Views
 {
@@ -11,6 +16,8 @@ namespace Physics.CompoundOscillations.Views
 		{
 			this.InitializeComponent();
 		}
+
+		internal void FocusSimulationControls() => SimulationControls.Focus(Windows.UI.Xaml.FocusState.Programmatic);
 	}
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, CompoundOscillationsController>

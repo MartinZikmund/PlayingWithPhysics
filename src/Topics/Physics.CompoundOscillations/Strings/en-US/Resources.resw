@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Action!</value>
+  </data>
   <data name="AddOscillation" xml:space="preserve">
     <value>Add oscillation</value>
   </data>
@@ -145,6 +148,12 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
+  </data>
+  <data name="GameGuide" xml:space="preserve">
+    <value>Deliver the best possible take for your slightly irritated director. While the robot moves, adjust the camera height so that it stays level with the actress' face as accurately as possible.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
@@ -177,6 +186,6 @@ Graphics: Petr Weinlich</value>
     <value>Start phase</value>
   </data>
   <data name="StickHeightControl" xml:space="preserve">
-    <value>Stick height control</value>
+    <value>Camera control</value>
   </data>
 </root>

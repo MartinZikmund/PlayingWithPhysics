@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Akce!</value>
+  </data>
   <data name="AddOscillation" xml:space="preserve">
     <value>Přidat kmitání</value>
   </data>
@@ -124,7 +127,7 @@
     <value>Amplituda</value>
   </data>
   <data name="AngularSpeed" xml:space="preserve">
-    <value>Úhlová rychlost</value>
+    <value>Úhlová frekvence</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Složením několika harmonických kmitání vzniká kmitání, které již nemusí být harmonické.
@@ -145,6 +148,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
+  </data>
+  <data name="GameGuide" xml:space="preserve">
+    <value>Natočte pro vašeho mírně cholerického režiséra co nejlepší záběr! Při pohybu vozítka se snažte co nejpřesněji udržet kameru na úrovni obličeje herečky.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Návod</value>
   </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>

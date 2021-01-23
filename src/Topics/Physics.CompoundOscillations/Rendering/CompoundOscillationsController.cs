@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Physics.CompoundOscillations.Logic;
 using Physics.Shared.UI.Rendering.Skia;
@@ -34,6 +35,7 @@ namespace Physics.CompoundOscillations.Rendering
 		};
 		private float _maxY;
 		private float _minY;
+		private double _inherentSlowdown = 1.0;
 
 		public CompoundOscillationsController(ISkiaCanvas canvasAnimatedControl) :
 			base(canvasAnimatedControl)
@@ -74,6 +76,12 @@ namespace Physics.CompoundOscillations.Rendering
 					IsAntialias = true,
 				};
 				_oscillationStrokePaints.Add(oscillation, strokePaint);
+
+				_inherentSlowdown = 1 / Math.Log(_activeOscillations.Max(a => a.Frequency), 10);
+				if (_inherentSlowdown > 1)
+				{
+					_inherentSlowdown = 1;
+				}
 			}
 
 			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations);
@@ -104,7 +112,7 @@ namespace Physics.CompoundOscillations.Rendering
 				return;
 			}
 
-			var currentTime = (float)SimulationTime.TotalTime.TotalSeconds;
+			var currentTime = GetAdjustedTotalTime();
 			var totalValue = 0.0f;
 			foreach (var oscillation in _activeOscillations)
 			{
@@ -125,16 +133,19 @@ namespace Physics.CompoundOscillations.Rendering
 			}
 		}
 
+		private float GetAdjustedTotalTime() => (float)SimulationTime.TotalTime.TotalSeconds * (float)_inherentSlowdown;
+
+
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
 		{
 			//Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
 
 			using SKPath path = new SKPath();
-			float lastRenderTime = (float)SimulationTime.TotalTime.TotalSeconds;
+			float lastRenderTime = GetAdjustedTotalTime();
 			float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			var endTime = (float)SimulationTime.TotalTime.TotalSeconds;
+			var endTime = GetAdjustedTotalTime();
 			float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			float lastRenderY = GetRenderY(trajectory.GetY((float)SimulationTime.TotalTime.TotalSeconds));			
+			float lastRenderY = GetRenderY(trajectory.GetY(GetAdjustedTotalTime()));
 			path.MoveTo(lastRenderX, lastRenderY);
 			while (lastRenderTime > 0)
 			{
@@ -155,6 +166,16 @@ namespace Physics.CompoundOscillations.Rendering
 				lastRenderTime = newRenderTime;
 			}
 			args.Canvas.DrawPath(path, paint);
+		}
+
+		private void DrawVerticalAxis()
+		{
+
+		}
+
+		private void DrawHorizontalAxis()
+		{
+
 		}
 
 		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float y, SKPaint paint)

@@ -32,7 +32,7 @@ namespace Physics.Shared.UI.Views
 			SetupInkCanvas();
 			SetupMenuShadow();
 			DataContextChanged += ViewContextChanged;
-			Unloaded += ViewUnloaded;
+			Unloaded += ViewUnloaded;			
 		}
 
 		public TViewModel Model { get; private set; }

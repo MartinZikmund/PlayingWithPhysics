@@ -174,8 +174,14 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				SimulationPlayback.Play();
 				_controller.SetActiveOscillations(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
-				_controller.StartSimulation();
+				_controller.StartSimulation();				
 			});
+			FocusSimulationControls();
+		}
+
+		private void FocusSimulationControls()
+		{
+			((Window.Current.Content as Frame)?.Content as MainView)?.FocusSimulationControls();
 		}
 	}
 }

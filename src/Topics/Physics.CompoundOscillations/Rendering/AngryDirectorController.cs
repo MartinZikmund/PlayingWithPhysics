@@ -109,7 +109,7 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			IsAntialias = true,
 			TextSize = 14,
-			Color = new SKColor(0, 255, 0),
+			Color = new SKColor(0, 0, 0),
 			TextAlign = SKTextAlign.Center,
 			IsStroke = false
 		};
