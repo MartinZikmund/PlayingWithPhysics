@@ -140,6 +140,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Compound Oscillations</value>
   </data>
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Change applies to all oscillations</value>
+  </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Compound oscillation</value>
   </data>

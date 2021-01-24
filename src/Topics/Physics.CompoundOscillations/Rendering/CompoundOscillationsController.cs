@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Physics.CompoundOscillations.Logic;
+using Physics.CompoundOscillations.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -14,7 +15,7 @@ namespace Physics.CompoundOscillations.Rendering
 		private float _verticalScale = 1f;
 		private float _horizontalScale = 300f;
 
-		private OscillationInfo[] _activeOscillations;
+		private OscillationInfoViewModel[] _activeOscillations;
 		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationFillPaints;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationStrokePaints;
@@ -42,7 +43,7 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 		}
 
-		public void SetActiveOscillations(OscillationInfo[] info)
+		public void SetActiveOscillations(OscillationInfoViewModel[] info)
 		{
 			_activeOscillations = info;
 			_oscillationTrajectories = new Dictionary<OscillationInfo, OscillationTrajectory>();
@@ -52,14 +53,14 @@ namespace Physics.CompoundOscillations.Rendering
 			_minY = 0;
 			foreach (var oscillation in _activeOscillations)
 			{
-				var physicsService = new OscillationPhysicsService(oscillation);
+				var physicsService = new OscillationPhysicsService(oscillation.OscillationInfo);
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
 
-				_oscillationTrajectories.Add(oscillation, physicsService.CreateTrajectoryData());
+				_oscillationTrajectories.Add(oscillation.OscillationInfo, physicsService.CreateTrajectoryData());
 
-				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(oscillation.Color);
+				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(oscillation.OscillationInfo.Color);
 				var skColor = new SKColor(color.R, color.G, color.B);
 				var fillPaint = new SKPaint()
 				{
@@ -67,7 +68,7 @@ namespace Physics.CompoundOscillations.Rendering
 					IsStroke = false,
 					IsAntialias = true,
 				};
-				_oscillationFillPaints.Add(oscillation, fillPaint);
+				_oscillationFillPaints.Add(oscillation.OscillationInfo, fillPaint);
 				var strokePaint = new SKPaint()
 				{
 					Color = skColor,
@@ -75,16 +76,16 @@ namespace Physics.CompoundOscillations.Rendering
 					StrokeWidth = 2,
 					IsAntialias = true,
 				};
-				_oscillationStrokePaints.Add(oscillation, strokePaint);
+				_oscillationStrokePaints.Add(oscillation.OscillationInfo, strokePaint);
 
-				_inherentSlowdown = 1 / Math.Log(_activeOscillations.Max(a => a.Frequency), 10);
+				_inherentSlowdown = 1 / Math.Log(_activeOscillations.Max(a => a.OscillationInfo.Frequency), 10);
 				if (_inherentSlowdown > 1)
 				{
 					_inherentSlowdown = 1;
 				}
 			}
 
-			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations);
+			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.OscillationInfo).ToArray());
 			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
 		}
 
@@ -115,15 +116,21 @@ namespace Physics.CompoundOscillations.Rendering
 			var currentTime = GetAdjustedTotalTime();
 			var totalValue = 0.0f;
 			foreach (var oscillation in _activeOscillations)
-			{
-				var trajectory = _oscillationTrajectories[oscillation];
-				var y = trajectory.GetY(currentTime);
-				totalValue += y;
+			{				
+				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
+				if (oscillation.IsEnabled)
+				{
+					var y = trajectory.GetY(currentTime);
+					totalValue += y;
 
-				var strokePain = _oscillationStrokePaints[oscillation];
-				DrawTrajectory(sender, args, trajectory, strokePain);
-				var fillPaint = _oscillationFillPaints[oscillation];
-				DrawOscillationCurrentPoint(sender, args, y, fillPaint);
+					if (oscillation.IsVisible)
+					{
+						var strokePain = _oscillationStrokePaints[oscillation.OscillationInfo];
+						DrawTrajectory(sender, args, trajectory, strokePain);
+						var fillPaint = _oscillationFillPaints[oscillation.OscillationInfo];
+						DrawOscillationCurrentPoint(sender, args, y, fillPaint);
+					}
+				}
 			}
 
 			if (_activeOscillations.Length > 1)

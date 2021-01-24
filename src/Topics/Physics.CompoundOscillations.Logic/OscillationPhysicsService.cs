@@ -43,9 +43,10 @@ namespace Physics.CompoundOscillations.Logic
 			var period = CalculatePeriod();
 			if (Math.Abs(period) < 0.00001)
 			{
-				return new OscillationTrajectory(period, new OscillationPoint(TimeSpan.Zero, CalculateY(0)));
+				return new OscillationTrajectory(period, new OscillationPoint(0, CalculateY(0)));
 			}
 			var frameTime = 1 / 400f;
+			var stepSize = period / 100;
 			var jumpCount = (int)Math.Ceiling(period / frameTime);
 			//TODO?
 			//if (jumpCount > MaxTrajectoryJumps)
@@ -62,10 +63,10 @@ namespace Physics.CompoundOscillations.Logic
 			var points = new List<OscillationPoint>();
 			while (currentTime <= period)
 			{
-				points.Add(new OscillationPoint(TimeSpan.FromSeconds(currentTime), CalculateY(currentTime)));
-				currentTime += jumpSize;
+				points.Add(new OscillationPoint(currentTime, CalculateY(currentTime)));
+				currentTime += stepSize;
 			}
-			points.Add(new OscillationPoint(TimeSpan.FromSeconds(period), CalculateY(period)));
+			points.Add(new OscillationPoint(period, CalculateY(period)));
 			return new OscillationTrajectory(period, points.ToArray());
 		}
 	}

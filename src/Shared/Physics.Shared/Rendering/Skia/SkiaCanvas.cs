@@ -57,7 +57,8 @@ namespace Physics.Shared.UI.Rendering.Skia
         private void Initialize(object sender, SKNativePaintGLSurfaceEventArgs e)
         {
             SetupInput();
-            PlatformInitalize(sender, e);
+			PlatformInitalize(sender, e);
+			Initialized?.Invoke(this, e.Surface);
             if (Thread.CurrentThread.ManagedThreadId == _uiThreadId)
             {
                 this.PaintSurface += OnRendering;

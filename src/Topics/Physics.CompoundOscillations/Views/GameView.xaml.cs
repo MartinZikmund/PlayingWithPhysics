@@ -15,7 +15,7 @@ namespace Physics.CompoundOscillations.Views
 
 	public class GameViewBase : BaseSkiaView<GameViewModel, AngryDirectorController>
 	{
-		protected override ISkiaCanvas CreateSkiaCanvas() => new NonUiSkiaCanvas();
+		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
 		protected override AngryDirectorController CreateController(ISkiaCanvas canvas) => Model.CreateController(canvas);
 	}

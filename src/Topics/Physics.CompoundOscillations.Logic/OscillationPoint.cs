@@ -4,7 +4,7 @@ namespace Physics.CompoundOscillations.Logic
 {
 	public class OscillationPoint
     {
-		public OscillationPoint(TimeSpan time, float y)
+		public OscillationPoint(double time, float y)
 		{
 			Time = time;
 			Y = y;
@@ -13,7 +13,7 @@ namespace Physics.CompoundOscillations.Logic
 		/// <summary>
 		/// Time at point.
 		/// </summary>
-		public TimeSpan Time { get; set; }
+		public double Time { get; set; }
 
 		/// <summary>
 		/// Y in meters.

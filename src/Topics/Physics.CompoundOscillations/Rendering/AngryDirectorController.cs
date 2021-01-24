@@ -177,7 +177,7 @@ namespace Physics.CompoundOscillations.Rendering
 		public override void Initialized(ISkiaCanvas sender, SKSurface args)
 		{
 			// TODO: Allow async initialization in Skia
-			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/clap.wav", UriKind.Absolute), "Clap").GetAwaiter().GetResult();
+			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Game/clap.wav", UriKind.Absolute), "Clap");
 
 			// Load assets
 			var gameAssetsPath = "Assets/Game/";

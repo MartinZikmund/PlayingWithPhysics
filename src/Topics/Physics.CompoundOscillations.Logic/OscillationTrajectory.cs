@@ -24,7 +24,7 @@ namespace Physics.CompoundOscillations.Logic
 			var timeInPeriod = timeInSeconds % _period;
 			//TODO: Binary search
 			int lowerPointId = 0;
-			while(lowerPointId < _points.Length && _points[lowerPointId].Time.TotalSeconds <= timeInPeriod)
+			while(lowerPointId < _points.Length && _points[lowerPointId].Time <= timeInPeriod)
 			{
 				lowerPointId++;
 			}

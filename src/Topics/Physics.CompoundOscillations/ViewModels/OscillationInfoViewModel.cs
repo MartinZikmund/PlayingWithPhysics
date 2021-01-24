@@ -54,5 +54,7 @@ namespace Physics.CompoundOscillations.ViewModels
 		public string CurrentY { get; private set; }
 
 		public bool IsVisible { get; set; } = true;
+
+		public bool IsEnabled { get; set; } = true;
 	}
 }

@@ -28,15 +28,20 @@ namespace Physics.CompoundOscillations.ViewModels
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
 			PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
+			IsEasyVariant = difficulty == DifficultyOption.Easy;
+			Result = oscillationInfo;
 		}
 
 		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty, params string[] existingNames)
 		{
 			DialogTitle = Localizer.Instance.GetString(AddOscillationKey);
 			_existingNames = existingNames;
+			IsEasyVariant = difficulty == DifficultyOption.Easy;
 			Difficulty = difficulty;
 			SetLocalizedAndNumberedLabelName();
 		}
+
+		public bool IsEasyVariant { get; }
 
 		public string DialogTitle { get; }
 
@@ -51,8 +56,6 @@ namespace Physics.CompoundOscillations.ViewModels
 		};
 
 		public DifficultyOption Difficulty { get; }
-
-		public OscillationInfo Result { get; private set; }
 
 		public string Label { get; set; }
 
@@ -77,7 +80,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			var deferral = args.GetDeferral();
 			try
 			{
-				Result = PrepareMotion();
+				PrepareMotion();
 			}
 			catch (ArgumentException)
 			{
@@ -92,14 +95,27 @@ namespace Physics.CompoundOscillations.ViewModels
 			}
 		}
 
-		private OscillationInfo PrepareMotion()
+		public OscillationInfo Result { get; private set; }
+
+		private void PrepareMotion()
 		{
-			return new OscillationInfo(
-				Label,
-				Amplitude,
-				Frequency,
-				PhaseInPiRad * (float)Math.PI,
-				ColorHelper.ToHex(Color));
+			if (Result == null)
+			{
+				Result = new OscillationInfo(
+					Label,
+					Amplitude,
+					Frequency,
+					PhaseInPiRad * (float)Math.PI,
+					ColorHelper.ToHex(Color));
+			}
+			else
+			{
+				Result.Label = Label;
+				Result.Amplitude = Amplitude;
+				Result.Frequency = Frequency;
+				Result.PhaseInRad = PhaseInPiRad * (float)Math.PI;
+				Result.Color = ColorHelper.ToHex(Color);
+			}
 		}
 
 		private void SetLocalizedAndNumberedLabelName()

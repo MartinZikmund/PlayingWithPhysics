@@ -140,6 +140,9 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Skládání kmitání</value>
   </data>
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Změna se aplikuje na všechna kmitání</value>
+  </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>
   </data>

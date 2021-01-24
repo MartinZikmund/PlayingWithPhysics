@@ -97,7 +97,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				arg.OscillationInfo = dialogViewModel.Result;
+				arg.OscillationInfo.Amplitude = dialogViewModel.Result.Amplitude;
 				//TODO:
 				await StartSimulationAsync();
 				//UpdateMotionAppWindow(arg);
@@ -135,7 +135,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		private async Task ShowCompoundOscillationValuesTableAsync()
 		{
-			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsVisible).Select(o=>o.OscillationInfo).ToArray());
+			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o=>o.OscillationInfo).ToArray());
 			await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("CompoundOscillation"));
 		}
 
@@ -173,7 +173,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				_controller.SetActiveOscillations(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
+				_controller.SetActiveOscillations(Oscillations.ToArray());
 				_controller.StartSimulation();				
 			});
 			FocusSimulationControls();
