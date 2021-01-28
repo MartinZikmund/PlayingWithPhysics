@@ -15,7 +15,7 @@ namespace Physics.LissajousCurves.Views
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, CompoundOscillationsController>
 	{
-		protected override ISkiaCanvas CreateSkiaCanvas() => new NonUiSkiaCanvas();
+		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
 		protected override CompoundOscillationsController CreateController(ISkiaCanvas canvas) => new CompoundOscillationsController(canvas);
 	}

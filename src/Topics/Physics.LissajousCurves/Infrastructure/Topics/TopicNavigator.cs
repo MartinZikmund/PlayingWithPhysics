@@ -20,13 +20,12 @@ namespace Physics.LissajousCurves.Infrastructure.Topics
 
 		public bool HasStudyMode => false;
 
-		public bool HasGame => true;
+		public bool HasGame => false;
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync() =>
-			await _navigationService.Navigate<GameViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
+		public async Task GoToGameAsync() => throw new NotSupportedException();
 
 		public Task GoToStudyModeAsync()
 		{

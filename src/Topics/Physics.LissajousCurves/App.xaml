@@ -3,18 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.LissajousCurves"
+    xmlns:resources="using:Physics.SelfStudy.Resources"
     RequestedTheme="Light">
-	<!--xmlns:resources="using:Physics.SelfStudy.Resources"-->
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
-				<!--<resources:SelfStudyResources />-->
+				<resources:SelfStudyResources />
 			</ResourceDictionary.MergedDictionaries>
-			<Color x:Key="AppThemeColor">#3b787b</Color>
-			<Color x:Key="AppTitleBarColor">#3b6d7b</Color>
-			<Color x:Key="DarkAppThemeColor">#3b6d7b</Color>
+			<Color x:Key="AppThemeColor">#287aaf</Color>
+			<Color x:Key="AppTitleBarColor">#1a6ca1</Color>
+			<Color x:Key="DarkAppThemeColor">#155f8f</Color>
 		</ResourceDictionary>
 	</Application.Resources>
 </local:PhysicsApp>

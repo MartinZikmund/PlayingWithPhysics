@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Physics.LissajousCurves.Logic;
 using Physics.Shared.UI.Rendering.Skia;
@@ -10,21 +11,25 @@ namespace Physics.LissajousCurves.Rendering
 	{
 		private const float VerticalPadding = 12;
 
-		private float _verticalScale = 1f;
-		private float _horizontalScale = 300f;
+		private float _displayScale = 1f;
+		private float _padding = 1f;
 
-		private OscillationInfo[] _activeOscillations;
+		private OscillationInfo _horizontalOscillation;
+		private OscillationInfo _verticalOscillation;
+
 		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationFillPaints;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationStrokePaints;
 		private CompoundOscillationsPhysicsService _compoundOscillationsPhysicsService;
 		private CompoundOscillationTrajectory _compoundOscillationTrajectory;
+
 		private SKPaint _compoundFillPaint = new SKPaint()
 		{
 			IsStroke = false,
 			IsAntialias = true,
 			Color = SKColors.Black
 		};
+
 		private SKPaint _compoundStrokePaint = new SKPaint()
 		{
 			IsStroke = true,
@@ -32,28 +37,56 @@ namespace Physics.LissajousCurves.Rendering
 			StrokeWidth = 3,
 			Color = SKColors.Black
 		};
-		private float _maxY;
-		private float _minY;
+
+		private SKPaint _borderStrokePaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1,
+			Color = SKColors.Black
+		};
+
+		private SKPaint _borderDashedStrokePaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1,
+			PathEffect = SKPathEffect.CreateDash(new[] { 10f, 10f }, 20),
+			Color = SKColors.Gray
+		};
+
+		private float _maxDimension = 0f;
 
 		public CompoundOscillationsController(ISkiaCanvas canvasAnimatedControl) :
 			base(canvasAnimatedControl)
 		{
 		}
 
-		public void SetActiveOscillations(OscillationInfo[] info)
+		public void SetActiveOscillations(OscillationInfo horizontalOscillation, OscillationInfo verticalOscillation)
 		{
-			_activeOscillations = info;
+			if (horizontalOscillation is null)
+			{
+				throw new System.ArgumentNullException(nameof(horizontalOscillation));
+			}
+
+			if (verticalOscillation is null)
+			{
+				throw new System.ArgumentNullException(nameof(verticalOscillation));
+			}
+
+			_horizontalOscillation = horizontalOscillation;
+			_verticalOscillation = verticalOscillation;
 			_oscillationTrajectories = new Dictionary<OscillationInfo, OscillationTrajectory>();
 			_oscillationFillPaints = new Dictionary<OscillationInfo, SKPaint>();
 			_oscillationStrokePaints = new Dictionary<OscillationInfo, SKPaint>();
-			_maxY = 0;
-			_minY = 0;
-			foreach (var oscillation in _activeOscillations)
+
+			_maxDimension = 0f;
+
+			foreach (var oscillation in new[] { horizontalOscillation, verticalOscillation })
 			{
 				var physicsService = new OscillationPhysicsService(oscillation);
 
-				_maxY += physicsService.MaxY;
-				_minY += physicsService.MinY;
+				_maxDimension = Math.Max(_maxDimension, oscillation.Amplitude);
 
 				_oscillationTrajectories.Add(oscillation, physicsService.CreateTrajectoryData());
 
@@ -65,6 +98,7 @@ namespace Physics.LissajousCurves.Rendering
 					IsStroke = false,
 					IsAntialias = true,
 				};
+
 				_oscillationFillPaints.Add(oscillation, fillPaint);
 				var strokePaint = new SKPaint()
 				{
@@ -75,9 +109,6 @@ namespace Physics.LissajousCurves.Rendering
 				};
 				_oscillationStrokePaints.Add(oscillation, strokePaint);
 			}
-
-			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations);
-			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
 		}
 
 		public void StartSimulation()
@@ -88,10 +119,14 @@ namespace Physics.LissajousCurves.Rendering
 
 		public override void Update(ISkiaCanvas sender)
 		{
-			if (_activeOscillations != null)
+			if (_horizontalOscillation != null)
 			{
-				var verticalPadding = sender.ScaledSize.Height * 0.15;
-				_verticalScale = (float)(sender.ScaledSize.Height - 2 * verticalPadding) / (_maxY - _minY);
+				var minDimension = Math.Min(sender.ScaledSize.Width, sender.ScaledSize.Height);
+				_padding = minDimension * 0.15f;
+
+				var sideSize = _maxDimension * 2;
+
+				_displayScale = (float)(minDimension - 2 * _padding) / (sideSize);
 			}
 		}
 
@@ -99,74 +134,103 @@ namespace Physics.LissajousCurves.Rendering
 		{
 			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
 
-			if (_activeOscillations == null)
+			if (_horizontalOscillation == null)
 			{
 				return;
 			}
 
 			var currentTime = (float)SimulationTime.TotalTime.TotalSeconds;
 			var totalValue = 0.0f;
-			foreach (var oscillation in _activeOscillations)
-			{
-				var trajectory = _oscillationTrajectories[oscillation];
-				var y = trajectory.GetY(currentTime);
-				totalValue += y;
 
-				var strokePain = _oscillationStrokePaints[oscillation];
-				DrawTrajectory(sender, args, trajectory, strokePain);
-				var fillPaint = _oscillationFillPaints[oscillation];
-				DrawOscillationCurrentPoint(sender, args, y, fillPaint);
-			}
+			// Draw border
+			DrawBorders(sender, args);
 
-			if (_activeOscillations.Length > 1)
-			{
-				DrawTrajectory(sender, args, _compoundOscillationTrajectory, _compoundStrokePaint);
-				DrawOscillationCurrentPoint(sender, args, totalValue, _compoundFillPaint);
-			}
+			var x = _oscillationTrajectories[_horizontalOscillation].GetY(currentTime);
+			var y = _oscillationTrajectories[_verticalOscillation].GetY(currentTime);
+
+			DrawOscillationCurrentPoint(sender, args, x, 0, _oscillationFillPaints[_horizontalOscillation]);
+			DrawOscillationCurrentPoint(sender, args, 0, y, _oscillationFillPaints[_verticalOscillation]);
+
+			DrawOscillationCurrentPoint(sender, args, x, y, _compoundFillPaint, 8);
+
+			//foreach (var oscillation in _activeOscillations)
+			//{
+			//	var trajectory = _oscillationTrajectories[oscillation];
+			//	var y = trajectory.GetY(currentTime);
+			//	totalValue += y;
+
+			//	var strokePain = _oscillationStrokePaints[oscillation];
+			//	DrawTrajectory(sender, args, trajectory, strokePain);
+			//	var fillPaint = _oscillationFillPaints[oscillation];
+			//	DrawOscillationCurrentPoint(sender, args, y, fillPaint);
+			//}
+
+			//if (_activeOscillations.Length > 1)
+			//{
+			//	DrawTrajectory(sender, args, _compoundOscillationTrajectory, _compoundStrokePaint);
+			//	DrawOscillationCurrentPoint(sender, args, totalValue, _compoundFillPaint);
+			//}
+		}
+
+		private void DrawBorders(ISkiaCanvas sender, SKSurface surface)
+		{
+			var centerX = sender.ScaledSize.Width / 2;
+			var centerY = sender.ScaledSize.Height / 2;
+			surface.Canvas.DrawRect(centerX - _maxDimension * _displayScale, centerY - _maxDimension * _displayScale, _maxDimension * 2 * _displayScale, _maxDimension * 2 * _displayScale, _borderStrokePaint);
+			surface.Canvas.DrawLine(centerX, centerY - _maxDimension * _displayScale, centerX, centerY + _maxDimension * _displayScale, _borderDashedStrokePaint);
+			surface.Canvas.DrawLine(centerX - _maxDimension * _displayScale, centerY, centerX + _maxDimension * _displayScale, centerY, _borderDashedStrokePaint);
 		}
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
 		{
-			//Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
+			////Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
 
-			using SKPath path = new SKPath();
-			float lastRenderTime = (float)SimulationTime.TotalTime.TotalSeconds;
-			float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			var endTime = (float)SimulationTime.TotalTime.TotalSeconds;
-			float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			float lastRenderY = GetRenderY(trajectory.GetY((float)SimulationTime.TotalTime.TotalSeconds));
-			path.MoveTo(lastRenderX, lastRenderY);
-			while (lastRenderTime > 0)
-			{
-				var newRenderTime = lastRenderTime - 0.01f;
-				if (newRenderTime < 0)
-				{
-					break;
-				}
-				var renderX = endRenderX - (endTime - newRenderTime) * _horizontalScale;
-				if (renderX < 0)
-				{
-					break;
-				}
-				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY(newRenderTime) * _verticalScale);
-				path.LineTo(renderX, renderY);
-				lastRenderX = renderX;
-				lastRenderY = renderY;
-				lastRenderTime = newRenderTime;
-			}
-			args.Canvas.DrawPath(path, paint);
+			//using SKPath path = new SKPath();
+			//float lastRenderTime = (float)SimulationTime.TotalTime.TotalSeconds;
+			//float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
+			//var endTime = (float)SimulationTime.TotalTime.TotalSeconds;
+			//float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
+			//float lastRenderY = GetRenderY(trajectory.GetY((float)SimulationTime.TotalTime.TotalSeconds));
+			//path.MoveTo(lastRenderX, lastRenderY);
+			//while (lastRenderTime > 0)
+			//{
+			//	var newRenderTime = lastRenderTime - 0.01f;
+			//	if (newRenderTime < 0)
+			//	{
+			//		break;
+			//	}
+			//	var renderX = endRenderX - (endTime - newRenderTime) * _horizontalScale;
+			//	if (renderX < 0)
+			//	{
+			//		break;
+			//	}
+			//	var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY(newRenderTime) * _verticalScale);
+			//	path.LineTo(renderX, renderY);
+			//	lastRenderX = renderX;
+			//	lastRenderY = renderY;
+			//	lastRenderTime = newRenderTime;
+			//}
+			//args.Canvas.DrawPath(path, paint);
 		}
 
-		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float y, SKPaint paint)
+		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float x, float y, SKPaint paint, float size = 4)
 		{
-			var renderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			var renderY = GetRenderY(y);
+			var renderX = GetRenderX(sender, x);
+			var renderY = GetRenderY(sender, y);
 
-			args.Canvas.DrawCircle(renderX, renderY, 6, paint);
+			args.Canvas.DrawCircle(renderX, renderY, size, paint);
 		}
 
-		private float GetRenderY(float y) => (float)(_canvas.ScaledSize.Height / 2 - y * _verticalScale);
+		private float GetRenderX(ISkiaCanvas sender, float x)
+		{
+			var centerX = sender.ScaledSize.Width / 2;
+			return centerX + x * _displayScale;
+		}
 
-		private float HorizontalPadding => _canvas.ScaledSize.Width * 0.1f;
+		private float GetRenderY(ISkiaCanvas sender, float y)
+		{
+			var centerY = sender.ScaledSize.Height / 2;
+			return centerY + (-y * _displayScale);
+		}
 	}
 }

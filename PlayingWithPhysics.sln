@@ -76,7 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10_LissajousCurves", "10_Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.LissajousCurves", "src\Topics\Physics.LissajousCurves\Physics.LissajousCurves.csproj", "{053D529D-595E-4F71-A199-2DB749C750B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.LissajousCurves.Logic", "src\Topics\Physics.LissajousCurves.Logic\Physics.LissajousCurves.Logic.csproj", "{2BFB1F87-08C8-48E7-96BC-9234813539C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.LissajousCurves.Logic", "src\Topics\Physics.LissajousCurves.Logic\Physics.LissajousCurves.Logic.csproj", "{2BFB1F87-08C8-48E7-96BC-9234813539C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -618,14 +618,14 @@ Global
 		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Debug|x86.Build.0 = Debug|Any CPU
 		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM.ActiveCfg = Release|ARM
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM.Build.0 = Release|ARM
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM64.ActiveCfg = Release|ARM64
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM64.Build.0 = Release|ARM64
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x64.ActiveCfg = Release|x64
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x64.Build.0 = Release|x64
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x86.ActiveCfg = Release|x86
-		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x86.Build.0 = Release|x86
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM.Build.0 = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|ARM64.Build.0 = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x64.ActiveCfg = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x64.Build.0 = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x86.ActiveCfg = Release|Any CPU
+		{2BFB1F87-08C8-48E7-96BC-9234813539C7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

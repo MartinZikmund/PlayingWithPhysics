@@ -6,8 +6,8 @@ using System.Windows.Input;
 using Physics.CompoundOscillations.Dialogs;
 using Physics.CompoundOscillations.Logic;
 using Physics.CompoundOscillations.Rendering;
-using Physics.CompoundOscillations.Views;
 using Physics.CompoundOscillations.ValuesTable;
+using Physics.CompoundOscillations.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
@@ -63,6 +63,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+			SimulationPlayback.PlaybackSpeed = 0.5f;
 		}
 
 		public ObservableCollection<OscillationInfoViewModel> Oscillations { get; } = new ObservableCollection<OscillationInfoViewModel>();
@@ -79,7 +80,7 @@ namespace Physics.CompoundOscillations.ViewModels
 				if (result == ContentDialogResult.Primary)
 				{
 					Oscillations.Add(new OscillationInfoViewModel(dialogViewModel.Result));
-					//TODO:
+					OnOscillationsChange(dialogViewModel.Result);
 					await StartSimulationAsync();
 				}
 			}
@@ -97,10 +98,8 @@ namespace Physics.CompoundOscillations.ViewModels
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				arg.OscillationInfo.Amplitude = dialogViewModel.Result.Amplitude;
-				//TODO:
+				OnOscillationsChange(arg.OscillationInfo);
 				await StartSimulationAsync();
-				//UpdateMotionAppWindow(arg);
 			}
 		}
 
@@ -122,8 +121,6 @@ namespace Physics.CompoundOscillations.ViewModels
 		private async Task DeleteTrajectoryAsync(OscillationInfoViewModel arg)
 		{
 			Oscillations.Remove(arg);
-			//TODO:
-			//await CloseAppViewForMotionAsync(arg);
 			await StartSimulationAsync();
 		}
 
@@ -135,7 +132,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		private async Task ShowCompoundOscillationValuesTableAsync()
 		{
-			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o=>o.OscillationInfo).ToArray());
+			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.OscillationInfo).ToArray());
 			await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("CompoundOscillation"));
 		}
 
@@ -174,7 +171,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				SimulationPlayback.Play();
 				_controller.SetActiveOscillations(Oscillations.ToArray());
-				_controller.StartSimulation();				
+				_controller.StartSimulation();
 			});
 			FocusSimulationControls();
 		}
@@ -182,6 +179,17 @@ namespace Physics.CompoundOscillations.ViewModels
 		private void FocusSimulationControls()
 		{
 			((Window.Current.Content as Frame)?.Content as MainView)?.FocusSimulationControls();
+		}
+
+		private void OnOscillationsChange(OscillationInfo lastChanged)
+		{
+			if (Difficulty == DifficultyOption.Easy)
+			{
+				foreach (var oscillation in Oscillations)
+				{
+					oscillation.OscillationInfo.Frequency = lastChanged.Frequency;
+				}
+			}
 		}
 	}
 }

@@ -37,11 +37,11 @@ namespace Physics.LissajousCurves.ViewModels
 			_contentDialogHelper = contentDialogHelper;
 		}
 
+		public OscillationInfoViewModel HorizontalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("X", 1, 1, 0, "#000000"));
+
+		public OscillationInfoViewModel VerticalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("Y", 1, 1, 0, "#000000"));
+
 		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(EditOscillationAsync);
-
-		public ICommand DuplicateOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(DuplicateOscillationAsync);
-
-		public ICommand DeleteOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(DeleteTrajectoryAsync);
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(ShowValuesTableAsync);
 
@@ -63,6 +63,9 @@ namespace Physics.LissajousCurves.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+			_controller.SetActiveOscillations(HorizontalOscillation.OscillationInfo, VerticalOscillation.OscillationInfo);
+			_controller.StartSimulation();
+			SimulationPlayback.PlaybackSpeed = 0.5f;
 		}
 
 		public ObservableCollection<OscillationInfoViewModel> Oscillations { get; } = new ObservableCollection<OscillationInfoViewModel>();
@@ -173,7 +176,7 @@ namespace Physics.LissajousCurves.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				_controller.SetActiveOscillations(Oscillations.Where(o => o.IsVisible).Select(o => o.OscillationInfo).ToArray());
+				_controller.SetActiveOscillations(HorizontalOscillation.OscillationInfo, VerticalOscillation.OscillationInfo);
 				_controller.StartSimulation();
 			});
 		}
