@@ -7,7 +7,7 @@ using SkiaSharp;
 
 namespace Physics.LissajousCurves.Rendering
 {
-	public class CompoundOscillationsController : SkiaCanvasController
+	public class LissajousCurvesController : SkiaCanvasController
 	{
 		private const float VerticalPadding = 12;
 
@@ -58,7 +58,7 @@ namespace Physics.LissajousCurves.Rendering
 
 		private float _maxDimension = 0f;
 
-		public CompoundOscillationsController(ISkiaCanvas canvasAnimatedControl) :
+		public LissajousCurvesController(ISkiaCanvas canvasAnimatedControl) :
 			base(canvasAnimatedControl)
 		{
 		}

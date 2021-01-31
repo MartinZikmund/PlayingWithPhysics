@@ -31,6 +31,7 @@ namespace Physics.CompoundOscillations.Rendering
 		{
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 3,
 			Color = SKColors.Black
 		};
@@ -120,7 +121,7 @@ namespace Physics.CompoundOscillations.Rendering
 				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
 				if (oscillation.IsEnabled)
 				{
-					var y = trajectory.GetY(currentTime);
+					var y = trajectory.GetY((float)currentTime.TotalSeconds);
 					totalValue += y;
 
 					if (oscillation.IsVisible)
@@ -140,7 +141,7 @@ namespace Physics.CompoundOscillations.Rendering
 			}
 		}
 
-		private float GetAdjustedTotalTime() => (float)SimulationTime.TotalTime.TotalSeconds * (float)_inherentSlowdown;
+		private TimeSpan GetAdjustedTotalTime() => TimeSpan.FromMilliseconds(Math.Truncate((float)SimulationTime.TotalTime.TotalMilliseconds * (float)_inherentSlowdown));
 
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
@@ -148,25 +149,25 @@ namespace Physics.CompoundOscillations.Rendering
 			//Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
 
 			using SKPath path = new SKPath();
-			float lastRenderTime = GetAdjustedTotalTime();
+			var lastRenderTime = GetAdjustedTotalTime();
 			float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var endTime = GetAdjustedTotalTime();
 			float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			float lastRenderY = GetRenderY(trajectory.GetY(GetAdjustedTotalTime()));
+			float lastRenderY = GetRenderY(trajectory.GetY((float)lastRenderTime.TotalSeconds));
 			path.MoveTo(lastRenderX, lastRenderY);
-			while (lastRenderTime > 0)
+			while (lastRenderTime.TotalSeconds > 0)
 			{
-				var newRenderTime = lastRenderTime - 0.01f;
-				if (newRenderTime < 0)
+				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(8);
+				if (newRenderTime.TotalSeconds < 0)
 				{
 					break;
 				}
-				var renderX = endRenderX - (endTime - newRenderTime) * _horizontalScale;
+				var renderX = (float)(endRenderX - (endTime - newRenderTime).TotalSeconds * _horizontalScale);
 				if (renderX < 0)
 				{
 					break;
 				}
-				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY(newRenderTime) * _verticalScale);
+				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY((float)newRenderTime.TotalSeconds) * _verticalScale);
 				path.LineTo(renderX, renderY);
 				lastRenderX = renderX;
 				lastRenderY = renderY;

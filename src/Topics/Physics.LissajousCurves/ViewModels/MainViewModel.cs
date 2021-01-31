@@ -25,9 +25,9 @@ using Windows.UI.Xaml.Hosting;
 namespace Physics.LissajousCurves.ViewModels
 {
 	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>,
-		IReceiveController<CompoundOscillationsController>
+		IReceiveController<LissajousCurvesController>
 	{
-		private CompoundOscillationsController _controller;
+		private LissajousCurvesController _controller;
 		private readonly IContentDialogHelper _contentDialogHelper;
 
 		internal DifficultyOption Difficulty { get; private set; }
@@ -54,7 +54,7 @@ namespace Physics.LissajousCurves.ViewModels
 			Difficulty = parameter.Difficulty;
 		}
 
-		public void SetController(CompoundOscillationsController controller)
+		public void SetController(LissajousCurvesController controller)
 		{
 			if (controller is null)
 			{
