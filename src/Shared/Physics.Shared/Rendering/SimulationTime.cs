@@ -30,11 +30,13 @@ namespace Physics.Shared.UI.Rendering
         internal void OnUpdateStarting()
         {
             var currentElapsed = _stopwatch.ElapsedMilliseconds;
-            ElapsedTime = TimeSpan.FromMilliseconds(currentElapsed - _lastElapsedMilliseconds) * SimulationSpeed;
-            _lastElapsedMilliseconds = currentElapsed;
+			var elapsedTime = (currentElapsed - _lastElapsedMilliseconds) * SimulationSpeed;
+			var truncatedMilliseconds = TimeSpan.FromMilliseconds(Math.Truncate(elapsedTime));
+			ElapsedTime = truncatedMilliseconds;
+			_lastElapsedMilliseconds = currentElapsed;
 			TotalTime += ElapsedTime;
             UpdateCount++;
-        }
+        }		
 
         public TimeSpan TotalTime { get; private set; } = TimeSpan.Zero;
 

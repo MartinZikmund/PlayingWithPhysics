@@ -18,6 +18,7 @@ namespace Physics.LissajousCurves.Rendering
 		private OscillationInfo _verticalOscillation;
 
 		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
+		private Dictionary<OscillationInfo, OscillationPhysicsService> _oscillationServices;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationFillPaints;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationStrokePaints;
 		private CompoundOscillationsPhysicsService _compoundOscillationsPhysicsService;
@@ -79,13 +80,14 @@ namespace Physics.LissajousCurves.Rendering
 			_oscillationTrajectories = new Dictionary<OscillationInfo, OscillationTrajectory>();
 			_oscillationFillPaints = new Dictionary<OscillationInfo, SKPaint>();
 			_oscillationStrokePaints = new Dictionary<OscillationInfo, SKPaint>();
+			_oscillationServices = new Dictionary<OscillationInfo, OscillationPhysicsService>();
 
 			_maxDimension = 0f;
 
 			foreach (var oscillation in new[] { horizontalOscillation, verticalOscillation })
 			{
 				var physicsService = new OscillationPhysicsService(oscillation);
-
+				_oscillationServices.Add(oscillation, physicsService);
 				_maxDimension = Math.Max(_maxDimension, oscillation.Amplitude);
 
 				_oscillationTrajectories.Add(oscillation, physicsService.CreateTrajectoryData());
@@ -151,7 +153,10 @@ namespace Physics.LissajousCurves.Rendering
 			DrawOscillationCurrentPoint(sender, args, x, 0, _oscillationFillPaints[_horizontalOscillation]);
 			DrawOscillationCurrentPoint(sender, args, 0, y, _oscillationFillPaints[_verticalOscillation]);
 
+			DrawTrajectory(sender, args, _compoundStrokePaint);
+
 			DrawOscillationCurrentPoint(sender, args, x, y, _compoundFillPaint, 8);
+
 
 			//foreach (var oscillation in _activeOscillations)
 			//{
@@ -181,36 +186,38 @@ namespace Physics.LissajousCurves.Rendering
 			surface.Canvas.DrawLine(centerX - _maxDimension * _displayScale, centerY, centerX + _maxDimension * _displayScale, centerY, _borderDashedStrokePaint);
 		}
 
-		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
+		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, SKPaint paint)
 		{
 			////Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
 
-			//using SKPath path = new SKPath();
-			//float lastRenderTime = (float)SimulationTime.TotalTime.TotalSeconds;
-			//float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			//var endTime = (float)SimulationTime.TotalTime.TotalSeconds;
-			//float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			//float lastRenderY = GetRenderY(trajectory.GetY((float)SimulationTime.TotalTime.TotalSeconds));
-			//path.MoveTo(lastRenderX, lastRenderY);
-			//while (lastRenderTime > 0)
-			//{
-			//	var newRenderTime = lastRenderTime - 0.01f;
-			//	if (newRenderTime < 0)
-			//	{
-			//		break;
-			//	}
-			//	var renderX = endRenderX - (endTime - newRenderTime) * _horizontalScale;
-			//	if (renderX < 0)
-			//	{
-			//		break;
-			//	}
-			//	var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY(newRenderTime) * _verticalScale);
-			//	path.LineTo(renderX, renderY);
-			//	lastRenderX = renderX;
-			//	lastRenderY = renderY;
-			//	lastRenderTime = newRenderTime;
-			//}
-			//args.Canvas.DrawPath(path, paint);
+			using SKPath path = new SKPath();
+			var lastRenderTime = SimulationTime.TotalTime;
+			var minRenderTime = SimulationTime.TotalTime - TimeSpan.FromSeconds(5);
+			var endTime = SimulationTime.TotalTime;
+
+			var lastActualX = _oscillationServices[_horizontalOscillation].CalculateY((float)lastRenderTime.TotalSeconds);
+			var lastActualY = _oscillationServices[_verticalOscillation].CalculateY((float)lastRenderTime.TotalSeconds);
+			float lastRenderX = GetRenderX(sender, lastActualX);
+			float lastRenderY = GetRenderY(sender, lastActualY);
+			path.MoveTo(lastRenderX, lastRenderY);
+			while (lastRenderTime.TotalSeconds > 0)
+			{
+				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(16);
+				if (newRenderTime.TotalSeconds < 0 || newRenderTime < minRenderTime)
+				{
+					break;
+				}
+
+				var actualX = _oscillationServices[_horizontalOscillation].CalculateY((float)newRenderTime.TotalSeconds);
+				var actualY = _oscillationServices[_verticalOscillation].CalculateY((float)newRenderTime.TotalSeconds);
+				float renderX = GetRenderX(sender, actualX);
+				float renderY = GetRenderY(sender, actualY);				
+				path.LineTo(renderX, renderY);
+				lastRenderX = renderX;
+				lastRenderY = renderY;
+				lastRenderTime = newRenderTime;
+			}
+			args.Canvas.DrawPath(path, paint);
 		}
 
 		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float x, float y, SKPaint paint, float size = 4)

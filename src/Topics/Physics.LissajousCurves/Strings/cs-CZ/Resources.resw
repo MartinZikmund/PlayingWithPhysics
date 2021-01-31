@@ -135,7 +135,7 @@ Programátoři: Martin Zikmund, Daniel Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Skládání kmitání</value>
+    <value>Hrátky s fyzikou: Lissajousovy obrazce</value>
   </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>
