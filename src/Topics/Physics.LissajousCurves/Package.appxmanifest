@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="adb98230-3106-41c2-8638-b54b69c5dd09"
-    Publisher="CN=danie"
-    Version="1.0.0.0" />
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsLissaj"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.4.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="adb98230-3106-41c2-8638-b54b69c5dd09" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="62e36882-f310-40d9-817d-baee1a2597ec" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Physics.LissajousCurves</DisplayName>
-    <PublisherDisplayName>danie</PublisherDisplayName>
+    <DisplayName>ms-resource:AppName</DisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
