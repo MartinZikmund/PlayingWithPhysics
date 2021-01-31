@@ -101,8 +101,9 @@ namespace Physics.Shared.UI.Rendering
 		{
 			var drawing = args.Canvas;
 
+			var axisInfo = GetXAxisInfo();
 			
-			for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
+			for (float currentDistance = 0; axisInfo.Units - currentDistance > -0.01 || (axisInfo.Jumps == 0 && currentDistance == 0); currentDistance += axisInfo.JumpSize)
 			{
 				drawing.DrawLine(
 					TargetBounds.Left + XUnitSizeInPixels * currentDistance,
