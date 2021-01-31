@@ -144,8 +144,11 @@
     <Compile Include="Infrastructure\DefaultAppStart.cs" />
     <Compile Include="Infrastructure\DefaultApp.cs" />
     <Compile Include="Models\Input\SimulationColors.cs" />
+    <Compile Include="Rendering\AxisInfo.cs" />
+    <Compile Include="Rendering\SkiaAxesRenderer.cs" />
     <Compile Include="Rendering\IRenderingPlayback.cs" />
     <Compile Include="Rendering\OptimalAxesRenderer.cs" />
+    <Compile Include="Rendering\Skia\Infrastructure\ISkiaRenderer.cs" />
     <Compile Include="Rendering\Skia\ISkiaCanvas.cs" />
     <Compile Include="Rendering\Skia\ISkiaVariantRenderer.cs" />
     <Compile Include="Rendering\Skia\NonUiSkiaCanvas.cs" />

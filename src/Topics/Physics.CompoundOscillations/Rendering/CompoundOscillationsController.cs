@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Physics.CompoundOscillations.Logic;
 using Physics.CompoundOscillations.ViewModels;
+using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -35,6 +36,15 @@ namespace Physics.CompoundOscillations.Rendering
 			StrokeWidth = 3,
 			Color = SKColors.Black
 		};
+
+		private SKPaint _axesPaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1,
+			Color = SKColors.Black
+		};
+
 		private float _maxY;
 		private float _minY;
 		private double _inherentSlowdown = 1.0;
@@ -116,6 +126,9 @@ namespace Physics.CompoundOscillations.Rendering
 
 			var currentTime = GetAdjustedTotalTime();
 			var totalValue = 0.0f;
+
+			DrawAxes(sender, args);
+
 			foreach (var oscillation in _activeOscillations)
 			{				
 				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
@@ -176,6 +189,17 @@ namespace Physics.CompoundOscillations.Rendering
 			args.Canvas.DrawPath(path, paint);
 		}
 
+		private SkiaAxesRenderer _axesRenderer = new SkiaAxesRenderer();
+
+		private void DrawAxes(ISkiaCanvas sender, SKSurface args)
+		{
+			_axesRenderer.YUnitSizeInPixels = _verticalScale;
+			_axesRenderer.XUnitSizeInPixels = _horizontalScale;
+			_axesRenderer.TargetBounds = new SimulationBounds(10, 10, (float)sender.ScaledSize.Width - 10, (float)sender.ScaledSize.Height - 10);
+			_axesRenderer.XAxisPositionViewportPosition = 0.5;
+			_axesRenderer.Draw(sender, args);
+		}
+
 		private void DrawVerticalAxis()
 		{
 
@@ -183,7 +207,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawHorizontalAxis()
 		{
-
+			
 		}
 
 		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float y, SKPaint paint)
