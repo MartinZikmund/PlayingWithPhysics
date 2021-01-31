@@ -3,7 +3,7 @@
 namespace Physics.CompoundOscillations.Logic
 {
 	public class OscillationInfo
-    {
+	{
 		public OscillationInfo(string label, float amplitude, float frequence, float phase, string color)
 		{
 			Label = label;
@@ -15,15 +15,19 @@ namespace Physics.CompoundOscillations.Logic
 
 		public string Label { get; set; }
 
-        public float Amplitude { get; set; }
+		public float Amplitude { get; set; }
+
+		public string AmplitudeText => Amplitude.ToString("0.##");
 
 		public float Frequency { get; set; }
+
+		public string FrequencyText => Frequency.ToString("0.##");
 
 		public float PhaseInRad { get; set; }
 
 		public string Color { get; set; }
 
-		public float PhaseInPiRad => (float)(PhaseInRad / Math.PI);
+		public string PhaseInPiRadText => (PhaseInRad / Math.PI).ToString("0.###");
 
 		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
 	}

@@ -220,7 +220,7 @@ namespace Physics.CompoundOscillations.ViewModels
 					motion.UpdateCurrentValues(timeElapsed);
 				}
 
-				CurrentCompoundY = _compoundOscillationService.CalculateY(timeElapsed).ToString("0.##");
+				CurrentCompoundY = _compoundOscillationService.CalculateY(timeElapsed).ToString(" 0.00;-0.00; 0.00");
 			}
 		}
 	}

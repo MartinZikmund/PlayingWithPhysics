@@ -88,7 +88,7 @@
                                 Grid.Column="0"
                                 Style="{StaticResource InfoTextBlockStyle}">
                                 <Run Text="Simulation time: " />
-                                <Run Text="{x:Bind Model.TimeElapsed, Mode=OneWay}" />
+                                <Run FontFamily="Consolas" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}" />
                                 <Run Text="s" />
                             </TextBlock>
 
@@ -195,43 +195,51 @@
                                                 RowSpacing="4">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
+													<RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
 
-
                                                 <TextBlock
                                                     Grid.Row="0"
                                                     Grid.Column="0"
                                                     Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="{extensions:Localize Key=Amplitude}" /><Run Text=": " />
-                                                    <Run Text="{x:Bind OscillationInfo.Amplitude, Mode=OneWay}" />
+                                                    <Run Text="{extensions:Localize Key=Frequency}" /><Run Text=": " />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.FrequencyText, Mode=OneWay}" />
+													<Run Text="hz" />
                                                 </TextBlock>
-                                                <TextBlock
+												<TextBlock
                                                     Grid.Row="0"
                                                     Grid.Column="1"
                                                     Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="{extensions:Localize Key=Frequency}" /><Run Text=": " />
-                                                    <Run Text="{x:Bind OscillationInfo.Frequency, Mode=OneWay}" />
-													<Run Text="hz" />
-                                                </TextBlock>
+                                                    <Run Text="{extensions:Localize Key=Period}" /><Run Text=": " />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind PeriodText, Mode=OneWay}" />
+													<Run Text="s" />
+												</TextBlock>
 												<TextBlock
                                                     Grid.Row="1"
                                                     Grid.Column="0"
                                                     Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=": " />
-                                                    <Run Text="{x:Bind OscillationInfo.PhaseInPiRad, Mode=OneWay}" />
-													<Run Text="&#960; rad" />
+                                                    <Run Text="{extensions:Localize Key=Amplitude}" /><Run Text=": " />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.AmplitudeText, Mode=OneWay}" />
 												</TextBlock>
 												<TextBlock
                                                     Grid.Row="1"
                                                     Grid.Column="1"
                                                     Style="{StaticResource InfoTextBlockStyle}">
+                                                    <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=": " />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.PhaseInPiRadText, Mode=OneWay}" />
+													<Run Text="&#960; rad" />
+												</TextBlock>
+												<TextBlock
+                                                    Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="Y" /><Run Text=": " />
-                                                    <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind CurrentYText, Mode=OneWay}" />
 												</TextBlock>
 											</Grid>
                                         </Grid>
@@ -246,7 +254,7 @@
                                         Grid.Column="1"
                                         Style="{StaticResource InfoTextBlockStyle}">
                                         <Run Text="Y" /><Run Text=": " />
-                                        <Run Text="{x:Bind Model.CurrentCompoundY, Mode=OneWay}" />
+                                        <Run FontFamily="Consolas" Text="{x:Bind Model.CurrentCompoundY, Mode=OneWay}" />
 								</TextBlock>
 								<Button
                                     Margin="0,0,0,8"
