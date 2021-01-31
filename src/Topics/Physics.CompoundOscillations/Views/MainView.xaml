@@ -118,23 +118,23 @@
                                             <Border
                                                 Grid.RowSpan="2"
                                                 Width="8"
-                                                CornerRadius="2">
+                                                CornerRadius="4">
                                                 <Border.Background>
                                                     <SolidColorBrush Color="{x:Bind OscillationInfo.Color, Mode=OneWay}" />
                                                 </Border.Background>
                                             </Border>
-											<Grid
+                                            <Grid
                                                 Grid.Column="1"
                                                 ColumnSpacing="8"
                                                 CornerRadius="2"
                                                 RowSpacing="4">
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="Auto" />
-													<ColumnDefinition Width="Auto" />
-												</Grid.ColumnDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
 
-												<TextBlock
+                                                <TextBlock
                                                     VerticalAlignment="Center"
                                                     FontWeight="SemiBold"
                                                     Style="{ThemeResource SubtitleTextBlockStyle}"
@@ -143,70 +143,126 @@
                                                     TextTrimming="CharacterEllipsis"
                                                     TextWrapping="NoWrap" />
 
-												<ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}">
-													<SymbolIcon Symbol="View" />
-												</ToggleButton>
-												<Button Grid.Column="2">
-													<Button.Flyout>
-														<MenuFlyout>
-															<MenuFlyoutItem
+                                                <ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}">
+                                                    <SymbolIcon Symbol="View" />
+                                                </ToggleButton>
+                                                <Button Grid.Column="2">
+                                                    <Button.Flyout>
+                                                        <MenuFlyout>
+                                                            <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=ShowValuesTable}">
-																<MenuFlyoutItem.Icon>
-																	<SymbolIcon Symbol="ViewAll" />
-																</MenuFlyoutItem.Icon>
-															</MenuFlyoutItem>
-															<MenuFlyoutSeparator />
-															<MenuFlyoutItem
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="ViewAll" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutSeparator />
+                                                            <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Edit}">
-																<MenuFlyoutItem.Icon>
-																	<SymbolIcon Symbol="Edit" />
-																</MenuFlyoutItem.Icon>
-															</MenuFlyoutItem>
-															<MenuFlyoutItem
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Edit" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.DuplicateOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Duplicate}">
-																<MenuFlyoutItem.Icon>
-																	<SymbolIcon Symbol="Copy" />
-																</MenuFlyoutItem.Icon>
-															</MenuFlyoutItem>
-															<MenuFlyoutItem
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Copy" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                            <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.DeleteOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
                                                                 Text="{extensions:Localize Key=Delete}">
-																<MenuFlyoutItem.Icon>
-																	<SymbolIcon Symbol="Delete" />
-																</MenuFlyoutItem.Icon>
-															</MenuFlyoutItem>
-														</MenuFlyout>
-													</Button.Flyout>
-													<SymbolIcon Symbol="More" />
-												</Button>
+                                                                <MenuFlyoutItem.Icon>
+                                                                    <SymbolIcon Symbol="Delete" />
+                                                                </MenuFlyoutItem.Icon>
+                                                            </MenuFlyoutItem>
+                                                        </MenuFlyout>
+                                                    </Button.Flyout>
+                                                    <SymbolIcon Symbol="More" />
+                                                </Button>
+                                            </Grid>
+
+                                            <Grid
+                                                Grid.Row="1"
+												Grid.Column="1"
+                                                Grid.ColumnSpan="1"
+                                                RowSpacing="4">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Style="{StaticResource InfoTextBlockStyle}">
+                                                    <Run Text="{extensions:Localize Key=Amplitude}" /><Run Text=": " />
+                                                    <Run Text="{x:Bind OscillationInfo.Amplitude, Mode=OneWay}" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    Style="{StaticResource InfoTextBlockStyle}">
+                                                    <Run Text="{extensions:Localize Key=Frequency}" /><Run Text=": " />
+                                                    <Run Text="{x:Bind OscillationInfo.Frequency, Mode=OneWay}" />
+													<Run Text="hz" />
+                                                </TextBlock>
+												<TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Style="{StaticResource InfoTextBlockStyle}">
+                                                    <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=": " />
+                                                    <Run Text="{x:Bind OscillationInfo.PhaseInPiRad, Mode=OneWay}" />
+													<Run Text="&#960; rad" />
+												</TextBlock>
+												<TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Style="{StaticResource InfoTextBlockStyle}">
+                                                    <Run Text="Y" /><Run Text=": " />
+                                                    <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
+												</TextBlock>
 											</Grid>
-										</Grid>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                            <Button
-                                Grid.Row="5"
-                                Margin="0,0,0,8"
-                                HorizontalAlignment="Stretch"
-                                Command="{x:Bind Model.ShowCompoundOscillationValuesTableCommand}">
-                                <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <Viewbox
-                                        Width="16"
-                                        Height="16"
-                                        VerticalAlignment="Center">
-                                        <SymbolIcon Symbol="ViewAll" />
-                                    </Viewbox>
-                                    <TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleOscillations}" />
-                                </StackPanel>
-                            </Button>
+                            <StackPanel Spacing="8" Grid.Row="5" Orientation="Vertical">
+                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=CompoundOscillation}" />
+								<TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Style="{StaticResource InfoTextBlockStyle}">
+                                        <Run Text="Y" /><Run Text=": " />
+                                        <Run Text="{x:Bind Model.CurrentCompoundY, Mode=OneWay}" />
+								</TextBlock>
+								<Button
+                                    Margin="0,0,0,8"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{x:Bind Model.ShowCompoundOscillationValuesTableCommand}">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Viewbox
+                                            Width="16"
+                                            Height="16"
+                                            VerticalAlignment="Center">
+                                            <SymbolIcon Symbol="ViewAll" />
+                                        </Viewbox>
+                                        <TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleOscillations}" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

@@ -1,4 +1,6 @@
-﻿namespace Physics.CompoundOscillations.Logic
+﻿using System;
+
+namespace Physics.CompoundOscillations.Logic
 {
 	public class OscillationInfo
     {
@@ -20,6 +22,8 @@
 		public float PhaseInRad { get; set; }
 
 		public string Color { get; set; }
+
+		public float PhaseInPiRad => (float)(PhaseInRad / Math.PI);
 
 		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
 	}

@@ -171,6 +171,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				return;
 			}
+			_compoundOscillationService = new CompoundOscillationsPhysicsService(Oscillations.Select(o => o.OscillationInfo).ToArray());
 			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
 			{
@@ -203,6 +204,10 @@ namespace Physics.CompoundOscillations.ViewModels
 			_timer.Stop();
 		}
 
+		public CompoundOscillationsPhysicsService _compoundOscillationService = new CompoundOscillationsPhysicsService();
+
+		public string CurrentCompoundY { get; set; }
+
 		private void _timer_Tick(object sender, object e)
 		{
 			if (_timer.IsEnabled && _controller != null)
@@ -214,6 +219,8 @@ namespace Physics.CompoundOscillations.ViewModels
 				{
 					motion.UpdateCurrentValues(timeElapsed);
 				}
+
+				CurrentCompoundY = _compoundOscillationService.CalculateY(timeElapsed).ToString("0.##");
 			}
 		}
 	}

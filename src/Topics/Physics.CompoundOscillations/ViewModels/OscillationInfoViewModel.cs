@@ -44,9 +44,10 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public void UpdateCurrentValues(float timeElapsed)
 		{
-			TimeElapsed = timeElapsed.ToString("0.##") + " s";
+			TimeElapsed = timeElapsed.ToString("0.##");
 			var currentY = _physicsService.CalculateY(timeElapsed);
-			CurrentY = currentY.ToString("0.##") + " m";
+			CurrentY = currentY.ToString("0.##");
+			RaisePropertyChanged(nameof(OscillationInfo));
 		}
 
 		public string TimeElapsed { get; private set; }

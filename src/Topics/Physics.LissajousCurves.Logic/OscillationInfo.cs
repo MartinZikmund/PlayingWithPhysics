@@ -25,6 +25,8 @@ namespace Physics.LissajousCurves.Logic
 
 		public float PhaseInRad { get; set; }
 
+		public float PhaseInPiRad => (float)(PhaseInRad / Math.PI);
+
 		public string Color { get; set; }
 
 		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
