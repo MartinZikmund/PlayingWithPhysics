@@ -30,11 +30,15 @@ namespace Physics.CompoundOscillations.ViewModels
 		private CompoundOscillationsController _controller;
 		private readonly IContentDialogHelper _contentDialogHelper;
 
+		private readonly DispatcherTimer _timer = new DispatcherTimer();
+
 		internal DifficultyOption Difficulty { get; private set; }
 
 		public MainViewModel(IContentDialogHelper contentDialogHelper)
 		{
 			_contentDialogHelper = contentDialogHelper;
+			_timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+			_timer.Tick += _timer_Tick;
 		}
 
 		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(EditOscillationAsync);
@@ -167,6 +171,7 @@ namespace Physics.CompoundOscillations.ViewModels
 			{
 				return;
 			}
+			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
@@ -188,6 +193,26 @@ namespace Physics.CompoundOscillations.ViewModels
 				foreach (var oscillation in Oscillations)
 				{
 					oscillation.OscillationInfo.Frequency = lastChanged.Frequency;
+				}
+			}
+		}
+
+		public override void ViewDestroy(bool viewFinishing = true)
+		{
+			base.ViewDestroy(viewFinishing);
+			_timer.Stop();
+		}
+
+		private void _timer_Tick(object sender, object e)
+		{
+			if (_timer.IsEnabled && _controller != null)
+			{
+				float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+				RaisePropertyChanged(nameof(TimeElapsed));
+
+				foreach (var motion in Oscillations)
+				{
+					motion.UpdateCurrentValues(timeElapsed);
 				}
 			}
 		}
