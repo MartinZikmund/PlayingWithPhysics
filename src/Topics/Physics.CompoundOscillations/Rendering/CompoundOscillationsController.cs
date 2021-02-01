@@ -130,7 +130,7 @@ namespace Physics.CompoundOscillations.Rendering
 			DrawAxes(sender, args);
 
 			foreach (var oscillation in _activeOscillations)
-			{				
+			{
 				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
 				if (oscillation.IsEnabled)
 				{
@@ -173,7 +173,7 @@ namespace Physics.CompoundOscillations.Rendering
 				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(8);
 				if (newRenderTime.TotalSeconds < 0)
 				{
-					break;
+					newRenderTime = TimeSpan.FromSeconds(0);
 				}
 				var renderX = (float)(endRenderX - (endTime - newRenderTime).TotalSeconds * _horizontalScale);
 				if (renderX < 0)
@@ -193,10 +193,18 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawAxes(ISkiaCanvas sender, SKSurface args)
 		{
+			var axesBounds = new SimulationBounds(30, 10, (float)sender.ScaledSize.Width - 20, (float)sender.ScaledSize.Height - 10);
+			var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
+			var horizontalPixelDiff = endRenderX - axesBounds.Left;
+			var endTime = GetAdjustedTotalTime();
+			var originSeconds = (float)endTime.TotalSeconds - horizontalPixelDiff / _horizontalScale;
+
 			_axesRenderer.YUnitSizeInPixels = _verticalScale;
 			_axesRenderer.XUnitSizeInPixels = _horizontalScale;
-			_axesRenderer.TargetBounds = new SimulationBounds(10, 10, (float)sender.ScaledSize.Width - 10, (float)sender.ScaledSize.Height - 10);
-			_axesRenderer.XAxisPositionViewportPosition = 0.5;
+
+			_axesRenderer.OriginUnitCoordinates = new SKPoint(originSeconds, 0);
+			_axesRenderer.TargetBounds = axesBounds;
+			_axesRenderer.OriginRelativePosition = new SKPoint(0, 0.5f);
 			_axesRenderer.Draw(sender, args);
 		}
 
@@ -207,7 +215,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private void DrawHorizontalAxis()
 		{
-			
+
 		}
 
 		private void DrawOscillationCurrentPoint(ISkiaCanvas sender, SKSurface args, float y, SKPaint paint)

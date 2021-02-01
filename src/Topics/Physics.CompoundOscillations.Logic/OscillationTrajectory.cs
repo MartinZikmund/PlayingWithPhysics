@@ -24,7 +24,7 @@ namespace Physics.CompoundOscillations.Logic
 			var timeInPeriod = timeInSeconds % _period;
 			//TODO: Binary search
 			int lowerPointId = 0;
-			while(lowerPointId < _points.Length && _points[lowerPointId].Time <= timeInPeriod)
+			while(lowerPointId < _points.Length - 1 && _points[lowerPointId + 1].Time <= timeInPeriod)
 			{
 				lowerPointId++;
 			}
@@ -33,7 +33,7 @@ namespace Physics.CompoundOscillations.Logic
 				lowerPointId--;
 			}
 			return _points[lowerPointId].Y;
-		}
+		}		
 
 		//private float CalculateMidpoint(float time, int index)
 		//{

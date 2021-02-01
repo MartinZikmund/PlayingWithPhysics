@@ -6,8 +6,7 @@ namespace Physics.Shared.UI.Rendering
 {
 	public class SkiaAxesRenderer : ISkiaRenderer
 	{
-		private const int TickSize = 3;
-		private const int VerticalTextDistance = 9;
+		private const int TickSize = 4;
 		private const int MinTickDistanceInPixels = 72;
 
 		private static int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
@@ -23,6 +22,8 @@ namespace Physics.Shared.UI.Rendering
 		{
 		}
 
+		public SKPoint OriginUnitCoordinates { get; set; } = SKPoint.Empty;
+
 		public bool ShouldDrawXAxis { get; set; } = true;
 
 		public bool ShouldDrawYAxis { get; set; } = true;
@@ -31,23 +32,25 @@ namespace Physics.Shared.UI.Rendering
 
 		public bool ShouldDrawYMeasure { get; set; } = true;
 
+		public int YAxisLabelPadding { get; set; } = 4;
+
+		public int XAxisLabelPadding { get; set; } = 14;
+
 		public SimulationBounds TargetBounds { get; set; } = SimulationBounds.Empty;
 
-		public double XAxisPositionViewportPosition { get; set; } = 0;
+		/// <summary>
+		/// Sets the relative position of the axes origin.
+		/// 0,0 is left bottom corner of the rendering view.
+		/// </summary>
+		public SKPoint OriginRelativePosition { get; set; } = SKPoint.Empty;
 
 		public SKPaint XMeasurePaint { get; set; } = new SKPaint()
 		{
-			IsStroke = true,
-			IsAntialias = true,
-			StrokeWidth = 1,
 			Color = SKColors.Black
 		};
 
 		public SKPaint YMeasurePaint { get; set; } = new SKPaint()
 		{
-			IsStroke = true,
-			IsAntialias = true,
-			StrokeWidth = 1,
 			Color = SKColors.Black
 		};
 
@@ -66,20 +69,33 @@ namespace Physics.Shared.UI.Rendering
 				DrawXAxis(sender, args);
 			}
 
-			if (ShouldDrawXMeasure)
-			{
-				DrawXMeasure(sender, args);
-			}
-
 			if (ShouldDrawYAxis)
 			{
 				DrawYAxis(sender, args);
 			}
 
+			if (ShouldDrawXMeasure)
+			{
+				if (OriginRelativePosition.X != 0)
+				{
+					DrawXMeasure(sender, args, -1);
+				}
+				if (OriginRelativePosition.X != 1)
+				{
+					DrawXMeasure(sender, args, 1);
+				}
+			}
+
 			if (ShouldDrawYMeasure)
 			{
-				DrawYMeasure(sender, args, 1);
-				DrawYMeasure(sender, args, -1);
+				if (OriginRelativePosition.Y != 0)
+				{
+					DrawYMeasure(sender, args, -1);
+				}
+				if (OriginRelativePosition.Y != 1)
+				{
+					DrawYMeasure(sender, args, 1);
+				}
 			}
 		}
 
@@ -87,8 +103,8 @@ namespace Physics.Shared.UI.Rendering
 		{
 			var drawing = args.Canvas;
 
-			var y = GetZeroHeight();
-			drawing.DrawLine(TargetBounds.Left, y, TargetBounds.Right, y, XMeasurePaint);
+			var renderOrigin = GetRenderOrigin();
+			drawing.DrawLine(TargetBounds.Left, renderOrigin.Y, TargetBounds.Right, renderOrigin.Y, XMeasurePaint);
 		}
 
 		private void DrawYAxis(ISkiaCanvas sender, SKSurface args)
@@ -97,50 +113,98 @@ namespace Physics.Shared.UI.Rendering
 			drawing.DrawLine(TargetBounds.Left, TargetBounds.Bottom, TargetBounds.Left, TargetBounds.Top, YMeasurePaint);
 		}
 
-		private void DrawXMeasure(ISkiaCanvas sender, SKSurface args)
+		private void DrawXMeasure(ISkiaCanvas sender, SKSurface args, int direction)
 		{
 			var drawing = args.Canvas;
 
-			var axisInfo = GetXAxisInfo();
-			
-			for (float currentDistance = 0; axisInfo.Units - currentDistance > -0.01 || (axisInfo.Jumps == 0 && currentDistance == 0); currentDistance += axisInfo.JumpSize)
-			{
-				drawing.DrawLine(
-					TargetBounds.Left + XUnitSizeInPixels * currentDistance,
-					TargetBounds.Bottom - TickSize,
-					TargetBounds.Left + XUnitSizeInPixels * currentDistance,
-					TargetBounds.Bottom + TickSize,
-					XMeasurePaint);
+			//var axisInfo = GetXAxisInfo();
 
+			//var renderOrigin = GetRenderOrigin();
+
+			//for (float currentDistance = 0; axisInfo.Units - currentDistance > -0.01 || (axisInfo.Jumps == 0 && currentDistance == 0); currentDistance += axisInfo.JumpSize)
+			//{
+			//	drawing.DrawLine(
+			//		TargetBounds.Left + XUnitSizeInPixels * currentDistance,
+			//		renderOrigin.Y - TickSize,
+			//		TargetBounds.Left + XUnitSizeInPixels * currentDistance,
+			//		renderOrigin.Y + TickSize,
+			//		XMeasurePaint);
+
+			//	drawing.DrawText(
+			//		(currentDistance).ToString("0.#"),
+			//		TargetBounds.Left + XUnitSizeInPixels * currentDistance,
+			//		renderOrigin.Y + TickSize + VerticalTextDistance,
+			//		XMeasurePaint);
+			//}
+
+			var axisInfo = GetXAxisInfo();
+
+			var renderOrigin = GetRenderOrigin();
+
+			var unitOrigin = OriginUnitCoordinates;
+
+			var firstTickX = ((int)(unitOrigin.X / axisInfo.JumpSize) + direction) * axisInfo.JumpSize;
+
+			for (float currentWidth = firstTickX; ; currentWidth += direction * axisInfo.JumpSize)
+			{
+				var renderX = renderOrigin.X + (currentWidth - unitOrigin.X) * XUnitSizeInPixels;
+
+				if (renderX < TargetBounds.Left || renderX > TargetBounds.Right)
+				{
+					break;
+				}
+
+				drawing.DrawLine(
+					renderX,
+					renderOrigin.Y - TickSize,
+					renderX,
+					renderOrigin.Y + TickSize,
+					YMeasurePaint);
+
+				var tickLabel = currentWidth.ToString("0.#");
+				var textSize = XMeasurePaint.MeasureText(tickLabel);
 				drawing.DrawText(
-					(currentDistance).ToString("0.#"),
-					TargetBounds.Left + XUnitSizeInPixels * currentDistance,
-					TargetBounds.Bottom + TickSize + VerticalTextDistance,
+					tickLabel,
+					renderX - textSize / 2,
+					renderOrigin.Y + TickSize + XAxisLabelPadding,
 					XMeasurePaint);
 			}
 		}
 
-		private void DrawYMeasure(ISkiaCanvas sender, SKSurface args, double direction)
+		private void DrawYMeasure(ISkiaCanvas sender, SKSurface args, int direction)
 		{
 			var drawing = args.Canvas;
 
 			var axisInfo = GetYAxisInfo();
 
-			var zeroHeight = GetZeroHeight();
+			var renderOrigin = GetRenderOrigin();
 
-			for (float currentHeight = axisInfo.JumpSize; axisInfo.Units - currentHeight > -0.01; currentHeight += axisInfo.JumpSize)
+			var unitOrigin = OriginUnitCoordinates;
+
+			var firstTickY = ((int)(unitOrigin.Y / axisInfo.JumpSize) + direction) * axisInfo.JumpSize;
+
+			for (float currentHeight = firstTickY; ; currentHeight += direction * axisInfo.JumpSize)
 			{
+				var renderY = renderOrigin.Y - (currentHeight - unitOrigin.Y) * YUnitSizeInPixels;
+
+				if (renderY < TargetBounds.Top || renderY > TargetBounds.Bottom)
+				{
+					break;
+				}
+
 				drawing.DrawLine(
 					TargetBounds.Left - TickSize,
-					TargetBounds.Bottom + zeroHeight - YUnitSizeInPixels * currentHeight,
+					renderY,
 					TargetBounds.Left + TickSize,
-					TargetBounds.Bottom + zeroHeight - YUnitSizeInPixels * currentHeight,
+					renderY,
 					YMeasurePaint);
 
+				var tickLabel = currentHeight.ToString("0.#");
+				var textSize = YMeasurePaint.MeasureText(tickLabel);
 				drawing.DrawText(
-					currentHeight.ToString("0.#"),
-					TargetBounds.Left,
-					TargetBounds.Bottom + zeroHeight - YUnitSizeInPixels * currentHeight - 50,
+					tickLabel,
+					TargetBounds.Left - TickSize - YAxisLabelPadding - textSize,
+					renderY,
 					YMeasurePaint);
 			}
 		}
@@ -184,10 +248,11 @@ namespace Physics.Shared.UI.Rendering
 			};
 		}
 
-		private float GetZeroHeight()
+		private SKPoint GetRenderOrigin()
 		{
-			var y = (float)(TargetBounds.Bottom + XAxisPositionViewportPosition * (TargetBounds.Top - TargetBounds.Bottom));
-			return y;
+			var x = (float)(TargetBounds.Left + OriginRelativePosition.X * (TargetBounds.Right - TargetBounds.Left));
+			var y = (float)(TargetBounds.Bottom + OriginRelativePosition.Y * (TargetBounds.Top - TargetBounds.Bottom));
+			return new SKPoint(x, y);
 		}
 
 		private float CalculateOptimalJumpSize(float requestedAxis, int maxNumberOfTicks)
