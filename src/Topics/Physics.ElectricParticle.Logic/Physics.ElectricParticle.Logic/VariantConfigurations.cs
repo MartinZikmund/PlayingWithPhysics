@@ -16,7 +16,8 @@
 				InputVariant = InputVariant.EasyVerticalNoGravity,
 				ParticleType = ParticleType.AtomNucleus,
 				Q = FieldConfiguration.CreateRestricted(1, 150),
-				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nucleus),
+				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
 			{
@@ -38,7 +39,8 @@
 				InputVariant = InputVariant.EasyHorizontalNoGravity,
 				ParticleType = ParticleType.AtomNucleus,
 				Q = FieldConfiguration.CreateRestricted(1, 150),
-				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nucleus),
+				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
 			{
@@ -67,7 +69,8 @@
 				InputVariant = InputVariant.AdvancedVerticalHorizontalNoGravity,
 				ParticleType = ParticleType.AtomNucleus,
 				Q = FieldConfiguration.CreateRestricted(1, 150),
-				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nukleus)
+				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nucleus),
+				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
 			{

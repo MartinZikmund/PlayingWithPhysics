@@ -1,8 +1,8 @@
 ﻿namespace Physics.ElectricParticle.Logic
 {
-	public class MotionSetup : MotionSetupBase
+	public class ElectricParticleSimulationSetup : MotionSetupBase
 	{
-		public MotionSetup(
+		public ElectricParticleSimulationSetup(
 			InputVariant variant,
 			PlaneSetup horizontalPlane,
 			PlaneSetup verticalPlane,

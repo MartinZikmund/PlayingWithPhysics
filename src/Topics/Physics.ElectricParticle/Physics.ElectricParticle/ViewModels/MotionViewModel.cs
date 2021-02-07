@@ -31,7 +31,7 @@ namespace Physics.ElectricParticle.ViewModels
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
-                _physicsService = new PhysicsService(value as MotionSetup);
+                _physicsService = new PhysicsService(value as ElectricParticleSimulationSetup);
                 SetProperty(ref _motionInfo, value);
             }
         }

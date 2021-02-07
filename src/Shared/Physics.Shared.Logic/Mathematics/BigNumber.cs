@@ -76,5 +76,7 @@ namespace Physics.Shared.Mathematics
 			}
 			return new BigNumber(newMantisa, newExponent);
 		}
+
+		public override string ToString() => $"{Mantisa}.10^{Exponent}";
 	}
 }

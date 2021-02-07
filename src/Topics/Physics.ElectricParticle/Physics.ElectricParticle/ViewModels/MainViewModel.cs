@@ -46,7 +46,7 @@ namespace Physics.ElectricParticle.ViewModels
             var newWindow = await AppWindow.TryCreateAsync();
             var appWindowContentFrame = new Frame();
             appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-            var physicsService = new PhysicsService(Setup as MotionSetup);
+            var physicsService = new PhysicsService(Setup as ElectricParticleSimulationSetup);
             var valuesTableService = new TableService(physicsService);
             var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
             valuesTableViewModel.TimeInterval = (float)(physicsService.MaxT / 20);
