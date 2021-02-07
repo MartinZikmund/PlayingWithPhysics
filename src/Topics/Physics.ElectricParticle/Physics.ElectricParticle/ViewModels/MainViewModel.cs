@@ -108,8 +108,7 @@ namespace Physics.ElectricParticle.ViewModels
             var result = await dialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                Setup = dialog.Setup;
-				var res = new PhysicsService(Setup as MotionSetup).ComplexCosAxisCoordinate(0);
+                Setup = dialog.Setup;				
                 Motion = new MotionViewModel(Setup);
                 //RestartSimulation();
             }

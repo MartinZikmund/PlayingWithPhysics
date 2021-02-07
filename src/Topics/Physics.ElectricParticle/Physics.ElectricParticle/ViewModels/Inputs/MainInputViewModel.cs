@@ -21,7 +21,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			ParticlePolarity = Polarities[0];
 			SelectedVelocityDirection = VelocityDirections[0];
 			//Advanced-1, secondary
-			SelectedSecondaryPlaneChargePolarity = Polarities[0];
+			SecondaryPlanePolarity = Polarities[0];
 			SelectedEnvironmentSetting = EnvironmentSettings[0];
 		}
 
@@ -92,7 +92,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		//Advanced-1, secondary options
 		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
-		public Polarity SelectedSecondaryPlaneChargePolarity { get; set; }
+		public Polarity SecondaryPlanePolarity { get; set; }
 
 		public float SecondaryPlaneVoltage { get; set; }
 

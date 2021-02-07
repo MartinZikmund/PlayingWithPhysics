@@ -157,28 +157,28 @@
     <value>Electron weight should be inputted as 0,000545.</value>
   </data>
   <data name="EnvironmentSetting_Air" xml:space="preserve">
-    <value>air</value>
+    <value>Air</value>
   </data>
   <data name="EnvironmentSetting_CastorOil" xml:space="preserve">
-    <value>castor oil</value>
+    <value>Castor oil</value>
   </data>
   <data name="EnvironmentSetting_Ethanol" xml:space="preserve">
-    <value>ethanol</value>
+    <value>Ethanol</value>
   </data>
   <data name="EnvironmentSetting_Glycerol" xml:space="preserve">
-    <value>glycerol</value>
+    <value>Glycerol</value>
   </data>
   <data name="EnvironmentSetting_Kerosene" xml:space="preserve">
-    <value>petrolej</value>
+    <value>Kerosene</value>
   </data>
   <data name="EnvironmentSetting_Methanol" xml:space="preserve">
-    <value>methanol</value>
+    <value>Methanol</value>
   </data>
   <data name="EnvironmentSetting_Vacuum" xml:space="preserve">
-    <value>vacuum</value>
+    <value>Vacuum</value>
   </data>
   <data name="EnvironmentSetting_Water" xml:space="preserve">
-    <value>water</value>
+    <value>Water</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
@@ -263,6 +263,12 @@
   </data>
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>Vertical</value>
+  </data>
+  <data name="Polarity_Negative" xml:space="preserve">
+    <value>Negative</value>
+  </data>
+  <data name="Polarity_Positive" xml:space="preserve">
+    <value>Positive</value>
   </data>
   <data name="PrimaryPlaneChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>
