@@ -343,7 +343,7 @@
       <Version>3.3.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>13.0.1</Version>
+      <Version>13.1.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.25.0</Version>
