@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Physics.Shared.Helpers;
 
 namespace Physics.LissajousCurves.Logic
 {
@@ -13,7 +14,7 @@ namespace Physics.LissajousCurves.Logic
 			Label = label;
 			Amplitude = amplitude;
 			Frequency = frequence;
-			PhaseInRad = phase;
+			PhaseInDeg = phase;
 			Color = color;
 		}
 
@@ -23,12 +24,13 @@ namespace Physics.LissajousCurves.Logic
 
 		public float Frequency { get; set; }
 
-		public float PhaseInRad { get; set; }
+		public float PhaseInRad => MathHelpers.DegreesToRadians(PhaseInDeg);
 
-		public float PhaseInPiRad => (float)(PhaseInRad / Math.PI);
+		public float PhaseInDeg { get; set; }
 
 		public string Color { get; set; }
 
 		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
+		public bool IsVisible { get; set; } = true;
 	}
 }

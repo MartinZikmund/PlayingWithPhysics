@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.LissajousCurves.ViewModels"
+	xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     x:Name="Page"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Dark"
@@ -46,10 +47,10 @@
 					</Border.Background>
 				</Border>
 				<Grid
-												Grid.Column="1"
-                                                ColumnSpacing="8"
-                                                CornerRadius="2"
-                                                RowSpacing="4">
+					Grid.Column="1"
+                    ColumnSpacing="8"
+                    CornerRadius="2"
+                    RowSpacing="4">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="Auto" />
@@ -57,78 +58,77 @@
 					</Grid.ColumnDefinitions>
 
 					<TextBlock
-                                                    VerticalAlignment="Center"
-                                                    Style="{ThemeResource SubtitleTextBlockStyle}"
-                                                    Text="{x:Bind Label, Mode=OneWay}"
-													FontWeight="SemiBold"
-													TextLineBounds="Tight"
-                                                    TextTrimming="CharacterEllipsis"
-													TextWrapping="NoWrap" />
+                        VerticalAlignment="Center"
+                        Style="{ThemeResource SubtitleTextBlockStyle}"
+                        Text="{x:Bind Label, Mode=OneWay}"
+						FontWeight="SemiBold"
+						TextLineBounds="Tight"
+                        TextTrimming="CharacterEllipsis"
+						TextWrapping="NoWrap" />
 
 					<ToggleButton IsChecked="{x:Bind IsVisible, Mode=TwoWay}" Grid.Column="1">
 						<SymbolIcon Symbol="View" />
 					</ToggleButton>
-					<Button Grid.Column="2">
-						<Button.Flyout>
+					<Button Grid.Column="3" Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}" CommandParameter="{x:Bind}">
+						<!--<Button.Flyout>
 							<MenuFlyout>
 								<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=ShowValuesTable}">
+									Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
+									CommandParameter="{x:Bind}"
+									Text="{extensions:Localize Key=ShowValuesTable}">
 									<MenuFlyoutItem.Icon>
 										<SymbolIcon Symbol="ViewAll" />
 									</MenuFlyoutItem.Icon>
 								</MenuFlyoutItem>
 								<MenuFlyoutSeparator />
 								<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Edit}">
+                                    Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}"
+                                    CommandParameter="{x:Bind}"
+                                    Text="{extensions:Localize Key=Edit}">
 									<MenuFlyoutItem.Icon>
 										<SymbolIcon Symbol="Edit" />
 									</MenuFlyoutItem.Icon>
 								</MenuFlyoutItem>
 								<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DuplicateOscillationCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Duplicate}">
+                                    Command="{Binding ElementName=Page, Path=Model.DuplicateOscillationCommand}"
+                                    CommandParameter="{x:Bind}"
+                                    Text="{extensions:Localize Key=Duplicate}">
 									<MenuFlyoutItem.Icon>
 										<SymbolIcon Symbol="Copy" />
 									</MenuFlyoutItem.Icon>
 								</MenuFlyoutItem>
 								<MenuFlyoutItem
-                                                                Command="{Binding ElementName=Page, Path=Model.DeleteOscillationCommand}"
-                                                                CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Delete}">
+                                    Command="{Binding ElementName=Page, Path=Model.DeleteOscillationCommand}"
+                                    CommandParameter="{x:Bind}"
+                                    Text="{extensions:Localize Key=Delete}">
 									<MenuFlyoutItem.Icon>
 										<SymbolIcon Symbol="Delete" />
 									</MenuFlyoutItem.Icon>
 								</MenuFlyoutItem>
 							</MenuFlyout>
-						</Button.Flyout>
-						<SymbolIcon Symbol="More" />
+						</Button.Flyout>-->
+						<SymbolIcon Symbol="Edit" />
 					</Button>
 				</Grid>
-
 				<!--<Grid
-                                                Grid.Row="1"
-												Grid.Column="1">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="Auto" />
-													<RowDefinition Height="Auto" />
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="*" />
-													<ColumnDefinition Width="*" />
-												</Grid.ColumnDefinitions>
-												<TextBlock
-                                                    Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="y: " />
-                                                    <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
-												</TextBlock>
-											</Grid>-->
+						Grid.Row="1"
+						Grid.Column="1">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<TextBlock
+							Grid.Row="1"
+							Grid.Column="1"
+							Style="{StaticResource InfoTextBlockStyle}">
+							<Run Text="y: " />
+							<Run Text="{x:Bind CurrentY, Mode=OneWay}" />
+						</TextBlock>
+					</Grid>-->
 			</Grid>
 		</DataTemplate>
 	</Page.Resources>
@@ -160,7 +160,7 @@
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
-								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
@@ -169,7 +169,8 @@
 							<ContentControl Grid.Row="1" ContentTemplate="{StaticResource OscillationPanelDataTemplate}" Content="{x:Bind Model.HorizontalOscillation}" />
 
 							<ContentControl Grid.Row="2" ContentTemplate="{StaticResource OscillationPanelDataTemplate}" Content="{x:Bind Model.VerticalOscillation}" />
-
+							<CheckBox Grid.Row="3" Content="{extensions:Localize Key=ShowTrajectory}" IsChecked="{x:Bind Model.NoTrajectory, Mode=TwoWay}"/>
+							<controls:NumberBox Grid.Row="4" Header="Délka stopy" Grid.Column="1" Value="{x:Bind Model.DrawLength, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Minimum="0" SmallChange="1"/>
 							<Button
 									Grid.Row="5"
 									Margin="0,0,0,8"

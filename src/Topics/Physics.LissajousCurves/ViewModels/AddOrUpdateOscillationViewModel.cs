@@ -8,6 +8,7 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 
@@ -27,7 +28,7 @@ namespace Physics.LissajousCurves.ViewModels
 			Color = ColorHelper.ToColor(oscillationInfo.Color);
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
-			PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
+			PhaseInDeg = oscillationInfo.PhaseInDeg / (float)Math.PI;
 		}
 
 		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty, params string[] existingNames)
@@ -68,9 +69,8 @@ namespace Physics.LissajousCurves.ViewModels
 
 		public float Amplitude { get; set; } = 1;
 
-		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
-
-		public float PhaseInPiRad { get; set; }
+		public string PhaseInPiRad => (MathHelpers.DegreesToRadians(PhaseInDeg) / Math.PI).ToString("0.0");
+		public float PhaseInDeg { get; set; }
 
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
@@ -98,7 +98,7 @@ namespace Physics.LissajousCurves.ViewModels
 				Label,
 				Amplitude,
 				Frequency,
-				PhaseInPiRad * (float)Math.PI,
+				PhaseInDeg,
 				ColorHelper.ToHex(Color));
 		}
 
@@ -108,5 +108,7 @@ namespace Physics.LissajousCurves.ViewModels
 			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
 			Label = generatedName;
 		}
+
+		public Visibility AdvancedDifficulty => (Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
 	}
 }

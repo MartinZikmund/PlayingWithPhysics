@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using MvvmCross.ViewModels;
 using Physics.LissajousCurves.Logic;
 
@@ -53,6 +54,18 @@ namespace Physics.LissajousCurves.ViewModels
 
 		public string CurrentY { get; private set; }
 
-		public bool IsVisible { get; set; } = true;
+		private bool _isVisible = true;
+		public bool IsVisible
+		{
+			get
+			{
+				return _isVisible;
+			}
+			set
+			{
+				_isVisible = value;
+				OscillationInfo.IsVisible = value;
+			}
+		}
 	}
 }

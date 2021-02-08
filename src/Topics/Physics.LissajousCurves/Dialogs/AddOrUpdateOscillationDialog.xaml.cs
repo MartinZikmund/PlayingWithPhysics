@@ -21,7 +21,7 @@ namespace Physics.LissajousCurves.Dialogs
 
 		private void SetupNumberBoxFormattings()
 		{
-			AmplitudeNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 0.1);
+			AmplitudeNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 0.1, increment: 0.01);
 			FrequencyNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 0.1);
 			PhaseInPiRadNumberBox.SetupFormatting(fractionDigits: 1, smallChange: 1);
 		}

@@ -24,11 +24,11 @@ namespace Physics.LissajousCurves.Logic
 			var timeInPeriod = timeInSeconds % _period;
 			//TODO: Binary search
 			int lowerPointId = 0;
-			while(lowerPointId < _points.Length && _points[lowerPointId].Time.TotalSeconds <= timeInPeriod)
+			while (lowerPointId < _points.Length - 1 && _points[lowerPointId + 1].Time.TotalSeconds <= timeInPeriod)
 			{
 				lowerPointId++;
 			}
-			if(lowerPointId == _points.Length)
+			if (lowerPointId == _points.Length)
 			{
 				lowerPointId--;
 			}

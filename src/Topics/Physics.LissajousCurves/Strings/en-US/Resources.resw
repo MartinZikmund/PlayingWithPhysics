@@ -140,6 +140,9 @@ Graphics: Petr Weinlich</value>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Compound oscillation</value>
   </data>
+  <data name="DrawLength" xml:space="preserve">
+    <value>Draw length</value>
+  </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Edit oscillation</value>
   </data>
@@ -169,6 +172,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Show table of compound oscillation</value>
+  </data>
+  <data name="ShowTrajectory" xml:space="preserve">
+    <value>No trajectory</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

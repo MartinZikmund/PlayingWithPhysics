@@ -36,7 +36,31 @@ namespace Physics.LissajousCurves.ViewModels
 		{
 			_contentDialogHelper = contentDialogHelper;
 		}
+		public int DrawLength
+		{
+			get
+			{
+				if (_controller != null)
+					return _controller.DrawLength;
+				return 10;
+			}
+			set
+			{
+				_controller.DrawLength = value;
+			}
+		}
 
+		public bool NoTrajectory
+		{
+			get
+			{
+				return _controller.NoTrajectory;
+			}
+			set
+			{
+				_controller.NoTrajectory = value;
+			}
+		}
 		public OscillationInfoViewModel HorizontalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("X", 1, 1, 0, "#FF0000"));
 
 		public OscillationInfoViewModel VerticalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("Y", 1, 1, 0, "#0000FF"));

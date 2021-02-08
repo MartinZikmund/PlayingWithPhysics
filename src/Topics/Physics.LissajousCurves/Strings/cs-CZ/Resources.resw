@@ -140,6 +140,9 @@ Grafika: Petr Weinlich</value>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>
   </data>
+  <data name="DrawLength" xml:space="preserve">
+    <value>Délka stopy</value>
+  </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Upravit kmitání</value>
   </data>
@@ -169,6 +172,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Zobrazit tabulku složeného kmitání</value>
+  </data>
+  <data name="ShowTrajectory" xml:space="preserve">
+    <value>Bez stopy</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

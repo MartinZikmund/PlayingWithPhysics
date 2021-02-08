@@ -17,6 +17,9 @@ namespace Physics.LissajousCurves.Rendering
 		private OscillationInfo _horizontalOscillation;
 		private OscillationInfo _verticalOscillation;
 
+		public bool NoTrajectory { get; set;}
+		public int DrawLength { get; set; } = 10;
+
 		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
 		private Dictionary<OscillationInfo, OscillationPhysicsService> _oscillationServices;
 		private Dictionary<OscillationInfo, SKPaint> _oscillationFillPaints;
@@ -36,6 +39,7 @@ namespace Physics.LissajousCurves.Rendering
 			IsStroke = true,
 			IsAntialias = true,
 			StrokeWidth = 3,
+			FilterQuality = SKFilterQuality.High,
 			Color = SKColors.Black
 		};
 
@@ -150,10 +154,19 @@ namespace Physics.LissajousCurves.Rendering
 			var x = _oscillationTrajectories[_horizontalOscillation].GetY(currentTime);
 			var y = _oscillationTrajectories[_verticalOscillation].GetY(currentTime);
 
-			DrawOscillationCurrentPoint(sender, args, x, 0, _oscillationFillPaints[_horizontalOscillation]);
-			DrawOscillationCurrentPoint(sender, args, 0, y, _oscillationFillPaints[_verticalOscillation]);
+			if(_horizontalOscillation.IsVisible)
+			{
+				DrawOscillationCurrentPoint(sender, args, x, 0, _oscillationFillPaints[_horizontalOscillation]);
+			}
+			if (_verticalOscillation.IsVisible)
+			{
+				DrawOscillationCurrentPoint(sender, args, 0, y, _oscillationFillPaints[_verticalOscillation]);
+			}
 
-			DrawTrajectory(sender, args, _compoundStrokePaint);
+			if (!NoTrajectory)
+			{ 
+				DrawTrajectory(sender, args, _compoundStrokePaint);
+			}
 
 			DrawOscillationCurrentPoint(sender, args, x, y, _compoundFillPaint, 8);
 
@@ -192,7 +205,7 @@ namespace Physics.LissajousCurves.Rendering
 
 			using SKPath path = new SKPath();
 			var lastRenderTime = SimulationTime.TotalTime;
-			var minRenderTime = SimulationTime.TotalTime - TimeSpan.FromSeconds(5);
+			var minRenderTime = SimulationTime.TotalTime - TimeSpan.FromSeconds(DrawLength);
 			var endTime = SimulationTime.TotalTime;
 
 			var lastActualX = _oscillationServices[_horizontalOscillation].CalculateY((float)lastRenderTime.TotalSeconds);
@@ -202,7 +215,7 @@ namespace Physics.LissajousCurves.Rendering
 			path.MoveTo(lastRenderX, lastRenderY);
 			while (lastRenderTime.TotalSeconds > 0)
 			{
-				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(16);
+				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(8);
 				if (newRenderTime.TotalSeconds < 0 || newRenderTime < minRenderTime)
 				{
 					break;

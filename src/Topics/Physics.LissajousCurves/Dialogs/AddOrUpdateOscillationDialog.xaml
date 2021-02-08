@@ -55,14 +55,16 @@
             PlaceholderText="{extensions:Localize Key=Label}"
             Text="{x:Bind Model.Label, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="1">
+		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.AdvancedDifficulty}">
             <Run Text="{extensions:Localize Key=Amplitude}" />
             <Run Text="(m)" />
 		</TextBlock>
 		<controls:NumberBox
             x:Name="AmplitudeNumberBox"
+			Minimum="0"
             Grid.Row="1"
             Grid.Column="1"
+			Visibility="{x:Bind Model.AdvancedDifficulty}"
             Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="2" Grid.Column="0">
@@ -115,20 +117,21 @@
 		</Grid>
 
 
-		<TextBlock Grid.Row="4">
+		<TextBlock Grid.Row="4" Visibility="{x:Bind Model.AdvancedDifficulty}">
 				<Run Text="{extensions:Localize Key=StartPhase}" />
-	            <Run Text="(&#960; rad)" />
+	            <Run Text="(°)" />
 		</TextBlock>
 		<controls:NumberBox
 				x:Name="PhaseInPiRadNumberBox"
 				Grid.Row="4"
 				Grid.Column="1"
-				Value="{x:Bind Model.PhaseInPiRad, Mode=TwoWay}" />
+				Visibility="{x:Bind Model.AdvancedDifficulty}"
+				Value="{x:Bind Model.PhaseInDeg, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="5" Grid.Column="1" Opacity="0.8" Margin="0,-8,0,0">
-					<Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
-					<Run Text="{x:Bind Model.PhaseInDeg, Mode=OneWay}" />
-					<Run Text="°" />
+				<Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
+				<Run Text="{x:Bind Model.PhaseInPiRad, Mode=OneWay}" />
+				<Run Text="π" />
 		</TextBlock>
 
 		<GridView
