@@ -1,6 +1,7 @@
 ﻿using System;
 using ExtendedNumerics;
-using Physics.Shared.Math;
+using Physics.Shared.Logic.Constants;
+using Physics.Shared.Mathematics;
 
 namespace Physics.ElectricParticle.Logic
 {
@@ -15,11 +16,11 @@ namespace Physics.ElectricParticle.Logic
 		private const float ElementaryChargeBase = 1.6f;
 		private const int ElementaryChargeExponent = -19;
 		private const float ChargedBodyMassBase = 1;
-		private const int ChargedBodyMassExponent = -17;		
+		private const int ChargedBodyMassExponent = -17;
 
-		private readonly MotionSetup _setup;
+		private readonly ElectricParticleSimulationSetup _setup;
 
-		public PhysicsService(MotionSetup motionSetup)
+		public PhysicsService(ElectricParticleSimulationSetup motionSetup)
 		{
 			_setup = motionSetup;
 		}
@@ -85,46 +86,6 @@ namespace Physics.ElectricParticle.Logic
 			}
 		}
 
-		#region X, Y
-
-		//public BigNumber ComplexCosAxisCoordinate(BigNumber time)
-		//{
-		//	var left = (decimal)_setup.Particle.StartVelocity * (decimal)Math.Cos(_setup.Deviation) * time;
-		//	var upperFraction = (decimal)_setup.HorizontalPlaneChargePolarity * (decimal)_setup.HorizontalPlaneVoltag * (decimal)_setup.ChargePolarity * ((decimal)GetChargeBase() * 1) * (time * time);
-		//	var lowerFraction = (2 * ((decimal)GetMassBase() * 1) * (decimal)_setup.HorizontalPlaneDistance * (decimal)_setup.Environment.Value);
-		//	BigDecimal fraction = upperFraction / lowerFraction;
-		//	fraction *= new BigDecimal(1, GetChargeExponent() - GetMassExponent());
-		//	return left + fraction;
-		//}
-
-		//public BigNumber ComplexSinAxisCoordinate(BigNumber time)
-		//{
-		//	var left = (decimal)_setup.Particle.StartVelocity * (decimal)Math.Sin(_setup.Deviation) * time;
-		//	var upperFraction = (decimal)_setup.VerticalPlaneChargePolarity * (decimal)_setup.VerticalPlaneVoltage * (decimal)_setup.ChargePolarity * ((decimal)GetChargeBase() * 1) * (time * time);
-		//	var lowerFraction = (2 * ((decimal)GetMassBase() * 1) * (decimal)_setup.VerticalPlaneDistance * (decimal)_setup.Environment.Value);
-		//	BigDecimal fraction = upperFraction / lowerFraction;
-		//	fraction *= new BigDecimal(1, GetChargeExponent() - GetMassExponent());
-		//	return left + fraction;
-		//}
-
-		private BigNumber ComplexAxisCoordinate(
-			BigNumber time,
-			double goniometricAngle,
-			PlaneSetup plane)
-		{
-			var time2 = time * time;
-			var left = _setup.Particle.StartVelocity * goniometricAngle * time;
-			var upperFraction = (int)plane.Polarity * plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase() * time2;
-			var lowerFraction = 2 * (GetMassBase() * plane.Distance * _setup.Environment.Value);
-			BigNumber fraction = upperFraction / lowerFraction;
-			fraction *= new BigNumber(1, GetChargeExponent() - GetMassExponent());
-			return left + fraction;
-		}
-
-		public BigNumber SimpleCosAxisCoordinate(BigNumber time) => _setup.Particle.StartVelocity * Math.Sin(_setup.Particle.StartVelocityDeviation) * time;
-
-		public BigNumber SimpleSinAxisCoordinate(BigNumber time) => _setup.Particle.StartVelocity * Math.Cos(_setup.Particle.StartVelocityDeviation) * time;
-
 		public BigNumber ComputeX(BigNumber time)
 		{
 			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviation);
@@ -132,14 +93,14 @@ namespace Physics.ElectricParticle.Logic
 			{
 				case InputVariant.EasyVerticalNoGravity:
 					return ComplexAxisCoordinate(time, goniometricAngle, _setup.VerticalPlane);
-				case InputVariant.AdvancedVerticalWithGravity:
-					return ComplexAxisCoordinate(time, goniometricAngle, _setup.VerticalPlane);
 				case InputVariant.EasyHorizontalNoGravity:
-					return SimpleCosAxisCoordinate(time);
+					return SimpleAxisCoordinate(time, goniometricAngle);
 				case InputVariant.EasyHorizontalWithGravity:
 					return 0;
 				case InputVariant.AdvancedVerticalHorizontalNoGravity:
-					return ComplexAxisCoordinate(time, goniometricAngle, _setup.HorizontalPlane);
+					return ComplexAxisCoordinate(time, goniometricAngle, _setup.VerticalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return ComplexAxisCoordinate(time, goniometricAngle, _setup.VerticalPlane);
 			}
 			return 0;
 		}
@@ -150,144 +111,231 @@ namespace Physics.ElectricParticle.Logic
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
-					return SimpleSinAxisCoordinate(time);
-				case InputVariant.AdvancedVerticalWithGravity:
-					return ComplexAxisCoordinate(time, goniometricAngle, _setup.VerticalPlane);
+					return SimpleAxisCoordinate(time, goniometricAngle);
 				case InputVariant.EasyHorizontalNoGravity:
-				case InputVariant.EasyHorizontalWithGravity:
 					return ComplexAxisCoordinate(time, goniometricAngle, _setup.HorizontalPlane);
+				case InputVariant.EasyHorizontalWithGravity:
+					return ComplexAxisCoordinate(time, goniometricAngle, _setup.HorizontalPlane) - GravityAcceleration(time);
 				case InputVariant.AdvancedVerticalHorizontalNoGravity:
 					return ComplexAxisCoordinate(time, goniometricAngle, _setup.HorizontalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return SimpleAxisCoordinate(time, goniometricAngle) - GravityAcceleration(time);
 			}
 			return 0;
 		}
 
-		#endregion
+		private BigNumber ComplexAxisCoordinate(
+			BigNumber time,
+			double goniometricAngle,
+			PlaneSetup plane)
+		{
+			// Left side of addition
+			var left = _setup.Particle.StartVelocity * goniometricAngle * time;
 
-		#region V, Vx, Vy
+			// Right side of addition
+			var time2 = time * time;
+			var upperFraction = (int)plane.Polarity * plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase() * time2;
+			var lowerFraction = 2 * (GetMassBase() * plane.Distance * _setup.Environment.Value);
+			var fraction = upperFraction / lowerFraction;
+			var right = fraction * new BigNumber(1, GetChargeExponent() - GetMassExponent());
 
-		//public BigDecimal PrimaryAxisVelocity(decimal time)
-		//{
-		//	decimal left = (decimal)_setup.Particle.StartVelocity * (decimal)Math.Cos(_setup.Deviation);
-		//	decimal upperFraction = (decimal)_setup.HorizontalPlaneChargePolarity * (decimal)_setup.HorizontalPlaneVoltag * (decimal)_setup.ChargePolarity * ((decimal)GetChargeBase() * 1) * time;
-		//	decimal lowerFraction = (decimal)GetMassBase() * (decimal)_setup.HorizontalPlaneDistance * (decimal)_setup.Environment.Value;
-		//	BigDecimal fraction = upperFraction / lowerFraction;
-		//	fraction *= new BigDecimal(1, GetChargeExponent() - GetMassExponent());
-		//	return left + fraction;
-		//}
+			// Outer addition
+			return left + right;
+		}
 
-		//public BigDecimal SecondaryAxisVelocity(decimal time)
-		//{
-		//	decimal left = (decimal)_setup.Particle.StartVelocity * (decimal)Math.Sin(_setup.Deviation);
-		//	decimal upperFraction = (decimal)_setup.VerticalPlaneChargePolarity * (decimal)_setup.VerticalPlaneVoltage * (decimal)_setup.ChargePolarity * ((decimal)GetChargeBase() * 1) * time;
-		//	decimal lowerFraction = (decimal)GetMassBase() * (decimal)_setup.VerticalPlaneDistance * (decimal)_setup.Environment.Value;
-		//	BigDecimal fraction = upperFraction / lowerFraction;
-		//	fraction *= new BigDecimal(1, GetChargeExponent() - GetMassExponent());
-		//	return left + fraction;
-		//}
+		private BigNumber SimpleAxisCoordinate(
+			BigNumber time,
+			double goniometricAngle)
+		{
+			return _setup.Particle.StartVelocity * goniometricAngle * time;
+		}
 
-		//public BigDecimal ComputeVX(decimal time)
-		//{
-		//	switch (_setup.Variant)
-		//	{
-		//		case InputVariant.EasyVerticalNoGravity:
-		//		case InputVariant.AdvancedVerticalWithGravity:
-		//			return PrimaryAxisVelocity(time);
-		//		case InputVariant.EasyHorizontalNoGravity:
-		//		case InputVariant.EasyHorizontalWithGravity:
-		//			return SecondaryAxisVelocity(time);
-		//		case InputVariant.AdvancedVerticalHorizontalNoGravity:
-		//			return PrimaryAxisVelocity(time);
-		//	}
-		//	return 0;
-		//}
+		private BigNumber GravityAcceleration(BigNumber time)
+		{
+			return 0.5f * GravityConstants.Earth * time * time;
+		}
 
-		//public BigDecimal ComputeVY(decimal time)
-		//{
-		//	switch (_setup.Variant)
-		//	{
-		//		case InputVariant.EasyVerticalNoGravity:
-		//		case InputVariant.AdvancedVerticalWithGravity:
-		//			return SecondaryAxisVelocity(time);
-		//		case InputVariant.EasyHorizontalNoGravity:
-		//		case InputVariant.EasyHorizontalWithGravity:
-		//			return PrimaryAxisVelocity(time);
-		//		case InputVariant.AdvancedVerticalHorizontalNoGravity:
-		//			return PrimaryAxisVelocity(time);
-		//	}
-		//	return 0;
-		//}
-		//public BigDecimal ComputeV(decimal time)
-		//{
-		//	BigDecimal left = ComputeVX(time);
-		//	BigDecimal right = ComputeVY(time);
-		//	return Math.Sqrt((double)(left * left) + (double)(right * right));
-		//}
+		public BigNumber ComputeVx(BigNumber time)
+		{
+			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviation);
+			switch (_setup.Variant)
+			{
+				case InputVariant.EasyVerticalNoGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.VerticalPlane);
+				case InputVariant.EasyHorizontalNoGravity:
+					return SimpleVelocityAxis(goniometricAngle);
+				case InputVariant.EasyHorizontalWithGravity:
+					return 0;
+				case InputVariant.AdvancedVerticalHorizontalNoGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.VerticalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.VerticalPlane);
+			}
+			return 0;
+		}
 
-		//#endregion
+		public BigNumber ComputeVy(BigNumber time)
+		{
+			var goniometricAngle = Math.Sin(_setup.Particle.StartVelocityDeviation);
+			switch (_setup.Variant)
+			{
+				case InputVariant.EasyVerticalNoGravity:
+					return SimpleVelocityAxis(goniometricAngle);
+				case InputVariant.EasyHorizontalNoGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.HorizontalPlane);
+				case InputVariant.EasyHorizontalWithGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.HorizontalPlane) - GravityVelocity(time);
+				case InputVariant.AdvancedVerticalHorizontalNoGravity:
+					return ComplexVelocityAxis(time, goniometricAngle, _setup.HorizontalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return SimpleVelocityAxis(goniometricAngle) - GravityVelocity(time);
+			}
+			return 0;
+		}
 
-		//#region Acceleration
-		////Differs with gravity, otherwise the same
-		//public BigDecimal PrimaryAxisAccelerationX(decimal time)
-		//{
-		//	decimal upperFraction = (decimal)_setup.HorizontalPlaneChargePolarity * (decimal)_setup.HorizontalPlaneVoltag * (decimal)_setup.ChargePolarity * (decimal)GetChargeBase();
-		//	decimal lowerFraction = (decimal)GetMassBase() * (decimal)_setup.HorizontalPlaneDistance * (decimal)_setup.Environment.Value;
-		//	BigDecimal result = (upperFraction / lowerFraction);
-		//	return result;
-		//}
+		public BigNumber ComputeV(BigNumber time)
+		{
+			var vx = ComputeVx(time);
+			var vx2 = vx * vx;
+			var vy = ComputeVy(time);
+			var vy2 = vy * vy;
+			if (vx.Mantisa == 0)
+			{
+				return vy;
+			}
+			else if (vy.Mantisa == 0)
+			{
+				return vx;
+			}
+			return Math.Sqrt((double)(vx2 + vy2));
+		}
 
-		//public BigDecimal PrimaryAxisAccelerationY(decimal time)
-		//{
-		//	decimal upperFraction = (decimal)_setup.HorizontalPlaneChargePolarity * (decimal)_setup.HorizontalPlaneVoltag * (decimal)_setup.ChargePolarity * (decimal)GetChargeBase();
-		//	decimal lowerFraction = (decimal)GetMassBase() * (decimal)_setup.HorizontalPlaneDistance * (decimal)_setup.Environment.Value;
-		//	decimal right = -9.81M;
-		//	BigDecimal result = (upperFraction / lowerFraction) + right;
-		//	return result;
-		//}
+		private BigNumber ComplexVelocityAxis(
+			BigNumber time,
+			double goniometricAngle,
+			PlaneSetup plane)
+		{
+			// Left side of addition
+			var left = _setup.Particle.StartVelocity * goniometricAngle;
 
-		//public BigDecimal ComputeAx(decimal time)
-		//{
-		//	switch (_setup.Variant)
-		//	{
-		//		case InputVariant.EasyVerticalNoGravity:
-		//		case InputVariant.AdvancedVerticalWithGravity:
-		//			return PrimaryAxisAccelerationX(time);
-		//		case InputVariant.EasyHorizontalNoGravity:
-		//		case InputVariant.EasyHorizontalWithGravity:
-		//			return 0.0; //change to method with g=0 return
-		//		case InputVariant.AdvancedVerticalHorizontalNoGravity:
-		//			return PrimaryAxisAccelerationX(time);
-		//	}
-		//	return 0;
-		//}
+			// Right side of addition
+			var upperFraction = (int)plane.Polarity * plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase() * time;
+			var lowerFraction = GetMassBase() * plane.Distance * _setup.Environment.Value;
+			var fraction = upperFraction / lowerFraction;
+			var right = fraction * new BigNumber(1, GetChargeExponent() - GetMassExponent());
 
-		//public BigDecimal ComputeAy(decimal time)
-		//{
-		//	switch (_setup.Variant)
-		//	{
-		//		case InputVariant.EasyVerticalNoGravity:
-		//			return 0.0; //change to method with g=0 return
-		//		case InputVariant.AdvancedVerticalWithGravity:
-		//			return -9.81; //do constant
-		//		case InputVariant.EasyHorizontalNoGravity:
-		//			return PrimaryAxisAccelerationY(time);
-		//		case InputVariant.EasyHorizontalWithGravity:
-		//			return PrimaryAxisAccelerationY(time) - 9.81;
-		//		case InputVariant.AdvancedVerticalHorizontalNoGravity:
-		//			return PrimaryAxisAccelerationY(time);
-		//	}
-		//	return 0;
-		//}
+			// Outer addition
+			return left + right;
+		}
 
-		//public BigDecimal ComputeA(decimal time)
-		//{
-		//	return PythagorianCalculation(ComputeAx(time), ComputeAy(time));
-		//}
+		private BigNumber SimpleVelocityAxis(double goniometricAngle)
+		{
+			return _setup.Particle.StartVelocity * goniometricAngle;
+		}
 
-		//private BigDecimal PythagorianCalculation(BigDecimal left, BigDecimal right)
-		//{
-		//	return Math.Sqrt((double)(left * left) + (double)(right * right));
-		//}
-		#endregion
+		private BigNumber GravityVelocity(BigNumber time)
+		{
+			return GravityConstants.Earth * time;
+		}
+
+		public BigNumber ComputeAx(BigNumber time)
+		{
+			switch (_setup.Variant)
+			{
+				case InputVariant.EasyVerticalNoGravity:
+					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+				case InputVariant.EasyHorizontalNoGravity:
+					return 0;
+				case InputVariant.EasyHorizontalWithGravity:
+					return 0;
+				case InputVariant.AdvancedVerticalHorizontalNoGravity:
+					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+			}
+			return 0;
+		}
+
+		public BigNumber ComputeAy(BigNumber time)
+		{
+			switch (_setup.Variant)
+			{
+				case InputVariant.EasyVerticalNoGravity:
+					return 0;
+				case InputVariant.EasyHorizontalNoGravity:
+					return ComplexAccelerationAxis(time, _setup.HorizontalPlane);
+				case InputVariant.EasyHorizontalWithGravity:
+					return ComplexAccelerationAxis(time, _setup.HorizontalPlane) - GravityConstants.Earth;
+				case InputVariant.AdvancedVerticalHorizontalNoGravity:
+					return ComplexAccelerationAxis(time, _setup.HorizontalPlane);
+				case InputVariant.AdvancedVerticalWithGravity:
+					return -GravityConstants.Earth;
+			}
+			return 0;
+		}
+
+		public BigNumber ComputeA(BigNumber time)
+		{
+			var ax = ComputeAx(time);
+			var ax2 = ax * ax;
+			var ay = ComputeVy(time);
+			var ay2 = ay * ay;
+			if (ax.Mantisa == 0)
+			{
+				return ay;
+			}
+			else if (ay.Mantisa == 0)
+			{
+				return ax;
+			}
+			return Math.Sqrt((double)(ax2 + ay2));
+		}
+
+		private BigNumber ComplexAccelerationAxis(
+			BigNumber time,
+			PlaneSetup plane)
+		{
+			var upperFraction = (int)plane.Polarity * plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase();
+			var lowerFraction = GetMassBase() * plane.Distance * _setup.Environment.Value;
+			var fraction = upperFraction / lowerFraction;
+			return fraction * new BigNumber(1, GetChargeExponent() - GetMassExponent());
+		}
+
+		public BigNumber ComputeE(BigNumber time)
+		{
+			return ComputeEk(time) + ComputeEp(time);
+		}
+
+		public BigNumber ComputeEk(BigNumber time)
+		{
+			return 0.5f * GetMassBase() * ComputeV(time) * new BigNumber(1, GetMassExponent());
+		}
+
+		public BigNumber ComputeEp(BigNumber time)
+		{
+			BigNumber horizontalEp = 0;
+			if (_setup.VerticalPlane != null)
+			{
+				horizontalEp = ComplexEpAxis(_setup.VerticalPlane, ComputeX(time));
+			}
+			BigNumber verticalEp = 0;
+			if (_setup.HorizontalPlane != null)
+			{
+				verticalEp = ComplexEpAxis(_setup.HorizontalPlane, ComputeY(time));
+			}
+			return horizontalEp + verticalEp;
+		}
+
+		private BigNumber ComplexEpAxis(PlaneSetup plane, BigNumber coordinate)
+		{
+			BigNumber top = -plane.Voltage * GetChargeBase();
+			BigNumber bottom = plane.Distance * _setup.Environment.Value;
+			var fraction = top / bottom;
+			fraction *= new BigNumber(1, GetChargeExponent());
+
+			var right = plane.Distance / 2 + coordinate;
+
+			return fraction * right;
+		}
 	}
 }

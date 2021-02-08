@@ -3,6 +3,6 @@
 	public enum WeightDescriptionType
     {
         TenToMinus17Power = 0,
-		Nukleus = 1
+		Nucleus = 1
     }
 }

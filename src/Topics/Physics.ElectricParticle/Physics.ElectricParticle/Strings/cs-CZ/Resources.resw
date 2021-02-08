@@ -267,6 +267,12 @@
   <data name="PlaneOrientation_Vertical" xml:space="preserve">
     <value>svisle</value>
   </data>
+  <data name="Polarity_Negative" xml:space="preserve">
+    <value>Záporný</value>
+  </data>
+  <data name="Polarity_Positive" xml:space="preserve">
+    <value>Kladný</value>
+  </data>
   <data name="PrimaryPlaneChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
   </data>

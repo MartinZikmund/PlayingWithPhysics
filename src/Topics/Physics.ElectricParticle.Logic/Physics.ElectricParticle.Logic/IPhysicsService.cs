@@ -1,5 +1,4 @@
-﻿using ExtendedNumerics;
-using Physics.Shared.Math;
+﻿using Physics.Shared.Mathematics;
 
 namespace Physics.ElectricParticle.Logic
 {

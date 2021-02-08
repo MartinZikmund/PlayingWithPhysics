@@ -7,7 +7,9 @@ namespace Physics.ElectricParticle.Logic
     public class EnvironmentSetting
     {
         public string Name { get; set; }
+
         public float Value { get; set; }
+
         public EnvironmentSetting(string name, float value)
         {
             Name = name;

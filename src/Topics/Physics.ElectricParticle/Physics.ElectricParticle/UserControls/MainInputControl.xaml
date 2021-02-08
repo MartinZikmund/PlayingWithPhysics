@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
-	xmlns:inputs="using:Physics.ElectricParticle.Logic"
+    xmlns:inputs="using:Physics.ElectricParticle.Logic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="800"
@@ -62,10 +62,10 @@
                     x:Name="PrimaryPlaneChargePolarity"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
-                    ItemsSource="{x:Bind Model.PrimaryPlaneChargePolarities}"
-                    SelectedItem="{x:Bind Model.SelectedPrimaryPlaneChargePolarity, Mode=TwoWay}">
+                    ItemsSource="{x:Bind Model.Polarities}"
+                    SelectedItem="{x:Bind Model.PrimaryPlanePolarity, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:PrimaryPlaneChargePolarity">
+                        <DataTemplate x:DataType="inputs:Polarity">
                             <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -87,7 +87,7 @@
                     Grid.Column="1"
                     Maximum="100000"
                     Minimum="100"
-                    Value="{x:Bind Model.PrimaryVoltage, Mode=TwoWay}" />
+                    Value="{x:Bind Model.PrimaryPlaneVoltage, Mode=TwoWay}" />
             </Grid>
 
             <Grid>
@@ -110,7 +110,7 @@
 
             <!--  Advanced-1  -->
             <StackPanel x:Name="AdvancedInputs">
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -124,17 +124,17 @@
                         x:Name="SecondaryPlaneChargePolarity"
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
-                        ItemsSource="{x:Bind Model.SecondaryPlaneChargePolarities}"
-                        SelectedItem="{x:Bind Model.SelectedSecondaryPlaneChargePolarity, Mode=TwoWay}"
+                        ItemsSource="{x:Bind Model.Polarities}"
+                        SelectedItem="{x:Bind Model.SecondaryPlanePolarity, Mode=TwoWay}"
                         Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}">
                         <ComboBox.ItemTemplate>
-                            <DataTemplate x:DataType="inputs:SecondaryPlaneChargePolarity">
+                            <DataTemplate x:DataType="inputs:Polarity">
                                 <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </Grid>
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -150,9 +150,9 @@
                         Maximum="100000"
                         Minimum="100"
                         Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}"
-                        Value="{x:Bind Model.SecondaryVoltage, Mode=TwoWay}" />
+                        Value="{x:Bind Model.SecondaryPlaneVoltage, Mode=TwoWay}" />
                 </Grid>
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -183,10 +183,10 @@
                     x:Name="ChargePolarity"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
-                    ItemsSource="{x:Bind Model.ChargePolarities}"
-                    SelectedItem="{x:Bind Model.SelectedChargePolarity, Mode=TwoWay}">
+                    ItemsSource="{x:Bind Model.Polarities}"
+                    SelectedItem="{x:Bind Model.ParticlePolarity, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:ChargePolarity">
+                        <DataTemplate x:DataType="inputs:Polarity">
                             <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -201,7 +201,7 @@
                 <TextBlock>
                     <Run Text="{extensions:Localize Key=Input_Charge}" />
                     <Run FontWeight="Bold" Text="Q" />
-					<Run Text="{extensions:Localize Key=Input_ChargeDetails}" />
+                    <Run Text="{extensions:Localize Key=Input_ChargeDetail}" />
                     <Run Text="[C]" />
                 </TextBlock>
                 <winui:NumberBox
@@ -212,26 +212,26 @@
                     Value="{x:Bind Model.ChargeMultiplier, Mode=TwoWay}" />
             </Grid>
 
-			<Grid Visibility="{x:Bind Model.VariantConfiguration.M.IsVisible, Mode=OneWay}">
+            <Grid Visibility="{x:Bind Model.VariantConfiguration.M.IsVisible, Mode=OneWay}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                 </Grid.ColumnDefinitions>
-				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=0}">
+                <TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=0}">
                     <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
                     <Run FontWeight="Bold" Text="m" />
-					<Run Text="{extensions:Localize Key=VerticalInput_MassMultiple}" />
-					<Run Text="10" /><Run Text="&#8315;17" Typography.Variants="Superscript" /><Run Text=")" />
+                    <Run Text="{extensions:Localize Key=VerticalInput_MassMultiple}" />
+                    <Run Text="10" /><Run Text="&#8315;17" Typography.Variants="Superscript" /><Run Text=")" />
                     <Run Text="[kg]" />
                 </TextBlock>
-				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=1}">
+                <TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=1}">
                     <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
                     <Run FontWeight="Bold" Text="m" />
-					<Run Text="{extensions:Localize Key=VerticalInput_MassMultipleNucleus}" />
+                    <Run Text="{extensions:Localize Key=VerticalInput_MassMultipleNucleus}" />
                     <Run Text="[kg]" />
-				</TextBlock>
+                </TextBlock>
 
-				<winui:NumberBox
+                <winui:NumberBox
                     x:Name="MassPowerNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.M.Maximum, Mode=OneWay}"
@@ -257,7 +257,7 @@
                     Grid.Column="1"
                     Maximum="1000"
                     Minimum="0"
-                    Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
+                    Value="{x:Bind Model.StartVelocity, Mode=TwoWay}" />
             </Grid>
 
             <Grid Visibility="{x:Bind Model.DeviationVisibility}">
@@ -276,7 +276,7 @@
                     Maximum="359"
                     Minimum="0"
                     Visibility="{x:Bind Model.DeviationVisibility}"
-                    Value="{x:Bind Model.Deviation, Mode=TwoWay}" />
+                    Value="{x:Bind Model.StartVelocityDeviation, Mode=TwoWay}" />
             </Grid>
 
             <Grid Visibility="{x:Bind Model.VelocityDirectionVisibility}">
