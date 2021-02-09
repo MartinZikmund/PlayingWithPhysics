@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:Physics.Shared.Views" xmlns:controls="using:Physics.Shared.UI.Controls"
-    Background="{StaticResource AppThemeColor}"
+    xmlns:views="using:Physics.Shared.Views" xmlns:controls="using:Physics.Shared.UI.Controls" xmlns:mux="using:Microsoft.UI.Xaml.Controls"
+	Background="{StaticResource AppThemeColor}"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -115,15 +115,15 @@
         </Style>
     </Page.Resources>
     <Grid x:Name="RootGrid">
-        <Grid Padding="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Image
+		<Grid Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Image
                 x:Name="CircleImage"
                 Width="600"
                 Margin="-12"
@@ -131,7 +131,7 @@
                 VerticalAlignment="Center"
                 Source="/Assets/Menu/Circle.png"
                 Stretch="Uniform" />
-            <ScrollViewer
+			<ScrollViewer
                 x:Name="ItemsGrid"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
@@ -139,154 +139,154 @@
                 HorizontalScrollMode="Disabled"
                 VerticalScrollBarVisibility="Auto"
                 VerticalScrollMode="Auto">
-                <Grid x:Name="MenuWrapper">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition x:Name="LastRow" Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition x:Name="FirstColumn" Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image
+				<Grid x:Name="MenuWrapper">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition x:Name="LastRow" Height="*" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition x:Name="FirstColumn" Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Image
                         x:Name="Logo"
                         Grid.Column="1"
                         Height="160"
                         Margin="0,12,0,12"
                         HorizontalAlignment="Center"
                         Source="ms-appx:///Physics.Shared.UI/Assets/logo.png" />
-                    <StackPanel
+					<StackPanel
                         Grid.Row="1"
                         Grid.Column="1"
                         MaxWidth="300"
                         VerticalAlignment="Bottom">
-                        <Button
+						<Button
                             x:Name="FirstDifficulty"
                             Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             Background="#f0f0f0"
                             Command="{x:Bind Model.GoToEasyCommand}">
-                            <Button.Content>
-                                <StackPanel
+							<Button.Content>
+								<StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
                                     Spacing="8">
-                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource BasicDifficultyGlyph}" />
-                                    <TextBlock
+									<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource BasicDifficultyGlyph}" />
+									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=EasyDifficulty}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
+								</StackPanel>
+							</Button.Content>
+						</Button>
+						<Button
                             x:Name="SecondDifficulty"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Background="#ededed"
                             Command="{x:Bind Model.GoToAdvancedCommand}"
                             Visibility="{x:Bind Model.HasAdvancedDifficulty}">
-                            <Button.Content>
-                                <StackPanel
+							<Button.Content>
+								<StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
                                     Spacing="8">
-                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource AdvancedDifficultyGlyph}" />
-                                    <TextBlock
+									<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource AdvancedDifficultyGlyph}" />
+									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=AdvancedDifficulty}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
+								</StackPanel>
+							</Button.Content>
+						</Button>
+						<Button
                             x:Name="GameButton"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Background="#cdcdcd"
                             Command="{x:Bind Model.GameModeCommand}"
                             Visibility="{x:Bind Model.HasGame}">
-                            <Button.Content>
-                                <StackPanel
+							<Button.Content>
+								<StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
                                     Spacing="8">
-                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource GameGlyph}" />
-                                    <TextBlock
+									<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource GameGlyph}" />
+									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=Game}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
+								</StackPanel>
+							</Button.Content>
+						</Button>
+						<Button
                             x:Name="StudyTextButton"
                             Grid.Column="2"
                             HorizontalAlignment="Stretch"
                             Background="#bfbfbf"
                             Command="{x:Bind Model.GoToStudyModeCommand}"
                             Visibility="{x:Bind Model.HasStudyMode}">
-                            <Button.Content>
-                                <StackPanel
+							<Button.Content>
+								<StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
                                     Spacing="8">
-                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource StudyTextGlyph}" />
-                                    <TextBlock
+									<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource StudyTextGlyph}" />
+									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=StudyText}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
+								</StackPanel>
+							</Button.Content>
+						</Button>
+						<Button
                             x:Name="AboutAppButton"
                             Grid.Column="2"
                             HorizontalAlignment="Stretch"
                             Background="#a1a1a1" Click="AboutAppButton_Click">
-                            <Button.Content>
-                                <StackPanel
+							<Button.Content>
+								<StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
                                     Spacing="8">
-                                    <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource AboutGlyph}" />
-                                    <TextBlock
+									<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource AboutGlyph}" />
+									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Text="{extensions:Localize Key=AboutApp}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
-                    <Grid
+								</StackPanel>
+							</Button.Content>
+						</Button>
+					</StackPanel>
+					<Grid
                         x:Name="TitleBlock"
                         Grid.Row="2"
                         Grid.Column="1"
                         Margin="-80,12,-200,0"
                         HorizontalAlignment="Stretch">
-                        <Grid.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromHorizontalOffset="500" />
-                            </TransitionCollection>
-                        </Grid.Transitions>
-                        <Border HorizontalAlignment="Stretch" Background="#d62633">
-                            <Border.RenderTransform>
-                                <SkewTransform AngleX="-40" />
-                            </Border.RenderTransform>
-                        </Border>
-                        <TextBlock
+						<Grid.Transitions>
+							<TransitionCollection>
+								<EntranceThemeTransition FromHorizontalOffset="500" />
+							</TransitionCollection>
+						</Grid.Transitions>
+						<Border HorizontalAlignment="Stretch" Background="#d62633">
+							<Border.RenderTransform>
+								<SkewTransform AngleX="-40" />
+							</Border.RenderTransform>
+						</Border>
+						<TextBlock
                             x:Name="TitleTextBlock"
                             Margin="0,20,212,20"
                             HorizontalAlignment="Center"
@@ -296,11 +296,11 @@
                             Style="{ThemeResource SubheaderTextBlockStyle}"
                             Text="{extensions:Localize Key=ShortAppName}"
                             TextWrapping="Wrap" />
-                    </Grid>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
-        <VisualStateManager.VisualStateGroups>
+					</Grid>
+				</Grid>
+			</ScrollViewer>
+		</Grid>
+		<VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Low">
                     <VisualState.StateTriggers>

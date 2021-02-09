@@ -196,6 +196,8 @@
     <Compile Include="Services\Preferences\Preferences.cs" />
     <Compile Include="Services\Sounds\ISoundPlayer.cs" />
     <Compile Include="Services\Sounds\SoundPlayer.cs" />
+    <Compile Include="Services\Store\AppUpdater.cs" />
+    <Compile Include="Services\Store\AppUpdaterResult.cs" />
     <Compile Include="Services\TitleBarManager.cs" />
     <Compile Include="Services\ValuesTable\ITableService.cs" />
     <Compile Include="Services\ValuesTable\IValuesTableRow.cs" />
@@ -206,6 +208,9 @@
     <Compile Include="ViewModels\SimulationViewModelBase.cs" />
     <Compile Include="ViewModels\ValuesTableDialogViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BaseSkiaView.cs" />
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,6 +298,10 @@
     <Page Include="Resources\ValuesTableResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenuView.xaml">
       <SubType>Designer</SubType>

@@ -201,6 +201,24 @@
   <data name="TryAgain" xml:space="preserve">
     <value>Zkusit znovu</value>
   </data>
+  <data name="UpdateAvailable_Button" xml:space="preserve">
+    <value>Stáhnout</value>
+  </data>
+  <data name="UpdateAvailable_Description" xml:space="preserve">
+    <value>Chcete na pozadí stáhnout novou verzi?</value>
+  </data>
+  <data name="UpdateAvailable_Title" xml:space="preserve">
+    <value>Nová verze.</value>
+  </data>
+  <data name="UpdateReady_Button" xml:space="preserve">
+    <value>Nainstalovat a restartovat</value>
+  </data>
+  <data name="UpdateReady_Description" xml:space="preserve">
+    <value>Chcete aplikaci restartovat a nainstalovat novou verzi?</value>
+  </data>
+  <data name="UpdateReady_Title" xml:space="preserve">
+    <value>Aktualizace připravena.</value>
+  </data>
   <data name="WrongAnswerTitle" xml:space="preserve">
     <value>Špatně 😕</value>
   </data>
