@@ -129,7 +129,11 @@
   <data name="AppDescription" xml:space="preserve">
     <value>Tělesa pohybující se v těsné blízkosti Země se pohybují v odporujícím prostředí zemské atmosféry. Při malých rychlostech lze odpor prostředí zanedbat, pro větší rychlosti ho musíme vzít v potaz.
 Animace umožní volbu základních pohybů (volný pád, svislý vrh, vodorovný vrh, šikmý vrh) a volbu počátečních parametrů (počáteční rychlost, elevační úhel, volbu tvaru tělesa, hustotu prostředí atd.). Program automaticky přizpůsobí měřítko a výstupem bude též tabulka hodnot včetně vypočtených parametrů.
-Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využít ho pro řešení konkrétních úloh.</value>
+Program bude možno využít pro výpočty doby pohybu, výšky, dálky a využít ho pro řešení konkrétních úloh.
+
+Autoři obsahu: Vladimír Kafka, Pavel Vlček
+Programátoři: Daniel Zikmund, Martin Zikmund
+Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby tělesa v odporujícím prostředí</value>

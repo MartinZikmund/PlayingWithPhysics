@@ -68,27 +68,34 @@ namespace Physics.Shared.UI.Infrastructure
 
 		private async Task TryUpdateAsync()
 		{
-			if (AppUpdater.IsSupported())
+			try
 			{
-				var updater = AppUpdater.GetDefault();
-
-				if (await updater.AreUpdatesAvailableAsync())
+				if (AppUpdater.IsSupported())
 				{
-					var appShell = AppShell.GetForCurrentView();
-					// Show info bar to ask user whether to update
-					var infoBar = new InfoBar()
+					var updater = AppUpdater.GetDefault();
+
+					if (await updater.AreUpdatesAvailableAsync())
 					{
-						Title = Localizer.Instance.GetString("UpdateAvailable_Title"),
-						Message = Localizer.Instance.GetString("UpdateAvailable_Description"),
-						ActionButton = new Button()
+						var appShell = AppShell.GetForCurrentView();
+						// Show info bar to ask user whether to update
+						var infoBar = new InfoBar()
 						{
-							Content = Localizer.Instance.GetString("UpdateAvailable_Button"),
-							Command = new MvxAsyncCommand(DownloadUpdateAsync),
-						}
-					};
-					infoBar.ActionButton.Click += (s, e) => infoBar.IsOpen = false;
-					appShell.ShowInfoBar(infoBar);
+							Title = Localizer.Instance.GetString("UpdateAvailable_Title"),
+							Message = Localizer.Instance.GetString("UpdateAvailable_Description"),
+							ActionButton = new Button()
+							{
+								Content = Localizer.Instance.GetString("UpdateAvailable_Button"),
+								Command = new MvxAsyncCommand(DownloadUpdateAsync),
+							}
+						};
+						infoBar.ActionButton.Click += (s, e) => infoBar.IsOpen = false;
+						appShell.ShowInfoBar(infoBar);
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("Update check failed due to network issues or because we are debugging.");
 			}
 		}
 

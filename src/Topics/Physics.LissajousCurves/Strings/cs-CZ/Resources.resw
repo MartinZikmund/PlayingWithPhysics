@@ -127,11 +127,11 @@
     <value>Úhlová rychlost</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Složením několika harmonických kmitání vzniká kmitání, které již nemusí být harmonické.
-Program umožní pomocí principu superpozice složit harmonická kmitání, která budou zadána úhlovou rychlostí. Výsledkem bude časový diagram složeného kmitání. V časové diagramu bude možné krokovat a zobrazit jednotlivé výchylky i výslednou výchylku jako součet výchylek.
+    <value>Lissajousovy obrazce jsou křivky, které vznikají skládáním dvou navzájem kolmých kmitů. Podíl frekvencí určí výsledný tvar obrazce.
+Program umožní zadání frekvencí dvou navzájem kolmých kmitů, jejich amplitud a počátečních fází a bude vykreslovat časový diagram složeného kmitání. Poměr frekvencí a amplitud určí výsledný tvar obrazce.
 
-Autoři obsahu: Pavel Mládek, Pavel Jirman
-Programátoři: Martin Zikmund, Daniel Zikmund
+Autoři obsahu: Vladimír Kafka, Pavel Vlček
+Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">

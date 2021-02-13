@@ -129,7 +129,11 @@
   <data name="AppDescription" xml:space="preserve">
     <value>Bodies moving in close proximity to the Earth move in the opposing environment of the Earth's atmosphere. At low speeds the resistance of the environment can be neglected, for higher speeds we must take it into account.
 The animation allows the selection of basic movements (free fall, vertical litter, horizontal litter, oblique litter) and the selection of initial parameters (initial velocity, elevation angle, choice of body shape, environmental density, etc.). The program automatically adjusts the scale and the output will also be a table of values, including the calculated parameters.
-The program can be used to calculate movement time, height, distance and use it to solve specific tasks.</value>
+The program can be used to calculate movement time, height, distance and use it to solve specific tasks.
+
+Content authors: Vladimír Kafka, Pavel Vlček
+Programmers: Daniel Zikmund, Martin Zikmund
+Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Drag</value>
