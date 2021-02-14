@@ -3,14 +3,14 @@
 namespace Physics.Shared.Mathematics
 {
 	public struct BigNumber
-    {
+	{
 		public BigNumber(double mantisa, int exponent)
 		{
 			Mantisa = mantisa;
 			Exponent = exponent;
 		}
 
-        public double Mantisa { get; }
+		public double Mantisa { get; }
 
 		public int Exponent { get; }
 
@@ -63,7 +63,7 @@ namespace Physics.Shared.Mathematics
 				var diff = Exponent - newExponent;
 				for (int i = 0; i < diff; i++)
 				{
-					newMantisa /= 10;
+					newMantisa *= 10;
 				}
 			}
 			else if (Exponent < newExponent)
@@ -71,12 +71,56 @@ namespace Physics.Shared.Mathematics
 				var diff = newExponent - Exponent;
 				for (int i = 0; i < diff; i++)
 				{
-					newMantisa *= 10;
+					newMantisa /= 10;
 				}
 			}
 			return new BigNumber(newMantisa, newExponent);
 		}
 
-		public override string ToString() => $"{Mantisa}.10^{Exponent}";
+		public BigNumber Normalize()
+		{
+			var mantisa = Mantisa;
+			var exponent = Exponent;
+			while (mantisa > 10)
+			{
+				mantisa /= 10;
+				exponent++;
+			}
+			while (mantisa < 1 && mantisa > 0.0001)
+			{
+				mantisa *= 10;
+				exponent--;
+			}
+			while (mantisa < 0 && mantisa > -1)
+			{
+				mantisa *= 10;
+				exponent--;
+			}
+			while (mantisa < -10)
+			{
+				mantisa /= 10;
+				exponent++;
+			}
+
+			return new BigNumber(mantisa, exponent);
+		}
+
+		public BigNumber Sqrt()
+		{
+			var mantisa = Mantisa;
+			var exponent = Exponent;
+			if (Exponent % 2 == 1)
+			{
+				mantisa /= 10;
+				exponent++;
+			}
+			return new BigNumber(Math.Sqrt(mantisa), exponent / 2);
+		}
+
+		public override string ToString()
+		{
+			var normalized = Normalize();
+			return $"{normalized.Mantisa}.10^{normalized.Exponent}";
+		}
 	}
 }

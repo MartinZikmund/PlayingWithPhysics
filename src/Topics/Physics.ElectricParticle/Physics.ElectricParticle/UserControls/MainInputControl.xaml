@@ -172,7 +172,7 @@
                 </Grid>
             </StackPanel>
 
-            <Grid>
+            <Grid Visibility="{x:Bind Model.VariantConfiguration.ParticlePolarity.IsVisible, Mode=OneWay}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />

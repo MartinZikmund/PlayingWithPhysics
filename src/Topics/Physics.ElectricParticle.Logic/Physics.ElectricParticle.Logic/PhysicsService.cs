@@ -196,9 +196,7 @@ namespace Physics.ElectricParticle.Logic
 		public BigNumber ComputeV(BigNumber time)
 		{
 			var vx = ComputeVx(time);
-			var vx2 = vx * vx;
-			var vy = ComputeVy(time);
-			var vy2 = vy * vy;
+			var vy = ComputeVy(time);			
 			if (vx.Mantisa == 0)
 			{
 				return vy;
@@ -207,6 +205,8 @@ namespace Physics.ElectricParticle.Logic
 			{
 				return vx;
 			}
+			var vx2 = vx * vx;
+			var vy2 = vy * vy;
 			return Math.Sqrt((double)(vx2 + vy2));
 		}
 

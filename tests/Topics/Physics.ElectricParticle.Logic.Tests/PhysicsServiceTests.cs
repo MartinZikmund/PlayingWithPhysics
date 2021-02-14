@@ -1,3 +1,4 @@
+using System;
 using Physics.Shared.Mathematics;
 using Xunit;
 
@@ -6,7 +7,7 @@ namespace Physics.ElectricParticle.Logic.Tests
 	public class PhysicsServiceTests
 	{
 		[Fact]
-		public void Example1_Velocity()
+		public void Example1_XY2()
 		{
 			var motionSetup = new ElectricParticleSimulationSetup(
 				InputVariant.EasyHorizontalNoGravity,
@@ -20,6 +21,45 @@ namespace Physics.ElectricParticle.Logic.Tests
 			var y = physicsService.ComputeY(new BigNumber(0, 0));
 			Assert.Equal(0, x);
 			Assert.Equal(0, y);
+		}
+
+		[Fact]
+		public void Example1_Velocity27()
+		{
+			var motionSetup = new ElectricParticleSimulationSetup(
+				InputVariant.EasyVerticalNoGravity,
+				null,
+				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+				new EnvironmentSetting("test", 1),
+				"#000000");
+			var physicsService = new PhysicsService(motionSetup);
+			var v = physicsService.ComputeV(new BigNumber(2.5, -8));
+			Assert.True(Math.Abs((double)(21978522 - v)) < 1);
+		}
+
+		[Fact]
+		public void Example1_Acceleration22()
+		{
+			var motionSetup = new ElectricParticleSimulationSetup(
+				InputVariant.EasyVerticalNoGravity,
+				null,
+				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+				new EnvironmentSetting("test", 1),
+				"#000000");
+			var physicsService = new PhysicsService(motionSetup);
+			var a = physicsService.ComputeA(new BigNumber(2.5, -8));
+			AlmostEqual(new BigNumber(8.79, 14), a);
+		}
+
+		private static void AlmostEqual(BigNumber expected, BigNumber actual, int precision = 2)
+		{
+			var normalizedExpected = expected.Normalize();
+			var normalizedActual = actual.Normalize();
+
+			Assert.Equal(normalizedExpected.Exponent, normalizedActual.Exponent);
+			Assert.Equal(normalizedExpected.Mantisa, normalizedActual.Mantisa, precision);
 		}
 	}
 }
