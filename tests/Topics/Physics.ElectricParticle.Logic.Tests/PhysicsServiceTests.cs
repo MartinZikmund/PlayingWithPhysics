@@ -10,10 +10,10 @@ namespace Physics.ElectricParticle.Logic.Tests
 		public void Example1_XY2()
 		{
 			var motionSetup = new ElectricParticleSimulationSetup(
-				InputVariant.EasyHorizontalNoGravity,
-				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				InputVariant.EasyVerticalNoGravity,
 				null,
-				new ParticleSetup(ParticleType.AtomNucleus, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
 				new EnvironmentSetting("test", 1),
 				"#000000");
 			var physicsService = new PhysicsService(motionSetup);
@@ -21,6 +21,23 @@ namespace Physics.ElectricParticle.Logic.Tests
 			var y = physicsService.ComputeY(new BigNumber(0, 0));
 			Assert.Equal(0, x);
 			Assert.Equal(0, y);
+		}
+
+		[Fact]
+		public void Example1_XY29()
+		{
+			var motionSetup = new ElectricParticleSimulationSetup(
+				InputVariant.EasyVerticalNoGravity,
+				null,
+				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+				new EnvironmentSetting("test", 1),
+				"#000000");
+			var physicsService = new PhysicsService(motionSetup);
+			var x = physicsService.ComputeX(new BigNumber(2.7, -8));
+			var y = physicsService.ComputeY(new BigNumber(2.7, -8));
+			Assert.Equal(0.32, (double)x, 2);
+			Assert.Equal(0, (double)y, 2);
 		}
 
 		[Fact]
@@ -49,7 +66,7 @@ namespace Physics.ElectricParticle.Logic.Tests
 				new EnvironmentSetting("test", 1),
 				"#000000");
 			var physicsService = new PhysicsService(motionSetup);
-			var a = physicsService.ComputeA(new BigNumber(2.5, -8));
+			var a = physicsService.ComputeA();
 			AlmostEqual(new BigNumber(8.79, 14), a);
 		}
 
@@ -69,7 +86,7 @@ namespace Physics.ElectricParticle.Logic.Tests
 		}
 
 		[Fact]
-		public void Example2_Ep15()
+		public void Example1_Ep15()
 		{
 			var motionSetup = new ElectricParticleSimulationSetup(
 				InputVariant.EasyVerticalNoGravity,
@@ -82,6 +99,21 @@ namespace Physics.ElectricParticle.Logic.Tests
 			var ep = physicsService.ComputeEp(new BigNumber(1.3, -8));
 			AlmostEqual(new BigNumber(-1.39, -16), ep, 2);
 		}
+
+		//[Fact]
+		//public void Example1_DeltaT()
+		//{
+		//	var motionSetup = new ElectricParticleSimulationSetup(
+		//		InputVariant.EasyVerticalNoGravity,
+		//		null,
+		//		new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+		//		new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+		//		new EnvironmentSetting("test", 1),
+		//		"#000000");
+		//	var physicsService = new PhysicsService(motionSetup);
+		//	var ep = physicsService.ComputeDeltaT(500);
+		//	AlmostEqual(new BigNumber(-1.39, -16), ep, 2);
+		//}
 
 		private static void AlmostEqual(BigNumber expected, BigNumber actual, int precision = 2)
 		{

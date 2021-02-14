@@ -238,62 +238,66 @@ namespace Physics.ElectricParticle.Logic
 			return GravityConstants.Earth * time;
 		}
 
-		public BigNumber ComputeAx(BigNumber time)
+		public BigNumber ComputeAx()
 		{
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
-					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+					return ComplexAccelerationAxis(_setup.VerticalPlane);
 				case InputVariant.EasyHorizontalNoGravity:
 					return 0;
 				case InputVariant.EasyHorizontalWithGravity:
 					return 0;
 				case InputVariant.AdvancedVerticalHorizontalNoGravity:
-					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+					return ComplexAccelerationAxis(_setup.VerticalPlane);
 				case InputVariant.AdvancedVerticalWithGravity:
-					return ComplexAccelerationAxis(time, _setup.VerticalPlane);
+					return ComplexAccelerationAxis(_setup.VerticalPlane);
 			}
 			return 0;
 		}
 
-		public BigNumber ComputeAy(BigNumber time)
+		public BigNumber ComputeAy()
 		{
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
 					return 0;
 				case InputVariant.EasyHorizontalNoGravity:
-					return ComplexAccelerationAxis(time, _setup.HorizontalPlane);
+					return ComplexAccelerationAxis(_setup.HorizontalPlane);
 				case InputVariant.EasyHorizontalWithGravity:
-					return ComplexAccelerationAxis(time, _setup.HorizontalPlane) - GravityConstants.Earth;
+					return ComplexAccelerationAxis(_setup.HorizontalPlane) - GravityConstants.Earth;
 				case InputVariant.AdvancedVerticalHorizontalNoGravity:
-					return ComplexAccelerationAxis(time, _setup.HorizontalPlane);
+					return ComplexAccelerationAxis(_setup.HorizontalPlane);
 				case InputVariant.AdvancedVerticalWithGravity:
 					return -GravityConstants.Earth;
 			}
 			return 0;
 		}
 
-		public BigNumber ComputeA(BigNumber time)
+		private BigNumber? _cachedAcceleration;
+
+		public BigNumber ComputeA()
 		{
-			var ax = ComputeAx(time);
-			var ax2 = ax * ax;
-			var ay = ComputeVy(time);
-			var ay2 = ay * ay;
-			if (ax.Mantisa == 0)
+			if (_cachedAcceleration == null)
 			{
-				return ay;
+				var ax = ComputeAx();
+				var ax2 = ax * ax;
+				var ay = ComputeAy();
+				var ay2 = ay * ay;
+				if (ax.Mantisa == 0)
+				{
+					return ay;
+				}
+				else if (ay.Mantisa == 0)
+				{
+					return ax;
+				}
+				_cachedAcceleration = Math.Sqrt((double)(ax2 + ay2));
 			}
-			else if (ay.Mantisa == 0)
-			{
-				return ax;
-			}
-			return Math.Sqrt((double)(ax2 + ay2));
+			return _cachedAcceleration.Value;
 		}
 
-		private BigNumber ComplexAccelerationAxis(
-			BigNumber time,
-			PlaneSetup plane)
+		private BigNumber ComplexAccelerationAxis(PlaneSetup plane)
 		{
 			var upperFraction = (int)plane.Polarity * plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase();
 			var lowerFraction = GetMassBase() * plane.Distance * _setup.Environment.Value;
@@ -338,6 +342,14 @@ namespace Physics.ElectricParticle.Logic
 			var right = plane.Distance / 2 + coordinate;
 
 			return fraction * right;
+		}
+
+		public BigNumber ComputeDeltaT(int totalFrames)
+		{
+			var acceleration = ComputeA();
+			BigNumber top = -_setup.Particle.StartVelocity + (_setup.Particle.StartVelocity * _setup.Particle.StartVelocity + acceleration).Sqrt();
+			BigNumber bottom = acceleration * totalFrames;
+			return top / bottom;
 		}
 	}
 }
