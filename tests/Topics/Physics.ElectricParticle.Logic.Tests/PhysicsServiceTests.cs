@@ -68,6 +68,21 @@ namespace Physics.ElectricParticle.Logic.Tests
 			AlmostEqual(new BigNumber(3.5, -17), ek, 1);
 		}
 
+		[Fact]
+		public void Example2_Ep15()
+		{
+			var motionSetup = new ElectricParticleSimulationSetup(
+				InputVariant.EasyVerticalNoGravity,
+				null,
+				new PlaneSetup(Polarity.Negative, 1000, 0.2f),
+				new ParticleSetup(ParticleType.Electron, Polarity.Negative, 1.6f, 9.1f, 500, 0),
+				new EnvironmentSetting("test", 1),
+				"#000000");
+			var physicsService = new PhysicsService(motionSetup);
+			var ep = physicsService.ComputeEp(new BigNumber(1.3, -8));
+			AlmostEqual(new BigNumber(-1.39, -16), ep, 2);
+		}
+
 		private static void AlmostEqual(BigNumber expected, BigNumber actual, int precision = 2)
 		{
 			var normalizedExpected = expected.Normalize();
