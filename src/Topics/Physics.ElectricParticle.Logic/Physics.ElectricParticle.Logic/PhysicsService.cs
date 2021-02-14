@@ -308,7 +308,9 @@ namespace Physics.ElectricParticle.Logic
 
 		public BigNumber ComputeEk(BigNumber time)
 		{
-			return 0.5f * GetMassBase() * ComputeV(time) * new BigNumber(1, GetMassExponent());
+			var v = ComputeV(time);
+			var v2 = v * v;
+			return 0.5f * GetMassBase() * v2 * new BigNumber(1, GetMassExponent());
 		}
 
 		public BigNumber ComputeEp(BigNumber time)
