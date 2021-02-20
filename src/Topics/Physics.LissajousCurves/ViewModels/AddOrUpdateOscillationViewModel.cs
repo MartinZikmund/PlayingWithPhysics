@@ -28,7 +28,7 @@ namespace Physics.LissajousCurves.ViewModels
 			Color = ColorHelper.ToColor(oscillationInfo.Color);
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
-			PhaseInDeg = oscillationInfo.PhaseInDeg / (float)Math.PI;
+			PhaseInDeg = oscillationInfo.PhaseInDeg;
 		}
 
 		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty, params string[] existingNames)
@@ -69,8 +69,19 @@ namespace Physics.LissajousCurves.ViewModels
 
 		public float Amplitude { get; set; } = 1;
 
-		public string PhaseInPiRad => (MathHelpers.DegreesToRadians(PhaseInDeg) / Math.PI).ToString("0.0");
-		public float PhaseInDeg { get; set; }
+		public string PhaseInPiRad => (MathHelpers.DegreesToRadians(PhaseInDeg) / Math.PI).ToString("0.00");
+		private float _phaseInDeg = 0;
+		public float PhaseInDeg
+		{
+			get
+			{
+				return _phaseInDeg;
+			}
+			set
+			{
+				_phaseInDeg = value;
+			}
+		}
 
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{

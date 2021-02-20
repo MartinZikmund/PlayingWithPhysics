@@ -66,9 +66,9 @@
                         TextTrimming="CharacterEllipsis"
 						TextWrapping="NoWrap" />
 
-					<ToggleButton IsChecked="{x:Bind IsVisible, Mode=TwoWay}" Grid.Column="1">
+					<!--<ToggleButton IsChecked="{x:Bind IsVisible, Mode=TwoWay}" Grid.Column="1">
 						<SymbolIcon Symbol="View" />
-					</ToggleButton>
+					</ToggleButton>-->
 					<Button Grid.Column="3" Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}" CommandParameter="{x:Bind}">
 						<!--<Button.Flyout>
 							<MenuFlyout>
@@ -171,7 +171,7 @@
 							<ContentControl Grid.Row="2" ContentTemplate="{StaticResource OscillationPanelDataTemplate}" Content="{x:Bind Model.VerticalOscillation}" />
 							<CheckBox Grid.Row="3" Content="{extensions:Localize Key=ShowTrajectory}" IsChecked="{x:Bind Model.NoTrajectory, Mode=TwoWay}"/>
 							<controls:NumberBox Grid.Row="4" Header="Délka stopy" Grid.Column="1" Value="{x:Bind Model.DrawLength, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Minimum="0" SmallChange="1"/>
-							<Button
+							<!--<Button
 									Grid.Row="5"
 									Margin="0,0,0,8"
 									HorizontalAlignment="Stretch"
@@ -185,7 +185,7 @@
 									</Viewbox>
 									<TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleOscillations}" />
 								</StackPanel>
-							</Button>
+							</Button>-->
 						</Grid>
 					</StackPanel>
 				</ScrollViewer>
