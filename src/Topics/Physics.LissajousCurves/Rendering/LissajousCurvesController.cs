@@ -216,7 +216,14 @@ namespace Physics.LissajousCurves.Rendering
 			while (lastRenderTime.TotalSeconds > 0)
 			{
 				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(8);
-				if (newRenderTime.TotalSeconds < 0 || newRenderTime < minRenderTime)
+
+				if (newRenderTime.TotalSeconds < 0)
+				{
+					// Ensure the first point is drawn
+					newRenderTime = TimeSpan.FromSeconds(0);
+				}
+
+				if (newRenderTime < minRenderTime)
 				{
 					break;
 				}

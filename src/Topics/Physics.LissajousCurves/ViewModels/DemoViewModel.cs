@@ -49,8 +49,11 @@ namespace Physics.LissajousCurves.ViewModels
 			}
 			set
 			{
-				_currentOscillation = value;
-				ChangeOscillationAsync(value);
+				if (_currentOscillation != value)
+				{
+					_currentOscillation = value;
+					ChangeOscillationAsync(value);
+				}
 			}
 		}
 

@@ -33,7 +33,24 @@ namespace Physics.LissajousCurves.Views
 
 		private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (e.AddedItems.Count == 0)
+			{
+				return;
+			}
+
 			Model.CurrentOscillation = (DemoItemViewModel)e.AddedItems[0];
+			if (AmplitudeListView.SelectedItem != Model.CurrentOscillation)
+			{
+				AmplitudeListView.SelectedItem = null;
+			}
+			if (FrequencyListView.SelectedItem != Model.CurrentOscillation)
+			{
+				FrequencyListView.SelectedItem = null;
+			}
+			if (StartPhaseListView.SelectedItem != Model.CurrentOscillation)
+			{
+				StartPhaseListView.SelectedItem = null;
+			}
 		}
 	}
 

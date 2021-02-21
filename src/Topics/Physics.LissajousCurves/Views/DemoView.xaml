@@ -164,11 +164,11 @@
 								<Run>F</Run><Run Typography.Variants="Subscript">x</Run><Run> = 0.5 Hz</Run>
 							</TextBlock>
 						</StackPanel>
-						<ListView ItemsSource="{x:Bind Model.DemoOscillationsFrequency, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}"/>
+						<ListView x:Name="FrequencyListView" ItemsSource="{x:Bind Model.DemoOscillationsFrequency, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}"/>
 						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Amplituda"></TextBlock>
-						<ListView ItemsSource="{x:Bind Model.DemoOscillationsAmplitude, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
+						<ListView x:Name="AmplitudeListView" ItemsSource="{x:Bind Model.DemoOscillationsAmplitude, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
 						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Počáteční fáze"></TextBlock>
-						<ListView ItemsSource="{x:Bind Model.DemoOscillationsPhase, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
+						<ListView x:Name="StartPhaseListView" ItemsSource="{x:Bind Model.DemoOscillationsPhase, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
 						<!--<Grid RowSpacing="8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
