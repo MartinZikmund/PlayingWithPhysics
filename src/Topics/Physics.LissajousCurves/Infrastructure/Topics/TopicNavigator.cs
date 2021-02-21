@@ -6,6 +6,7 @@ using Windows.ApplicationModel;
 using System.IO;
 using Physics.LissajousCurves.ViewModels;
 using Physics.Shared.UI.ViewModels.Navigation;
+using Physics.Shared.UI.Localization;
 
 namespace Physics.LissajousCurves.Infrastructure.Topics
 {
@@ -21,6 +22,8 @@ namespace Physics.LissajousCurves.Infrastructure.Topics
 		public bool HasStudyMode => false;
 
 		public bool HasGame => true;
+
+		public string GameNameOverride => Localizer.Instance["Demo"];
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });

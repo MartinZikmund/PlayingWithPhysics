@@ -10,6 +10,8 @@ namespace Physics.Shared.UI.Infrastructure.Topics
 
         bool HasGame { get; }
 
+		string GameNameOverride { get; }
+
         Task GoToDifficultyAsync(DifficultyOption option);
 
         Task GoToGameAsync();

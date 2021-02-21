@@ -22,7 +22,9 @@ namespace Physics.CompoundOscillations.Infrastructure.Topics
 
         public bool HasGame => true;
 
-        public async Task GoToDifficultyAsync(DifficultyOption option) =>
+		public string GameNameOverride => null;
+
+		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
 		public async Task GoToGameAsync() =>

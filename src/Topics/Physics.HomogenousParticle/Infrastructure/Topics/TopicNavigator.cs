@@ -23,7 +23,9 @@ namespace Physics.HomogenousParticle.Infrastructure.Topics
 
         public bool HasGame => false;
 
-        public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+		public string GameNameOverride => null;
+
+		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
         public Task GoToGameAsync()
         {

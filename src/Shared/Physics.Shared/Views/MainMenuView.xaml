@@ -221,7 +221,7 @@
 									<TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        Text="{extensions:Localize Key=Game}"
+                                        Text="{x:Bind Model.GameName, Mode=OneWay}"
                                         TextAlignment="Center"
                                         TextWrapping="Wrap" />
 								</StackPanel>

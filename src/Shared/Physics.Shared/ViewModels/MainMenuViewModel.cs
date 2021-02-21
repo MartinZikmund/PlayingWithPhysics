@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 
 namespace Physics.Shared.ViewModels
 {
@@ -26,6 +27,8 @@ namespace Physics.Shared.ViewModels
 		public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
 
 		public bool HasGame => _topicNavigator.HasGame;
+
+		public string GameName => _topicNavigator.GameNameOverride ?? Localizer.Instance["Game"];
 
 		public bool HasStudyMode => _topicNavigator.HasStudyMode && IsCurrentCultureCzech;
 
