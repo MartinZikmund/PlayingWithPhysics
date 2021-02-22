@@ -27,11 +27,60 @@
         <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
         <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
         <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
-        <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Margin" Value="0,0,0,2" />
-        </Style>
-        <DataTemplate x:Key="OscillationPanelDataTemplate" x:DataType="viewModels:DemoItemViewModel">
+		<Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="Margin" Value="0,0,0,2" />
+		</Style>
+		<Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		</Style>
+		<DataTemplate x:Key="OscillationFrequencyListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0">
+					<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": "/><Run Text="{Binding X.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
+				</TextBlock>
+				<TextBlock Grid.Column="1">
+					<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": "/><Run Text="{Binding Y.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
+				</TextBlock>
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate x:Key="OscillationAmplitudeListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0">
+					<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": "/><Run Text="{Binding X.OscillationInfo.Amplitude}"></Run><Run Text=" m"/>
+				</TextBlock>
+				<TextBlock Grid.Column="1">
+					<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": "/><Run Text="{Binding Y.OscillationInfo.Amplitude}"></Run><Run Text=" m"/>
+				</TextBlock>
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate x:Key="OscillationPhaseListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0">
+					<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": "/><Run Text="{Binding X.OscillationInfo.PhaseInDeg}"></Run><Run Text="°"/>
+				</TextBlock>
+				<TextBlock Grid.Column="1">
+					<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": "/><Run Text="{Binding Y.OscillationInfo.PhaseInDeg}"></Run><Run Text="°"/>
+				</TextBlock>
+			</Grid>
+		</DataTemplate>
+
+
+		<DataTemplate x:Key="OscillationPanelDataTemplate" x:DataType="viewModels:DemoItemViewModel">
 			<TextBlock Text="{x:Bind Label}"/>
 			<!--<Grid ColumnSpacing="16" RowSpacing="8">
                 <Grid.RowDefinitions>
@@ -133,6 +182,7 @@
             </Grid>-->
         </DataTemplate>
     </Page.Resources>
+	
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="320" />
@@ -156,19 +206,100 @@
 							</TransitionCollection>
 						</StackPanel.ChildrenTransitions>
 						<sharedControls:SkewedMenuHeader GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
-						<TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Frekvence"></TextBlock>
-						<StackPanel>
-							<TextBlock>Amplitudy: 1m</TextBlock>
-							<TextBlock>Počáteční frekvence: 0°</TextBlock>
-							<TextBlock>
-								<Run>F</Run><Run Typography.Variants="Subscript">x</Run><Run> = 0.5 Hz</Run>
+
+						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Frequency}"></TextBlock>
+						<Grid Margin="0,8,0,0" RowSpacing="8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
+							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
+							<TextBlock Grid.Row="1" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
 							</TextBlock>
-						</StackPanel>
-						<ListView x:Name="FrequencyListView" ItemsSource="{x:Bind Model.DemoOscillationsFrequency, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}"/>
-						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Amplituda"></TextBlock>
-						<ListView x:Name="AmplitudeListView" ItemsSource="{x:Bind Model.DemoOscillationsAmplitude, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
-						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Počáteční fáze"></TextBlock>
-						<ListView x:Name="StartPhaseListView" ItemsSource="{x:Bind Model.DemoOscillationsPhase, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPanelDataTemplate}" />
+							<TextBlock Grid.Row="1" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+							</TextBlock>
+							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseFrequency}"/>
+						</Grid>
+						<ListView x:Name="FrequencyListView" ItemsSource="{x:Bind Model.DemoOscillationsFrequency, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationFrequencyListItemDataTemplate}" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"/>
+						
+						<NavigationViewItemSeparator/>
+
+						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Amplitude}"></TextBlock>
+						<Grid Margin="0,8,0,0" RowSpacing="8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
+							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
+							<TextBlock Grid.Row="1" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+							</TextBlock>
+							<TextBlock Grid.Row="1" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+							</TextBlock>
+							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseAmplitudes}"/>
+						</Grid>
+						<ListView x:Name="AmplitudeListView" ItemsSource="{x:Bind Model.DemoOscillationsAmplitude, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationAmplitudeListItemDataTemplate}" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}" />
+						
+						<NavigationViewItemSeparator/>
+
+						<TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=StartPhase}"></TextBlock>
+						<Grid Margin="0,8,0,0" RowSpacing="8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+								<RowDefinition Height="*"></RowDefinition>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
+							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
+							<TextBlock Grid.Row="1" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+							</TextBlock>
+							<TextBlock Grid.Row="1" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="0">
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+							</TextBlock>
+							<TextBlock Grid.Row="2" Grid.Column="1">
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+							</TextBlock>
+							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseStartPhases}"/>
+						</Grid>
+						<ListView x:Name="StartPhaseListView" ItemsSource="{x:Bind Model.DemoOscillationsPhase, Mode=OneWay}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource OscillationPhaseListItemDataTemplate}" ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"/>
 						<!--<Grid RowSpacing="8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

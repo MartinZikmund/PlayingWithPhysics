@@ -137,6 +137,15 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Lissajous Curves</value>
   </data>
+  <data name="ChooseAmplitudes" xml:space="preserve">
+    <value>Choose amplitudes:</value>
+  </data>
+  <data name="ChooseFrequency" xml:space="preserve">
+    <value>Choose frequency:</value>
+  </data>
+  <data name="ChooseStartPhases" xml:space="preserve">
+    <value>Choose start phases:</value>
+  </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Compound oscillation</value>
   </data>

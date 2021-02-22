@@ -137,6 +137,15 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Lissajousovy obrazce</value>
   </data>
+  <data name="ChooseAmplitudes" xml:space="preserve">
+    <value>Vyber amplitdy:</value>
+  </data>
+  <data name="ChooseFrequency" xml:space="preserve">
+    <value>Vyber frekvenci:</value>
+  </data>
+  <data name="ChooseStartPhases" xml:space="preserve">
+    <value>Vyber počáteční fáze:</value>
+  </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>
   </data>
