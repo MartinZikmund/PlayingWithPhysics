@@ -316,7 +316,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.3.1</Version>
+      <Version>3.3.2</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
       <Version>2.80.2</Version>
