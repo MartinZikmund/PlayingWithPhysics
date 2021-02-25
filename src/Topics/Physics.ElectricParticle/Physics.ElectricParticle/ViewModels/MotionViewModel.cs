@@ -11,15 +11,15 @@ namespace Physics.ElectricParticle.ViewModels
     {
         private PhysicsService _physicsService;
 
-        public MotionViewModel(IMotionSetup motion)
+        public MotionViewModel(ElectricParticleSimulationSetup motion)
         {
             MotionInfo = motion ?? throw new ArgumentNullException(nameof(motion));
             UpdateCurrentValues(0);
         }
 
-        private IMotionSetup _motionInfo;
+        private ElectricParticleSimulationSetup _motionInfo;
 
-        public IMotionSetup MotionInfo
+        public ElectricParticleSimulationSetup MotionInfo
         {
             get
             {
@@ -27,11 +27,11 @@ namespace Physics.ElectricParticle.ViewModels
             }
             set
             {
-                if (value == null)
+                if (value is null)
                 {
                     throw new ArgumentNullException(nameof(value));
                 }
-                _physicsService = new PhysicsService(value as ElectricParticleSimulationSetup);
+                _physicsService = new PhysicsService(value);
                 SetProperty(ref _motionInfo, value);
             }
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Physics.ElectricParticle.Logic
 {
-    public abstract class MotionSetupBase : IMotionSetup
+    public abstract class MotionSetupBase
     {
         public MotionSetupBase() { }
 

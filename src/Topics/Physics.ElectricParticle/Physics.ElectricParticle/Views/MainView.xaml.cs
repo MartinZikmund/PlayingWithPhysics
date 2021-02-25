@@ -11,6 +11,11 @@ namespace Physics.ElectricParticle.Views
 		{
 			this.InitializeComponent();
 		}
+
+		internal void FocusSimulationControls()
+		{
+			SimulationControls.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+		}
 	}
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, ElectricParticleCanvasController>

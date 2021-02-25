@@ -297,8 +297,10 @@
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <!--<sharedControls:SimulationControls
+			<sharedControls:SimulationControls
+                x:Name="SimulationControls"
                 Grid.Row="1"
+                d:Visibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
@@ -307,14 +309,15 @@
                 JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
-                <sharedControls:SimulationControls.Background>
-                    <AcrylicBrush
+				<sharedControls:SimulationControls.Background>
+					<AcrylicBrush
                         BackgroundSource="Backdrop"
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
-                </sharedControls:SimulationControls.Background>
-            </sharedControls:SimulationControls>-->
-        </Grid>
+				</sharedControls:SimulationControls.Background>
+			</sharedControls:SimulationControls>
+		</Grid>
     </Grid>
 </local:MainViewBase>

@@ -35,7 +35,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			ParticleType = ParticleTypes[0];
 		}
 
-		public override async Task<IMotionSetup> CreateMotionSetupAsync()
+		public override async Task<ElectricParticleSimulationSetup> CreateMotionSetupAsync()
 		{
 			PlaneSetup horizontalPlane = null;
 			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||

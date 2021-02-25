@@ -34,6 +34,6 @@ namespace Physics.ElectricParticle.Dialogs
             deferral.Complete();
         }
 
-        public IMotionSetup Setup { get; set; }
+        public ElectricParticleSimulationSetup Setup { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace Physics.ElectricParticle.ViewModels
 {
     public interface IVariantStateViewModel
     {
-        public IMotionSetup Motion { get; }
+        public ElectricParticleSimulationSetup Motion { get; }
     }
 }

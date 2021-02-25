@@ -5,6 +5,6 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 {
 	public interface IInputViewModel
     {
-        Task<IMotionSetup> CreateMotionSetupAsync();
+        Task<ElectricParticleSimulationSetup> CreateMotionSetupAsync();
     }
 }

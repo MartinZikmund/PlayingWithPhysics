@@ -10,6 +10,6 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
     {
 		public SimulationColors Colors { get; } = new SimulationColors();
 
-        public abstract Task<IMotionSetup> CreateMotionSetupAsync();
+        public abstract Task<ElectricParticleSimulationSetup> CreateMotionSetupAsync();
     }
 }
