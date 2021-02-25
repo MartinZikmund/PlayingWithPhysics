@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.ElectricParticle.Logic;
+using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -8,6 +10,7 @@ namespace Physics.ElectricParticle.Rendering
 	public class ElectricParticleCanvasController : SkiaCanvasController
 	{
 		private ElectricParticleSimulationSetup _setup;
+		private PhysicsService _service;
 
 		private float _unitDimension;
 
@@ -15,12 +18,21 @@ namespace Physics.ElectricParticle.Rendering
 		private float _pixelToUnit;
 
 		private int _simulationFrame;
+		private BigNumber _time;
+		private BigNumber _deltaT;
 
 		private readonly SKPaint _planePaint = new SKPaint()
 		{
 			Color = SKColors.Black,
 			StrokeWidth = 5,
 			IsStroke = true
+		};
+
+		private readonly SKPaint _particlePaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			IsStroke = false,
+			IsAntialias = true
 		};
 
 		public ElectricParticleCanvasController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
@@ -30,6 +42,7 @@ namespace Physics.ElectricParticle.Rendering
 		public void StartSimulation()
 		{
 			_simulationFrame = 0;
+			_time = 0;
 			SimulationTime.Restart();
 			Play();
 		}
@@ -52,13 +65,18 @@ namespace Physics.ElectricParticle.Rendering
 			}
 
 			_unitDimension = Math.Max(unitXSize, unitYSize);
+
+			var color = ColorHelper.ToColor(setup.Color);
+			_particlePaint.Color = new SKColor(color.R, color.G, color.B);
+			_service = new PhysicsService(_setup);
+			_deltaT = _service.ComputeDeltaT(600);
 		}
 
 		public override void Update(ISkiaCanvas sender)
 		{
 			var minDimension = Math.Min(sender.ScaledSize.Width, sender.ScaledSize.Height);
 			_pixelToUnit = _unitDimension / minDimension;
-			_unitToPixel = minDimension / _unitDimension;
+			_unitToPixel = minDimension / _unitDimension;			
 		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
@@ -71,6 +89,8 @@ namespace Physics.ElectricParticle.Rendering
 			DrawPlanes(sender, args);
 
 			DrawParticle(sender, args);
+
+			_time += _deltaT;
 		}
 
 		private void DrawPlanes(ISkiaCanvas sender, SKSurface args)
@@ -84,6 +104,17 @@ namespace Physics.ElectricParticle.Rendering
 			{
 				DrawVerticalPlanes(sender, args);
 			}
+		}
+
+		private void DrawParticle(ISkiaCanvas sender, SKSurface args)
+		{
+			var x = (float)(double)_service.ComputeX(_time);
+			var y = (float)(double)_service.ComputeY(_time);
+
+			var zeroX = _canvas.ScaledSize.Width / 2;
+			var zeroY = _canvas.ScaledSize.Height / 2;
+
+			args.Canvas.DrawCircle(new SKPoint(zeroX + x * _unitToPixel, zeroY - y * _unitToPixel), 5, _particlePaint);
 		}
 
 		private void DrawVerticalPlanes(ISkiaCanvas sender, SKSurface args)

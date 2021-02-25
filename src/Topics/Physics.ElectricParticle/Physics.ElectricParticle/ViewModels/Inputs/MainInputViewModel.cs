@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.ElectricParticle.Logic;
 using Physics.Shared.UI.Localization;
 using Windows.UI.Xaml;
@@ -25,6 +26,40 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			SelectedEnvironmentSetting = EnvironmentSettings[0];
 		}
 
+		public MainInputViewModel(InputVariant variant, ElectricParticleSimulationSetup setup) : this(variant)
+		{
+			Colors.Selected = ColorHelper.ToColor(setup.Color);
+			ParticleType = setup.Particle.Type;
+			ChargeMultiplier = setup.Particle.ChargeMultiplier;
+			MassMultiplier = setup.Particle.MassMultiplier;
+			StartVelocity = setup.Particle.StartVelocity;
+			StartVelocityDeviation = setup.Particle.StartVelocityDeviation;
+
+			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||
+				_inputVariant == InputVariant.EasyHorizontalWithGravity)
+			{
+				PrimaryPlanePolarity = setup.HorizontalPlane.Polarity;
+				PrimaryPlaneVoltage = setup.HorizontalPlane.Voltage;
+				PrimaryPlaneDistance = setup.HorizontalPlane.Distance;
+			}
+
+			if (_inputVariant == InputVariant.EasyVerticalNoGravity ||
+				_inputVariant == InputVariant.AdvancedVerticalWithGravity ||
+				_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity)
+			{
+				PrimaryPlanePolarity = setup.VerticalPlane.Polarity;
+				PrimaryPlaneVoltage = setup.VerticalPlane.Voltage;
+				PrimaryPlaneDistance = setup.VerticalPlane.Distance;
+			}
+
+			if (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity)
+			{
+				SecondaryPlaneDistance = setup.HorizontalPlane.Distance;
+				SecondaryPlanePolarity = setup.HorizontalPlane.Polarity;
+				SecondaryPlaneVoltage = setup.HorizontalPlane.Voltage;
+			}
+		}
+
 		private void InitializeParticleTypes()
 		{
 			ParticleTypes = VariantConfigurations.All
@@ -39,16 +74,22 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		{
 			PlaneSetup horizontalPlane = null;
 			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||
-				_inputVariant == InputVariant.EasyHorizontalWithGravity)
+				_inputVariant == InputVariant.EasyHorizontalWithGravity )
 			{
 				horizontalPlane = new PlaneSetup(PrimaryPlanePolarity, PrimaryPlaneVoltage, PrimaryPlaneDistance);
 			}
 
 			PlaneSetup verticalPlane = null;
 			if (_inputVariant == InputVariant.EasyVerticalNoGravity ||
-				_inputVariant == InputVariant.AdvancedVerticalWithGravity)
+				_inputVariant == InputVariant.AdvancedVerticalWithGravity ||
+				_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity)
 			{
 				verticalPlane = new PlaneSetup(PrimaryPlanePolarity, PrimaryPlaneVoltage, PrimaryPlaneDistance);
+			}
+
+			if (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity)
+			{
+				horizontalPlane = new PlaneSetup(SecondaryPlanePolarity, SecondaryPlaneVoltage, SecondaryPlaneDistance);
 			}
 
 			var particlePolarity = ParticlePolarity;
@@ -95,32 +136,32 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			Polarity.Negative
 		};
 
-		public float PrimaryPlaneVoltage { get; set; }
+		public float PrimaryPlaneVoltage { get; set; } = 1000;
 
-		public float PrimaryPlaneDistance { get; set; }
+		public float PrimaryPlaneDistance { get; set; } = 0.2f;
 
 		//Advanced-1, secondary options
 		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
 		public Polarity SecondaryPlanePolarity { get; set; }
 
-		public float SecondaryPlaneVoltage { get; set; }
+		public float SecondaryPlaneVoltage { get; set; } = 1000;
 
-		public float SecondaryPlaneDistance { get; set; }
+		public float SecondaryPlaneDistance { get; set; } = 0.2f;
 		//END: Advanced-1, secondary options
 
 		//General input values
 		public Polarity ParticlePolarity { get; set; }
 
-		public float StartVelocity { get; set; }
+		public float StartVelocity { get; set; } = 500;
 
-		public float StartVelocityDeviation { get; set; }
+		public float StartVelocityDeviation { get; set; } = 0;
 
 		public Visibility DeviationVisibility { get => (_inputVariant != InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
-		public float ChargeMultiplier { get; set; }
+		public float ChargeMultiplier { get; set; } = 1;
 
-		public float MassMultiplier { get; set; }
+		public float MassMultiplier { get; set; } = 1;
 
 		public VelocityDirection SelectedVelocityDirection { get; set; }
 

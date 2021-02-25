@@ -100,7 +100,16 @@ namespace Physics.ElectricParticle.ViewModels
 
 		public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
 		{
-			var dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(Variant));
+			AddOrUpdateMovementDialog dialog;
+			if (Motion != null && Variant == Motion.MotionInfo.Variant)
+			{
+				dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(Variant, Motion.MotionInfo));
+			}
+			else
+			{
+				dialog = new AddOrUpdateMovementDialog(new MainInputViewModel(Variant));
+			}
+
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
