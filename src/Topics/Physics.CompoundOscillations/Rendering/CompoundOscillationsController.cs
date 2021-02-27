@@ -62,9 +62,39 @@ namespace Physics.CompoundOscillations.Rendering
 			_oscillationStrokePaints = new Dictionary<OscillationInfo, SKPaint>();
 			_maxY = 0;
 			_minY = 0;
+
+			var maximumFrequency = _activeOscillations.Max(o => o.OscillationInfo.Frequency);
+			if (maximumFrequency > 5000)
+			{
+				_inherentSlowdown = 1 / 10000.0;
+			}
+			else if (maximumFrequency > 500)
+			{
+				_inherentSlowdown = 1 / 1000.0;
+			}
+			else if (maximumFrequency > 50)
+			{
+				_inherentSlowdown = 1 / 100.0;
+			}
+			else if (maximumFrequency > 5)
+			{
+				_inherentSlowdown = 1 / 10.0;
+			}
+			else
+			{
+				_inherentSlowdown = 1;
+			}
+
 			foreach (var oscillation in _activeOscillations)
 			{
-				var physicsService = new OscillationPhysicsService(oscillation.OscillationInfo);
+				var slowedDownOscillationInfo = new OscillationInfo(
+					oscillation.OscillationInfo.Label,
+					oscillation.OscillationInfo.Amplitude,
+					(float)(oscillation.OscillationInfo.Frequency * _inherentSlowdown),
+					oscillation.OscillationInfo.PhaseInRad,
+					oscillation.OscillationInfo.Color);
+
+				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);				
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
@@ -88,12 +118,6 @@ namespace Physics.CompoundOscillations.Rendering
 					IsAntialias = true,
 				};
 				_oscillationStrokePaints.Add(oscillation.OscillationInfo, strokePaint);
-
-				_inherentSlowdown = 1 / Math.Log(_activeOscillations.Max(a => a.OscillationInfo.Frequency), 10);
-				if (_inherentSlowdown > 1)
-				{
-					_inherentSlowdown = 1;
-				}
 			}
 
 			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.OscillationInfo).ToArray());
@@ -142,7 +166,7 @@ namespace Physics.CompoundOscillations.Rendering
 					if (oscillation.IsVisible)
 					{
 						var strokePain = _oscillationStrokePaints[oscillation.OscillationInfo];
-						DrawTrajectory(sender, args, trajectory, strokePain);
+						DrawTrajectory(sender, args, trajectory, strokePain, false);
 						var fillPaint = _oscillationFillPaints[oscillation.OscillationInfo];
 						DrawOscillationCurrentPoint(sender, args, y, fillPaint);
 					}
@@ -151,14 +175,14 @@ namespace Physics.CompoundOscillations.Rendering
 
 			if (_activeOscillations.Length > 1)
 			{
-				DrawTrajectory(sender, args, _compoundOscillationTrajectory, _compoundStrokePaint);
+				DrawTrajectory(sender, args, _compoundOscillationTrajectory, _compoundStrokePaint, true);
 				DrawOscillationCurrentPoint(sender, args, totalValue, _compoundFillPaint);
 			}
 		}
 
-		private double GetAdjustedTotalTime() => (double)SimulationTime.TotalTime.TotalMilliseconds * (double)_inherentSlowdown / 1000;
+		private double GetAdjustedTotalTime() => Math.Truncate(SimulationTime.TotalTime.TotalMilliseconds) / 1000;
 
-		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
+		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint, bool accurate)
 		{
 			//Try rendering using https://github.com/PeterWaher/IoTGateway/blob/master/Script/Waher.Script.Graphs/Functions/Plots/Plot2DCurve.cs
 
@@ -167,21 +191,21 @@ namespace Physics.CompoundOscillations.Rendering
 			float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var endTime = GetAdjustedTotalTime();
 			float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			float lastRenderY = GetRenderY(trajectory.GetY((float)lastRenderTime));
+			float lastRenderY = GetRenderY(trajectory.GetY((float)lastRenderTime, accurate));
 			path.MoveTo(lastRenderX, lastRenderY);
 			while (lastRenderTime > 0)
 			{
-				var newRenderTime = lastRenderTime - (0.008 * _inherentSlowdown);
+				var newRenderTime = lastRenderTime - (0.008);
 				if (newRenderTime < 0)
 				{
 					newRenderTime = 0;
 				}
-				var renderX = (float)(endRenderX - (endTime - newRenderTime) * (_horizontalScale / _inherentSlowdown));
+				var renderX = (float)(endRenderX - (endTime - newRenderTime) * (_horizontalScale));
 				if (renderX < 0)
 				{
 					break;
 				}
-				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY((float)newRenderTime) * _verticalScale);
+				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY((float)newRenderTime, accurate) * _verticalScale);
 				path.LineTo(renderX, renderY);
 				lastRenderX = renderX;
 				lastRenderY = renderY;

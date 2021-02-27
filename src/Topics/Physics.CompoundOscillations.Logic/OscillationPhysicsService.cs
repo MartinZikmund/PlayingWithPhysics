@@ -58,14 +58,14 @@ namespace Physics.CompoundOscillations.Logic
 			//{
 			//	jumpCount = MinTrajectoryJumps;
 			//}
-			var jumpSize = period / 800;
-			var currentTime = 0.0;
+			var jumpSize = period / jumpCount;
+			var currentTime = TimeSpan.FromMilliseconds(0.0f);
 			var jump = TimeSpan.FromMilliseconds(2);
 			var points = new List<OscillationPoint>();
-			while (currentTime <= period)
+			while (currentTime.TotalSeconds <= period)
 			{
-				points.Add(new OscillationPoint(currentTime, CalculateY((float)currentTime)));
-				currentTime += jumpSize;
+				points.Add(new OscillationPoint(currentTime.TotalSeconds, CalculateY((float)currentTime.TotalSeconds)));
+				currentTime += jump;
 			}
 			points.Add(new OscillationPoint(period, CalculateY(period)));
 			return new OscillationTrajectory(period, points.ToArray());

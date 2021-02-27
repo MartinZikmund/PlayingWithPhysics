@@ -11,6 +11,6 @@ namespace Physics.CompoundOscillations.Logic
 			_singleTrajectories = singleTrajectories;
 		}
 
-		public float GetY(float timeInSeconds) => _singleTrajectories.Sum(t => t.GetY(timeInSeconds));
+		public float GetY(float timeInSeconds, bool accurate = false) => _singleTrajectories.Sum(t => t.GetY(timeInSeconds, accurate));
 	}
 }

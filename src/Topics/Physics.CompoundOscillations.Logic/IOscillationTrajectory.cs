@@ -2,6 +2,6 @@
 {
 	public interface IOscillationTrajectory
     {
-		float GetY(float timeInSeconds);
+		float GetY(float timeInSeconds, bool accurate = false);
     }
 }
