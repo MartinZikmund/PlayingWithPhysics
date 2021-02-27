@@ -98,6 +98,8 @@ namespace Physics.CompoundOscillations.Rendering
 
 			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.OscillationInfo).ToArray());
 			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
+
+			
 		}
 
 		public void StartSimulation()
@@ -134,7 +136,7 @@ namespace Physics.CompoundOscillations.Rendering
 				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
 				if (oscillation.IsEnabled)
 				{
-					var y = trajectory.GetY((float)currentTime.TotalSeconds);
+					var y = trajectory.GetY((float)currentTime);
 					totalValue += y;
 
 					if (oscillation.IsVisible)
@@ -154,8 +156,7 @@ namespace Physics.CompoundOscillations.Rendering
 			}
 		}
 
-		private TimeSpan GetAdjustedTotalTime() => TimeSpan.FromMilliseconds(Math.Truncate((float)SimulationTime.TotalTime.TotalMilliseconds * (float)_inherentSlowdown));
-
+		private double GetAdjustedTotalTime() => (double)SimulationTime.TotalTime.TotalMilliseconds * (double)_inherentSlowdown / 1000;
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint)
 		{
@@ -166,21 +167,21 @@ namespace Physics.CompoundOscillations.Rendering
 			float endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var endTime = GetAdjustedTotalTime();
 			float lastRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			float lastRenderY = GetRenderY(trajectory.GetY((float)lastRenderTime.TotalSeconds));
+			float lastRenderY = GetRenderY(trajectory.GetY((float)lastRenderTime));
 			path.MoveTo(lastRenderX, lastRenderY);
-			while (lastRenderTime.TotalSeconds > 0)
+			while (lastRenderTime > 0)
 			{
-				var newRenderTime = lastRenderTime - TimeSpan.FromMilliseconds(8);
-				if (newRenderTime.TotalSeconds < 0)
+				var newRenderTime = lastRenderTime - (0.008 * _inherentSlowdown);
+				if (newRenderTime < 0)
 				{
-					newRenderTime = TimeSpan.FromSeconds(0);
+					newRenderTime = 0;
 				}
-				var renderX = (float)(endRenderX - (endTime - newRenderTime).TotalSeconds * _horizontalScale);
+				var renderX = (float)(endRenderX - (endTime - newRenderTime) * (_horizontalScale / _inherentSlowdown));
 				if (renderX < 0)
 				{
 					break;
 				}
-				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY((float)newRenderTime.TotalSeconds) * _verticalScale);
+				var renderY = (float)(sender.ScaledSize.Height / 2 - trajectory.GetY((float)newRenderTime) * _verticalScale);
 				path.LineTo(renderX, renderY);
 				lastRenderX = renderX;
 				lastRenderY = renderY;
@@ -197,7 +198,7 @@ namespace Physics.CompoundOscillations.Rendering
 			var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var horizontalPixelDiff = endRenderX - axesBounds.Left;
 			var endTime = GetAdjustedTotalTime();
-			var originSeconds = (float)endTime.TotalSeconds - horizontalPixelDiff / _horizontalScale;
+			var originSeconds = (float)endTime - horizontalPixelDiff / _horizontalScale;
 
 			_axesRenderer.YUnitSizeInPixels = _verticalScale;
 			_axesRenderer.XUnitSizeInPixels = _horizontalScale;

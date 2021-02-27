@@ -73,6 +73,7 @@
             Grid.Row="2"
             Grid.Column="1"
             Minimum="0.1"
+			Maximum="20000"
             Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
 
         <Grid

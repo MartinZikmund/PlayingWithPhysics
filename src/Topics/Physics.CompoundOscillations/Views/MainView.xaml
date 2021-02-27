@@ -209,7 +209,7 @@
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="{extensions:Localize Key=Frequency}" /><Run Text=": " />
                                                     <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.FrequencyText, Mode=OneWay}" />
-													<Run Text="hz" />
+													<Run Text="Hz" />
                                                 </TextBlock>
 												<TextBlock
                                                     Grid.Row="0"

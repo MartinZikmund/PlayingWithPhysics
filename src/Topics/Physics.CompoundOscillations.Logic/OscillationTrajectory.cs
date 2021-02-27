@@ -33,7 +33,7 @@ namespace Physics.CompoundOscillations.Logic
 				lowerPointId--;
 			}
 			return _points[lowerPointId].Y;
-		}		
+		}
 
 		//private float CalculateMidpoint(float time, int index)
 		//{
