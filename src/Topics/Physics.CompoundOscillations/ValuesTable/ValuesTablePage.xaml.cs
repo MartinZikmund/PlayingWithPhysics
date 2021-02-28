@@ -22,12 +22,12 @@ namespace Physics.CompoundOscillations.Views
 		private void SetupFormatting()
 		{
 			var rounder = new IncrementNumberRounder();
-			rounder.Increment = 0.01;
+			rounder.Increment = 0.001;
 			rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
 
 			var formatter = new DecimalFormatter();
 			formatter.IntegerDigits = 1;
-			formatter.FractionDigits = 2;
+			formatter.FractionDigits = 3;
 			formatter.NumberRounder = rounder;
 			TimeIntervalNumberBox.NumberFormatter = formatter;
 		}

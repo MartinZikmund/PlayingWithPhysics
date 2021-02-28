@@ -31,8 +31,8 @@
 			Header="{extensions:Localize Key=IntervalForTable}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Minimum="0.1"
-            SmallChange="0.1"
+            Minimum="0.001"
+            SmallChange="0.001"
             SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
 		<StackPanel
