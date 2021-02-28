@@ -87,6 +87,10 @@ namespace Physics.CompoundOscillations.Logic
 
 		private float CalculateMidpoint(float time, int index)
 		{
+			if (time < _points[index].Time && index > 0)
+			{
+				index--;
+			}
 			var lowerPoint = _points[index];
 			OscillationPoint upperPoint;
 			if (index == _points.Length - 1)
