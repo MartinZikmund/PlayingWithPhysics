@@ -222,16 +222,16 @@
 							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
 							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": 1 m"/>
 							</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": 1 m"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": 0°"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": 0°"/>
 							</TextBlock>
 							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseFrequency}"/>
 						</Grid>
@@ -254,16 +254,16 @@
 							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
 							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": 0,5 Hz"/>
 							</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": 0,5 Hz"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": 0°"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=":°"/>
+								<Run Text="{extensions:Localize Key=StartPhase}"/><Run Text=": 90°"/>
 							</TextBlock>
 							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseAmplitudes}"/>
 						</Grid>
@@ -286,16 +286,16 @@
 							<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">X</TextBlock>
 							<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Y</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": 0,5 Hz"/>
 							</TextBlock>
 							<TextBlock Grid.Row="1" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": Hz"/>
+								<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": 0,5 Hz"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="0">
-								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": 1 m"/>
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="1">
-								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": m"/>
+								<Run Text="{extensions:Localize Key=Amplitude}"/><Run Text=": 1 m"/>
 							</TextBlock>
 							<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{extensions:Localize Key=ChooseStartPhases}"/>
 						</Grid>
