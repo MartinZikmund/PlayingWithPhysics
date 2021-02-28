@@ -166,7 +166,7 @@ namespace Physics.Shared.UI.Rendering
 				}
 				if (renderX > TargetBounds.Right && direction == -1)
 				{
-					break;
+					continue;
 				}
 
 				drawing.DrawLine(
