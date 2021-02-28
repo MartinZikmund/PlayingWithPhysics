@@ -48,9 +48,10 @@ namespace Physics.CompoundOscillations.ViewModels
 			var currentY = _physicsService.CalculateY(timeElapsed);
 			CurrentYText = currentY.ToString(" 0.00;-0.00; 0.00");
 			RaisePropertyChanged(nameof(OscillationInfo));
+			RaisePropertyChanged(nameof(PeriodText));
 		}
 
-		public string PeriodText => (1 / OscillationInfo.Frequency).ToString("0.##");
+		public string PeriodText => (1 / OscillationInfo.Frequency).ToString("0.000");
 
 		public string TimeElapsed { get; private set; }
 

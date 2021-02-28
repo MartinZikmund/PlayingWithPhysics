@@ -93,7 +93,7 @@ namespace Physics.Shared.UI.Infrastructure
 					}
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				Debug.WriteLine("Update check failed due to network issues or because we are debugging.");
 			}

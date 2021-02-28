@@ -51,7 +51,7 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public ICommand ShowCompoundOscillationValuesTableCommand => GetOrCreateAsyncCommand(ShowCompoundOscillationValuesTableAsync);
 
-		public string TimeElapsed => _controller?.SimulationTime.TotalTime.TotalSeconds.ToString("0.00") ?? "0.00";
+		public string TimeElapsed => _controller?.GetSimulationDisplayTime().ToString("0.00") ?? "0.00";
 
 		public override void Prepare(DifficultyNavigationModel parameter)
 		{
@@ -212,7 +212,8 @@ namespace Physics.CompoundOscillations.ViewModels
 		{
 			if (_timer.IsEnabled && _controller != null)
 			{
-				float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+				float timeElapsed = (float)_controller.GetSimulationDisplayTime();
+
 				RaisePropertyChanged(nameof(TimeElapsed));
 
 				foreach (var motion in Oscillations)

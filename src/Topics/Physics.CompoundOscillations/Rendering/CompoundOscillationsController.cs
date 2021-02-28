@@ -47,6 +47,7 @@ namespace Physics.CompoundOscillations.Rendering
 
 		private float _maxY;
 		private float _minY;
+		private float _maximumFrequency;
 		private double _inherentSlowdown = 1.0;
 
 		public CompoundOscillationsController(ISkiaCanvas canvasAnimatedControl) :
@@ -63,20 +64,20 @@ namespace Physics.CompoundOscillations.Rendering
 			_maxY = 0;
 			_minY = 0;
 
-			var maximumFrequency = _activeOscillations.Max(o => o.OscillationInfo.Frequency);
-			if (maximumFrequency > 5000)
+			_maximumFrequency = _activeOscillations.Max(o => o.OscillationInfo.Frequency);
+			if (_maximumFrequency > 5000)
 			{
 				_inherentSlowdown = 1 / 10000.0;
 			}
-			else if (maximumFrequency > 500)
+			else if (_maximumFrequency > 500)
 			{
 				_inherentSlowdown = 1 / 1000.0;
 			}
-			else if (maximumFrequency > 50)
+			else if (_maximumFrequency > 50)
 			{
 				_inherentSlowdown = 1 / 100.0;
 			}
-			else if (maximumFrequency > 5)
+			else if (_maximumFrequency > 5)
 			{
 				_inherentSlowdown = 1 / 10.0;
 			}
@@ -180,6 +181,8 @@ namespace Physics.CompoundOscillations.Rendering
 			}
 		}
 
+		public double GetSimulationDisplayTime() => SimulationTime.TotalTime.TotalSeconds * _inherentSlowdown;
+
 		private double GetAdjustedTotalTime() => Math.Truncate(SimulationTime.TotalTime.TotalMilliseconds) / 1000;
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, IOscillationTrajectory trajectory, SKPaint paint, bool accurate)
@@ -222,10 +225,29 @@ namespace Physics.CompoundOscillations.Rendering
 			var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var horizontalPixelDiff = endRenderX - axesBounds.Left;
 			var endTime = GetAdjustedTotalTime();
-			var originSeconds = (float)endTime - horizontalPixelDiff / _horizontalScale;
+			var originSeconds = ((float)endTime - horizontalPixelDiff / _horizontalScale) * (float)_inherentSlowdown;
 
 			_axesRenderer.YUnitSizeInPixels = _verticalScale;
-			_axesRenderer.XUnitSizeInPixels = _horizontalScale;
+			_axesRenderer.XUnitSizeInPixels = (float)(_horizontalScale / _inherentSlowdown);
+
+			var formatString = "0.#";
+			if (_maximumFrequency > 5000)
+			{
+				formatString = "0.#####";
+			}
+			else if (_maximumFrequency > 500)
+			{
+				formatString = "0.####";
+			}
+			else if (_maximumFrequency > 50)
+			{
+				formatString = "0.###";
+			}
+			else if (_maximumFrequency > 5)
+			{
+				formatString = "0.##";
+			}
+			_axesRenderer.XUnitFormatString = formatString;
 
 			_axesRenderer.OriginUnitCoordinates = new SKPoint(originSeconds, 0);
 			_axesRenderer.TargetBounds = axesBounds;

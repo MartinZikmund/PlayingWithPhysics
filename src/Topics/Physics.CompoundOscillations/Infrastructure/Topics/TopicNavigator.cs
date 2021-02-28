@@ -6,6 +6,7 @@ using Windows.ApplicationModel;
 using System.IO;
 using Physics.CompoundOscillations.ViewModels;
 using Physics.Shared.UI.ViewModels.Navigation;
+using Physics.SelfStudy;
 
 namespace Physics.CompoundOscillations.Infrastructure.Topics
 {
@@ -18,7 +19,7 @@ namespace Physics.CompoundOscillations.Infrastructure.Topics
 
         public bool HasAdvancedDifficulty => true;
 
-        public bool HasStudyMode => false;
+        public bool HasStudyMode => true;
 
         public bool HasGame => true;
 
@@ -30,10 +31,9 @@ namespace Physics.CompoundOscillations.Infrastructure.Topics
 		public async Task GoToGameAsync() =>
 			await _navigationService.Navigate<GameViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
 
-		public Task GoToStudyModeAsync()
+		public async Task GoToStudyModeAsync()
         {
-			throw new NotSupportedException("Study mode not yet supported.");
-            //await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
-        }
+			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
+		}
     }
 }

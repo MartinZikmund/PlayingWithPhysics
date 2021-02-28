@@ -58,6 +58,8 @@ namespace Physics.Shared.UI.Rendering
 
 		public float XUnitSizeInPixels { get; set; }
 
+		public string XUnitFormatString { get; set; } = "0.#";
+
 		public void Update(ISkiaCanvas sender)
 		{
 		}
@@ -161,7 +163,7 @@ namespace Physics.Shared.UI.Rendering
 					renderOrigin.Y + TickSize,
 					YMeasurePaint);
 
-				var tickLabel = currentWidth.ToString("0.#");
+				var tickLabel = currentWidth.ToString(XUnitFormatString);
 				var textSize = XMeasurePaint.MeasureText(tickLabel);
 				drawing.DrawText(
 					tickLabel,
@@ -294,7 +296,23 @@ namespace Physics.Shared.UI.Rendering
 			{
 				return new TickDistance(1, 1f);
 			}
-			if (range <= 1)
+			else if (range <= 0.0001)
+			{
+				return new TickDistance(1, 0.00001f);
+			}
+			else if (range <= 0.001)
+			{
+				return new TickDistance(1, 0.0001f);
+			}
+			else if (range <= 0.01)
+			{
+				return new TickDistance(1, 0.001f);
+			}
+			else if (range <= 0.1)
+			{
+				return new TickDistance(1, 0.01f);
+			}
+			else if (range <= 1)
 			{
 				return new TickDistance(1, 0.1f);
 			}

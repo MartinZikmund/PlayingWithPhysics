@@ -3,7 +3,7 @@
 namespace Physics.CompoundOscillations.Logic
 {
 	public class OscillationTrajectory : IOscillationTrajectory
-    {
+	{
 		private readonly float _period;
 		private readonly OscillationPoint[] _points;
 
@@ -22,16 +22,7 @@ namespace Physics.CompoundOscillations.Logic
 			}
 
 			var timeInPeriod = timeInSeconds % _period;
-			//TODO: Binary search
-			int lowerPointId = 0;
-			while(lowerPointId < _points.Length - 1 && _points[lowerPointId + 1].Time <= timeInPeriod)
-			{
-				lowerPointId++;
-			}
-			if(lowerPointId == _points.Length)
-			{
-				lowerPointId--;
-			}
+			int lowerPointId = BinarySearch(timeInPeriod);
 
 			if (accurate)
 			{
@@ -43,21 +34,77 @@ namespace Physics.CompoundOscillations.Logic
 			}
 		}
 
-		private float CalculateMidpoint(float time, int index)
+
+		private int BinarySearch(float timeInPeriod)
 		{
-			if (index == _points.Length - 1)
+			var minIndex = 0;
+			var maxIndex = _points.Length - 1;
+			var currentIndex = _points.Length / 2;
+
+			while (true)
 			{
-				return _points[index].Y;
+				if (_points[currentIndex].Time > timeInPeriod)
+				{
+					maxIndex = currentIndex - 1;
+				}
+				else if (_points[currentIndex].Time < timeInPeriod)
+				{
+					minIndex = currentIndex + 1;
+				}
+				if (_points[currentIndex].Time == timeInPeriod)
+				{
+					return currentIndex;
+				}
+
+				if (minIndex > maxIndex || currentIndex < 0 || currentIndex >= _points.Length)
+				{
+					break;
+				}
+
+				currentIndex = (minIndex + maxIndex) / 2;
 			}
 
-			var lowerTime = _points[index].Time;
-			var upperTime = _points[index + 1].Time;
+			// Find lowest higher
+			if (currentIndex < 0)
+			{
+				currentIndex = 0;
+			}
+
+			while (currentIndex < _points.Length - 1 && _points[currentIndex + 1].Time <= timeInPeriod)
+			{
+				currentIndex++;
+			}
+
+			if (currentIndex >= _points.Length)
+			{
+				currentIndex = _points.Length - 1;
+			}
+
+			return currentIndex;
+		}
+
+
+
+		private float CalculateMidpoint(float time, int index)
+		{
+			var lowerPoint = _points[index];
+			OscillationPoint upperPoint;
+			if (index == _points.Length - 1)
+			{
+				upperPoint = _points[index];
+			}
+			else
+			{
+				upperPoint = _points[index + 1];
+			}
+			var lowerTime = lowerPoint.Time;
+			var upperTime = upperPoint.Time;
 			var spanTime = upperTime - lowerTime;
 			var relativeTime = time - lowerTime;
 
 			var ratio = relativeTime / spanTime;
-			var valueDiff = _points[index + 1].Y - _points[index].Y;
-			return _points[index].Y + (float)(valueDiff * ratio);
+			var valueDiff = upperPoint.Y - lowerPoint.Y;
+			return lowerPoint.Y + (float)(valueDiff * ratio);
 		}
 	}
 }
