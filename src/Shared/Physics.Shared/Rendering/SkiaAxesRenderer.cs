@@ -145,13 +145,26 @@ namespace Physics.Shared.UI.Rendering
 
 			var unitOrigin = OriginUnitCoordinates;
 
-			var firstTickX = ((int)(unitOrigin.X / axisInfo.JumpSize) + direction) * axisInfo.JumpSize;
+			var firstTickX = ((int)(unitOrigin.X / axisInfo.JumpSize)) * axisInfo.JumpSize;
 
 			for (float currentWidth = firstTickX; ; currentWidth += direction * axisInfo.JumpSize)
 			{
 				var renderX = renderOrigin.X + (currentWidth - unitOrigin.X) * XUnitSizeInPixels;
 
-				if (renderX < TargetBounds.Left || renderX > TargetBounds.Right)
+				if (renderX < TargetBounds.Left && direction == 1)
+				{
+					continue;
+				}
+				if (renderX > TargetBounds.Right && direction == 1)
+				{
+					break;
+				}
+
+				if (renderX < TargetBounds.Left && direction == -1)
+				{
+					break;
+				}
+				if (renderX > TargetBounds.Right && direction == -1)
 				{
 					break;
 				}
