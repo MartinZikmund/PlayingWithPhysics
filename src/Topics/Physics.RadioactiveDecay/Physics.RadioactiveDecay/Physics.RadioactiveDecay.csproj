@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{2036925F-ADA7-47A4-A8C7-449FBB347B4D}</ProjectGuid>
+    <ProjectGuid>{467B729B-1FD6-4F8C-BF1D-0AF87A36C465}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Physics.RadiationHalflife</RootNamespace>
-    <AssemblyName>Physics.RadiationHalflife</AssemblyName>
+    <RootNamespace>Physics.RadioactiveDecay</RootNamespace>
+    <AssemblyName>Physics.RadioactiveDecay</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,19 +119,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\AppSetup.cs" />
-    <Compile Include="Dialogs\AddOrUpdateAnimationDialog.xaml.cs">
-      <DependentUpon>AddOrUpdateAnimationDialog.xaml</DependentUpon>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rendering\RadiationHalflifeController.cs" />
-    <Compile Include="ViewModels\AddOrUpdateAnimationViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\NucleoidItemViewModel.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -139,26 +130,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Animations\0.gif" />
-    <Content Include="Assets\Animations\1.gif" />
-    <Content Include="Assets\Animations\2.gif" />
-    <Content Include="Assets\Animations\3.gif" />
-    <Content Include="Assets\Elements\Americium.png" />
-    <Content Include="Assets\Elements\Carbon.png" />
-    <Content Include="Assets\Elements\Cesium.png" />
-    <Content Include="Assets\Elements\Cobalt.png" />
-    <Content Include="Assets\Elements\Fluorine.png" />
-    <Content Include="Assets\Elements\Gallium.png" />
-    <Content Include="Assets\Elements\Iodine.png" />
-    <Content Include="Assets\Elements\Iridium.png" />
-    <Content Include="Assets\Elements\Potassium.png" />
-    <Content Include="Assets\Elements\Radium223.png" />
-    <Content Include="Assets\Elements\Radium226.png" />
-    <Content Include="Assets\Elements\Technetium.png" />
-    <Content Include="Assets\Elements\Uranium228.png" />
-    <Content Include="Assets\Elements\Uranium238.png" />
-    <Content Include="Assets\Menu\Circle.png" />
-    <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -173,65 +144,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fody">
-      <Version>6.4.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>4.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>4.1.0</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.12</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
-      <Version>7.0.0-preview2</Version>
-    </PackageReference>
-    <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.3.2</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ValuesTable\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SelfStudy\Physics.SelfStudy\Physics.SelfStudy.csproj">
-      <Project>{c19a64cd-7662-4572-9fe7-573e7bea90f4}</Project>
-      <Name>Physics.SelfStudy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Physics.Shared.Logic\Physics.Shared.csproj">
-      <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
-      <Name>Physics.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Physics.Shared\Physics.Shared.UI.csproj">
-      <Project>{80c65fa4-c269-470b-9499-0d26a549e2fa}</Project>
-      <Name>Physics.Shared.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Physics.RadiationHalflife.Logic\Physics.RadiationHalflife.Logic.csproj">
-      <Project>{33b7c06e-0653-4f6b-9697-bb26258c9949}</Project>
-      <Name>Physics.RadiationHalflife.Logic</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\cs-CZ\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en-US\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Dialogs\AddOrUpdateAnimationDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

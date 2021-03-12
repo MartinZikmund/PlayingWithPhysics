@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlphaDecay" xml:space="preserve">
+    <value>Alfa rozpad</value>
+  </data>
+  <data name="Americium_Halflife" xml:space="preserve">
+    <value>let</value>
+  </data>
+  <data name="Americium_Name" xml:space="preserve">
+    <value>Americium</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Lissajousovy obrazce jsou křivky, které vznikají skládáním dvou navzájem kolmých kmitů. Podíl frekvencí určí výsledný tvar obrazce.
+Program umožní zadání frekvencí dvou navzájem kolmých kmitů, jejich amplitud a počátečních fází a bude vykreslovat časový diagram složeného kmitání. Poměr frekvencí a amplitud určí výsledný tvar obrazce.
+
+Autoři obsahu: Vladimír Kafka, Pavel Vlček
+Programátoři: Daniel Zikmund, Martin Zikmund
+Grafika: Petr Weinlich</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Hrátky s fyzikou: Zákon radioaktivní přeměny</value>
+  </data>
+  <data name="BeamActivity" xml:space="preserve">
+    <value>Aktivita zářiče</value>
+  </data>
+  <data name="BetaNegativeDecay" xml:space="preserve">
+    <value>Beta mínus rozpad</value>
+  </data>
+  <data name="BetaPositiveDecay" xml:space="preserve">
+    <value>Beta plus rozpad</value>
+  </data>
+  <data name="Carbon_Halflife" xml:space="preserve">
+    <value>let</value>
+  </data>
+  <data name="Carbon_Name" xml:space="preserve">
+    <value>Uhlík</value>
+  </data>
+  <data name="Cesium_Halflife" xml:space="preserve">
+    <value>let</value>
+  </data>
+  <data name="Cesium_Name" xml:space="preserve">
+    <value>Cesium</value>
+  </data>
+  <data name="ChooseVariantTitle" xml:space="preserve">
+    <value>Vyber variantu</value>
+  </data>
+  <data name="Cobalt_Halflife" xml:space="preserve">
+    <value>let</value>
+  </data>
+  <data name="Cobalt_Name" xml:space="preserve">
+    <value>Kobalt</value>
+  </data>
+  <data name="Fluorine_Halflife" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="Fluorine_Name" xml:space="preserve">
+    <value>Fluor</value>
+  </data>
+  <data name="Gallium_Halflife" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="Gallium_Name" xml:space="preserve">
+    <value>Galium</value>
+  </data>
+  <data name="GammaDecay" xml:space="preserve">
+    <value>Gamma rozpad</value>
+  </data>
+  <data name="Iodine_Halflife" xml:space="preserve">
+    <value>dní</value>
+  </data>
+  <data name="Iodine_Name" xml:space="preserve">
+    <value>Jód</value>
+  </data>
+  <data name="Iridium_Halflife" xml:space="preserve">
+    <value>dní</value>
+  </data>
+  <data name="Iridium_Name" xml:space="preserve">
+    <value>Iridium</value>
+  </data>
+  <data name="LawOfRadioactiveDecay" xml:space="preserve">
+    <value>Rozpadový zákon (vyberte radionuklid)</value>
+  </data>
+  <data name="Potassium_Halflife" xml:space="preserve">
+    <value>miliard let</value>
+  </data>
+  <data name="Potassium_Name" xml:space="preserve">
+    <value>Draslík</value>
+  </data>
+  <data name="Radium223_Halflife" xml:space="preserve">
+    <value>dne</value>
+  </data>
+  <data name="Radium223_Name" xml:space="preserve">
+    <value>Radium 223</value>
+  </data>
+  <data name="Radium226_Halflife" xml:space="preserve">
+    <value>let</value>
+  </data>
+  <data name="Radium226_Name" xml:space="preserve">
+    <value>Radium 226</value>
+  </data>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>Zákon radioaktivní přeměny</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Technetium_Halflife" xml:space="preserve">
+    <value>hodin</value>
+  </data>
+  <data name="Technetium_Name" xml:space="preserve">
+    <value>Technecium</value>
+  </data>
+  <data name="Uranium228_Halflife" xml:space="preserve">
+    <value>minut</value>
+  </data>
+  <data name="Uranium228_Name" xml:space="preserve">
+    <value>Uranium 228</value>
+  </data>
+  <data name="Uranium238_Halflife" xml:space="preserve">
+    <value>miliard let</value>
+  </data>
+  <data name="Uranium238_Name" xml:space="preserve">
+    <value>Uranium 238</value>
+  </data>
+</root>
