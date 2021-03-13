@@ -61,7 +61,7 @@ steps:
                   /p:AppxBundle=Always 
                   /p:UapAppxPackageBuildMode=StoreUpload 
                   /p:AppxPackageSigningEnabled=true
-                  /p:PackageCertificateThumbprint="$(MicrosoftStoreSigning.password)" 
+                  /p:PackageCertificateThumbprint="$(MicrosoftStoreSigning.thumbprint)" 
                   /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
                   /p:PackageCertificatePassword="$(MicrosoftStoreSigning.password)"'
 
