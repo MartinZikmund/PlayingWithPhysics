@@ -5,7 +5,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
+  solution: '**/*.sln'
+  project: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
   buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
@@ -36,7 +37,7 @@ steps:
 - task: VSBuild@1
   inputs:
     platform: 'x86'
-    solution: '$(solution)'
+    solution: '$(project)'
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" 
                   /p:AppxPackageDir="$(appxPackageDir)" 
