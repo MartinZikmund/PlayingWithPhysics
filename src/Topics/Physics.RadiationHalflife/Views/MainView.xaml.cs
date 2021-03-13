@@ -26,14 +26,8 @@ namespace Physics.RadiationHalflife.Views
 
 		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			if (_currentGif.IsPlaying)
-			{
-				_currentGif.Stop();
-			}
-			else
-			{
-				_currentGif.Play();
-			}
+			_currentGif.Stop();
+			_currentGif.Play();
 		}
 	}
 
