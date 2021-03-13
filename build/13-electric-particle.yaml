@@ -27,6 +27,23 @@ steps:
   inputs:
     secureFile: 'storeupload.pfx'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "Start adding the PFX file to the certificate store."
+
+      $pfxpath = '$(signingCert.secureFilePath)'
+      $password = '$(MicrosoftStoreSigning.password)'
+      
+      Add-Type -AssemblyName System.Security
+      $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+      $cert.Import($pfxpath, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+      $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+      $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+      $store.Add($cert)
+      $store.Close()
+
 - task: VersionAPPX@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
@@ -44,7 +61,7 @@ steps:
                   /p:AppxBundle=Always 
                   /p:UapAppxPackageBuildMode=StoreUpload 
                   /p:AppxPackageSigningEnabled=true
-                  /p:PackageCertificateThumbprint="" 
+                  /p:PackageCertificateThumbprint="$(MicrosoftStoreSigning.password)" 
                   /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
                   /p:PackageCertificatePassword="$(MicrosoftStoreSigning.password)"'
 
