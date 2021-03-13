@@ -127,10 +127,10 @@
     <value>Americium</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Lissajousovy obrazce jsou křivky, které vznikají skládáním dvou navzájem kolmých kmitů. Podíl frekvencí určí výsledný tvar obrazce.
-Program umožní zadání frekvencí dvou navzájem kolmých kmitů, jejich amplitud a počátečních fází a bude vykreslovat časový diagram složeného kmitání. Poměr frekvencí a amplitud určí výsledný tvar obrazce.
+    <value>Radioaktivita je schopnost některých atomových jader vysílat jaderné záření. Při tom se takové jádro změní na jiné, jeden nuklid se změní na jiný. Existují přírodní i umělé radionuklidy. Jedna z veličin, která popisuje rozpad radionuklidů, je poločas rozpadu. To je doba, za kterou se rozpadne polovina jader. 
+Program animuje rozpad radionuklidů. Možné bude volit druh radionuklidu (případně poločas rozpadu), počet částic a časový krok. Výsledkem bude též časový diagram.
 
-Autoři obsahu: Vladimír Kafka, Pavel Vlček
+Autoři obsahu: Petr Kvoch, Radka Procházková
 Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
