@@ -1,5 +1,6 @@
 ﻿using System;
 using ExtendedNumerics;
+using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
 using Physics.Shared.Mathematics;
 
@@ -88,7 +89,7 @@ namespace Physics.ElectricParticle.Logic
 
 		public BigNumber ComputeX(BigNumber time)
 		{
-			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviation);
+			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviationInRad);
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
@@ -107,7 +108,7 @@ namespace Physics.ElectricParticle.Logic
 
 		public BigNumber ComputeY(BigNumber time)
 		{
-			var goniometricAngle = Math.Sin(_setup.Particle.StartVelocityDeviation);
+			var goniometricAngle = Math.Sin(_setup.Particle.StartVelocityDeviationInRad);
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
@@ -157,7 +158,7 @@ namespace Physics.ElectricParticle.Logic
 
 		public BigNumber ComputeVx(BigNumber time)
 		{
-			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviation);
+			var goniometricAngle = Math.Cos(_setup.Particle.StartVelocityDeviationInRad);
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
@@ -176,7 +177,7 @@ namespace Physics.ElectricParticle.Logic
 
 		public BigNumber ComputeVy(BigNumber time)
 		{
-			var goniometricAngle = Math.Sin(_setup.Particle.StartVelocityDeviation);
+			var goniometricAngle = Math.Sin(_setup.Particle.StartVelocityDeviationInRad);
 			switch (_setup.Variant)
 			{
 				case InputVariant.EasyVerticalNoGravity:
