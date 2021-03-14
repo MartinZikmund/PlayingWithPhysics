@@ -58,7 +58,7 @@ steps:
   inputs:
     Path: '$(Build.SourcesDirectory)'
     VersionNumber: '$(customBuildNumber)'
-    InjectVersion: True    
+    InjectVersion: true
     OutputVersion: 'OutputedVersion'
 
 - task: VSBuild@1
