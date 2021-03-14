@@ -16,12 +16,8 @@ variables:
   value: 'Release'
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
-- name: 'MajorVersion'
-  value: 0
-- name: 'MinorVersion'
-  value: 8
 - name: 'customBuildNumber'
-  value: '$(MajorVersion).$(MinorVersion).$(Date:yyyyMMdd)$(Rev:.r)'
+  value: '0.5.0.0'
 
 steps:
 
