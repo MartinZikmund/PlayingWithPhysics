@@ -5,14 +5,23 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  project: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
-  buildPlatform: 'x86|x64|ARM|ARM64'
-  buildConfiguration: 'Release'
-  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
-  MajorVersion: 0
-  MinorVersion: 8
-  customBuildNumber: '$(MajorVersion).$(MinorVersion).$(date:yy)$(DayOfYear)$(rev:.r)'
+- group: MicrosoftStoreSigning
+- name: 'solution'
+  value: '**/*.sln'
+- name: project
+  value: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
+- name: buildPlatform
+  value: 'x86|x64|ARM|ARM64'
+- name: buildConfiguration
+  value: 'Release'
+- name: 'appxPackageDir'
+  value: '$(build.artifactStagingDirectory)\AppxPackages\\'
+- name: 'MajorVersion'
+  value: 0
+- name: 'MinorVersion'
+  value: 8
+- name: 'customBuildNumber'
+  value: '$(MajorVersion).$(MinorVersion).$(date:yy)$(DayOfYear)$(rev:.r)'
 
 steps:
 
@@ -29,7 +38,7 @@ steps:
       Write-Host "Start adding the PFX file to the certificate store."
 
       $pfxpath = '$(signingCert.secureFilePath)'
-      $password = 'aaaa'
+      $password = '$(MicrosoftStoreSigning.Password)'
       
       Add-Type -AssemblyName System.Security
       $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
@@ -62,9 +71,9 @@ steps:
                   /p:AppxBundle=Always 
                   /p:UapAppxPackageBuildMode=StoreUpload 
                   /p:AppxPackageSigningEnabled=true
-                  /p:PackageCertificateThumbprint="$(MicrosoftStoreSigning.thumbprint)" 
+                  /p:PackageCertificateThumbprint="$(MicrosoftStoreSigning.Thumbprint)" 
                   /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
-                  /p:PackageCertificatePassword="$(MicrosoftStoreSigning.password)"'
+                  /p:PackageCertificatePassword="$(MicrosoftStoreSigning.Password)"'
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
