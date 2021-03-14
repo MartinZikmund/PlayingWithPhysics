@@ -21,7 +21,7 @@ variables:
 - name: 'MinorVersion'
   value: 8
 - name: 'customBuildNumber'
-  value: '$(MajorVersion).$(MinorVersion).$(date:yy)$(DayOfYear)$(rev:.r)'
+  value: '$(MajorVersion).$(MinorVersion).$(Date:yyyyMMdd)$(Rev:.r)'
 
 steps:
 
