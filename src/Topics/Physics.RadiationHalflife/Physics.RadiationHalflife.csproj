@@ -246,7 +246,7 @@
       <Version>7.0.0-preview2</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.3.2</Version>
+      <Version>3.3.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
