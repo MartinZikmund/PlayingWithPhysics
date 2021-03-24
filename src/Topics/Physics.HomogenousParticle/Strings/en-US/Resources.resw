@@ -220,6 +220,10 @@
     <value>multiple of nucleon mass</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>The material will help to create an idea and overview of the movements of charged parts in a homogeneous magnetic field. The movements will be simulated using the choice of the direction of the magnetic field and the choice of the direction and magnitude of the velocities. The material also makes it possible to understand the difference in the behavior of particles in magnetic and electric fields. The material will also include theoretical calculations of the values given in the animation and thus connect the visual effect of the animation with the theoretical assumptions of movement. It will also be possible to use the material in the study of the basic properties of atomic nuclei (determination of mass).</value>
+    <value>The material will help to create an idea and overview of the movements of charged parts in a homogeneous magnetic field. The movements will be simulated using the choice of the direction of the magnetic field and the choice of the direction and magnitude of the velocities. The material also makes it possible to understand the difference in the behavior of particles in magnetic and electric fields. The material will also include theoretical calculations of the values given in the animation and thus connect the visual effect of the animation with the theoretical assumptions of movement. It will also be possible to use the material in the study of the basic properties of atomic nuclei (determination of mass).
+
+Content authors: Petr Kvoch, Radka Procházková
+Programmers: Daniel Zikmund, Martin Zikmund
+Graphics: Petr Weinlich</value>
   </data>
 </root>

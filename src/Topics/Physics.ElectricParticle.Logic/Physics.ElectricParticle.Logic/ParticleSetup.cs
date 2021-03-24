@@ -1,4 +1,6 @@
-﻿namespace Physics.ElectricParticle.Logic
+﻿using Physics.Shared.Helpers;
+
+namespace Physics.ElectricParticle.Logic
 {
 	public class ParticleSetup
     {
@@ -29,5 +31,7 @@
 		public float StartVelocity { get; set; }
 
 		public float StartVelocityDeviation { get; set; }
+
+		public float StartVelocityDeviationInRad => MathHelpers.DegreesToRadians(StartVelocityDeviation);
 	}
 }

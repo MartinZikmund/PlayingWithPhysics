@@ -130,7 +130,11 @@
     <value>Pokročilá varianta</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Materiál pomůže vytvořit představu a přehled pohybů nabitých části v homogenním magnetickém poli. Pohyby budou simulovány s využitém volby směru magnetického pole a volby směru a velikosti rychlostí. Materiál dále umožní pochopit odlišnost chování částic v magnetickém a elektrickém poli. Součástí materiálu budou i teoretické výpočty hodnot uvedených v animaci a tím propojí vizuální efekt animace s teoretickými předpoklady pohybu. Materiál bude také možné využít při studiu základních vlastností atomových jader (určování hmotnosti).</value>
+    <value>Materiál umožní vytvořit představu pohybu nabitých částic v homogenním elektrickém poli a spojí tuto problematiku s praktickými příklady využití, které jsou v technické praxi typické. Vzhledem k tomu, že tyto pohyby nejsou pro žáky okem přímo pozorovatelné, umožní animace zviditelnit parametry pohybu částic v závislosti na volbě vstupních parametrů pohybu. V závislosti na volbě velikosti a směru počátečních rychlostí budou žáci tvořit hypotézy pohybu částice a následně tyto své myšlenky potvrzovat nebo vyvracet.
+
+Autoři obsahu: Petr Kvoch, Radka Procházková
+Programátoři: Daniel Zikmund, Martin Zikmund
+Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyb částice v homogenním elektrickém poli</value>
