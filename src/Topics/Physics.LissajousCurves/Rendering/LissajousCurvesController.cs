@@ -18,6 +18,7 @@ namespace Physics.LissajousCurves.Rendering
 		private OscillationInfo _verticalOscillation;
 
 		public bool NoTrajectory { get; set;}
+		public bool NoAces { get; set;}
 		public int DrawLength { get; set; } = 10;
 
 		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
@@ -92,7 +93,7 @@ namespace Physics.LissajousCurves.Rendering
 			{
 				var physicsService = new OscillationPhysicsService(oscillation);
 				_oscillationServices.Add(oscillation, physicsService);
-				_maxDimension = Math.Max(_maxDimension, oscillation.Amplitude);
+				_maxDimension = Math.Max(1f, oscillation.Amplitude);
 
 				_oscillationTrajectories.Add(oscillation, physicsService.CreateTrajectoryData());
 
@@ -195,8 +196,11 @@ namespace Physics.LissajousCurves.Rendering
 			var centerX = sender.ScaledSize.Width / 2;
 			var centerY = sender.ScaledSize.Height / 2;
 			surface.Canvas.DrawRect(centerX - _maxDimension * _displayScale, centerY - _maxDimension * _displayScale, _maxDimension * 2 * _displayScale, _maxDimension * 2 * _displayScale, _borderStrokePaint);
-			surface.Canvas.DrawLine(centerX, centerY - _maxDimension * _displayScale, centerX, centerY + _maxDimension * _displayScale, _borderDashedStrokePaint);
-			surface.Canvas.DrawLine(centerX - _maxDimension * _displayScale, centerY, centerX + _maxDimension * _displayScale, centerY, _borderDashedStrokePaint);
+			if (!NoAces)
+			{
+				surface.Canvas.DrawLine(centerX, centerY - _maxDimension * _displayScale, centerX, centerY + _maxDimension * _displayScale, _borderDashedStrokePaint);
+				surface.Canvas.DrawLine(centerX - _maxDimension * _displayScale, centerY, centerX + _maxDimension * _displayScale, centerY, _borderDashedStrokePaint);
+			}
 		}
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, SKPaint paint)

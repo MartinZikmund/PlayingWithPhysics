@@ -170,6 +170,9 @@ Grafika: Petr Weinlich</value>
   <data name="LegendGreen" xml:space="preserve">
     <value>🟢 Zelená - Pohyb stativu</value>
   </data>
+  <data name="NoAces" xml:space="preserve">
+    <value>Bez os</value>
+  </data>
   <data name="Oscillation" xml:space="preserve">
     <value>Kmitání</value>
   </data>

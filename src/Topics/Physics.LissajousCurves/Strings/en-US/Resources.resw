@@ -170,6 +170,9 @@ Graphics: Petr Weinlich</value>
   <data name="LegendGreen" xml:space="preserve">
     <value>🟢 Green - Stick movement</value>
   </data>
+  <data name="NoAces" xml:space="preserve">
+    <value>No aces</value>
+  </data>
   <data name="Oscillation" xml:space="preserve">
     <value>Oscillation</value>
   </data>
