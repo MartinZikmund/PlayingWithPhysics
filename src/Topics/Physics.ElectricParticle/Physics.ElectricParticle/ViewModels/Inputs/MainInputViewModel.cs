@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
@@ -34,6 +35,11 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			MassMultiplier = setup.Particle.MassMultiplier;
 			StartVelocity = setup.Particle.StartVelocity;
 			StartVelocityDeviation = setup.Particle.StartVelocityDeviation;
+
+			if (Enum.IsDefined(typeof(VelocityDirection), (int)StartVelocityDeviation))
+			{
+				SelectedVelocityDirection = (VelocityDirection)(int)StartVelocityDeviation;
+			}
 
 			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||
 				_inputVariant == InputVariant.EasyHorizontalWithGravity)
@@ -74,7 +80,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		{
 			PlaneSetup horizontalPlane = null;
 			if (_inputVariant == InputVariant.EasyHorizontalNoGravity ||
-				_inputVariant == InputVariant.EasyHorizontalWithGravity )
+				_inputVariant == InputVariant.EasyHorizontalWithGravity)
 			{
 				horizontalPlane = new PlaneSetup(PrimaryPlanePolarity, PrimaryPlaneVoltage, PrimaryPlaneDistance);
 			}
@@ -107,6 +113,12 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				particlePolarity = Polarity.Positive;
 			}
 
+			var velocityDeviation = StartVelocityDeviation;
+			if (_inputVariant == InputVariant.EasyHorizontalWithGravity)
+			{
+				velocityDeviation = (int)SelectedVelocityDirection;
+			}
+
 			// TODO: handle remaining cases
 
 			var particle = new ParticleSetup(
@@ -115,7 +127,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				chargeMultiplier,
 				massMultiplier,
 				StartVelocity,
-				StartVelocityDeviation); //TODO: Handle velocity direction for edge case
+				velocityDeviation);
 
 			var colorSerialized = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Colors.Selected);
 			return new ElectricParticleSimulationSetup(
