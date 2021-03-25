@@ -20,7 +20,7 @@ variables:
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
 - name: 'customBuildNumber'
-  value: '0.5.0.0'
+  value: '0.7.0.0'
 
 steps:
 
