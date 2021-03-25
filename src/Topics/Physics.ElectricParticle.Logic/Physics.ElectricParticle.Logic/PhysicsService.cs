@@ -349,6 +349,10 @@ namespace Physics.ElectricParticle.Logic
 		public BigNumber ComputeDeltaT(int totalFrames)
 		{
 			var acceleration = ComputeA();
+			if (acceleration.Mantisa < 0)
+			{
+				acceleration = new BigNumber(-acceleration.Mantisa, acceleration.Exponent);
+			}
 			BigNumber top = -_setup.Particle.StartVelocity + (_setup.Particle.StartVelocity * _setup.Particle.StartVelocity + acceleration).Sqrt();
 			BigNumber bottom = acceleration * totalFrames;
 			return top / bottom;
