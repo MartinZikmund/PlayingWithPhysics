@@ -120,7 +120,21 @@ namespace Physics.Shared.Mathematics
 		public override string ToString()
 		{
 			var normalized = Normalize();
-			return $"{normalized.Mantisa}.10^{normalized.Exponent}";
+			if (normalized.Mantisa == 0)
+			{
+				return "0";
+			}
+			return $"{normalized.Mantisa.ToString("0.000")}.10^{normalized.Exponent}";
+		}
+
+		public string ToString(string formatString)
+		{
+			var normalized = Normalize();
+			if (normalized.Mantisa == 0)
+			{
+				return 0.ToString(formatString);
+			}
+			return $"{normalized.Mantisa.ToString(formatString)}.10^{normalized.Exponent}";
 		}
 	}
 }

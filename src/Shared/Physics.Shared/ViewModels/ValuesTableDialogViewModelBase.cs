@@ -33,10 +33,7 @@ namespace Physics.Shared.UI.ViewModels
 
         protected void UpdateTable()
         {
-            if (TimeInterval > 0)
-            {
-                Values = new ObservableCollection<TValuesTableRow>(_tableService.CalculateTable(TimeInterval));
-            }
+            Values = new ObservableCollection<TValuesTableRow>(_tableService.CalculateTable(TimeInterval));            
         }
 
         public virtual void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)

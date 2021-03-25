@@ -242,9 +242,6 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
-      <Version>7.0.0-preview2</Version>
-    </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.3.3</Version>
     </PackageReference>

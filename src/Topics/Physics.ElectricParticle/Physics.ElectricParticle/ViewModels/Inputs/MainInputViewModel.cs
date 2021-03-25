@@ -92,9 +92,14 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				horizontalPlane = new PlaneSetup(SecondaryPlanePolarity, SecondaryPlaneVoltage, SecondaryPlaneDistance);
 			}
 
+			var chargeMultiplier = ChargeMultiplier;
+			var massMultiplier = MassMultiplier;
+
 			var particlePolarity = ParticlePolarity;
 			if ((ParticleType)ParticleType == Logic.ParticleType.Electron)
 			{
+				chargeMultiplier = 1;
+				massMultiplier = 1;
 				particlePolarity = Polarity.Negative;
 			}
 			else if ((ParticleType)ParticleType == Logic.ParticleType.AtomNucleus)
@@ -107,8 +112,8 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			var particle = new ParticleSetup(
 				(ParticleType)ParticleType,
 				particlePolarity,
-				ChargeMultiplier,
-				MassMultiplier,
+				chargeMultiplier,
+				massMultiplier,
 				StartVelocity,
 				StartVelocityDeviation); //TODO: Handle velocity direction for edge case
 

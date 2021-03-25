@@ -141,7 +141,8 @@ namespace Physics.ElectricParticle.Logic
 			var right = fraction * new BigNumber(1, GetChargeExponent() - GetMassExponent());
 
 			// Outer addition
-			return left + right;
+			var result = left + right;
+			return result;
 		}
 
 		private BigNumber SimpleAxisCoordinate(

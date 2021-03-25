@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExtendedNumerics;
+using Physics.Shared.Mathematics;
 
 namespace Physics.ElectricParticle.ValuesTable
 {
@@ -23,7 +24,7 @@ namespace Physics.ElectricParticle.ValuesTable
         public string Ep { get; set; }
         public string E { get; set; }
 
-		public TableRow(BigDecimal time, BigDecimal x, BigDecimal y, BigDecimal velocity, BigDecimal velocityX, BigDecimal velocityY, BigDecimal acceleration, BigDecimal ek, BigDecimal ep, BigDecimal e)
+		public TableRow(BigNumber time, BigNumber x, BigNumber y, BigNumber velocity, BigNumber velocityX, BigNumber velocityY, BigNumber acceleration, BigNumber ek, BigNumber ep, BigNumber e)
 		{
 			Time = time.ToString();
 			X = x.ToString();
