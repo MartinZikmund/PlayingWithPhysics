@@ -211,7 +211,7 @@
       <Version>3.3.3</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>13.2.2</Version>
+      <Version>13.2.10</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
       <Version>2.80.2</Version>
