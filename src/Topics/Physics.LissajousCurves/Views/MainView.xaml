@@ -190,13 +190,13 @@
 
                             <CheckBox
                                 Grid.Row="4"
-                                Content="{extensions:Localize Key=NoAces}"
+                                Content="{extensions:Localize Key=NoAxes}"
                                 IsChecked="{x:Bind Model.NoAces, Mode=TwoWay}" />
 
                             <controls:NumberBox
                                 Grid.Row="5"
                                 Grid.Column="1"
-                                Header="Délka stopy"
+                                Header="{extensions:Localize Key=DrawLength}"
                                 Minimum="0"
                                 SmallChange="1"
                                 SpinButtonPlacementMode="Inline"

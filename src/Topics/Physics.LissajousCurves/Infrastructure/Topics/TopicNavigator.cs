@@ -7,6 +7,7 @@ using System.IO;
 using Physics.LissajousCurves.ViewModels;
 using Physics.Shared.UI.ViewModels.Navigation;
 using Physics.Shared.UI.Localization;
+using Physics.SelfStudy;
 
 namespace Physics.LissajousCurves.Infrastructure.Topics
 {
@@ -19,7 +20,7 @@ namespace Physics.LissajousCurves.Infrastructure.Topics
 
 		public bool HasAdvancedDifficulty => true;
 
-		public bool HasStudyMode => false;
+		public bool HasStudyMode => true;
 
 		public bool HasGame => true;
 
@@ -30,10 +31,9 @@ namespace Physics.LissajousCurves.Infrastructure.Topics
 
 		public async Task GoToGameAsync() => await _navigationService.Navigate<DemoViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
 
-		public Task GoToStudyModeAsync()
+		public async Task GoToStudyModeAsync()
 		{
-			throw new NotSupportedException("Study mode not yet supported.");
-			//await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
+			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
 		}
 	}
 }

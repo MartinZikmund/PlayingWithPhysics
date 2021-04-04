@@ -1,5 +1,7 @@
 trigger:
   none
+
+pr: none
   
 pool:
   vmImage: 'windows-latest'
@@ -17,7 +19,7 @@ variables:
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
 - name: 'customBuildNumber'
-  value: '1.1.0.0'
+  value: '1.1.5.0'
 
 steps:
 
