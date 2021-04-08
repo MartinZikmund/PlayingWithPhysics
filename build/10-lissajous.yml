@@ -18,8 +18,12 @@ variables:
   value: 'Release'
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
-- name: 'customBuildNumber'
-  value: '1.1.5.0'
+- name: 'major'
+  value: '1'
+- name: 'minor'
+  value: '2'
+
+name: $(major).$(minor).$(rev:r).0
 
 steps:
 
@@ -55,7 +59,7 @@ steps:
 - task: VersionAPPX@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(customBuildNumber)'
+    VersionNumber: '$(Build.BuildNumber)'
     InjectVersion: true
     OutputVersion: 'OutputedVersion'
 
