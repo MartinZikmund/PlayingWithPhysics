@@ -85,8 +85,8 @@
                 <winui:NumberBox
                     x:Name="PrimaryVoltageNumberBox"
                     Grid.Column="1"
-                    Maximum="100000"
-                    Minimum="100"
+                    Maximum="{x:Bind Model.VariantConfiguration.U.Maximum, Mode=OneWay}"
+                    Minimum="{x:Bind Model.VariantConfiguration.U.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.PrimaryPlaneVoltage, Mode=TwoWay}" />
             </Grid>
 
@@ -255,8 +255,8 @@
                 <winui:NumberBox
                     x:Name="VelocityNumberBox"
                     Grid.Column="1"
-                    Maximum="1000"
-                    Minimum="0"
+                    Maximum="{x:Bind Model.VariantConfiguration.V0.Maximum, Mode=OneWay}"
+                    Minimum="{x:Bind Model.VariantConfiguration.V0.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.StartVelocity, Mode=TwoWay}" />
             </Grid>
 
