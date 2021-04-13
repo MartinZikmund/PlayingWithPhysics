@@ -301,6 +301,9 @@ Grafika: Petr Weinlich</value>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>
   </data>
+  <data name="Steps" xml:space="preserve">
+    <value>Kroky</value>
+  </data>
   <data name="VelocityDirection_VerticallyDown" xml:space="preserve">
     <value>svisle dolů</value>
   </data>

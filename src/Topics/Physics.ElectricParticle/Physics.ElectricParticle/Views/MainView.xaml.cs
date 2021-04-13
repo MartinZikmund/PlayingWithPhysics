@@ -20,7 +20,7 @@ namespace Physics.ElectricParticle.Views
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, ElectricParticleCanvasController>
 	{
-		protected override ISkiaCanvas CreateSkiaCanvas() => new NonUiSkiaCanvas();
+		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
 		protected override ElectricParticleCanvasController CreateController(ISkiaCanvas canvas) => new ElectricParticleCanvasController(canvas);
 	}

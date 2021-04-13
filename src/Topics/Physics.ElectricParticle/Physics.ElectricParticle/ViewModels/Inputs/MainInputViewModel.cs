@@ -265,6 +265,9 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			VariantConfiguration = VariantConfigurations.All.FirstOrDefault(
 				c => c.InputVariant == _inputVariant &&
 				c.ParticleType == (ParticleType?)ParticleType);
+			VariantConfigurationChanged?.Invoke(this, EventArgs.Empty);
 		}
+
+		public event EventHandler VariantConfigurationChanged;
 	}
 }
