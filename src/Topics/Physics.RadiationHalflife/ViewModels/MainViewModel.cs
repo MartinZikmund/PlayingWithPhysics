@@ -35,7 +35,7 @@ namespace Physics.RadiationHalflife.ViewModels
 		public MainViewModel(IContentDialogHelper contentDialogHelper)
 		{
 			_contentDialogHelper = contentDialogHelper;
-			SelectedNucleoid = Nucleoids[0];
+			_selectedNucleoid = Nucleoids[0];
 		}
 		//public int DrawLength
 		//{
@@ -200,13 +200,13 @@ namespace Physics.RadiationHalflife.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				//_controller.SetActiveOscillations(HorizontalOscillation.OscillationInfo, VerticalOscillation.OscillationInfo);
-				//_controller.StartSimulation();
+				_controller.SetAnimation(new PhysicsService(new AnimationInfo(ParticlesCount, SelectedNucleoid.Halflife)));
+				_controller.StartSimulation();
 			});
 		}
 
 		public Visibility CanvasVisibility => (SelectedVariant == 4) ? Visibility.Visible : Visibility.Collapsed;
-		public Visibility AnimationPanelVisibility => (SelectedVariant <= 3) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility AnimationPanelVisibility => (SelectedVariant != 4) ? Visibility.Visible : Visibility.Collapsed;
 
 		public List<NucleoidItemViewModel> Nucleoids = new List<NucleoidItemViewModel>()
 		{
@@ -226,7 +226,20 @@ namespace Physics.RadiationHalflife.ViewModels
 			new NucleoidItemViewModel("Americium", 432.6f)
 		};
 
-		public NucleoidItemViewModel SelectedNucleoid { get; set; }
+		private NucleoidItemViewModel _selectedNucleoid;
+		public NucleoidItemViewModel SelectedNucleoid
+		{
+			get
+			{
+				return _selectedNucleoid;
+			}
+
+			set
+			{
+				_selectedNucleoid = value;
+				StartSimulationAsync();
+			}
+		}
 
 		public Visibility AdvancedDifficulty => (Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
 
@@ -241,9 +254,29 @@ namespace Physics.RadiationHalflife.ViewModels
 			{
 				_selectedVariant = value;
 				//Set new simulation GIF
+				if (value == 4)
+				{
+					StartSimulationAsync();
+				}
 			}
 		}
 
 		public Visibility LawOfRadioactiveDecaySelection => (SelectedVariant == 4) ? Visibility.Visible : Visibility.Collapsed;
+
+		public Visibility ParticleInputVisibility => (SelectedVariant == 4 && Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
+		private int _particlesCount = 100;
+		public int ParticlesCount
+		{
+			get
+			{
+				return _particlesCount;
+			}
+
+			set
+			{
+				_particlesCount = value;
+				StartSimulationAsync();
+			}
+		}
 	}
 }

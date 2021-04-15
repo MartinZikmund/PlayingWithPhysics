@@ -15,178 +15,185 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Light"
     mc:Ignorable="d">
-	<Page.Transitions>
-		<TransitionCollection>
-			<NavigationThemeTransition>
-				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-					<DrillInNavigationTransitionInfo />
-				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-			</NavigationThemeTransition>
-		</TransitionCollection>
-	</Page.Transitions>
-	<Page.Resources>
-		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
-		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
-		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
-		<Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
-			<Setter Property="FontSize" Value="18" />
-			<Setter Property="Margin" Value="0,0,0,2" />
-		</Style>
-		<Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
-			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-		</Style>
-	</Page.Resources>
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="320" />
-			<ColumnDefinition Width="3*" />
-		</Grid.ColumnDefinitions>
-		<Grid x:Name="MenuPane" Grid.Column="0">
-			<Grid.Background>
-				<AcrylicBrush
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0,0,0,2" />
+        </Style>
+        <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="MenuPane" Grid.Column="0">
+            <Grid.Background>
+                <AcrylicBrush
                     BackgroundSource="HostBackdrop"
                     FallbackColor="{ThemeResource AppThemeColor}"
                     TintColor="{ThemeResource AppThemeColor}"
                     TintOpacity="0.85" />
-			</Grid.Background>
-			<Windows10version1903:Grid.Shadow>
-				<ThemeShadow />
-			</Windows10version1903:Grid.Shadow>
-			<Border Grid.Row="1">
-				<ScrollViewer Padding="12" VerticalScrollBarVisibility="Auto">
-					<StackPanel Grid.Column="0" Orientation="Vertical">
-						<StackPanel.ChildrenTransitions>
-							<TransitionCollection>
-								<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-							</TransitionCollection>
-						</StackPanel.ChildrenTransitions>
-						<Grid RowSpacing="8">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
-							<Grid.Resources>
-								<DataTemplate x:Key="NucleoidListItemTemplate" x:DataType="viewModels:NucleoidItemViewModel">
-									<Grid>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*" />
-											<ColumnDefinition Width="0.5*" />
-											<ColumnDefinition Width="*" />
-										</Grid.ColumnDefinitions>
-										<TextBlock
+            </Grid.Background>
+            <Windows10version1903:Grid.Shadow>
+                <ThemeShadow />
+            </Windows10version1903:Grid.Shadow>
+            <Border Grid.Row="1">
+                <ScrollViewer Padding="12" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Grid.Column="0" Orientation="Vertical">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                        <Grid RowSpacing="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.Resources>
+                                <DataTemplate x:Key="NucleoidListItemTemplate" x:DataType="viewModels:NucleoidItemViewModel">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
                                             Grid.Column="0"
                                             HorizontalAlignment="Center"
                                             Text="{Binding Name}" />
-										<Image
+                                        <Image
                                             Grid.Column="1"
                                             Height="32"
                                             HorizontalAlignment="Center"
                                             Source="{Binding ChemicalNotionImage}" />
-										<TextBlock
+                                        <TextBlock
                                             Grid.Column="2"
                                             HorizontalAlignment="Center"
                                             Text="{Binding LocalizedHalflife}" />
-									</Grid>
-								</DataTemplate>
-							</Grid.Resources>
+                                    </Grid>
+                                </DataTemplate>
+                            </Grid.Resources>
 
-							<sharedControls:SkewedMenuHeader
+                            <sharedControls:SkewedMenuHeader
                                 Grid.Row="0"
                                 GoBackCommand="{x:Bind Model.GoBackCommand}"
                                 Text="{extensions:Localize Key=ShortAppName}" />
 
-							<TextBlock
+                            <TextBlock
                                 Grid.Row="1"
                                 Style="{StaticResource SubtitleTextBlockStyle}"
                                 Text="{extensions:Localize Key=ChooseVariantTitle}" />
-							<!--<Button Click="Button_Click" Content="Toggle"></Button>-->
+                            <!--<Button Click="Button_Click" Content="Toggle"></Button>-->
 
-							<controls:RadioButtons
+                            <controls:RadioButtons
                                 x:Name="VariantsGroup"
                                 Grid.Row="2"
                                 SelectedIndex="{x:Bind Model.SelectedVariant, Mode=TwoWay}"
                                 SelectionChanged="VariantsGroup_SelectionChanged">
-								<RadioButton Content="{extensions:Localize Key=AlphaDecay}" />
-								<RadioButton Content="{extensions:Localize Key=BetaPositiveDecay}" />
-								<RadioButton Content="{extensions:Localize Key=BetaNegativeDecay}" />
-								<RadioButton Content="{extensions:Localize Key=GammaDecay}" />
-								<RadioButton Content="{extensions:Localize Key=LawOfRadioactiveDecay}" />
-								<RadioButton Content="{extensions:Localize Key=BeamActivity}" Visibility="{x:Bind Model.AdvancedDifficulty, Mode=OneTime}" />
-							</controls:RadioButtons>
+                                <RadioButton Content="{extensions:Localize Key=AlphaDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=BetaPositiveDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=BetaNegativeDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=GammaDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=LawOfRadioactiveDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=BeamActivity}" Visibility="{x:Bind Model.AdvancedDifficulty, Mode=OneTime}" />
+                            </controls:RadioButtons>
+                            <controls:NumberBox
+                                Grid.Row="3"
+                                HorizontalAlignment="Left"
+                                Header="Number of particles:"
+                                Maximum="300"
+                                Minimum="10"
+                                SpinButtonPlacementMode="Inline"
+                                Visibility="{x:Bind Model.ParticleInputVisibility, Mode=OneWay}"
+                                Value="{x:Bind Model.ParticlesCount, Mode=TwoWay}" />
 
-							<!--  Table with nucleoids  -->
-							<Grid Grid.Row="3" Visibility="{x:Bind Model.LawOfRadioactiveDecaySelection, Mode=OneWay}">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*" />
-									<ColumnDefinition Width="0.5*" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<TextBlock
+                            <!--  Table with nucleoids  -->
+                            <Grid Grid.Row="4" Visibility="{x:Bind Model.LawOfRadioactiveDecaySelection, Mode=OneWay}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
                                     Grid.Column="0"
                                     HorizontalAlignment="Center"
                                     FontSize="14"
                                     FontWeight="SemiBold"
                                     Text="Nucleoid" />
-								<TextBlock
+                                <TextBlock
                                     Grid.Column="2"
                                     HorizontalAlignment="Center"
                                     FontSize="14"
                                     FontWeight="SemiBold"
                                     Text="Halflife [T]" />
-							</Grid>
-							<ListView
-                                Grid.Row="4"
+                            </Grid>
+                            <ListView
+                                Grid.Row="5"
                                 ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
                                 ItemTemplate="{StaticResource NucleoidListItemTemplate}"
                                 ItemsSource="{x:Bind Model.Nucleoids, Mode=OneTime}"
                                 SelectedItem="{x:Bind Model.SelectedNucleoid, Mode=TwoWay}"
                                 Visibility="{x:Bind Model.LawOfRadioactiveDecaySelection, Mode=OneWay}" />
-						</Grid>
-					</StackPanel>
-				</ScrollViewer>
-			</Border>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
 
-		</Grid>
-		<Grid
+        </Grid>
+        <Grid
             x:Name="SecondPane"
             Grid.Column="1"
             Padding="0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
-			<Grid
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid
                 x:Name="CanvasHolder"
                 Background="#FFFFFF"
-                Visibility="{x:Bind Model.CanvasVisibility}" />
-			<Border
-                Background="#FFFFFF"
-				Visibility="{x:Bind Model.AnimationPanelVisibility}">
-				<Image x:Name="GifCanvas" />
-			</Border>
-			<InkCanvas x:Name="InkCanvas" />
-			<InkToolbar
+                Visibility="{x:Bind Model.CanvasVisibility, Mode=OneWay}" />
+            <Border Background="#FFFFFF" Visibility="{x:Bind Model.AnimationPanelVisibility, Mode=OneWay}">
+                <Image x:Name="GifCanvas" />
+            </Border>
+            <InkCanvas x:Name="InkCanvas" />
+            <InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-			<Button
+            <Button
                 Grid.Row="1"
                 Width="48"
                 Height="48"
-				Margin="8"
+                Margin="8"
                 HorizontalAlignment="Center"
                 Windows10version1809:CornerRadius="24"
                 Click="Button_Click"
                 Visibility="{x:Bind Model.AnimationPanelVisibility}">
-				<FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE72C;" />
-			</Button>
-			<sharedControls:SimulationControls
+                <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE72C;" />
+            </Button>
+            <sharedControls:SimulationControls
                 Grid.Row="1"
                 d:Visibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
@@ -200,13 +207,13 @@
                 RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
                 Visibility="{x:Bind Model.CanvasVisibility}">
-				<sharedControls:SimulationControls.Background>
-					<AcrylicBrush
+                <sharedControls:SimulationControls.Background>
+                    <AcrylicBrush
                         BackgroundSource="Backdrop"
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
-				</sharedControls:SimulationControls.Background>
-			</sharedControls:SimulationControls>
-		</Grid>
-	</Grid>
+                </sharedControls:SimulationControls.Background>
+            </sharedControls:SimulationControls>
+        </Grid>
+    </Grid>
 </local:MainViewBase>

@@ -5,16 +5,16 @@
     xmlns:local="using:Physics.RadiationHalflife"
     xmlns:resources="using:Physics.SelfStudy.Resources"
     RequestedTheme="Light">
-	<Application.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
-				<resources:SelfStudyResources />
-			</ResourceDictionary.MergedDictionaries>
-			<Color x:Key="AppThemeColor">#edb901</Color>
-			<Color x:Key="AppTitleBarColor">#edb901</Color>
-			<Color x:Key="DarkAppThemeColor">#155f8f</Color>
-		</ResourceDictionary>
-	</Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
+                <resources:SelfStudyResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="AppThemeColor">#edb901</Color>
+            <Color x:Key="AppTitleBarColor">#edb901</Color>
+            <Color x:Key="DarkAppThemeColor">#155f8f</Color>
+        </ResourceDictionary>
+    </Application.Resources>
 </local:PhysicsApp>
