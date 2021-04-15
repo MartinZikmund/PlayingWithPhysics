@@ -9,6 +9,9 @@ namespace Physics.ElectricParticle.Rendering
 {
 	public class ElectricParticleCanvasController : SkiaCanvasController
 	{
+		private const string PlusSign = "+";
+		private const string MinusSign = "−";
+
 		private ElectricParticleSimulationSetup _setup;
 		private PhysicsService _service;
 
@@ -32,6 +35,22 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			Color = SKColors.Black,
 			IsStroke = false,
+			IsAntialias = true
+		};
+
+		private readonly SKPaint _particleText = new SKPaint()
+		{
+			Color = SKColors.White,
+			TextSize = 30,
+			TextAlign = SKTextAlign.Center,			
+			IsAntialias = true
+		};
+
+		private readonly SKPaint _planeText = new SKPaint()
+		{
+			Color = SKColors.Black,
+			TextSize = 30,
+			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
 		};
 
@@ -114,7 +133,11 @@ namespace Physics.ElectricParticle.Rendering
 			var zeroX = _canvas.ScaledSize.Width / 2;
 			var zeroY = _canvas.ScaledSize.Height / 2;
 
-			args.Canvas.DrawCircle(new SKPoint(zeroX + x * _unitToPixel, zeroY - y * _unitToPixel), 5, _particlePaint);
+			var particleCenter = new SKPoint(zeroX + x * _unitToPixel, zeroY - y * _unitToPixel);
+			var textMeasure = _particleText.MeasureText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign);			
+			args.Canvas.DrawCircle(particleCenter, 14, _particlePaint);
+			particleCenter.Y = particleCenter.Y + textMeasure / 2;
+			args.Canvas.DrawText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign, particleCenter, _particleText);
 		}
 
 		private void DrawVerticalPlanes(ISkiaCanvas sender, SKSurface args)
@@ -134,11 +157,16 @@ namespace Physics.ElectricParticle.Rendering
 				new SKPoint(leftPlaneX, planeTop),
 				new SKPoint(leftPlaneX, planeBottom),
 				_planePaint);
+			var leftPlaneSignMeasure = _particleText.MeasureText(_setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign);
+
+			args.Canvas.DrawText(_setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign, leftPlaneX + 20, planeTop, _planeText);
 
 			args.Canvas.DrawLine(
 				new SKPoint(rightPlaneX, planeTop),
 				new SKPoint(rightPlaneX, planeBottom),
 				_planePaint);
+
+			args.Canvas.DrawText(PlusSign, rightPlaneX - 20, planeTop, _planeText);
 		}
 
 		private void DrawHorizontalPlanes(ISkiaCanvas sender, SKSurface args)
@@ -159,10 +187,14 @@ namespace Physics.ElectricParticle.Rendering
 				new SKPoint(planeRight, topPlaneY),
 				_planePaint);
 
+			args.Canvas.DrawText(_setup.HorizontalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign, planeLeft, topPlaneY - 20, _planeText);
+
 			args.Canvas.DrawLine(
 				new SKPoint(planeLeft, bottomPlaneY),
 				new SKPoint(planeRight, bottomPlaneY),
 				_planePaint);
-		}		
+
+			args.Canvas.DrawText(PlusSign, planeLeft, bottomPlaneY + 20, _planeText);
+		}
 	}
 }

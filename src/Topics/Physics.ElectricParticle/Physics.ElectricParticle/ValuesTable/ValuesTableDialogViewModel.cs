@@ -17,14 +17,21 @@ namespace Physics.ElectricParticle.ValuesTable
         public ValuesTableDialogViewModel(ITableService<TableRow> tableService)
             : base(tableService)
         {
-			// _type = movementType;
+			if (tableService is TableService table)
+			{
+				table.ViewModel = this;
+			}
         }
 
-        internal void Reset(TableService tableService)
+		public int Steps { get; set; } = 50;
+
+		public void OnStepsChanged() => UpdateTable();
+
+		internal void Reset(TableService tableService)
         {
             _tableService = tableService;
-            //_type = type;
-            UpdateTable();
+			//_type = type;
+			UpdateTable();
         }
 
         public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)

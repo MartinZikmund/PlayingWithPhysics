@@ -4,8 +4,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.ElectricParticle.ValuesTable;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,10 +30,19 @@ namespace Physics.ElectricParticle.Views
         {
             this.InitializeComponent();
         }
-        public void Initialize(INotifyPropertyChanged viewModel)
-        {
-            DataContext = viewModel;
-        }
 
-    }
+		public void Initialize(ValuesTableDialogViewModel viewModel)
+		{
+			Model = viewModel;
+			DataContext = Model;
+		}
+
+		public ValuesTableDialogViewModel Model { get; set; }
+
+		private void ValuesTable_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+		{
+			e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+			Model?.AdjustColumnHeaders(e);
+		}
+	}
 }

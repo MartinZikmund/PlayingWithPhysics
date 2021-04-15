@@ -1,5 +1,8 @@
 trigger:
   none
+
+pr:
+  none
   
 pool:
   vmImage: 'windows-latest'
@@ -16,8 +19,12 @@ variables:
   value: 'Release'
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
-- name: 'customBuildNumber'
-  value: '0.5.0.0'
+- name: 'major'
+  value: '0'
+- name: 'minor'
+  value: '9'
+
+name: $(major).$(minor).$(rev:r).0
 
 steps:
 
@@ -53,7 +60,7 @@ steps:
 - task: VersionAPPX@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(customBuildNumber)'
+    VersionNumber: '$(Build.BuildNumber)'
     InjectVersion: true
     OutputVersion: 'OutputedVersion'
 

@@ -295,6 +295,9 @@ Graphics: Petr Weinlich</value>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Particle speed at origin is</value>
   </data>
+  <data name="Steps" xml:space="preserve">
+    <value>Steps</value>
+  </data>
   <data name="VelocityDirection_VerticallyDown" xml:space="preserve">
     <value>vertically down</value>
   </data>

@@ -8,8 +8,8 @@
 			{
 				InputVariant = InputVariant.EasyVerticalNoGravity,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5, 5),
-				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power),				
+				Q = FieldConfiguration.CreateRestricted(1, 5, step: 1),
+				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power),
 			},
 			new VariantConfiguration()
 			{
@@ -17,6 +17,7 @@
 				ParticleType = ParticleType.AtomNucleus,
 				Q = FieldConfiguration.CreateRestricted(1, 150),
 				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nucleus),
+				U = FieldConfiguration.CreateRestricted(5, 100, step: 5),
 				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
@@ -25,13 +26,15 @@
 				ParticleType = ParticleType.Electron,
 				Q = FieldConfiguration.CreateInvisible(),
 				M = FieldConfiguration.CreateInvisible(),
+				U = FieldConfiguration.CreateRestricted(5, 100, step: 5),
+				V0 = FieldConfiguration.CreateRestricted(10000, 1000000, step: 10000),
 				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.EasyHorizontalNoGravity,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5,5),
+				Q = FieldConfiguration.CreateRestricted(1, 5, step: 1),
 				M = FieldConfiguration.CreateRestricted(1,10000, (int)WeightDescriptionType.TenToMinus17Power)
 			},
 			new VariantConfiguration()
@@ -40,6 +43,7 @@
 				ParticleType = ParticleType.AtomNucleus,
 				Q = FieldConfiguration.CreateRestricted(1, 150),
 				M = FieldConfiguration.CreateRestricted(1, 300, (int)WeightDescriptionType.Nucleus),
+				U = FieldConfiguration.CreateRestricted(5, 100, step: 5),
 				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
@@ -48,13 +52,15 @@
 				ParticleType = ParticleType.Electron,
 				Q = FieldConfiguration.CreateInvisible(),
 				M = FieldConfiguration.CreateInvisible(),
+				U = FieldConfiguration.CreateRestricted(5, 100, step: 5),
+				V0 = FieldConfiguration.CreateRestricted(10000, 1000000, step: 10000),
 				ParticlePolarity = FieldConfiguration.CreateInvisible()
 			},
 			new VariantConfiguration()
 			{
 				InputVariant = InputVariant.EasyHorizontalWithGravity,
 				ParticleType = ParticleType.ChargedBody,
-				Q = FieldConfiguration.CreateRestricted(-5,5),
+				Q = FieldConfiguration.CreateRestricted(1, 5, step: 1),
 				M = FieldConfiguration.CreateRestricted(1, 10000, (int)WeightDescriptionType.TenToMinus17Power)
 			},
 			new VariantConfiguration()

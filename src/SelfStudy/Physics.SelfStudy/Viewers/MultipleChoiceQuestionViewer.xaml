@@ -7,8 +7,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:Physics.Shared.Extensions"
     xmlns:html="using:Physics.SelfStudy.Html"
+    xmlns:latex="using:Physics.SelfStudy.LaTeX"
     xmlns:local="using:Physics.SelfStudy.Viewers"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:latex="using:Physics.SelfStudy.LaTeX"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="300"
     d:DesignWidth="400"
     RequestedTheme="Light"
@@ -625,14 +626,16 @@
             Spacing="8"
             Visibility="{x:Bind Model.ShowAnswer, Mode=OneWay}">
             <animations:Implicit.ShowAnimations>
-                <animations:TranslationAnimation
-                    From="0, 10, 0"
-                    To="0, 0, 0"
-                    Duration="0:0:0.3" />
-                <animations:OpacityAnimation
-                    From="0"
-                    To="1.0"
-                    Duration="0:0:0.3" />
+                <animations:ImplicitAnimationSet>
+                    <animations:TranslationAnimation
+                        From="0, 10, 0"
+                        To="0, 0, 0"
+                        Duration="0:0:0.3" />
+                    <animations:OpacityAnimation
+                        From="0.0"
+                        To="1.0"
+                        Duration="0:0:0.3" />
+                </animations:ImplicitAnimationSet>
             </animations:Implicit.ShowAnimations>
             <TextBlock
                 HorizontalAlignment="Center"

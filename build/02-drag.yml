@@ -11,7 +11,7 @@ variables:
 - name: 'solution'
   value: '**/*.sln'
 - name: project
-  value: 'src/Topics/Physics.LissajousCurves/Physics.LissajousCurves.csproj'
+  value: 'src/Topics/Physics.DragMovement/Physics.DragMovement.csproj'
 - name: buildPlatform
   value: 'x86|x64|ARM|ARM64'
 - name: buildConfiguration
@@ -21,7 +21,7 @@ variables:
 - name: 'major'
   value: '1'
 - name: 'minor'
-  value: '2'
+  value: '3'
 
 name: $(major).$(minor).$(rev:r).0
 

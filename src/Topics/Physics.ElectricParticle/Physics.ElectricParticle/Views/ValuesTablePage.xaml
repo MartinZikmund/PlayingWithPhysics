@@ -6,9 +6,42 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+	xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+	<Grid Padding="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<toolkit:DataGrid
+            x:Name="ValuesTable"
+            Padding="12"
+            AutoGenerateColumns="True"
+            AutoGeneratingColumn="ValuesTable_AutoGeneratingColumn"
+            ColumnHeaderStyle="{StaticResource ValuesTableColumnHeaderStyle}"
+            FrozenColumnCount="1"
+            IsReadOnly="True"
+            ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
+		<controls:NumberBox
+            x:Name="StepsNumberBox"
+            Grid.Row="2"
+			Header="{extensions:Localize Key=Steps}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Minimum="10"
+			Maximum="1000"
+            SmallChange="1"
+            SpinButtonPlacementMode="Inline"
+            Value="{x:Bind Model.Steps, Mode=TwoWay}" />
+		<StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            Spacing="4">
+			<Button VerticalAlignment="Bottom" Click="{x:Bind Model.CopyToClipboard}" Content="{extensions:Localize Key=CopyToClipboard}" />
+		</StackPanel>
+	</Grid>
 </Page>

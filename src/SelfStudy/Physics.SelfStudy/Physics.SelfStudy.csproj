@@ -188,18 +188,15 @@
       <Version>0.5.0-beta</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.4.0</Version>
+      <Version>6.5.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.PlatformSpecificAnalyzer">
-      <Version>7.0.0-preview2</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
-      <Version>7.0.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.5.0</Version>
@@ -214,7 +211,7 @@
       <Version>3.3.3</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI">
-      <Version>13.2.2</Version>
+      <Version>13.2.18</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
       <Version>2.80.2</Version>

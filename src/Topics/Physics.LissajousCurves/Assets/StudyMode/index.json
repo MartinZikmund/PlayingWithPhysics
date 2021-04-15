@@ -1,0 +1,141 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par \\textit{Muž vystoupil na židli a zpocenými, nervózními dlaněmi uvázal konec lana k háku trčícímu ze stropu. Zkusmo za lano zatahal. Pevné je dost, určitě udrží i sto kilogramů.\\\\\r\r\\par Seskočil ze židle. Došel k pracovnímu stolu a upil ze šálku studenou kávu.\\\\\r\r\\par Dlouho se díval na velkou plachtu pokrývající podlahu pod hákem. Rozměry jsou dostatečné. Ani kapka nedopadne na podlahu.\\\\\r\r\\par Snažil se na nic nemyslet. Přemýšlení už bylo dost, teď nastal čas činů.\\\\\r\r\\par Zhluboka se nadechl.\\\\\r\r\\par Zvedl kyblík s barvou a zavěsil ho na lano visící ze stropu. Několika energickými pohyby udělal šroubovákem do dna otvory, kterými ihned začala vytékat barva na zem. Pustil lano. To spolu s nádobou, ze které tryskala na všechny strany barva, začalo opisovat nad plátnem složité křivky, jak se kývalo ze strany na stranu, dopředu a dozadu. Barva zanechávala na plátně stopu. Kapky se odrážely, tříštily a dopadaly zpět na plátno.\\\\\r\r\\par Po nějaké době muž lano zachytil a barvu uklidil.\\\\\r\r\\par Zase se dlouze zahleděl na plátno.\\\\\r\r\\par Vzal do ruky štětec a přimaloval na obraz ohnivě červenou skvrnu.}\\\\\r\r\\par Skládáním dvou navzájem kolmých harmonických kmitání mohou vzniknout oku lahodící obrazce. Umělci je neustále vytváří rozličnými metodami. Poprvé je však veřejnosti ukázal francouzský matematik a fyzik Jules-Antoinne Lissajous v roce 1867, kdy pomocí dvou zrcadel bavil návštěvníky Světové výstavy v Paříži.\\\\\r\r\\par Lissajousovy obrazce jsou rovinné křivky, které vznikají skládáním dvou navzájem kolmých harmonických kmitavých pohybů. Tvar křivek je určen poměrem úhlových frekvencí, amplitud a velikostí počáteční fáze.\\\\\r\r\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Skládání kolmých kmitů",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Lissajousovy obrazce vznikají skládáním dvou navzájem kolmých harmonických kmitavých pohybů.\\\\ ",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaké kmitání nazveme harmonické?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Hodnoty se pravidelně opakují.",
+          "Grafem závislosti okamžité výchylky na čase je sinusoida",
+          "Okamžitá výchylka je menší nebo rovna amplitudě.",
+          "Amplituda kmitání se s časem nezmenšuje."
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Jeden oscilátor necháme kmitat ve směru osy $x$ a druhý oscilátor ve směru $y$. První bude kmitat s nulovou počáteční fází, druhý s počáteční fází $φ$, což bude zároveň i fázový rozdíl mezi oběma kmity. Souřadnice bodu pak můžeme popsat rovnicemi$$x=A_1\\sin{ω_1t}$$ $$y=A_2\\sin{(ω_2t+φ)}$$kde $A_1$ a $A_2$ jsou amplitudy, $ω_1$ a $ω_2$ úhlové frekvence jednotlivých kmitání a $t$ čas.\\\\\r\r\\par Amplitudy určují oblast, do které bude obrazec vepsán. Lissajousovy obrazce budou vždy vepsány do obdélníku s délkami stran $2A_1$ a $2A_2$.\\\\\r\r\\par Pro výsledný obrazec nejsou důležité velikosti úhlových frekvencí, ale jejich poměr. Pokud je tento poměr racionální číslo, budou křivky uzavřené. Pokud ne, tak bod vykreslující křivku projde postupně všemi body v daném obdélníku.\\\\\r\r\\par Čas výslednou křivku neovlivňuje. Trajektorie se uzavře po uplynutí jedné periody složených kmitů. Ta je rovna nejmenšímu společnému násobku period obou kmitů. Fázový rozdíl naopak ovlivňuje tvar křivek velmi výrazně.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Obrázek č. 1 - Lissajousův obrazec pro poměr frekvencí 3 : 2 a počáteční fázi 60°.",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Tipněte si, jak bude vypadat Lissajousův obrazec pro stejné amplitudy, poměr frekvencí 1 : 1 a počáteční fázi 0°?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Vznikne kružnice",
+          "Vznikne elipsa",
+          "Vznikne úsečka",
+          "Vznikne úsečka"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Vyzkoušejte v naší aplikaci další kombinace amplitud, frekvencí i počátečních fází.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Lissajousovy obrazce vznikají skládáním dvou navzájem kolmých kmitání. Tvar křivek ovlivňují amplitudy, poměr frekvencí a fázový rozdíl obou kolmých kmitání.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Historie",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Nejstarší konstrukcí, která umožňovala vykreslování Lissajousových obrazců, bylo Blackburnovo kyvadlo.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Obrázek č. 2 - Blackburnovo kyvadlo\\\\\r\r\\par Toto kyvadlo můžeme považovat za dvě matematická kyvadla s délkami $l_1$ a $l_2$. Na konci závěsu je nádoba s pískem, ze které se sype písek a zaznamenává se tak trajektorie pohybu.\\\\\r\r\\par Skládáním dvou navzájem kolmých harmonických kmitů se v 19. století zabývali hlavně dva vědci. Americký matematik a fyzik Nathaniel Bowditch, který při studiu využíval Blackburnovo kyvadlo. Svoje poznatky publikoval již v roce 1815. Nezávisle na Bowditchovi se problémem zabýval i francouzský fyzik Jules-Antoinne Lissajous, který ke studiu využíval světelný paprsek a dvě zrcadla.\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Obrázek č. 3 – vykreslení Lissajousových obrazců světelným paprskem a ladičkami.\\\\\r\r\\par Na ladičkách byla umístěna zrcadla, která na stínítko vykreslovala Lissajousovy obrazce. Francouzský fyzik tak vlastně zkonstruoval první osciloskop, který sloužil ke studiu zvuku. Jules-Antoinne Lissajous svoji práci publikoval v roce 1857. O deset let později předváděl své experimenty na Světové výstavě v Paříži.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Využití",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Lissajousovy obrazce můžeme využít pro zjištění neznámé frekvence, a to nejenom v mechanice, ale i v elektromagnetismu či v optice. Praktické využití najdeme spíše v laboratořích, kde potřebujeme přesná měření. Pro běžné využití existují jednodušší a levnější metody.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Literatura",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par ***Skládání dvou kolmých kmitů :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 18.02.2021]. Dostupné z: http://fyzika.jreichl.com/main.article/view/180-skladani-dvou-kolmych-kmitu\\\\\r\r\\par Krčmář, M., Pauk, J.: Lissajousovy obrazce [online]. [cit. 18.02.2021]. Dostupné z: http://fyzsem.fjfi.cvut.cz/2008-2009/Zima08/proc/lissa.pdf\\\\\r\r\\par Skládání kolmých kmitů. [online]. [cit. 18.02.2021]. Dostupné z: http://artemis.osu.cz/MMi/Kmity/Kmitani/SlKm1.htm\\\\\r\r\\par Lissajous curve - Wikipedia. [online]. [cit. 18.02.2021]. Dostupné z: https://en.wikipedia.org/wiki/Lissajous\\_curve\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]
