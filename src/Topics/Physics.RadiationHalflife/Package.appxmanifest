@@ -8,10 +8,10 @@
 
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsRadiat"
-    Publisher="CN=danie"
-    Version="0.1.1.0" />
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
+    Version="0.1.2.0" />
 
-  <mp:PhoneIdentity PhoneProductId="fa76d142-0d98-4dd2-b79c-a812dcfaa26b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="5b2579d1-7142-46ea-9e78-5fe0ce27d1c8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Playing with Physics: Radioactive Decay</DisplayName>
