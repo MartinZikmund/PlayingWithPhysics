@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ExtendedNumerics;
 using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
@@ -85,6 +86,44 @@ namespace Physics.ElectricParticle.Logic
 				default:
 					throw new NotSupportedException("Not supported particle type");
 			}
+		}
+
+		public TrajectoryPoint[] ComputeTrajectory(int totalFrames)
+		{
+			var deltaT = ComputeDeltaT(totalFrames);
+			var points = new List<TrajectoryPoint>();
+			BigNumber time = 0;
+			var trajectoryEnded = false;
+			for (int i = 0; i < totalFrames && !trajectoryEnded; i++)
+			{
+				var x = (float)(double)ComputeX(time);
+				var y = (float)(double)ComputeY(time);
+
+				if (_setup.HorizontalPlane != null)
+				{
+					if (Math.Abs(y) > _setup.HorizontalPlane.Distance / 2)
+					{
+						var maxValue = _setup.HorizontalPlane.Distance / 2;
+						y = y < 0 ? -maxValue : maxValue;
+						trajectoryEnded = true;
+					}
+				}
+
+				if (_setup.VerticalPlane != null)
+				{
+					if (Math.Abs(x) > _setup.VerticalPlane.Distance / 2)
+					{
+						var maxValue = _setup.VerticalPlane.Distance / 2;
+						x = x < 0 ? -maxValue : maxValue;
+						trajectoryEnded = true;
+					}
+				}
+
+				points.Add(new TrajectoryPoint(x, y));
+				time += deltaT;
+			}
+
+			return points.ToArray();
 		}
 
 		public BigNumber ComputeX(BigNumber time)
@@ -198,7 +237,7 @@ namespace Physics.ElectricParticle.Logic
 		public BigNumber ComputeV(BigNumber time)
 		{
 			var vx = ComputeVx(time);
-			var vy = ComputeVy(time);			
+			var vy = ComputeVy(time);
 			if (vx.Mantisa == 0)
 			{
 				return vy;

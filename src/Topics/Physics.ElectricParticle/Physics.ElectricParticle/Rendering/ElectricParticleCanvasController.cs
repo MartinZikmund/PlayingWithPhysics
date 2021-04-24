@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.ElectricParticle.Logic;
 using Physics.Shared.Mathematics;
@@ -21,7 +22,7 @@ namespace Physics.ElectricParticle.Rendering
 		private float _pixelToUnit;
 
 		private int _simulationFrame;
-		private BigNumber _time;
+		private int _frame;
 		private BigNumber _deltaT;
 
 		private readonly SKPaint _planePaint = new SKPaint()
@@ -42,7 +43,7 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			Color = SKColors.White,
 			TextSize = 30,
-			TextAlign = SKTextAlign.Center,			
+			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
 		};
 
@@ -54,6 +55,16 @@ namespace Physics.ElectricParticle.Rendering
 			IsAntialias = true
 		};
 
+		private readonly SKPaint _trajectoryPaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			IsStroke = true,
+			StrokeWidth = 2,
+			IsAntialias = true
+		};
+
+		private TrajectoryPoint[] _trajectory;
+
 		public ElectricParticleCanvasController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
 		}
@@ -61,7 +72,7 @@ namespace Physics.ElectricParticle.Rendering
 		public void StartSimulation()
 		{
 			_simulationFrame = 0;
-			_time = 0;
+			_frame = 0;
 			SimulationTime.Restart();
 			Play();
 		}
@@ -87,15 +98,16 @@ namespace Physics.ElectricParticle.Rendering
 
 			var color = ColorHelper.ToColor(setup.Color);
 			_particlePaint.Color = new SKColor(color.R, color.G, color.B);
+			_trajectoryPaint.Color = new SKColor(color.R, color.G, color.B);
 			_service = new PhysicsService(_setup);
-			_deltaT = _service.ComputeDeltaT(600);
+			_trajectory = _service.ComputeTrajectory(600);
 		}
 
 		public override void Update(ISkiaCanvas sender)
 		{
 			var minDimension = Math.Min(sender.ScaledSize.Width, sender.ScaledSize.Height);
 			_pixelToUnit = _unitDimension / minDimension;
-			_unitToPixel = minDimension / _unitDimension;			
+			_unitToPixel = minDimension / _unitDimension;
 		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
@@ -107,9 +119,10 @@ namespace Physics.ElectricParticle.Rendering
 
 			DrawPlanes(sender, args);
 
+			DrawParticleTrajectory(sender, args);
 			DrawParticle(sender, args);
 
-			_time += _deltaT;
+			_frame++;
 		}
 
 		private void DrawPlanes(ISkiaCanvas sender, SKSurface args)
@@ -127,17 +140,42 @@ namespace Physics.ElectricParticle.Rendering
 
 		private void DrawParticle(ISkiaCanvas sender, SKSurface args)
 		{
-			var x = (float)(double)_service.ComputeX(_time);
-			var y = (float)(double)_service.ComputeY(_time);
+			var point = _trajectory[Math.Min(_trajectory.Length - 1, _frame)];
 
 			var zeroX = _canvas.ScaledSize.Width / 2;
 			var zeroY = _canvas.ScaledSize.Height / 2;
 
-			var particleCenter = new SKPoint(zeroX + x * _unitToPixel, zeroY - y * _unitToPixel);
-			var textMeasure = _particleText.MeasureText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign);			
+			var particleCenter = new SKPoint(zeroX + point.X * _unitToPixel, zeroY - point.Y * _unitToPixel);
+			var textMeasure = _particleText.MeasureText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign);
 			args.Canvas.DrawCircle(particleCenter, 14, _particlePaint);
 			particleCenter.Y = particleCenter.Y + textMeasure / 2;
 			args.Canvas.DrawText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign, particleCenter, _particleText);
+		}
+
+		private void DrawParticleTrajectory(ISkiaCanvas sender, SKSurface args)
+		{
+			if (_trajectory.Length == 0)
+			{
+				return;
+			}
+
+			using var path = new SKPath();
+
+			var zeroX = _canvas.ScaledSize.Width / 2;
+			var zeroY = _canvas.ScaledSize.Height / 2;
+
+			var startPoint = new SKPoint(zeroX + _trajectory[0].X * _unitToPixel, zeroY - _trajectory[0].Y * _unitToPixel);
+			path.MoveTo(startPoint);
+
+			for (int i = 0; i < Math.Min(_frame + 1, _trajectory.Length); i++)
+			{
+				var point = _trajectory[Math.Min(_trajectory.Length - 1, _frame)];
+								
+				var particleCenter = new SKPoint(zeroX + point.X * _unitToPixel, zeroY - point.Y * _unitToPixel);
+				path.LineTo(particleCenter);
+			}
+
+			args.Canvas.DrawPath(path, _trajectoryPaint);
 		}
 
 		private void DrawVerticalPlanes(ISkiaCanvas sender, SKSurface args)
