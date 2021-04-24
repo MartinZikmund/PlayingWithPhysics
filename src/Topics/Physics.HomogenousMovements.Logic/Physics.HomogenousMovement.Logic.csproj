@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="7.1.2" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.3" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility"  />
+    <PackageReference Include="PropertyChanged.Fody" />
+    <PackageReference Include="System.Numerics.Vectors" />
   </ItemGroup>
 
   <ItemGroup>

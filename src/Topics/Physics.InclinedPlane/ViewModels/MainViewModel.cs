@@ -27,7 +27,6 @@ namespace Physics.InclinedPlane.ViewModels
 {
 	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>, IReceiveController<InclinedPlaneSkiaController>
     {
-        private ISimulationViewInteraction<InclinedPlaneSkiaController> _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
         private InclinedPlaneSkiaController _controller;
@@ -45,10 +44,17 @@ namespace Physics.InclinedPlane.ViewModels
             _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
-        public void SetViewInteraction(ISimulationViewInteraction<InclinedPlaneSkiaController> interaction)
-        {
-            _interaction = interaction;
-        }
+
+		public void SetController(InclinedPlaneSkiaController controller)
+		{
+			if (controller is null)
+			{
+				throw new ArgumentNullException(nameof(controller));
+			}
+
+			_controller = controller;
+			SimulationPlayback.SetController(_controller);
+		}
 
         public ICommand AddTrajectoryCommand => GetOrCreateAsyncCommand(async () =>
         {
@@ -64,9 +70,6 @@ namespace Physics.InclinedPlane.ViewModels
 
         protected virtual void RestartSimulation()
         {
-            if (_interaction == null) return;
-            _controller = _interaction.PrepareController();
-            SimulationPlayback.SetController(_controller);
             _controller.StartSimulation(Motion.MotionInfo);
             _timer.Start();
         }
@@ -193,5 +196,5 @@ namespace Physics.InclinedPlane.ViewModels
             base.ViewDestroy(viewFinishing);
             _timer.Stop();
         }
-    }
+	}
 }

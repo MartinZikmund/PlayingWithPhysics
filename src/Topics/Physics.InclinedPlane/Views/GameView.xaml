@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<local:GameViewBase
     x:Class="Physics.InclinedPlane.Views.GameView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -128,4 +128,4 @@
             </sharedControls:SimulationControls>-->
         </Grid>
     </Grid>
-</views:BaseView>
+</local:GameViewBase>
