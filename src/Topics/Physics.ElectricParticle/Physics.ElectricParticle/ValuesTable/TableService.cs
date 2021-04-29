@@ -28,13 +28,13 @@ namespace Physics.ElectricParticle.ValuesTable
 				BigNumber t = _physicsService.ComputeX(time);
 				BigNumber x = _physicsService.ComputeX(time);
 				BigNumber y = _physicsService.ComputeY(time);
-				BigNumber v = _physicsService.ComputeY(time);
-				BigNumber vx = _physicsService.ComputeY(time);
-				BigNumber vy = _physicsService.ComputeY(time);
-				BigNumber a = _physicsService.ComputeY(time);
-				BigNumber ek = _physicsService.ComputeY(time);
-				BigNumber ep = _physicsService.ComputeY(time);
-				BigNumber e = _physicsService.ComputeY(time);
+				BigNumber v = _physicsService.ComputeV(time);
+				BigNumber vx = _physicsService.ComputeVx(time);
+				BigNumber vy = _physicsService.ComputeVy(time);
+				BigNumber a = _physicsService.ComputeA();
+				BigNumber ek = _physicsService.ComputeEk(time);
+				BigNumber ep = _physicsService.ComputeEp(time);
+				BigNumber e = _physicsService.ComputeE(time);
 
 				var valuesRow = new TableRow(t, x, y, v, vx, vy, a, ep, ek, e);
 

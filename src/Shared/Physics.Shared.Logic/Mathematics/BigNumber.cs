@@ -124,7 +124,16 @@ namespace Physics.Shared.Mathematics
 			{
 				return "0";
 			}
-			return $"{normalized.Mantisa.ToString("0.000")}.10^{normalized.Exponent}";
+
+			var exponent = normalized.Exponent;
+			var rounded = Math.Round(normalized.Mantisa, 3);
+			if (rounded >= 10 || rounded <= -10)
+			{
+				rounded /= 10;
+				exponent++;
+			}
+
+			return $"{rounded.ToString("0.000")}.10^{exponent}";
 		}
 
 		public string ToString(string formatString)
