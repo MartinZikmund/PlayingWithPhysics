@@ -28,6 +28,16 @@ namespace Physics.ElectricParticle.ViewModels
 
 		public MainViewModel()
 		{
+			_timer.Interval = TimeSpan.FromMilliseconds(10);
+			_timer.Tick += _timer_Tick;
+		}
+
+		private void _timer_Tick(object sender, object e)
+		{
+			if (Motion != null)
+			{
+				Motion.UpdateCurrentValues(_controller.SimulationTime.UpdateCount);
+			}
 		}
 
 		public Visibility RadiationVisibility { get; set; }

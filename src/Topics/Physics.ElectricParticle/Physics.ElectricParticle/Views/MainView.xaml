@@ -36,262 +36,244 @@
 			<Setter Property="Margin" Value="0,0,0,2" />
 		</Style>
 	</Page.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="320" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
-        <Grid
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="320" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid
             x:Name="MenuPane"
             Grid.Column="0"
             RequestedTheme="Dark">
-            <Grid.Background>
-                <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
-            </Grid.Background>
-            <Windows10version1903:Grid.Shadow>
-                <ThemeShadow />
-            </Windows10version1903:Grid.Shadow>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+			<Grid.Background>
+				<AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
+			</Grid.Background>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
 
-            <sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
+			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-            <Border Grid.Row="1" Margin="0,12,0,0">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid Padding="12,0,12,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-                                </TransitionCollection>
-                            </Grid.ChildrenTransitions>
-                            <TextBlock Grid.Row="0" Margin="0,0,0,12" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=PlaneOrientation_Header}" />
+			<Border Grid.Row="1" Margin="0,12,0,0">
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
+					<Grid Padding="12,0,12,0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ChildrenTransitions>
+								<TransitionCollection>
+									<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+								</TransitionCollection>
+							</Grid.ChildrenTransitions>
+							<TextBlock Grid.Row="0" Margin="0,0,0,12" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=PlaneOrientation_Header}" />
 
-                            <!--RadioButtons for easy variant-->
-                            <winui:RadioButtons Grid.Row="1" Visibility="{x:Bind Model.EasyDifficultyInputsVisibility}" MaxColumns="1" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
-                                <winui:RadioButtons.Transitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-                                    </TransitionCollection>
-                                </winui:RadioButtons.Transitions>
-                                <winui:RadioButtons.Resources>
-                                    <Style TargetType="RadioButton">
-                                        <Setter Property="Padding" Value="12,0,0,4" />
-                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    </Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="FontSize" Value="16" />
-                                        <Setter Property="TextWrapping" Value="WrapWholeWords"/>
-                                    </Style>
-                                </winui:RadioButtons.Resources>
+							<!--RadioButtons for easy variant-->
+							<winui:RadioButtons Grid.Row="1" Visibility="{x:Bind Model.EasyDifficultyInputsVisibility}" MaxColumns="1" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+								<winui:RadioButtons.Transitions>
+									<TransitionCollection>
+										<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+									</TransitionCollection>
+								</winui:RadioButtons.Transitions>
+								<winui:RadioButtons.Resources>
+									<Style TargetType="RadioButton">
+										<Setter Property="Padding" Value="12,0,0,4" />
+										<Setter Property="VerticalAlignment" Value="Center" />
+										<Setter Property="VerticalContentAlignment" Value="Center" />
+									</Style>
+									<Style TargetType="TextBlock">
+										<Setter Property="FontSize" Value="16" />
+										<Setter Property="TextWrapping" Value="WrapWholeWords"/>
+									</Style>
+								</winui:RadioButtons.Resources>
 
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_Vertical}" />
-                                    </RadioButton.Content>
-                                </RadioButton>
+								<RadioButton>
+									<RadioButton.Content>
+										<TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_Vertical}" />
+									</RadioButton.Content>
+								</RadioButton>
 
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_Horizontal}" />
-                                    </RadioButton.Content>
-                                </RadioButton>
+								<RadioButton>
+									<RadioButton.Content>
+										<TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_Horizontal}" />
+									</RadioButton.Content>
+								</RadioButton>
 
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_HorizontalWithGravity}" />
-                                    </RadioButton.Content>
-                                </RadioButton>
+								<RadioButton>
+									<RadioButton.Content>
+										<TextBlock Text="{extensions:Localize Key=PlaneOrientation_Easy_HorizontalWithGravity}" />
+									</RadioButton.Content>
+								</RadioButton>
 
 
-                            </winui:RadioButtons>
+							</winui:RadioButtons>
 
-                            <!--RadioButtons for advanced variant-->
-                            <winui:RadioButtons Grid.Row="2" Visibility="{x:Bind Model.AdvancedDifficultyInputsVisibility}" MaxColumns="1" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
-                                <winui:RadioButtons.Transitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-                                    </TransitionCollection>
-                                </winui:RadioButtons.Transitions>
-                                <winui:RadioButtons.Resources>
-                                    <Style TargetType="RadioButton">
-                                        <Setter Property="Padding" Value="12,0,0,4" />
-                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    </Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="FontSize" Value="16" />
-                                        <Setter Property="TextWrapping" Value="WrapWholeWords"/>
-                                    </Style>
-                                </winui:RadioButtons.Resources>
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Advanced_VerticalHorizontal}"/>
-                                    </RadioButton.Content>
-                                </RadioButton>
+							<!--RadioButtons for advanced variant-->
+							<winui:RadioButtons Grid.Row="2" Visibility="{x:Bind Model.AdvancedDifficultyInputsVisibility}" MaxColumns="1" SelectedIndex="{x:Bind Model.SelectedVariantIndex, Mode=TwoWay}">
+								<winui:RadioButtons.Transitions>
+									<TransitionCollection>
+										<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+									</TransitionCollection>
+								</winui:RadioButtons.Transitions>
+								<winui:RadioButtons.Resources>
+									<Style TargetType="RadioButton">
+										<Setter Property="Padding" Value="12,0,0,4" />
+										<Setter Property="VerticalAlignment" Value="Center" />
+										<Setter Property="VerticalContentAlignment" Value="Center" />
+									</Style>
+									<Style TargetType="TextBlock">
+										<Setter Property="FontSize" Value="16" />
+										<Setter Property="TextWrapping" Value="WrapWholeWords"/>
+									</Style>
+								</winui:RadioButtons.Resources>
+								<RadioButton>
+									<RadioButton.Content>
+										<TextBlock Text="{extensions:Localize Key=PlaneOrientation_Advanced_VerticalHorizontal}"/>
+									</RadioButton.Content>
+								</RadioButton>
 
-                                <RadioButton>
-                                    <RadioButton.Content>
-                                        <TextBlock Text="{extensions:Localize Key=PlaneOrientation_Advanced_VerticalWithGravity}" />
-                                    </RadioButton.Content>
-                                </RadioButton>
-                            </winui:RadioButtons>
+								<RadioButton>
+									<RadioButton.Content>
+										<TextBlock Text="{extensions:Localize Key=PlaneOrientation_Advanced_VerticalWithGravity}" />
+									</RadioButton.Content>
+								</RadioButton>
+							</winui:RadioButtons>
 
-                            <Button
+							<Button
                                 Grid.Row="3"
                                 Margin="0,8,0,0"
                                 HorizontalAlignment="Stretch"
                                 Command="{x:Bind Model.AddTrajectoryCommand}"
                                 Content="{extensions:Localize Key=SetParameters}" />
-                        </Grid>
-                        <StackPanel Margin="0,16,0,0" Grid.Row="1" Visibility="{x:Bind Model.ShowCurrentValues, Mode=OneWay}">
-                            <StackPanel.ChildrenTransitions>
-                                <TransitionCollection>
-                                    <EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
-                                </TransitionCollection>
-                            </StackPanel.ChildrenTransitions>
-                            <Grid Margin="4,0,4,0" Padding="8,4,4,6" Background="{x:Bind Model.Setup.Color, Mode=OneWay}">
-                                <TextBlock Margin="0,3,0,0" Foreground="#2B2B2B" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=CurrentValues}" />
-                                <Button
+						</Grid>
+						<StackPanel Margin="0,16,0,0" Grid.Row="1" Visibility="{x:Bind Model.ShowCurrentValues, Mode=OneWay}">
+							<StackPanel.ChildrenTransitions>
+								<TransitionCollection>
+									<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+								</TransitionCollection>
+							</StackPanel.ChildrenTransitions>
+							<Grid Margin="4,0,4,0" Padding="8,4,4,6" Background="{x:Bind Model.Setup.Color, Mode=OneWay}">
+								<TextBlock Margin="0,3,0,0" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=CurrentValues}" />
+								<Button
                                     HorizontalAlignment="Right"
                                     Command="{x:Bind Model.ShowValuesTableCommand}"
                                     Foreground="#303030">
-                                    <SymbolIcon Symbol="ViewAll" />
-                                </Button>
-                            </Grid>
-                            <Grid Margin="16,8,8,0">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.Resources>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="#303030"/>
-                                        </Style>
-                                    </Grid.Resources>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="t:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
-                                        <Run Text=" s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="v:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
-                                        <Run Text=" m/s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="x:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="y:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="s:" />
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
-                                        <Run Text=" m" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="Ft:" />
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.Ft, Mode=OneWay}" />
-                                        <Run Text=" N" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="Fp:" />
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.Fp, Mode=OneWay}" />
-                                        <Run Text=" N" />
-                                    </TextBlock>
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
-            </Border>
-        </Grid>
-        <Grid
+									<SymbolIcon Symbol="ViewAll" />
+								</Button>
+							</Grid>
+							<Grid Margin="16,8,8,0">
+								<Grid.Resources>
+									<Style TargetType="StackPanel">
+										<Setter Property="Spacing" Value="8" />
+									</Style>
+									<Style x:Key="LabelStyle" TargetType="TextBlock">
+										<Setter Property="FontWeight" Value="Bold" />
+									</Style>
+								</Grid.Resources>
+								<StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="0"
+											Grid.Column="2"
+											FontSize="16"
+											Text="v:" />
+										<TextBlock
+											Grid.Row="0"
+											Grid.Column="3"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
+											<Run Text=" m/s" />
+										</TextBlock>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="1"
+											Grid.Column="0"
+											FontSize="16"
+											Text="x:" />
+										<TextBlock
+											Grid.Row="1"
+											Grid.Column="1"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
+										</TextBlock>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="1"
+											Grid.Column="2"
+											FontSize="16"
+											Text="y:" />
+										<TextBlock
+											Grid.Row="1"
+											Grid.Column="3"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
+										</TextBlock>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="2"
+											Grid.Column="2"
+											FontSize="16"
+											Text="Ek:" />
+										<TextBlock
+											Grid.Row="2"
+											Grid.Column="3"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
+											<Run Text=" N" />
+										</TextBlock>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="3"
+											Grid.Column="0"
+											FontSize="16"
+											Text="Ep:" />
+										<TextBlock
+											Grid.Row="3"
+											Grid.Column="1"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
+											<Run Text=" N" />
+										</TextBlock>
+									</StackPanel>
+								</StackPanel>
+							</Grid>
+						</StackPanel>
+					</Grid>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+		<Grid
             x:Name="SecondPane"
             Grid.Column="1"
             Padding="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
-            <InkCanvas x:Name="InkCanvas" />
-            <InkToolbar
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
+			<InkCanvas x:Name="InkCanvas" />
+			<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -322,5 +304,5 @@
 				</sharedControls:SimulationControls.Background>
 			</sharedControls:SimulationControls>
 		</Grid>
-    </Grid>
+	</Grid>
 </local:MainViewBase>

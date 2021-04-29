@@ -120,17 +120,17 @@ namespace Physics.Shared.Mathematics
 		public override string ToString()
 		{
 			var normalized = Normalize();
-			if (normalized.Mantisa == 0)
-			{
-				return "0";
-			}
-
 			var exponent = normalized.Exponent;
 			var rounded = Math.Round(normalized.Mantisa, 3);
 			if (rounded >= 10 || rounded <= -10)
 			{
 				rounded /= 10;
 				exponent++;
+			}
+
+			if (rounded == 0)
+			{
+				return "0";
 			}
 
 			return $"{rounded.ToString("0.000")}.10^{exponent}";
