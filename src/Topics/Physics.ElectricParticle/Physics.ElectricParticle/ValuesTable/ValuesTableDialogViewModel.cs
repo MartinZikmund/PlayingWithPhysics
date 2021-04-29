@@ -2,13 +2,9 @@
 using Physics.Shared.UI.Services.ValuesTable;
 using Physics.Shared.UI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Xaml;
-using ExtendedNumerics;
+using Physics.Shared.Extensions;
 
 namespace Physics.ElectricParticle.ValuesTable
 {
@@ -36,52 +32,52 @@ namespace Physics.ElectricParticle.ValuesTable
 
         public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)
         {
-            if (eventArgs.Column.Header.ToString() == "Time")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("Time"))
             {
                 eventArgs.Column.Header = "t (s)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "X")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("X"))
             {
                 eventArgs.Column.Header = "x (m)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "Y")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("Y"))
             {
                 eventArgs.Column.Header = "y (m)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "V")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("Velocity"))
             {
                 eventArgs.Column.Header = "v (m/s)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "VX")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("VelocityX"))
             {
                 eventArgs.Column.Header = "vx (m/s)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "VY")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("VelocityY"))
             {
                 eventArgs.Column.Header = "vy (m/s)";
             }
 
-			if (eventArgs.Column.Header.ToString() == "A")
+			if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("Acceleration"))
 			{
 				eventArgs.Column.Header = "a (m/s^2)";
 			}
 
-            if (eventArgs.Column.Header.ToString() == "EP")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("EP"))
             {
                 eventArgs.Column.Header = "Ep (J)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "EK")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("EK"))
             {
                 eventArgs.Column.Header = "Ek (J)";
             }
 
-            if (eventArgs.Column.Header.ToString() == "E")
+            if (eventArgs.Column.Header.ToString().EqualsInvariantIgnoreCase("E"))
             {
                 eventArgs.Column.Header = "E (J)";
             }
