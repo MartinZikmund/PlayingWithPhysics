@@ -136,6 +136,13 @@ namespace Physics.ElectricParticle.ViewModels
 			SimulationPlayback.SetController(_controller);
 		}
 
+		public ICommand RestartCommand => GetOrCreateAsyncCommand(RestartAsync);
+
+		private async Task RestartAsync()
+		{
+			await StartSimulationAsync();
+		}
+
 		private async Task StartSimulationAsync()
 		{
 			if (_controller == null)

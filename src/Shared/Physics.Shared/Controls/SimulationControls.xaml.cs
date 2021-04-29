@@ -131,7 +131,34 @@ namespace Physics.Shared.UI.Controls
         public static readonly DependencyProperty JumpSizeProperty =
             DependencyProperty.Register(nameof(JumpSize), typeof(double), typeof(SimulationControls), new PropertyMetadata(0.5));
 
-        private void ToggleSpeedSlider()
+		public Visibility ForwardVisibility
+		{
+			get { return (Visibility)GetValue(ForwardVisibilityProperty); }
+			set { SetValue(ForwardVisibilityProperty, value); }
+		}
+
+		public static readonly DependencyProperty ForwardVisibilityProperty =
+			DependencyProperty.Register("ForwardVisibility", typeof(Visibility), typeof(SimulationControls), new PropertyMetadata(Visibility.Visible));
+
+		public Visibility BackwardVisibility
+		{
+			get { return (Visibility)GetValue(BackwardVisibilityProperty); }
+			set { SetValue(BackwardVisibilityProperty, value); }
+		}
+
+		public static readonly DependencyProperty BackwardVisibilityProperty =
+			DependencyProperty.Register("BackwardVisibility", typeof(Visibility), typeof(SimulationControls), new PropertyMetadata(Visibility.Visible));
+
+		public Visibility SpeedControlVisibility
+		{
+			get { return (Visibility)GetValue(SpeedControlVisibilityProperty); }
+			set { SetValue(SpeedControlVisibilityProperty, value); }
+		}
+
+		public static readonly DependencyProperty SpeedControlVisibilityProperty =
+			DependencyProperty.Register("SpeedControlVisibility", typeof(Visibility), typeof(SimulationControls), new PropertyMetadata(Visibility.Visible));
+
+		private void ToggleSpeedSlider()
         {
             if (SpeedSldr.Opacity == 0)
             {

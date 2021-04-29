@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.ElectricParticle.Logic;
 using Physics.Shared.Mathematics;
@@ -21,14 +20,21 @@ namespace Physics.ElectricParticle.Rendering
 		private float _unitToPixel;
 		private float _pixelToUnit;
 
-		private int _simulationFrame;
-		private int _frame;
 		private BigNumber _deltaT;
 
-		private readonly SKPaint _planePaint = new SKPaint()
+		private readonly SKPaint _minusPlanePaint = new SKPaint()
 		{
-			Color = SKColors.Black,
+			Color = new SKColor(173, 26, 0),
 			StrokeWidth = 5,
+			StrokeCap = SKStrokeCap.Round,
+			IsStroke = true
+		};
+
+		private readonly SKPaint _plusPlanePaint = new SKPaint()
+		{
+			Color = new SKColor(0, 75, 153),
+			StrokeWidth = 5,
+			StrokeCap = SKStrokeCap.Round,
 			IsStroke = true
 		};
 
@@ -42,14 +48,22 @@ namespace Physics.ElectricParticle.Rendering
 		private readonly SKPaint _particleText = new SKPaint()
 		{
 			Color = SKColors.White,
+			TextSize = 24,
+			TextAlign = SKTextAlign.Center,
+			IsAntialias = true
+		};
+
+		private readonly SKPaint _minusPlaneTextPaint = new SKPaint()
+		{
+			Color = new SKColor(173, 26, 0),
 			TextSize = 30,
 			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
 		};
 
-		private readonly SKPaint _planeText = new SKPaint()
+		private readonly SKPaint _plusPlaneTextPaint = new SKPaint()
 		{
-			Color = SKColors.Black,
+			Color = new SKColor(0, 75, 153),
 			TextSize = 30,
 			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
@@ -71,8 +85,6 @@ namespace Physics.ElectricParticle.Rendering
 
 		public void StartSimulation()
 		{
-			_simulationFrame = 0;
-			_frame = 0;
 			SimulationTime.Restart();
 			Play();
 		}
@@ -86,12 +98,12 @@ namespace Physics.ElectricParticle.Rendering
 
 			if (_setup.VerticalPlane != null)
 			{
-				unitXSize = _setup.VerticalPlane.Distance * 1.1f;
+				unitXSize = _setup.VerticalPlane.Distance * 1.2f;
 			}
 
 			if (_setup.HorizontalPlane != null)
 			{
-				unitYSize = _setup.HorizontalPlane.Distance * 1.1f;
+				unitYSize = _setup.HorizontalPlane.Distance * 1.2f;
 			}
 
 			_unitDimension = Math.Max(unitXSize, unitYSize);
@@ -121,8 +133,6 @@ namespace Physics.ElectricParticle.Rendering
 
 			DrawParticleTrajectory(sender, args);
 			DrawParticle(sender, args);
-
-			_frame++;
 		}
 
 		private void DrawPlanes(ISkiaCanvas sender, SKSurface args)
@@ -140,16 +150,17 @@ namespace Physics.ElectricParticle.Rendering
 
 		private void DrawParticle(ISkiaCanvas sender, SKSurface args)
 		{
-			var point = _trajectory[Math.Min(_trajectory.Length - 1, _frame)];
+			var point = _trajectory[Math.Min(_trajectory.Length - 1, SimulationTime.UpdateCount)];
 
 			var zeroX = _canvas.ScaledSize.Width / 2;
 			var zeroY = _canvas.ScaledSize.Height / 2;
 
 			var particleCenter = new SKPoint(zeroX + point.X * _unitToPixel, zeroY - point.Y * _unitToPixel);
-			var textMeasure = _particleText.MeasureText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign);
-			args.Canvas.DrawCircle(particleCenter, 14, _particlePaint);
+			var particleSign = _setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign;
+			var textMeasure = _particleText.MeasureText(particleSign);
+			args.Canvas.DrawCircle(particleCenter, 12, _particlePaint);
 			particleCenter.Y = particleCenter.Y + textMeasure / 2;
-			args.Canvas.DrawText(_setup.Particle.Polarity == Polarity.Positive ? PlusSign : MinusSign, particleCenter, _particleText);
+			args.Canvas.DrawText(particleSign, particleCenter, _particleText);
 		}
 
 		private void DrawParticleTrajectory(ISkiaCanvas sender, SKSurface args)
@@ -167,10 +178,10 @@ namespace Physics.ElectricParticle.Rendering
 			var startPoint = new SKPoint(zeroX + _trajectory[0].X * _unitToPixel, zeroY - _trajectory[0].Y * _unitToPixel);
 			path.MoveTo(startPoint);
 
-			for (int i = 0; i < Math.Min(_frame + 1, _trajectory.Length); i++)
+			for (int i = 0; i < Math.Min(SimulationTime.UpdateCount + 1, _trajectory.Length); i++)
 			{
-				var point = _trajectory[Math.Min(_trajectory.Length - 1, _frame)];
-								
+				var point = _trajectory[Math.Min(_trajectory.Length - 1, SimulationTime.UpdateCount)];
+
 				var particleCenter = new SKPoint(zeroX + point.X * _unitToPixel, zeroY - point.Y * _unitToPixel);
 				path.LineTo(particleCenter);
 			}
@@ -191,20 +202,29 @@ namespace Physics.ElectricParticle.Rendering
 			var leftPlaneX = zeroX - verticalPlaneDistance * _unitToPixel / 2;
 			var rightPlaneX = zeroX + verticalPlaneDistance * _unitToPixel / 2;
 
+			var leftPlaneSignMeasure = _plusPlaneTextPaint.MeasureText(_setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign);
+			var leftPlaneSign = _setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign;
+			var leftPlanePaint = _setup.VerticalPlane.Polarity == Polarity.Positive ? _plusPlanePaint : _minusPlanePaint;
+			var leftPlaneTextPaint = _setup.VerticalPlane.Polarity == Polarity.Positive ? _plusPlaneTextPaint : _minusPlaneTextPaint;
+
 			args.Canvas.DrawLine(
 				new SKPoint(leftPlaneX, planeTop),
 				new SKPoint(leftPlaneX, planeBottom),
-				_planePaint);
-			var leftPlaneSignMeasure = _particleText.MeasureText(_setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign);
+				leftPlanePaint);
 
-			args.Canvas.DrawText(_setup.VerticalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign, leftPlaneX + 20, planeTop, _planeText);
+			args.Canvas.DrawText(leftPlaneSign, leftPlaneX - 20, (planeTop + planeBottom) / 2 + leftPlaneSignMeasure / 2, leftPlaneTextPaint);
+
+			var rightPlaneSignMeasure = _plusPlaneTextPaint.MeasureText(_setup.VerticalPlane.Polarity == Polarity.Negative ? PlusSign : MinusSign);
+			var rightPlaneSign = _setup.VerticalPlane.Polarity == Polarity.Negative ? PlusSign : MinusSign;
+			var rightPlanePaint = _setup.VerticalPlane.Polarity == Polarity.Negative ? _plusPlanePaint : _minusPlanePaint;
+			var rightPlaneTextPaint = _setup.VerticalPlane.Polarity == Polarity.Negative ? _plusPlaneTextPaint : _minusPlaneTextPaint;
 
 			args.Canvas.DrawLine(
 				new SKPoint(rightPlaneX, planeTop),
 				new SKPoint(rightPlaneX, planeBottom),
-				_planePaint);
+				rightPlanePaint);
 
-			args.Canvas.DrawText(PlusSign, rightPlaneX - 20, planeTop, _planeText);
+			args.Canvas.DrawText(rightPlaneSign, rightPlaneX + 20, (planeTop + planeBottom) / 2 + rightPlaneSignMeasure / 2, rightPlaneTextPaint);
 		}
 
 		private void DrawHorizontalPlanes(ISkiaCanvas sender, SKSurface args)
@@ -220,19 +240,29 @@ namespace Physics.ElectricParticle.Rendering
 			var topPlaneY = zeroY - horizontalPlaneDistance * _unitToPixel / 2;
 			var bottomPlaneY = zeroY + horizontalPlaneDistance * _unitToPixel / 2;
 
+			var topPlaneSignMeasure = _plusPlaneTextPaint.MeasureText(_setup.HorizontalPlane.Polarity == Polarity.Negative ? PlusSign : MinusSign);
+			var topPlaneSign = _setup.HorizontalPlane.Polarity == Polarity.Negative ? PlusSign : MinusSign;
+			var topPlanePaint = _setup.HorizontalPlane.Polarity == Polarity.Negative ? _plusPlanePaint : _minusPlanePaint;
+			var topPlaneTextPaint = _setup.HorizontalPlane.Polarity == Polarity.Negative ? _plusPlaneTextPaint : _minusPlaneTextPaint;
+
 			args.Canvas.DrawLine(
 				new SKPoint(planeLeft, topPlaneY),
 				new SKPoint(planeRight, topPlaneY),
-				_planePaint);
+				topPlanePaint);
 
-			args.Canvas.DrawText(_setup.HorizontalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign, planeLeft, topPlaneY - 20, _planeText);
+			args.Canvas.DrawText(topPlaneSign, (planeLeft + planeRight) / 2, topPlaneY - 20 + topPlaneSignMeasure / 2, topPlaneTextPaint);
+
+			var bottomPlaneSignMeasure = _plusPlaneTextPaint.MeasureText(_setup.HorizontalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign);
+			var bottomPlaneSign = _setup.HorizontalPlane.Polarity == Polarity.Positive ? PlusSign : MinusSign;
+			var bottomPlanePaint = _setup.HorizontalPlane.Polarity == Polarity.Positive ? _plusPlanePaint : _minusPlanePaint;
+			var bottomPlaneTextPaint = _setup.HorizontalPlane.Polarity == Polarity.Positive ? _plusPlaneTextPaint : _minusPlaneTextPaint;
 
 			args.Canvas.DrawLine(
 				new SKPoint(planeLeft, bottomPlaneY),
 				new SKPoint(planeRight, bottomPlaneY),
-				_planePaint);
+				bottomPlanePaint);
 
-			args.Canvas.DrawText(PlusSign, planeLeft, bottomPlaneY + 20, _planeText);
+			args.Canvas.DrawText(bottomPlaneSign, (planeLeft + planeRight) / 2, bottomPlaneY + 20 + bottomPlaneSignMeasure / 2, bottomPlaneTextPaint);
 		}
 	}
 }
