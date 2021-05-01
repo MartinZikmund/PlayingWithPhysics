@@ -1,0 +1,46 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.EntityFrameworkCore.Design
+    versions:
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.SqlServer
+    versions:
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.InMemory
+    versions:
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+    versions:
+    - 5.0.5
+  - dependency-name: Microsoft.Toolkit.Uwp.UI.Controls
+    versions:
+    - 7.0.1
+  - dependency-name: Microsoft.Toolkit.Uwp
+    versions:
+    - 7.0.1
+  - dependency-name: ReactiveUI
+    versions:
+    - 13.1.1
+    - 13.2.2
+  - dependency-name: Microsoft.NETCore.UniversalWindowsPlatform
+    versions:
+    - 6.2.12
+  - dependency-name: coverlet.collector
+    versions:
+    - 3.0.2
+  - dependency-name: Microsoft.AppCenter
+    versions:
+    - 4.1.0
+  - dependency-name: XamlFlair.UWP
+    versions:
+    - 1.2.3
+  - dependency-name: ReactiveUI.Events
+    versions:
+    - 13.1.1
