@@ -48,7 +48,7 @@
     <PackageReference Update="System.Reflection.Emit" Version="4.7.0" />
     <PackageReference Update="CSharpMath.SkiaSharp" Version="0.5.0" />
     <PackageReference Update="ExtendedNumerics.BigDecimal" Version="1.0.0.1" />
-    <PackageReference Update="Win2D.uwp" Version="1.25.0" />
+    <PackageReference Update="Win2D.uwp" Version="1.26.0" />
 
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
 
