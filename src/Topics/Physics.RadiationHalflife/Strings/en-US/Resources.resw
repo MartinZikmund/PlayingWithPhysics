@@ -239,4 +239,43 @@ Graphics: Petr Weinlich</value>
   <data name="LawOfRadioactiveDecay" xml:space="preserve">
     <value>Law of radioactive decay (select further option)</value>
   </data>
+  <data name="Plutonium_Halflife" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="Plutonium_Name" xml:space="preserve">
+    <value>Plutonium</value>
+  </data>
+  <data name="Xenon_Halflife" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Xenon_Name" xml:space="preserve">
+    <value>Xenon</value>
+  </data>
+  <data name="CustomHalflifeNumberBox" xml:space="preserve">
+    <value>Halflife</value>
+  </data>
+  <data name="CustomHalflifeUnitTextBox" xml:space="preserve">
+    <value>Time unit</value>
+  </data>
+  <data name="Custom_Name" xml:space="preserve">
+    <value>Custom halflife</value>
+  </data>
+  <data name="Halflife_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Halflife_Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="Halflife_Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="Halflife_Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Halflife_Second" xml:space="preserve">
+    <value>Second</value>
+  </data>
+  <data name="Halflife_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
 </root>

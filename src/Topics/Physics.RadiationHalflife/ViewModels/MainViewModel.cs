@@ -35,36 +35,9 @@ namespace Physics.RadiationHalflife.ViewModels
 		public MainViewModel(IContentDialogHelper contentDialogHelper)
 		{
 			_contentDialogHelper = contentDialogHelper;
-			_selectedNucleoid = Nucleoids[0];
+			_selectedNucleoid = Nucleoids[2];
+			_selectedCustomUnit = CustomUnits[0];
 		}
-		//public int DrawLength
-		//{
-		//	get
-		//	{
-		//		if (_controller != null)
-		//			return _controller.DrawLength;
-		//		return 10;
-		//	}
-		//	set
-		//	{
-		//		_controller.DrawLength = value;
-		//	}
-		//}
-
-		//public bool NoTrajectory
-		//{
-		//	get
-		//	{
-		//		return _controller.NoTrajectory;
-		//	}
-		//	set
-		//	{
-		//		_controller.NoTrajectory = value;
-		//	}
-		//}
-		//public OscillationInfoViewModel HorizontalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("X", 1, 1, 0, "#FF0000"));
-
-		//public OscillationInfoViewModel VerticalOscillation { get; private set; } = new OscillationInfoViewModel(new OscillationInfo("Y", 1, 1, 0, "#0000FF"));
 
 		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(EditOscillationAsync);
 
@@ -151,7 +124,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			//Oscillations.Remove(arg);
 			//TODO:
 			//await CloseAppViewForMotionAsync(arg);
-			await StartSimulationAsync();
+			//await StartSimulationAsync();
 		}
 
 		private async Task ShowValuesTableAsync(OscillationInfoViewModel viewModel)
@@ -191,7 +164,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			//var shown = await newWindow.TryShowAsync();
 		}
 
-		private async Task StartSimulationAsync()
+		private async Task StartSimulationAsync(AnimationInfo animationInfo)
 		{
 			if (_controller == null)
 			{
@@ -200,7 +173,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				_controller.SetAnimation(new PhysicsService(new AnimationInfo(ParticlesCount, SelectedNucleoid.Halflife)));
+				_controller.SetAnimation(new PhysicsService(animationInfo));
 				_controller.StartSimulation();
 			});
 		}
@@ -217,13 +190,16 @@ namespace Physics.RadiationHalflife.ViewModels
 			new NucleoidItemViewModel("Gallium", 68),
 			new NucleoidItemViewModel("Technetium",6),
 			new NucleoidItemViewModel("Iodine", 8),
+			new NucleoidItemViewModel("Xenon", 5.2f),
 			new NucleoidItemViewModel("Cesium", 30.2f),
 			new NucleoidItemViewModel("Iridium", 74),
 			new NucleoidItemViewModel("Radium223", 11.46f),
 			new NucleoidItemViewModel("Radium226", 1600),
 			new NucleoidItemViewModel("Uranium228", 9.1f),
 			new NucleoidItemViewModel("Uranium238", 4.5f),
-			new NucleoidItemViewModel("Americium", 432.6f)
+			new NucleoidItemViewModel("Plutonium", 2400),
+			new NucleoidItemViewModel("Americium", 432.6f),
+			new NucleoidItemViewModel("Custom", 0)
 		};
 
 		private NucleoidItemViewModel _selectedNucleoid;
@@ -237,11 +213,62 @@ namespace Physics.RadiationHalflife.ViewModels
 			set
 			{
 				_selectedNucleoid = value;
-				StartSimulationAsync();
+				if (_selectedNucleoid == Nucleoids.Last())
+				{
+					CustomHalflifeInputsVisibility = Visibility.Visible;
+				}
+				else
+				{
+					CustomHalflifeInputsVisibility = Visibility.Collapsed;
+					StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, SelectedNucleoid.Halflife));
+				}
 			}
 		}
 
+		public Visibility CustomHalflifeInputsVisibility { get; set; } = Visibility.Collapsed;
+
 		public Visibility AdvancedDifficulty => (Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
+
+		private float _customHalflife = 1f;
+
+		public float CustomHalflife
+		{
+			get
+			{
+				return _customHalflife;
+			}
+
+			set
+			{
+				_customHalflife = value;
+				StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, _customHalflife, SelectedCustomUnit));
+			}
+		}
+
+		public List<string> CustomUnits { get; set; } = new List<string>
+		{
+			"Second",
+			"Minute",
+			"Hour",
+			"Day",
+			"Month",
+			"Year"
+		};
+
+		private string _selectedCustomUnit;
+		public string SelectedCustomUnit
+		{
+			get
+			{
+				return _selectedCustomUnit;
+			}
+
+			set
+			{
+				_selectedCustomUnit = value;
+				StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, CustomHalflife, _selectedCustomUnit));
+			}
+		}
 
 		private int _selectedVariant = 0;
 		public int SelectedVariant
@@ -256,7 +283,7 @@ namespace Physics.RadiationHalflife.ViewModels
 				//Set new simulation GIF
 				if (value == 4)
 				{
-					StartSimulationAsync();
+					StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, SelectedNucleoid.Halflife));
 				}
 			}
 		}
@@ -275,7 +302,14 @@ namespace Physics.RadiationHalflife.ViewModels
 			set
 			{
 				_particlesCount = value;
-				StartSimulationAsync();
+				if (SelectedNucleoid == Nucleoids.Last())
+				{
+					StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, CustomHalflife));
+				}
+				else
+				{
+					StartSimulationAsync(new AnimationInfo(SelectedNucleoid.ChemicalElement, ParticlesCount, SelectedNucleoid.Halflife));
+				}
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Physics.RadiationHalflife.Rendering;
 using Physics.RadiationHalflife.ViewModels;
+using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +18,7 @@ namespace Physics.RadiationHalflife.Views
 			this.InitializeComponent();
 			_currentGif = new BitmapImage(new Uri("ms-appx:///Assets/Animations/0.gif"));
 			GifCanvas.Source = _currentGif;
+			CustomHalflifeInputNumberBox.SetupFormatting();
 		}
 
 		private void VariantsGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -28,6 +31,14 @@ namespace Physics.RadiationHalflife.Views
 		{
 			_currentGif.Stop();
 			_currentGif.Play();
+		}
+
+		private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (Model.SelectedNucleoid == Model.Nucleoids.Last())
+			{
+				MainScrollView.ChangeView(0.0f, double.MaxValue, 1.0f);
+			}
 		}
 	}
 

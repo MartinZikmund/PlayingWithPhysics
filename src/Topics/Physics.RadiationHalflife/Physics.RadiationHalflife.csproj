@@ -160,12 +160,14 @@
     <Content Include="Assets\Elements\Gallium.png" />
     <Content Include="Assets\Elements\Iodine.png" />
     <Content Include="Assets\Elements\Iridium.png" />
+    <Content Include="Assets\Elements\Plutonium.png" />
     <Content Include="Assets\Elements\Potassium.png" />
     <Content Include="Assets\Elements\Radium223.png" />
     <Content Include="Assets\Elements\Radium226.png" />
     <Content Include="Assets\Elements\Technetium.png" />
     <Content Include="Assets\Elements\Uranium228.png" />
     <Content Include="Assets\Elements\Uranium238.png" />
+    <Content Include="Assets\Elements\Xenon.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -242,6 +244,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.3.3</Version>

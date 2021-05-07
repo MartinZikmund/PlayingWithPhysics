@@ -180,7 +180,7 @@ Grafika: Petr Weinlich</value>
     <value>Perioda</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Skládání kmitání</value>
+    <value>Lissajousovy obrazce</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Zobrazit tabulku složeného kmitání</value>
