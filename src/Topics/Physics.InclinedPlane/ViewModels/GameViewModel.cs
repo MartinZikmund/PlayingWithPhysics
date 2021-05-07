@@ -24,9 +24,8 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.InclinedPlane.ViewModels
 {
-	public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>
+	public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>, IReceiveController<InclinedPlaneSkiaController>
     {
-        private ISimulationViewInteraction<InclinedPlaneSkiaController> _interaction;
         private DifficultyOption Difficulty;
         private InclinedPlaneInputViewModel _inputViewModel;
         private InclinedPlaneSkiaController _controller;
@@ -57,14 +56,17 @@ namespace Physics.InclinedPlane.ViewModels
             _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
-        internal void SetViewInteraction(ISimulationViewInteraction<InclinedPlaneSkiaController> interaction)
-        {
-            _interaction = interaction;
-            _controller = _interaction.PrepareController();
-            SimulationPlayback.SetController(_controller);
-            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
-        }
+		public void SetController(InclinedPlaneSkiaController controller)
+		{
+			if (controller is null)
+			{
+				throw new ArgumentNullException(nameof(controller));
+			}
 
+			_controller = controller;
+			SimulationPlayback.SetController(_controller);
+            (_controller.Renderer as GameRenderer)?.StartGame(_gameInfo);
+		}
 
         public ICommand StartNewGameCommand => GetOrCreateCommand(() =>
         {
@@ -88,7 +90,7 @@ namespace Physics.InclinedPlane.ViewModels
                 36,
                 0.03f,
                 "#000000"));
-            if (_interaction == null) return;
+            if (_controller == null) return;
 
             _controller.StartSimulation(Motion.MotionInfo);
             _timer.Start();
@@ -249,7 +251,5 @@ namespace Physics.InclinedPlane.ViewModels
             base.ViewDestroy(viewFinishing);
             _timer.Stop();
         }
-
-
-    }
+	}
 }

@@ -7,63 +7,64 @@ using System.Threading.Tasks;
 
 namespace Physics.ElectricParticle.ViewModels
 {
-    public class MotionViewModel : Physics.Shared.ViewModels.ViewModelBase
-    {
-        private PhysicsService _physicsService;
+	public class MotionViewModel : Physics.Shared.ViewModels.ViewModelBase
+	{
+		private PhysicsService _physicsService;
+		private TrajectoryPoint[] _trajectory;
 
-        public MotionViewModel(ElectricParticleSimulationSetup motion)
-        {
-            MotionInfo = motion ?? throw new ArgumentNullException(nameof(motion));
-            UpdateCurrentValues(0);
-        }
+		public MotionViewModel(ElectricParticleSimulationSetup motion)
+		{
+			MotionInfo = motion ?? throw new ArgumentNullException(nameof(motion));
+			UpdateCurrentValues(0);
+		}
 
-        private ElectricParticleSimulationSetup _motionInfo;
+		private ElectricParticleSimulationSetup _motionInfo;
 
-        public ElectricParticleSimulationSetup MotionInfo
-        {
-            get
-            {
-                return _motionInfo;
-            }
-            set
-            {
-                if (value is null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-                _physicsService = new PhysicsService(value);
-                SetProperty(ref _motionInfo, value);
-            }
-        }
+		public ElectricParticleSimulationSetup MotionInfo
+		{
+			get
+			{
+				return _motionInfo;
+			}
+			set
+			{
+				if (value is null)
+				{
+					throw new ArgumentNullException(nameof(value));
+				}
+				_physicsService = new PhysicsService(value);
+				_trajectory = _physicsService.ComputeTrajectory(600);
+				SetProperty(ref _motionInfo, value);
+			}
+		}
 
-        public void UpdateCurrentValues(float timeElapsed)
-        {
-        //    if (timeElapsed > _physicsService.CalculateMaxT())
-        //    {
-        //        timeElapsed = _physicsService.CalculateMaxT();
-        //    }
+		public void UpdateCurrentValues(long frame)
+		{
+			frame = Math.Min(_trajectory.Length - 1, frame);
+			var deltaT = _physicsService.ComputeDeltaT(600);
 
-        //    TimeElapsed = timeElapsed.ToString("0.##");
-        //    CurrentSpeed = _physicsService.CalculateV(timeElapsed).ToString("0.##");
-        //    DistanceTraveled = _physicsService.CalculateS(timeElapsed).ToString("0.##");
-        //    CurrentX = _physicsService.CalculateX(timeElapsed).ToString("0.##");
-        //    CurrentY = _physicsService.CalculateY(timeElapsed).ToString("0.##");
-        //    Ft = _physicsService.CalculateFt(timeElapsed).ToString("0.##");
-        //    Fp = _physicsService.CalculateFp(timeElapsed).ToString("0.##");
-        }
+			var time = deltaT * frame;
 
-        public string TimeElapsed { get; private set; } = "";
+			TimeElapsed = time.ToString();
+			CurrentSpeed = _physicsService.ComputeV(time).ToString();
+			CurrentX = _physicsService.ComputeX(time).ToString();
+			CurrentY = _physicsService.ComputeY(time).ToString();
+			Ek = _physicsService.ComputeEk(time).ToString();
+			Ep = _physicsService.ComputeEp(time).ToString();
+		}
 
-        public string CurrentSpeed { get; private set; } = "";
+		public string TimeElapsed { get; private set; } = "";
 
-        public string DistanceTraveled { get; private set; } = "";
+		public string CurrentSpeed { get; private set; } = "";
 
-        public string CurrentX { get; private set; } = "";
+		public string DistanceTraveled { get; private set; } = "";
 
-        public string CurrentY { get; private set; } = "";
+		public string CurrentX { get; private set; } = "";
 
-        public string Ft { get; private set; } = "";
+		public string CurrentY { get; private set; } = "";
 
-        public string Fp { get; private set; } = "";
-    }
+		public string Ek { get; private set; } = "";
+
+		public string Ep { get; private set; } = "";
+	}
 }

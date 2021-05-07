@@ -6,6 +6,7 @@
     <PackageReference Update="MethodTimer.Fody" Version="3.2.0" />
 
     <!-- AppCenter-->
+    <PackageReference Update="Microsoft.AppCenter" Version="4.2.0" />
     <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.2.0" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="4.2.0" />
 
@@ -17,19 +18,21 @@
     <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-    <PackageReference Update="Uno.Extensions.Logging.OSLog" Version="1.0.1" />
-    <PackageReference Update="Uno.Extensions.Logging.WebAssembly.Console" Version="1.0.1" />
-
     <!-- WCT -->
+    <PackageReference Update="Microsoft.Toolkit" Version="7.0.1" />
     <PackageReference Update="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
-    <PackageReference Update="Microsoft.Toolkit.Uwp" Version="7.0.0" />
+    <PackageReference Update="Microsoft.Toolkit.Uwp" Version="7.0.1" />
     <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.1" />
-    <PackageReference Update="Uno.Microsoft.Toolkit.Uwp" Version="7.0.0" />
-    <PackageReference Update="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.0" />
+    <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Animations" Version="7.0.1" />
+    <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="7.0.1" />
 
     <!-- SkiaSharp -->
-    <PackageReference Update="SkiaSharp" Version="2.80.3-preview.40" />
-    <PackageReference Update="SkiaSharp.Views.Uno" Version="2.80.3-preview.40" />
+    <PackageReference Update="SkiaSharp" Version="2.80.2" />
+    <PackageReference Update="SkiaSharp.Views" Version="2.80.2" />
+
+    <!-- MvvmCross-->
+    <PackageReference Update="MvvmCross" Version="7.1.2" />
+    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="7.1.2" />
 
     <!-- Other -->
     <PackageReference Update="AutoMapper" Version="10.1.1" />
@@ -38,15 +41,24 @@
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" />
     <PackageReference Update="Microsoft.UI.Xaml" Version="2.5.0" />
+    <PackageReference Update="Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1" />
     <PackageReference Update="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
     <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Update="SharpZipLib" Version="1.3.1" />
     <PackageReference Update="System.Reflection.Emit" Version="4.7.0" />
-    
+    <PackageReference Update="CSharpMath.SkiaSharp" Version="0.5.0" />
+    <PackageReference Update="ExtendedNumerics.BigDecimal" Version="1.0.0.1" />
+    <PackageReference Update="Win2D.uwp" Version="1.26.0" />
+
+    <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
+
+    <PackageReference Update="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Update="ReactiveUI" Version="13.2.18" />
+
     <PackageReference Update="Moq" Version="4.16.1" />
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Update="coverlet.collector" Version="3.0.3" />
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.9.4" />
   </ItemGroup>
 </Project>

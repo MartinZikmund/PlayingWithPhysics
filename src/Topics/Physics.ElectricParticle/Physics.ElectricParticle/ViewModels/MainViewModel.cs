@@ -28,6 +28,16 @@ namespace Physics.ElectricParticle.ViewModels
 
 		public MainViewModel()
 		{
+			_timer.Interval = TimeSpan.FromMilliseconds(10);
+			_timer.Tick += _timer_Tick;
+		}
+
+		private void _timer_Tick(object sender, object e)
+		{
+			if (Motion != null)
+			{
+				Motion.UpdateCurrentValues(_controller.SimulationTime.UpdateCount);
+			}
 		}
 
 		public Visibility RadiationVisibility { get; set; }
@@ -134,6 +144,13 @@ namespace Physics.ElectricParticle.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+		}
+
+		public ICommand RestartCommand => GetOrCreateAsyncCommand(RestartAsync);
+
+		private async Task RestartAsync()
+		{
+			await StartSimulationAsync();
 		}
 
 		private async Task StartSimulationAsync()
