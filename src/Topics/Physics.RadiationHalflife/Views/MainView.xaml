@@ -92,7 +92,7 @@
                                             Text="{Binding Name}" />
                                         <Image
                                             Grid.Column="1"
-                                            Height="48"
+                                            Height="40"
                                             HorizontalAlignment="Center"
                                             Source="{Binding ChemicalNotionImage}"
                                             Visibility="{Binding CustomElementListVisibility, Mode=OneWay}" />
