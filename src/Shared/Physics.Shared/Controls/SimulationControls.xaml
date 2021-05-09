@@ -59,7 +59,10 @@
             <Button Command="{x:Bind JumpToStartCommand, Mode=OneWay}" IsEnabled="True">
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToStartGlyph}" />
             </Button>
-			<Button Command="{x:Bind JumpBackCommand, Mode=OneWay}" Visibility="{x:Bind BackwardVisibility, Mode=OneWay}" IsEnabled="True">
+            <Button
+                Command="{x:Bind JumpBackCommand, Mode=OneWay}"
+                IsEnabled="True"
+                Visibility="{x:Bind BackwardVisibility, Mode=OneWay}">
                 <Button.ContextFlyout>
                     <Flyout>
                         <winui:NumberBox
@@ -92,7 +95,10 @@
                     <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PauseGlyph}" />
                 </Button>
             </Grid>
-            <Button Command="{x:Bind JumpForwardCommand, Mode=OneWay}" Visibility="{x:Bind ForwardVisibility, Mode=OneWay}" IsEnabled="True">
+            <Button
+                Command="{x:Bind JumpForwardCommand, Mode=OneWay}"
+                IsEnabled="True"
+                Visibility="{x:Bind ForwardVisibility, Mode=OneWay}">
                 <Button.ContextFlyout>
                     <Flyout>
                         <winui:NumberBox
@@ -107,7 +113,7 @@
                 </Button.ContextFlyout>
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
             </Button>
-			<Button Visibility="{x:Bind SpeedControlVisibility, Mode=OneWay}" Click="{x:Bind ToggleSpeedSlider}">
+            <Button Click="{x:Bind ToggleSpeedSlider}" Visibility="{x:Bind SpeedControlVisibility, Mode=OneWay}">
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
             </Button>
 

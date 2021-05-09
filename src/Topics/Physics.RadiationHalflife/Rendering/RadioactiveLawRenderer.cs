@@ -218,7 +218,11 @@ namespace Physics.RadiationHalflife.Rendering
 					CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
 					if (cultureInfo.Name == "en-US")
 					{
-						formattedHalflifeUnit = Localizer.Instance["Halflife_" + PhysicsService.Animation.CustomHalflifeUnit] + "s";
+						formattedHalflifeUnit = PhysicsService.Animation.CustomHalflifeUnit + "s";
+					}
+					else
+					{
+						formattedHalflifeUnit = PhysicsService.Animation.CustomHalflifeUnit;
 					}
 				}
 				else

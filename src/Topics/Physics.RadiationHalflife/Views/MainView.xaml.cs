@@ -18,7 +18,7 @@ namespace Physics.RadiationHalflife.Views
 			this.InitializeComponent();
 			_currentGif = new BitmapImage(new Uri("ms-appx:///Assets/Animations/0.gif"));
 			GifCanvas.Source = _currentGif;
-			CustomHalflifeInputNumberBox.SetupFormatting();
+			CustomHalflifeInputNumberBox.SetupFormatting(0.01, 1, 2, 0.01);
 		}
 
 		private void VariantsGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)

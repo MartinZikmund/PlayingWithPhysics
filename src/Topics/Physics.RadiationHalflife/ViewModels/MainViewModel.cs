@@ -60,34 +60,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 
 			_controller = controller;
-
-			IVariantRenderer variantRenderer = null;
-			switch ((PhenomenonVariant)SelectedVariant)
-			{
-				case PhenomenonVariant.BeamActivity:
-					variantRenderer = new BeamActivityRenderer(_controller);
-					break;
-				case PhenomenonVariant.RadioactiveLaw:
-				default:
-					variantRenderer = new RadioactiveLawRenderer(_controller);
-					break;
-			}
-			//if ((PhenomenonVariant)SelectedVariant == PhenomenonVariant.RadioactiveLaw)
-			//{
-			//	preparedPhysicsService = new BeamActivityPhysicsService((BeamActivityAnimationInfo)animationInfo);
-			//	_controller = (BeamActivityRenderer)_controller;
-			//}
-			//else if ((PhenomenonVariant)SelectedVariant == PhenomenonVariant.BeamActivity)
-			//{
-			//	preparedPhysicsService = new RadioactiveLawPhysicsService((RadioactiveLawAnimationInfo)animationInfo);
-			//	_controller = (RadioactiveLawRenderer)_controller;
-			//}
-
-			_controller.SetRenderer(variantRenderer);
-
 			SimulationPlayback.SetController(_controller);
-			//_controller.SetActiveOscillations(HorizontalOscillation.OscillationInfo, VerticalOscillation.OscillationInfo);
-			//_controller.StartSimulation();
 			SimulationPlayback.PlaybackSpeed = 0.5f;
 		}
 
@@ -136,6 +109,18 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 			await _controller.RunOnGameLoopAsync(() =>
 			{
+				IVariantRenderer variantRenderer = null;
+				switch ((PhenomenonVariant)SelectedVariant)
+				{
+					case PhenomenonVariant.BeamActivity:
+						variantRenderer = new BeamActivityRenderer(_controller);
+						break;
+					case PhenomenonVariant.RadioactiveLaw:
+					default:
+						variantRenderer = new RadioactiveLawRenderer(_controller);
+						break;
+				}
+				_controller.SetRenderer(variantRenderer);
 				SimulationPlayback.Play();
 				var physicsService = GeneratePhysicsService(animationInfo);
 				_controller.SetAnimation(physicsService);
@@ -157,20 +142,20 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 		}
 
-		public Visibility CanvasVisibility => (SelectedVariant == 4) ? Visibility.Visible : Visibility.Collapsed;
-		public Visibility AnimationPanelVisibility => (SelectedVariant != 4) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility CanvasVisibility => (SelectedVariant == 4 || SelectedVariant == 5) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility AnimationPanelVisibility => (SelectedVariant != 4 && SelectedVariant != 5) ? Visibility.Visible : Visibility.Collapsed;
 
 		public List<RadionuclideViewModel> Radionuclides = new List<RadionuclideViewModel>
 		{
-			new RadionuclideViewModel("Fluorine", 110, 4),
-			new RadionuclideViewModel("Cobalt", 5.3f, 3.7f),
-			new RadionuclideViewModel("Gallium", 68, 1),
-			new RadionuclideViewModel("Technetium", 6, 6),
-			new RadionuclideViewModel("Iodine", 8, 7),
-			new RadionuclideViewModel("Xenon", 5.2f, 1),
-			new RadionuclideViewModel("Cesium", 30.2f, 8.5f),
-			new RadionuclideViewModel("Iridium", 74, 4.4f),
-			new RadionuclideViewModel("Radium223", 11.46f, 3.7f),
+			new RadionuclideViewModel("Fluorine", 110, 4, 8),
+			new RadionuclideViewModel("Cobalt", 5.3f, 3.7f, 13),
+			new RadionuclideViewModel("Gallium", 68, 1, 9),
+			new RadionuclideViewModel("Technetium", 6, 6, 8),
+			new RadionuclideViewModel("Iodine", 8, 2, 7),
+			new RadionuclideViewModel("Xenon", 5.2f, 1, 17),
+			new RadionuclideViewModel("Cesium", 30.2f, 8.5f, 16),
+			new RadionuclideViewModel("Iridium", 74, 4.4f, 12),
+			new RadionuclideViewModel("Radium223", 11.46f, 3.7f, 13),
 			new RadionuclideViewModel("Radium226", 1600, 200),
 			new RadionuclideViewModel("Uranium238", 4.5f, 12000),
 			new RadionuclideViewModel("Americium", 432.6f, 40000)
@@ -186,7 +171,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			set
 			{
 				_selectedRadionuclide = value;
-				StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.Activity));
+				StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase));
 			}
 		}
 
@@ -234,7 +219,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 		}
 
-		public bool BeamActivitySelected => (SelectedVariant == 5) ? true : false;
+		public Visibility BeamActivitySelected => (SelectedVariant == 5) ? Visibility.Visible : Visibility.Collapsed;
 
 		public Visibility CustomHalflifeInputsVisibility { get; set; } = Visibility.Collapsed;
 
@@ -258,12 +243,12 @@ namespace Physics.RadiationHalflife.ViewModels
 		}
 		public List<string> CustomUnits { get; set; } = new List<string>
 		{
-			"Second",
-			"Minute",
-			"Hour",
-			"Day",
-			"Month",
-			"Year"
+			Localizer.Instance["Halflife_Second"],
+			Localizer.Instance["Halflife_Minute"],
+			Localizer.Instance["Halflife_Hour"],
+			Localizer.Instance["Halflife_Day"],
+			Localizer.Instance["Halflife_Month"],
+			Localizer.Instance["Halflife_Year"]
 		};
 
 		private string _selectedCustomUnit;
@@ -278,38 +263,6 @@ namespace Physics.RadiationHalflife.ViewModels
 			{
 				_selectedCustomUnit = value;
 				StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, CustomHalflife, ParticlesCount, _selectedCustomUnit));
-			}
-		}
-
-		private int _selectedVariant = 0;
-		public int SelectedVariant
-		{
-			get
-			{
-				return _selectedVariant;
-			}
-			set
-			{
-				_selectedVariant = value;
-				//Set new simulation GIF
-				if (value == 4)
-				{
-					if (SelectedNucleoid == Nucleoids.Last())
-					{
-						CustomHalflifeInputsVisibility = Visibility.Visible;
-						StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, CustomHalflife, ParticlesCount, _selectedCustomUnit));
-					}
-					else
-					{
-						CustomHalflifeInputsVisibility = Visibility.Collapsed;
-						StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, SelectedNucleoid.Halflife, ParticlesCount));
-					}
-				}
-
-				if (value != 4)
-				{
-					CustomHalflifeInputsVisibility = Visibility.Collapsed;
-				}
 			}
 		}
 
@@ -335,6 +288,44 @@ namespace Physics.RadiationHalflife.ViewModels
 				else
 				{
 					StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, SelectedNucleoid.Halflife, ParticlesCount));
+				}
+			}
+		}
+
+		private int _selectedVariant = 0;
+		public int SelectedVariant
+		{
+			get
+			{
+				return _selectedVariant;
+			}
+			set
+			{
+				_selectedVariant = value;
+				//Law of radioactive decay
+				if (value == 4)
+				{
+					if (SelectedNucleoid == Nucleoids.Last())
+					{
+						CustomHalflifeInputsVisibility = Visibility.Visible;
+						StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, CustomHalflife, ParticlesCount, _selectedCustomUnit));
+					}
+					else
+					{
+						CustomHalflifeInputsVisibility = Visibility.Collapsed;
+						StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, SelectedNucleoid.Halflife, ParticlesCount));
+					}
+				}
+				else if (value == 5) //Beam activity
+				{
+
+					CustomHalflifeInputsVisibility = Visibility.Collapsed;
+					StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase));
+				}
+
+				if (value != 4)
+				{
+					CustomHalflifeInputsVisibility = Visibility.Collapsed;
 				}
 			}
 		}

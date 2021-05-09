@@ -72,6 +72,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -104,6 +105,32 @@
                                             Visibility="{Binding CustomElementListVisibility, Mode=OneWay}" />
                                     </Grid>
                                 </DataTemplate>
+
+                                <DataTemplate x:Key="RadionuclideListItemTemplate" x:DataType="viewModels:RadionuclideViewModel">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding Name}" />
+                                        <StackPanel
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <TextBlock Text="{Binding ActivityBase}" />
+                                            <TextBlock Text="&#215;10" Visibility="{Binding HasMantissa}" />
+                                            <TextBlock
+                                                Text="{Binding ActivityMantissa}"
+                                                Typography.Variants="Superscript"
+                                                Visibility="{Binding HasMantissa}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
                             </Grid.Resources>
 
                             <sharedControls:SkewedMenuHeader
@@ -117,7 +144,6 @@
                                 Grid.ColumnSpan="2"
                                 Style="{StaticResource SubtitleTextBlockStyle}"
                                 Text="{extensions:Localize Key=ChooseVariantTitle}" />
-                            <!--<Button Click="Button_Click" Content="Toggle"></Button>-->
 
                             <controls:RadioButtons
                                 x:Name="VariantsGroup"
@@ -136,7 +162,7 @@
                                 Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
-                                Header="Number of particles:"
+                                Header="{extensions:Localize Key=NumberOfParticlesNumberBox}"
                                 Maximum="300"
                                 Minimum="10"
                                 SpinButtonPlacementMode="Inline"
@@ -158,13 +184,14 @@
                                     HorizontalAlignment="Center"
                                     FontSize="14"
                                     FontWeight="SemiBold"
-                                    Text="Nucleoid" />
+                                    Text="{extensions:Localize Key=Nuclids_Name}" />
                                 <TextBlock
                                     Grid.Column="2"
                                     HorizontalAlignment="Center"
                                     FontSize="14"
-                                    FontWeight="SemiBold"
-                                    Text="Halflife [T]" />
+                                    FontWeight="SemiBold">
+                                    <Run Text="{extensions:Localize Key=Nuclids_Halflife}" /><Run Text=" [T]" />
+                                </TextBlock>
                             </Grid>
                             <ListView
                                 Grid.Row="5"
@@ -180,16 +207,54 @@
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal"
-                                Spacing="8"
+                                Spacing="24"
                                 Visibility="{x:Bind Model.CustomHalflifeInputsVisibility, Mode=OneWay}">
-                                <TextBlock Margin="0,6,0,0" Text="{extensions:Localize Key=CustomHalflifeNumberBox}" />
-                                <controls:NumberBox x:Name="CustomHalflifeInputNumberBox" Value="{x:Bind Model.CustomHalflife, Mode=TwoWay}" />
-                                <TextBlock Margin="0,6,0,0" Text="{extensions:Localize Key=CustomHalflifeUnitTextBox}" />
-                                <ComboBox
-                                    Width="100"
-                                    ItemsSource="{x:Bind Model.CustomUnits, Mode=OneWay}"
-                                    SelectedItem="{x:Bind Model.SelectedCustomUnit, Mode=TwoWay}" />
+                                <StackPanel>
+                                    <TextBlock Margin="0,6,0,0" Text="{extensions:Localize Key=CustomHalflifeNumberBox}" />
+                                    <controls:NumberBox x:Name="CustomHalflifeInputNumberBox" Value="{x:Bind Model.CustomHalflife, Mode=TwoWay}" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Margin="0,6,0,0" Text="{extensions:Localize Key=CustomHalflifeUnitTextBox}" />
+                                    <ComboBox
+                                        Width="100"
+                                        ItemsSource="{x:Bind Model.CustomUnits, Mode=OneWay}"
+                                        SelectedItem="{x:Bind Model.SelectedCustomUnit, Mode=TwoWay}" />
+                                </StackPanel>
                             </StackPanel>
+
+                            <!--  Table with radionuclids  -->
+                            <Grid
+                                Grid.Row="3"
+                                Grid.ColumnSpan="2"
+                                Visibility="{x:Bind Model.BeamActivitySelected, Mode=OneWay}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Text="{extensions:Localize Key=Radionuclids_Name}" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="SemiBold">
+                                    <Run Text="{extensions:Localize Key=Radionuclids_Activity}" /><Run Text=" A" /><Run Text="0" Typography.Variants="Subscript" /><Run Text=" [Bq]" />
+                                </TextBlock>
+                            </Grid>
+
+                            <ListView
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                                ItemTemplate="{StaticResource RadionuclideListItemTemplate}"
+                                ItemsSource="{x:Bind Model.Radionuclides, Mode=OneWay}"
+                                SelectedItem="{x:Bind Model.SelectedRadionuclide, Mode=TwoWay}"
+                                Visibility="{x:Bind Model.BeamActivitySelected, Mode=OneWay}" />
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

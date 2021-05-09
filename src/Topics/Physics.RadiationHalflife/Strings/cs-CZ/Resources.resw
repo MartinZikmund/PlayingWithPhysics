@@ -171,10 +171,28 @@ Grafika: Petr Weinlich</value>
     <value>Poločas rozpadu</value>
   </data>
   <data name="CustomHalflifeUnitTextBox" xml:space="preserve">
-    <value>Jednotka poločasu rozpadu</value>
+    <value>Jednotka</value>
+  </data>
+  <data name="CustomUnits_Day" xml:space="preserve">
+    <value>Den</value>
+  </data>
+  <data name="CustomUnits_Hour" xml:space="preserve">
+    <value>Hodina</value>
+  </data>
+  <data name="CustomUnits_Minute" xml:space="preserve">
+    <value>Minuta</value>
+  </data>
+  <data name="CustomUnits_Month" xml:space="preserve">
+    <value>Měsíc</value>
+  </data>
+  <data name="CustomUnits_Second" xml:space="preserve">
+    <value>Sekunda</value>
+  </data>
+  <data name="CustomUnits_Year" xml:space="preserve">
+    <value>Rok</value>
   </data>
   <data name="Custom_Name" xml:space="preserve">
-    <value>Vlastní poločas rozpadu</value>
+    <value>Vlastní</value>
   </data>
   <data name="Fluorine_Halflife" xml:space="preserve">
     <value>minut</value>
@@ -224,6 +242,15 @@ Grafika: Petr Weinlich</value>
   <data name="LawOfRadioactiveDecay" xml:space="preserve">
     <value>Rozpadový zákon (vyberte radionuklid)</value>
   </data>
+  <data name="Nuclids_Halflife" xml:space="preserve">
+    <value>Poločas rozpadu</value>
+  </data>
+  <data name="Nuclids_Name" xml:space="preserve">
+    <value>Izotop</value>
+  </data>
+  <data name="NumberOfParticlesNumberBox" xml:space="preserve">
+    <value>Počet částic</value>
+  </data>
   <data name="Plutonium_Halflife" xml:space="preserve">
     <value>let</value>
   </data>
@@ -235,6 +262,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Potassium_Name" xml:space="preserve">
     <value>Draslík</value>
+  </data>
+  <data name="Radionuclids_Activity" xml:space="preserve">
+    <value>Aktivita zářiče</value>
+  </data>
+  <data name="Radionuclids_Name" xml:space="preserve">
+    <value>Radionuklid</value>
   </data>
   <data name="Radium223_Halflife" xml:space="preserve">
     <value>dne</value>

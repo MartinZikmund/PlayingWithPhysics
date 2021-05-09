@@ -278,4 +278,37 @@ Graphics: Petr Weinlich</value>
   <data name="Halflife_Year" xml:space="preserve">
     <value>Year</value>
   </data>
+  <data name="CustomUnits_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="CustomUnits_Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="CustomUnits_Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="CustomUnits_Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="CustomUnits_Second" xml:space="preserve">
+    <value>Second</value>
+  </data>
+  <data name="CustomUnits_Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Nuclids_Halflife" xml:space="preserve">
+    <value>Halflife</value>
+  </data>
+  <data name="Nuclids_Name" xml:space="preserve">
+    <value>Isotope</value>
+  </data>
+  <data name="NumberOfParticlesNumberBox" xml:space="preserve">
+    <value>Number of particles</value>
+  </data>
+  <data name="Radionuclids_Activity" xml:space="preserve">
+    <value>Beam activity</value>
+  </data>
+  <data name="Radionuclids_Name" xml:space="preserve">
+    <value>Radionuclid</value>
+  </data>
 </root>
