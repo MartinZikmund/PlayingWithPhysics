@@ -9,7 +9,7 @@
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin"
     Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
-    Version="1.2.2.0" />
+    Version="1.2.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="b5101ec2-fec7-4e9c-9833-d915571f376e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
