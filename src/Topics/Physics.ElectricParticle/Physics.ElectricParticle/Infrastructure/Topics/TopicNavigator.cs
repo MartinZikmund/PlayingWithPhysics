@@ -28,6 +28,8 @@ namespace Physics.ElectricParticle.Infrastructure.Topics
 
 		public string GameNameOverride => null;
 
+		public int Id => 13;
+
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
         public Task GoToGameAsync()

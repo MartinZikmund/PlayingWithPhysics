@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.HomogenousMovement"
     xmlns:resources="using:Physics.SelfStudy.Resources"
-    RequestedTheme="Light">
+    RequestedTheme="Dark">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

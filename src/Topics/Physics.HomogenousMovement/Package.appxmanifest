@@ -41,8 +41,8 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="hsf1">
-            <uap:DisplayName>Výukové aplikace</uap:DisplayName>
+          <uap:Protocol Name="playingwithphysics-projectilemotions">
+            <uap:DisplayName>Playing with Physics: Projectile Motions</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
       </Extensions>

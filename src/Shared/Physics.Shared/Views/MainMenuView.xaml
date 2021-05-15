@@ -10,32 +10,32 @@
 	Background="{StaticResource AppThemeColor}"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <Style x:Key="DefaultButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
-            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
-            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
-            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
-            <Setter Property="FocusVisualMargin" Value="-3" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border
+	<Page.Resources>
+		<Style x:Key="DefaultButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+			<Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
+			<Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
+			<Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+			<Setter Property="FontWeight" Value="Normal" />
+			<Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+			<Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}" />
+			<Setter Property="FocusVisualMargin" Value="-3" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid>
+							<Border
                                 x:Name="BackgroundPresenter"
                                 Margin="20,0,-20,0"
                                 Background="{TemplateBinding Background}">
-                                <Border.RenderTransform>
-                                    <SkewTransform AngleX="-40" />
-                                </Border.RenderTransform>
-                            </Border>
-                            <ContentPresenter
+								<Border.RenderTransform>
+									<SkewTransform AngleX="-40" />
+								</Border.RenderTransform>
+							</Border>
+							<ContentPresenter
                                 x:Name="ContentPresenter"
                                 Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -46,78 +46,79 @@
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTransitions="{TemplateBinding ContentTransitions}" />
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
-                                        <Storyboard>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                        </Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+											</ObjectAnimationUsingKeyFrames>
+											<PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
+											</ObjectAnimationUsingKeyFrames>
+											<PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter" />
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundPresenter" Storyboard.TargetProperty="Opacity">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="0.9" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+						</Grid>
 
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="Margin" Value="4" />
-            <Setter Property="FontSize" Value="14" />
-        </Style>
-        <Style TargetType="BitmapIcon">
-            <Setter Property="Width" Value="32" />
-            <Setter Property="Height" Value="32" />
-            <Setter Property="Margin" Value="0,0,8,0" />
-        </Style>
-    </Page.Resources>
-    <Grid x:Name="RootGrid">
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Margin" Value="4" />
+			<Setter Property="FontSize" Value="14" />
+		</Style>
+		<Style TargetType="BitmapIcon">
+			<Setter Property="Width" Value="32" />
+			<Setter Property="Height" Value="32" />
+			<Setter Property="Margin" Value="0,0,8,0" />
+		</Style>
+	</Page.Resources>
+	<Grid x:Name="RootGrid">
 		<Grid Padding="0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
@@ -127,9 +128,9 @@
                 x:Name="CircleImage"
                 Width="600"
                 Margin="-12"
+				Source="{Binding App.MenuImageUri}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Source="/Assets/Menu/Circle.png"
                 Stretch="Uniform" />
 			<ScrollViewer
                 x:Name="ItemsGrid"
@@ -294,64 +295,71 @@
                             FontWeight="Bold"
                             Foreground="White"
                             Style="{ThemeResource SubheaderTextBlockStyle}"
-                            Text="{extensions:Localize Key=ShortAppName}"
+                            Text="{x:Bind Model.App.ShortName}"
                             TextWrapping="Wrap" />
 					</Grid>
 				</Grid>
 			</ScrollViewer>
+			<Button Grid.Row="1"
+					Padding="12"
+					Margin="0,0,40,40"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Right"
+					Command="{x:Bind Model.MoreAppsCommand}"
+					Content="{extensions:Localize Key=MorePhysicsApps}" />
 		</Grid>
 		<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Low">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowHeight="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LastRow.Height" Value="Auto" />
-                        <Setter Target="Logo.Height" Value="100" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Mid">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowHeight="550" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters />
-                </VisualState>
-                <VisualState x:Name="High">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowHeight="768" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LastRow.Height" Value="*" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-            <VisualStateGroup>
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
-                        <Setter Target="CircleImage.(Grid.ColumnSpan)" Value="2" />
-                        <Setter Target="TitleBlock.Margin" Value="100,12,-300,0" />
-                        <Setter Target="TitleTextBlock.Margin" Value="0,20,312,20" />
-                        <Setter Target="FirstColumn.Width" Value="0" />
-                        <Setter Target="MenuWrapper.HorizontalAlignment" Value="Center" />
-                        <Setter Target="TitleTextBlock.MaxWidth" Value="400" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="768" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
-                        <Setter Target="CircleImage.(Grid.ColumnSpan)" Value="1" />
-                        <Setter Target="MenuWrapper.HorizontalAlignment" Value="Stretch" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-    </Grid>
+			<VisualStateGroup>
+				<VisualState x:Name="Low">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowHeight="0" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="LastRow.Height" Value="Auto" />
+						<Setter Target="Logo.Height" Value="100" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="Mid">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowHeight="550" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters />
+				</VisualState>
+				<VisualState x:Name="High">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowHeight="768" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="LastRow.Height" Value="*" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+			<VisualStateGroup>
+				<VisualState x:Name="Narrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="0" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
+						<Setter Target="CircleImage.(Grid.ColumnSpan)" Value="2" />
+						<Setter Target="TitleBlock.Margin" Value="100,12,-300,0" />
+						<Setter Target="TitleTextBlock.Margin" Value="0,20,312,20" />
+						<Setter Target="FirstColumn.Width" Value="0" />
+						<Setter Target="MenuWrapper.HorizontalAlignment" Value="Center" />
+						<Setter Target="TitleTextBlock.MaxWidth" Value="400" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="Wide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="768" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="ItemsGrid.(Grid.Column)" Value="0" />
+						<Setter Target="CircleImage.(Grid.ColumnSpan)" Value="1" />
+						<Setter Target="MenuWrapper.HorizontalAlignment" Value="Stretch" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+	</Grid>
 </views:BaseView>

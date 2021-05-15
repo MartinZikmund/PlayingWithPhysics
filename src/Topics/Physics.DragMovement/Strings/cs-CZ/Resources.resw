@@ -264,9 +264,6 @@ Grafika: Petr Weinlich</value>
   <data name="Settings" xml:space="preserve">
     <value>Nastavení</value>
   </data>
-  <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyby tělesa v odporujícím prostředí</value>
-  </data>
   <data name="ShowHideIrrelevantColumns" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
   </data>

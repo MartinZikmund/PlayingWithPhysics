@@ -255,7 +255,6 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
-    <Content Include="Assets\Menu\circle.png" />
     <Content Include="Assets\StudyMode\Obr_tema_1_01.png" />
     <Content Include="Assets\StudyMode\Obr_tema_1_02.png" />
     <Content Include="Assets\StudyMode\Obr_tema_1_03.png" />
@@ -337,9 +336,7 @@
   <ItemGroup>
     <PRIResource Include="Strings\cs-CZ\Resources.resw" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -26,6 +26,8 @@ namespace Physics.LissajousCurves.Infrastructure.Topics
 
 		public string GameNameOverride => Localizer.Instance["Demo"];
 
+		public int Id => 10;
+
 		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 

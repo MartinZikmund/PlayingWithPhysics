@@ -1,0 +1,50 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "ProjectileMotions",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsProjec_svr2k4kdvk0kr",
+    "StoreId": "9NV5G3K3D83L"
+  },
+  {
+    "Id": 2,
+    "Name": "Drag",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsDrag_svr2k4kdvk0kr",
+    "StoreId": "9P758R5JD4JC"
+  },
+  {
+    "Id": 4,
+    "Name": "InclinedPlane",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin_svr2k4kdvk0kr",
+    "StoreId": "9P5745XQCQ41"
+  },
+  {
+    "Id": 7,
+    "Name": "CompoundOscillations",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsCompou_svr2k4kdvk0kr",
+    "StoreId": "9P01KXJSCP2B"
+  },
+  {
+    "Id": 10,
+    "Name": "LissajousCurves",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsLissaj_svr2k4kdvk0kr",
+    "StoreId": "9PMVLFNP6D6G"
+  },
+  {
+    "Id": 13,
+    "Name": "ElectricField",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsElectr_svr2k4kdvk0kr",
+    "StoreId": "9MX7TLT6G4SX"
+  },
+  {
+    "Id": 14,
+    "Name": "MagneticField",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsMagnet_svr2k4kdvk0kr",
+    "StoreId": "9PM95Q8QJN9T"
+  },
+  {
+    "Id": 17,
+    "Name": "RadioactiveDecay",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsRadiat_svr2k4kdvk0kr",
+    "StoreId": "9N01BCV4GX5Z"
+  }
+]
