@@ -26,7 +26,7 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             this.DataContextChanged += ZeroVariantInputControl_DataContextChanged;
-            ChargeNumberBox.SetupFormatting(smallChange: 1);
+            ChargeNumberBox.SetupFormatting(increment: 1, smallChange: 1);
             OrientationNumberBox.SetupFormatting(fractionDigits: 0);
         }
 

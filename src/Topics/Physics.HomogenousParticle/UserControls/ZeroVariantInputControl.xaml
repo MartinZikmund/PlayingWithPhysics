@@ -36,14 +36,12 @@
                 <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <TextBlock
-            Grid.Row="0"
-            Grid.Column="0">
+        <TextBlock Grid.Row="0" Grid.Column="0">
             <Run Text="{extensions:Localize Key=PerpendicularInput_ChargeStart}" />
             <Run FontWeight="Bold" Text="q" />
             <Run Text="{extensions:Localize Key=PerpendicularInput_MultipleOf}" />
             <Run Text="1.6×10" /><Run Text="&#8315;19" Typography.Variants="Superscript" /><Run Text=")" />
-            <Run Text="[C]"/>
+            <Run Text="[C]" />
         </TextBlock>
         <winui:NumberBox
             x:Name="ChargeNumberBox"
@@ -53,11 +51,9 @@
             Minimum="-3"
             Value="{x:Bind Model.Charge, Mode=TwoWay}" />
 
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="0">
+        <TextBlock Grid.Row="1" Grid.Column="0">
             <Run Text="Orientace indukčních čar" />
-            <Run FontWeight="Bold" Text="B" />
+            <Run FontWeight="Bold" Text="B" /> <Run Text="{extensions:Localize Key=ParallelInput_InductionOrientation}" />
         </TextBlock>
         <winui:NumberBox
             x:Name="OrientationNumberBox"

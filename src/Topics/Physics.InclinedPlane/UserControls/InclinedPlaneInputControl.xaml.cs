@@ -11,13 +11,14 @@ namespace Physics.InclinedPlane.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += AdvancedVariantInputControl_DataContextChanged;
-            V0NumberBox.SetupFormatting(increment: 0.1, fractionDigits: 1, smallChange: 1);
-            InclinedPlaneLengthNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.1);
-            MassNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 1);
+            V0NumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+            InclinedPlaneLengthNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+            MassNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
             InclinedPlaneAngleNumberBox.SetupFormatting(increment: 0.1, fractionDigits: 1, smallChange: 1);
-            DriftCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.1);
-            HorizontalDriftCoefficientNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.1);
-            GravityNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.1);
+            DriftCoefficientNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+            HorizontalDriftCoefficientNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+            GravityNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+			HorizontalPlaneLengthNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
         }
 
         private void AdvancedVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

@@ -157,7 +157,7 @@
     <value>Induction orientation</value>
   </data>
   <data name="PerpendicularInput_MassStart" xml:space="preserve">
-    <value>Particle mass</value>
+    <value>Relative particle mass</value>
   </data>
   <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
     <value>(multiple of</value>

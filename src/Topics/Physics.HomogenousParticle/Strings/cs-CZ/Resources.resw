@@ -151,7 +151,7 @@
     <value>Orientace indukčních čar</value>
   </data>
   <data name="PerpendicularInput_MassStart" xml:space="preserve">
-    <value>Hmotnost částice</value>
+    <value>Relativní atomová hmotnost</value>
   </data>
   <data name="PerpendicularInput_MultipleOf" xml:space="preserve">
     <value>(násobek</value>

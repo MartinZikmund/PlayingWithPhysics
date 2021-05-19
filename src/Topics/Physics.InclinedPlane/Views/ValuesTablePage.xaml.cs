@@ -37,12 +37,12 @@ namespace Physics.InclinedPlane.Views
         private void SetupFormatting()
         {
             var rounder = new IncrementNumberRounder();
-            rounder.Increment = 0.1;
+            rounder.Increment = 0.01;
             rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
 
             var formatter = new DecimalFormatter();
             formatter.IntegerDigits = 1;
-            formatter.FractionDigits = 1;
+            formatter.FractionDigits = 2;
             formatter.NumberRounder = rounder;
             TimeIntervalNumberBox.NumberFormatter = formatter;
         }
