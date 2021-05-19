@@ -165,7 +165,6 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\Menu\Circle.png" />
     <Content Include="Assets\StudyMode\01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -252,7 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fody" PrivateAssets="all">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>      
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" />

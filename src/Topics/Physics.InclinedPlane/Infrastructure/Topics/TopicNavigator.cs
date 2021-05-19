@@ -30,6 +30,8 @@ namespace Physics.InclinedPlane.Infrastructure.Topics
 
 		public string GameNameOverride => null;
 
+		public int Id => 4;
+
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
         public async Task GoToGameAsync()

@@ -19,13 +19,15 @@ namespace Physics.HomogenousMovement.Infrastructure.Topics
         public TopicNavigator(IMvxNavigationService navigationService) =>
             _navigationService = navigationService;
 
-        public bool HasAdvancedDifficulty => true;
+		public int Id => 1;
+
+		public bool HasAdvancedDifficulty => true;
 
         public bool HasStudyMode => true;
 
         public bool HasGame => true;
 
-		public string GameNameOverride => null;
+		public string GameNameOverride => null;		
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 

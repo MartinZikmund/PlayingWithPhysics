@@ -126,6 +126,24 @@
   <data name="AppInfoAddress" xml:space="preserve">
     <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
   </data>
+  <data name="AppName_CompoundOscillations" xml:space="preserve">
+    <value>Compound Oscillations</value>
+  </data>
+  <data name="AppName_Drag" xml:space="preserve">
+    <value>Drag</value>
+  </data>
+  <data name="AppName_ElectricField" xml:space="preserve">
+    <value>Electric Field</value>
+  </data>
+  <data name="AppName_InclinedPlane" xml:space="preserve">
+    <value>Inclined Plane</value>
+  </data>
+  <data name="AppName_MagneticField" xml:space="preserve">
+    <value>Magnetic Field</value>
+  </data>
+  <data name="AppName_ProjectileMotions" xml:space="preserve">
+    <value>Projectile Motions</value>
+  </data>
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Application „{0}“ was created within the project „Hrátky s fyzikou“, which is financed by European Union. Registration number of the project is CZ.02.3.68/0.0/0.0/18_067/0012381. Published under Creative Commons 4.0, BY-NC-SA.</value>
   </data>
@@ -173,6 +191,12 @@
   </data>
   <data name="Label" xml:space="preserve">
     <value>Label</value>
+  </data>
+  <data name="MoreApps" xml:space="preserve">
+    <value>More apps...</value>
+  </data>
+  <data name="MorePhysicsApps" xml:space="preserve">
+    <value>More physics apps</value>
   </data>
   <data name="NewGame" xml:space="preserve">
     <value>New game</value>

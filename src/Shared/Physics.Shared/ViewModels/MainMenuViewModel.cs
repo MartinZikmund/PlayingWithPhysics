@@ -11,20 +11,36 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
+using Physics.Shared.UI.Services.AppList;
+using Physics.Shared.UI.Models;
+using MvvmCross.Navigation;
+using Physics.Shared.UI.ViewModels;
 
 namespace Physics.Shared.ViewModels
 {
 	public class MainMenuViewModel : MvxViewModel
 	{
 		private readonly ITopicConfiguration _topicNavigator;
-
+		private readonly IAppList _appList;
+		private readonly IMvxNavigationService _navigationService;
 		private ICommand _goToEasyCommand;
 		private ICommand _goToAdvancedCommand;
 		private ICommand _goToStudyModeCommand;
 		private ICommand _gameModeCommand;
 		private ICommand _aboutAppCommand;
+		private MvxAsyncCommand _moreAppsCommand;
 
-		public MainMenuViewModel(ITopicConfiguration topicNavigator) => _topicNavigator = topicNavigator;
+		public MainMenuViewModel(ITopicConfiguration topicNavigator, IAppList appList, IMvxNavigationService navigationService)
+		{
+			_topicNavigator = topicNavigator ?? throw new ArgumentNullException(nameof(topicNavigator));
+			_appList = appList ?? throw new ArgumentNullException(nameof(appList));
+			_navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+			App = new AppListItemViewModel(_appList.GetAppById(topicNavigator.Id));
+		}
+
+		public AppListItemViewModel App { get; }
+
+		public Uri MenuImageUri => new Uri($"ms-appx:///Physics.Shared.UI/Assets/Logos/{App.Name}.png");
 
 		public bool HasGame => _topicNavigator.HasGame;
 
@@ -41,6 +57,10 @@ namespace Physics.Shared.ViewModels
 		public ICommand GameModeCommand => _gameModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToGameAsync);
 
 		public ICommand GoToStudyModeCommand => _goToStudyModeCommand ??= new MvxAsyncCommand(_topicNavigator.GoToStudyModeAsync);
+
+		public ICommand MoreAppsCommand => _moreAppsCommand ??= new MvxAsyncCommand(GoToMoreAppsAsync);
+
+		private async Task GoToMoreAppsAsync() => await _navigationService.Navigate<AppListViewModel>();
 
 		private bool IsCurrentCultureCzech =>
 #if DEBUG

@@ -126,6 +126,24 @@
   <data name="AppInfoAddress" xml:space="preserve">
     <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
   </data>
+  <data name="AppName_CompoundOscillations" xml:space="preserve">
+    <value>Skládání kmitání</value>
+  </data>
+  <data name="AppName_Drag" xml:space="preserve">
+    <value>Pohyby tělesa v odporujícím prostředí</value>
+  </data>
+  <data name="AppName_ElectricField" xml:space="preserve">
+    <value>Pohyb částice v homogenním elektrickém poli</value>
+  </data>
+  <data name="AppName_InclinedPlane" xml:space="preserve">
+    <value>Translační pohyb tělesa po nakloněné rovině</value>
+  </data>
+  <data name="AppName_MagneticField" xml:space="preserve">
+    <value>Pohyby v homogenním magnetickém poli</value>
+  </data>
+  <data name="AppName_ProjectileMotions" xml:space="preserve">
+    <value>Pohyby těles v homogenním tíhovém poli</value>
+  </data>
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Aplikace „{0}“ byla vytvořena v rámci projektu „Hrátky s fyzikou“, který je spolufinancován Evropskou unií. Registrační číslo projektu je CZ.02.3.68/0.0/0.0/18_067/0012381. Publikováno pod licencí Creative Commons 4.0 ve variantě BY-NC-SA.</value>
   </data>
@@ -173,6 +191,12 @@
   </data>
   <data name="Label" xml:space="preserve">
     <value>Název</value>
+  </data>
+  <data name="MoreApps" xml:space="preserve">
+    <value>Další aplikace...</value>
+  </data>
+  <data name="MorePhysicsApps" xml:space="preserve">
+    <value>Další fyzikální aplikace</value>
   </data>
   <data name="NewGame" xml:space="preserve">
     <value>Nová hra</value>

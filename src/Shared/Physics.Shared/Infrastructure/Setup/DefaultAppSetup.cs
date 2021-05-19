@@ -10,6 +10,7 @@ using MvvmCross.ViewModels;
 using Physics.Shared.Services.Preferences;
 using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Services;
+using Physics.Shared.UI.Services.AppList;
 using Physics.Shared.UI.Services.Dialogs;
 using Physics.Shared.ViewModels;
 
@@ -24,6 +25,7 @@ namespace Physics.Shared.UI.Infrastructure.Setup
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IPreferences, Preferences>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISoundPlayer, SoundPlayer>();
 			Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IContentDialogHelper, ContentDialogHelper>();
+			Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppList, AppList>();
         }
 
         public override IEnumerable<Assembly> GetViewAssemblies()

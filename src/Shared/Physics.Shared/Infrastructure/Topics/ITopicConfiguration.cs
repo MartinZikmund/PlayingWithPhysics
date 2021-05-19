@@ -4,6 +4,8 @@ namespace Physics.Shared.UI.Infrastructure.Topics
 {
     public interface ITopicConfiguration
     {
+		int Id { get; }
+
         bool HasAdvancedDifficulty { get; }
 
         bool HasStudyMode { get; }

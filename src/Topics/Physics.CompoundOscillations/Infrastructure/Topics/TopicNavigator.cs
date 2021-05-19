@@ -25,6 +25,8 @@ namespace Physics.CompoundOscillations.Infrastructure.Topics
 
 		public string GameNameOverride => null;
 
+		public int Id => 7;
+
 		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 

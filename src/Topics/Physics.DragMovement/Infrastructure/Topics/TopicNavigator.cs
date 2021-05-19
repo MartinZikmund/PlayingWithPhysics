@@ -28,6 +28,8 @@ namespace Physics.DragMovement.Infrastructure.Topics
 
 		public string GameNameOverride => null;
 
+		public int Id => 2;
+
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
         public async Task GoToGameAsync()
