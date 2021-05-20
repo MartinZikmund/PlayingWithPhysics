@@ -122,7 +122,8 @@
                                 <Slider
                                     Grid.Row="1"
                                     AllowFocusOnInteraction="False"
-                                    Orientation="Vertical" />
+                                    Orientation="Vertical"
+                                    Style="{StaticResource GameSlider}" />
                             </Grid>
                             <Grid
                                 x:Name="ControlPaneRight"
@@ -170,7 +171,7 @@
 
                         <!--  Bottom slider  -->
                         <Grid x:Name="BottomControlGrid" Grid.Row="1">
-                            <Slider AllowFocusOnInteraction="False" />
+                            <Slider AllowFocusOnInteraction="False" Style="{StaticResource GameSlider}" />
                         </Grid>
                     </Grid>
                 </Border>
