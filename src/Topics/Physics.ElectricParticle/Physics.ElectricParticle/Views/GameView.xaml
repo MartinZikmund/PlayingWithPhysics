@@ -2,10 +2,12 @@
     x:Class="Physics.ElectricParticle.Views.GameView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Physics.ElectricParticle.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    RequestedTheme="Light"
     mc:Ignorable="d">
 
     <Grid>
@@ -13,7 +15,22 @@
             <ImageBrush ImageSource="ms-appx:///Assets/Game/Background.jpg" Stretch="UniformToFill" />
         </Grid.Background>
         <Viewbox Margin="20">
-            <Border Width="1920" Height="1080">
+            <Grid Width="1920" Height="1080">
+                <controls:DropShadowPanel
+                    HorizontalContentAlignment="Stretch"
+                    BlurRadius="40"
+                    IsMasked="True"
+                    OffsetX="12"
+                    OffsetY="12"
+                    ShadowOpacity="0.5">
+                    <Rectangle
+                        Margin="2"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Fill="Black"
+                        RadiusX="40"
+                        RadiusY="40" />
+                </controls:DropShadowPanel>
                 <Border
                     Padding="40"
                     Background="#ef1b1a"
@@ -30,31 +47,138 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Grid Background="#b9b357" CornerRadius="40">
+                        <controls:DropShadowPanel
+                            HorizontalContentAlignment="Stretch"
+                            BlurRadius="20"
+                            IsMasked="True"
+                            OffsetX="12"
+                            OffsetY="12"
+                            ShadowOpacity="0.5">
+                            <Rectangle
+                                Margin="2"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Fill="Black"
+                                RadiusX="40"
+                                RadiusY="40" />
+                        </controls:DropShadowPanel>
+
+                        <!--  Game board  -->
+                        <Grid
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="#b9b357"
+                            CornerRadius="40">
                             <Grid x:Name="CanvasHolder" />
-                            <Border x:Name="LeftVerticalPane" />
-                            <Border x:Name="TopHorizontalPane" />
+                            <Rectangle
+                                x:Name="LeftVerticalPane"
+                                HorizontalAlignment="Left"
+                                Fill="{StaticResource PositivePlaneBrush}"
+                                Style="{StaticResource VerticalPlaneRectangleStyle}" />
+                            <Rectangle
+                                x:Name="TopHorizontalPane"
+                                VerticalAlignment="Top"
+                                Fill="{StaticResource NegativePlaneBrush}"
+                                Style="{StaticResource HorizontalPlaneRectangleStyle}" />
                             <Rectangle
                                 x:Name="RightVerticalPane"
-                                Width="40"
-                                Margin="20"
                                 HorizontalAlignment="Right"
-                                Fill="#ed1c24"
-                                RadiusX="12"
-                                RadiusY="12" />
-                            <Border x:Name="BottomVerticalPane" />
+                                Fill="{StaticResource NegativePlaneBrush}"
+                                Style="{StaticResource VerticalPlaneRectangleStyle}" />
+                            <Rectangle
+                                x:Name="BottomVerticalPane"
+                                VerticalAlignment="Bottom"
+                                Fill="{StaticResource PositivePlaneBrush}"
+                                Style="{StaticResource HorizontalPlaneRectangleStyle}" />
                         </Grid>
-                        <Grid x:Name="RightControlGrid" Grid.Column="1">
-                            <Slider AllowFocusOnInteraction="False" Orientation="Vertical" />
+
+                        <!--  Control panel  -->
+                        <Grid x:Name="ControlGrid" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="ControlPaneLeft">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Level indicator  -->
+                                <Grid Style="{StaticResource LevelIndicatorGridStyle}">
+                                    <Grid VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Style="{StaticResource LevelIndicatorTextBlockStyle}" Text="level" />
+                                        <TextBlock Grid.Row="1" Style="{StaticResource LevelIndicatorTextBlockStyle}">
+                                            <Run Text="5" /><Run Text="/" /><Run Text="11" />
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+
+                                <!--  Vertical slider  -->
+                                <Slider
+                                    Grid.Row="1"
+                                    AllowFocusOnInteraction="False"
+                                    Orientation="Vertical" />
+                            </Grid>
+                            <Grid
+                                x:Name="ControlPaneRight"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                ColumnSpacing="16"
+                                RowSpacing="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!--  Control panel buttons  -->
+                                <ToggleButton Style="{ThemeResource GameToggleButtonStyle}">Gravity on/off</ToggleButton>
+                                <ToggleButton Grid.Column="1" Style="{ThemeResource GameToggleButtonStyle}">Up/down</ToggleButton>
+                                <Button Grid.Row="1" Style="{ThemeResource GameButtonStyle}">Reset game</Button>
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Style="{StaticResource GameButtonStyle}">
+                                    Photo
+                                </Button>
+                                <Button Grid.Row="2" Style="{ThemeResource GameButtonStyle}">Photo</Button>
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Style="{ThemeResource GameButtonStyle}">
+                                    Next level
+                                </Button>
+
+                                <!--  Game timer  -->
+                                <Border
+                                    Grid.Row="3"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource GameTimerBorderStyle}">
+                                    <TextBlock Style="{StaticResource GameTimerTextBlockStyle}" Text="0:00" />
+                                </Border>
+                            </Grid>
                         </Grid>
+
+                        <!--  Bottom slider  -->
                         <Grid x:Name="BottomControlGrid" Grid.Row="1">
                             <Slider AllowFocusOnInteraction="False" />
                         </Grid>
                     </Grid>
                 </Border>
-            </Border>
+            </Grid>
         </Viewbox>
-        <!--  TODO  -->
-
+        <Button
+            VerticalAlignment="Top"
+            Command="{x:Bind Model.GoBackCommand}"
+            Style="{StaticResource NavigationBackButtonNormalStyle}" />
     </Grid>
 </local:GameViewBase>
