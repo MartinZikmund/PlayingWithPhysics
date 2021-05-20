@@ -78,7 +78,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.LissajousCurves", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.LissajousCurves.Logic", "src\Topics\Physics.LissajousCurves.Logic\Physics.LissajousCurves.Logic.csproj", "{2BFB1F87-08C8-48E7-96BC-9234813539C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.ElectricParticle.Logic.Tests", "tests\Topics\Physics.ElectricParticle.Logic.Tests\Physics.ElectricParticle.Logic.Tests.csproj", "{BBBCE1D3-A32D-4B92-8FA3-999118AA577B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.ElectricParticle.Logic.Tests", "tests\Topics\Physics.ElectricParticle.Logic.Tests\Physics.ElectricParticle.Logic.Tests.csproj", "{BBBCE1D3-A32D-4B92-8FA3-999118AA577B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08_WaveInterference", "08_WaveInterference", "{88CD2CA4-3080-4943-A07E-ADB044F8B14E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.WaveInterference", "src\Topics\Physics.WaveInterference\Physics.WaveInterference.csproj", "{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -648,6 +652,32 @@ Global
 		{BBBCE1D3-A32D-4B92-8FA3-999118AA577B}.Release|x64.Build.0 = Release|Any CPU
 		{BBBCE1D3-A32D-4B92-8FA3-999118AA577B}.Release|x86.ActiveCfg = Release|Any CPU
 		{BBBCE1D3-A32D-4B92-8FA3-999118AA577B}.Release|x86.Build.0 = Release|Any CPU
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM.Build.0 = Debug|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM.Deploy.0 = Debug|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x64.ActiveCfg = Debug|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x64.Build.0 = Debug|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x64.Deploy.0 = Debug|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x86.ActiveCfg = Debug|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x86.Build.0 = Debug|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Debug|x86.Deploy.0 = Debug|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|Any CPU.ActiveCfg = Release|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM.ActiveCfg = Release|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM.Build.0 = Release|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM.Deploy.0 = Release|ARM
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM64.Build.0 = Release|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|ARM64.Deploy.0 = Release|ARM64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x64.ActiveCfg = Release|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x64.Build.0 = Release|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x64.Deploy.0 = Release|x64
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x86.ActiveCfg = Release|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x86.Build.0 = Release|x86
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -686,6 +716,8 @@ Global
 		{053D529D-595E-4F71-A199-2DB749C750B4} = {464525E4-4C8B-4266-8476-8A23FC473409}
 		{2BFB1F87-08C8-48E7-96BC-9234813539C7} = {464525E4-4C8B-4266-8476-8A23FC473409}
 		{BBBCE1D3-A32D-4B92-8FA3-999118AA577B} = {D2140C16-7982-44BA-92A1-463036E33C9A}
+		{88CD2CA4-3080-4943-A07E-ADB044F8B14E} = {381E6158-59BC-4D40-9F33-084C4140E44D}
+		{E2A94B1D-CB9E-4A8F-9F3B-A26D8DCB8F10} = {88CD2CA4-3080-4943-A07E-ADB044F8B14E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED552938-F303-42AA-9225-9FC231B27BB4}

@@ -44,7 +44,10 @@
         </Grid.ChildrenTransitions>
 
         <!--  General inputs  -->
-        <Grid Grid.Row="0" RowSpacing="8" ColumnSpacing="8">
+        <Grid
+            Grid.Row="0"
+            ColumnSpacing="8"
+            RowSpacing="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -69,23 +72,23 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Maximum="90"
-                Minimum="0"
+                Minimum="0.01"
                 Value="{x:Bind Model.Mass, Mode=TwoWay}" />
             <TextBlock Grid.Row="1" Grid.Column="0">
-                    <Run Text="{extensions:Localize Key=Input_InitialSpeed}" />
-                    <Run FontWeight="SemiBold" Text="v" /><Run
-                        FontWeight="SemiBold"
-                        Text="0"
-                        Typography.Variants="Subscript" />
-                    <Run Text="(m/s)" />
+                <Run Text="{extensions:Localize Key=Input_InitialSpeed}" />
+                <Run FontWeight="SemiBold" Text="v" /><Run
+                    FontWeight="SemiBold"
+                    Text="0"
+                    Typography.Variants="Subscript" />
+                <Run Text="(m/s)" />
             </TextBlock>
             <winui:NumberBox
-                    x:Name="V0NumberBox"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Maximum="90"
-                    Minimum="0"
-                    Value="{x:Bind Model.V0, Mode=TwoWay}" />
+                x:Name="V0NumberBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                Maximum="90"
+                Minimum="0"
+                Value="{x:Bind Model.V0, Mode=TwoWay}" />
         </Grid>
         <Grid Grid.Row="1" ColumnSpacing="8">
             <Grid.RowDefinitions>
@@ -190,7 +193,7 @@
                 x:Name="InclinedPlaneAngleNumberBox"
                 Grid.Row="1"
                 Grid.Column="1"
-                Maximum="90"
+                Maximum="{x:Bind Model.MaximumAngle, Mode=OneWay}"
                 Minimum="0"
                 Value="{x:Bind Model.InclinedAngle, Mode=TwoWay}" />
 
@@ -205,7 +208,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Maximum="30"
-                Minimum="0"
+                Minimum="0.1"
                 Value="{x:Bind Model.InclinedLength, Mode=TwoWay}" />
 
             <!--  Inclined plane drift coefficient  -->

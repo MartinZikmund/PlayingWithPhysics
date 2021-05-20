@@ -8,8 +8,8 @@
 
   <Identity
     Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin"
-    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
-    Version="1.2.3.0" />
+    Publisher="CN=danie"
+    Version="1.2.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="b5101ec2-fec7-4e9c-9833-d915571f376e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -40,13 +40,6 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#dd6285"/>
       </uap:VisualElements>
-      <Extensions>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="playingwithphysics-inclinedplane">
-            <uap:DisplayName>Playing with Physics: Inclined Plane</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-      </Extensions>
     </Application>
   </Applications>
 

@@ -18,7 +18,7 @@ namespace Physics.HomogenousParticle.ViewModels.Inputs
         {
             if (ChargeMultiple == 0)
             {
-                await new MessageDialog("Násebek nesmí být 0").ShowAsync();
+                await new MessageDialog("Náboj nesmí být 0").ShowAsync();
                 return null;
             }
             return new PerpendicularMotionSetup(ChargeMultiple, MassMultiple, VelocityMultiple, Induction, InductionOrientation, Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(Color));
