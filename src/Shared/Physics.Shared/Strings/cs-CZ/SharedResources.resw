@@ -138,6 +138,9 @@
   <data name="AppName_InclinedPlane" xml:space="preserve">
     <value>Translační pohyb tělesa po nakloněné rovině</value>
   </data>
+  <data name="AppName_LissajousCurves" xml:space="preserve">
+    <value>Lissajousovy obrazce</value>
+  </data>
   <data name="AppName_MagneticField" xml:space="preserve">
     <value>Pohyby v homogenním magnetickém poli</value>
   </data>

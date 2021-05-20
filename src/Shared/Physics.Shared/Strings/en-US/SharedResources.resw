@@ -138,6 +138,9 @@
   <data name="AppName_InclinedPlane" xml:space="preserve">
     <value>Inclined Plane</value>
   </data>
+  <data name="AppName_LissajousCurves" xml:space="preserve">
+    <value>Lissajous Curves</value>
+  </data>
   <data name="AppName_MagneticField" xml:space="preserve">
     <value>Magnetic Field</value>
   </data>

@@ -24,7 +24,7 @@ namespace Physics.ElectricParticle.Infrastructure.Topics
 
         public bool HasStudyMode => true;
 
-        public bool HasGame => false;
+        public bool HasGame => true;
 
 		public string GameNameOverride => null;
 
@@ -32,10 +32,7 @@ namespace Physics.ElectricParticle.Infrastructure.Topics
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-        public Task GoToGameAsync()
-        {
-            throw new NotImplementedException();
-        }
+		public async Task GoToGameAsync() => await _navigationService.Navigate<GameViewModel>();
 
         public async Task GoToStudyModeAsync()
         {
