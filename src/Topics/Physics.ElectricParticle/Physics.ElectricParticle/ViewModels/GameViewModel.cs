@@ -10,7 +10,7 @@ using Physics.Shared.UI.Views.Interactions;
 
 namespace Physics.ElectricParticle.ViewModels
 {
-	public class GameViewModel : SimulationViewModelBase, IReceiveController<GameCanvasController>
+	public class GameViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<GameCanvasController>
 	{
 		public override void Prepare(SimulationNavigationModel parameter) => throw new NotImplementedException();
 		public void SetController(GameCanvasController controller) => throw new NotImplementedException();
