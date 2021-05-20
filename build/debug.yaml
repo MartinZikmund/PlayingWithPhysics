@@ -3,7 +3,7 @@ pool:
 
 variables:
   solution: '**/PlayingWithPhysics.sln'
-  buildPlatform: 'x86|x64|ARM'
+  buildPlatform: 'x86|x64|ARM|ARM64'
   buildConfiguration: 'Debug'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
@@ -19,4 +19,4 @@ steps:
     platform: 'x86'
     solution: '$(solution)'
     configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxPackageSigningEnabled=false'
