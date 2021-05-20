@@ -179,6 +179,18 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\Background.jpg" />
+    <Content Include="Assets\Game\Shapes\Shape_1.png" />
+    <Content Include="Assets\Game\Shapes\Shape_10.png" />
+    <Content Include="Assets\Game\Shapes\Shape_11.png" />
+    <Content Include="Assets\Game\Shapes\Shape_2.png" />
+    <Content Include="Assets\Game\Shapes\Shape_3.png" />
+    <Content Include="Assets\Game\Shapes\Shape_4.png" />
+    <Content Include="Assets\Game\Shapes\Shape_5.png" />
+    <Content Include="Assets\Game\Shapes\Shape_6.png" />
+    <Content Include="Assets\Game\Shapes\Shape_7.png" />
+    <Content Include="Assets\Game\Shapes\Shape_8.png" />
+    <Content Include="Assets\Game\Shapes\Shape_9.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -244,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\GameResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

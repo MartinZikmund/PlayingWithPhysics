@@ -8,5 +8,53 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Game/Background.jpg" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Viewbox Margin="20">
+            <Border Width="1920" Height="1080">
+                <Border
+                    Padding="40"
+                    Background="#ef1b1a"
+                    CornerRadius="40">
+                    <Grid
+                        Padding="40"
+                        Background="#d60201"
+                        CornerRadius="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Background="#b9b357" CornerRadius="40">
+                            <Grid x:Name="CanvasHolder" />
+                            <Border x:Name="LeftVerticalPane" />
+                            <Border x:Name="TopHorizontalPane" />
+                            <Rectangle
+                                x:Name="RightVerticalPane"
+                                Width="40"
+                                Margin="20"
+                                HorizontalAlignment="Right"
+                                Fill="#ed1c24"
+                                RadiusX="12"
+                                RadiusY="12" />
+                            <Border x:Name="BottomVerticalPane" />
+                        </Grid>
+                        <Grid x:Name="RightControlGrid" Grid.Column="1">
+                            <Slider AllowFocusOnInteraction="False" Orientation="Vertical" />
+                        </Grid>
+                        <Grid x:Name="BottomControlGrid" Grid.Row="1">
+                            <Slider AllowFocusOnInteraction="False" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Border>
+        </Viewbox>
+        <!--  TODO  -->
+
+    </Grid>
 </local:GameViewBase>
