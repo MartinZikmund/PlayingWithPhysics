@@ -282,4 +282,10 @@ Graphics: Petr Weinlich</value>
   <data name="RaftSpeed" xml:space="preserve">
     <value>Raft speed</value>
   </data>
+  <data name="InitialSpeedIsTooHigh" xml:space="preserve">
+    <value>Initial speed is too high.</value>
+  </data>
+  <data name="WeightMustBeMoreThanZero" xml:space="preserve">
+    <value>Weight must be at least 1 kg.</value>
+  </data>
 </root>

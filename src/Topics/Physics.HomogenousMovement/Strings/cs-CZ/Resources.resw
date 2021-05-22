@@ -288,4 +288,10 @@ Grafika: Petr Weinlich</value>
   <data name="RaftSpeed" xml:space="preserve">
     <value>Rychlost plavidla</value>
   </data>
+  <data name="InitialSpeedIsTooHigh" xml:space="preserve">
+    <value>Počáteční rychlost je příliš vysoká.</value>
+  </data>
+  <data name="WeightMustBeMoreThanZero" xml:space="preserve">
+    <value>Hmotnost tělesa musí být větší než 1 kg.</value>
+  </data>
 </root>

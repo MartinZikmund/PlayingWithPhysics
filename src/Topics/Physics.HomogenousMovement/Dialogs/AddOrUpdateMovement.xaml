@@ -95,7 +95,7 @@
 
             <TextBox Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
 
-            <Grid RowSpacing="4">
+            <Grid ColumnSpacing="8" RowSpacing="4">
                 <Grid.Resources>
                     <Style TargetType="winui:NumberBox">
                         <Setter Property="SpinButtonPlacementMode" Value="Inline" />
@@ -180,7 +180,7 @@
                     VerticalAlignment="Center"
                     IsEnabled="{x:Bind Model.IsMassEnabled, Mode=TwoWay}"
                     Maximum="1000"
-                    Minimum="0.0001"
+                    Minimum="1"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="4" VerticalAlignment="Center">

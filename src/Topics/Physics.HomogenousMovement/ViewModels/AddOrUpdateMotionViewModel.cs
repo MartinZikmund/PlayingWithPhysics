@@ -65,15 +65,16 @@ namespace Physics.HomogenousMovement.ViewModels
         private async Task SaveAsync(ContentDialogButtonClickEventArgs args)
         {
             var deferral = args.GetDeferral();
+
             try
             {
                 ResultMotionInfo = PrepareMotion();
                 ResultMotionInfo.Label = Label;
             }
-            catch (ArgumentException)
+            catch (ArgumentException e)
             {
                 var resourceManager = ResourceLoader.GetForCurrentView();
-                string errorMessage = resourceManager.GetString("ArgumentExceptionErrorMessage");
+				var errorMessage = resourceManager.GetString(e.Message);
                 var messageDialog = new MessageDialog(resourceManager.GetString("InvalidInput"), errorMessage);
                 await messageDialog.ShowAsync();
                 args.Cancel = true;
