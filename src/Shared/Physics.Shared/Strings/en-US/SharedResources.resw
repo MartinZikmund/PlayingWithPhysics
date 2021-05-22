@@ -147,6 +147,12 @@
   <data name="AppName_ProjectileMotions" xml:space="preserve">
     <value>Projectile Motions</value>
   </data>
+  <data name="AppName_RadioactiveDecay" xml:space="preserve">
+    <value>Radioactive Decay</value>
+  </data>
+  <data name="AppName_WaveInterference" xml:space="preserve">
+    <value>Wave Interference</value>
+  </data>
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Application „{0}“ was created within the project „Hrátky s fyzikou“, which is financed by European Union. Registration number of the project is CZ.02.3.68/0.0/0.0/18_067/0012381. Published under Creative Commons 4.0, BY-NC-SA.</value>
   </data>
@@ -196,7 +202,7 @@
     <value>Label</value>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>More apps...</value>
+    <value>More apps</value>
   </data>
   <data name="MorePhysicsApps" xml:space="preserve">
     <value>More physics apps</value>

@@ -147,6 +147,12 @@
   <data name="AppName_ProjectileMotions" xml:space="preserve">
     <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
+  <data name="AppName_RadioactiveDecay" xml:space="preserve">
+    <value>Zákon radioaktivní přeměny</value>
+  </data>
+  <data name="AppName_WaveInterference" xml:space="preserve">
+    <value>Interference vlnění</value>
+  </data>
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Aplikace „{0}“ byla vytvořena v rámci projektu „Hrátky s fyzikou“, který je spolufinancován Evropskou unií. Registrační číslo projektu je CZ.02.3.68/0.0/0.0/18_067/0012381. Publikováno pod licencí Creative Commons 4.0 ve variantě BY-NC-SA.</value>
   </data>
@@ -196,7 +202,7 @@
     <value>Název</value>
   </data>
   <data name="MoreApps" xml:space="preserve">
-    <value>Další aplikace...</value>
+    <value>Další aplikace</value>
   </data>
   <data name="MorePhysicsApps" xml:space="preserve">
     <value>Další fyzikální aplikace</value>

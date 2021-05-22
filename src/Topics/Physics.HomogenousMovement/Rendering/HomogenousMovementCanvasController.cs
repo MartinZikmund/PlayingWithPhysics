@@ -29,8 +29,8 @@ namespace Physics.HomogenousMovement.Rendering
         protected MotionInfo[] _motions = Array.Empty<MotionInfo>();
         protected TrajectoryData[] _trajectories = Array.Empty<TrajectoryData>();
         protected PhysicsService[] _physicsServices = Array.Empty<PhysicsService>();
-
-        protected virtual Vector2 XAxisOffset => Vector2.Zero;
+		private OptimalAxesRenderer _axesRenderer = new OptimalAxesRenderer();
+		protected virtual Vector2 XAxisOffset => Vector2.Zero;
 
         private int[] _allowedScaleJumps = new int[] { 1, 2, 5 };
 
@@ -164,36 +164,37 @@ namespace Physics.HomogenousMovement.Rendering
             {
                 _meterSizeInPixels = verticalMeterInPixels;
             }
-        }
+
+			_axesRenderer.TargetBounds = new SimulationBounds(SimulationLeftSidePadding, SimulationPadding, (float)sender.Size.Width - SimulationPadding, (float)sender.Size.Height - XAxisOffset.Y - SimulationPadding);
+			_axesRenderer.MeterSizeInPixels = _meterSizeInPixels;
+		}
 
         protected virtual void UpdatePadding(ICanvasAnimatedControl sender)
         {
         }
 
 
-        private float CalculateRequiredMeterSize(float meters, float pixels)
-        {
-            var jumpSize = CalculateJumpSizeForAxis(meters);
-            var jumps = (float)Math.Ceiling(meters / jumpSize);
-            var realMeters = jumps * jumpSize;
-            if (realMeters == 0)
-            {
-                return 0;
-            }
-            return (float)pixels / realMeters;
-        }
+		private float CalculateRequiredMeterSize(float meters, float pixels)
+		{
+			var jumpSize = OptimalAxesRenderer.CalculateTickDistance(meters);
+			var jumps = (float)Math.Ceiling(meters / jumpSize.Value);
+			var realMeters = jumps * jumpSize.Value;
+			if (realMeters == 0)
+			{
+				return 0;
+			}
+			return (float)pixels / realMeters;
+		}
 
-        public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
+		public override void Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             args.DrawingSession.Antialiasing = CanvasAntialiasing.Antialiased;
 
             DrawBackground(sender, args);
 
-            DrawYMeasure(sender, args);
-            DrawXMeasure(sender, args);
+			_axesRenderer.Draw(sender, args);
 
-
-            if (_trajectories.Length > 0)
+			if (_trajectories.Length > 0)
             {
                 DrawTrajectories(sender, args);
             }
@@ -298,122 +299,6 @@ namespace Physics.HomogenousMovement.Rendering
 
         private float MetersToPixelsY(float meters) => _simulationBoundsInPixels.Bottom - meters * _meterSizeInPixels;
 
-        private void DrawYMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
-            var drawing = args.DrawingSession;
-            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom, _simulationBoundsInPixels.Left, _simulationBoundsInPixels.Top, YMeasureColor);
-
-            var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Height, _simulationBoundsInMeters.Width);
-            var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Height / jumpSize);
-            var meters = jumps * jumpSize;
-            for (float currentHeight = jumpSize; meters - currentHeight > -0.01; currentHeight += jumpSize)
-            {
-                drawing.DrawLine(
-                    SimulationLeftSidePadding - 3,
-                    _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
-                    SimulationLeftSidePadding + 3,
-                    _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight,
-                    YMeasureColor);
-
-                drawing.DrawText(
-                    currentHeight.ToString("0.#"),
-                    new Rect(
-                        0,
-                        _simulationBoundsInPixels.Bottom - _meterSizeInPixels * currentHeight - 50,
-                        SimulationLeftSidePadding,
-                        100),
-                    YMeasureColor,
-                    _yAxisFormat);
-            }
-        }
-
-        private void DrawXMeasure(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
-        {
-            var drawing = args.DrawingSession;
-            drawing.DrawLine(_simulationBoundsInPixels.Left, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, _simulationBoundsInPixels.Right, _simulationBoundsInPixels.Bottom + XAxisOffset.Y, XMeasureColor);
-
-            var jumpSize = CalculateOptimalJumpSize(_simulationBoundsInMeters.Width, _simulationBoundsInMeters.Height);
-            var jumps = (float)Math.Ceiling(_simulationBoundsInMeters.Width / jumpSize);
-            var meters = jumps * jumpSize;
-            for (float currentDistance = 0; meters - currentDistance > -0.01 || (jumps == 0 && currentDistance == 0); currentDistance += jumpSize)
-            {
-                drawing.DrawLine(
-                    _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom - 3 + XAxisOffset.Y,
-                    _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom + 3 + XAxisOffset.Y,
-                    XMeasureColor);
-
-                drawing.DrawText(
-                    (currentDistance + _simulationBoundsInMeters.Left).ToString("0.#"),
-                    _simulationBoundsInPixels.Left + _meterSizeInPixels * currentDistance,
-                    _simulationBoundsInPixels.Bottom + 12 + XAxisOffset.Y,
-                    XMeasureColor,
-                    _yAxisFormat);
-            }
-        }
-
-        private float CalculateOptimalJumpSize(float requestedAxis, float otherAxis)
-        {
-            var requestedJump = CalculateJumpSizeForAxis(requestedAxis);
-            var otherJump = CalculateJumpSizeForAxis(otherAxis);
-
-            if (Math.Max(requestedAxis, otherJump) / Math.Min(requestedAxis, otherJump) > 5)
-            {
-                //too big difference between axis, draw independently
-                return requestedJump;
-            }
-            return Math.Min(requestedJump, otherJump);
-        }
-
-        private float CalculateJumpSizeForAxis(float range)
-        {
-            if (range == 0)
-            {
-                return 1f;
-            }
-            if (range <= 1)
-            {
-                return 0.1f;
-            }
-            else if (range <= 2)
-            {
-                return 0.2f;
-            }
-            else if (range <= 5)
-            {
-                return 0.5f;
-            }
-            else if (range <= 10)
-            {
-                return 1f;
-            }
-            else if (range <= 20)
-            {
-                return 2f;
-            }
-            else if (range <= 50)
-            {
-                return 5f;
-            }
-            else
-            {
-
-                var upperBound = (float)Math.Ceiling(range);
-                var currentMultiplier = 1;
-                while (true)
-                {
-                    foreach (var allowedJumpSize in _allowedScaleJumps)
-                    {
-                        var scaleSize = allowedJumpSize * currentMultiplier;
-                        if (upperBound / scaleSize < 20)
-                        {
-                            return scaleSize;
-                        }
-                    }
-                    currentMultiplier *= 10;
-                }
-            }
-        }
+        
     }
 }

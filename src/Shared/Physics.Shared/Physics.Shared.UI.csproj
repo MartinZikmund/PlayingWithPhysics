@@ -296,14 +296,15 @@
     <Content Include="Assets\eu.png" />
     <Content Include="Assets\Fonts\NeoEuler.otf" />
     <Content Include="Assets\logo.language-en-US.png" />
-    <Content Include="Assets\Logos\ElectricField.png" />
-    <Content Include="Assets\Logos\MagneticField.png" />
-    <Content Include="Assets\Logos\RadioactiveDecay.png" />
-    <Content Include="Assets\Logos\LissajousCurves.png" />
-    <Content Include="Assets\Logos\CompoundOscillations.png" />
-    <Content Include="Assets\Logos\InclinedPlane.png" />
-    <Content Include="Assets\Logos\Drag.png" />
-    <Content Include="Assets\Logos\ProjectileMotions.png" />
+    <Content Include="Assets\Logos\CompoundOscillations.jpg" />
+    <Content Include="Assets\Logos\Drag.jpg" />
+    <Content Include="Assets\Logos\ElectricField.jpg" />
+    <Content Include="Assets\Logos\InclinedPlane.jpg" />
+    <Content Include="Assets\Logos\LissajousCurves.jpg" />
+    <Content Include="Assets\Logos\MagneticField.jpg" />
+    <Content Include="Assets\Logos\ProjectileMotions.jpg" />
+    <Content Include="Assets\Logos\RadioactiveDecay.jpg" />
+    <Content Include="Assets\Logos\WaveInterference.jpg" />
     <Content Include="Assets\msmt.jpg" />
   </ItemGroup>
   <ItemGroup>

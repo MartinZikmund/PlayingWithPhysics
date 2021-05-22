@@ -48,7 +48,8 @@ namespace Physics.Shared.Views
 
         private async void AboutAppButton_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new ContentDialog();                        
+            var dialog = new ContentDialog();
+			dialog.RequestedTheme = ElementTheme.Light;
             dialog.Content = new AboutApp();
             dialog.IsPrimaryButtonEnabled = true;
             dialog.PrimaryButtonText = Localizer.Instance["Close"];
