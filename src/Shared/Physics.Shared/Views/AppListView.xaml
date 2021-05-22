@@ -9,7 +9,7 @@
     xmlns:models="using:Physics.Shared.UI.Models"
     xmlns:views="using:Physics.Shared.Views"
     Background="{StaticResource AppThemeColor}"
-    RequestedTheme="{StaticResource AppContractTheme}"
+    RequestedTheme="{StaticResource AppContrastTheme}"
     mc:Ignorable="d">
 
     <views:BaseView.Resources>

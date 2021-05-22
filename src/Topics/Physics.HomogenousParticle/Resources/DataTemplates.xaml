@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ex="using:Physics.Shared.Extensions"
-    xmlns:local="using:Physics.HomogenousParticle.Resources"
     xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.HomogenousParticle.Resources"
     xmlns:state="using:Physics.HomogenousParticle.ViewModels.State"
     xmlns:usercontrols="using:Physics.HomogenousParticle.UserControls">
 
@@ -25,25 +25,31 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ZeroVariantStateDataTemplate" x:DataType="state:ZeroVariantStateViewModel">
-        <Grid>
-        </Grid>
+        <Grid />
     </DataTemplate>
 
     <DataTemplate x:Key="ParallelVariantStateDataTemplate" x:DataType="state:ParallelVariantStateViewModel">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="{ex:Localize Key=PerpendicularVariant_SimulationNotice}" TextWrapping="Wrap" />
-            <StackPanel Margin="0,10,0,0" Padding="0" Grid.Row="2" Orientation="Horizontal">
-                <Image Width="20" Source="/Assets/info.png" Margin="0,0,12,0"></Image>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,10,0,0"
+                Padding="0"
+                Orientation="Horizontal">
+                <Image
+                    Width="20"
+                    Margin="0,0,12,0"
+                    Source="/Assets/info.png" />
                 <StackPanel>
                     <TextBlock>
-                        <Run FontWeight="Light" Text="{extensions:Localize Key=StartSpeedInfo}"/><Run Text=" 10" /><Run Text="{x:Bind Multiple}" Typography.Variants="Superscript" /><Run Text=" m.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
+                        <Run FontWeight="Light" Text="{extensions:Localize Key=StartSpeedInfo}" /><Run Text=" 10" /><Run Text="{x:Bind Multiple}" Typography.Variants="Superscript" /><Run Text=" m.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
                     </TextBlock>
                     <TextBlock>
-                        <Run FontWeight="Light" Text="{extensions:Localize Key=AccelerationInfo}"/><Run Text=" 0" /><Run Text=" m.s" /><Run Text="&#8315;2" Typography.Variants="Superscript" />
+                        <Run FontWeight="Light" Text="{extensions:Localize Key=AccelerationInfo}" /><Run Text=" 0" /><Run Text=" m.s" /><Run Text="&#8315;2" Typography.Variants="Superscript" />
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
@@ -80,7 +86,10 @@
             <Grid.Background>
                 <SolidColorBrush Color="{x:Bind Motion.Color, Mode=OneWay}" />
             </Grid.Background>
-            <TextBlock Foreground="White" Style="{ThemeResource SubtitleTextBlockStyle}" Text="{x:Bind Type, Converter={StaticResource EnumLocalizationConverter}, Mode=OneWay}" />
+            <TextBlock
+                Foreground="White"
+                Style="{ThemeResource SubtitleTextBlockStyle}"
+                Text="{x:Bind Type, Converter={StaticResource EnumLocalizationConverter}, Mode=OneWay}" />
             <Button Grid.Column="1">
                 <Button.Flyout>
                     <MenuFlyout>
