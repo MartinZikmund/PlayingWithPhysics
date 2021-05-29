@@ -10,7 +10,14 @@ namespace Physics.ElectricParticle.Rendering
 
 		}
 
-		public override void Draw(ISkiaCanvas sender, SKSurface args) { }
-		public override void Update(ISkiaCanvas sender) { }
+		public override void Draw(ISkiaCanvas sender, SKSurface args)
+		{
+
+		}
+
+		public override void Update(ISkiaCanvas sender)
+		{
+			
+		}
 	}
 }

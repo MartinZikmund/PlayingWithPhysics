@@ -163,6 +163,9 @@ Grafika: Petr Weinlich</value>
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Hmotnost elektronu zadejte pomocí čísla 0,000545.</value>
   </data>
+  <data name="EndDrawing" xml:space="preserve">
+    <value>Ukončit kreslení</value>
+  </data>
   <data name="EnvironmentSetting_Air" xml:space="preserve">
     <value>vzduch</value>
   </data>
@@ -189,6 +192,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
+  </data>
+  <data name="GravityOff" xml:space="preserve">
+    <value>Gravitace vypnuta</value>
+  </data>
+  <data name="GravityOn" xml:space="preserve">
+    <value>Gravitace zapnuta</value>
   </data>
   <data name="Input_Charge" xml:space="preserve">
     <value>Náboj</value>
@@ -238,6 +247,12 @@ Grafika: Petr Weinlich</value>
   <data name="Input_VelocityDirection" xml:space="preserve">
     <value>Směr rychlosti</value>
   </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="NextLevel" xml:space="preserve">
+    <value>Další level</value>
+  </data>
   <data name="ParticleType_AtomNucleus" xml:space="preserve">
     <value>Atomové jádro</value>
   </data>
@@ -246,6 +261,15 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ParticleType_Electron" xml:space="preserve">
     <value>Elektron</value>
+  </data>
+  <data name="PenDown" xml:space="preserve">
+    <value>Pero kreslí</value>
+  </data>
+  <data name="PenUp" xml:space="preserve">
+    <value>Pero nekreslí</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Uložit obrázek</value>
   </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Svisle i vodorovně orientované nabité desky bez tíhového pole</value>
@@ -282,6 +306,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="PrimaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>kladný</value>
+  </data>
+  <data name="ResetGame" xml:space="preserve">
+    <value>Restartovat hru</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>

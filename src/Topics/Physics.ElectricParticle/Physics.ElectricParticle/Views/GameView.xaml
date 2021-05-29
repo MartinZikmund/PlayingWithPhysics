@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Physics.ElectricParticle.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Physics.Shared.Extensions"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     RequestedTheme="Light"
     mc:Ignorable="d">
@@ -73,23 +74,35 @@
                             <Rectangle
                                 x:Name="LeftVerticalPane"
                                 HorizontalAlignment="Left"
-                                Fill="{StaticResource PositivePlaneBrush}"
-                                Style="{StaticResource VerticalPlaneRectangleStyle}" />
+                                Style="{StaticResource VerticalPlaneRectangleStyle}">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=VoltageXSlider, Path=Value, Mode=OneWay, Converter={StaticResource BluePositiveVoltageColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <Rectangle
                                 x:Name="TopHorizontalPane"
                                 VerticalAlignment="Top"
-                                Fill="{StaticResource NegativePlaneBrush}"
-                                Style="{StaticResource HorizontalPlaneRectangleStyle}" />
+                                Style="{StaticResource HorizontalPlaneRectangleStyle}">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=VoltageYSlider, Path=Value, Mode=OneWay, Converter={StaticResource RedPositiveVoltageColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <Rectangle
                                 x:Name="RightVerticalPane"
                                 HorizontalAlignment="Right"
-                                Fill="{StaticResource NegativePlaneBrush}"
-                                Style="{StaticResource VerticalPlaneRectangleStyle}" />
+                                Style="{StaticResource VerticalPlaneRectangleStyle}">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=VoltageXSlider, Path=Value, Mode=OneWay, Converter={StaticResource RedPositiveVoltageColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <Rectangle
                                 x:Name="BottomVerticalPane"
                                 VerticalAlignment="Bottom"
-                                Fill="{StaticResource PositivePlaneBrush}"
-                                Style="{StaticResource HorizontalPlaneRectangleStyle}" />
+                                Style="{StaticResource HorizontalPlaneRectangleStyle}">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding ElementName=VoltageYSlider, Path=Value, Mode=OneWay, Converter={StaticResource BluePositiveVoltageColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
                         </Grid>
 
                         <!--  Control panel  -->
@@ -111,7 +124,7 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Style="{StaticResource LevelIndicatorTextBlockStyle}" Text="level" />
+                                        <TextBlock Style="{StaticResource LevelIndicatorTextBlockStyle}" Text="{xaml:Localize Key=Level}" />
                                         <TextBlock Grid.Row="1" Style="{StaticResource LevelIndicatorTextBlockStyle}">
                                             <Run Text="5" /><Run Text="/" /><Run Text="11" />
                                         </TextBlock>
@@ -120,8 +133,11 @@
 
                                 <!--  Vertical slider  -->
                                 <Slider
+                                    x:Name="VoltageYSlider"
                                     Grid.Row="1"
                                     AllowFocusOnInteraction="False"
+                                    Maximum="100"
+                                    Minimum="-100"
                                     Orientation="Vertical"
                                     Style="{StaticResource GameSlider}" />
                             </Grid>
@@ -142,22 +158,43 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <!--  Control panel buttons  -->
-                                <ToggleButton Style="{ThemeResource GameToggleButtonStyle}">Gravity on/off</ToggleButton>
-                                <ToggleButton Grid.Column="1" Style="{ThemeResource GameToggleButtonStyle}">Up/down</ToggleButton>
-                                <Button Grid.Row="1" Style="{ThemeResource GameButtonStyle}">Reset game</Button>
+                                <ToggleButton
+                                    x:Name="GravityToggle"
+                                    IsChecked="{x:Bind Model.GameState.UseGravity, Mode=TwoWay}"
+                                    Style="{ThemeResource GameToggleButtonStyle}">
+                                    <Grid>
+                                        <TextBlock Text="{xaml:Localize Key=GravityOn}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                        <TextBlock Text="{xaml:Localize Key=GravityOff}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+                                    </Grid>
+                                </ToggleButton>
+                                <ToggleButton
+                                    x:Name="PenToggle"
+                                    Grid.Column="1"
+                                    IsChecked="{x:Bind Model.GameState.IsPenDown, Mode=TwoWay}"
+                                    Style="{ThemeResource GameToggleButtonStyle}">
+                                    <Grid>
+                                        <TextBlock Text="{xaml:Localize Key=PenDown}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                        <TextBlock Text="{xaml:Localize Key=PenUp}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+                                    </Grid>
+                                </ToggleButton>
+                                <Button
+                                    Grid.Row="1"
+                                    Content="{xaml:Localize Key=ResetGame}"
+                                    Style="{ThemeResource GameButtonStyle}" />
                                 <Button
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    Style="{StaticResource GameButtonStyle}">
-                                    Photo
-                                </Button>
-                                <Button Grid.Row="2" Style="{ThemeResource GameButtonStyle}">Photo</Button>
+                                    Content="{xaml:Localize Key=EndDrawing}"
+                                    Style="{StaticResource GameButtonStyle}" />
+                                <Button
+                                    Grid.Row="2"
+                                    Content="{xaml:Localize Key=Photo}"
+                                    Style="{ThemeResource GameButtonStyle}" />
                                 <Button
                                     Grid.Row="2"
                                     Grid.Column="1"
-                                    Style="{ThemeResource GameButtonStyle}">
-                                    Next level
-                                </Button>
+                                    Content="{xaml:Localize Key=NextLevel}"
+                                    Style="{ThemeResource GameButtonStyle}" />
 
                                 <!--  Game timer  -->
                                 <Border
@@ -171,7 +208,12 @@
 
                         <!--  Bottom slider  -->
                         <Grid x:Name="BottomControlGrid" Grid.Row="1">
-                            <Slider AllowFocusOnInteraction="False" Style="{StaticResource GameSlider}" />
+                            <Slider
+                                x:Name="VoltageXSlider"
+                                AllowFocusOnInteraction="False"
+                                Maximum="100"
+                                Minimum="-100"
+                                Style="{StaticResource GameSlider}" />
                         </Grid>
                     </Grid>
                 </Border>
