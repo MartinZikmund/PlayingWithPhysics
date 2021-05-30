@@ -70,7 +70,7 @@
                             VerticalAlignment="Stretch"
                             Background="#b9b357"
                             CornerRadius="40">
-                            <Grid x:Name="CanvasHolder" />
+                            <Grid x:Name="CanvasHolder" Margin="40" />
                             <Rectangle
                                 x:Name="LeftVerticalPane"
                                 HorizontalAlignment="Left"
@@ -136,10 +136,14 @@
                                     x:Name="VoltageYSlider"
                                     Grid.Row="1"
                                     AllowFocusOnInteraction="False"
+                                    GettingFocus="SliderGettingFocus"
+                                    LargeChange="1"
                                     Maximum="100"
                                     Minimum="-100"
                                     Orientation="Vertical"
-                                    Style="{StaticResource GameSlider}" />
+                                    SmallChange="1"
+                                    Style="{StaticResource GameSlider}"
+                                    Value="{x:Bind Model.GameInfo.Uy, Mode=TwoWay}" />
                             </Grid>
                             <Grid
                                 x:Name="ControlPaneRight"
@@ -160,7 +164,7 @@
                                 <!--  Control panel buttons  -->
                                 <ToggleButton
                                     x:Name="GravityToggle"
-                                    IsChecked="{x:Bind Model.GameState.UseGravity, Mode=TwoWay}"
+                                    IsChecked="{x:Bind Model.GameInfo.UseGravity, Mode=TwoWay}"
                                     Style="{ThemeResource GameToggleButtonStyle}">
                                     <Grid>
                                         <TextBlock Text="{xaml:Localize Key=GravityOn}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
@@ -170,7 +174,7 @@
                                 <ToggleButton
                                     x:Name="PenToggle"
                                     Grid.Column="1"
-                                    IsChecked="{x:Bind Model.GameState.IsPenDown, Mode=TwoWay}"
+                                    IsChecked="{x:Bind Model.GameInfo.IsPenDown, Mode=TwoWay}"
                                     Style="{ThemeResource GameToggleButtonStyle}">
                                     <Grid>
                                         <TextBlock Text="{xaml:Localize Key=PenDown}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
@@ -179,11 +183,13 @@
                                 </ToggleButton>
                                 <Button
                                     Grid.Row="1"
+                                    Click="{x:Bind Model.GameInfo.ResetLevel}"
                                     Content="{xaml:Localize Key=ResetGame}"
                                     Style="{ThemeResource GameButtonStyle}" />
                                 <Button
                                     Grid.Row="1"
                                     Grid.Column="1"
+                                    Click="{x:Bind Model.GameInfo.End}"
                                     Content="{xaml:Localize Key=EndDrawing}"
                                     Style="{StaticResource GameButtonStyle}" />
                                 <Button
@@ -193,6 +199,7 @@
                                 <Button
                                     Grid.Row="2"
                                     Grid.Column="1"
+                                    Click="{x:Bind Model.GameInfo.GoToNextLevel}"
                                     Content="{xaml:Localize Key=NextLevel}"
                                     Style="{ThemeResource GameButtonStyle}" />
 
@@ -201,7 +208,7 @@
                                     Grid.Row="3"
                                     Grid.ColumnSpan="2"
                                     Style="{StaticResource GameTimerBorderStyle}">
-                                    <TextBlock Style="{StaticResource GameTimerTextBlockStyle}" Text="0:00" />
+                                    <TextBlock Style="{StaticResource GameTimerTextBlockStyle}" Text="{x:Bind Model.GameInfo.DrawingTimeString, Mode=OneWay}" />
                                 </Border>
                             </Grid>
                         </Grid>
@@ -211,9 +218,14 @@
                             <Slider
                                 x:Name="VoltageXSlider"
                                 AllowFocusOnInteraction="False"
+                                GettingFocus="SliderGettingFocus"
+                                LargeChange="1"
                                 Maximum="100"
                                 Minimum="-100"
-                                Style="{StaticResource GameSlider}" />
+                                SmallChange="1"
+                                StepFrequency="1"
+                                Style="{StaticResource GameSlider}"
+                                Value="{x:Bind Model.GameInfo.Ux, Mode=TwoWay}" />
                         </Grid>
                     </Grid>
                 </Border>

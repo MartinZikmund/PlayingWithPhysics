@@ -17,7 +17,7 @@ namespace Physics.ElectricParticle.ViewModels
 		{
 		}
 
-		public GameState GameState { get; } = new GameState();
+		public GameInfo GameInfo { get; } = new GameInfo();
 
 		public void SetController(GameCanvasController controller)
 		{
@@ -27,6 +27,7 @@ namespace Physics.ElectricParticle.ViewModels
 			}
 
 			_controller = controller;
+			_controller.GameInfo = GameInfo;
 		}
 	}
 }

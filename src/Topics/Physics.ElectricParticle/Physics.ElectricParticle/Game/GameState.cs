@@ -1,17 +1,9 @@
-﻿using MvvmCross.ViewModels;
-
-namespace Physics.ElectricParticle.Game
+﻿namespace Physics.ElectricParticle.Game
 {
-	public class GameState : MvxNotifyPropertyChanged
+	public enum GameState
     {
-		private const int LevelCount = 11;
-
-        public int Level { get; set; }
-
-		public bool UseGravity { get; set; }
-
-		public bool IsPenDown { get; set; }
-
-		public void GoToNextLevel() => Level = (Level + 1) % LevelCount;
-	}
+        Idle,
+		Drawing,
+		Ended,
+    }
 }

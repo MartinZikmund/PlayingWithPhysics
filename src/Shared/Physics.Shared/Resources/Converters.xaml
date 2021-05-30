@@ -5,8 +5,8 @@
     xmlns:local="using:Physics.Shared.Resources">
     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <converters:NullToVisibilityConverter x:Key="InvertedNullToVisibilityConverter" Invert="True" />
-    <converters:NativeBoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    <converters:NativeInvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converters:BoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" Inverted="True" />
     <converters:EnumLocalizationConverter x:Key="EnumLocalizationConverter" />
     <converters:ValueMatchVisibilityConverter x:Key="ValueMatchVisibilityConverter" />
 </ResourceDictionary>

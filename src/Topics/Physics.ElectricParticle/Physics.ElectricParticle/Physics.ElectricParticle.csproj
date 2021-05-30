@@ -139,7 +139,12 @@
     <Compile Include="Dialogs\AddOrUpdateMovement.xaml.cs">
       <DependentUpon>AddOrUpdateMovement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\Drawing.cs" />
+    <Compile Include="Game\DrawingPath.cs" />
+    <Compile Include="Game\GameInfo.cs" />
     <Compile Include="Game\GameState.cs" />
+    <Compile Include="Game\KeyboardState.cs" />
+    <Compile Include="Game\PenState.cs" />
     <Compile Include="Infrastructure\Topics\TopicNavigator.cs" />
     <Compile Include="Models\SimulationNavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
