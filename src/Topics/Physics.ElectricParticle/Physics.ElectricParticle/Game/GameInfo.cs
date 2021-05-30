@@ -17,6 +17,8 @@ namespace Physics.ElectricParticle.Game
 
 		public int Level { get; set; }
 
+		public string LevelText => (Level + 1).ToString();
+
 		public bool UseGravity { get; set; }
 
 		public bool IsPenDown { get; set; }

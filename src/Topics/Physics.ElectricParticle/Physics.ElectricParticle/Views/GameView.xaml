@@ -126,7 +126,7 @@
                                         </Grid.RowDefinitions>
                                         <TextBlock Style="{StaticResource LevelIndicatorTextBlockStyle}" Text="{xaml:Localize Key=Level}" />
                                         <TextBlock Grid.Row="1" Style="{StaticResource LevelIndicatorTextBlockStyle}">
-                                            <Run Text="5" /><Run Text="/" /><Run Text="11" />
+                                            <Run Text="{x:Bind Model.GameInfo.LevelText, Mode=OneWay}" /><Run Text="/" /><Run Text="11" />
                                         </TextBlock>
                                     </Grid>
                                 </Grid>
