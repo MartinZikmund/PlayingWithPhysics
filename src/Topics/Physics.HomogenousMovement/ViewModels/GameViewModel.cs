@@ -129,7 +129,7 @@ namespace Physics.HomogenousMovement.ViewModels
             _gameController = _gameViewInteraction.Initialize(Difficulty, _soundPlayer);
             _controller = _gameController;
             SimulationPlayback.SetController(_controller);
-            await Task.Delay(1000);
+			await Task.Delay(1000);
             await StartNewGameAsync();
         }
 

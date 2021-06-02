@@ -26,7 +26,7 @@ namespace Physics.Shared.UI.Models
 
 		public string ShortName => Localizer.Instance.GetString($"AppName_{_app.Name}");
 
-		public Uri MenuImageUri => new Uri($"ms-appx:///Physics.Shared.UI/Assets/Logos/{_app.Name}.png");
+		public Uri MenuImageUri => new Uri($"ms-appx:///Physics.Shared.UI/Assets/Logos/{_app.Name}.jpg");
 
 		public ICommand OpenCommand => _openCommand ??= new MvxAsyncCommand(OpenAsync);
 

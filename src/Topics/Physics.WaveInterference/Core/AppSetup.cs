@@ -1,9 +1,9 @@
 ﻿using MvvmCross;
 using MvvmCross.IoC;
+using Physics.Shared.UI.Infrastructure;
 using Physics.Shared.UI.Infrastructure.Setup;
 using Physics.Shared.UI.Infrastructure.Topics;
-using Physics.Shared.UI.Infrastructure;
-using Physics.WaveInterference.Infrastructure.Topics;
+using Physics.WaveInterference.Infrastructure;
 
 namespace Physics.WaveInterference.Core
 {

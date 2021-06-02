@@ -160,6 +160,9 @@ Graphics: Petr Weinlich</value>
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Electron weight should be inputted as 0,000545.</value>
   </data>
+  <data name="EndDrawing" xml:space="preserve">
+    <value>End drawing</value>
+  </data>
   <data name="EnvironmentSetting_Air" xml:space="preserve">
     <value>Air</value>
   </data>
@@ -186,6 +189,12 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="GravityOff" xml:space="preserve">
+    <value>Gravity off</value>
+  </data>
+  <data name="GravityOn" xml:space="preserve">
+    <value>Gravity on</value>
   </data>
   <data name="Input_Charge" xml:space="preserve">
     <value>Charge</value>
@@ -235,6 +244,12 @@ Graphics: Petr Weinlich</value>
   <data name="Input_VelocityDirection" xml:space="preserve">
     <value>Velocity direction</value>
   </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="NextLevel" xml:space="preserve">
+    <value>Next level</value>
+  </data>
   <data name="ParticleType_AtomNucleus" xml:space="preserve">
     <value>Atom nucleus</value>
   </data>
@@ -243,6 +258,15 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ParticleType_Electron" xml:space="preserve">
     <value>Electron</value>
+  </data>
+  <data name="PenDown" xml:space="preserve">
+    <value>Pen down</value>
+  </data>
+  <data name="PenUp" xml:space="preserve">
+    <value>Pen up</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Save image</value>
   </data>
   <data name="PlaneOrientation_Advanced_VerticalHorizontal" xml:space="preserve">
     <value>Vertically and horizontally oriented charged planes without gravity</value>
@@ -279,6 +303,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="PrimaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>positive</value>
+  </data>
+  <data name="ResetGame" xml:space="preserve">
+    <value>Restart level</value>
   </data>
   <data name="SecondaryPlaneChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>

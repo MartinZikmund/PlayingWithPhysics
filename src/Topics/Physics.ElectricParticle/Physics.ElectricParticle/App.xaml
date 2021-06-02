@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
                 <resources:DataTemplates />
                 <resources1:SelfStudyResources />
+                <ResourceDictionary Source="ms-appx:///Resources/GameResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
             <Color x:Key="AppThemeColor">#FD5800</Color>

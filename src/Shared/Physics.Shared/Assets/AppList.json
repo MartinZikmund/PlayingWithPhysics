@@ -24,6 +24,12 @@
     "StoreId": "9P01KXJSCP2B"
   },
   {
+    "Id": 8,
+    "Name": "WaveInterference",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsWaveIn_svr2k4kdvk0kr",
+    "StoreId": "9N4RTNZZRJV3"
+  },
+  {
     "Id": 10,
     "Name": "LissajousCurves",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsLissaj_svr2k4kdvk0kr",

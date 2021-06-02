@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.UI.Xaml.Controls;
 using MvvmCross.Commands;
 using MvvmCross.Platforms.Uap.Views;
@@ -22,6 +25,19 @@ namespace Physics.Shared.UI.Infrastructure
 		where TMvxSetup : DefaultAppSetup<TApp>, new()
 		where TApp : class, IMvxApplication, new()
 	{
+		public PhysicsAppBase()
+		{
+			if (!string.IsNullOrEmpty(AppCenterKey))
+			{
+#if !DEBUG
+				AppCenter.Start(AppCenterKey,
+					typeof(Analytics), typeof(Crashes));
+#endif
+			}
+		}
+
+		protected abstract string AppCenterKey { get; }
+
 		protected override void OnWindowCreated(WindowCreatedEventArgs args)
 		{
 			base.OnWindowCreated(args);
