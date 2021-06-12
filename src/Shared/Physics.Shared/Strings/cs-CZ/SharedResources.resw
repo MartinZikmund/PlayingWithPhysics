@@ -129,14 +129,29 @@
   <data name="AppName_CompoundOscillations" xml:space="preserve">
     <value>Skládání kmitání</value>
   </data>
+  <data name="AppName_CyclicProcesses" xml:space="preserve">
+    <value>Cyklické děje</value>
+  </data>
   <data name="AppName_Drag" xml:space="preserve">
     <value>Pohyby tělesa v odporujícím prostředí</value>
+  </data>
+  <data name="AppName_EarthsGravitationalField" xml:space="preserve">
+    <value>Pohyby v centrálním gravitačním poli Země</value>
   </data>
   <data name="AppName_ElectricField" xml:space="preserve">
     <value>Pohyb částice v homogenním elektrickém poli</value>
   </data>
+  <data name="AppName_FluidFlow" xml:space="preserve">
+    <value>Proudění kapalin</value>
+  </data>
+  <data name="AppName_HuygensFrenselPrinciple" xml:space="preserve">
+    <value>Huygensův princip</value>
+  </data>
   <data name="AppName_InclinedPlane" xml:space="preserve">
     <value>Translační pohyb tělesa po nakloněné rovině</value>
+  </data>
+  <data name="AppName_LawOfConservationOfMomentum" xml:space="preserve">
+    <value>Zákony zachování hybnosti a energie při srážkách těles</value>
   </data>
   <data name="AppName_LissajousCurves" xml:space="preserve">
     <value>Lissajousovy obrazce</value>
@@ -144,11 +159,20 @@
   <data name="AppName_MagneticField" xml:space="preserve">
     <value>Pohyby v homogenním magnetickém poli</value>
   </data>
+  <data name="AppName_OpticalInstruments" xml:space="preserve">
+    <value>Optické přístroje</value>
+  </data>
   <data name="AppName_ProjectileMotions" xml:space="preserve">
     <value>Pohyby těles v homogenním tíhovém poli</value>
   </data>
   <data name="AppName_RadioactiveDecay" xml:space="preserve">
     <value>Zákon radioaktivní přeměny</value>
+  </data>
+  <data name="AppName_RotationalInclinedPlane" xml:space="preserve">
+    <value>Rotační pohyb těles na nakloněné rovině</value>
+  </data>
+  <data name="AppName_StationaryWaves" xml:space="preserve">
+    <value>Stojaté vlnění</value>
   </data>
   <data name="AppName_WaveInterference" xml:space="preserve">
     <value>Interference vlnění</value>

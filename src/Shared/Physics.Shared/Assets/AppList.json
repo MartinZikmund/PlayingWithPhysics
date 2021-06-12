@@ -12,10 +12,28 @@
     "StoreId": "9P758R5JD4JC"
   },
   {
+    "Id": 3,
+    "Name": "EarthsGravitationalField",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsEarths_svr2k4kdvk0kr",
+    "StoreId": "9NXJ4VD79C1H"
+  },
+  {
     "Id": 4,
     "Name": "InclinedPlane",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsInclin_svr2k4kdvk0kr",
     "StoreId": "9P5745XQCQ41"
+  },
+  {
+    "Id": 5,
+    "Name": "RotationalInclinedPlane",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsRotati_svr2k4kdvk0kr",
+    "StoreId": "9NL5PZ7K0MDQ"
+  },
+  {
+    "Id": 6,
+    "Name": "LawOfConservationOfMomentum",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsLawofC_svr2k4kdvk0kr",
+    "StoreId": "9PLT6FSDFWRQ"
   },
   {
     "Id": 7,
@@ -30,10 +48,28 @@
     "StoreId": "9N4RTNZZRJV3"
   },
   {
+    "Id": 9,
+    "Name": "StationaryWaves",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsStandi_svr2k4kdvk0kr",
+    "StoreId": "9PKGDB93TBMJ"
+  },
+  {
     "Id": 10,
     "Name": "LissajousCurves",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsLissaj_svr2k4kdvk0kr",
     "StoreId": "9PMVLFNP6D6G"
+  },
+  {
+    "Id": 11,
+    "Name": "HuygensFrenselPrinciple",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsHuygen_svr2k4kdvk0kr",
+    "StoreId": "9MW97PNTD7PS"
+  },
+  {
+    "Id": 12,
+    "Name": "CyclicProcesses",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsCyclic_svr2k4kdvk0kr",
+    "StoreId": "9NJZCTX8WPN8"
   },
   {
     "Id": 13,
@@ -46,6 +82,18 @@
     "Name": "MagneticField",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsMagnet_svr2k4kdvk0kr",
     "StoreId": "9PM95Q8QJN9T"
+  },
+  {
+    "Id": 15,
+    "Name": "FluidFlow",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsFluidF_svr2k4kdvk0kr",
+    "StoreId": "9MSMLBKGBPDF"
+  },
+  {
+    "Id": 16,
+    "Name": "OpticalInstruments",
+    "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsOptica_svr2k4kdvk0kr",
+    "StoreId": "9P664S7XTZ9T"
   },
   {
     "Id": 17,
