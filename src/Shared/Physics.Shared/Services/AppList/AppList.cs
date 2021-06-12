@@ -16,6 +16,17 @@ namespace Physics.Shared.UI.Services.AppList
 
 		public AppListItem GetAppById(int id)
 		{
+			if (id == 9999999)
+			{
+				return new AppListItem()
+				{
+					Id = 9999999,
+					Name = "AppTemplate",
+					PackageId = "id",
+					StoreId = "storeId"
+				};
+			}
+
 			var app = Apps
 				.Where(app => app.Id == id)
 				.FirstOrDefault();

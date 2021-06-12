@@ -62,6 +62,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 		public SKSize ScaledSize => new SKSize(CanvasSize.Width / (float)ContentsScale, CanvasSize.Height / (float)ContentsScale);
 
+		public SKSize NativeSize => CanvasSize;
+
 		public event SkiaEventHandler<SKSurface> Initialized;
 		public event SkiaEventHandler<EventArgs> Update;
 		public event SkiaEventHandler<SKSurface> Draw;

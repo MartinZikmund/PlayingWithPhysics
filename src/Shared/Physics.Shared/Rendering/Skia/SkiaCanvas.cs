@@ -23,6 +23,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 
         public SKSize ScaledSize => new SKSize(CanvasSize.Width / ScaleFactor, CanvasSize.Height / ScaleFactor);
 
+		public SKSize NativeSize => CanvasSize;
+
         /// <summary>
         /// Hooks up to the first rendering to initialize.
         /// </summary>

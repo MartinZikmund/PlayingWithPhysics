@@ -147,6 +147,7 @@
     <Compile Include="Models\AppListItem.cs" />
     <Compile Include="Models\AppListItemViewModel.cs" />
     <Compile Include="Models\Input\SimulationColors.cs" />
+    <Compile Include="Models\Navigation\SimulationNavigationModel.cs" />
     <Compile Include="Rendering\AxisInfo.cs" />
     <Compile Include="Rendering\SkiaAxesRenderer.cs" />
     <Compile Include="Rendering\IRenderingPlayback.cs" />

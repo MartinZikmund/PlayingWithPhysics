@@ -117,148 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutApp" xml:space="preserve">
-    <value>About app</value>
+  <data name="AppDescription" xml:space="preserve">
+    <value>TemplateCsDescription
+
+Autoři obsahu: TemplateContentAuthors
+Programátoři: Daniel Zikmund, Martin Zikmund
+Grafika: Petr Weinlich</value>
   </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Advanced difficulty</value>
+  <data name="AppName" xml:space="preserve">
+    <value>Hrátky s fyzikou: TemplateAppDisplayNameCs</value>
   </data>
-  <data name="AppInfoAddress" xml:space="preserve">
-    <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
-  </data>
-  <data name="AppName_CompoundOscillations" xml:space="preserve">
-    <value>Compound Oscillations</value>
-  </data>
-  <data name="AppName_Drag" xml:space="preserve">
-    <value>Drag</value>
-  </data>
-  <data name="AppName_ElectricField" xml:space="preserve">
-    <value>Electric Field</value>
-  </data>
-  <data name="AppName_InclinedPlane" xml:space="preserve">
-    <value>Inclined Plane</value>
-  </data>
-  <data name="AppName_LissajousCurves" xml:space="preserve">
-    <value>Lissajous Curves</value>
-  </data>
-  <data name="AppName_MagneticField" xml:space="preserve">
-    <value>Magnetic Field</value>
-  </data>
-  <data name="AppName_ProjectileMotions" xml:space="preserve">
-    <value>Projectile Motions</value>
-  </data>
-  <data name="AppName_RadioactiveDecay" xml:space="preserve">
-    <value>Radioactive Decay</value>
-  </data>
-  <data name="AppName_TemplateAppName" xml:space="preserve">
-    <value>TemplateAppName</value>
-  </data>
-  <data name="AppName_WaveInterference" xml:space="preserve">
-    <value>Wave Interference</value>
-  </data>
-  <data name="AppProjectInfo" xml:space="preserve">
-    <value>Application „{0}“ was created within the project „Hrátky s fyzikou“, which is financed by European Union. Registration number of the project is CZ.02.3.68/0.0/0.0/18_067/0012381. Published under Creative Commons 4.0, BY-NC-SA.</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Color" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="Copy" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>Copy to clipboard</value>
-  </data>
-  <data name="CorrectAnswerTitle" xml:space="preserve">
-    <value>Correct 🎉!</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Demo" xml:space="preserve">
-    <value>Demo</value>
-  </data>
-  <data name="Duplicate" xml:space="preserve">
-    <value>Duplicate</value>
-  </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Easy difficulty</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Game" xml:space="preserve">
-    <value>Game</value>
-  </data>
-  <data name="Hide" xml:space="preserve">
-    <value>Hide</value>
-  </data>
-  <data name="IntervalForTable" xml:space="preserve">
-    <value>Time interval (s)</value>
-  </data>
-  <data name="Label" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="MoreApps" xml:space="preserve">
-    <value>More apps</value>
-  </data>
-  <data name="MorePhysicsApps" xml:space="preserve">
-    <value>More physics apps</value>
-  </data>
-  <data name="NewGame" xml:space="preserve">
-    <value>New game</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Show" xml:space="preserve">
-    <value>Show</value>
-  </data>
-  <data name="ShowAnswer" xml:space="preserve">
-    <value>Show answer</value>
-  </data>
-  <data name="ShowHideIrrelevantColumns" xml:space="preserve">
-    <value>Show/hide irrelevant columns</value>
-  </data>
-  <data name="ShowHideZeroes" xml:space="preserve">
-    <value>Show/hide zero columns</value>
-  </data>
-  <data name="ShowValuesTable" xml:space="preserve">
-    <value>Show values table</value>
-  </data>
-  <data name="StudyText" xml:space="preserve">
-    <value>Learning text</value>
-  </data>
-  <data name="TryAgain" xml:space="preserve">
-    <value>Try again</value>
-  </data>
-  <data name="UpdateAvailable_Button" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="UpdateAvailable_Description" xml:space="preserve">
-    <value>Do you want to download it in the background?</value>
-  </data>
-  <data name="UpdateAvailable_Title" xml:space="preserve">
-    <value>Update available.</value>
-  </data>
-  <data name="UpdateReady_Button" xml:space="preserve">
-    <value>Install and restart</value>
-  </data>
-  <data name="UpdateReady_Description" xml:space="preserve">
-    <value>Do you want to install the update and restart the app?</value>
-  </data>
-  <data name="UpdateReady_Title" xml:space="preserve">
-    <value>Update ready.</value>
-  </data>
-  <data name="WrongAnswerTitle" xml:space="preserve">
-    <value>Wrong 😕</value>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>TemplateAppDisplayNameCs</value>
   </data>
 </root>

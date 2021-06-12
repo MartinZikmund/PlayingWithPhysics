@@ -20,6 +20,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 		SKSize ScaledSize { get; }
 
+		SKSize NativeSize { get; }
+
 		Task RunOnRenderThreadAsync(Action action);		
 	}
 }
