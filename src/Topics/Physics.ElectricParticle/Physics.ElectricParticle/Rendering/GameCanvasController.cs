@@ -41,9 +41,16 @@ namespace Physics.ElectricParticle.Rendering
 		private readonly SKPaint _pathPaint = new SKPaint()
 		{
 			Color = SKColors.Black,
-			IsAntialias = true,
+			IsAntialias = true,		
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 4,
 			IsStroke = true,
+		};
+
+		private readonly SKPaint _bitmapPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High
 		};
 
 		private SKBitmap[] _backgrounds;
@@ -79,10 +86,18 @@ namespace Physics.ElectricParticle.Rendering
 
 		private void DrawDrawing(ISkiaCanvas sender, SKSurface args)
 		{
+			var worldMatrix = SKMatrix.CreateIdentity();
+			// Apply DPI scaling.
+			SKMatrix.Concat(ref worldMatrix, worldMatrix, SKMatrix.CreateScale(sender.ScaleFactor, sender.ScaleFactor));
+
 			if (_existingDrawing == null)
 			{
-				_existingDrawing = new SKBitmap((int)sender.NativeSize.Width, (int)sender.NativeSize.Height);
+				_existingDrawing = new SKBitmap((int)sender.ActualWidth, (int)sender.ActualHeight);
 				using var canvas = new SKCanvas(_existingDrawing);
+				//canvas.Clear(SKColors.Red);
+				//canvas.ResetMatrix();
+				//canvas.SetMatrix(worldMatrix);
+
 				// Need to draw everything again
 				foreach (var drawingPath in GameInfo.Drawing.Paths.Where(p => p.IsClosed))
 				{
@@ -96,11 +111,14 @@ namespace Physics.ElectricParticle.Rendering
 						var point = drawingPath.Points[i];
 						path.LineTo(RelativeToCanvas(point, sender));
 					}
-					canvas.DrawPath(path, _pathPaint);
+					canvas.DrawPath(path, _pathPaint);					
 				}
 			}
 
 			using var inProgressCanvas = new SKCanvas(_existingDrawing);
+
+			//inProgressCanvas.ResetMatrix();
+			//inProgressCanvas.SetMatrix(worldMatrix);
 			foreach (var inProgressPath in GameInfo.Drawing.Paths.Where(p => !p.IsClosed))
 			{
 				int startIndex = _lastDrawnPoint.Item1 == inProgressPath ? _lastDrawnPoint.Item2 : 0;
@@ -120,7 +138,7 @@ namespace Physics.ElectricParticle.Rendering
 
 			args.Canvas.DrawBitmap(_existingDrawing, SKPoint.Empty, _pathPaint);
 
-			if (GameInfo.IsPenDown = true && GameInfo.State == GameState.Drawing && GameInfo.Drawing.Paths.Any())
+			if (GameInfo.IsPenDown && GameInfo.State == GameState.Drawing && GameInfo.Drawing.Paths.Any())
 			{
 				var lastPoint = GameInfo.Drawing.Paths.Last().Points.LastOrDefault();
 				if (lastPoint != null)

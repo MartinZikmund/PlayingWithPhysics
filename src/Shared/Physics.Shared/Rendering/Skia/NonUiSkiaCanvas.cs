@@ -53,7 +53,7 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 			var worldMatrix = SKMatrix.CreateIdentity();
 			// Apply DPI scaling.
-			SKMatrix.Concat(ref worldMatrix, worldMatrix, SKMatrix.CreateScale((float)ContentsScale, (float)ContentsScale));
+			SKMatrix.Concat(ref worldMatrix, worldMatrix, SKMatrix.CreateScale(ScaleFactor, ScaleFactor));
 
 			canvas.ResetMatrix();
 			canvas.SetMatrix(worldMatrix);
@@ -63,6 +63,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 		public SKSize ScaledSize => new SKSize(CanvasSize.Width / (float)ContentsScale, CanvasSize.Height / (float)ContentsScale);
 
 		public SKSize NativeSize => CanvasSize;
+
+		public float ScaleFactor => (float)ContentsScale;
 
 		public event SkiaEventHandler<SKSurface> Initialized;
 		public event SkiaEventHandler<EventArgs> Update;
