@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using MvvmCross.ViewModels;
 using Physics.Shared.Helpers;
 
@@ -8,7 +7,7 @@ namespace Physics.ElectricParticle.Game
 	public class GameInfo : MvxNotifyPropertyChanged
 	{
 		private const int LevelCount = 11;
-		private const float AccelerationScale = 0.001f;
+		private const float AccelerationScale = 0.00005f;
 
 		private readonly Stopwatch _drawingStopwatch = new Stopwatch();
 
@@ -36,7 +35,6 @@ namespace Physics.ElectricParticle.Game
 			get => _ux;
 			set => SetProperty(ref _ux, MathHelpers.Clamp(value, -100, 100));
 		}
-
 
 		public float Uy
 		{

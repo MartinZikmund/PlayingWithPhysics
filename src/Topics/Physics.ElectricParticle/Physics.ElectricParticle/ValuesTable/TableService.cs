@@ -25,7 +25,7 @@ namespace Physics.ElectricParticle.ValuesTable
 			BigNumber time = 0.0;
 			for (int i = 0; i < (ViewModel?.Steps ?? 50); i++)
 			{
-				BigNumber t = _physicsService.ComputeX(time);
+				BigNumber t = time;
 				BigNumber x = _physicsService.ComputeX(time);
 				BigNumber y = _physicsService.ComputeY(time);
 				BigNumber v = _physicsService.ComputeV(time);
@@ -36,7 +36,7 @@ namespace Physics.ElectricParticle.ValuesTable
 				BigNumber ep = _physicsService.ComputeEp(time);
 				BigNumber e = _physicsService.ComputeE(time);
 
-				var valuesRow = new TableRow(t, x, y, v, vx, vy, a, ep, ek, e);
+				var valuesRow = new TableRow(t, x, y, v, vx, vy, a, ek, ep, e);
 
 				table.Add(valuesRow);
 

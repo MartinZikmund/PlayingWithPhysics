@@ -53,10 +53,12 @@ namespace Physics.ElectricParticle.Rendering
 			IsAntialias = true
 		};
 
+		private readonly SKTypeface _planeSignTypeface = SKTypeface.FromFamilyName("Arial", SKFontStyle.Bold);
+
 		private readonly SKPaint _minusPlaneTextPaint = new SKPaint()
 		{
 			Color = new SKColor(173, 26, 0),
-			TextSize = 30,
+			TextSize = 40,
 			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
 		};
@@ -64,7 +66,7 @@ namespace Physics.ElectricParticle.Rendering
 		private readonly SKPaint _plusPlaneTextPaint = new SKPaint()
 		{
 			Color = new SKColor(0, 75, 153),
-			TextSize = 30,
+			TextSize = 40,
 			TextAlign = SKTextAlign.Center,
 			IsAntialias = true
 		};
@@ -81,6 +83,8 @@ namespace Physics.ElectricParticle.Rendering
 
 		public ElectricParticleCanvasController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
+			_minusPlaneTextPaint.Typeface = _planeSignTypeface;
+			_plusPlaneTextPaint.Typeface = _planeSignTypeface;
 		}
 
 		public void StartSimulation()
@@ -98,12 +102,12 @@ namespace Physics.ElectricParticle.Rendering
 
 			if (_setup.VerticalPlane != null)
 			{
-				unitXSize = _setup.VerticalPlane.Distance * 1.2f;
+				unitXSize = _setup.VerticalPlane.Distance * 1.25f;
 			}
 
 			if (_setup.HorizontalPlane != null)
 			{
-				unitYSize = _setup.HorizontalPlane.Distance * 1.2f;
+				unitYSize = _setup.HorizontalPlane.Distance * 1.25f;
 			}
 
 			_unitDimension = Math.Max(unitXSize, unitYSize);
@@ -180,7 +184,7 @@ namespace Physics.ElectricParticle.Rendering
 
 			for (int i = 0; i < Math.Min(SimulationTime.UpdateCount + 1, _trajectory.Length); i++)
 			{
-				var point = _trajectory[Math.Min(_trajectory.Length - 1, SimulationTime.UpdateCount)];
+				var point = _trajectory[Math.Min(_trajectory.Length - 1, i)];
 
 				var particleCenter = new SKPoint(zeroX + point.X * _unitToPixel, zeroY - point.Y * _unitToPixel);
 				path.LineTo(particleCenter);

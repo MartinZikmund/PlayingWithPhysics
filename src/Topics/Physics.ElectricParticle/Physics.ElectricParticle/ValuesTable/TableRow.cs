@@ -24,7 +24,17 @@ namespace Physics.ElectricParticle.ValuesTable
         public string Ep { get; set; }
         public string E { get; set; }
 
-		public TableRow(BigNumber time, BigNumber x, BigNumber y, BigNumber velocity, BigNumber velocityX, BigNumber velocityY, BigNumber acceleration, BigNumber ek, BigNumber ep, BigNumber e)
+		public TableRow(
+			BigNumber time,
+			BigNumber x,
+			BigNumber y,
+			BigNumber velocity,
+			BigNumber velocityX,
+			BigNumber velocityY,
+			BigNumber acceleration,
+			BigNumber ek,
+			BigNumber ep,
+			BigNumber e)
 		{
 			Time = time.ToString();
 			X = x.ToString();

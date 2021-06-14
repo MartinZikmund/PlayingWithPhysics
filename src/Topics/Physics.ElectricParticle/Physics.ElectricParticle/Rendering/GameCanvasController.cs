@@ -48,6 +48,10 @@ namespace Physics.ElectricParticle.Rendering
 
 		private SKBitmap[] _backgrounds;
 
+		private Size _previousSize = Size.Empty;
+		private SKBitmap _existingDrawing = null;
+		private (DrawingPath, int) _lastDrawnPoint = (null, -1);
+
 		public GameCanvasController(ISkiaCanvas control, KeyboardState keyboardState) : base(control)
 		{
 			_keyboardState = keyboardState;
@@ -75,25 +79,55 @@ namespace Physics.ElectricParticle.Rendering
 
 		private void DrawDrawing(ISkiaCanvas sender, SKSurface args)
 		{
-			foreach (var drawingPath in GameInfo.Drawing.Paths)
+			if (_existingDrawing == null)
 			{
-				using var path = new SKPath();
-				if (drawingPath.Points.Any())
+				_existingDrawing = new SKBitmap((int)sender.NativeSize.Width, (int)sender.NativeSize.Height);
+				using var canvas = new SKCanvas(_existingDrawing);
+				// Need to draw everything again
+				foreach (var drawingPath in GameInfo.Drawing.Paths.Where(p => p.IsClosed))
 				{
-					path.MoveTo(RelativeToCanvas(drawingPath.Points[0], sender));
+					using var path = new SKPath();
+					if (drawingPath.Points.Any())
+					{
+						path.MoveTo(RelativeToCanvas(drawingPath.Points[0], sender));
+					}
+					for (int i = 1; i < drawingPath.Points.Count; i++)
+					{
+						var point = drawingPath.Points[i];
+						path.LineTo(RelativeToCanvas(point, sender));
+					}
+					canvas.DrawPath(path, _pathPaint);
 				}
-				for (int i = 1; i < drawingPath.Points.Count; i++)
+			}
+
+			using var inProgressCanvas = new SKCanvas(_existingDrawing);
+			foreach (var inProgressPath in GameInfo.Drawing.Paths.Where(p => !p.IsClosed))
+			{
+				int startIndex = _lastDrawnPoint.Item1 == inProgressPath ? _lastDrawnPoint.Item2 : 0;
+				using var path = new SKPath();
+				if (inProgressPath.Points.Any())
 				{
-					var point = drawingPath.Points[i];
+					path.MoveTo(RelativeToCanvas(inProgressPath.Points[startIndex], sender));
+				}
+				for (int i = startIndex; i < inProgressPath.Points.Count; i++)
+				{
+					var point = inProgressPath.Points[i];
 					path.LineTo(RelativeToCanvas(point, sender));
 				}
-				if (GameInfo.IsPenDown = true && GameInfo.State == GameState.Drawing && drawingPath == GameInfo.Drawing.Paths.LastOrDefault())
+				_lastDrawnPoint = (inProgressPath, inProgressPath.Points.Count - 1);
+				inProgressCanvas.DrawPath(path, _pathPaint);
+			}
+
+			args.Canvas.DrawBitmap(_existingDrawing, SKPoint.Empty, _pathPaint);
+
+			if (GameInfo.IsPenDown = true && GameInfo.State == GameState.Drawing && GameInfo.Drawing.Paths.Any())
+			{
+				var lastPoint = GameInfo.Drawing.Paths.Last().Points.LastOrDefault();
+				if (lastPoint != null)
 				{
 					// Line to pen position for better visuals
-					path.LineTo(RelativeToCanvas(GameInfo.PenState.Position, sender));
+					args.Canvas.DrawLine(RelativeToCanvas(lastPoint, sender), RelativeToCanvas(GameInfo.PenState.Position, sender), _pathPaint);
 				}
-
-				args.Canvas.DrawPath(path, _pathPaint);
 			}
 		}
 
@@ -108,6 +142,15 @@ namespace Physics.ElectricParticle.Rendering
 			{
 				return;
 			}
+
+			var newSize = new Size(sender.ScaledSize.Width, sender.ScaledSize.Height);
+			if (newSize != _previousSize)
+			{
+				// Clear drawing cache, need full redraw
+				_existingDrawing = null;
+				_lastDrawnPoint = (null, -1);
+			}
+			_previousSize = newSize;
 
 			EnsureBitmaps();
 
