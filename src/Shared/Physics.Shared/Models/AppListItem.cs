@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+		public string ShortenedName { get; set; }
+
 		public string Name { get; set; }
 
 		public string PackageId { get; set; }

@@ -306,6 +306,7 @@
     <Content Include="Assets\Logos\MagneticField.jpg" />
     <Content Include="Assets\Logos\ProjectileMotions.jpg" />
     <Content Include="Assets\Logos\RadioactiveDecay.jpg" />
+    <Content Include="Assets\Logos\RotationalInclinedPlane.jpg" />
     <Content Include="Assets\Logos\WaveInterference.jpg" />
     <Content Include="Assets\msmt.jpg" />
   </ItemGroup>

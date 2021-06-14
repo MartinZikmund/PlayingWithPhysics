@@ -33,7 +33,7 @@ namespace Physics.Shared.UI.Models
 		private async Task OpenAsync()
 		{
 			var queryResult = await Launcher.QueryUriSupportAsync(
-				new Uri($"playingwithphysics-{_app.Name.ToLowerInvariant()}:"),
+				new Uri(GetAppUriScheme()),
 				LaunchQuerySupportType.Uri,
 				_app.PackageId);
 
@@ -46,12 +46,18 @@ namespace Physics.Shared.UI.Models
 			{
 				// Open app
 				await Launcher.LaunchUriAsync(
-					new Uri($"playingwithphysics-{_app.Name.ToLowerInvariant()}:/home", UriKind.Absolute),
+					new Uri($"{GetAppUriScheme()}/home", UriKind.Absolute),
 					new LauncherOptions()
 					{
 						FallbackUri = new Uri($"https://www.microsoft.com/store/apps/{_app.StoreId}")
 					});
 			}
+		}
+
+		private string GetAppUriScheme()
+		{
+			var appName = string.IsNullOrEmpty(_app.ShortenedName) ? _app.Name : _app.ShortenedName;
+			return $"playingwithphysics-{appName.ToLowerInvariant()}:";
 		}
 	}
 }

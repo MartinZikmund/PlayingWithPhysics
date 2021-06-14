@@ -25,6 +25,7 @@
   },
   {
     "Id": 5,
+    "ShortenedName": "RotationalInclined",
     "Name": "RotationalInclinedPlane",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsRotati_svr2k4kdvk0kr",
     "StoreId": "9NL5PZ7K0MDQ"
