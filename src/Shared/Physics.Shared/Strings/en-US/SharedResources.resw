@@ -120,6 +120,9 @@
   <data name="AboutApp" xml:space="preserve">
     <value>About app</value>
   </data>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Add motion</value>
+  </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Advanced difficulty</value>
   </data>
@@ -216,8 +219,50 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="EditValues" xml:space="preserve">
+    <value>Edit values</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="Gravity_Earth45" xml:space="preserve">
+    <value>Earth – 45 north latitude</value>
+  </data>
+  <data name="Gravity_EarthEquatorSeaLevel" xml:space="preserve">
+    <value>Earth – equator, sea level</value>
+  </data>
+  <data name="Gravity_EarthPole" xml:space="preserve">
+    <value>Earth – pole</value>
+  </data>
+  <data name="Gravity_EarthPrague" xml:space="preserve">
+    <value>Earth – Prague</value>
+  </data>
+  <data name="Gravity_Jupiter" xml:space="preserve">
+    <value>Jupiter – equator</value>
+  </data>
+  <data name="Gravity_Mars" xml:space="preserve">
+    <value>Mars – equator</value>
+  </data>
+  <data name="Gravity_Mercury" xml:space="preserve">
+    <value>Mercury – equator</value>
+  </data>
+  <data name="Gravity_Moon" xml:space="preserve">
+    <value>Moon – equator</value>
+  </data>
+  <data name="Gravity_Neptune" xml:space="preserve">
+    <value>Neptune – equator</value>
+  </data>
+  <data name="Gravity_Saturn" xml:space="preserve">
+    <value>Saturn – equator</value>
+  </data>
+  <data name="Gravity_Sun" xml:space="preserve">
+    <value>Sun – equator</value>
+  </data>
+  <data name="Gravity_Uranus" xml:space="preserve">
+    <value>Uranus – equator</value>
+  </data>
+  <data name="Gravity_Venus" xml:space="preserve">
+    <value>Venus – equator</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Hide</value>
@@ -227,6 +272,9 @@
   </data>
   <data name="Label" xml:space="preserve">
     <value>Label</value>
+  </data>
+  <data name="ManualInput" xml:space="preserve">
+    <value>Manual input</value>
   </data>
   <data name="MoreApps" xml:space="preserve">
     <value>More apps</value>

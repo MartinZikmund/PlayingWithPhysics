@@ -128,6 +128,39 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Rotační pohyb těles na nakloněné rovině</value>
   </data>
+  <data name="BodyType_FullCylinder" xml:space="preserve">
+    <value>Válec</value>
+  </data>
+  <data name="BodyType_HollowCylinder" xml:space="preserve">
+    <value>Dutý válec</value>
+  </data>
+  <data name="BodyType_Sphere" xml:space="preserve">
+    <value>Koule</value>
+  </data>
+  <data name="Input_Angle" xml:space="preserve">
+    <value>Úhel</value>
+  </data>
+  <data name="Input_BodyType" xml:space="preserve">
+    <value>Typ tělesa</value>
+  </data>
+  <data name="Input_General" xml:space="preserve">
+    <value>Obecné</value>
+  </data>
+  <data name="Input_Gravity" xml:space="preserve">
+    <value>Tíhové zrychlení</value>
+  </data>
+  <data name="Input_InclinedPlane" xml:space="preserve">
+    <value>Nakloněná rovina</value>
+  </data>
+  <data name="Input_Length" xml:space="preserve">
+    <value>Délka</value>
+  </data>
+  <data name="Input_Mass" xml:space="preserve">
+    <value>Hmotnost</value>
+  </data>
+  <data name="Input_Radius" xml:space="preserve">
+    <value>Poloměr</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rotační pohyb těles na nakloněné rovině</value>
   </data>

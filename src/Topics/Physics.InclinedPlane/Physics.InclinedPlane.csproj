@@ -145,7 +145,6 @@
     <Compile Include="Rendering\SimulationRenderer.cs" />
     <Compile Include="Rendering\SkiaSimulationRenderer.cs" />
     <Compile Include="Services\DriftCoefficientDefault.cs" />
-    <Compile Include="Services\GravityDefault.cs" />
     <Compile Include="UserControls\InclinedPlaneInputControl.xaml.cs">
       <DependentUpon>InclinedPlaneInputControl.xaml</DependentUpon>
     </Compile>

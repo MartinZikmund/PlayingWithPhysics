@@ -128,6 +128,39 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Rotational Movement on Inclined Plane</value>
   </data>
+  <data name="BodyType_FullCylinder" xml:space="preserve">
+    <value>Full cylinder</value>
+  </data>
+  <data name="BodyType_HollowCylinder" xml:space="preserve">
+    <value>Hollow cylinder</value>
+  </data>
+  <data name="BodyType_Sphere" xml:space="preserve">
+    <value>Sphere</value>
+  </data>
+  <data name="Input_Angle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="Input_BodyType" xml:space="preserve">
+    <value>Body type</value>
+  </data>
+  <data name="Input_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Input_Gravity" xml:space="preserve">
+    <value>Gravity</value>
+  </data>
+  <data name="Input_InclinedPlane" xml:space="preserve">
+    <value>Inclined plane</value>
+  </data>
+  <data name="Input_Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Input_Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="Input_Radius" xml:space="preserve">
+    <value>Radius</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rotational Movement on Inclined Plane</value>
   </data>

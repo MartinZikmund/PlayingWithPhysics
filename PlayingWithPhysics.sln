@@ -98,6 +98,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.RotationalInclinedP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.RotationalInclinedPlane.Logic", "src\Topics\Physics.RotationalInclinedPlane.Logic\Physics.RotationalInclinedPlane.Logic.csproj", "{EA494B5D-8D28-4BF7-A366-158FE318B449}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.RotationalInclinedPlane.Tests", "tests\Topics\Physics.RotationalInclinedPlane.Tests\Physics.RotationalInclinedPlane.Tests.csproj", "{BBC64CE3-BFBA-4849-9559-3931BF90B057}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -804,6 +806,26 @@ Global
 		{EA494B5D-8D28-4BF7-A366-158FE318B449}.Release|x64.Build.0 = Release|Any CPU
 		{EA494B5D-8D28-4BF7-A366-158FE318B449}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA494B5D-8D28-4BF7-A366-158FE318B449}.Release|x86.Build.0 = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|x64.Build.0 = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Debug|x86.Build.0 = Debug|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|ARM.Build.0 = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|ARM64.Build.0 = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|x64.ActiveCfg = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|x64.Build.0 = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|x86.ActiveCfg = Release|Any CPU
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -851,6 +873,7 @@ Global
 		{8FEC763A-C402-4994-94A3-0EBDE2E58601} = {381E6158-59BC-4D40-9F33-084C4140E44D}
 		{ECF9C98A-9E55-4223-823F-AE3949F944DC} = {8FEC763A-C402-4994-94A3-0EBDE2E58601}
 		{EA494B5D-8D28-4BF7-A366-158FE318B449} = {8FEC763A-C402-4994-94A3-0EBDE2E58601}
+		{BBC64CE3-BFBA-4849-9559-3931BF90B057} = {8FEC763A-C402-4994-94A3-0EBDE2E58601}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED552938-F303-42AA-9225-9FC231B27BB4}

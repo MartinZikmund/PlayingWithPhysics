@@ -5,10 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:inputs="using:Physics.InclinedPlane.Services"
-    xmlns:local="using:Physics.InclinedPlane.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    d:DesignHeight="1100"
+	xmlns:sharedInputs="using:Physics.Shared.UI.Models.Input"
+	d:DesignHeight="1100"
     d:DesignWidth="600"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -137,7 +137,7 @@
                     ItemsSource="{x:Bind Model.GravityDefaults}"
                     SelectedItem="{x:Bind Model.SelectedGravity, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:GravityDefault">
+                        <DataTemplate x:DataType="sharedInputs:GravityDefault">
                             <Grid ColumnSpacing="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

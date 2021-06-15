@@ -146,6 +146,7 @@
     <Compile Include="Infrastructure\DefaultApp.cs" />
     <Compile Include="Models\AppListItem.cs" />
     <Compile Include="Models\AppListItemViewModel.cs" />
+    <Compile Include="Models\Input\GravityDefault.cs" />
     <Compile Include="Models\Input\SimulationColors.cs" />
     <Compile Include="Models\Navigation\SimulationNavigationModel.cs" />
     <Compile Include="Rendering\AxisInfo.cs" />

@@ -4,6 +4,10 @@ using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
 using Physics.RotationalInclinedPlane.Rendering;
+using Physics.RotationalInclinedPlane.Logic;
+using Physics.RotationalInclinedPlane.Dialogs;
+using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace Physics.RotationalInclinedPlane.ViewModels
 {
@@ -11,6 +15,10 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 	{
 		private DifficultyOption _difficulty;
 		private RotationalInclinedPlaneCanvasController _controller;
+
+		public MotionSetup Setup { get; set; }
+
+		public ICommand EditValuesCommand => GetOrCreateAsyncCommand(EditValuesAsync);
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
@@ -26,6 +34,22 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+		}
+
+		public async Task EditValuesAsync()
+		{
+			InputDialogViewModel viewModel;
+			if (Setup != null)
+			{
+				viewModel = new InputDialogViewModel(Setup, _difficulty);
+			}
+			else
+			{
+				viewModel = new InputDialogViewModel(_difficulty);
+			}
+
+			var dialog = new InputDialog(viewModel);
+			await dialog.ShowAsync();
 		}
 	}
 }

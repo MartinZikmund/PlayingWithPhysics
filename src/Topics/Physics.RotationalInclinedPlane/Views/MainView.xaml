@@ -30,7 +30,7 @@
 		<Grid
             x:Name="MenuPane"
             Grid.Column="0"
-            RequestedTheme="Dark">
+            RequestedTheme="Light">
 			<Grid.Background>
 				<AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
 			</Grid.Background>
@@ -45,7 +45,8 @@
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="0,12,0,0">
+			<Border Grid.Row="1" Margin="0,12,0,0" Padding="8">
+				<Button HorizontalAlignment="Stretch" Content="{extensions:Localize Key=EditValues}" Command="{x:Bind Model.EditValuesCommand}" />
 			</Border>
 		</Grid>
 		<Grid

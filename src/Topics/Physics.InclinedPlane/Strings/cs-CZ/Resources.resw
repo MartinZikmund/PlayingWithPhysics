@@ -224,45 +224,6 @@ Grafika: Petr Weinlich</value>
   <data name="GameResults" xml:space="preserve">
     <value>Konec hry!</value>
   </data>
-  <data name="Gravity_Earth45" xml:space="preserve">
-    <value>Země – 45° zeměpisné šířky</value>
-  </data>
-  <data name="Gravity_EarthEquatorSeaLevel" xml:space="preserve">
-    <value>Země – rovník, úroveň mořské hladiny</value>
-  </data>
-  <data name="Gravity_EarthPole" xml:space="preserve">
-    <value>Země – zemský pól</value>
-  </data>
-  <data name="Gravity_EarthPrague" xml:space="preserve">
-    <value>Země – Praha</value>
-  </data>
-  <data name="Gravity_Jupiter" xml:space="preserve">
-    <value>Jupiter – rovník</value>
-  </data>
-  <data name="Gravity_Mars" xml:space="preserve">
-    <value>Mars – rovník</value>
-  </data>
-  <data name="Gravity_Mercury" xml:space="preserve">
-    <value>Merkur – rovník</value>
-  </data>
-  <data name="Gravity_Moon" xml:space="preserve">
-    <value>Měsíc – rovník</value>
-  </data>
-  <data name="Gravity_Neptune" xml:space="preserve">
-    <value>Neptun – rovník</value>
-  </data>
-  <data name="Gravity_Saturn" xml:space="preserve">
-    <value>Saturn – rovník</value>
-  </data>
-  <data name="Gravity_Sun" xml:space="preserve">
-    <value>Slunce – rovník</value>
-  </data>
-  <data name="Gravity_Uranus" xml:space="preserve">
-    <value>Uran – rovník</value>
-  </data>
-  <data name="Gravity_Venus" xml:space="preserve">
-    <value>Venuše – rovník</value>
-  </data>
   <data name="HorizontalPlaneDriftCoefficient" xml:space="preserve">
     <value>Součinitel třetí dojezdu:</value>
   </data>
@@ -310,9 +271,6 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="JumpSize" xml:space="preserve">
     <value>Volba kroku vykreslování</value>
-  </data>
-  <data name="ManualInput" xml:space="preserve">
-    <value>Ruční zadání</value>
   </data>
   <data name="Motions" xml:space="preserve">
     <value>Pohyby</value>

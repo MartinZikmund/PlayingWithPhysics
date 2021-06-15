@@ -2,6 +2,7 @@
 using Physics.InclinedPlane.Services;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
+using Physics.Shared.UI.Models.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.Text;

@@ -120,6 +120,9 @@
   <data name="AboutApp" xml:space="preserve">
     <value>O aplikaci</value>
   </data>
+  <data name="AddMotion" xml:space="preserve">
+    <value>Přidat pohyb</value>
+  </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
     <value>Pokročilá úroveň</value>
   </data>
@@ -213,8 +216,50 @@
   <data name="Edit" xml:space="preserve">
     <value>Upravit</value>
   </data>
+  <data name="EditValues" xml:space="preserve">
+    <value>Upravit hodnoty</value>
+  </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
+  </data>
+  <data name="Gravity_Earth45" xml:space="preserve">
+    <value>Země – 45° zeměpisné šířky</value>
+  </data>
+  <data name="Gravity_EarthEquatorSeaLevel" xml:space="preserve">
+    <value>Země – rovník, úroveň mořské hladiny</value>
+  </data>
+  <data name="Gravity_EarthPole" xml:space="preserve">
+    <value>Země – zemský pól</value>
+  </data>
+  <data name="Gravity_EarthPrague" xml:space="preserve">
+    <value>Země – Praha</value>
+  </data>
+  <data name="Gravity_Jupiter" xml:space="preserve">
+    <value>Jupiter – rovník</value>
+  </data>
+  <data name="Gravity_Mars" xml:space="preserve">
+    <value>Mars – rovník</value>
+  </data>
+  <data name="Gravity_Mercury" xml:space="preserve">
+    <value>Merkur – rovník</value>
+  </data>
+  <data name="Gravity_Moon" xml:space="preserve">
+    <value>Měsíc – rovník</value>
+  </data>
+  <data name="Gravity_Neptune" xml:space="preserve">
+    <value>Neptun – rovník</value>
+  </data>
+  <data name="Gravity_Saturn" xml:space="preserve">
+    <value>Saturn – rovník</value>
+  </data>
+  <data name="Gravity_Sun" xml:space="preserve">
+    <value>Slunce – rovník</value>
+  </data>
+  <data name="Gravity_Uranus" xml:space="preserve">
+    <value>Uran – rovník</value>
+  </data>
+  <data name="Gravity_Venus" xml:space="preserve">
+    <value>Venuše – rovník</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Skrýt</value>
@@ -224,6 +269,9 @@
   </data>
   <data name="Label" xml:space="preserve">
     <value>Název</value>
+  </data>
+  <data name="ManualInput" xml:space="preserve">
+    <value>Ruční zadání</value>
   </data>
   <data name="MoreApps" xml:space="preserve">
     <value>Další aplikace</value>
