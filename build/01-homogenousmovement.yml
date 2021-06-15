@@ -26,7 +26,7 @@ variables:
 name: $(major).$(minor).$(rev:r).0
 
 steps:
-- checkout: self  # self represents the repo where the initial Pipelines YAML file was found
+- checkout: self
   lfs: true
   
 - task: DownloadSecureFile@1
