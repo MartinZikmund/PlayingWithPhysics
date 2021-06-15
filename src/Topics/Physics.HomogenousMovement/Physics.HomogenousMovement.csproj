@@ -212,9 +212,15 @@
     <Content Include="Assets\SmallTile.scale-150.png" />
     <Content Include="Assets\SmallTile.scale-200.png" />
     <Content Include="Assets\SmallTile.scale-400.png" />
-    <Content Include="Assets\Sounds\Crash1.mp3" />
-    <Content Include="Assets\Sounds\Crash2.mp3" />
-    <Content Include="Assets\Sounds\GunCannon.wav" />
+    <Content Include="Assets\Sounds\Crash1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\Crash2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\GunCannon.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
