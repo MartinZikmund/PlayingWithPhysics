@@ -120,8 +120,8 @@
   <data name="Action" xml:space="preserve">
     <value>Akce!</value>
   </data>
-  <data name="AddOscillation" xml:space="preserve">
-    <value>Přidat kmitání</value>
+  <data name="AddWave" xml:space="preserve">
+    <value>Přidat vlnění</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Amplituda</value>
@@ -143,11 +143,8 @@ Grafika: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změna se aplikuje na všechna kmitání</value>
   </data>
-  <data name="CompoundOscillation" xml:space="preserve">
-    <value>Složené kmitání</value>
-  </data>
-  <data name="EditOscillation" xml:space="preserve">
-    <value>Upravit kmitání</value>
+  <data name="EditWave" xml:space="preserve">
+    <value>Upravit vlnění</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
@@ -170,17 +167,20 @@ Grafika: Petr Weinlich</value>
   <data name="LegendGreen" xml:space="preserve">
     <value>🟢 Zelená - Pohyb stativu</value>
   </data>
-  <data name="Oscillation" xml:space="preserve">
-    <value>Kmitání</value>
-  </data>
   <data name="Period" xml:space="preserve">
     <value>Perioda</value>
+  </data>
+  <data name="PhaseVelocity" xml:space="preserve">
+    <value>Fázová rychlost vlnění</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Interference vlnění</value>
   </data>
-  <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
-    <value>Zobrazit tabulku složeného kmitání</value>
+  <data name="ShowTableOfVisibleWaves" xml:space="preserve">
+    <value>Zobrazit tabulku interference vlnění</value>
+  </data>
+  <data name="SimulationTimeLabel" xml:space="preserve">
+    <value>Čas simulace:</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
@@ -190,5 +190,23 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Ovládání stativu</value>
+  </data>
+  <data name="Wave" xml:space="preserve">
+    <value>Vlnění</value>
+  </data>
+  <data name="WaveDirectionLabel" xml:space="preserve">
+    <value>Směr vlnění</value>
+  </data>
+  <data name="WaveDirection_Left" xml:space="preserve">
+    <value>Doleva</value>
+  </data>
+  <data name="WaveDirection_Right" xml:space="preserve">
+    <value>Doprava</value>
+  </data>
+  <data name="WaveInterference" xml:space="preserve">
+    <value>Interference vlnění</value>
+  </data>
+  <data name="WaveLength" xml:space="preserve">
+    <value>Vlnová délka</value>
   </data>
 </root>

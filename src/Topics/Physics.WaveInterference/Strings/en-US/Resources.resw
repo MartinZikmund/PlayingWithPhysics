@@ -120,7 +120,7 @@
   <data name="Action" xml:space="preserve">
     <value>Action!</value>
   </data>
-  <data name="AddOscillation" xml:space="preserve">
+  <data name="AddWave" xml:space="preserve">
     <value>Add oscillation</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
@@ -143,10 +143,7 @@ Graphics: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Change applies to all oscillations</value>
   </data>
-  <data name="CompoundOscillation" xml:space="preserve">
-    <value>Compound oscillation</value>
-  </data>
-  <data name="EditOscillation" xml:space="preserve">
+  <data name="EditWave" xml:space="preserve">
     <value>Edit oscillation</value>
   </data>
   <data name="Frequency" xml:space="preserve">
@@ -170,17 +167,20 @@ Graphics: Petr Weinlich</value>
   <data name="LegendGreen" xml:space="preserve">
     <value>🟢 Green - Stick movement</value>
   </data>
-  <data name="Oscillation" xml:space="preserve">
-    <value>Oscillation</value>
-  </data>
   <data name="Period" xml:space="preserve">
     <value>Period</value>
+  </data>
+  <data name="PhaseVelocity" xml:space="preserve">
+    <value>Phase velocity</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Compound Oscillations</value>
   </data>
-  <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
-    <value>Show table of compound oscillation</value>
+  <data name="ShowTableOfVisibleWaves" xml:space="preserve">
+    <value>Show table of wave interference</value>
+  </data>
+  <data name="SimulationTimeLabel" xml:space="preserve">
+    <value>Simulation time:</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
@@ -190,5 +190,23 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Camera control</value>
+  </data>
+  <data name="Wave" xml:space="preserve">
+    <value>Wave</value>
+  </data>
+  <data name="WaveDirectionLabel" xml:space="preserve">
+    <value>Wave direction</value>
+  </data>
+  <data name="WaveDirection_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="WaveDirection_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="WaveInterference" xml:space="preserve">
+    <value>WaveInterference</value>
+  </data>
+  <data name="WaveLength" xml:space="preserve">
+    <value>Wave length</value>
   </data>
 </root>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MvvmCross.Navigation;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels.Navigation;
+using Physics.WaveInterference.ViewModels;
 
 namespace Physics.WaveInterference.Infrastructure
 {
@@ -26,7 +27,7 @@ namespace Physics.WaveInterference.Infrastructure
 
 		public int Id => 8;
 
-		public async Task GoToDifficultyAsync(DifficultyOption option) => throw new NotImplementedException();
+		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
 		public async Task GoToGameAsync()
 		{

@@ -78,7 +78,7 @@
                                         VerticalAlignment="Center">
                                         <SymbolIcon Symbol="Add" />
                                     </Viewbox>
-                                    <TextBlock Text="{extensions:Localize Key=AddOscillation}" />
+                                    <TextBlock Text="{extensions:Localize Key=AddWave}" />
                                 </StackPanel>
                             </Button>
 
@@ -86,7 +86,7 @@
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 Style="{StaticResource InfoTextBlockStyle}">
-                                <Run Text="Simulation time: " />
+                                <Run Text="{extensions:Localize Key=SimulationTimeLabel}" />
                                 <Run FontFamily="Consolas" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}" />
                                 <Run Text="s" />
                             </TextBlock>
@@ -104,7 +104,7 @@
                                     </Style>
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
-                                    <DataTemplate x:DataType="viewModels:OscillationInfoViewModel">
+                                    <DataTemplate x:DataType="viewModels:WaveInfoViewModel">
                                         <Grid ColumnSpacing="16" RowSpacing="8">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -119,7 +119,7 @@
                                                 Width="8"
                                                 CornerRadius="4">
                                                 <Border.Background>
-                                                    <SolidColorBrush Color="{x:Bind OscillationInfo.Color, Mode=OneWay}" />
+                                                    <SolidColorBrush Color="{x:Bind WaveInfo.Color, Mode=OneWay}" />
                                                 </Border.Background>
                                             </Border>
                                             <Grid
@@ -207,7 +207,7 @@
                                                     Grid.Column="0"
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="{extensions:Localize Key=Frequency}" /><Run Text=": " />
-                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.FrequencyText, Mode=OneWay}" />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.FrequencyText, Mode=OneWay}" />
                                                     <Run Text="Hz" />
                                                 </TextBlock>
                                                 <TextBlock
@@ -223,14 +223,14 @@
                                                     Grid.Column="0"
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="{extensions:Localize Key=Amplitude}" /><Run Text=": " />
-                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.AmplitudeText, Mode=OneWay}" />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.AmplitudeText, Mode=OneWay}" />
                                                 </TextBlock>
                                                 <TextBlock
                                                     Grid.Row="1"
                                                     Grid.Column="1"
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=": " />
-                                                    <Run FontFamily="Consolas" Text="{x:Bind OscillationInfo.PhaseInPiRadText, Mode=OneWay}" />
+                                                    <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.PhaseInPiRadText, Mode=OneWay}" />
                                                     <Run Text="&#960; rad" />
                                                 </TextBlock>
                                                 <TextBlock
@@ -250,7 +250,7 @@
                                 Grid.Row="5"
                                 Orientation="Vertical"
                                 Spacing="8">
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=CompoundOscillation}" />
+                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=WaveInterference}" />
                                 <TextBlock
                                     Grid.Row="1"
                                     Grid.Column="1"
@@ -269,7 +269,7 @@
                                             VerticalAlignment="Center">
                                             <SymbolIcon Symbol="ViewAll" />
                                         </Viewbox>
-                                        <TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleOscillations}" />
+                                        <TextBlock Text="{extensions:Localize Key=ShowTableOfVisibleWaves}" />
                                     </StackPanel>
                                 </Button>
                             </StackPanel>

@@ -2,13 +2,14 @@
 
 namespace Physics.WaveInterference.Logic
 {
-	public class OscillationInfo
+	public class WaveInfo
 	{
-		public OscillationInfo(string label, float amplitude, float frequence, float phase, string color)
+		public WaveInfo(string label, float amplitude, float frequency, float waveLength, float phase, string color)
 		{
 			Label = label;
 			Amplitude = amplitude;
-			Frequency = frequence;
+			Frequency = frequency;
+			WaveLength = waveLength;
 			PhaseInRad = phase;
 			Color = color;
 		}
@@ -16,19 +17,15 @@ namespace Physics.WaveInterference.Logic
 		public string Label { get; set; }
 
 		public float Amplitude { get; set; }
-
 		public string AmplitudeText => Amplitude.ToString("0.##");
-
 		public float Frequency { get; set; }
-
 		public string FrequencyText => Frequency.ToString("0.##");
-
+		public float WaveLength { get; set; }
+		public string WaveLengthText => WaveLength.ToString("0.##");
 		public float PhaseInRad { get; set; }
-
-		public string Color { get; set; }
-
 		public string PhaseInPiRadText => (PhaseInRad / Math.PI).ToString("0.###");
 
-		public OscillationInfo Clone() => new OscillationInfo(Label, Amplitude, Frequency, PhaseInRad, Color);
+		public string Color { get; set; }
+		public WaveInfo Clone() => new WaveInfo(Label, Amplitude, Frequency, WaveLength, PhaseInRad, Color);
 	}
 }

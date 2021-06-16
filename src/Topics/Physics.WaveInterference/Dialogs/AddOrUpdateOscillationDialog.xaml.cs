@@ -23,7 +23,7 @@ namespace Physics.WaveInterference.Dialogs
 		{
 			AmplitudeNumberBox.SetupFormatting(increment: 0.1, fractionDigits: 1, smallChange: 0.1);
 			FrequencyNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 0.1);
-			PhaseInPiRadNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001, largeChange: 0.005);
+			WaveLengthNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001, largeChange: 0.005);
 		}
 
 		private void AddOrUpdateOscillationDialog_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

@@ -7,7 +7,7 @@ namespace Physics.WaveInterference.Logic
 	{
 		private readonly OscillationPhysicsService[] _oscillationPhysicsServices;
 
-		public CompoundOscillationsPhysicsService(params OscillationInfo[] oscillations)
+		public CompoundOscillationsPhysicsService(params WaveInfo[] oscillations)
 		{
 			if (oscillations == null)
 			{

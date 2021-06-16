@@ -8,18 +8,18 @@ namespace Physics.WaveInterference.ViewModels
 	{
 		private IOscillationPhysicsService _physicsService = null;
 
-		public WaveInfoViewModel(OscillationInfo throwInfo)
+		public WaveInfoViewModel(WaveInfo throwInfo)
 		{
-			OscillationInfo = throwInfo ?? throw new ArgumentNullException(nameof(throwInfo));
+			WaveInfo = throwInfo ?? throw new ArgumentNullException(nameof(throwInfo));
 		}
 
-		private OscillationInfo _oscillationInfo;
+		private WaveInfo _waveInfo;
 
-		public OscillationInfo OscillationInfo
+		public WaveInfo WaveInfo
 		{
 			get
 			{
-				return _oscillationInfo;
+				return _waveInfo;
 			}
 			set
 			{
@@ -28,16 +28,16 @@ namespace Physics.WaveInterference.ViewModels
 					throw new ArgumentNullException(nameof(value));
 				}
 				_physicsService = new OscillationPhysicsService(value);
-				SetProperty(ref _oscillationInfo, value);
+				SetProperty(ref _waveInfo, value);
 			}
 		}
 
 		public string Label
 		{
-			get => OscillationInfo.Label;
+			get => WaveInfo.Label;
 			set
 			{
-				OscillationInfo.Label = value;
+				WaveInfo.Label = value;
 				RaisePropertyChanged();
 			}
 		}
@@ -47,11 +47,14 @@ namespace Physics.WaveInterference.ViewModels
 			TimeElapsed = timeElapsed.ToString("0.##");
 			var currentY = _physicsService.CalculateY(timeElapsed);
 			CurrentYText = currentY.ToString(" 0.00;-0.00; 0.00");
-			RaisePropertyChanged(nameof(OscillationInfo));
+			RaisePropertyChanged(nameof(WaveInfo));
 			RaisePropertyChanged(nameof(PeriodText));
 		}
 
-		public string PeriodText => (1 / OscillationInfo.Frequency).ToString("0.000");
+
+		public string WaveLengthText => WaveInfo.WaveLengthText;
+		//public string PhaseText => WaveInfo.PhaseInRad;
+		public string PeriodText => (1.0f / WaveInfo.Frequency).ToString("0.000");
 
 		public string TimeElapsed { get; private set; }
 

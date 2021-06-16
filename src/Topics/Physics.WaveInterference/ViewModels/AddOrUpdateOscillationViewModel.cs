@@ -10,17 +10,24 @@ using Physics.Shared.UI.Services.Dialogs;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using System.Collections.Generic;
 
 namespace Physics.WaveInterference.ViewModels
 {
+	public enum WaveDirection
+	{
+		Right = -1,
+		Left = 1
+	}
+
 	public class AddOrUpdateOscillationViewModel : MvxNotifyPropertyChanged
 	{
-		private const string EditOscillationKey = "EditOscillation";
-		private const string AddOscillationKey = "AddOscillation";
+		private const string EditOscillationKey = "EditWave";
+		private const string AddOscillationKey = "AddWave";
 
 		private string[] _existingNames;
 
-		public AddOrUpdateOscillationViewModel(OscillationInfo oscillationInfo, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
+		public AddOrUpdateOscillationViewModel(WaveInfo oscillationInfo, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
 		{
 			DialogTitle = Localizer.Instance.GetString(EditOscillationKey);
 			Label = oscillationInfo.Label;
@@ -40,6 +47,8 @@ namespace Physics.WaveInterference.ViewModels
 			Difficulty = difficulty;
 			SetLocalizedAndNumberedLabelName();
 		}
+
+		public List<WaveDirection> WaveDirections = new (){ WaveDirection.Left, WaveDirection.Right };
 
 		public bool IsEasyVariant { get; }
 
@@ -74,7 +83,9 @@ namespace Physics.WaveInterference.ViewModels
 		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 
 		public float PhaseInPiRad { get; set; }
+		public float StartPhase { get; set; }
 
+		public float WaveLength { get; set; }
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
 			var deferral = args.GetDeferral();
@@ -95,16 +106,17 @@ namespace Physics.WaveInterference.ViewModels
 			}
 		}
 
-		public OscillationInfo Result { get; private set; }
+		public WaveInfo Result { get; private set; }
 
 		private void PrepareMotion()
 		{
 			if (Result == null)
 			{
-				Result = new OscillationInfo(
+				Result = new WaveInfo(
 					Label,
 					Amplitude,
 					Frequency,
+					WaveLength,
 					PhaseInPiRad * (float)Math.PI,
 					ColorHelper.ToHex(Color));
 			}
@@ -120,7 +132,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		private void SetLocalizedAndNumberedLabelName()
 		{
-			var movementTypeName = Localizer.Instance.GetString("Oscillation");
+			var movementTypeName = Localizer.Instance.GetString("Wave");
 			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
 			Label = generatedName;
 		}

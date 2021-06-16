@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿ using Microsoft.Toolkit.Uwp.UI.Controls;
 using Physics.WaveInterference.ValuesTable;
 using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;

@@ -16,10 +16,10 @@ namespace Physics.WaveInterference.Rendering
 		private float _verticalScale = 1f;
 		private float _horizontalScale = 300f;
 
-		private OscillationInfoViewModel[] _activeOscillations;
-		private Dictionary<OscillationInfo, OscillationTrajectory> _oscillationTrajectories;
-		private Dictionary<OscillationInfo, SKPaint> _oscillationFillPaints;
-		private Dictionary<OscillationInfo, SKPaint> _oscillationStrokePaints;
+		private WaveInfoViewModel[] _activeOscillations;
+		private Dictionary<WaveInfo, OscillationTrajectory> _oscillationTrajectories;
+		private Dictionary<WaveInfo, SKPaint> _oscillationFillPaints;
+		private Dictionary<WaveInfo, SKPaint> _oscillationStrokePaints;
 		private CompoundOscillationsPhysicsService _compoundOscillationsPhysicsService;
 		private CompoundOscillationTrajectory _compoundOscillationTrajectory;
 		private SKPaint _compoundFillPaint = new SKPaint()
@@ -55,16 +55,16 @@ namespace Physics.WaveInterference.Rendering
 		{
 		}
 
-		public void SetActiveOscillations(OscillationInfoViewModel[] info)
+		public void SetActiveOscillations(WaveInfoViewModel[] info)
 		{
 			_activeOscillations = info;
-			_oscillationTrajectories = new Dictionary<OscillationInfo, OscillationTrajectory>();
-			_oscillationFillPaints = new Dictionary<OscillationInfo, SKPaint>();
-			_oscillationStrokePaints = new Dictionary<OscillationInfo, SKPaint>();
+			_oscillationTrajectories = new Dictionary<WaveInfo, OscillationTrajectory>();
+			_oscillationFillPaints = new Dictionary<WaveInfo, SKPaint>();
+			_oscillationStrokePaints = new Dictionary<WaveInfo, SKPaint>();
 			_maxY = 0;
 			_minY = 0;
 
-			_maximumFrequency = _activeOscillations.Max(o => o.OscillationInfo.Frequency);
+			_maximumFrequency = _activeOscillations.Max(o => o.WaveInfo.Frequency);
 			if (_maximumFrequency > 5000)
 			{
 				_inherentSlowdown = 1 / 10000.0;
@@ -88,21 +88,22 @@ namespace Physics.WaveInterference.Rendering
 
 			foreach (var oscillation in _activeOscillations)
 			{
-				var slowedDownOscillationInfo = new OscillationInfo(
-					oscillation.OscillationInfo.Label,
-					oscillation.OscillationInfo.Amplitude,
-					(float)(oscillation.OscillationInfo.Frequency * _inherentSlowdown),
-					oscillation.OscillationInfo.PhaseInRad,
-					oscillation.OscillationInfo.Color);
+				var slowedDownOscillationInfo = new WaveInfo(
+					oscillation.WaveInfo.Label,
+					oscillation.WaveInfo.Amplitude,
+					(float)(oscillation.WaveInfo.Frequency * _inherentSlowdown),
+					oscillation.WaveInfo.WaveLength,
+					oscillation.WaveInfo.PhaseInRad,
+					oscillation.WaveInfo.Color);
 
 				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);				
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
 
-				_oscillationTrajectories.Add(oscillation.OscillationInfo, physicsService.CreateTrajectoryData());
+				_oscillationTrajectories.Add(oscillation.WaveInfo, physicsService.CreateTrajectoryData());
 
-				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(oscillation.OscillationInfo.Color);
+				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(oscillation.WaveInfo.Color);
 				var skColor = new SKColor(color.R, color.G, color.B);
 				var fillPaint = new SKPaint()
 				{
@@ -110,7 +111,7 @@ namespace Physics.WaveInterference.Rendering
 					IsStroke = false,
 					IsAntialias = true,
 				};
-				_oscillationFillPaints.Add(oscillation.OscillationInfo, fillPaint);
+				_oscillationFillPaints.Add(oscillation.WaveInfo, fillPaint);
 				var strokePaint = new SKPaint()
 				{
 					Color = skColor,
@@ -118,10 +119,10 @@ namespace Physics.WaveInterference.Rendering
 					StrokeWidth = 2,
 					IsAntialias = true,
 				};
-				_oscillationStrokePaints.Add(oscillation.OscillationInfo, strokePaint);
+				_oscillationStrokePaints.Add(oscillation.WaveInfo, strokePaint);
 			}
 
-			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.OscillationInfo).ToArray());
+			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.WaveInfo).ToArray());
 			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
 
 			
@@ -158,7 +159,7 @@ namespace Physics.WaveInterference.Rendering
 
 			foreach (var oscillation in _activeOscillations)
 			{
-				var trajectory = _oscillationTrajectories[oscillation.OscillationInfo];
+				var trajectory = _oscillationTrajectories[oscillation.WaveInfo];
 				if (oscillation.IsEnabled)
 				{
 					var y = trajectory.GetY((float)currentTime);
@@ -166,9 +167,9 @@ namespace Physics.WaveInterference.Rendering
 
 					if (oscillation.IsVisible)
 					{
-						var strokePain = _oscillationStrokePaints[oscillation.OscillationInfo];
+						var strokePain = _oscillationStrokePaints[oscillation.WaveInfo];
 						DrawTrajectory(sender, args, trajectory, strokePain, false);
-						var fillPaint = _oscillationFillPaints[oscillation.OscillationInfo];
+						var fillPaint = _oscillationFillPaints[oscillation.WaveInfo];
 						DrawOscillationCurrentPoint(sender, args, y, fillPaint);
 					}
 				}

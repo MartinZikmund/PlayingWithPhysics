@@ -41,13 +41,13 @@ namespace Physics.WaveInterference.ViewModels
 			_timer.Tick += _timer_Tick;
 		}
 
-		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(EditOscillationAsync);
+		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(EditOscillationAsync);
 
-		public ICommand DuplicateOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(DuplicateOscillationAsync);
+		public ICommand DuplicateOscillationCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(DuplicateOscillationAsync);
 
-		public ICommand DeleteOscillationCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(DeleteTrajectoryAsync);
+		public ICommand DeleteOscillationCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(DeleteTrajectoryAsync);
 
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(ShowValuesTableAsync);
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(ShowValuesTableAsync);
 
 		public ICommand ShowCompoundOscillationValuesTableCommand => GetOrCreateAsyncCommand(ShowCompoundOscillationValuesTableAsync);
 
@@ -70,7 +70,7 @@ namespace Physics.WaveInterference.ViewModels
 			SimulationPlayback.PlaybackSpeed = 0.5f;
 		}
 
-		public ObservableCollection<OscillationInfoViewModel> Oscillations { get; } = new ObservableCollection<OscillationInfoViewModel>();
+		public ObservableCollection<WaveInfoViewModel> Oscillations { get; } = new ObservableCollection<WaveInfoViewModel>();
 
 		public async void AddOscillation()
 		{
@@ -83,7 +83,7 @@ namespace Physics.WaveInterference.ViewModels
 				var result = await dialog.ShowAsync();
 				if (result == ContentDialogResult.Primary)
 				{
-					Oscillations.Add(new OscillationInfoViewModel(dialogViewModel.Result));
+					Oscillations.Add(new WaveInfoViewModel(dialogViewModel.Result));
 					OnOscillationsChange(dialogViewModel.Result);
 					await StartSimulationAsync();
 				}
@@ -95,21 +95,21 @@ namespace Physics.WaveInterference.ViewModels
 		}
 
 
-		private async Task EditOscillationAsync(OscillationInfoViewModel arg)
+		private async Task EditOscillationAsync(WaveInfoViewModel arg)
 		{
-			var dialogViewModel = new AddOrUpdateOscillationViewModel(arg.OscillationInfo, Difficulty, Oscillations.Select(m => m.Label).ToArray());
+			var dialogViewModel = new AddOrUpdateOscillationViewModel(arg.WaveInfo, Difficulty, Oscillations.Select(m => m.Label).ToArray());
 			var dialog = new AddOrUpdateOscillationDialog(dialogViewModel);
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				OnOscillationsChange(arg.OscillationInfo);
+				OnOscillationsChange(arg.WaveInfo);
 				await StartSimulationAsync();
 			}
 		}
 
-		private async Task DuplicateOscillationAsync(OscillationInfoViewModel arg)
+		private async Task DuplicateOscillationAsync(WaveInfoViewModel arg)
 		{
-			var duplicateMotion = arg.OscillationInfo.Clone();
+			var duplicateMotion = arg.WaveInfo.Clone();
 			duplicateMotion.Label =
 				$"{duplicateMotion.Label} ({Localizer.Instance.GetString("Copy")})";
 			var dialogViewModel = new AddOrUpdateOscillationViewModel(duplicateMotion, Difficulty, Oscillations.Select(m => m.Label).ToArray());
@@ -117,27 +117,27 @@ namespace Physics.WaveInterference.ViewModels
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				Oscillations.Add(new OscillationInfoViewModel(dialogViewModel.Result));
+				Oscillations.Add(new WaveInfoViewModel(dialogViewModel.Result));
 				await StartSimulationAsync();
 			}
 		}
 
-		private async Task DeleteTrajectoryAsync(OscillationInfoViewModel arg)
+		private async Task DeleteTrajectoryAsync(WaveInfoViewModel arg)
 		{
 			Oscillations.Remove(arg);
 			await StartSimulationAsync();
 		}
 
-		private async Task ShowValuesTableAsync(OscillationInfoViewModel viewModel)
+		private async Task ShowValuesTableAsync(WaveInfoViewModel viewModel)
 		{
-			var physicsService = new OscillationPhysicsService(viewModel.OscillationInfo);
+			var physicsService = new OscillationPhysicsService(viewModel.WaveInfo);
 			await ShowValuesTableAsync(physicsService, viewModel.Label);
 		}
 
 		private async Task ShowCompoundOscillationValuesTableAsync()
 		{
-			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.OscillationInfo).ToArray());
-			await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("CompoundOscillation"));
+			var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.WaveInfo).ToArray());
+			await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("WaveInterference"));
 		}
 
 		private async Task ShowValuesTableAsync(IOscillationPhysicsService physicsService, string title)
@@ -171,7 +171,7 @@ namespace Physics.WaveInterference.ViewModels
 			{
 				return;
 			}
-			_compoundOscillationService = new CompoundOscillationsPhysicsService(Oscillations.Select(o => o.OscillationInfo).ToArray());
+			_compoundOscillationService = new CompoundOscillationsPhysicsService(Oscillations.Select(o => o.WaveInfo).ToArray());
 			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
 			{
@@ -187,13 +187,13 @@ namespace Physics.WaveInterference.ViewModels
 			((Window.Current.Content as Frame)?.Content as MainView)?.FocusSimulationControls();
 		}
 
-		private void OnOscillationsChange(OscillationInfo lastChanged)
+		private void OnOscillationsChange(WaveInfo lastChanged)
 		{
 			if (Difficulty == DifficultyOption.Easy)
 			{
 				foreach (var oscillation in Oscillations)
 				{
-					oscillation.OscillationInfo.Frequency = lastChanged.Frequency;
+					oscillation.WaveInfo.Frequency = lastChanged.Frequency;
 				}
 			}
 		}

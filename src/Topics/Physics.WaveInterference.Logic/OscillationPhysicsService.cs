@@ -5,9 +5,9 @@ namespace Physics.WaveInterference.Logic
 {
 	public class OscillationPhysicsService : IOscillationPhysicsService
 	{
-		private readonly OscillationInfo _oscillationInfo;
+		private readonly WaveInfo _oscillationInfo;
 
-		public OscillationPhysicsService(OscillationInfo oscillationInfo)
+		public OscillationPhysicsService(WaveInfo oscillationInfo)
 		{
 			_oscillationInfo = oscillationInfo;
 		}
