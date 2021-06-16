@@ -301,13 +301,16 @@
     <Content Include="Assets\logo.language-en-US.png" />
     <Content Include="Assets\Logos\CompoundOscillations.jpg" />
     <Content Include="Assets\Logos\Drag.jpg" />
+    <Content Include="Assets\Logos\EarthsGravitationalField.jpg" />
     <Content Include="Assets\Logos\ElectricField.jpg" />
+    <Content Include="Assets\Logos\FluidFlow.jpg" />
     <Content Include="Assets\Logos\InclinedPlane.jpg" />
     <Content Include="Assets\Logos\LissajousCurves.jpg" />
     <Content Include="Assets\Logos\MagneticField.jpg" />
     <Content Include="Assets\Logos\ProjectileMotions.jpg" />
     <Content Include="Assets\Logos\RadioactiveDecay.jpg" />
     <Content Include="Assets\Logos\RotationalInclinedPlane.jpg" />
+    <Content Include="Assets\Logos\StationaryWaves.jpg" />
     <Content Include="Assets\Logos\WaveInterference.jpg" />
     <Content Include="Assets\msmt.jpg" />
   </ItemGroup>

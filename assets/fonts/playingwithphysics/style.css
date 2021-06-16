@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'playingwithphysics';
-  src:  url('fonts/playingwithphysics.eot?2m1ysj');
-  src:  url('fonts/playingwithphysics.eot?2m1ysj#iefix') format('embedded-opentype'),
-    url('fonts/playingwithphysics.ttf?2m1ysj') format('truetype'),
-    url('fonts/playingwithphysics.woff?2m1ysj') format('woff'),
-    url('fonts/playingwithphysics.svg?2m1ysj#playingwithphysics') format('svg');
+  src:  url('fonts/playingwithphysics.eot?pwl7tx');
+  src:  url('fonts/playingwithphysics.eot?pwl7tx#iefix') format('embedded-opentype'),
+    url('fonts/playingwithphysics.ttf?pwl7tx') format('truetype'),
+    url('fonts/playingwithphysics.woff?pwl7tx') format('woff'),
+    url('fonts/playingwithphysics.svg?pwl7tx#playingwithphysics') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-more:before {
+  content: "\e90e";
+}
+.icon-table:before {
+  content: "\e90d";
+}
 .icon-help:before {
   content: "\e90c";
 }

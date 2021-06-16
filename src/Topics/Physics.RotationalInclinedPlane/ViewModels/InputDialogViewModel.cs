@@ -6,16 +6,18 @@ using Physics.RotationalInclinedPlane.Logic;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Models.Input;
+using Physics.Shared.ViewModels;
 using Windows.UI;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 
 namespace Physics.RotationalInclinedPlane.ViewModels
 {
-	public class InputDialogViewModel
+	public class InputDialogViewModel : ViewModelBase
     {
 		public InputDialogViewModel(DifficultyOption difficulty)
 		{
 			Difficulty = difficulty;
+			OnGravityChanged();
 		}
 
 		public InputDialogViewModel(MotionSetup setup, DifficultyOption difficulty) : this(difficulty)
@@ -27,11 +29,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 				Radius = setup.Radius;
 				InclinedAngle = setup.InclinedAngle;
 				InclinedLength = setup.InclinedLength;
-				Gravity = setup.Gravity;
-				if (GravityDefaults.FirstOrDefault(d => d.Value == setup.Gravity) is { } gravity)
-				{
-					SelectedGravity = gravity;
-				}
+				Gravity = setup.Gravity;				
 				Color = ColorHelper.ToColor(setup.Color);
 				Mass = setup.Mass;
 			}
@@ -77,7 +75,19 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public int MaximumAngle => 60;
 
-		public float Gravity { get; set; } = 9.81f;
+		public float Gravity { get; set; } = 9.806f;
+
+		public void OnGravityChanged()
+		{
+			if (GravityDefaults.FirstOrDefault(d => d.HasValue && Math.Abs(d.Value.Value - Gravity) < 0.001f) is { } gravity)
+			{
+				SelectedGravity = gravity;
+			}
+			else
+			{
+				SelectedGravity = GravityDefaults[0];
+			}
+		}
 
 		public int SelectedBodyTypeIndex { get; set; }
 

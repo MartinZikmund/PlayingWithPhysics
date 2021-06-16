@@ -201,6 +201,9 @@
   <data name="CorrectAnswerTitle" xml:space="preserve">
     <value>Správně 🎉!</value>
   </data>
+  <data name="CurrentValues" xml:space="preserve">
+    <value>Aktuální hodnoty</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Smazat</value>
   </data>

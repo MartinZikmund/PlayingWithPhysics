@@ -2,76 +2,225 @@
     x:Class="Physics.RotationalInclinedPlane.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Physics.RotationalInclinedPlane.Views"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions"
-	mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-	<Page.Transitions>
-		<TransitionCollection>
-			<NavigationThemeTransition>
-				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-					<DrillInNavigationTransitionInfo />
-				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-			</NavigationThemeTransition>
-		</TransitionCollection>
-	</Page.Transitions>
-	<Page.Resources>
-		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
-		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
-		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
-	</Page.Resources>
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="320" />
-			<ColumnDefinition Width="3*" />
-		</Grid.ColumnDefinitions>
-		<Grid
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.RotationalInclinedPlane.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid
             x:Name="MenuPane"
             Grid.Column="0"
             RequestedTheme="Light">
-			<Grid.Background>
-				<AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
-			</Grid.Background>
-			<Windows10version1903:Grid.Shadow>
-				<ThemeShadow />
-			</Windows10version1903:Grid.Shadow>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="*" />
-			</Grid.RowDefinitions>
+            <Grid.Background>
+                <AcrylicBrush
+                    BackgroundSource="HostBackdrop"
+                    FallbackColor="{ThemeResource AppThemeColor}"
+                    TintColor="{ThemeResource AppThemeColor}"
+                    TintOpacity="0.85" />
+            </Grid.Background>
+            <Windows10version1903:Grid.Shadow>
+                <ThemeShadow />
+            </Windows10version1903:Grid.Shadow>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
+            <sharedControls:SkewedMenuHeader
+                FontSize="16"
+                GoBackCommand="{x:Bind Model.GoBackCommand}"
+                Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="0,12,0,0" Padding="8">
-				<Button HorizontalAlignment="Stretch" Content="{extensions:Localize Key=EditValues}" Command="{x:Bind Model.EditValuesCommand}" />
-			</Border>
-		</Grid>
-		<Grid
+            <Border Grid.Row="1" Margin="0,12,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel
+                        Grid.Row="2"
+                        Margin="12,0,8,0"
+                        Orientation="Vertical">
+
+                        <Button
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.EditValuesCommand}"
+                            Content="{extensions:Localize Key=EditValues}" />
+                        <StackPanel Visibility="{x:Bind Model.ShowCurrentValuesGrid, Mode=OneWay}">
+                            <NavigationViewItemSeparator />
+                            <Grid
+                                Padding="8,4,4,6"
+                                Background="#33000000"
+                                CornerRadius="4">
+                                <TextBlock
+                                    Margin="0,3,0,0"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                                    Text="{extensions:Localize Key=CurrentValues}" />
+                                <Button
+                                    HorizontalAlignment="Right"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Command="{x:Bind Model.ShowValuesTableCommand}">
+                                    <FontIcon FontFamily="{ThemeResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource TableGlyph}" />
+                                </Button>
+                            </Grid>
+                            <Grid Margin="16,8,8,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Text="t:" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
+                                        <Run Text=" s" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Text="v:" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
+                                        <Run Text=" m/s" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Text="x:" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Text="y:" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="3"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Text="s:" />
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
+                                        <Run Text=" m" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Text="Ek:" />
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="3"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
+                                        <Run Text=" J" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Text="Ep:" />
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
+                                        <Run Text=" J" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="2"
+                                        FontSize="16"
+                                        Text="Er:" />
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="3"
+                                        FontSize="16">
+                                        <Run Text="{x:Bind Model.Motion.Er, Mode=OneWay}" />
+                                        <Run Text=" J" />
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+        <Grid
             x:Name="SecondPane"
             Grid.Column="1"
             Padding="0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
-			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
-			<InkCanvas x:Name="InkCanvas" />
-			<InkToolbar
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="CanvasHolder" Background="#F4F4F4" />
+            <InkCanvas x:Name="InkCanvas" />
+            <InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-			<sharedControls:SimulationControls
+            <sharedControls:SimulationControls
                 x:Name="SimulationControls"
                 Grid.Row="1"
                 d:Visibility="Collapsed"
-				ForwardVisibility="Collapsed"
-				BackwardVisibility="Collapsed"
-				SpeedControlVisibility="Collapsed"
+                BackwardVisibility="Collapsed"
+                ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
@@ -80,14 +229,15 @@
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"
-                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
-				<sharedControls:SimulationControls.Background>
-					<AcrylicBrush
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
+                SpeedControlVisibility="Collapsed">
+                <sharedControls:SimulationControls.Background>
+                    <AcrylicBrush
                         BackgroundSource="Backdrop"
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
-				</sharedControls:SimulationControls.Background>
-			</sharedControls:SimulationControls>
-		</Grid>
-	</Grid>
+                </sharedControls:SimulationControls.Background>
+            </sharedControls:SimulationControls>
+        </Grid>
+    </Grid>
 </local:MainViewBase>
