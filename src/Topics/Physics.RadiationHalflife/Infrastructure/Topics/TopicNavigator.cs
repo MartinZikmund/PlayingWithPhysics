@@ -21,7 +21,7 @@ namespace Physics.RadiationHalflife.Infrastructure.Topics
 
 		public bool HasStudyMode => false;
 
-		public bool HasGame => true;
+		public bool HasGame => false;
 
 		public string GameNameOverride => Localizer.Instance["Demo"];
 

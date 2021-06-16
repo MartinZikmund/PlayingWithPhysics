@@ -155,7 +155,7 @@ namespace Physics.ElectricParticle.ViewModels
 
 		private async Task StartSimulationAsync()
 		{
-			if (_controller == null)
+			if (_controller == null && Motion == null)
 			{
 				return;
 			}
