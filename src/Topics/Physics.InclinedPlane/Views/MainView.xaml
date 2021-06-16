@@ -81,7 +81,7 @@
                                 Margin="0,3,0,0"
                                 Foreground="White"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"
-                                Text="Aktuální hodnoty" />
+                                Text="{extensions:Localize Key=CurrentValues}" />
                             <Button
                                 HorizontalAlignment="Right"
                                 Command="{x:Bind Model.ShowValuesTableCommand}"

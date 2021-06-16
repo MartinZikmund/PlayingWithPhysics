@@ -304,8 +304,9 @@
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
                         Spacing="8">
-                        <SymbolIcon Symbol="Add" />
-                        <TextBlock
+
+						<FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource MoreGlyph}" />
+						<TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Text="{extensions:Localize Key=MorePhysicsApps}"
