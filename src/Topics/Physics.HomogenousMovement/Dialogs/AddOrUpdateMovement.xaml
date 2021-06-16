@@ -123,20 +123,19 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" VerticalAlignment="Center">
-                    <Run Text="{extensions:Localize Key=Speed}" />
-                    <Run>v</Run><Run Typography.Variants="Subscript">0</Run>
-                    <Run>(m/s)</Run>
+                    <Run Text="{extensions:Localize Key=Gravity}" />
+                    <Run Text="g (m/s" /><Run Text="2" Typography.Variants="Superscript" /><Run Text=")" />
+
                 </TextBlock>
 
                 <winui:NumberBox
-                    x:Name="V0NumberBox"
+                    x:Name="GravityNumberBox"
                     Grid.Row="0"
                     Grid.Column="1"
-                    VerticalAlignment="Bottom"
-                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
-                    Maximum="2000"
-                    Minimum="0"
-                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    VerticalAlignment="Center"
+                    Maximum="50"
+                    Minimum="1"
+                    Value="{x:Bind Model.Gravity, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="1" VerticalAlignment="Center">
                     <Run Text="{extensions:Localize Key=Origin}" />
@@ -199,19 +198,20 @@
                     Value="{x:Bind Model.Angle, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="5" VerticalAlignment="Center">
-                    <Run Text="{extensions:Localize Key=Gravity}" />
-                    <Run Text="g (m/s" /><Run Text="2" Typography.Variants="Superscript" /><Run Text=")" />
-
+                    <Run Text="{extensions:Localize Key=Speed}" />
+                    <Run>v</Run><Run Typography.Variants="Subscript">0</Run>
+                    <Run>(m/s)</Run>
                 </TextBlock>
 
                 <winui:NumberBox
-                    x:Name="GravityNumberBox"
+                    x:Name="V0NumberBox"
                     Grid.Row="5"
                     Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Maximum="50"
-                    Minimum="1"
-                    Value="{x:Bind Model.Gravity, Mode=TwoWay}" />
+                    VerticalAlignment="Bottom"
+                    IsEnabled="{x:Bind Model.IsV0Enabled, Mode=TwoWay}"
+                    Maximum="2000"
+                    Minimum="0"
+                    Value="{x:Bind Model.V0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock
                     Grid.Row="6"

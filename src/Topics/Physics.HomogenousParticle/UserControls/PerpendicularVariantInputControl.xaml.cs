@@ -26,10 +26,10 @@ namespace Physics.HomogenousParticle.UserControls
         {
             this.InitializeComponent();
             DataContextChanged += PerpendicularVariantInputControl_DataContextChanged;
-            ChargeNumberBox.SetupFormatting(smallChange: 1, fractionDigits: 4, increment: 0.0001);
+            ChargeNumberBox.SetupFormatting(smallChange: 1, increment: 1);
             VelocityNumberBox.SetupFormatting(smallChange: 1, fractionDigits: 4, increment: 0.0001);
             MassNumberBox.SetupFormatting(smallChange: 0.000001, fractionDigits: 6, increment: 0.000001);
-            InductionNumberBox.SetupFormatting(smallChange: 0.01, fractionDigits: 2, increment: 0.01);
+            InductionNumberBox.SetupFormatting(smallChange: 0.001, fractionDigits: 3, increment: 0.001);
         }
 
         private void PerpendicularVariantInputControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
