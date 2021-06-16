@@ -79,8 +79,7 @@
                                     HorizontalAlignment="Right"
                                     HorizontalContentAlignment="Center"
                                     VerticalContentAlignment="Center"
-                                    Command="{x:Bind Model.ShowValuesTableCommand}"
-                                    Foreground="White">
+                                    Command="{x:Bind Model.ShowValuesTableCommand}">
                                     <FontIcon FontFamily="{ThemeResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource TableGlyph}" />
                                 </Button>
                             </Grid>
@@ -102,13 +101,11 @@
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="t:" />
                                     <TextBlock
                                         Grid.Row="0"
                                         Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
                                         <Run Text=" s" />
                                     </TextBlock>
@@ -116,13 +113,11 @@
                                         Grid.Row="0"
                                         Grid.Column="2"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="v:" />
                                     <TextBlock
                                         Grid.Row="0"
                                         Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
                                         <Run Text=" m/s" />
                                     </TextBlock>
@@ -130,39 +125,33 @@
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="x:" />
                                     <TextBlock
                                         Grid.Row="1"
                                         Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="1"
                                         Grid.Column="2"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="y:" />
                                     <TextBlock
                                         Grid.Row="1"
                                         Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="2"
                                         Grid.Column="0"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="s:" />
                                     <TextBlock
                                         Grid.Row="2"
                                         Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
                                         <Run Text=" m" />
                                     </TextBlock>
@@ -170,13 +159,11 @@
                                         Grid.Row="2"
                                         Grid.Column="2"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="Ek:" />
                                     <TextBlock
                                         Grid.Row="2"
                                         Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
                                         <Run Text=" J" />
                                     </TextBlock>
@@ -184,13 +171,11 @@
                                         Grid.Row="3"
                                         Grid.Column="0"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="Ep:" />
                                     <TextBlock
                                         Grid.Row="3"
                                         Grid.Column="1"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
                                         <Run Text=" J" />
                                     </TextBlock>
@@ -198,13 +183,11 @@
                                         Grid.Row="3"
                                         Grid.Column="2"
                                         FontSize="16"
-                                        Foreground="White"
                                         Text="Er:" />
                                     <TextBlock
                                         Grid.Row="3"
                                         Grid.Column="3"
-                                        FontSize="16"
-                                        Foreground="White">
+                                        FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Er, Mode=OneWay}" />
                                         <Run Text=" J" />
                                     </TextBlock>

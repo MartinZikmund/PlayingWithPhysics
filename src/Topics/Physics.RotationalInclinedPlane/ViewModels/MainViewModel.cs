@@ -80,15 +80,21 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			InputDialogViewModel viewModel;
 			if (Setup != null)
 			{
-				viewModel = new InputDialogViewModel(Setup, _difficulty);
+				viewModel = new InputDialogViewModel(_difficulty);
 			}
 			else
 			{
-				viewModel = new InputDialogViewModel(_difficulty);
+				viewModel = new InputDialogViewModel(Setup, _difficulty);
 			}
 
 			var dialog = new InputDialog(viewModel);
-			await dialog.ShowAsync();
+			var result = await dialog.ShowAsync();
+			if (result == ContentDialogResult.Primary)
+			{
+				Setup = viewModel.CreateMotionSetup();
+				Motion = new MotionViewModel(Setup);
+				//RestartSimulation();
+			}
 		}
 	}
 }
