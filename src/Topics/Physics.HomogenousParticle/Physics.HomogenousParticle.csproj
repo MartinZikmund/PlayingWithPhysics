@@ -317,7 +317,7 @@
       <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>7.1.2</Version>
+      <Version>8.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>7.1.2</Version>
