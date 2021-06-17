@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.RadiationHalflife.ViewModels
 {
-	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>,
+	public class DemoViewModel : SimulationViewModelBase<DifficultyNavigationModel>,
 		IReceiveController<RadiationHalflifeController>
 	{
 		private RadiationHalflifeController _controller;
@@ -33,12 +33,12 @@ namespace Physics.RadiationHalflife.ViewModels
 
 		internal DifficultyOption Difficulty { get; private set; }
 
-		public MainViewModel(IContentDialogHelper contentDialogHelper)
+		public DemoViewModel(IContentDialogHelper contentDialogHelper)
 		{
 			_contentDialogHelper = contentDialogHelper;
 			_selectedNucleoid = Nucleoids[0];
 			_selectedCustomUnit = CustomUnits[0];
-			_selectedRadionuclide = Radionuclides[0];	
+			_selectedRadionuclide = Radionuclides[0];
 		}
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(ShowValuesTableAsync);
@@ -171,13 +171,13 @@ namespace Physics.RadiationHalflife.ViewModels
 			set
 			{
 				_selectedRadionuclide = value;
-				StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase, SelectedRadionuclide.ActivityMantissa));
+				StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase));
 			}
 		}
 
 		public List<NucleoidItemViewModel> Nucleoids = new List<NucleoidItemViewModel>()
 		{
-			new NucleoidItemViewModel("Carbon", 5500),
+			new NucleoidItemViewModel("Carbon", 5530),
 			new NucleoidItemViewModel("Fluorine", 110),
 			new NucleoidItemViewModel("Potassium", 1.27f),
 			new NucleoidItemViewModel("Cobalt", 5.3f),
@@ -192,7 +192,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			new NucleoidItemViewModel("Uranium228", 9.1f),
 			new NucleoidItemViewModel("Uranium238", 4.5f),
 			new NucleoidItemViewModel("Plutonium", 2400),
-			new NucleoidItemViewModel("Americium", 430f),
+			new NucleoidItemViewModel("Americium", 432.6f),
 			new NucleoidItemViewModel("Custom", 0)
 		};
 
@@ -320,7 +320,7 @@ namespace Physics.RadiationHalflife.ViewModels
 				{
 
 					CustomHalflifeInputsVisibility = Visibility.Collapsed;
-					StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase, SelectedRadionuclide.ActivityMantissa));
+					StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase));
 				}
 
 				if (value != 4)

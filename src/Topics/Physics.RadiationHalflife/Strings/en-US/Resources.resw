@@ -311,4 +311,13 @@ Graphics: Petr Weinlich</value>
   <data name="Radionuclids_Name" xml:space="preserve">
     <value>Radionuclid</value>
   </data>
+  <data name="ChooseAnimationTitle" xml:space="preserve">
+    <value>Choose animation</value>
+  </data>
+  <data name="GraphTime" xml:space="preserve">
+    <value>time</value>
+  </data>
+  <data name="GraphPercentage" xml:space="preserve">
+    <value>relative percentage of undecayed cores</value>
+  </data>
 </root>

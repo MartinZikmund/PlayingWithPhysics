@@ -137,9 +137,13 @@
     <Compile Include="Rendering\RadiationHalflifeController.cs" />
     <Compile Include="Rendering\RadioactiveLawRenderer.cs" />
     <Compile Include="ViewModels\AddOrUpdateAnimationViewModel.cs" />
+    <Compile Include="ViewModels\DemoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NucleoidItemViewModel.cs" />
     <Compile Include="ViewModels\RadionuclideViewModel.cs" />
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -280,6 +284,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialogs\AddOrUpdateAnimationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DemoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

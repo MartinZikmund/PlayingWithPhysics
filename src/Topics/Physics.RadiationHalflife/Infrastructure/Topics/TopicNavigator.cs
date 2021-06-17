@@ -21,7 +21,7 @@ namespace Physics.RadiationHalflife.Infrastructure.Topics
 
 		public bool HasStudyMode => false;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
 		public string GameNameOverride => Localizer.Instance["Demo"];
 
@@ -30,8 +30,8 @@ namespace Physics.RadiationHalflife.Infrastructure.Topics
 		public async Task GoToDifficultyAsync(DifficultyOption option) =>
 			await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
-		//public async Task GoToGameAsync() => await _navigationService.Navigate<DemoViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
-		public async Task GoToGameAsync() => throw new NotImplementedException();
+		public async Task GoToGameAsync() => await _navigationService.Navigate<DemoViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel(DifficultyOption.Advanced));
+		//public async Task GoToGameAsync() => throw new NotImplementedException();
 
 		public Task GoToStudyModeAsync()
 		{

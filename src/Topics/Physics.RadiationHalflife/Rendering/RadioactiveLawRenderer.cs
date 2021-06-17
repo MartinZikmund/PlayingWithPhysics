@@ -45,7 +45,7 @@ namespace Physics.RadiationHalflife.Rendering
 		{
 			IsStroke = false,
 			IsAntialias = true,
-			Color = SKColors.Gray
+			Color = SKColors.Black
 		};
 
 
@@ -153,7 +153,7 @@ namespace Physics.RadiationHalflife.Rendering
 			}
 
 			//Get appropriate row count
-			int rows = 10;
+			int rows = PhysicsService.Animation.ParticleCount > 300 ? 20 : 10;
 			var paddingAroundCenter = _centerY / rows;
 			int columns = PhysicsService.Animation.ParticleCount / rows;
 			int remainderColumn = PhysicsService.Animation.ParticleCount % rows;
@@ -211,7 +211,7 @@ namespace Physics.RadiationHalflife.Rendering
 			//X-axis (0 already drawn above)
 			for (int i = 1; i <= 6; i++)
 			{
-				string formattedHalflifeNumber = (i * PhysicsService.Animation.Halflife).ToString("0.00");
+				string formattedHalflifeNumber = (i * PhysicsService.Animation.Halflife).ToString("0.##");
 				string formattedHalflifeUnit = "";
 				if (PhysicsService.Animation.ChemicalElement == "Custom")
 				{
@@ -233,7 +233,19 @@ namespace Physics.RadiationHalflife.Rendering
 				var formattedHalflifeForAxis = $"{formattedHalflifeNumber} {formattedHalflifeUnit}";
 				args.Canvas.DrawText($"{formattedHalflifeForAxis}", new SKPoint(_padding + (i * ((sender.ScaledSize.Width - _padding - _padding) / 6)), _centerY - paddingAroundCenter + _axisLabelPaint.MeasureText($"{i}T")), _axisLabelPaint);
 			}
-			//args.Canvas.DrawText(_padding - (_padding/2), _padding, _padding, _centerY - paddingAroundCenter, _fillPaint);
+
+			var axisNamePaint = _axisLabelPaint.Clone();
+			axisNamePaint.FakeBoldText = true;
+			var graphTopY = _padding;
+			var graphHeight = _centerY - paddingAroundCenter;
+
+			//X axis name
+			args.Canvas.DrawText(Localizer.Instance["GraphTime"], new SKPoint(_padding + (sender.ScaledSize.Width - _padding - _padding) / 2, graphHeight + 2 * _axisLabelPaint.MeasureText(Localizer.Instance["GraphTime"])), axisNamePaint);
+			//Y axis name
+			var path = new SKPath();
+			path.MoveTo(new SKPoint(_padding - 55f, graphHeight));
+			path.LineTo(new SKPoint(_padding - 55f, graphTopY));
+			args.Canvas.DrawTextOnPath(Localizer.Instance["GraphPercentage"], path, new SKPoint(0, 0), axisNamePaint);
 		}
 
 		private void DrawAces(ISkiaCanvas sender, SKSurface args)

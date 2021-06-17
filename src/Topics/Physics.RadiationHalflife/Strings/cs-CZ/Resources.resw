@@ -158,6 +158,9 @@ Grafika: Petr Weinlich</value>
   <data name="Cesium_Name" xml:space="preserve">
     <value>Cesium</value>
   </data>
+  <data name="ChooseAnimationTitle" xml:space="preserve">
+    <value>Vyber animaci</value>
+  </data>
   <data name="ChooseVariantTitle" xml:space="preserve">
     <value>Vyber variantu</value>
   </data>
@@ -208,6 +211,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="GammaDecay" xml:space="preserve">
     <value>Gamma rozpad</value>
+  </data>
+  <data name="GraphPercentage" xml:space="preserve">
+    <value>relativní počet nerozpadlých jader v %</value>
+  </data>
+  <data name="GraphTime" xml:space="preserve">
+    <value>čas</value>
   </data>
   <data name="Halflife_Day" xml:space="preserve">
     <value>Den</value>

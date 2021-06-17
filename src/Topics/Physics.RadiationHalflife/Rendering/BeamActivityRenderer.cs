@@ -98,19 +98,32 @@ namespace Physics.RadiationHalflife.Rendering
 			var part = a0 / 12;
 			for (int divider = 0; divider < 13; divider++)
 			{
-				var formattedA0Divided = ((12 - divider)*part).ToString("0.00");
+				var formattedA0Divided = ((12 - divider) * part).ToString("0.00");
 				args.Canvas.DrawText($"{formattedA0Divided}", new SKPoint(_padding - 5f, graphTopY + (graphHeight / 12) * divider), _axisLabelPaint);
 			}
 
 			//X-axis (0 already drawn above)
 			for (int i = 1; i <= 6; i++)
 			{
-				string formattedHalflifeNumber = (i * PhysicsService.Animation.Halflife).ToString("0.00");
+				string formattedHalflifeNumber = (i * PhysicsService.Animation.Halflife).ToString("0.##");
 				string formattedHalflifeUnit = Localizer.Instance[PhysicsService.Animation.ChemicalElement + "_Halflife"];
 				formattedHalflifeUnit = formattedHalflifeUnit.ToLowerInvariant();
 				var formattedHalflifeForAxis = $"{formattedHalflifeNumber} {formattedHalflifeUnit}";
 				args.Canvas.DrawText($"{formattedHalflifeForAxis}", new SKPoint(_padding + (i * ((sender.ScaledSize.Width - _padding - _padding) / 6)), graphBottomY + _axisLabelPaint.MeasureText($"{i}T")), _axisLabelPaint);
 			}
+
+			var axisNamePaint = _axisLabelPaint.Clone();
+			axisNamePaint.FakeBoldText = true;
+			//Y axis name
+			var path = new SKPath();
+			path.MoveTo(new SKPoint(_padding - 55f, graphTopY + (graphHeight / 3) * 2));
+			path.LineTo(new SKPoint(_padding - 55f, graphTopY + (graphHeight/3)));
+			string name = Localizer.Instance["BeamActivity"];
+			if (PhysicsService.Animation.Mantissa != 0)
+			{
+				name = name + " (10^" + PhysicsService.Animation.Mantissa + ")";
+			}
+			args.Canvas.DrawTextOnPath(name, path, new SKPoint(0, 0), axisNamePaint);
 		}
 
 		private void PlotGraph(ISkiaCanvas sender, SKSurface args)

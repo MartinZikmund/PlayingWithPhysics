@@ -15,6 +15,6 @@
     <x:String x:Key="FastForwardGlyph">&#xE907;</x:String>
     <x:String x:Key="RewindGlyph">&#xE908;</x:String>
     <x:String x:Key="AboutGlyph">&#xE90c;</x:String>
-	<x:String x:Key="MoreGlyph">&#xE90e;</x:String>
-	<x:String x:Key="TableGlyph">&#xE90d;</x:String>
+    <x:String x:Key="MoreGlyph">&#xE90e;</x:String>
+    <x:String x:Key="TableGlyph">&#xE90d;</x:String>
 </ResourceDictionary>
