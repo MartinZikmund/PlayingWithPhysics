@@ -11,6 +11,7 @@
     d:DesignWidth="600"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
+	PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     Style="{ThemeResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
 	<ContentDialog.Resources>
@@ -111,7 +112,7 @@
                     x:Name="RadiusNumberBox"
                     Grid.Row="3"
                     Grid.Column="1"
-                    Maximum="90"
+                    Maximum="0.25"
                     Minimum="0.01"
                     Value="{x:Bind Model.Radius, Mode=TwoWay}" />
 			</Grid>
@@ -220,7 +221,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.MaximumAngle, Mode=OneWay}"
-                    Minimum="0"
+                    Minimum="0.1"
                     Value="{x:Bind Model.InclinedAngle, Mode=TwoWay}" />
 
 				<!--  Inclined plane length  -->

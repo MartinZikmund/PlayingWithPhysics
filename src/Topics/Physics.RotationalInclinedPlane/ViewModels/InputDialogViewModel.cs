@@ -8,6 +8,7 @@ using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Models.Input;
 using Physics.Shared.ViewModels;
 using Windows.UI;
+using Windows.UI.Popups;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 
 namespace Physics.RotationalInclinedPlane.ViewModels
@@ -29,10 +30,21 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 				Radius = setup.Radius;
 				InclinedAngle = setup.InclinedAngle;
 				InclinedLength = setup.InclinedLength;
-				Gravity = setup.Gravity;				
+				Gravity = setup.Gravity;		
 				Color = ColorHelper.ToColor(setup.Color);
 				Mass = setup.Mass;
 			}
+		}
+
+		internal async Task<bool> ValidateAsync()
+		{
+			if (Radius * 10 > InclinedLength)
+			{
+				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
+				await dialog.ShowAsync();
+				return false;
+			}
+			return true;
 		}
 
 		public DifficultyOption Difficulty { get; }
@@ -73,7 +85,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public float InclinedAngle { get; set; } = 45;
 
-		public int MaximumAngle => 60;
+		public int MaximumAngle => 45;
 
 		public float Gravity { get; set; } = 9.806f;
 
@@ -100,7 +112,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public BodyType BodyType { get; private set; }
 
-		public float Radius { get; set; } = 1;
+		public float Radius { get; set; } = 0.1f;
 
 		public GravityDefault SelectedGravity { get; set; }
 
