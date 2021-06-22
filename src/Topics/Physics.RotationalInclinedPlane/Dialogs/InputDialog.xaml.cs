@@ -19,7 +19,7 @@ namespace Physics.RotationalInclinedPlane.Dialogs
 
 		public InputDialogViewModel Model { get; }
 
-		private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+		private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
 		{
 			var deferral = args.GetDeferral();
 			args.Cancel = !await Model.ValidateAsync();
