@@ -107,7 +107,7 @@
                                         Grid.Column="1"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
-                                        <Run Text=" s" />
+                                        <Run Text="s" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="0"
@@ -119,7 +119,7 @@
                                         Grid.Column="3"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
-                                        <Run Text=" m/s" />
+                                        <Run Text="m/s" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="1"
@@ -131,8 +131,9 @@
                                         Grid.Column="1"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
+                                        <Run Text="m" />
+									</TextBlock>
+									<TextBlock
                                         Grid.Row="1"
                                         Grid.Column="2"
                                         FontSize="16"
@@ -142,8 +143,9 @@
                                         Grid.Column="3"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
-                                    </TextBlock>
-                                    <TextBlock
+                                        <Run Text="m" />
+									</TextBlock>
+									<TextBlock
                                         Grid.Row="2"
                                         Grid.Column="0"
                                         FontSize="16"
@@ -153,7 +155,7 @@
                                         Grid.Column="1"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
-                                        <Run Text=" m" />
+                                        <Run Text="m" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="2"
@@ -165,7 +167,7 @@
                                         Grid.Column="3"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
-                                        <Run Text=" J" />
+                                        <Run Text="J" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="3"
@@ -177,7 +179,7 @@
                                         Grid.Column="1"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
-                                        <Run Text=" J" />
+                                        <Run Text="J" />
                                     </TextBlock>
                                     <TextBlock
                                         Grid.Row="3"
@@ -189,7 +191,7 @@
                                         Grid.Column="3"
                                         FontSize="16">
                                         <Run Text="{x:Bind Model.Motion.Er, Mode=OneWay}" />
-                                        <Run Text=" J" />
+                                        <Run Text="J" />
                                     </TextBlock>
                                 </Grid>
                             </Grid>
