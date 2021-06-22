@@ -200,7 +200,7 @@ Graphics: Petr Weinlich</value>
     <value>Charge</value>
   </data>
   <data name="Input_ChargeDetail" xml:space="preserve">
-    <value>(multiple of elementary charge)</value>
+    <value>[multiple of elementary charge]</value>
   </data>
   <data name="Input_EnvironmentSetting" xml:space="preserve">
     <value>Environment between planes</value>
@@ -359,7 +359,7 @@ Graphics: Petr Weinlich</value>
     <value>(multiple of</value>
   </data>
   <data name="VerticalInput_MassMultipleNucleus" xml:space="preserve">
-    <value>(multiple of nucleon mass)</value>
+    <value>mass of 1 nucleus</value>
   </data>
   <data name="VerticalVariant_Deviation" xml:space="preserve">
     <value>Origin speed and horizontal direction deviation</value>

@@ -203,7 +203,7 @@ Grafika: Petr Weinlich</value>
     <value>Náboj</value>
   </data>
   <data name="Input_ChargeDetail" xml:space="preserve">
-    <value>(násobek elementárního náboje)</value>
+    <value>[násobek elementárního náboje]</value>
   </data>
   <data name="Input_EnvironmentSetting" xml:space="preserve">
     <value>Prostředí mezi deskami</value>
@@ -362,7 +362,7 @@ Grafika: Petr Weinlich</value>
     <value>(násobek</value>
   </data>
   <data name="VerticalInput_MassMultipleNucleus" xml:space="preserve">
-    <value>(násobek hmotnosti nukleonu)</value>
+    <value>hmotnost 1 nukleonu</value>
   </data>
   <data name="VerticalLeftPlaneChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
