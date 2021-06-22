@@ -129,6 +129,7 @@
     <Compile Include="Dialogs\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Rendering\SkiaSimulationRenderer.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
@@ -249,7 +250,7 @@
       <Name>Physics.Shared.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Physics.RotationalInclinedPlane.Logic\Physics.RotationalInclinedPlane.Logic.csproj">
-      <Project>{7cb28f64-f2cc-4617-a9a2-791067b77b84}</Project>
+      <Project>{ea494b5d-8d28-4bf7-a366-158fe318b449}</Project>
       <Name>Physics.RotationalInclinedPlane.Logic</Name>
     </ProjectReference>
   </ItemGroup>

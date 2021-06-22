@@ -222,6 +222,7 @@
                 BackwardVisibility="Collapsed"
                 ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
