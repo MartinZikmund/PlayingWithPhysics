@@ -4,6 +4,7 @@ using Physics.Shared.UI.Extensions;
 using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using Windows.UI;
 
 namespace Physics.RotationalInclinedPlane.Rendering
 {
@@ -27,6 +28,15 @@ namespace Physics.RotationalInclinedPlane.Rendering
 		{
 			Color = SKColors.Black,
 			StrokeWidth = 2,
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High
+		};
+
+		private SKPaint _boxStrokePaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			StrokeWidth = 4,
+			IsStroke = true,
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High
 		};
@@ -69,15 +79,28 @@ namespace Physics.RotationalInclinedPlane.Rendering
 
 			var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(_canvasController.Motion.Color);
 			_boxPaint.Color = new SKColor(color.R, color.G, color.B);
+			_boxStrokePaint.Color = new SKColor((byte)Math.Max(0, color.R - 60), (byte)Math.Max(0, color.G - 60), (byte)Math.Max(0, color.B - 60));
 
 			var motion = _canvasController.Motion;
 			var radiusPx = _scalingRatio * motion.Radius;
 
 			float rad = MathHelpers.DegreesToRadians(_canvasController.Motion.InclinedAngle);
-			var centerPoint = new SKPoint(PadX(x) + (float)Math.Cos(rad - Math.PI / 2) * radiusPx, FlipY(imageInfo, y) + (float)Math.Sin(rad - Math.PI / 2) * radiusPx);
+			var centerPoint = new SKPoint(PadX(imageInfo,x) + (float)Math.Cos(rad - Math.PI / 2) * radiusPx, FlipY(imageInfo, y) + (float)Math.Sin(rad - Math.PI / 2) * radiusPx);
 			int cx = (int)centerPoint.X;
 			int cy = (int)centerPoint.Y;
-			surface.Canvas.DrawCircle(cx, cy, radiusPx, _boxPaint);
+			if (_canvasController.Motion.BodyType == Logic.BodyType.FullCylinder || _canvasController.Motion.BodyType == Logic.BodyType.Sphere)
+			{
+				surface.Canvas.DrawCircle(cx, cy, radiusPx, _boxPaint);
+			}
+			if (_canvasController.Motion.BodyType == Logic.BodyType.FullCylinder || _canvasController.Motion.BodyType == Logic.BodyType.HollowCylinder)
+			{
+				surface.Canvas.DrawCircle(cx, cy, radiusPx - 2, _boxStrokePaint);
+			}
+
+			var totalAngle = _canvasController.PhysicsService.CalculateTotalAngleInRad(t);
+			var rotationPoint = new SKPoint(PadX(imageInfo,centerPoint.X) + (float)Math.Cos(totalAngle - Math.PI / 2) * radiusPx, FlipY(imageInfo, centerPoint.Y) + (float)Math.Sin(totalAngle - Math.PI / 2) * radiusPx);
+			var point = RotatePointAroundCenter(centerPoint.X, centerPoint.Y, totalAngle, new SKPoint(PadX(imageInfo,x), FlipY(imageInfo, y)));
+			surface.Canvas.DrawLine(centerPoint, point, _boxStrokePaint);
 
 			//if (/*t <= _canvasController.PhysicsService.CalculateHorizontalStartTime() ||*/ !_canvasController.Motion.HasHorizontal)
 			//{
@@ -109,11 +132,35 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			//}
 		}
 
-		private float PadX(float x) => x + _padding;
+		private SKPoint RotatePointAroundCenter(float cx, float cy, float angle, SKPoint p)
+		{
+			float s = (float)Math.Sin(angle);
+			float c = (float)Math.Cos(angle);
+
+			// translate point back to origin:
+			p.X -= cx;
+			p.Y -= cy;
+
+			// rotate point
+			float xnew = p.X * c - p.Y * s;
+			float ynew = p.X * s + p.Y * c;
+
+			// translate point back:
+			p.X = xnew + cx;
+			p.Y = ynew + cy;
+			return p;
+		}
+
+		private float PadX(SKImageInfo target, float x)
+		{
+			var halfWidthInMeters = CalculateTotalWidthInMeters() / 2;
+			return ((float)target.Size.Width / 2 - halfWidthInMeters * _scalingRatio + _canvasController.Motion.Radius * _scalingRatio) + x;
+		}
 
 		private float FlipY(SKImageInfo target, float y)
 		{
-			return (float)target.Size.Height - y - _padding;
+			var halfHeightInMeters = CalculateTotalHeightInMeters() / 2;
+			return ((float)target.Size.Height / 2 + halfHeightInMeters * _scalingRatio - _canvasController.Motion.Radius * _scalingRatio) - y;
 		}
 
 		public void Update(ISkiaCanvas surface)
@@ -130,15 +177,14 @@ namespace Physics.RotationalInclinedPlane.Rendering
 				return;
 			}
 
-			var physicsService = _canvasController.PhysicsService;
 			var minX = 0;
-			var maxX = physicsService.CalculateTotalWidth();
+			var maxX = CalculateTotalWidthInMeters();
 			var minY = 0;
-			var maxY = physicsService.CalculateY(0);
+			var maxY = CalculateTotalHeightInMeters();
 
 			if (_canvasController.Motion.HorizontalLength == 0)
 			{
-				_padding = 60;
+				_padding = 20;
 			}
 			else
 			{
@@ -149,6 +195,37 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			_scalingRatio = _simulationBounds.Size.ScaleToFit(surface.ScaledSize.ReduceBy(_padding * 2));
 		}
 
+		private float CalculateTotalHeightInMeters()
+		{
+			var physicsService = _canvasController.PhysicsService;
+			return physicsService.CalculateY(0) + 3f * _canvasController.Motion.Radius;
+		}
+
+		private float CalculateTotalWidthInMeters()
+		{
+			var physicsService = _canvasController.PhysicsService;
+			return physicsService.CalculateTotalWidth() + 3f * _canvasController.Motion.Radius;
+		}
+
+		private float CalculateTopRadiusOffsetInMeters()
+		{
+			float rad = MathHelpers.DegreesToRadians(_canvasController.Motion.InclinedAngle);
+			var centerY = (float)Math.Sin(rad - Math.PI / 2) * _canvasController.Motion.Radius;
+			return centerY + _canvasController.Motion.Radius;
+		}
+
+		private float CalculateLeftRadiusOffsetInMeters()
+		{
+			float rad = MathHelpers.DegreesToRadians(_canvasController.Motion.InclinedAngle);
+			var centerY = (float)Math.Cos(rad - Math.PI / 2) * _canvasController.Motion.Radius;
+			return Math.Abs(centerY - _canvasController.Motion.Radius);
+		}
+
+		private float CalculateLeftPaddingInPx()
+		{
+			return _padding + _canvasController.Motion.Radius * _canvasController.Motion.Radius * _scalingRatio;
+		}
+
 		private void DrawInclinedPlane(SKImageInfo info, SKSurface surface)
 		{
 			var motion = _canvasController.Motion;
@@ -156,8 +233,8 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			var y = (float)motion.InclinedLength * (float)Math.Sin(angleInRad);
 			var x = motion.InclinedLength * Math.Cos(angleInRad);
 			surface.Canvas.DrawLine(
-				new SKPoint(PadX(0), FlipY(info, (float)y * _scalingRatio)),
-				new SKPoint(PadX((float)x * _scalingRatio), FlipY(info, 0)),
+				new SKPoint(PadX(info, 0), FlipY(info, (float)y * _scalingRatio)),
+				new SKPoint(PadX(info,(float)x * _scalingRatio), FlipY(info, 0)),
 				_linePaint);
 		}
 
@@ -167,10 +244,10 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			{
 				surface.Canvas.DrawLine(
 					new SKPoint(
-						PadX(_canvasController.PhysicsService.CalculateHorizontalStartX() * _scalingRatio),
+						PadX(info, _canvasController.PhysicsService.CalculateHorizontalStartX() * _scalingRatio),
 						FlipY(info, 0)),
 					new SKPoint(
-						PadX((float)info.Size.Width - _padding * 2),
+						PadX(info, (float)info.Size.Width - _padding * 2),
 						FlipY(info, 0)),
 					_linePaint);
 			}

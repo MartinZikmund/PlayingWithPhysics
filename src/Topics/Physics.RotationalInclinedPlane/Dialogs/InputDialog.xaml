@@ -42,6 +42,8 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 
 			</Grid.RowDefinitions>
 
@@ -235,6 +237,26 @@
                     Minimum="0.1"
                     Value="{x:Bind Model.InclinedLength, Mode=TwoWay}" />
 			</Grid>
+
+			<TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="{extensions:Localize Key=Color}" />
+			<GridView
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
+            SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+				<GridView.ItemTemplate>
+					<DataTemplate>
+						<Border Width="32" Height="32">
+							<Border.Background>
+								<SolidColorBrush Color="{Binding}" />
+							</Border.Background>
+						</Border>
+					</DataTemplate>
+				</GridView.ItemTemplate>
+			</GridView>
 		</Grid>
 	</ScrollViewer>
 </ContentDialog>

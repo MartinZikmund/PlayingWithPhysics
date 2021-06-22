@@ -91,7 +91,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public int SelectedBodyTypeIndex { get; set; }
 
-		public void OnSelectedMotionIndexChanged()
+		public void OnSelectedBodyTypeIndexChanged()
 		{
 			BodyType = (BodyType)SelectedBodyTypeIndex;
 		}

@@ -49,6 +49,15 @@ namespace Physics.RotationalInclinedPlane.Logic
 			return velocity / _setup.Radius;
 		}
 
+		public float CalculateTotalAngleInRad(float timeInSeconds)
+		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
+			var distance = CalculateDistance(timeInSeconds);
+			var angleInRad = distance / (2 * _setup.Radius);
+			return angleInRad;
+		}
+
 		public float CalculateDistance(float timeInSeconds)
 		{
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
@@ -64,8 +73,6 @@ namespace Physics.RotationalInclinedPlane.Logic
 			var distance = CalculateDistance(timeInSeconds);
 			return distance * (float)Math.Cos(AngleInRad);
 		}
-
-
 
 		public float CalculateY(float timeInSeconds)
 		{
