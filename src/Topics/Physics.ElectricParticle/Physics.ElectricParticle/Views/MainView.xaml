@@ -290,6 +290,10 @@
 			</Grid.RowDefinitions>
 			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
 			<InkCanvas x:Name="InkCanvas" />
+			<StackPanel Visibility="{x:Bind Model.Motion, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" RequestedTheme="Light">
+				<Image Width="200" Source="ms-appx:///Physics.Shared.UI/Assets/Icons/EditColorful.svg" />
+				<TextBlock FontSize="20" FontWeight="SemiBold" Text="Select a variant to set parameters" HorizontalAlignment="Center" /> 
+			</StackPanel>
 			<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"

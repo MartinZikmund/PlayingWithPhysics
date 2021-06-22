@@ -319,6 +319,9 @@ Grafika: Petr Weinlich</value>
   <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>kladný</value>
   </data>
+  <data name="SelectVariantPrompt" xml:space="preserve">
+    <value>Vyberte si variantu pro nastavení simulace</value>
+  </data>
   <data name="SetParameters" xml:space="preserve">
     <value>Nastavit parametry</value>
   </data>

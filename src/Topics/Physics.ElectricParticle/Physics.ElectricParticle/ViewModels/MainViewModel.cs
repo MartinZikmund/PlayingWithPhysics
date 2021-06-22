@@ -100,7 +100,14 @@ namespace Physics.ElectricParticle.ViewModels
 
 			set
 			{
-				_selectedVariantIndex = value;
+				if (_selectedVariantIndex != value)
+				{
+					_selectedVariantIndex = value;
+					Motion = null;
+					Setup = null;
+					_controller.SetMotion(null);
+					AddTrajectoryCommand?.Execute(null);
+				}
 			}
 		}
 

@@ -298,6 +298,7 @@
     <Content Include="Assets\creativecommons.png" />
     <Content Include="Assets\eu.png" />
     <Content Include="Assets\Fonts\NeoEuler.otf" />
+    <Content Include="Assets\Icons\EditColorful.svg" />
     <Content Include="Assets\logo.language-en-US.png" />
     <Content Include="Assets\Logos\CompoundOscillations.jpg" />
     <Content Include="Assets\Logos\Drag.jpg" />

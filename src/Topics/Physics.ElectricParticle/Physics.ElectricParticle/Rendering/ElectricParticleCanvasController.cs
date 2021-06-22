@@ -97,6 +97,11 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			_setup = setup;
 
+			if (_setup == null)
+			{
+				return;
+			}
+
 			var unitXSize = -1f;
 			var unitYSize = -1f;
 

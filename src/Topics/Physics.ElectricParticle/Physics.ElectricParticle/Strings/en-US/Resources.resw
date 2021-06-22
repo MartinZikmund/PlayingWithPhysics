@@ -313,6 +313,9 @@ Graphics: Petr Weinlich</value>
   <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>positive</value>
   </data>
+  <data name="SelectVariantPrompt" xml:space="preserve">
+    <value>Select a variant and set parameters</value>
+  </data>
   <data name="SetParameters" xml:space="preserve">
     <value>Set parameters</value>
   </data>
