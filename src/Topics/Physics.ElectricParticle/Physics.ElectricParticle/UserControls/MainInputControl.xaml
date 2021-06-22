@@ -301,7 +301,7 @@
                 </ComboBox>
             </Grid>
 
-            <Grid>
+            <!--<Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -332,7 +332,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </Grid>
+            </Grid>-->
 
             <TextBlock VerticalAlignment="Center" Text="{extensions:Localize Key=Color}" />
             <GridView
