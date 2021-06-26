@@ -67,8 +67,7 @@
                     Grid.Column="1"
                     HorizontalAlignment="Center"
                     Command="{x:Bind Model.StartNewGameCommand}"
-                    Content="{extensions:Localize Key=StartNewGame}"
-                    Foreground="White" />
+                    Content="{extensions:Localize Key=StartNewGame}" />
                 <StackPanel Orientation="Vertical" RequestedTheme="Dark" Spacing="16" Grid.Column="2">
                     <StackPanel Spacing="4" VerticalAlignment="Center" Orientation="Vertical">
                         <TextBlock Text="{extensions:Localize Key=Input_InclinedPlane}" FontWeight="Bold" />
