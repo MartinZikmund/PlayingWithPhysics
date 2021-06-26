@@ -19,11 +19,13 @@
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FF1F1F1F" />
-        </ResourceDictionary>
+			<SolidColorBrush x:Key="InfoBarInformationalSeverityBackgroundBrush">#FFFFFF</SolidColorBrush>
+		</ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFF4F4F4" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
+			<SolidColorBrush x:Key="InfoBarInformationalSeverityBackgroundBrush">#F6F6F6</SolidColorBrush>
+		</ResourceDictionary>
+	</ResourceDictionary.ThemeDictionaries>
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/ValuesTableResources.xaml" />
         <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/Converters.xaml" />

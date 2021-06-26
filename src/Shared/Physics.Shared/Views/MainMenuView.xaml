@@ -15,7 +15,7 @@
 
     <Page.Resources>
         <Style x:Key="DefaultButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+			<Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
             <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
             <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
             <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
@@ -33,6 +33,8 @@
                             <Border
                                 x:Name="BackgroundPresenter"
                                 Margin="20,0,-20,0"
+								BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}">
                                 <Border.RenderTransform>
                                     <SkewTransform AngleX="-40" />
@@ -43,9 +45,7 @@
                                 Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                AutomationProperties.AccessibilityView="Raw"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
+                                AutomationProperties.AccessibilityView="Raw"                                
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTransitions="{TemplateBinding ContentTransitions}" />
@@ -175,6 +175,11 @@
                         Grid.Column="1"
                         MaxWidth="300"
                         VerticalAlignment="Bottom">
+						<StackPanel.ChildrenTransitions>
+							<TransitionCollection>
+								<EntranceThemeTransition FromHorizontalOffset="500" />
+							</TransitionCollection>
+						</StackPanel.ChildrenTransitions>
                         <Button
                             x:Name="FirstDifficulty"
                             Grid.Column="0"
@@ -271,7 +276,7 @@
                         HorizontalAlignment="Stretch">
                         <Grid.Transitions>
                             <TransitionCollection>
-                                <EntranceThemeTransition FromHorizontalOffset="500" />
+                                <EntranceThemeTransition FromHorizontalOffset="100" IsStaggeringEnabled="True" />
                             </TransitionCollection>
                         </Grid.Transitions>
                         <Border HorizontalAlignment="Stretch" Background="#d62633">
