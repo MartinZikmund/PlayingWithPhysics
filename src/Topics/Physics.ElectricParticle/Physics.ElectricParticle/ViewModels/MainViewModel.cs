@@ -97,7 +97,6 @@ namespace Physics.ElectricParticle.ViewModels
 		public int SelectedVariantIndex
 		{
 			get => _selectedVariantIndex;
-
 			set
 			{
 				if (_selectedVariantIndex != value)

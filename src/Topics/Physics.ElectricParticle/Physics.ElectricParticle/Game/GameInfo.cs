@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using MvvmCross.ViewModels;
+using Physics.ElectricParticle.Rendering;
 using Physics.Shared.Helpers;
 
 namespace Physics.ElectricParticle.Game
@@ -13,6 +14,8 @@ namespace Physics.ElectricParticle.Game
 
 		private float _ux = 0;
 		private float _uy = 0;
+
+		public GameCanvasController Controller { get; set; }
 
 		public int Level { get; set; }
 
@@ -59,6 +62,7 @@ namespace Physics.ElectricParticle.Game
 			_drawingStopwatch.Reset();
 			Ux = 0;
 			Uy = 0;
+			Controller?.Reset();
 		}
 
 		public void Start()

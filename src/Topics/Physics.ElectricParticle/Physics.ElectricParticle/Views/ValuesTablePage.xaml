@@ -32,6 +32,7 @@
 			Header="{extensions:Localize Key=Steps}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
+			Width="120"
             Minimum="10"
 			Maximum="1000"
             SmallChange="1"
