@@ -90,8 +90,23 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			var x = sender.ScaledSize.Width * GameInfo.PenState.Position.X;
 			var y = sender.ScaledSize.Height * GameInfo.PenState.Position.Y;
-			_penDownPoint.Color = GameInfo.ParticlePolarity == Logic.Polarity.Positive ? SKColors.Blue : SKColors.Red;
-			_penUpPoint.Color = GameInfo.ParticlePolarity == Logic.Polarity.Positive ? SKColors.Blue : SKColors.Red;
+			var q = GameInfo.Q;
+			SKColor particleColor;
+			if (q > 0)
+			{
+				particleColor = new SKColor(0, 0, (byte)(q + 150));
+			}
+			else if (q < 0)
+			{
+				particleColor = new SKColor((byte)(Math.Abs(q) + 150), 0, 0);
+			}
+			else
+			{
+				particleColor = SKColors.Black;
+			}
+
+			_penDownPoint.Color = particleColor;
+			_penUpPoint.Color = particleColor;
 			args.Canvas.DrawCircle(x, y, 4, GameInfo.IsPenDown ? _penDownPoint : _penUpPoint);
 		}
 

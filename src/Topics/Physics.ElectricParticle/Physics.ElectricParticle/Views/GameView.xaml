@@ -149,6 +149,7 @@
                                     Maximum="100"
                                     Minimum="-100"
                                     Orientation="Vertical"
+									HorizontalAlignment="Left"
                                     SmallChange="1"
                                     SnapsTo="StepValues"
                                     StepFrequency="5"
