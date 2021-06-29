@@ -3,18 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
-    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:local="using:Physics.DragMovement.Views"
-    xmlns:views="using:Physics.Shared.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.DragMovement.ViewModels"
+    xmlns:views="using:Physics.Shared.Views"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     x:Name="Page"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    RequestedTheme="Light">
+    RequestedTheme="Light"
+    mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
@@ -38,11 +38,13 @@
             <ColumnDefinition Width="*" MinWidth="320" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <Grid
-            x:Name="MenuPane"
-            Grid.Column="0">
+        <Grid x:Name="MenuPane" Grid.Column="0">
             <Grid.Background>
-                <AcrylicBrush TintColor="{ThemeResource AppThemeColor}" TintOpacity="0.85" BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource AppThemeColor}" />
+                <AcrylicBrush
+                    BackgroundSource="HostBackdrop"
+                    FallbackColor="{ThemeResource AppThemeColor}"
+                    TintColor="{ThemeResource AppThemeColor}"
+                    TintOpacity="0.85" />
             </Grid.Background>
             <Windows10version1903:Grid.Shadow>
                 <ThemeShadow />
@@ -150,7 +152,7 @@
                                                             <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.DuplicateTrajectoryCommand}"
                                                                 CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Duplicate}">
+                                                                Text="{extensions:Localize Key=Copy}">
                                                                 <MenuFlyoutItem.Icon>
                                                                     <SymbolIcon Symbol="Copy" />
                                                                 </MenuFlyoutItem.Icon>

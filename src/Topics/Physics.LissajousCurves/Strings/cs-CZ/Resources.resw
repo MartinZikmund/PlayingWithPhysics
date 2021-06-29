@@ -127,7 +127,7 @@
     <value>Úhlová rychlost</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Lissajousovy obrazce jsou křivky, které vznikají skládáním dvou navzájem kolmých kmitů. Podíl frekvencí určí výsledný tvar obrazce.
+    <value>Lissajousovy obrazce jsou křivky, které vznikají skládáním dvou navzájem kolmých kmitů.
 Program umožní zadání frekvencí dvou navzájem kolmých kmitů, jejich amplitud a počátečních fází a bude vykreslovat časový diagram složeného kmitání. Poměr frekvencí a amplitud určí výsledný tvar obrazce.
 
 Autoři obsahu: Vladimír Kafka, Pavel Vlček

@@ -17,6 +17,7 @@ using Physics.Shared.UI.Views.Interactions;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -74,6 +75,11 @@ namespace Physics.CompoundOscillations.ViewModels
 
 		public async void AddOscillation()
 		{
+			if (Oscillations.Count >= 5)
+			{
+				await new MessageDialog("Není možné vykreslovat více než 5 pohybů najednou.", "Vytvoření pohybu se nezdařilo.").ShowAsync();
+				return;
+			}
 			try
 			{
 				var resourceLoader = ResourceLoader.GetForCurrentView();

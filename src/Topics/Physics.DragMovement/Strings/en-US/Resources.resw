@@ -153,6 +153,9 @@ Graphics: Petr Weinlich</value>
   <data name="CastleDistance" xml:space="preserve">
     <value>Castle distance</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="Density" xml:space="preserve">
     <value>Density</value>
   </data>
@@ -200,6 +203,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Horizontal throw</value>
+  </data>
+  <data name="InitialSpeedIsTooHigh" xml:space="preserve">
+    <value>Initial speed is too high.</value>
   </data>
   <data name="Inputs" xml:space="preserve">
     <value>Inputs</value>
@@ -252,9 +258,6 @@ Graphics: Petr Weinlich</value>
   <data name="ResistanceCoefficient" xml:space="preserve">
     <value>Resistance Coefficient</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
   <data name="SelectedMotion" xml:space="preserve">
     <value>Selected motion</value>
   </data>
@@ -305,6 +308,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="WallHeight" xml:space="preserve">
     <value>Wall height</value>
+  </data>
+  <data name="WeightMustBeMoreThanZero" xml:space="preserve">
+    <value>Weight must be at least 1 kg.</value>
   </data>
   <data name="YouWin" xml:space="preserve">
     <value>You win!</value>

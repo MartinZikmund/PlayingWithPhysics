@@ -86,7 +86,7 @@
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 Style="{StaticResource InfoTextBlockStyle}">
-                                <Run Text="Simulation time: " />
+                                <Run Text="{extensions:Localize Key=SimulationTime}" /><Run Text=":" />
                                 <Run FontFamily="Consolas" Text="{x:Bind Model.TimeElapsed, Mode=OneWay}" />
                                 <Run Text="s" />
                             </TextBlock>
@@ -168,7 +168,7 @@
                                                             <MenuFlyoutItem
                                                                 Command="{Binding ElementName=Page, Path=Model.DuplicateOscillationCommand}"
                                                                 CommandParameter="{x:Bind}"
-                                                                Text="{extensions:Localize Key=Duplicate}">
+                                                                Text="{extensions:Localize Key=Copy}">
                                                                 <MenuFlyoutItem.Icon>
                                                                     <SymbolIcon Symbol="Copy" />
                                                                 </MenuFlyoutItem.Icon>

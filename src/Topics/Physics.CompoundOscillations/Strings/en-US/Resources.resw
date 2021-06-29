@@ -146,6 +146,9 @@ Graphics: Petr Weinlich</value>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Compound oscillation</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Edit oscillation</value>
   </data>
@@ -181,6 +184,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Show table of compound oscillation</value>
+  </data>
+  <data name="SimulationTime" xml:space="preserve">
+    <value>Simulation time</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
