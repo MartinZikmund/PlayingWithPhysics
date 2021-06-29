@@ -288,4 +288,7 @@ Graphics: Petr Weinlich</value>
   <data name="WeightMustBeMoreThanZero" xml:space="preserve">
     <value>Weight must be at least 1 kg.</value>
   </data>
+  <data name="InvalidInputSpeed" xml:space="preserve">
+    <value>Zvolte jinou rychlost</value>
+  </data>
 </root>

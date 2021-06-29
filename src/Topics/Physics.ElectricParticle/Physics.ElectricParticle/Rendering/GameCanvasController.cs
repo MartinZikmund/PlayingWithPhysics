@@ -58,6 +58,13 @@ namespace Physics.ElectricParticle.Rendering
 		private SKBitmap[] _backgrounds;
 
 		private Size _previousSize = Size.Empty;
+
+		internal void Reset()
+		{
+			_existingDrawing = null;
+			_lastDrawnPoint = (null, -1);
+		}
+
 		private SKBitmap _existingDrawing = null;
 		private (DrawingPath, int) _lastDrawnPoint = (null, -1);
 

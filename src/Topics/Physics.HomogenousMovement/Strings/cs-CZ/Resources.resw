@@ -294,4 +294,7 @@ Grafika: Petr Weinlich</value>
   <data name="WeightMustBeMoreThanZero" xml:space="preserve">
     <value>Hmotnost tělesa musí být větší než 1 kg.</value>
   </data>
+  <data name="InvalidInputSpeed" xml:space="preserve">
+    <value>Zvolte jinou rychlost</value>
+  </data>
 </root>

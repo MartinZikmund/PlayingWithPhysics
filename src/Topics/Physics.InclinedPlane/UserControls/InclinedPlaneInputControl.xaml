@@ -220,7 +220,7 @@
                 x:Name="DriftCoefficientNumberBox"
                 Grid.Row="3"
                 Grid.Column="1"
-                Maximum="20"
+                Maximum="2"
                 Minimum="0"
                 Value="{x:Bind Model.InclinedDriftCoefficient, Mode=TwoWay}" />
 
@@ -323,7 +323,7 @@
                     x:Name="HorizontalDriftCoefficientNumberBox"
                     Grid.Row="1"
                     Grid.Column="1"
-                    Maximum="20"
+                    Maximum="2"
                     Minimum="0"
                     Value="{x:Bind Model.HorizontalDriftCoefficient, Mode=TwoWay}" />
 
