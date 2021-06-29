@@ -20,9 +20,17 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         }
         public MotionInfo(MovementType movementType, Vector2 origin, float resistance, float mass, float area, float originSpeed, float elevationAngle, float gravity, float environmentDensity, float diameter, float shapeDensity, string color)
         {
-            if (mass == 0f)
-                throw new ArgumentException("Hmotnost musí být větší než 1 kg.");
-            Type = movementType;
+			if (mass <= 0f)
+			{
+				throw new ArgumentException("WeightMustBeMoreThanZero");
+			}
+
+			if (originSpeed > 0 && originSpeed / gravity > 100)
+			{
+				throw new ArgumentException("InitialSpeedIsTooHigh");
+			}
+
+			Type = movementType;
             Origin = origin;
             Resistance = resistance;
             _mass = mass;

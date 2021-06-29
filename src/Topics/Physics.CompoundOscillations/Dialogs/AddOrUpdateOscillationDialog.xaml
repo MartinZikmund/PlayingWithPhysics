@@ -62,7 +62,8 @@
             x:Name="AmplitudeNumberBox"
             Grid.Row="1"
             Grid.Column="1"
-            Minimum="0.1"
+            Maximum="20"
+            Minimum="1"
             Text="{x:Bind Model.Amplitude, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="2" Grid.Column="0">
@@ -73,8 +74,8 @@
             x:Name="FrequencyNumberBox"
             Grid.Row="2"
             Grid.Column="1"
-            Maximum="20000"
-            Minimum="0.1"
+            Maximum="50"
+            Minimum="0.5"
             Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
 
         <Grid

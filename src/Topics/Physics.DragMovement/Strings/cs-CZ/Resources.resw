@@ -153,6 +153,9 @@ Grafika: Petr Weinlich</value>
   <data name="CastleDistance" xml:space="preserve">
     <value>Vzdálenost hradu</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Zkopírovat</value>
+  </data>
   <data name="Density" xml:space="preserve">
     <value>Hustota</value>
   </data>
@@ -200,6 +203,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="HorizontalMotion" xml:space="preserve">
     <value>Vrh</value>
+  </data>
+  <data name="InitialSpeedIsTooHigh" xml:space="preserve">
+    <value>Počáteční rychlost je příliš vysoká.</value>
   </data>
   <data name="Inputs" xml:space="preserve">
     <value>Zadané údaje</value>
@@ -302,6 +308,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="WallHeight" xml:space="preserve">
     <value>Výška hradeb</value>
+  </data>
+  <data name="WeightMustBeMoreThanZero" xml:space="preserve">
+    <value>Hmotnost tělesa musí být větší než 1 kg.</value>
   </data>
   <data name="YouWin" xml:space="preserve">
     <value>Trefa!</value>

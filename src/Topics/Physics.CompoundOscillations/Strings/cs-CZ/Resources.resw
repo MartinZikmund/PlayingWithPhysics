@@ -146,6 +146,9 @@ Grafika: Petr Weinlich</value>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Zkopírovat</value>
+  </data>
   <data name="EditOscillation" xml:space="preserve">
     <value>Upravit kmitání</value>
   </data>
@@ -181,6 +184,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ShowTableOfVisibleOscillations" xml:space="preserve">
     <value>Zobrazit tabulku složeného kmitání</value>
+  </data>
+  <data name="SimulationTime" xml:space="preserve">
+    <value>Čas simulace</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
