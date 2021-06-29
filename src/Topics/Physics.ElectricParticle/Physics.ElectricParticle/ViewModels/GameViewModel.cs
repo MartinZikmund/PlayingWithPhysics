@@ -28,6 +28,7 @@ namespace Physics.ElectricParticle.ViewModels
 
 			_controller = controller;
 			_controller.GameInfo = GameInfo;
+			GameInfo.Controller = _controller;
 		}
 	}
 }

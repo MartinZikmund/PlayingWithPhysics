@@ -32,6 +32,7 @@
             VerticalAlignment="Center"
             Header="{extensions:Localize Key=IntervalForTable}"
             Minimum="0.01"
+            Width="120"
             SmallChange="0.01"
             SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />

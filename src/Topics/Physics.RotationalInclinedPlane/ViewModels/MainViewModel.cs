@@ -1,21 +1,21 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Physics.InclinedPlane.ValuesTable;
+using Physics.RotationalInclinedPlane.Dialogs;
+using Physics.RotationalInclinedPlane.Logic;
+using Physics.RotationalInclinedPlane.Rendering;
+using Physics.RotationalInclinedPlane.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
-using Physics.RotationalInclinedPlane.Rendering;
-using Physics.RotationalInclinedPlane.Logic;
-using Physics.RotationalInclinedPlane.Dialogs;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
+using Windows.Foundation;
+using Windows.UI;
 using Windows.UI.WindowManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
-using Windows.UI;
-using Windows.Foundation;
-using Physics.RotationalInclinedPlane.Views;
-using Physics.InclinedPlane.ValuesTable;
 
 namespace Physics.RotationalInclinedPlane.ViewModels
 {
@@ -23,6 +23,15 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 	{
 		private DifficultyOption _difficulty;
 		private RotationalInclinedPlaneCanvasController _controller;
+		private DispatcherTimer _timer = new DispatcherTimer()
+		{
+			Interval = new TimeSpan(0, 0, 0, 0, 100)
+		};
+
+		public MainViewModel()
+		{
+			_timer.Tick += _timer_Tick;
+		}
 
 		public MotionSetup Setup { get; set; }
 
@@ -36,7 +45,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
-			_difficulty = parameter.Difficulty;
+			_difficulty = parameter.Difficulty;			
 		}
 
 		public void SetController(RotationalInclinedPlaneCanvasController controller)
@@ -78,7 +87,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 		public async Task EditValuesAsync()
 		{
 			InputDialogViewModel viewModel;
-			if (Setup != null)
+			if (Setup == null)
 			{
 				viewModel = new InputDialogViewModel(_difficulty);
 			}
@@ -93,8 +102,30 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			{
 				Setup = viewModel.CreateMotionSetup();
 				Motion = new MotionViewModel(Setup);
-				//RestartSimulation();
+				RestartSimulation();
 			}
+		}
+
+		protected virtual void RestartSimulation()
+		{
+			_controller.StartSimulation(Motion.MotionInfo);
+			_timer.Start();
+		}
+
+		private void _timer_Tick(object sender, object e)
+		{
+			if (_timer.IsEnabled && _controller != null)
+			{
+				float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+
+				Motion?.UpdateCurrentValues(timeElapsed);
+			}
+		}
+
+		public override void ViewDestroy(bool viewFinishing = true)
+		{
+			base.ViewDestroy(viewFinishing);
+			_timer.Stop();
 		}
 	}
 }

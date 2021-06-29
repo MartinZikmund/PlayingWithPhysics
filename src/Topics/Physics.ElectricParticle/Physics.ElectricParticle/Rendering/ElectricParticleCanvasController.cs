@@ -97,6 +97,11 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			_setup = setup;
 
+			if (_setup == null)
+			{
+				return;
+			}
+
 			var unitXSize = -1f;
 			var unitYSize = -1f;
 
@@ -196,7 +201,7 @@ namespace Physics.ElectricParticle.Rendering
 		private void DrawVerticalPlanes(ISkiaCanvas sender, SKSurface args)
 		{
 			var verticalPlaneDistance = _setup.VerticalPlane.Distance;
-			var horizontalPlaneDistance = _setup.HorizontalPlane?.Distance ?? sender.ScaledSize.Height * 0.8f * _pixelToUnit;
+			var horizontalPlaneDistance = _setup.HorizontalPlane?.Distance ?? _setup.VerticalPlane.Distance;
 			var zeroX = _canvas.ScaledSize.Width / 2;
 			var zeroY = _canvas.ScaledSize.Height / 2;
 
@@ -233,7 +238,7 @@ namespace Physics.ElectricParticle.Rendering
 
 		private void DrawHorizontalPlanes(ISkiaCanvas sender, SKSurface args)
 		{
-			var verticalPlaneDistance = _setup.VerticalPlane?.Distance ?? sender.ScaledSize.Width * 0.8f * _pixelToUnit;
+			var verticalPlaneDistance = _setup.VerticalPlane?.Distance ?? _setup.HorizontalPlane.Distance;
 			var horizontalPlaneDistance = _setup.HorizontalPlane.Distance;
 			var zeroX = _canvas.ScaledSize.Width / 2;
 			var zeroY = _canvas.ScaledSize.Height / 2;

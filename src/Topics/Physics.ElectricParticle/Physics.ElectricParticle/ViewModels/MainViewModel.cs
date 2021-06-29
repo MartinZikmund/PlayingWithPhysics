@@ -97,10 +97,19 @@ namespace Physics.ElectricParticle.ViewModels
 		public int SelectedVariantIndex
 		{
 			get => _selectedVariantIndex;
-
 			set
 			{
-				_selectedVariantIndex = value;
+				if (_selectedVariantIndex != value)
+				{
+					_selectedVariantIndex = value;
+					if (_selectedVariantIndex > -1)
+					{
+						Motion = null;
+						Setup = null;
+						_controller.SetMotion(null);
+						AddTrajectoryCommand?.Execute(null);
+					}
+				}
 			}
 		}
 

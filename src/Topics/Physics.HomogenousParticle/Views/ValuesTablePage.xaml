@@ -37,6 +37,7 @@
             Grid.Row="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
+            Width="120"
             Minimum="0.1"
             SmallChange="0.1"
             SpinButtonPlacementMode="Inline"

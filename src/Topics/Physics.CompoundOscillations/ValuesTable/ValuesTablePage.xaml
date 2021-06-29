@@ -28,6 +28,7 @@
 		<controls:NumberBox
             x:Name="TimeIntervalNumberBox"
             Grid.Row="2"
+            Width="120"
 			Header="{extensions:Localize Key=IntervalForTable}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"

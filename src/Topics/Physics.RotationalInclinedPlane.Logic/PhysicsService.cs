@@ -29,6 +29,8 @@ namespace Physics.RotationalInclinedPlane.Logic
 
 		public float CalculateVelocity(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var acceleration = CalculateAcceleration();
 			return acceleration * timeInSeconds;
 		}
@@ -41,45 +43,95 @@ namespace Physics.RotationalInclinedPlane.Logic
 
 		public float CalculateAngularVelocity(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var velocity = CalculateVelocity(timeInSeconds);
 			return velocity / _setup.Radius;
 		}
 
+		public float CalculateTotalAngleInRad(float timeInSeconds)
+		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
+			var distance = CalculateDistance(timeInSeconds);
+			var angleInRad = distance / (2 * _setup.Radius);
+			return angleInRad;
+		}
+
 		public float CalculateDistance(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var acceleration = CalculateAcceleration();
 			return 0.5f * acceleration * timeInSeconds * timeInSeconds;
 		}
 
 		public float CalculateX(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var distance = CalculateDistance(timeInSeconds);
 			return distance * (float)Math.Cos(AngleInRad);
 		}
 
 		public float CalculateY(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var startingHeight = CalculateStartY();
 			var distance = CalculateDistance(timeInSeconds);
-			return startingHeight - distance * (float)Math.Sin(_setup.InclinedAngle);
+			return startingHeight - distance * (float)Math.Sin(AngleInRad);
+		}
+
+		public float CalculateInclinedWidth()
+		{
+			return _setup.InclinedLength * (float)Math.Cos(AngleInRad);
+		}
+
+		public float CalculateTotalWidth()
+		{
+			return CalculateInclinedWidth() + _setup.HorizontalLength;
+		}
+
+		public float CalculateHorizontalStartX()
+		{
+			//if (_horizontalStartX == null)
+			//{
+			//	if (WillReachInclinedEnd())
+			//	{
+			//		_horizontalStartX = CalculateInclinedX(CalculateInclinedMaxT());
+			//	}
+			//	else
+			//	{
+			//		_horizontalStartX = 0;
+			//	}
+			//}
+			//return _horizontalStartX.Value;
+			return 0;
 		}
 
 		public float CalculateStartY() => _setup.InclinedLength * (float)Math.Sin(AngleInRad);
 
 		public float CalculateEp(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var height = CalculateY(timeInSeconds);
 			return _setup.Mass * _setup.Gravity * height;
 		}
 
 		public float CalculateEk(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var velocity = CalculateVelocity(timeInSeconds);
 			return 0.5f * _setup.Mass * velocity;
 		}
 
 		public float CalculateEr(float timeInSeconds)
 		{
+			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
+
 			var j = CalculateJ();
 			return 0.5f * j * CalculateAngularVelocity(timeInSeconds);
 		}

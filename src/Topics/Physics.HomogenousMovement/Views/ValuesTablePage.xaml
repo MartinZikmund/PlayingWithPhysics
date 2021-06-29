@@ -40,6 +40,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Minimum="0.1"
+			Width="120"
             SmallChange="0.1"
             SpinButtonPlacementMode="Inline"
             Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />

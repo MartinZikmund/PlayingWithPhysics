@@ -11,297 +11,294 @@
     d:DesignWidth="600"
     mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <GridLength x:Key="SecondColumnWidth">150</GridLength>
-        <Style TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style TargetType="winui:NumberBox">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="SpinButtonPlacementMode" Value="Compact" />
-        </Style>
-        <Style TargetType="Grid">
-            <Setter Property="ColumnSpacing" Value="8" />
-            <Setter Property="Margin" Value="0,4" />
-        </Style>
-    </UserControl.Resources>
+	<UserControl.Resources>
+		<GridLength x:Key="SecondColumnWidth">150</GridLength>
+		<Style TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style TargetType="winui:NumberBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="SpinButtonPlacementMode" Value="Compact" />
+		</Style>
+		<Style TargetType="Grid">
+			<Setter Property="ColumnSpacing" Value="8" />
+			<Setter Property="Margin" Value="0,4" />
+		</Style>
+	</UserControl.Resources>
 
-    <Grid Padding="20,0,20,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <winui:RadioButtons
+	<Grid Padding="20,0,20,0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<winui:RadioButtons
             ItemsSource="{x:Bind Model.ParticleTypes, Mode=OneWay}"
             MaxColumns="3"
             SelectedItem="{x:Bind Model.ParticleType, Mode=TwoWay}">
-            <winui:RadioButtons.ItemTemplate>
-                <DataTemplate x:DataType="inputs:ParticleType">
-                    <RadioButton Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                </DataTemplate>
-            </winui:RadioButtons.ItemTemplate>
-        </winui:RadioButtons>
-        <StackPanel Grid.Row="1">
-            <StackPanel.ChildrenTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
-                </TransitionCollection>
-            </StackPanel.ChildrenTransitions>
+			<winui:RadioButtons.ItemTemplate>
+				<DataTemplate x:DataType="inputs:ParticleType">
+					<RadioButton Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+				</DataTemplate>
+			</winui:RadioButtons.ItemTemplate>
+		</winui:RadioButtons>
+		<StackPanel Grid.Row="1">
+			<StackPanel.ChildrenTransitions>
+				<TransitionCollection>
+					<EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+				</TransitionCollection>
+			</StackPanel.ChildrenTransitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{extensions:Localize Key=Input_PrimaryPlaneChargePolarity_FirstPart}" />
                     <Run Text="{x:Bind Model.PrimaryPlaneLabel}" />
                     <Run Text="{extensions:Localize Key=Input_PrimaryPlaneChargePolarity_SecondPart}" />
-                </TextBlock>
-                <ComboBox
+				</TextBlock>
+				<ComboBox
                     x:Name="PrimaryPlaneChargePolarity"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     ItemsSource="{x:Bind Model.Polarities}"
                     SelectedItem="{x:Bind Model.PrimaryPlanePolarity, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:Polarity">
-                            <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </Grid>
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="inputs:Polarity">
+							<TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</Grid>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{x:Bind Model.PrimaryPlaneVoltageLabel}" />
                     <Run FontWeight="Bold" Text="U" />
                     <Run Text="[V]" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="PrimaryVoltageNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.U.Maximum, Mode=OneWay}"
                     Minimum="{x:Bind Model.VariantConfiguration.U.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.PrimaryPlaneVoltage, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{x:Bind Model.PrimaryPlaneDistanceLabel}" />
                     <Run FontWeight="Bold" Text="d" />
                     <Run Text="[m]" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="PrimaryPlaneDistance"
                     Grid.Column="1"
                     Maximum="0.3"
                     Minimum="0.01"
                     Value="{x:Bind Model.PrimaryPlaneDistance, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <!--  Advanced-1  -->
-            <StackPanel x:Name="AdvancedInputs">
-                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock>
+			<!--  Advanced-1  -->
+			<StackPanel x:Name="AdvancedInputs">
+				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+					</Grid.ColumnDefinitions>
+					<TextBlock>
                         <Run Text="{extensions:Localize Key=Input_SecondaryPlaneChargePolarity_FirstPart}" />
                         <Run Text="{extensions:Localize Key=Input_PlaneLabelBottom}" />
                         <Run Text="{extensions:Localize Key=Input_SecondaryPlaneChargePolarity_SecondPart}" />
-                    </TextBlock>
-                    <ComboBox
+					</TextBlock>
+					<ComboBox
                         x:Name="SecondaryPlaneChargePolarity"
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         ItemsSource="{x:Bind Model.Polarities}"
                         SelectedItem="{x:Bind Model.SecondaryPlanePolarity, Mode=TwoWay}"
                         Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate x:DataType="inputs:Polarity">
-                                <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </Grid>
-                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock>
+						<ComboBox.ItemTemplate>
+							<DataTemplate x:DataType="inputs:Polarity">
+								<TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</Grid>
+				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+					</Grid.ColumnDefinitions>
+					<TextBlock>
                         <Run Text="{extensions:Localize Key=Input_PlaneVoltageBetweenHorizontal}" />
                         <Run FontWeight="Bold" Text="U" />
                         <Run Text="[V]" />
-                    </TextBlock>
-                    <winui:NumberBox
+					</TextBlock>
+					<winui:NumberBox
                         x:Name="SecondaryVoltageNumberBox"
                         Grid.Column="1"
                         Maximum="100000"
                         Minimum="100"
                         Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}"
                         Value="{x:Bind Model.SecondaryPlaneVoltage, Mode=TwoWay}" />
-                </Grid>
-                <Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock>
+				</Grid>
+				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+					</Grid.ColumnDefinitions>
+					<TextBlock>
                         <Run Text="{extensions:Localize Key=Input_PlaneDistanceHorizontal}" />
                         <Run FontWeight="Bold" Text="d" />
                         <Run Text="[m]" />
-                    </TextBlock>
-                    <winui:NumberBox
+					</TextBlock>
+					<winui:NumberBox
                         x:Name="SecondaryPlaneDistance"
                         Grid.Column="1"
                         Maximum="0.3"
                         Minimum="0.01"
                         Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}"
                         Value="{x:Bind Model.SecondaryPlaneDistance, Mode=TwoWay}" />
-                </Grid>
-            </StackPanel>
+				</Grid>
+			</StackPanel>
 
-            <Grid Visibility="{x:Bind Model.VariantConfiguration.ParticlePolarity.IsVisible, Mode=OneWay}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{extensions:Localize Key=VerticalInput_ChargePolarity}" />
+			<Grid Visibility="{x:Bind Model.VariantConfiguration.ParticlePolarity.IsVisible, Mode=OneWay}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="{extensions:Localize Key=VerticalInput_ChargePolarity}" />
 
-                <ComboBox
+				<ComboBox
                     x:Name="ChargePolarity"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     ItemsSource="{x:Bind Model.Polarities}"
                     SelectedItem="{x:Bind Model.ParticlePolarity, Mode=TwoWay}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:Polarity">
-                            <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </Grid>
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="inputs:Polarity">
+							<TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</Grid>
 
-            <Grid Visibility="{x:Bind Model.VariantConfiguration.Q.IsVisible, Mode=OneWay}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid Visibility="{x:Bind Model.VariantConfiguration.Q.IsVisible, Mode=OneWay}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{extensions:Localize Key=Input_Charge}" />
                     <Run FontWeight="Bold" Text="Q" />
                     <Run Text="{extensions:Localize Key=Input_ChargeDetail}" />
-                    <Run Text="[C]" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="ChargeBaseNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.Q.Maximum, Mode=OneWay}"
                     Minimum="{x:Bind Model.VariantConfiguration.Q.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.ChargeMultiplier, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <Grid Visibility="{x:Bind Model.VariantConfiguration.M.IsVisible, Mode=OneWay}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=0}">
+			<Grid Visibility="{x:Bind Model.VariantConfiguration.M.IsVisible, Mode=OneWay}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=0}">
                     <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
                     <Run FontWeight="Bold" Text="m" />
-                    <Run Text="{extensions:Localize Key=VerticalInput_MassMultiple}" />
-                    <Run Text="10" /><Run Text="&#8315;17" Typography.Variants="Superscript" /><Run Text=")" />
-                    <Run Text="[kg]" />
-                </TextBlock>
-                <TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=1}">
+                    <Run Text="[" /><Run Text="10" /><Run Text="&#8315;17" Typography.Variants="Superscript" />
+					<Run Text="kg]" />
+				</TextBlock>
+				<TextBlock Visibility="{x:Bind Model.VariantConfiguration.M.DescriptionType, Mode=OneWay, Converter={StaticResource ValueMatchVisibilityConverter}, ConverterParameter=1}">
                     <Run Text="{extensions:Localize Key=VerticalInput_Mass}" />
                     <Run FontWeight="Bold" Text="m" />
-                    <Run Text="{extensions:Localize Key=VerticalInput_MassMultipleNucleus}" />
-                    <Run Text="[kg]" />
-                </TextBlock>
+                    <Run Text="[" /><Run Text="{extensions:Localize Key=VerticalInput_MassMultipleNucleus}" /><Run Text="]" />
+				</TextBlock>
 
-                <winui:NumberBox
+				<winui:NumberBox
                     x:Name="MassPowerNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.M.Maximum, Mode=OneWay}"
                     Minimum="{x:Bind Model.VariantConfiguration.M.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.MassMultiplier, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{extensions:Localize Key=VerticalVariant_Velocity}" />
                     <Run FontWeight="Bold" Text="v" /><Run
                         FontWeight="Bold"
                         Text="0"
                         Typography.Variants="Subscript" />
                     <Run Text=" [m.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" /><Run Text="]" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="VelocityNumberBox"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.VariantConfiguration.V0.Maximum, Mode=OneWay}"
                     Minimum="{x:Bind Model.VariantConfiguration.V0.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.StartVelocity, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <Grid Visibility="{x:Bind Model.DeviationVisibility}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock>
+			<Grid Visibility="{x:Bind Model.DeviationVisibility}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock>
                     <Run Text="{extensions:Localize Key=VerticalVariant_Deviation}" />
                     <Run FontWeight="Bold" Text="&#120572;" />
                     <Run Text="[" /><Run Text="&#176;" /><Run Text="]" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="DeviationNumberBox"
                     Grid.Column="1"
                     Maximum="359"
                     Minimum="0"
                     Visibility="{x:Bind Model.DeviationVisibility}"
                     Value="{x:Bind Model.StartVelocityDeviation, Mode=TwoWay}" />
-            </Grid>
+			</Grid>
 
-            <Grid Visibility="{x:Bind Model.VelocityDirectionVisibility}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{extensions:Localize Key=Input_VelocityDirection}" />
+			<Grid Visibility="{x:Bind Model.VelocityDirectionVisibility}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="{extensions:Localize Key=Input_VelocityDirection}" />
 
-                <ComboBox
+				<ComboBox
                     x:Name="VelocityDirectionComboBox"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     ItemsSource="{x:Bind Model.VelocityDirections}"
                     SelectedItem="{x:Bind Model.SelectedVelocityDirection, Mode=TwoWay}"
                     Visibility="{x:Bind Model.VelocityDirectionVisibility}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="inputs:VelocityDirection">
-                            <TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </Grid>
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="inputs:VelocityDirection">
+							<TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</Grid>
 
-            <Grid>
+			<!--<Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -332,23 +329,23 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </Grid>
+            </Grid>-->
 
-            <TextBlock VerticalAlignment="Center" Text="{extensions:Localize Key=Color}" />
-            <GridView
+			<TextBlock VerticalAlignment="Center" Text="{extensions:Localize Key=Color}" />
+			<GridView
                 Grid.ColumnSpan="2"
                 ItemsSource="{x:Bind Model.Colors.Palette, Mode=OneWay}"
                 SelectedItem="{x:Bind Model.Colors.Selected, Mode=TwoWay}">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Width="32" Height="32">
-                            <Border.Background>
-                                <SolidColorBrush Color="{Binding}" />
-                            </Border.Background>
-                        </Border>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-        </StackPanel>
-    </Grid>
+				<GridView.ItemTemplate>
+					<DataTemplate>
+						<Border Width="32" Height="32">
+							<Border.Background>
+								<SolidColorBrush Color="{Binding}" />
+							</Border.Background>
+						</Border>
+					</DataTemplate>
+				</GridView.ItemTemplate>
+			</GridView>
+		</StackPanel>
+	</Grid>
 </UserControl>

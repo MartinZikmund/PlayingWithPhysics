@@ -14,7 +14,11 @@ namespace Physics.RotationalInclinedPlane.Views
 	{
 		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
-		protected override RotationalInclinedPlaneCanvasController CreateController(ISkiaCanvas canvas) =>
-			new RotationalInclinedPlaneCanvasController(canvas);
+		protected override RotationalInclinedPlaneCanvasController CreateController(ISkiaCanvas canvas)
+		{
+			var controller = new RotationalInclinedPlaneCanvasController(canvas);
+			controller.SetVariantRenderer(new SkiaSimulationRenderer(controller));
+			return controller;
+		}
 	}
 }

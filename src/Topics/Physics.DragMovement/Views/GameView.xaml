@@ -99,6 +99,7 @@
                                         IsEnabled="{x:Bind Model.CurrentGame.IsWeightChangeEnabled, Mode=OneWay}"
                                         Maximum="45"
                                         Minimum="15"
+										Width="120"
                                         SpinButtonPlacementMode="Inline"
                                         Value="{x:Bind Model.CurrentGame.CargoMass, Mode=TwoWay}" />
                                     <TextBlock VerticalAlignment="Center" Text="kg" />

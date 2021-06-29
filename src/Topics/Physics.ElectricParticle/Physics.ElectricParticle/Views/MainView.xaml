@@ -189,6 +189,21 @@
 											Grid.Row="0"
 											Grid.Column="2"
 											FontSize="16"
+											Text="t:" />
+										<TextBlock
+											Grid.Row="0"
+											Grid.Column="3"
+											FontSize="16">
+											<Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
+											<Run Text=" s" />
+										</TextBlock>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<TextBlock
+											Style="{StaticResource LabelStyle}"
+											Grid.Row="0"
+											Grid.Column="2"
+											FontSize="16"
 											Text="v:" />
 										<TextBlock
 											Grid.Row="0"
@@ -210,6 +225,7 @@
 											Grid.Column="1"
 											FontSize="16">
 											<Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
+											<Run Text="m" />
 										</TextBlock>
 									</StackPanel>
 									<StackPanel Orientation="Horizontal">
@@ -224,6 +240,7 @@
 											Grid.Column="3"
 											FontSize="16">
 											<Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
+											<Run Text="m" />
 										</TextBlock>
 									</StackPanel>
 									<StackPanel Orientation="Horizontal">
@@ -238,7 +255,7 @@
 											Grid.Column="3"
 											FontSize="16">
 											<Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
-											<Run Text=" N" />
+											<Run Text="J" />
 										</TextBlock>
 									</StackPanel>
 									<StackPanel Orientation="Horizontal">
@@ -253,7 +270,7 @@
 											Grid.Column="1"
 											FontSize="16">
 											<Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
-											<Run Text=" N" />
+											<Run Text="J" />
 										</TextBlock>
 									</StackPanel>
 								</StackPanel>
@@ -273,6 +290,10 @@
 			</Grid.RowDefinitions>
 			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
 			<InkCanvas x:Name="InkCanvas" />
+			<StackPanel Visibility="{x:Bind Model.Motion, Mode=OneWay, Converter={StaticResource NullToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" RequestedTheme="Light">
+				<Image Width="200" Source="ms-appx:///Physics.Shared.UI/Assets/Icons/EditColorful.svg" />
+				<TextBlock FontSize="20" FontWeight="SemiBold" Text="Select a variant to set parameters" HorizontalAlignment="Center" /> 
+			</StackPanel>
 			<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"

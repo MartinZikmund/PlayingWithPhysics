@@ -10,6 +10,7 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonText="{extensions:Localize Key=Save}"
+	DefaultButton="Primary"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
     mc:Ignorable="d">
     <ContentDialog.Resources>

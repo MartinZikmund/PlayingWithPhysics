@@ -99,24 +99,26 @@ namespace Physics.ElectricParticle.Logic
 				var x = (float)(double)ComputeX(time);
 				var y = (float)(double)ComputeY(time);
 
-				if (_setup.HorizontalPlane != null)
+
+				var horizontalLimit = _setup.HorizontalPlane != null ?
+					_setup.HorizontalPlane.Distance :
+					_setup.VerticalPlane.Distance;
+				if (Math.Abs(y) > horizontalLimit / 2)
 				{
-					if (Math.Abs(y) > _setup.HorizontalPlane.Distance / 2)
-					{
-						var maxValue = _setup.HorizontalPlane.Distance / 2;
-						y = y < 0 ? -maxValue : maxValue;
-						trajectoryEnded = true;
-					}
+					var maxValue = horizontalLimit / 2;
+					y = y < 0 ? -maxValue : maxValue;
+					trajectoryEnded = true;
 				}
 
-				if (_setup.VerticalPlane != null)
+				var verticalLimit = _setup.VerticalPlane != null ?
+					_setup.VerticalPlane.Distance :
+					_setup.HorizontalPlane.Distance;
+
+				if (Math.Abs(x) > verticalLimit / 2)
 				{
-					if (Math.Abs(x) > _setup.VerticalPlane.Distance / 2)
-					{
-						var maxValue = _setup.VerticalPlane.Distance / 2;
-						x = x < 0 ? -maxValue : maxValue;
-						trajectoryEnded = true;
-					}
+					var maxValue = verticalLimit / 2;
+					x = x < 0 ? -maxValue : maxValue;
+					trajectoryEnded = true;
 				}
 
 				points.Add(new TrajectoryPoint(x, y));

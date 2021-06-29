@@ -11,6 +11,8 @@
     d:DesignWidth="600"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
+	DefaultButton="Primary"
+	PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     Style="{ThemeResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
 	<ContentDialog.Resources>
@@ -39,6 +41,8 @@
         VerticalScrollMode="Auto">
 		<Grid>
 			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
@@ -109,7 +113,7 @@
                     x:Name="RadiusNumberBox"
                     Grid.Row="3"
                     Grid.Column="1"
-                    Maximum="90"
+                    Maximum="0.25"
                     Minimum="0.01"
                     Value="{x:Bind Model.Radius, Mode=TwoWay}" />
 			</Grid>
@@ -218,7 +222,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Maximum="{x:Bind Model.MaximumAngle, Mode=OneWay}"
-                    Minimum="0"
+                    Minimum="0.1"
                     Value="{x:Bind Model.InclinedAngle, Mode=TwoWay}" />
 
 				<!--  Inclined plane length  -->
@@ -235,6 +239,26 @@
                     Minimum="0.1"
                     Value="{x:Bind Model.InclinedLength, Mode=TwoWay}" />
 			</Grid>
+
+			<TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="{extensions:Localize Key=Color}" />
+			<GridView
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
+            SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+				<GridView.ItemTemplate>
+					<DataTemplate>
+						<Border Width="32" Height="32">
+							<Border.Background>
+								<SolidColorBrush Color="{Binding}" />
+							</Border.Background>
+						</Border>
+					</DataTemplate>
+				</GridView.ItemTemplate>
+			</GridView>
 		</Grid>
 	</ScrollViewer>
 </ContentDialog>

@@ -36,6 +36,7 @@
         <controls:NumberBox
             x:Name="TimeIntervalNumberBox2"
             Grid.Row="1"
+            Width="120"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Minimum="0.1"
