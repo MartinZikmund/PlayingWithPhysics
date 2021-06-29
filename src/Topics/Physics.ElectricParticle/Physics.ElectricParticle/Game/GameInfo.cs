@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using MvvmCross.ViewModels;
 using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.Rendering;
@@ -95,14 +96,18 @@ namespace Physics.ElectricParticle.Game
 
 			if (x <= 0 || x >= 1)
 			{
-				if (x <= 0)
+				var qNoSign = Math.Abs(Ux / 100);
+				if (Q < 0)
 				{
-					Q = -Ux / 100;
+					Q = qNoSign;
 				}
-
-				if (x >= 1)
+				else if (Q > 0)
 				{
-					Q = Ux / 100;
+					Q = -qNoSign;
+				}
+				else
+				{
+					Q = 0;
 				}
 
 				x = MathHelpers.Clamp(x, 0, 1);
@@ -111,14 +116,18 @@ namespace Physics.ElectricParticle.Game
 
 			if (y <= 0 || y >= 1)
 			{
-				if (y <= 0)
+				var qNoSign = Math.Abs(Uy / 100);
+				if (Q < 0)
 				{
-					Q = -Uy / 100;
+					Q = qNoSign;
 				}
-
-				if (y >= 1)
+				else if (Q > 0)
 				{
-					Q = Uy / 100;
+					Q = -qNoSign;
+				}
+				else
+				{
+					Q = 0;
 				}
 
 				y = MathHelpers.Clamp(y, 0, 1);
