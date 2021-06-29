@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -22,7 +23,8 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			Color = SKColors.Black,
 			IsAntialias = true,
-			IsStroke = true
+			IsStroke = true,
+			StrokeWidth = 2
 		};
 
 		private readonly SKPaint _penDownPoint = new SKPaint()
@@ -88,6 +90,23 @@ namespace Physics.ElectricParticle.Rendering
 		{
 			var x = sender.ScaledSize.Width * GameInfo.PenState.Position.X;
 			var y = sender.ScaledSize.Height * GameInfo.PenState.Position.Y;
+			var q = GameInfo.Q;
+			SKColor particleColor;
+			if (q > 0)
+			{
+				particleColor = new SKColor(0, 0, (byte)(q + 150));
+			}
+			else if (q < 0)
+			{
+				particleColor = new SKColor((byte)(Math.Abs(q) + 150), 0, 0);
+			}
+			else
+			{
+				particleColor = SKColors.Black;
+			}
+
+			_penDownPoint.Color = particleColor;
+			_penUpPoint.Color = particleColor;
 			args.Canvas.DrawCircle(x, y, 4, GameInfo.IsPenDown ? _penDownPoint : _penUpPoint);
 		}
 
@@ -128,13 +147,13 @@ namespace Physics.ElectricParticle.Rendering
 			//inProgressCanvas.SetMatrix(worldMatrix);
 			foreach (var inProgressPath in GameInfo.Drawing.Paths.Where(p => !p.IsClosed))
 			{
-				int startIndex = _lastDrawnPoint.Item1 == inProgressPath ? _lastDrawnPoint.Item2 : 0;
+				int startIndex = Math.Max(0, _lastDrawnPoint.Item1 == inProgressPath ? _lastDrawnPoint.Item2 : 0);
 				using var path = new SKPath();
 				if (inProgressPath.Points.Any())
 				{
 					path.MoveTo(RelativeToCanvas(inProgressPath.Points[startIndex], sender));
 				}
-				for (int i = startIndex; i < inProgressPath.Points.Count; i++)
+				for (int i = startIndex + 1; i < inProgressPath.Points.Count; i++)
 				{
 					var point = inProgressPath.Points[i];
 					path.LineTo(RelativeToCanvas(point, sender));
@@ -182,7 +201,7 @@ namespace Physics.ElectricParticle.Rendering
 			HandleKeyboardInput();
 			HandleGamepadInput();
 
-			if ((GameInfo.Ux != 0 || GameInfo.Uy != 0) && GameInfo.State == GameState.Idle)
+			if ((GameInfo.Ux != 0 || GameInfo.Uy != 0 || GameInfo.IsPenDown || GameInfo.UseGravity) && GameInfo.State == GameState.Idle)
 			{
 				Play();
 				GameInfo.Start();

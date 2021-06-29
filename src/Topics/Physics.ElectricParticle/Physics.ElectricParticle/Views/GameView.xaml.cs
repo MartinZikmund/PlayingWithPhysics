@@ -31,8 +31,8 @@ namespace Physics.ElectricParticle.Views
 
 		private void PageLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			CoreWindow.GetForCurrentThread().KeyDown += PageKeyDown;
-			CoreWindow.GetForCurrentThread().KeyUp += PageKeyUp;
+			//CoreWindow.GetForCurrentThread().KeyDown += PageKeyDown;
+			//CoreWindow.GetForCurrentThread().KeyUp += PageKeyUp;
 			Focus(Windows.UI.Xaml.FocusState.Programmatic);
 		}
 

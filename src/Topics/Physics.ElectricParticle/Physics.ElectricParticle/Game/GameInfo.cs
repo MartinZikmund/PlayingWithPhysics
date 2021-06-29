@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using MvvmCross.ViewModels;
+using Physics.ElectricParticle.Logic;
 using Physics.ElectricParticle.Rendering;
 using Physics.Shared.Helpers;
 
@@ -45,6 +46,8 @@ namespace Physics.ElectricParticle.Game
 			set => SetProperty(ref _uy, MathHelpers.Clamp(value, -100, 100));
 		}
 
+		public float Q { get; set; } = 1;
+
 		public void GoToNextLevel()
 		{
 			Level = (Level + 1) % LevelCount;
@@ -62,6 +65,7 @@ namespace Physics.ElectricParticle.Game
 			_drawingStopwatch.Reset();
 			Ux = 0;
 			Uy = 0;
+			Q = 1;
 			Controller?.Reset();
 		}
 
@@ -81,22 +85,42 @@ namespace Physics.ElectricParticle.Game
 		public void UpdatePenPosition(float elapsedTime)
 		{
 			var ax = Ux * AccelerationScale;
-			var ay = -Uy * AccelerationScale + (UseGravity ? 0.3f : 0);
+			var ay = -Uy * AccelerationScale + (UseGravity ? 0.001f : 0);
 
 			var vx = PenState.Speed.X + ax * elapsedTime;
 			var vy = PenState.Speed.Y + ay * elapsedTime;
 
-			var x = PenState.Position.X + PenState.Speed.X * elapsedTime + 0.5f * PenState.Acceleration.X * elapsedTime * elapsedTime;
-			var y = PenState.Position.Y + PenState.Speed.Y * elapsedTime + 0.5f * PenState.Acceleration.Y * elapsedTime * elapsedTime;
+			var x = PenState.Position.X + PenState.Speed.X * elapsedTime + Q * 0.5f * PenState.Acceleration.X * elapsedTime * elapsedTime;
+			var y = PenState.Position.Y + PenState.Speed.Y * elapsedTime + Q * 0.5f * PenState.Acceleration.Y * elapsedTime * elapsedTime;
 
 			if (x <= 0 || x >= 1)
 			{
+				if (x <= 0)
+				{
+					Q = -Ux / 100;
+				}
+
+				if (x >= 1)
+				{
+					Q = Ux / 100;
+				}
+
 				x = MathHelpers.Clamp(x, 0, 1);
 				vx = 0;
 			}
 
 			if (y <= 0 || y >= 1)
 			{
+				if (y <= 0)
+				{
+					Q = -Uy / 100;
+				}
+
+				if (y >= 1)
+				{
+					Q = Uy / 100;
+				}
+
 				y = MathHelpers.Clamp(y, 0, 1);
 				vy = 0;
 			}

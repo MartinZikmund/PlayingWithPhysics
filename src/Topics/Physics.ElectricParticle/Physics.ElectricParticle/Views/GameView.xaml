@@ -46,7 +46,7 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="120" />
                         </Grid.RowDefinitions>
                         <controls:DropShadowPanel
                             HorizontalContentAlignment="Stretch"
@@ -106,7 +106,10 @@
                         </Grid>
 
                         <!--  Control panel  -->
-                        <Grid x:Name="ControlGrid" Grid.Column="1">
+                        <Grid
+                            x:Name="ControlGrid"
+                            Grid.RowSpan="2"
+                            Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -115,10 +118,14 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="120" />
                                 </Grid.RowDefinitions>
 
                                 <!--  Level indicator  -->
-                                <Grid Style="{StaticResource LevelIndicatorGridStyle}">
+                                <Grid
+                                    Margin="0,0,16,0"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource LevelIndicatorGridStyle}">
                                     <Grid VerticalAlignment="Center">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -134,15 +141,21 @@
                                 <!--  Vertical slider  -->
                                 <Slider
                                     x:Name="VoltageYSlider"
-                                    Grid.Row="1"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
                                     AllowFocusOnInteraction="False"
                                     GettingFocus="SliderGettingFocus"
                                     LargeChange="1"
                                     Maximum="100"
                                     Minimum="-100"
                                     Orientation="Vertical"
+									HorizontalAlignment="Left"
                                     SmallChange="1"
+                                    SnapsTo="StepValues"
+                                    StepFrequency="5"
                                     Style="{StaticResource GameSlider}"
+                                    TickFrequency="25"
+                                    TickPlacement="Outside"
                                     Value="{x:Bind Model.GameInfo.Uy, Mode=TwoWay}" />
                             </Grid>
                             <Grid
@@ -156,6 +169,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -207,9 +221,24 @@
                                 <Border
                                     Grid.Row="3"
                                     Grid.ColumnSpan="2"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource GameTimerBorderStyle}">
                                     <TextBlock Style="{StaticResource GameTimerTextBlockStyle}" Text="{x:Bind Model.GameInfo.DrawingTimeString, Mode=OneWay}" />
                                 </Border>
+
+                                <Grid
+                                    Grid.Row="4"
+                                    Grid.ColumnSpan="2"
+                                    Style="{ThemeResource InstructionsGridStyle}">
+                                    <TextBlock
+                                        MaxWidth="400"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="{StaticResource ControlPanelFontSize}"
+                                        Text="{xaml:Localize Key=GameInstructions}"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+                                </Grid>
                             </Grid>
                         </Grid>
 
@@ -217,14 +246,19 @@
                         <Grid x:Name="BottomControlGrid" Grid.Row="1">
                             <Slider
                                 x:Name="VoltageXSlider"
+                                Margin="0,12,0,0"
+                                d:Value="30"
                                 AllowFocusOnInteraction="False"
                                 GettingFocus="SliderGettingFocus"
                                 LargeChange="1"
                                 Maximum="100"
                                 Minimum="-100"
                                 SmallChange="1"
-                                StepFrequency="1"
+                                SnapsTo="StepValues"
+                                StepFrequency="5"
                                 Style="{StaticResource GameSlider}"
+                                TickFrequency="25"
+                                TickPlacement="Outside"
                                 Value="{x:Bind Model.GameInfo.Ux, Mode=TwoWay}" />
                         </Grid>
                     </Grid>
@@ -234,6 +268,6 @@
         <Button
             VerticalAlignment="Top"
             Command="{x:Bind Model.GoBackCommand}"
-            Style="{StaticResource NavigationBackButtonNormalStyle}" />
+            Style="{ThemeResource NavigationBackButtonNormalStyle}" />
     </Grid>
 </local:GameViewBase>
