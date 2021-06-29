@@ -94,11 +94,10 @@ namespace Physics.ElectricParticle.Logic
 			var points = new List<TrajectoryPoint>();
 			BigNumber time = 0;
 			var trajectoryEnded = false;
-			for (int i = 0; i < totalFrames && !trajectoryEnded; i++)
+			for (int i = 0; i < 10000 && !trajectoryEnded; i++)
 			{
 				var x = (float)(double)ComputeX(time);
 				var y = (float)(double)ComputeY(time);
-
 
 				var horizontalLimit = _setup.HorizontalPlane != null ?
 					_setup.HorizontalPlane.Distance :

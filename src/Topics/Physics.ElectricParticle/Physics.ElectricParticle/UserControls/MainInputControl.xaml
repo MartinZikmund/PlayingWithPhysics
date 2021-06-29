@@ -85,8 +85,6 @@
 				<winui:NumberBox
                     x:Name="PrimaryVoltageNumberBox"
                     Grid.Column="1"
-                    Maximum="{x:Bind Model.VariantConfiguration.U.Maximum, Mode=OneWay}"
-                    Minimum="{x:Bind Model.VariantConfiguration.U.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.PrimaryPlaneVoltage, Mode=TwoWay}" />
 			</Grid>
 
@@ -110,7 +108,7 @@
 
 			<!--  Advanced-1  -->
 			<StackPanel x:Name="AdvancedInputs">
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+				<Grid Visibility="{x:Bind Model.VariantConfiguration.USecondary.IsVisible, Mode=OneWay}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -125,8 +123,7 @@
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         ItemsSource="{x:Bind Model.Polarities}"
-                        SelectedItem="{x:Bind Model.SecondaryPlanePolarity, Mode=TwoWay}"
-                        Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}">
+                        SelectedItem="{x:Bind Model.SecondaryPlanePolarity, Mode=TwoWay}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate x:DataType="inputs:Polarity">
 								<TextBlock Text="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
@@ -134,25 +131,22 @@
 						</ComboBox.ItemTemplate>
 					</ComboBox>
 				</Grid>
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+				<Grid Visibility="{x:Bind Model.VariantConfiguration.USecondary.IsVisible, Mode=OneWay}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
 					</Grid.ColumnDefinitions>
 					<TextBlock>
                         <Run Text="{extensions:Localize Key=Input_PlaneVoltageBetweenHorizontal}" />
-                        <Run FontWeight="Bold" Text="U" />
+                        <Run FontWeight="Bold" Text="Ux" />
                         <Run Text="[V]" />
 					</TextBlock>
 					<winui:NumberBox
                         x:Name="SecondaryVoltageNumberBox"
                         Grid.Column="1"
-                        Maximum="100000"
-                        Minimum="100"
-                        Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}"
                         Value="{x:Bind Model.SecondaryPlaneVoltage, Mode=TwoWay}" />
 				</Grid>
-				<Grid Visibility="{x:Bind Model.AdvancedFirstOption}">
+				<Grid Visibility="{x:Bind Model.VariantConfiguration.USecondary.IsVisible, Mode=OneWay}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -167,7 +161,6 @@
                         Grid.Column="1"
                         Maximum="0.3"
                         Minimum="0.01"
-                        Visibility="{x:Bind Model.AdvancedFirstOption, Mode=OneWay}"
                         Value="{x:Bind Model.SecondaryPlaneDistance, Mode=TwoWay}" />
 				</Grid>
 			</StackPanel>
@@ -231,8 +224,6 @@
 				<winui:NumberBox
                     x:Name="MassPowerNumberBox"
                     Grid.Column="1"
-                    Maximum="{x:Bind Model.VariantConfiguration.M.Maximum, Mode=OneWay}"
-                    Minimum="{x:Bind Model.VariantConfiguration.M.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.MassMultiplier, Mode=TwoWay}" />
 			</Grid>
 
@@ -252,12 +243,10 @@
 				<winui:NumberBox
                     x:Name="VelocityNumberBox"
                     Grid.Column="1"
-                    Maximum="{x:Bind Model.VariantConfiguration.V0.Maximum, Mode=OneWay}"
-                    Minimum="{x:Bind Model.VariantConfiguration.V0.Minimum, Mode=OneWay}"
                     Value="{x:Bind Model.StartVelocity, Mode=TwoWay}" />
 			</Grid>
 
-			<Grid Visibility="{x:Bind Model.DeviationVisibility}">
+			<Grid Visibility="{x:Bind Model.VariantConfiguration.Angle.IsVisible, Mode=OneWay}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
@@ -272,7 +261,6 @@
                     Grid.Column="1"
                     Maximum="359"
                     Minimum="0"
-                    Visibility="{x:Bind Model.DeviationVisibility}"
                     Value="{x:Bind Model.StartVelocityDeviation, Mode=TwoWay}" />
 			</Grid>
 

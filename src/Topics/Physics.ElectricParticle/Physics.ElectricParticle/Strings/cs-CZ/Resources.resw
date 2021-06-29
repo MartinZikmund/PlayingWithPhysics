@@ -139,9 +139,6 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyb částice v homogenním elektrickém poli</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Zrušit</value>
-  </data>
   <data name="ChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
   </data>
@@ -192,6 +189,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
+  </data>
+  <data name="GameInstructions" xml:space="preserve">
+    <value>Pomocí posuvníků obkreslete objekt na obrazovce. Až budete se svým obrázkem spokojeni, přejděte na další level.</value>
   </data>
   <data name="GravityOff" xml:space="preserve">
     <value>Gravitace vypnuta</value>
@@ -310,14 +310,14 @@ Grafika: Petr Weinlich</value>
   <data name="ResetGame" xml:space="preserve">
     <value>Restartovat hru</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Uložit</value>
-  </data>
   <data name="SecondaryPlaneChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
   </data>
   <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>kladný</value>
+  </data>
+  <data name="SelectAVariant" xml:space="preserve">
+    <value>Vyberte variantu pro nastavení parametrů</value>
   </data>
   <data name="SelectVariantPrompt" xml:space="preserve">
     <value>Vyberte si variantu pro nastavení simulace</value>
@@ -374,7 +374,7 @@ Grafika: Petr Weinlich</value>
     <value>kladný</value>
   </data>
   <data name="VerticalVariant_Deviation" xml:space="preserve">
-    <value>Odchylka počáteční rychlosti od vodorovného směru</value>
+    <value>Odchylka počáteční rychlosti</value>
   </data>
   <data name="VerticalVariant_PlaneDistance" xml:space="preserve">
     <value>Vzdálenost desek</value>

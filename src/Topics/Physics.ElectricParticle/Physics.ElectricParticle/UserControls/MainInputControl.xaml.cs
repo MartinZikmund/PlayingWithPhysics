@@ -34,12 +34,16 @@ namespace Physics.ElectricParticle.UserControls
 		private void SetupNumberBoxes()
 		{
 			PrimaryVoltageNumberBox.SetupFormatting(smallChange: 100, increment: 100, largeChange: 1000, fractionDigits: 0);
-			PrimaryPlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
+			PrimaryPlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);			
+
 			SecondaryVoltageNumberBox.SetupFormatting(smallChange: 100);
 			SecondaryPlaneDistance.SetupFormatting(smallChange: 0.01, increment: 0.01);
+
 			ChargeBaseNumberBox.SetupFormatting(smallChange: 1, increment: 1);
-			MassPowerNumberBox.SetupFormatting(smallChange: 1, increment: 1);
+			MassPowerNumberBox.SetupFormatting(smallChange: 1, increment: 1);			
+
 			VelocityNumberBox.SetupFormatting(smallChange: 1, increment: 1);
+			
 			DeviationNumberBox.SetupFormatting(smallChange: 1, increment: 1);
 
 			if (Model != null)
@@ -50,10 +54,16 @@ namespace Physics.ElectricParticle.UserControls
 					ChargeBaseNumberBox.SetupFormatting(smallChange: qStep, largeChange: qStep, increment: 0.1);
 				}
 
-				if (Model.VariantConfiguration?.U?.Step != null)
+				if (Model.VariantConfiguration?.UPrimary?.Step != null)
 				{
-					var uStep = Model.VariantConfiguration.U.Step.Value;
+					var uStep = Model.VariantConfiguration.UPrimary.Step.Value;
 					PrimaryVoltageNumberBox.SetupFormatting(smallChange: uStep, increment: uStep, largeChange: uStep, fractionDigits: 0);			
+				}
+
+				if (Model.VariantConfiguration?.USecondary?.Step != null)
+				{
+					var uStep = Model.VariantConfiguration.USecondary.Step.Value;
+					SecondaryVoltageNumberBox.SetupFormatting(smallChange: uStep, increment: uStep, largeChange: uStep, fractionDigits: 0);
 				}
 
 				if (Model.VariantConfiguration?.V0?.Step != null)
@@ -61,6 +71,18 @@ namespace Physics.ElectricParticle.UserControls
 					var v0Step = Model.VariantConfiguration.V0.Step.Value;
 					VelocityNumberBox.SetupFormatting(smallChange: v0Step, increment: v0Step, largeChange: v0Step);
 				}
+			}
+
+			if (Model?.VariantConfiguration != null)
+			{
+				PrimaryVoltageNumberBox.Minimum = Model.VariantConfiguration.UPrimary.Minimum;
+				PrimaryVoltageNumberBox.Maximum = Model.VariantConfiguration.UPrimary.Maximum;
+				SecondaryVoltageNumberBox.Minimum = Model.VariantConfiguration.USecondary.Minimum;
+				SecondaryVoltageNumberBox.Maximum = Model.VariantConfiguration.USecondary.Maximum;
+				VelocityNumberBox.Minimum = Model.VariantConfiguration.V0.Minimum;
+				VelocityNumberBox.Maximum = Model.VariantConfiguration.V0.Maximum;
+				MassPowerNumberBox.Minimum = Model.VariantConfiguration.M.Minimum;
+				MassPowerNumberBox.Maximum = Model.VariantConfiguration.M.Maximum;
 			}
 		}
 

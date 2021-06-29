@@ -139,9 +139,6 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Electric Field</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="ChargePolarity_Negative" xml:space="preserve">
     <value>negative</value>
   </data>
@@ -189,6 +186,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
+  </data>
+  <data name="GameInstructions" xml:space="preserve">
+    <value>Use sliders to draw the highlighted shape. When you are happy with the result, try the next level.</value>
   </data>
   <data name="GravityOff" xml:space="preserve">
     <value>Gravity off</value>
@@ -313,6 +313,9 @@ Graphics: Petr Weinlich</value>
   <data name="SecondaryPlaneChargePolarity_Positive" xml:space="preserve">
     <value>positive</value>
   </data>
+  <data name="SelectAVariant" xml:space="preserve">
+    <value>Select a variant to set parameters</value>
+  </data>
   <data name="SelectVariantPrompt" xml:space="preserve">
     <value>Select a variant and set parameters</value>
   </data>
@@ -365,7 +368,7 @@ Graphics: Petr Weinlich</value>
     <value>mass of 1 nucleus</value>
   </data>
   <data name="VerticalVariant_Deviation" xml:space="preserve">
-    <value>Origin speed and horizontal direction deviation</value>
+    <value>Origin speed angle</value>
   </data>
   <data name="VerticalVariant_PlaneDistance" xml:space="preserve">
     <value>Plane distance</value>

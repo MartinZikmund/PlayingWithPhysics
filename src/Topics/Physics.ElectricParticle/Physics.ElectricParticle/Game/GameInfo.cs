@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using MvvmCross.ViewModels;
+using Physics.ElectricParticle.Logic;
 using Physics.Shared.Helpers;
 
 namespace Physics.ElectricParticle.Game
@@ -23,6 +24,8 @@ namespace Physics.ElectricParticle.Game
 		public bool IsPenDown { get; set; }
 
 		public GameState State { get; private set; }
+
+		public Polarity ParticlePolarity { get; private set; } = Polarity.Positive;
 
 		public PenState PenState { get; private set; } = new PenState();
 
@@ -77,7 +80,7 @@ namespace Physics.ElectricParticle.Game
 		public void UpdatePenPosition(float elapsedTime)
 		{
 			var ax = Ux * AccelerationScale;
-			var ay = -Uy * AccelerationScale + (UseGravity ? 0.3f : 0);
+			var ay = -Uy * AccelerationScale + (UseGravity ? 0.001f : 0);
 
 			var vx = PenState.Speed.X + ax * elapsedTime;
 			var vy = PenState.Speed.Y + ay * elapsedTime;
@@ -89,12 +92,14 @@ namespace Physics.ElectricParticle.Game
 			{
 				x = MathHelpers.Clamp(x, 0, 1);
 				vx = 0;
+				ParticlePolarity = ParticlePolarity == Polarity.Positive ? Polarity.Negative : Polarity.Positive;
 			}
 
 			if (y <= 0 || y >= 1)
 			{
 				y = MathHelpers.Clamp(y, 0, 1);
 				vy = 0;
+				ParticlePolarity = ParticlePolarity == Polarity.Negative ? Polarity.Positive : Polarity.Negative;
 			}
 
 			PenState.Position = new System.Numerics.Vector2(x, y);

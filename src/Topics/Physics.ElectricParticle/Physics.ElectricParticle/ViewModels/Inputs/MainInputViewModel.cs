@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -66,6 +67,18 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			}
 		}
 
+		public IReadOnlyList<Polarity> Polarities { get; } = new Polarity[]
+		{
+			Polarity.Positive,
+			Polarity.Negative
+		};
+
+		public IReadOnlyList<VelocityDirection> VelocityDirections { get; } = new VelocityDirection[]
+		{
+			VelocityDirection.VerticallyDown,
+			VelocityDirection.VerticallyUp
+		};
+
 		private void InitializeParticleTypes()
 		{
 			ParticleTypes = VariantConfigurations.All
@@ -119,8 +132,6 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 				velocityDeviation = (int)SelectedVelocityDirection;
 			}
 
-			// TODO: handle remaining cases
-
 			var particle = new ParticleSetup(
 				(ParticleType)ParticleType,
 				particlePolarity,
@@ -145,34 +156,27 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 
 		public VariantConfiguration VariantConfiguration { get; set; }
 
-		public Polarity PrimaryPlanePolarity { get; set; }
 
-		public ObservableCollection<Polarity> Polarities { get; } = new ObservableCollection<Polarity>()
-		{
-			Polarity.Positive,
-			Polarity.Negative
-		};
+		// Primary plane
+		public Polarity PrimaryPlanePolarity { get; set; }
 
 		public float PrimaryPlaneVoltage { get; set; } = 1000;
 
 		public float PrimaryPlaneDistance { get; set; } = 0.2f;
 
-		//Advanced-1, secondary options
-		public Visibility AdvancedFirstOption { get => (_inputVariant == InputVariant.AdvancedVerticalHorizontalNoGravity) ? Visibility.Visible : Visibility.Collapsed; }
-
+		// Secondary plane
 		public Polarity SecondaryPlanePolarity { get; set; }
 
 		public float SecondaryPlaneVoltage { get; set; } = 1000;
 
 		public float SecondaryPlaneDistance { get; set; } = 0.2f;
-		//END: Advanced-1, secondary options
 
 		//General input values
 		public Polarity ParticlePolarity { get; set; }
 
-		public float StartVelocity { get; set; } = 500;
+		public float StartVelocity { get; set; }
 
-		public float StartVelocityDeviation { get; set; } = 0;
+		public float StartVelocityDeviation { get; set; }
 
 		public Visibility DeviationVisibility { get => (_inputVariant != InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
@@ -181,12 +185,6 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 		public float MassMultiplier { get; set; } = 1;
 
 		public VelocityDirection SelectedVelocityDirection { get; set; }
-
-		public ObservableCollection<VelocityDirection> VelocityDirections { get; } = new ObservableCollection<VelocityDirection>()
-		{
-			VelocityDirection.VerticallyDown,
-			VelocityDirection.VerticallyUp
-		};
 
 		public Visibility VelocityDirectionVisibility { get => (_inputVariant == InputVariant.EasyHorizontalWithGravity) ? Visibility.Visible : Visibility.Collapsed; }
 
@@ -222,52 +220,62 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			}
 		}
 
-		public string PrimaryPlaneVoltageLabel
+		public string PrimaryPlaneVoltageLabel => _inputVariant switch
 		{
-			get
-			{
-				int variantIndex = (int)_inputVariant;
-				switch (variantIndex)
-				{
-					case 0:
-					case 1:
-					case 2:
-						return Localizer.Instance["Input_PlaneVoltageBetweenGeneral"];
-					case 3:
-						return Localizer.Instance["Input_PlaneVoltageBetweenHorizontal"];
-					default:
-						return Localizer.Instance["Input_PlaneVoltageBetweenVertical"];
-				}
-			}
-		}
+			InputVariant.EasyVerticalNoGravity => Localizer.Instance["Input_PlaneVoltageBetweenGeneral"],
+			InputVariant.EasyHorizontalNoGravity => Localizer.Instance["Input_PlaneVoltageBetweenGeneral"],
+			InputVariant.EasyHorizontalWithGravity => Localizer.Instance["Input_PlaneVoltageBetweenGeneral"],
+			InputVariant.AdvancedVerticalHorizontalNoGravity => Localizer.Instance["Input_PlaneVoltageBetweenVertical"],
+			InputVariant.AdvancedVerticalWithGravity => Localizer.Instance["Input_PlaneVoltageBetweenGeneral"],
+			_ => throw new InvalidOperationException()
+		};
 
-		public string PrimaryPlaneDistanceLabel
+		public string PrimaryPlaneVoltageShorthand => _inputVariant switch
 		{
-			get
-			{
-				int variantIndex = (int)_inputVariant;
-				switch (variantIndex)
-				{
-					case 0:
-					case 1:
-					case 2:
-						return Localizer.Instance["Input_PlaneDistanceGeneral"];
-					case 3:
-						return Localizer.Instance["Input_PlaneDistanceVertical"];
-					default:
-						return Localizer.Instance["Input_PlaneDistanceHorizontal"];
-				}
-			}
-		}
+			InputVariant.EasyVerticalNoGravity => "U",
+			InputVariant.EasyHorizontalNoGravity => "U",
+			InputVariant.EasyHorizontalWithGravity => "U",
+			InputVariant.AdvancedVerticalHorizontalNoGravity => "Uy",
+			InputVariant.AdvancedVerticalWithGravity => "U",
+			_ => throw new InvalidOperationException()
+		};
+
+		public string PrimaryPlaneDistanceLabel => _inputVariant switch
+		{
+			InputVariant.EasyVerticalNoGravity => Localizer.Instance["Input_PlaneDistanceGeneral"],
+			InputVariant.EasyHorizontalNoGravity => Localizer.Instance["Input_PlaneDistanceGeneral"],
+			InputVariant.EasyHorizontalWithGravity => Localizer.Instance["Input_PlaneDistanceGeneral"],
+			InputVariant.AdvancedVerticalHorizontalNoGravity => Localizer.Instance["Input_PlaneDistanceVertical"],
+			InputVariant.AdvancedVerticalWithGravity => Localizer.Instance["Input_PlaneDistanceGeneral"],
+			_ => throw new InvalidOperationException()
+		};
 
 		internal void OnParticleTypeChanged()
 		{
 			VariantConfiguration = VariantConfigurations.All.FirstOrDefault(
 				c => c.InputVariant == _inputVariant &&
 				c.ParticleType == (ParticleType?)ParticleType);
-			VariantConfigurationChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		internal void OnVariantConfigurationChanged()
+		{
+			if (VariantConfiguration != null)
+			{
+				VariantConfigurationChanged?.Invoke(this, EventArgs.Empty);
+				SetDefaultValuesFromVariant();
+			}
 		}
 
 		public event EventHandler VariantConfigurationChanged;
+
+		private void SetDefaultValuesFromVariant()
+		{
+			var variant = VariantConfiguration;
+			StartVelocity = variant.V0.DefaultValue ?? 1000;
+			StartVelocityDeviation = variant.Angle.DefaultValue ?? 0;
+			MassMultiplier = variant.M.DefaultValue ?? 1;
+			PrimaryPlaneVoltage = variant.UPrimary.DefaultValue ?? 1000;
+			SecondaryPlaneVoltage = variant.USecondary.DefaultValue ?? 1000;
+		}
 	}
 }
