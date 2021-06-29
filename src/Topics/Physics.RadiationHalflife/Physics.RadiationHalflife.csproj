@@ -136,6 +136,12 @@
     <Compile Include="Rendering\IVariantRenderer.cs" />
     <Compile Include="Rendering\RadiationHalflifeController.cs" />
     <Compile Include="Rendering\RadioactiveLawRenderer.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddOrUpdateAnimationViewModel.cs" />
     <Compile Include="ViewModels\DemoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -255,9 +261,7 @@
       <Version>3.4.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ValuesTable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\SelfStudy\Physics.SelfStudy\Physics.SelfStudy.csproj">
       <Project>{c19a64cd-7662-4572-9fe7-573e7bea90f4}</Project>
@@ -286,6 +290,10 @@
     <Page Include="Dialogs\AddOrUpdateAnimationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValuesTable\ValuesTablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DemoView.xaml">
       <SubType>Designer</SubType>

@@ -139,15 +139,32 @@
                                 GoBackCommand="{x:Bind Model.GoBackCommand}"
                                 Text="{extensions:Localize Key=ShortAppName}" />
 
-                            <TextBlock
+                            <Button
                                 Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Margin="0,0,0,8"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.ShowCompoundOscillationValuesTableCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Viewbox
+                                        Width="16"
+                                        Height="16"
+                                        VerticalAlignment="Center">
+                                        <SymbolIcon Symbol="ViewAll" />
+                                    </Viewbox>
+                                    <TextBlock Text="{extensions:Localize Key=ShowTableValues}" />
+                                </StackPanel>
+                            </Button>
+
+                            <TextBlock
+                                Grid.Row="2"
                                 Grid.ColumnSpan="2"
                                 Style="{StaticResource SubtitleTextBlockStyle}"
                                 Text="{extensions:Localize Key=ChooseVariantTitle}" />
 
                             <controls:RadioButtons
                                 x:Name="VariantsGroup"
-                                Grid.Row="2"
+                                Grid.Row="3"
                                 Grid.ColumnSpan="2"
                                 SelectedIndex="{x:Bind Model.SelectedVariant, Mode=TwoWay}"
                                 SelectionChanged="VariantsGroup_SelectionChanged">
@@ -159,7 +176,7 @@
                                 <RadioButton Content="{extensions:Localize Key=BeamActivity}" Visibility="{x:Bind Model.AdvancedDifficulty, Mode=OneTime}" />
                             </controls:RadioButtons>
                             <controls:NumberBox
-                                Grid.Row="3"
+                                Grid.Row="4"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Left"
                                 Header="{extensions:Localize Key=NumberOfParticlesNumberBox}"
@@ -171,7 +188,7 @@
 
                             <!--  Table with nucleoids  -->
                             <Grid
-                                Grid.Row="4"
+                                Grid.Row="5"
                                 Grid.ColumnSpan="2"
                                 Visibility="{x:Bind Model.LawOfRadioactiveDecaySelection, Mode=OneWay}">
                                 <Grid.ColumnDefinitions>
@@ -194,7 +211,7 @@
                                 </TextBlock>
                             </Grid>
                             <ListView
-                                Grid.Row="5"
+                                Grid.Row="6"
                                 Grid.ColumnSpan="2"
                                 ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
                                 ItemTemplate="{StaticResource NucleoidListItemTemplate}"
@@ -203,7 +220,7 @@
                                 SelectionChanged="ListView_SelectionChanged"
                                 Visibility="{x:Bind Model.LawOfRadioactiveDecaySelection, Mode=OneWay}" />
                             <StackPanel
-                                Grid.Row="6"
+                                Grid.Row="7"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
                                 Orientation="Horizontal"
@@ -224,7 +241,7 @@
 
                             <!--  Table with radionuclids  -->
                             <Grid
-                                Grid.Row="3"
+                                Grid.Row="5"
                                 Grid.ColumnSpan="2"
                                 Visibility="{x:Bind Model.BeamActivitySelected, Mode=OneWay}">
                                 <Grid.ColumnDefinitions>
@@ -248,7 +265,7 @@
                             </Grid>
 
                             <ListView
-                                Grid.Row="4"
+                                Grid.Row="6"
                                 Grid.ColumnSpan="2"
                                 ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
                                 ItemTemplate="{StaticResource RadionuclideListItemTemplate}"

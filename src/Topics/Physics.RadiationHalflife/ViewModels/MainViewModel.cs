@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Physics.RadiationHalflife.Dialogs;
 using Physics.RadiationHalflife.Logic;
 using Physics.RadiationHalflife.Rendering;
+using Physics.RadiationHalflife.ValuesTable;
 using Physics.RadiationHalflife.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -78,27 +79,27 @@ namespace Physics.RadiationHalflife.ViewModels
 
 		private async Task ShowValuesTableAsync()
 		{
-			//var newWindow = await AppWindow.TryCreateAsync();
-			//var appWindowContentFrame = new Frame();
-			//appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+			var newWindow = await AppWindow.TryCreateAsync();
+			var appWindowContentFrame = new Frame();
+			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
-			//var valuesTableService = new TableService(physicsService);
-			//var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
-			//(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
-			//// Attach the XAML content to the window.
-			//ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			var valuesTableService = new TableService((PhenomenonVariant)SelectedVariant, _currentPhysicsService);
+			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, (PhenomenonVariant)SelectedVariant);
+			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+			// Attach the XAML content to the window.
+			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
 			//newWindow.Title = title;
 
-			//newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
-			//newWindow.TitleBar.ForegroundColor = Colors.White;
-			//newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			//newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			//newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			//newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-			//newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			//newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			//newWindow.RequestSize(new Size(480, 300));
-			//var shown = await newWindow.TryShowAsync();
+			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+			newWindow.TitleBar.ForegroundColor = Colors.White;
+			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.RequestSize(new Size(480, 300));
+			var shown = await newWindow.TryShowAsync();
 		}
 
 		private async Task StartSimulationAsync(AnimationInfo animationInfo)
@@ -128,18 +129,21 @@ namespace Physics.RadiationHalflife.ViewModels
 			});
 		}
 
+		private PhysicsService _currentPhysicsService;
+
 		public PhysicsService GeneratePhysicsService(AnimationInfo animationInfo)
 		{
 			switch ((PhenomenonVariant)SelectedVariant)
 			{
 				case PhenomenonVariant.BeamActivity:
-					return new BeamActivityPhysicsService(animationInfo);
+					_currentPhysicsService = new BeamActivityPhysicsService(animationInfo);
 					break;
 				case PhenomenonVariant.RadioactiveLaw:
 				default:
-					return new RadioactiveLawPhysicsService(animationInfo);
+					_currentPhysicsService = new RadioactiveLawPhysicsService(animationInfo);
 					break;
 			}
+			return _currentPhysicsService;
 		}
 
 		public Visibility CanvasVisibility => (SelectedVariant == 4 || SelectedVariant == 5) ? Visibility.Visible : Visibility.Collapsed;
