@@ -78,8 +78,8 @@
 					<ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
 				</Grid.ColumnDefinitions>
 				<TextBlock>
-                    <Run Text="{x:Bind Model.PrimaryPlaneVoltageLabel}" />
-                    <Run FontWeight="Bold" Text="U" />
+                    <Run Text="{x:Bind Model.PrimaryPlaneVoltageLabel, Mode=OneWay}" />
+                    <Run FontWeight="Bold" Text="{x:Bind Model.PrimaryPlaneVoltageShorthand, Mode=OneWay}" />
                     <Run Text="[V]" />
 				</TextBlock>
 				<winui:NumberBox

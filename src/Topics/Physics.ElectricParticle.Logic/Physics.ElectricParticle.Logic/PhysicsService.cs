@@ -376,7 +376,7 @@ namespace Physics.ElectricParticle.Logic
 
 		private BigNumber ComplexEpAxis(PlaneSetup plane, BigNumber coordinate)
 		{
-			BigNumber top = -plane.Voltage * GetChargeBase();
+			BigNumber top = -plane.Voltage * (int)_setup.Particle.Polarity * GetChargeBase();
 			BigNumber bottom = plane.Distance * _setup.Environment.Value;
 			var fraction = top / bottom;
 			fraction *= new BigNumber(1, GetChargeExponent());

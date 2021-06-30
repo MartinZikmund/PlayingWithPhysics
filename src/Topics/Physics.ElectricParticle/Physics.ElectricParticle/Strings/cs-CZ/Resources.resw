@@ -224,13 +224,13 @@ Grafika: Petr Weinlich</value>
     <value>levé</value>
   </data>
   <data name="Input_PlaneVoltageBetweenGeneral" xml:space="preserve">
-    <value>Hodnota napětí mezi deskami</value>
+    <value>Napětí mezi deskami</value>
   </data>
   <data name="Input_PlaneVoltageBetweenHorizontal" xml:space="preserve">
-    <value>Hodnota napětí mezi vodorovnými deskami</value>
+    <value>Napětí mezi vodorovnými deskami</value>
   </data>
   <data name="Input_PlaneVoltageBetweenVertical" xml:space="preserve">
-    <value>Hodnota napětí mezi svislými deskami</value>
+    <value>Napětí mezi svislými deskami</value>
   </data>
   <data name="Input_PrimaryPlaneChargePolarity_FirstPart" xml:space="preserve">
     <value>Polarita náboje</value>
