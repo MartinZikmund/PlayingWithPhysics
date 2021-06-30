@@ -54,7 +54,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var distance = CalculateDistance(timeInSeconds);
-			var angleInRad = distance / (2 * _setup.Radius);
+			var angleInRad = distance / (_setup.Radius);
 			return angleInRad;
 		}
 
@@ -125,7 +125,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var velocity = CalculateVelocity(timeInSeconds);
-			return 0.5f * _setup.Mass * velocity;
+			return 0.5f * _setup.Mass * velocity * velocity;
 		}
 
 		public float CalculateEr(float timeInSeconds)
@@ -133,7 +133,8 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var j = CalculateJ();
-			return 0.5f * j * CalculateAngularVelocity(timeInSeconds);
+			var angular = CalculateAngularVelocity(timeInSeconds);
+			return 0.5f * j * angular * angular;
 		}
 
 		public float CalculateJ()
