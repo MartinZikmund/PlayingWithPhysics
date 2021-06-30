@@ -233,7 +233,7 @@
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
-                SpeedControlVisibility="Collapsed">
+                SpeedControlVisibility="Visible">
                 <sharedControls:SimulationControls.Background>
                     <AcrylicBrush
                         BackgroundSource="Backdrop"
