@@ -42,7 +42,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			_selectedRadionuclide = Radionuclides[0];	
 		}
 
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(ShowValuesTableAsync);
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
 		public ICommand ShowCompoundOscillationValuesTableCommand => GetOrCreateAsyncCommand(ShowCompoundOscillationValuesTableAsync);
 
@@ -84,7 +84,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
 			var valuesTableService = new TableService((PhenomenonVariant)SelectedVariant, _currentPhysicsService);
-			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, (PhenomenonVariant)SelectedVariant);
+			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, (PhenomenonVariant)SelectedVariant, _currentPhysicsService);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.
 			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);

@@ -32,12 +32,13 @@ namespace Physics.RadiationHalflife.Logic
 
 		public void FillTable()
 		{
+			float currentTime = 0;
 			int particles = Animation.ParticleCount;
 			while (particles > 0)
 			{
-				particles = ComputeN(_currentTime);
-				ValuesTable.Add((_currentTime, particles));
-				_currentTime += Animation.Delta;
+				particles = ComputeN(currentTime);
+				ValuesTable.Add((currentTime, particles));
+				currentTime += Animation.Delta;
 			}
 		}
 

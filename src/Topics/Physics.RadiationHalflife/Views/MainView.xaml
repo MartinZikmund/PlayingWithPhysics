@@ -144,7 +144,7 @@
                                 Grid.ColumnSpan="2"
                                 Margin="0,0,0,8"
                                 HorizontalAlignment="Stretch"
-                                Command="{x:Bind Model.ShowCompoundOscillationValuesTableCommand}">
+                                Command="{x:Bind Model.ShowValuesTableCommand}">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <Viewbox
                                         Width="16"
