@@ -168,10 +168,10 @@
                                 Grid.ColumnSpan="2"
                                 SelectedIndex="{x:Bind Model.SelectedVariant, Mode=TwoWay}"
                                 SelectionChanged="VariantsGroup_SelectionChanged">
-                                <RadioButton Content="{extensions:Localize Key=AlphaDecay}" />
+                                <!--<RadioButton Content="{extensions:Localize Key=AlphaDecay}" />
                                 <RadioButton Content="{extensions:Localize Key=BetaPositiveDecay}" />
                                 <RadioButton Content="{extensions:Localize Key=BetaNegativeDecay}" />
-                                <RadioButton Content="{extensions:Localize Key=GammaDecay}" />
+                                <RadioButton Content="{extensions:Localize Key=GammaDecay}" />-->
                                 <RadioButton Content="{extensions:Localize Key=LawOfRadioactiveDecay}" />
                                 <RadioButton Content="{extensions:Localize Key=BeamActivity}" Visibility="{x:Bind Model.AdvancedDifficulty, Mode=OneTime}" />
                             </controls:RadioButtons>
