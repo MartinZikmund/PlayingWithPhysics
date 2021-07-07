@@ -144,7 +144,7 @@ Grafika: Petr Weinlich</value>
     <value>Beta mínus rozpad</value>
   </data>
   <data name="BetaPositiveDecay" xml:space="preserve">
-    <value>Beta plus rozpad</value>
+    <value>Beta rozpad</value>
   </data>
   <data name="Carbon_Halflife" xml:space="preserve">
     <value>let</value>
@@ -292,6 +292,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Zákon radioaktivní přeměny</value>
+  </data>
+  <data name="ShowTableValues" xml:space="preserve">
+    <value>Zobrazit tabulku hodnot</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

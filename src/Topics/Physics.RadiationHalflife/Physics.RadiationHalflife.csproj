@@ -163,7 +163,6 @@
     <Content Include="Assets\Animations\0.gif" />
     <Content Include="Assets\Animations\1.gif" />
     <Content Include="Assets\Animations\2.gif" />
-    <Content Include="Assets\Animations\3.gif" />
     <Content Include="Assets\Elements\Americium.png" />
     <Content Include="Assets\Elements\Carbon.png" />
     <Content Include="Assets\Elements\Cesium.png" />
