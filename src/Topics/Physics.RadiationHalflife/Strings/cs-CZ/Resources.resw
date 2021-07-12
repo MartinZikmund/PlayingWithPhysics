@@ -144,7 +144,7 @@ Grafika: Petr Weinlich</value>
     <value>Beta mínus rozpad</value>
   </data>
   <data name="BetaPositiveDecay" xml:space="preserve">
-    <value>Beta rozpad</value>
+    <value>Beta plus rozpad</value>
   </data>
   <data name="Carbon_Halflife" xml:space="preserve">
     <value>let</value>

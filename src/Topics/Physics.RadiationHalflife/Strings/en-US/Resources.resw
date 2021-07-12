@@ -231,7 +231,7 @@ Graphics: Petr Weinlich</value>
     <value>Beta negative decay</value>
   </data>
   <data name="BetaPositiveDecay" xml:space="preserve">
-    <value>Beta decay</value>
+    <value>Beta positive decay</value>
   </data>
   <data name="GammaDecay" xml:space="preserve">
     <value>Gamma decay</value>
