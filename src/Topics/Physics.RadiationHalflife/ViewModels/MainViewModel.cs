@@ -39,10 +39,11 @@ namespace Physics.RadiationHalflife.ViewModels
 			_contentDialogHelper = contentDialogHelper;
 			_selectedNucleoid = Nucleoids[0];
 			_selectedCustomUnit = CustomUnits[0];
-			_selectedRadionuclide = Radionuclides[0];	
+			_selectedRadionuclide = Radionuclides[0];
+			_currentPhysicsService = GeneratePhysicsService(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, SelectedNucleoid.Halflife, ParticlesCount));
 		}
 
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<OscillationInfoViewModel>(ShowValuesTableAsync);
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
 		public ICommand ShowCompoundOscillationValuesTableCommand => GetOrCreateAsyncCommand(ShowCompoundOscillationValuesTableAsync);
 
@@ -82,9 +83,9 @@ namespace Physics.RadiationHalflife.ViewModels
 			var newWindow = await AppWindow.TryCreateAsync();
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-
+			
 			var valuesTableService = new TableService((PhenomenonVariant)SelectedVariant, _currentPhysicsService);
-			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, (PhenomenonVariant)SelectedVariant);
+			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, (PhenomenonVariant)SelectedVariant, _currentPhysicsService);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.
 			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
@@ -146,8 +147,8 @@ namespace Physics.RadiationHalflife.ViewModels
 			return _currentPhysicsService;
 		}
 
-		public Visibility CanvasVisibility => (SelectedVariant == 4 || SelectedVariant == 5) ? Visibility.Visible : Visibility.Collapsed;
-		public Visibility AnimationPanelVisibility => (SelectedVariant != 4 && SelectedVariant != 5) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility CanvasVisibility => (SelectedVariant == 0 || SelectedVariant == 1) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility AnimationPanelVisibility => (SelectedVariant != 0 && SelectedVariant != 1) ? Visibility.Visible : Visibility.Collapsed;
 
 		public List<RadionuclideViewModel> Radionuclides = new List<RadionuclideViewModel>
 		{
@@ -223,7 +224,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 		}
 
-		public Visibility BeamActivitySelected => (SelectedVariant == 5) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility BeamActivitySelected => (SelectedVariant == 1) ? Visibility.Visible : Visibility.Collapsed;
 
 		public Visibility CustomHalflifeInputsVisibility { get; set; } = Visibility.Collapsed;
 
@@ -270,9 +271,9 @@ namespace Physics.RadiationHalflife.ViewModels
 			}
 		}
 
-		public Visibility LawOfRadioactiveDecaySelection => (SelectedVariant == 4) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility LawOfRadioactiveDecaySelection => (SelectedVariant == 0) ? Visibility.Visible : Visibility.Collapsed;
 
-		public Visibility ParticleInputVisibility => (SelectedVariant == 4 && Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
+		public Visibility ParticleInputVisibility => (SelectedVariant == 0 && Difficulty == DifficultyOption.Advanced) ? Visibility.Visible : Visibility.Collapsed;
 
 		private int _particlesCount = 100;
 		public int ParticlesCount
@@ -307,7 +308,7 @@ namespace Physics.RadiationHalflife.ViewModels
 			{
 				_selectedVariant = value;
 				//Law of radioactive decay
-				if (value == 4)
+				if (value == 0)
 				{
 					if (SelectedNucleoid == Nucleoids.Last())
 					{
@@ -320,14 +321,14 @@ namespace Physics.RadiationHalflife.ViewModels
 						StartSimulationAsync(new RadioactiveLawAnimationInfo(SelectedNucleoid.ChemicalElement, SelectedNucleoid.Halflife, ParticlesCount));
 					}
 				}
-				else if (value == 5) //Beam activity
+				else if (value == 1) //Beam activity
 				{
 
 					CustomHalflifeInputsVisibility = Visibility.Collapsed;
 					StartSimulationAsync(new BeamActivityAnimationInfo(SelectedRadionuclide.ChemicalElement, SelectedRadionuclide.Halflife, SelectedRadionuclide.ActivityBase, SelectedRadionuclide.ActivityMantissa));
 				}
 
-				if (value != 4)
+				if (value != 0)
 				{
 					CustomHalflifeInputsVisibility = Visibility.Collapsed;
 				}

@@ -6,10 +6,10 @@ namespace Physics.RadiationHalflife.Logic
 {
 	public enum PhenomenonVariant
 	{
-		AlphaDecay,
-		BetaPositiveDecay,
-		BetaNegativeDecay,
-		GammaDecay,
+		//AlphaDecay,
+		//BetaPositiveDecay,
+		//BetaNegativeDecay,
+		//GammaDecay,
 		RadioactiveLaw,
 		BeamActivity
 	}

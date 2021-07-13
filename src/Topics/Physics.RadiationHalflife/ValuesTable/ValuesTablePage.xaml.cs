@@ -29,7 +29,7 @@ namespace Physics.RadiationHalflife.Views
 			formatter.IntegerDigits = 1;
 			formatter.FractionDigits = 2;
 			formatter.NumberRounder = rounder;
-			TimeIntervalNumberBox.NumberFormatter = formatter;
+			//TimeIntervalNumberBox.NumberFormatter = formatter;
 		}
 
 		public ValuesTableDialogViewModel Model { get; set; }

@@ -293,6 +293,9 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Zákon radioaktivní přeměny</value>
   </data>
+  <data name="ShowTableValues" xml:space="preserve">
+    <value>Zobrazit tabulku hodnot</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>

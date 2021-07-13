@@ -320,4 +320,7 @@ Graphics: Petr Weinlich</value>
   <data name="GraphPercentage" xml:space="preserve">
     <value>relative percentage of undecayed cores</value>
   </data>
+  <data name="ShowTableValues" xml:space="preserve">
+    <value>Show values table</value>
+  </data>
 </root>

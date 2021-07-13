@@ -33,6 +33,7 @@
   {
     "Id": 6,
     "Name": "LawOfConservationOfMomentum",
+    "ShortenedName": "MomentumConservation",
     "PackageId": "20845VzdlvaccentrumTurnov.PlayingwithPhysicsLawofC_svr2k4kdvk0kr",
     "StoreId": "9PLT6FSDFWRQ"
   },

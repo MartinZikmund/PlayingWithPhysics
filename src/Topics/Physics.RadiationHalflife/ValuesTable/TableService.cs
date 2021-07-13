@@ -30,24 +30,47 @@ namespace Physics.RadiationHalflife.ValuesTable
 			List<TableRow> table = new List<TableRow>();
 			float cycles = 0;
 			float time;
-			do
-			{
-				time = timeInterval * cycles;
-				//Add TableRow
-				float otherValue = 0;
-				if (_variant == PhenomenonVariant.RadioactiveLaw)
-				{
-					otherValue = ((RadioactiveLawPhysicsService)_physicsService).ComputeN(time);
-				}
-				else
-				{
-					otherValue = ((BeamActivityPhysicsService)_physicsService).ComputeA(time);
-				}
 
-				TableRow valuesRow = new TableRow(time, otherValue);
-				table.Add(valuesRow);
-				cycles++;
-			} while (cycles < MaxCycles || time < MaxTimeInSeconds);
+			if (_variant == PhenomenonVariant.RadioactiveLaw)
+			{
+				var service = ((RadioactiveLawPhysicsService)_physicsService);
+				service.FillTable();
+				List<(float value1, int value2)> originalTable = service.ValuesTable;
+				foreach(var item in originalTable)
+				{
+					TableRow row = new TableRow(item.value1, item.value2);
+					table.Add(row);
+				}
+			}
+			else
+			{
+				var service = ((BeamActivityPhysicsService)_physicsService);
+				List<(float value1, float value2)> originalTable = service.FillTable();
+				foreach (var item in originalTable)
+				{
+					TableRow row = new TableRow(item.value1, item.value2);
+					table.Add(row);
+				}
+			}
+
+			//do
+			//{
+			//	time = timeInterval * cycles;
+			//	Add TableRow
+			//	float otherValue = 0;
+			//	if (_variant == PhenomenonVariant.RadioactiveLaw)
+			//	{
+			//		otherValue = ((RadioactiveLawPhysicsService)_physicsService).ComputeN(time);
+			//	}
+			//	else
+			//	{
+			//		otherValue = ((BeamActivityPhysicsService)_physicsService).ComputeA(time);
+			//	}
+
+			//	TableRow valuesRow = new TableRow(time, otherValue);
+			//	table.Add(valuesRow);
+			//	cycles++;
+			//} while (cycles < MaxCycles || time < MaxTimeInSeconds);
 
 			return table;
 		}

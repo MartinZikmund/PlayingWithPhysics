@@ -13,11 +13,13 @@ namespace Physics.RadiationHalflife.ValuesTable
 	{
 		private DifficultyOption _difficulty;
 		private PhenomenonVariant _variant;
-		public ValuesTableDialogViewModel(ITableService<TableRow> tableService, DifficultyOption movementType, PhenomenonVariant variant)
+		private PhysicsService _physicsService;
+		public ValuesTableDialogViewModel(ITableService<TableRow> tableService, DifficultyOption movementType, PhenomenonVariant variant, PhysicsService physicsService)
 			: base(tableService)
 		{
 			_difficulty = movementType;
 			_variant = variant;
+			_physicsService = physicsService;
 		}
 
 		internal void Reset(TableService tableService, DifficultyOption difficulty)
@@ -32,7 +34,7 @@ namespace Physics.RadiationHalflife.ValuesTable
 		{
 			if (eventArgs.Column.Header.ToString() == "Time")
 			{
-				eventArgs.Column.Header = "t (s)";
+				eventArgs.Column.Header = "t";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "OtherValue")
