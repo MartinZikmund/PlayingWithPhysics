@@ -138,7 +138,7 @@
 					</Grid.ColumnDefinitions>
 					<TextBlock>
                         <Run Text="{extensions:Localize Key=Input_PlaneVoltageBetweenHorizontal}" />
-                        <Run FontWeight="Bold" Text="Ux" />
+                        <Run FontWeight="Bold" Text="Uy" />
                         <Run Text="[V]" />
 					</TextBlock>
 					<winui:NumberBox

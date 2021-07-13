@@ -235,7 +235,7 @@ namespace Physics.ElectricParticle.ViewModels.Inputs
 			InputVariant.EasyVerticalNoGravity => "U",
 			InputVariant.EasyHorizontalNoGravity => "U",
 			InputVariant.EasyHorizontalWithGravity => "U",
-			InputVariant.AdvancedVerticalHorizontalNoGravity => "Uy",
+			InputVariant.AdvancedVerticalHorizontalNoGravity => "Ux",
 			InputVariant.AdvancedVerticalWithGravity => "U",
 			_ => throw new InvalidOperationException()
 		};
