@@ -14,7 +14,7 @@ using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 namespace Physics.RotationalInclinedPlane.ViewModels
 {
 	public class InputDialogViewModel : ViewModelBase
-    {
+	{
 		public InputDialogViewModel(DifficultyOption difficulty)
 		{
 			Difficulty = difficulty;
@@ -30,7 +30,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 				Radius = setup.Radius;
 				InclinedAngle = setup.InclinedAngle;
 				InclinedLength = setup.InclinedLength;
-				Gravity = setup.Gravity;		
+				Gravity = setup.Gravity;
 				Color = ColorHelper.ToColor(setup.Color);
 				Mass = setup.Mass;
 			}
@@ -40,7 +40,13 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 		{
 			if (Radius * 10 > InclinedLength)
 			{
-				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
+				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationTenMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
+				await dialog.ShowAsync();
+				return false;
+			}
+			if (Radius * 100 < InclinedLength)
+			{
+				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationHundredMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
 				await dialog.ShowAsync();
 				return false;
 			}
@@ -134,7 +140,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 				Gravity,
 				Radius,
 				InclinedLength,
-				InclinedAngle,				
+				InclinedAngle,
 				0,
 				ColorHelper.ToHex(Color));
 		}

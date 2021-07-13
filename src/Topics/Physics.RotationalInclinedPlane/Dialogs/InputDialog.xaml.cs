@@ -11,7 +11,7 @@ namespace Physics.RotationalInclinedPlane.Dialogs
 			InitializeComponent();
 			Model = viewModel;
 			InclinedPlaneLengthNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
-			RadiusNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
+			RadiusNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 2, smallChange: 0.001);
 			MassNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
 			InclinedPlaneAngleNumberBox.SetupFormatting(increment: 0.1, fractionDigits: 1, smallChange: 1);
 			GravityNumberBox.SetupFormatting(increment: 0.01, fractionDigits: 2, smallChange: 0.01);
