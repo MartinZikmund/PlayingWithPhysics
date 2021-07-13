@@ -28,7 +28,7 @@
 
     <!-- SkiaSharp -->
     <PackageReference Update="SkiaSharp" Version="2.80.2" />
-    <PackageReference Update="SkiaSharp.Views" Version="2.80.2" />
+    <PackageReference Update="SkiaSharp.Views" Version="2.80.3" />
 
     <!-- MvvmCross-->
     <PackageReference Update="MvvmCross" Version="7.1.2" />
