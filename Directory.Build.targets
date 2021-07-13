@@ -51,7 +51,7 @@
     <PackageReference Update="Win2D.uwp" Version="1.26.0" />
     <PackageReference Update="Nito.Disposables" Version="2.2.0" />
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Update="XamlFlair.UWP" Version="1.2.4" />
+    <PackageReference Update="XamlFlair.UWP" Version="1.2.6" />
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
     <PackageReference Update="ReactiveUI" Version="13.3.2" />
 
