@@ -46,18 +46,5 @@ namespace Physics.HomogenousMovement
             EK = ek.ToString(ZeroFormatting);
             EPEK = epek.ToString(ZeroFormatting);
         }
-
-        protected override IEnumerable<string> GetCellValuesInOrder()
-        {
-            yield return Time;
-            yield return X;
-            yield return Y;
-            yield return V;
-            yield return VX;
-            yield return VY;
-            yield return EP;
-            yield return EK;
-            yield return EPEK;
-        }
     }
 }

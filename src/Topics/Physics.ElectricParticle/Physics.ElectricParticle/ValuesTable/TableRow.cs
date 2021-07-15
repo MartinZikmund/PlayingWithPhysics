@@ -11,18 +11,35 @@ namespace Physics.ElectricParticle.ValuesTable
 {
     public class TableRow : ValuesTableRowBase
     {
-        //private const string ZeroFormatting = "0.###";
-
+        [ValuesTableHeader("t (s)")]
         public string Time { get; set; }
+
+		[ValuesTableHeader("x (m)")]
         public string X { get; set; }
+
+		[ValuesTableHeader("y (m)")]
         public string Y { get; set; }
+
+		[ValuesTableHeader("v (m/s)")]
         public string Velocity { get; set; }
+
+		[ValuesTableHeader("vx (m/s)")]
         public string VelocityX { get; set; }
-        public string VelocityY { get; set; }
-        public string Acceleration { get; set; }
+
+		[ValuesTableHeader("vy (m/s)")]
+		public string VelocityY { get; set; }
+
+		[ValuesTableHeader("a (m/s²)")]
+		public string Acceleration { get; set; }
+
+		[ValuesTableHeader("Ek (J)")]
         public string Ek { get; set; }
-        public string Ep { get; set; }
-        public string E { get; set; }
+
+		[ValuesTableHeader("Ep (J)")]
+		public string Ep { get; set; }
+
+		[ValuesTableHeader("E (J)")]
+		public string E { get; set; }
 
 		public TableRow(
 			BigNumber time,
@@ -47,29 +64,5 @@ namespace Physics.ElectricParticle.ValuesTable
 			Ep = ep.ToString();
 			E = e.ToString();
 		}
-
-		//public TableRow(float time, float x, float y, float velocity, float radius, float omega)
-  //      {
-  //          Time = time.ToString("0.########");
-  //          X = x.ToString("0.########");
-  //          Y = y.ToString("0.########");
-  //          Velocity = velocity.ToString("0.########");
-  //          Radius = radius.ToString("0.########");
-  //          Omega = omega.ToString("0.########");
-  //      }
-
-        protected override IEnumerable<string> GetCellValuesInOrder()
-        {
-            yield return Time;
-            yield return X;
-            yield return Y;
-            yield return Velocity;
-            yield return VelocityX;
-            yield return VelocityY;
-            yield return Acceleration;
-            yield return Ek;
-            yield return Ep;
-            yield return E;
-        }
     }
 }
