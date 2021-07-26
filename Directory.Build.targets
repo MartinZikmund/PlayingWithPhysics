@@ -32,7 +32,7 @@
 
     <!-- MvvmCross-->
     <PackageReference Update="MvvmCross" Version="7.1.2" />
-    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="7.1.2" />
+    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="8.0.2" />
 
     <!-- Other -->
     <PackageReference Update="AutoMapper" Version="10.1.1" />
