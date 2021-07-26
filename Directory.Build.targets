@@ -31,7 +31,7 @@
     <PackageReference Update="SkiaSharp.Views" Version="2.80.3" />
 
     <!-- MvvmCross-->
-    <PackageReference Update="MvvmCross" Version="7.1.2" />
+    <PackageReference Update="MvvmCross" Version="8.0.2" />
     <PackageReference Update="MvvmCross.Plugin.Visibility" Version="7.1.2" />
 
     <!-- Other -->
