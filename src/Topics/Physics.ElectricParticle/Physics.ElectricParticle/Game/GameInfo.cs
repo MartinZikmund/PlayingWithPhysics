@@ -14,6 +14,8 @@ namespace Physics.ElectricParticle.Game
 
 		private readonly Stopwatch _drawingStopwatch = new Stopwatch();
 
+		private readonly Stopwatch _lastRepolarization = new Stopwatch();
+
 		private float _ux = 0;
 		private float _uy = 0;
 
@@ -88,27 +90,28 @@ namespace Physics.ElectricParticle.Game
 			var ax = Ux * AccelerationScale;
 			var ay = -Uy * AccelerationScale + (UseGravity ? 0.001f : 0);
 
-			var vx = PenState.Speed.X + ax * elapsedTime;
-			var vy = PenState.Speed.Y + ay * elapsedTime;
+			var vx = PenState.Speed.X + Q * ax * elapsedTime;
+			var vy = PenState.Speed.Y + Q * ay * elapsedTime;
 
-			var x = PenState.Position.X + PenState.Speed.X * elapsedTime + Q * 0.5f * PenState.Acceleration.X * elapsedTime * elapsedTime;
-			var y = PenState.Position.Y + PenState.Speed.Y * elapsedTime + Q * 0.5f * PenState.Acceleration.Y * elapsedTime * elapsedTime;
+			var x = PenState.Position.X + vx * elapsedTime + Q * 0.5f * ax * elapsedTime * elapsedTime;
+			var y = PenState.Position.Y + vy * elapsedTime + Q * 0.5f * ay * elapsedTime * elapsedTime;
 
 			if (x <= 0 || x >= 1)
 			{
-				var qNoSign = Math.Abs(Ux / 100);
-				if (Q < 0)
-				{
-					Q = qNoSign;
-				}
-				else if (Q > 0)
-				{
-					Q = -qNoSign;
-				}
-				else
-				{
-					Q = 0;
-				}
+				TrySwitchPolarity();
+				//var qNoSign = Math.Abs(Ux / 100);
+				//if (Q < 0)
+				//{
+				//	Q = qNoSign;
+				//}
+				//else if (Q > 0)
+				//{
+				//	Q = -qNoSign;
+				//}
+				//else
+				//{
+				//	Q = 0;
+				//}
 
 				x = MathHelpers.Clamp(x, 0, 1);
 				vx = 0;
@@ -116,19 +119,20 @@ namespace Physics.ElectricParticle.Game
 
 			if (y <= 0 || y >= 1)
 			{
-				var qNoSign = Math.Abs(Uy / 100);
-				if (Q < 0)
-				{
-					Q = qNoSign;
-				}
-				else if (Q > 0)
-				{
-					Q = -qNoSign;
-				}
-				else
-				{
-					Q = 0;
-				}
+				TrySwitchPolarity();
+				//var qNoSign = Math.Abs(Uy / 100);
+				//if (Q < 0)
+				//{
+				//	Q = qNoSign;
+				//}
+				//else if (Q > 0)
+				//{
+				//	Q = -qNoSign;
+				//}
+				//else
+				//{
+				//	Q = 0;
+				//}
 
 				y = MathHelpers.Clamp(y, 0, 1);
 				vy = 0;
@@ -148,6 +152,15 @@ namespace Physics.ElectricParticle.Game
 			}
 
 			RaisePropertyChanged(nameof(DrawingTimeString));
+		}
+
+		private void TrySwitchPolarity()
+		{
+			if (!_lastRepolarization.IsRunning || _lastRepolarization.ElapsedMilliseconds > 300)
+			{
+				Q = -Q;
+				_lastRepolarization.Restart();
+			}
 		}
 	}
 }

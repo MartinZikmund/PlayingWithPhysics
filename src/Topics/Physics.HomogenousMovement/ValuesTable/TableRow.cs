@@ -7,14 +7,31 @@ namespace Physics.HomogenousMovement
     {
         private const string ZeroFormatting = "0.###";
 
+		[ValuesTableHeader("t (s)")]
         public string Time { get; set; }
+
+		[ValuesTableHeader("x (m)")]
         public string X { get; set; }
+
+		[ValuesTableHeader("y (m)")]
         public string Y { get; set; }
-        public string V { get; set; }
+
+		[ValuesTableHeader("v (m/s)")]
+		public string V { get; set; }
+
+		[ValuesTableHeader("vx (m/s)")]
         public string VX { get; set; }
-        public string VY { get; set; }
+
+		[ValuesTableHeader("vy (m/s)")]
+		public string VY { get; set; }
+
+		[ValuesTableHeader("Ep (J)")]
         public string EP { get; set; }
-        public string EK { get; set; }
+
+		[ValuesTableHeader("Ek (J)")]
+		public string EK { get; set; }
+
+		[ValuesTableHeader("Ep + Ek (J)")]
         public string EPEK { get; set; }
 
         public TableRow(float time, float x, float y, float v, float vx, float vy, float ep, float ek, float epek)
@@ -28,19 +45,6 @@ namespace Physics.HomogenousMovement
             EP = ep.ToString(ZeroFormatting);
             EK = ek.ToString(ZeroFormatting);
             EPEK = epek.ToString(ZeroFormatting);
-        }
-
-        protected override IEnumerable<string> GetCellValuesInOrder()
-        {
-            yield return Time;
-            yield return X;
-            yield return Y;
-            yield return V;
-            yield return VX;
-            yield return VY;
-            yield return EP;
-            yield return EK;
-            yield return EPEK;
         }
     }
 }

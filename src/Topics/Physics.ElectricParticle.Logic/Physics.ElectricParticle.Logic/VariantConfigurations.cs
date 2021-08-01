@@ -42,7 +42,7 @@
 				ParticleType = ParticleType.ChargedBody,
 				Q = FieldConfiguration.CreateRestricted(1, 5, 1, step: 1),
 				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
-				UPrimary = FieldConfiguration.CreateUnrestricted(8000),
+				UPrimary = FieldConfiguration.CreateRestricted(0, 1000000, 8000),
 				V0 = FieldConfiguration.CreateRestricted(0, 1000, 90),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 0)
 			},
@@ -74,7 +74,7 @@
 				ParticleType = ParticleType.ChargedBody,
 				Q = FieldConfiguration.CreateRestricted(1, 5, step: 1),
 				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
-				UPrimary = FieldConfiguration.CreateUnrestricted(8000),
+				UPrimary = FieldConfiguration.CreateRestricted(0, 1000000, 8000),
 				V0 = FieldConfiguration.CreateRestricted(0, 1000, 10),
 				Angle = FieldConfiguration.CreateInvisible()
 			},
@@ -119,7 +119,7 @@
 				ParticleType = ParticleType.ChargedBody,
 				Q = FieldConfiguration.CreateRestricted(-5, 5),
 				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
-				UPrimary = FieldConfiguration.CreateUnrestricted(8000),
+				UPrimary = FieldConfiguration.CreateRestricted(0, 1000000, 8000),
 				V0 = FieldConfiguration.CreateRestricted(0, 1000, 5),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 90)
 			}

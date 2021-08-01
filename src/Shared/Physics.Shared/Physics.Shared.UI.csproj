@@ -208,6 +208,7 @@
     <Compile Include="Services\TitleBarManager.cs" />
     <Compile Include="Services\ValuesTable\ITableService.cs" />
     <Compile Include="Services\ValuesTable\IValuesTableRow.cs" />
+    <Compile Include="Services\ValuesTable\ValuesTableHeaderAttribute.cs" />
     <Compile Include="Services\ValuesTable\ValuesTableRowBase.cs" />
     <Compile Include="ViewModels\AppListViewModel.cs" />
     <Compile Include="ViewModels\Navigation\DifficultyNavigationModel.cs" />

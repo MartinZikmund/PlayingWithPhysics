@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <!-- Fody -->
-    <PackageReference Update="Fody" Version="6.5.1" />
+    <PackageReference Update="Fody" Version="6.5.2" />
     <PackageReference Update="PropertyChanged.Fody" Version="3.4.0" />
     <PackageReference Update="MethodTimer.Fody" Version="3.2.0" />
 
@@ -12,9 +12,9 @@
 
     <!-- Microsoft Extensions -->
     <PackageReference Update="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Update="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.Localization" Version="5.0.7" />
+    <PackageReference Update="Microsoft.Extensions.Localization" Version="5.0.8" />
     <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
@@ -27,8 +27,8 @@
     <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="7.0.2" />
 
     <!-- SkiaSharp -->
-    <PackageReference Update="SkiaSharp" Version="2.80.2" />
-    <PackageReference Update="SkiaSharp.Views" Version="2.80.2" />
+    <PackageReference Update="SkiaSharp" Version="2.80.3" />
+    <PackageReference Update="SkiaSharp.Views" Version="2.80.3" />
 
     <!-- MvvmCross-->
     <PackageReference Update="MvvmCross" Version="7.1.2" />
@@ -40,7 +40,7 @@
     <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" />
-    <PackageReference Update="Microsoft.UI.Xaml" Version="2.6.0-prerelease.210623001" />
+    <PackageReference Update="Microsoft.UI.Xaml" Version="2.6.1" />
     <PackageReference Update="Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1" />
     <PackageReference Update="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
     <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
@@ -51,14 +51,14 @@
     <PackageReference Update="Win2D.uwp" Version="1.26.0" />
     <PackageReference Update="Nito.Disposables" Version="2.2.0" />
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Update="XamlFlair.UWP" Version="1.2.4" />
+    <PackageReference Update="XamlFlair.UWP" Version="1.2.7" />
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
-    <PackageReference Update="ReactiveUI" Version="13.3.2" />
+    <PackageReference Update="ReactiveUI" Version="14.1.1" />
 
     <PackageReference Update="Moq" Version="4.16.1" />
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
-    <PackageReference Update="coverlet.collector" Version="3.0.3" />
+    <PackageReference Update="coverlet.collector" Version="3.1.0" />
     <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.10.0" />
   </ItemGroup>
 </Project>

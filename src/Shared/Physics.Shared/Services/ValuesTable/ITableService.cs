@@ -10,5 +10,7 @@ namespace Physics.Shared.UI.Services.ValuesTable
         where TValuesTableRow : IValuesTableRow
     {
         IEnumerable<TValuesTableRow> CalculateTable(float timeInterval);
+
+
     }
 }

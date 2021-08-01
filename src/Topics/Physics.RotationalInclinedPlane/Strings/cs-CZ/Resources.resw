@@ -161,7 +161,10 @@ Grafika: Petr Weinlich</value>
   <data name="Input_Radius" xml:space="preserve">
     <value>Poloměr</value>
   </data>
-  <data name="PlaneLengthValidationMessage" xml:space="preserve">
+  <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
+    <value>Délka nakloněné roviny musí být nejvýše stokrát větší než zadaný poloměr.</value>
+  </data>
+  <data name="PlaneLengthValidationTenMessage" xml:space="preserve">
     <value>Délka nakloněné roviny musí být alespoň desetkrát větší než zadaný poloměr.</value>
   </data>
   <data name="PlaneLengthValidationTitle" xml:space="preserve">

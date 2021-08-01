@@ -27,6 +27,7 @@ namespace Physics.ElectricParticle.Logic
 			_setup = motionSetup;
 		}
 
+		public ElectricParticleSimulationSetup Setup => _setup;
 		public BigDecimal MaxT => 30;
 
 		public float GetMassBase()
@@ -328,11 +329,11 @@ namespace Physics.ElectricParticle.Logic
 				var ay2 = ay * ay;
 				if (ax.Mantisa == 0)
 				{
-					return ay;
+					return new BigNumber(Math.Abs(ay.Mantisa), ay.Exponent);
 				}
 				else if (ay.Mantisa == 0)
 				{
-					return ax;
+					return new BigNumber(Math.Abs(ax.Mantisa), ax.Exponent);
 				}
 				_cachedAcceleration = Math.Sqrt((double)(ax2 + ay2));
 			}

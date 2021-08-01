@@ -1,0 +1,381 @@
+[
+  {
+    "Title": "Pohyb částice v elektrickém homogenním poli",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Úvod",
+        "Text": "\\par \\textit{U zelenkavě svítícího ohýnku seděli tři – říkejme jim třeba elektrony. Nebyli to žádní svatouškové. O tom nejmladším se dokonce povídalo, že se zrodil rozpadem neutronu. Ti starší zas o sobě tvrdili, že pamatují horkou kvark-gluonovou kaši na počátku vesmíru. Ale kdo by těm starochům věřil.\\\\\r\r\\par Ten mladší přišel teprve nedávno, přinesl s sebou oheň a byl to mluvka.\\\\\r\r\\par „Tak si tak hovím ve svým, nikoho si nevšímám a najednou rána - bum! - přímo do čumáku. A pak sbohem sweet home, sbohem kamarádí. Pádím si to jak na tobogánu. Vyhlídka nic moc, široko daleko pusto a prázdno. Jen další elektrony, který jsem ale ani neznal, si to mažou stejným směrem jako já. Jak si to tak užívám, najednou mě to začalo vcucávat nahoru. Celýho mě to rozcuchalo. Pak zas doprava. Husina po celým těle. Tobogán hadr. A pak další rána, hvězdičky před očima a tenhle ohýnek, co nám tu pomalu uhasíná.“\\\\\r\r\\par Kdo ví, jak dlouho tam ti tři ještě seděli, ale stalo se to před čtyřiceti lety, když strýc Jaroslav zapnul osciloskop, aby nám opravil černobílou televizi. Svatá pravda.}\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na částice v elektrickém poli působí elektrická síla. Jak takové působení vypadá, vám předvede naše aplikace.\\\\\r\r\\par V následující textu budeme uvažovat pohyb kladné částice v homogenním elektrickém poli. Homogenní elektrické pole je vytvořeno mezi dvěma rovnoběžnými nabitými deskami. Předpokládejme, že desky jsou umístěny vodorovně, spodní deska je nabitá kladně, horní záporně. Účinky tíhového a magnetického pole Země zanedbáme.\\\\\r\r\\par Elektrické pole je popsáno pomocí elektrických siločar a s využitím intenzity elektrického pole $\\vec{E}$.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaký je dohodnutý směr intenzity elektrického pole?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Od záporně nabité desky ke kladné",
+          "Od kladně nabité desky k záporné",
+          "Rovnoběžný s oběma deskami"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Velikost intenzity $E$ v homogenním elektrickém poli",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "roste směrem od záporné desky ke kladné",
+          "roste směrem od kladné desky k záporné",
+          "je ve všech místech konstantní"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Částice se v elektrickém poli bude pohybovat vlivem elektrické síly. Její pohyb bude záviset intenzitě a směru elektrického pole, na velikosti a směru počáteční rychlosti.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Z důvodu snadné orientace zavedeme souřadný systém, kde směr osy $y$ bude shodný se směrem intenzity elektrického pole (svisle vzhůru) a osa $x$ bude kolmá k ose $y$ (vodorovná).\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Částice s nulovou počáteční rychlostí",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Nabitá částice byla vložena do elektrického pole, její počáteční rychlost bude nulová.\\\\\r\r\\par Na částici bude působit pouze konstantní elektrická síla svisle nahoru.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude pohybovat nabitá částice s nulovou počáteční rychlostí v homogenním elektrickém poli?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Nerovnoměrně zrychleným pohybem"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}$$a protože jde o kladnou částici, má stejný směr jako elektrické siločáry.\\\\\r\r\\par Protože jde pohyb rovnoměrně zrychlený, rychlost částice roste lineárně s časem a platí $$v=at.$$\\\\\r\r\\par Souřadnice $y$ roste kvadraticky podle vztahu $$y=\\frac{1}{2}at^2.$$\\\\\r\r\\par Částice se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Částice s počáteční rychlostí ve směru elektrických siločar",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na částici bude působit konstantní elektrická síla svisle nahoru ve směru počáteční rychlosti a částice se bude pohybovat směrem nahoru.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude pohybovat nabitá částice s počáteční rychlostí ve směru elektrických siločar v homogenním elektrickém poli?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Nerovnoměrně zrychleným pohybem"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Protože se jedná o pohyb rovnoměrně zrychlený, rychlost částice roste lineárně s časem a platí vztah $$v=v_0+at.$$\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co bude grafem závislosti rychlosti na čase?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Vodorovná úsečka",
+          "Šikmá úsečka",
+          "Část paraboly",
+          "Část hyperboly"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Souřadnice y roste kvadraticky podle vztahu $$y=v_0t+\\frac{1}{2}at^2.$$\\\\\r\r\\par Částice se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co bude grafem závislosti souřadnice $y$ na čase?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Vodorovná úsečka",
+          "Šikmá úsečka",
+          "Část paraboly",
+          "Část hyperboly"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Částice s počáteční rychlostí proti směru elektrických siločar",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_04.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na částici začne působit konstantní síla proti směru původní rychlosti. Částice se v první fázi bude pohybovat směrem dolů.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude zpočátku pohybovat částice?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Rovnoměrně zpomaleným pohybem"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Vzhledem k tomu, že původní rychlost a působící síla (tedy i zrychlení) mají opačný směr, bude docházet k rovnoměrnému zpomalování částice. Pokud částice nenarazí na desku, zastaví se a začne se pohybovat rovnoměrně zrychleným pohybem opačným směrem.\\\\\r\r\\par Protože jde o pohyb rovnoměrně zpomalený, rychlost částice klesá lineárně s časem a platí vztah $$v=v_0-at.$$\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co bude grafem závislosti rychlosti na čase?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Vodorovná úsečka",
+          "Šikmá úsečka",
+          "Část paraboly",
+          "Část hyperboly"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Souřadnice $y$ se zpočátku mění podle vztahu $$y=-v_0t+\\frac{1}{2}at^2.$$\\\\\r\r\\par Souřadnice $x$ nemění, pohyb je přímočarý.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Částice s počáteční rychlostí kolmou na směr elektrických siločar",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_05.png",
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V tomto případě rozložíme pohyb do dvou směrů – vodorovně ve směru osy $x$ a svisle ve směru osy $y$. Ve směru osy $x$ na částici nepůsobí žádná síla, ve směru osy $y$ na těleso působí pouze konstantní elektrická síla.",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude pohybovat částice ve směru osy $x$?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Rovnoměrně zpomaleným pohybem",
+          "Nerovnoměrně zrychleným pohybem"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude pohybovat částice ve směru osy $y$?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Rovnoměrně zpomaleným pohybem",
+          "Nerovnoměrně zrychleným pohybem"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Nabízí se srovnání s pohybem hmotného bodu v tíhovém poli. Podobné charakteristiky vykazoval vodorovný vrh.\\\\\r \r\\par Souřadnice pohybu se mění v závislosti na čase podle typu pohybu:$$x=v_0t$$ $$y=\\frac{1}{2}at^2.$$\\\\\r\r\\par Po vyloučení času dostaneme rovnici trajektorie$$y=\\frac{1}{2}a\\frac{x^2}{v_0^2}.$$\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co je trajektorií tohoto pohybu?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Část přímky",
+          "Část paraboly",
+          "Část hyperboly",
+          "Část kružnice"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro rychlost pohybu platí vztahy:$$v_x=v_0$$ $$v_y=at.$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_06.png",
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Výsledná rychlost vznikne složením vektorů $v_0$ ($v_x$) a $v_y$.\\\\\r\r\\par Velikost výsledné rychlosti je dána vztahem $$v=\\sqrt{v^2_0+a^2t^2}.$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se bude pohybovat částice?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "Rovnoměrným pohybem",
+          "Rovnoměrně zrychleným pohybem",
+          "Rovnoměrně zpomaleným pohybem",
+          "Nerovnoměrným pohybem"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Částice s počáteční rychlostí v libovolném směru",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_07.png",
+        "Title": "Obrázek č. 7"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Počáteční rychlost $v_0$ rozložíme do složek $v_{0x}$ a $v_{0y}$.\\\\\r\r\\par Složky mají velikost $$v_{0x}=v_0\\cos{\\alpha},$$ $$v_{0y}=v_0\\sin{\\alpha}.$$\\\\\r\r\\par Úhel $\\alpha$ je orientovaný úhel od vodorovné osy k počátečnímu směru. Má-li okamžitá rychlost směr od vodorovného směru nahoru, je úhel $\\alpha$ kladný. Jestliže okamžitá rychlost směřuje od vodorovného směru dolů, je úhel $\\alpha$ je záporný.\\\\\r\r\\par I v tomto případě rozložíme pohyb do dvou směrů – do směru osy $x$ a do směru osy $y$. Ve směru osy $x$ na částici nepůsobí žádná síla, ve směru ne směru osy $y$ na těleso působí konstantní elektrická síla.\\\\\r\r\\par Souřadnice pohybu se mění v závislosti na čase podle následujících vztahů: $$x=v_{0x}t$$ $$y=v_{0y}t+\\frac{1}{2}at^2.$$\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co je trajektorií tohoto pohybu?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Část přímky",
+          "Část paraboly",
+          "Část hyperboly",
+          "Část kružnice"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro rychlost pohybu platí:$$v_x=v_0\\cos{\\alpha},$$ $$v_y=v_0\\sin{\\alpha}+at.$$\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "obr_13_08.png",
+        "Title": "Obrázek č. 8"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Výsledná rychlost vznikne složením vektorů $v_0$ ($v_x$) a $v_y$. Velikost výsledné rychlosti je dána vztahem $$v=\\sqrt{v^2_x+v^2_y}.$$\\\\\r\r\\par Pohyb je nerovnoměrný.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Použitá zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Literatura",
+        "Text": "\\par BARTUŠKA, Karel. \\textit{Sbírka z fyziky pro střední školy III.}, dotisk 2. vydání. Praha: Prometheus, 2005. ISBN 80-7196-235-X.\\\\\r\r\\par Doc. RNDR. LEPIL Oldřich CSc., RNDR. BEDNAŘÍK CSc., Doc. RNDR. ŠIROKÁ Miroslava, CSc. \\textit{Fyzika - Sbírka z fyziky pro střední školy}, dotisk 3. vydání. Praha: Prometheus, 2012. ISBN 978-80-7196-266-3.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

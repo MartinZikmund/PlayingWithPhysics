@@ -22,6 +22,8 @@ namespace Physics.InclinedPlane.ValuesTable
 		public string Ep { get; set; }
 		public string Ek { get; set; }
 
+		public string Ek { get; set; }
+
 		public string Er { get; set; }
 
         public TableRow(float time, float x, float y, float v, float s, float w, float ek, float ep, float er)

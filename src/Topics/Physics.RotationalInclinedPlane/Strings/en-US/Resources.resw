@@ -161,7 +161,10 @@ Graphics: Petr Weinlich</value>
   <data name="Input_Radius" xml:space="preserve">
     <value>Radius</value>
   </data>
-  <data name="PlaneLengthValidationMessage" xml:space="preserve">
+  <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
+    <value>Length of the inclined plane must be at most 100 times bigger than the entered radius.</value>
+  </data>
+  <data name="PlaneLengthValidationTenMessage" xml:space="preserve">
     <value>Length of the inclined plane must be at least 10 times bigger than the entered radius.</value>
   </data>
   <data name="PlaneLengthValidationTitle" xml:space="preserve">

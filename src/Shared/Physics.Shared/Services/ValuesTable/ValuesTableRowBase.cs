@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,13 @@ namespace Physics.Shared.UI.Services.ValuesTable
             return builder.ToString();
         }
 
-        protected abstract IEnumerable<string> GetCellValuesInOrder();
+        protected virtual IEnumerable<string> GetCellValuesInOrder()
+		{
+			var properties = GetType().GetProperties().Where(a => a.GetCustomAttributes().OfType<ValuesTableHeaderAttribute>().Any());
+			foreach (var property in properties)
+			{
+				yield return (string)property.GetValue(this);
+			}
+		}
     }
 }
