@@ -20,9 +20,14 @@ namespace Physics.DragMovement.Logic.PhysicsServices
         }
         public MotionInfo(MovementType movementType, Vector2 origin, float resistance, float mass, float area, float originSpeed, float elevationAngle, float gravity, float environmentDensity, float diameter, float shapeDensity, string color)
         {
-			if (mass <= 0f)
+			if (mass <= 0f && shapeDensity == -1)
 			{
 				throw new ArgumentException("WeightMustBeMoreThanZero");
+			}
+
+			if (mass == -1 && shapeDensity < 100)
+			{
+				throw new ArgumentException("DensityMustBeMoreThanHundred");
 			}
 
 			if (originSpeed > 0 && originSpeed / gravity > 100)

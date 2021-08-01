@@ -159,6 +159,9 @@ Grafika: Petr Weinlich</value>
   <data name="Density" xml:space="preserve">
     <value>Hustota</value>
   </data>
+  <data name="DensityMustBeMoreThanHundred" xml:space="preserve">
+    <value>Hustota tělesa musí být alespoň 100 kg.m⁻³</value>
+  </data>
   <data name="Diameter" xml:space="preserve">
     <value>Průměr</value>
   </data>
