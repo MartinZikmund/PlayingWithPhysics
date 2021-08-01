@@ -20,6 +20,7 @@ namespace Physics.InclinedPlane.ValuesTable
 		public string W { get; set; }
 
 		public string Ep { get; set; }
+		public string Ek { get; set; }
 
 		public string Ek { get; set; }
 
@@ -46,8 +47,8 @@ namespace Physics.InclinedPlane.ValuesTable
             yield return V;
             yield return S;
 			yield return W;
-            yield return Ek;
             yield return Ep;
+            yield return Ek;
             yield return Er;
         }
     }

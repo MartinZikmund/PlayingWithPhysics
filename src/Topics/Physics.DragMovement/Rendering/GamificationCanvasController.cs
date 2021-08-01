@@ -115,17 +115,14 @@ namespace Physics.DragMovement.Rendering
 						}
 					}
 				}
-				if (_game.State >= GameState.Started)
+				if (_game.AreSoundsEnabled && _helicopterSoundPlayback.Disposable == null)
 				{
-					if (_game.AreSoundsEnabled && _helicopterSoundPlayback.Disposable == null)
-					{
-						_helicopterSoundPlayback.Disposable = _soundPlayer.PlayIndefinitely("Heli", 0.3);
-					}
+					_helicopterSoundPlayback.Disposable = _soundPlayer.PlayIndefinitely("Heli", 0.3);
+				}
 
-					if (!_game.AreSoundsEnabled && _helicopterSoundPlayback.Disposable != null)
-					{
-						_helicopterSoundPlayback.Disposable = null;
-					}
+				if (!_game.AreSoundsEnabled && _helicopterSoundPlayback.Disposable != null)
+				{
+					_helicopterSoundPlayback.Disposable = null;
 				}
 			}
 		}

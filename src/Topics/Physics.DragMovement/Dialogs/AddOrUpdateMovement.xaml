@@ -280,7 +280,7 @@
                     Grid.Column="1"
                     VerticalAlignment="Bottom"
                     Maximum="2000"
-                    Minimum="0.01"
+                    Minimum="0.1"
                     Visibility="{x:Bind Model.IsGravityCoefficientEnabled, Mode=OneWay}"
                     Value="{x:Bind Model.GravityCoefficient, Mode=TwoWay}" />
 

@@ -310,7 +310,7 @@ Graphics: Petr Weinlich</value>
     <value>Wall height</value>
   </data>
   <data name="WeightMustBeMoreThanZero" xml:space="preserve">
-    <value>Weight must be at least 1 kg.</value>
+    <value>Weight must be positive.</value>
   </data>
   <data name="YouWin" xml:space="preserve">
     <value>You win!</value>

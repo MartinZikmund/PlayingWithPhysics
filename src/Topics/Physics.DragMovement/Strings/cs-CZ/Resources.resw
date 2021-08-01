@@ -310,7 +310,7 @@ Grafika: Petr Weinlich</value>
     <value>Výška hradeb</value>
   </data>
   <data name="WeightMustBeMoreThanZero" xml:space="preserve">
-    <value>Hmotnost tělesa musí být větší než 1 kg.</value>
+    <value>Hmotnost tělesa musí být kladné číslo.</value>
   </data>
   <data name="YouWin" xml:space="preserve">
     <value>Trefa!</value>
