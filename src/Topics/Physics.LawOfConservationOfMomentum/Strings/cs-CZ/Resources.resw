@@ -125,9 +125,9 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Zákony zachování hybnosti a energie při srážkách těles</value>
+    <value>Hrátky s fyzikou: Zákony zachování hybnosti a energie</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Zákony zachování hybnosti a energie při srážkách těles</value>
+    <value>Zákony zachování hybnosti a energie</value>
   </data>
 </root>

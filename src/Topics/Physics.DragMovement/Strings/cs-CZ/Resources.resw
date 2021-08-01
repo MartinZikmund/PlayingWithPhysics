@@ -136,7 +136,7 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby tělesa v odporujícím prostředí</value>
+    <value>Hrátky s fyzikou: Pohyby těles v odporujícím prostředí</value>
   </data>
   <data name="Area" xml:space="preserve">
     <value>Plocha průřezu tělesa</value>
@@ -250,7 +250,7 @@ Grafika: Petr Weinlich</value>
     <value>Vybrat...</value>
   </data>
   <data name="PohybyVHomogennímTíhovémPoliTextBlock.Text" xml:space="preserve">
-    <value>Pohyby tělesa v odporujícím prostředí</value>
+    <value>Pohyby těles v odporujícím prostředí</value>
   </data>
   <data name="ProjectileMotion" xml:space="preserve">
     <value>Vrh</value>

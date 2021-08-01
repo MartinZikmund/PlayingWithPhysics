@@ -135,16 +135,24 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private async Task StartNewGameAsync()
         {
-            var castleDistance = _randomizer.Next(300, 500);
-            var treeCount = _randomizer.Next(2, 15);
-            var treeDistances = new List<int>();
-            for (int treeId = 0; treeId < treeCount; treeId++)
-            {
-                treeDistances.Add(_randomizer.Next(0, castleDistance));
-            }
-            CurrentGame = new GameSetup(castleDistance, _randomizer.Next(50, castleDistance - 50), treeDistances.ToArray());
-            await _gameController.StartNewGameAsync(CurrentGame);
-            _gameController.CannonAngle = Angle;
+			try
+			{
+				var castleDistance = _randomizer.Next(300, 500);
+				var treeCount = _randomizer.Next(2, 15);
+				var treeDistances = new List<int>();
+				for (int treeId = 0; treeId < treeCount; treeId++)
+				{
+					treeDistances.Add(_randomizer.Next(0, castleDistance));
+				}
+				CurrentGame = new GameSetup(castleDistance, _randomizer.Next(50, castleDistance - 50), treeDistances.ToArray());
+				await _gameController.StartNewGameAsync(CurrentGame);
+				_gameController.CannonAngle = Angle;
+			}
+			catch (TaskCanceledException)
+			{
+				// Unset current game.
+				CurrentGame = null;
+			}
         }
     }
 }

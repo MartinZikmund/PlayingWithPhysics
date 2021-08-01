@@ -132,7 +132,7 @@
   <data name="AppDescription" xml:space="preserve">
     <value>The material will create an idea of the motion of charged particles in a homogeneous electric field and combine this issue with practical examples of use that are typical in technical practice. Since these movements are not directly observable to the pupils by the eye, the animation will make it possible to visualize the parameters of particle motion depending on the choice of input parameters of motion. Depending on the choice of size and direction of initial velocities, students will form hypotheses of particle motion and then confirm or refute these ideas.
 
-Content authors: Petr Kvoch, Radka Procházková
+Content authors: Radka Procházková, Petr Kvoch
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
@@ -155,7 +155,7 @@ Graphics: Petr Weinlich</value>
     <value>Easy difficulty</value>
   </data>
   <data name="ElectronWeightInfo" xml:space="preserve">
-    <value>Electron weight should be inputted as 0,000545.</value>
+    <value>Electron weight should be entered as 0,000545.</value>
   </data>
   <data name="EndDrawing" xml:space="preserve">
     <value>End drawing</value>
