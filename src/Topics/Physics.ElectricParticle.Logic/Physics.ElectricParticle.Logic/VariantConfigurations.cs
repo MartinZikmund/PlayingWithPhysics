@@ -43,7 +43,7 @@
 				Q = FieldConfiguration.CreateRestricted(1, 5, 1, step: 1),
 				M = FieldConfiguration.CreateRestricted(1, 10000, 1, (int)WeightDescriptionType.TenToMinus17Power),
 				UPrimary = FieldConfiguration.CreateRestricted(0, 1000000, 8000),
-				V0 = FieldConfiguration.CreateRestricted(0, 1000, 90),
+				V0 = FieldConfiguration.CreateRestricted(0, 1000, 5),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 0)
 			},
 			new VariantConfiguration()
