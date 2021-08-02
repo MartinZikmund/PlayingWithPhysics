@@ -33,7 +33,7 @@
 				M = FieldConfiguration.CreateInvisible(),
 				UPrimary = FieldConfiguration.CreateRestricted(0, 100, 5, step: 5),
 				ParticlePolarity = FieldConfiguration.CreateInvisible(),
-				V0 = FieldConfiguration.CreateRestricted(10000, 1000000, 500000, step: 10000),
+				V0 = FieldConfiguration.CreateRestricted(0, 1000000, 500000, step: 10000),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 90)
 			},
 			new VariantConfiguration()
@@ -64,7 +64,7 @@
 				Q = FieldConfiguration.CreateInvisible(),
 				M = FieldConfiguration.CreateInvisible(),
 				UPrimary = FieldConfiguration.CreateRestricted(0, 100, 5, step: 5),
-				V0 = FieldConfiguration.CreateRestricted(10000, 1000000, 500000, step: 10000),
+				V0 = FieldConfiguration.CreateRestricted(0, 1000000, 500000, step: 10000),
 				ParticlePolarity = FieldConfiguration.CreateInvisible(),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 0)
 			},
@@ -110,7 +110,7 @@
 				UPrimary = FieldConfiguration.CreateRestricted(0, 100, 5, step: 5),
 				USecondary = FieldConfiguration.CreateRestricted(0, 100, 5, step: 5),
 				ParticlePolarity = FieldConfiguration.CreateInvisible(),
-				V0 = FieldConfiguration.CreateRestricted(10000, 1000000, 500000, step: 10000),
+				V0 = FieldConfiguration.CreateRestricted(0, 1000000, 500000, step: 10000),
 				Angle = FieldConfiguration.CreateRestricted(0, 359, 0)
 			},
 			new VariantConfiguration()
