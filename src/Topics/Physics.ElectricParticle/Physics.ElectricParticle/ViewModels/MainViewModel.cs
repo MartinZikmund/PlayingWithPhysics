@@ -164,10 +164,11 @@ namespace Physics.ElectricParticle.ViewModels
 
 		private async Task StartSimulationAsync()
 		{
-			if (_controller == null && Motion == null)
+			if (_controller == null || Motion?.MotionInfo == null)
 			{
 				return;
 			}
+
 			_physicsService = new PhysicsService(Motion.MotionInfo);
 			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
