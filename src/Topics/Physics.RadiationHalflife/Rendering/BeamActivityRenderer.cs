@@ -98,7 +98,15 @@ namespace Physics.RadiationHalflife.Rendering
 			var part = a0 / 12;
 			for (int divider = 0; divider < 13; divider++)
 			{
-				var formattedA0Divided = ((12 - divider) * part).ToString("0.00");
+				var formattedA0Divided = "";
+				if (PhysicsService.Animation.ChemicalElement == "Uranium238")
+				{
+					formattedA0Divided = ((12 - divider) * part).ToString("0.##");
+				}
+				else
+				{
+					formattedA0Divided = ((12 - divider) * part).ToString("0.00");
+				}
 				args.Canvas.DrawText($"{formattedA0Divided}", new SKPoint(_padding - 5f, graphTopY + (graphHeight / 12) * divider), _axisLabelPaint);
 			}
 
@@ -121,7 +129,7 @@ namespace Physics.RadiationHalflife.Rendering
 			string name = Localizer.Instance["BeamActivity"];
 			if (PhysicsService.Animation.Mantissa != 0)
 			{
-				name = name + " (10^" + PhysicsService.Animation.Mantissa + ")";
+				name = name + " [Bq]" + " (10^" + PhysicsService.Animation.Mantissa + ")";
 			}
 			args.Canvas.DrawTextOnPath(name, path, new SKPoint(0, 0), axisNamePaint);
 		}

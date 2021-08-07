@@ -141,7 +141,7 @@ Grafika: Petr Weinlich</value>
     <value>Aktivita zářiče</value>
   </data>
   <data name="BetaNegativeDecay" xml:space="preserve">
-    <value>Beta mínus rozpad</value>
+    <value>Beta minus rozpad</value>
   </data>
   <data name="BetaPositiveDecay" xml:space="preserve">
     <value>Beta plus rozpad</value>
@@ -210,7 +210,7 @@ Grafika: Petr Weinlich</value>
     <value>Galium</value>
   </data>
   <data name="GammaDecay" xml:space="preserve">
-    <value>Gamma rozpad</value>
+    <value>Gama rozpad</value>
   </data>
   <data name="GraphPercentage" xml:space="preserve">
     <value>relativní počet nerozpadlých jader v %</value>
@@ -273,7 +273,7 @@ Grafika: Petr Weinlich</value>
     <value>Draslík</value>
   </data>
   <data name="Radionuclids_Activity" xml:space="preserve">
-    <value>Aktivita zářiče</value>
+    <value>Aktivita zářiče (na 1 gram látky)</value>
   </data>
   <data name="Radionuclids_Name" xml:space="preserve">
     <value>Radionuklid</value>
@@ -306,7 +306,7 @@ Grafika: Petr Weinlich</value>
     <value>Technecium</value>
   </data>
   <data name="Uranium228_Halflife" xml:space="preserve">
-    <value>minut</value>
+    <value>minuta</value>
   </data>
   <data name="Uranium228_Name" xml:space="preserve">
     <value>Uranium 228</value>

@@ -118,11 +118,17 @@
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             Text="{Binding Name}" />
+                                        <Image
+                                            Grid.Column="1"
+                                            Height="40"
+                                            HorizontalAlignment="Center"
+                                            Source="{Binding ChemicalNotionImage}" />
                                         <StackPanel
                                             Grid.Column="2"
                                             HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
                                             Orientation="Horizontal">
-                                            <TextBlock Text="{Binding ActivityBase}" />
+                                            <TextBlock Text="{Binding ActivityBaseString}" />
                                             <TextBlock Text=" . 10" Visibility="{Binding HasMantissa}" />
                                             <TextBlock
                                                 Text="{Binding ActivityMantissa}"
@@ -259,8 +265,9 @@
                                     Grid.Column="2"
                                     HorizontalAlignment="Center"
                                     FontSize="14"
-                                    FontWeight="SemiBold">
-                                    <Run Text="{extensions:Localize Key=Radionuclids_Activity}" /><Run Text=" A" /><Run Text="0" Typography.Variants="Subscript" /><Run Text=" [Bq]" />
+                                    FontWeight="SemiBold"
+                                    TextWrapping="WrapWholeWords">
+                                    <Run Text="{extensions:Localize Key=Radionuclids_Activity}" />
                                 </TextBlock>
                             </Grid>
 

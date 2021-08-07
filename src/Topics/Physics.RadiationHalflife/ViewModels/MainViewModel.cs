@@ -152,18 +152,17 @@ namespace Physics.RadiationHalflife.ViewModels
 
 		public List<RadionuclideViewModel> Radionuclides = new List<RadionuclideViewModel>
 		{
-			new RadionuclideViewModel("Fluorine", 110, 4, 8),
-			new RadionuclideViewModel("Cobalt", 5.3f, 3.7f, 13),
-			new RadionuclideViewModel("Gallium", 68, 1, 9),
-			new RadionuclideViewModel("Technetium", 6, 6, 8),
-			new RadionuclideViewModel("Iodine", 8, 2, 7),
-			new RadionuclideViewModel("Xenon", 5.2f, 1, 17),
-			new RadionuclideViewModel("Cesium", 30.2f, 8.5f, 16),
-			new RadionuclideViewModel("Iridium", 74, 4.4f, 12),
-			new RadionuclideViewModel("Radium223", 11.46f, 3.7f, 13),
-			new RadionuclideViewModel("Radium226", 1600, 200),
+			new RadionuclideViewModel("Fluorine", 110, 7.3f, 17),
+			new RadionuclideViewModel("Cobalt", 5.3f, 4.2f, 13),
+			new RadionuclideViewModel("Gallium", 68, 1.4f, 18),
+			new RadionuclideViewModel("Technetium", 6, 8.8f, 17),
+			new RadionuclideViewModel("Iodine", 8, 4.8f, 15),
+			new RadionuclideViewModel("Cesium", 30.2f, 3.2f, 12),
+			new RadionuclideViewModel("Iridium", 74, 4.4f, 14),
+			new RadionuclideViewModel("Radium223", 11.46f, 1.9f, 15),
+			new RadionuclideViewModel("Radium226", 1600, 3.6f, 10),
 			new RadionuclideViewModel("Uranium238", 4.5f, 12000),
-			new RadionuclideViewModel("Americium", 432.6f, 40000)
+			new RadionuclideViewModel("Americium", 432.6f, 1.3f, 11)
 		};
 
 		public RadionuclideViewModel _selectedRadionuclide;
