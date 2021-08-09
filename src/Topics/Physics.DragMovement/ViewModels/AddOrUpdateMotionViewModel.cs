@@ -306,8 +306,8 @@ namespace Physics.DragMovement.ViewModels
             IsMassInputEnabled = Visibility.Visible;
         }
 
-        public float Diameter { get; set; }
-        public float Density { get; set; }
+		public float Diameter { get; set; } = 0.1f;
+		public float Density { get; set; } = 100;
         public Visibility IsDensityInputEnabled { get; set;  }
         public Visibility IsDiameterInputEnabled { get; set;  }
         public Visibility IsAreaInputEnabled { get; set;  }
@@ -452,8 +452,8 @@ namespace Physics.DragMovement.ViewModels
                     Angle,
                     GravityCoefficient,
                     EnvironmentDensity,
-                    Diameter,
-                    Density,
+					(ResistanceCoefficient == ResistanceCoefficients[2].Value) ? Diameter : -1,
+					(ResistanceCoefficient == ResistanceCoefficients[2].Value) ? Density : -1,
                     ColorHelper.ToHex(Color)),
                 MovementType.ProjectileMotion => MotionFactory.CreateProjectileMotion(
                     new Vector2(X0, Y0),
@@ -464,8 +464,8 @@ namespace Physics.DragMovement.ViewModels
                     Angle,
                     GravityCoefficient,
                     EnvironmentDensity,
-                    Diameter,
-                    Density,
+					(ResistanceCoefficient == ResistanceCoefficients[2].Value) ? Diameter : -1,
+					(ResistanceCoefficient == ResistanceCoefficients[2].Value) ? Density : -1,
                     ColorHelper.ToHex(Color)),
                 _ => throw new ArgumentNullException()
             };

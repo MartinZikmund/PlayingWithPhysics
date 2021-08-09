@@ -127,7 +127,7 @@
     <value>Radioactivity is the ability of some atomic nuclei to emit nuclear radiation. In doing so, such a nucleus changes to another, one nuclide changes to another. There are natural and artificial radionuclides. One of the quantities that describes the decay of radionuclides is the half-life. This is the time in which half of the nuclei disintegrate.
 The program animates the decay of radionuclides. It will be possible to choose the type of radionuclide (or half-life), number of particles and time step. The result will also be a time diagram.
 
-Content authors: Petr Kvoch, Radka Procházková
+Content authors: Petr Kvoch, Radka Procházková, Pavel Vlček
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>

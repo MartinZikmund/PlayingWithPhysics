@@ -7,8 +7,9 @@
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.RotationalInclinedPlane.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:viewmodels="using:Physics.RotationalInclinedPlane.ViewModels"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	x:Name="Page"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
@@ -62,141 +63,205 @@
                         Orientation="Vertical">
 
                         <Button
+                            Grid.Row="2"
+                            Margin="0,0,0,8"
                             HorizontalAlignment="Stretch"
-                            Command="{x:Bind Model.EditValuesCommand}"
-                            Content="{extensions:Localize Key=EditValues}" />
-                        <StackPanel Visibility="{x:Bind Model.ShowCurrentValuesGrid, Mode=OneWay}">
-                            <NavigationViewItemSeparator />
-                            <Grid
-                                Padding="8,4,4,6"
-                                Background="#33000000"
-                                CornerRadius="4">
-                                <TextBlock
-                                    Margin="0,3,0,0"
-                                    Style="{ThemeResource SubtitleTextBlockStyle}"
-                                    Text="{extensions:Localize Key=CurrentValues}" />
-                                <Button
-                                    HorizontalAlignment="Right"
-                                    HorizontalContentAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Command="{x:Bind Model.ShowValuesTableCommand}">
-                                    <FontIcon FontFamily="{ThemeResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource TableGlyph}" />
-                                </Button>
-                            </Grid>
-                            <Grid Margin="16,8,8,0">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="2*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="t:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.TimeElapsed, Mode=OneWay}" />
-                                        <Run Text="s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="v:" />
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentSpeed, Mode=OneWay}" />
-                                        <Run Text="m/s" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="x:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentX, Mode=OneWay}" />
-                                        <Run Text="m" />
-									</TextBlock>
-									<TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="y:" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.CurrentY, Mode=OneWay}" />
-                                        <Run Text="m" />
-									</TextBlock>
-									<TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="s:" />
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.DistanceTraveled, Mode=OneWay}" />
-                                        <Run Text="m" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="Ek:" />
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.Ek, Mode=OneWay}" />
-                                        <Run Text="J" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Text="Ep:" />
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.Ep, Mode=OneWay}" />
-                                        <Run Text="J" />
-                                    </TextBlock>
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="2"
-                                        FontSize="16"
-                                        Text="Er:" />
-                                    <TextBlock
-                                        Grid.Row="3"
-                                        Grid.Column="3"
-                                        FontSize="16">
-                                        <Run Text="{x:Bind Model.Motion.Er, Mode=OneWay}" />
-                                        <Run Text="J" />
-                                    </TextBlock>
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
+                            Command="{x:Bind Model.AddMotionCommand}"
+                            IsEnabled="{x:Bind Model.AddMotionCommandEnabled, Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Viewbox
+                                    Width="16"
+                                    Height="16"
+                                    VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Add" />
+                                </Viewbox>
+                                <TextBlock Text="{extensions:Localize Key=AddMotion}" />
+                            </StackPanel>
+                        </Button>
 
+                        <NavigationViewItemSeparator />
+
+                        <ListView ItemsSource="{x:Bind Model.Motions, Mode=OneWay}" SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodels:MotionViewModel">
+                                    <StackPanel>
+										<Grid
+                                                Margin="0,4"
+                                                Padding="8"
+                                                ColumnSpacing="8"
+                                                CornerRadius="2"
+                                                RowSpacing="4">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*" />
+												<ColumnDefinition Width="Auto" />
+											</Grid.ColumnDefinitions>
+											<Grid.Background>
+												<SolidColorBrush Color="{x:Bind MotionInfo.Color, Mode=OneWay}" />
+											</Grid.Background>
+
+											<TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                                                    Text="{x:Bind Label, Mode=OneWay}"
+                                                    TextTrimming="CharacterEllipsis" />
+
+											<Button Grid.Column="2">
+												<Button.Flyout>
+													<MenuFlyout>
+														<MenuFlyoutItem
+                                                                Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
+                                                                CommandParameter="{x:Bind}"
+                                                                Text="{extensions:Localize Key=ShowValuesTable}">
+															<MenuFlyoutItem.Icon>
+																<SymbolIcon Symbol="ViewAll" />
+															</MenuFlyoutItem.Icon>
+														</MenuFlyoutItem>
+														<MenuFlyoutSeparator />
+														<MenuFlyoutItem
+                                                                Command="{Binding ElementName=Page, Path=Model.EditMotionCommand}"
+                                                                CommandParameter="{x:Bind}"
+                                                                Text="{extensions:Localize Key=Edit}">
+															<MenuFlyoutItem.Icon>
+																<SymbolIcon Symbol="Edit" />
+															</MenuFlyoutItem.Icon>
+														</MenuFlyoutItem>
+														<MenuFlyoutItem
+                                                                Command="{Binding ElementName=Page, Path=Model.DuplicateMotionCommand}"
+                                                                CommandParameter="{x:Bind}"
+                                                                Text="{extensions:Localize Key=Duplicate}">
+															<MenuFlyoutItem.Icon>
+																<SymbolIcon Symbol="Copy" />
+															</MenuFlyoutItem.Icon>
+														</MenuFlyoutItem>
+														<MenuFlyoutItem
+                                                                Command="{Binding ElementName=Page, Path=Model.DeleteMotionCommand}"
+                                                                CommandParameter="{x:Bind}"
+                                                                Text="{extensions:Localize Key=Delete}">
+															<MenuFlyoutItem.Icon>
+																<SymbolIcon Symbol="Delete" />
+															</MenuFlyoutItem.Icon>
+														</MenuFlyoutItem>
+													</MenuFlyout>
+												</Button.Flyout>
+												<SymbolIcon Symbol="More" />
+											</Button>
+										</Grid>
+										<Grid Margin="16,8,8,0">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    FontSize="16"
+                                                    Text="t:" />
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind TimeElapsed, Mode=OneWay}" />
+                                                    <Run Text="s" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="2"
+                                                    FontSize="16"
+                                                    Text="v:" />
+                                                <TextBlock
+                                                    Grid.Row="0"
+                                                    Grid.Column="3"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind CurrentSpeed, Mode=OneWay}" />
+                                                    <Run Text="m/s" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    FontSize="16"
+                                                    Text="x:" />
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind CurrentX, Mode=OneWay}" />
+                                                    <Run Text="m" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    FontSize="16"
+                                                    Text="y:" />
+                                                <TextBlock
+                                                    Grid.Row="1"
+                                                    Grid.Column="3"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind CurrentY, Mode=OneWay}" />
+                                                    <Run Text="m" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    FontSize="16"
+                                                    Text="s:" />
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    Grid.Column="1"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind DistanceTraveled, Mode=OneWay}" />
+                                                    <Run Text="m" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    Grid.Column="2"
+                                                    FontSize="16"
+                                                    Text="Ek:" />
+                                                <TextBlock
+                                                    Grid.Row="2"
+                                                    Grid.Column="3"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind Ek, Mode=OneWay}" />
+                                                    <Run Text="J" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="3"
+                                                    Grid.Column="0"
+                                                    FontSize="16"
+                                                    Text="Ep:" />
+                                                <TextBlock
+                                                    Grid.Row="3"
+                                                    Grid.Column="1"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind Ep, Mode=OneWay}" />
+                                                    <Run Text="J" />
+                                                </TextBlock>
+                                                <TextBlock
+                                                    Grid.Row="3"
+                                                    Grid.Column="2"
+                                                    FontSize="16"
+                                                    Text="Er:" />
+                                                <TextBlock
+                                                    Grid.Row="3"
+                                                    Grid.Column="3"
+                                                    FontSize="16">
+                                                    <Run Text="{x:Bind Er, Mode=OneWay}" />
+                                                    <Run Text="J" />
+                                                </TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
@@ -224,11 +289,11 @@
                 BackwardVisibility="Collapsed"
                 ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
-				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
                 JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand, Mode=OneWay}"
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"

@@ -130,7 +130,7 @@
     <value>Radioaktivita je schopnost některých atomových jader vysílat jaderné záření. Při tom se takové jádro změní na jiné, jeden nuklid se změní na jiný. Existují přírodní i umělé radionuklidy. Jedna z veličin, která popisuje rozpad radionuklidů, je poločas rozpadu. To je doba, za kterou se rozpadne polovina jader. 
 Program animuje rozpad radionuklidů. Možné bude volit druh radionuklidu (případně poločas rozpadu), počet částic a časový krok. Výsledkem bude též časový diagram.
 
-Autoři obsahu: Petr Kvoch, Radka Procházková
+Autoři obsahu: Petr Kvoch, Radka Procházková, Pavel Vlček
 Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>

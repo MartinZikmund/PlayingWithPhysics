@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Physics.WaveInterference.Logic;
-using Physics.WaveInterference.ViewModels;
 using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
+using Physics.WaveInterference.Logic;
+using Physics.WaveInterference.ViewModels;
 using SkiaSharp;
 
 namespace Physics.WaveInterference.Rendering
@@ -57,6 +57,12 @@ namespace Physics.WaveInterference.Rendering
 
 		public void SetActiveOscillations(WaveInfoViewModel[] info)
 		{
+			if (info == null || info.Length == 0)
+			{
+				_activeOscillations = null;
+				return;
+			}
+
 			_activeOscillations = info;
 			_oscillationTrajectories = new Dictionary<WaveInfo, OscillationTrajectory>();
 			_oscillationFillPaints = new Dictionary<WaveInfo, SKPaint>();
@@ -97,7 +103,7 @@ namespace Physics.WaveInterference.Rendering
 					WaveDirection.Right,
 					oscillation.WaveInfo.Color);
 
-				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);				
+				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
@@ -126,7 +132,7 @@ namespace Physics.WaveInterference.Rendering
 			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.WaveInfo).ToArray());
 			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
 
-			
+
 		}
 
 		public void StartSimulation()

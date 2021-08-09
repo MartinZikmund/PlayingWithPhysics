@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Physics.RotationalInclinedPlane.Logic;
+using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Models.Input;
 using Physics.Shared.ViewModels;
+using Windows.ApplicationModel.Resources;
 using Windows.UI;
 using Windows.UI.Popups;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
@@ -15,41 +18,72 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 {
 	public class InputDialogViewModel : ViewModelBase
 	{
-		public InputDialogViewModel(DifficultyOption difficulty)
+		private readonly MotionSetup[] _otherSetups;
+		private readonly string[] _existingNames;
+		private bool _autogenerateLabel = true;
+
+		public InputDialogViewModel(DifficultyOption difficulty, MotionSetup[] otherSetups)
 		{
+			_existingNames = otherSetups.Select(s => s.Label).ToArray();
 			Difficulty = difficulty;
+			_otherSetups = otherSetups;
 			OnGravityChanged();
+			OnSelectedBodyTypeIndexChanged();
 		}
 
-		public InputDialogViewModel(MotionSetup setup, DifficultyOption difficulty) : this(difficulty)
+		public InputDialogViewModel(MotionSetup setup, DifficultyOption difficulty, MotionSetup[] otherSetups) : this(difficulty, otherSetups)
 		{
-			if (setup != null)
-			{
-				BodyType = setup.BodyType;
-				SelectedBodyTypeIndex = (int)setup.BodyType;
-				Radius = setup.Radius;
-				InclinedAngle = setup.InclinedAngle;
-				InclinedLength = setup.InclinedLength;
-				Gravity = setup.Gravity;
-				Color = ColorHelper.ToColor(setup.Color);
-				Mass = setup.Mass;
-			}
+			_otherSetups = otherSetups;
+			_autogenerateLabel = false; // Do not autogenerate for edit mode.
+			BodyType = setup.BodyType;
+			SelectedBodyTypeIndex = (int)setup.BodyType;
+			Radius = setup.Radius;
+			InclinedAngle = setup.InclinedAngle;
+			InclinedLength = setup.InclinedLength;
+			Gravity = setup.Gravity;
+			Color = ColorHelper.ToColor(setup.Color);
+			Mass = setup.Mass;
 		}
 
 		internal async Task<bool> ValidateAsync()
 		{
+			var violatingTen = new List<string>();
+			var violatingHundred = new List<string>();
+			foreach (var otherSetup in _otherSetups)
+			{
+				if (otherSetup.Radius * 10 > InclinedLength)
+				{
+					violatingTen.Add(otherSetup.Label);
+				}
+				if (otherSetup.Radius * 100 < InclinedLength)
+				{
+					violatingHundred.Add(otherSetup.Label);
+				}
+			}
+
 			if (Radius * 10 > InclinedLength)
 			{
-				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationTenMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
-				await dialog.ShowAsync();
-				return false;
+				violatingTen.Add(Label);
 			}
 			if (Radius * 100 < InclinedLength)
 			{
-				var dialog = new MessageDialog(Localizer.Instance.GetString("PlaneLengthValidationHundredMessage"), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
+				violatingHundred.Add(Label);
+			}
+
+			if (violatingTen.Count > 0)
+			{
+				var dialog = new MessageDialog(string.Format(Localizer.Instance.GetString("PlaneLengthValidationTenMessage"), string.Join(",", violatingTen)), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
 				await dialog.ShowAsync();
 				return false;
 			}
+
+			if (violatingHundred.Count > 0)
+			{
+				var dialog = new MessageDialog(string.Format(Localizer.Instance.GetString("PlaneLengthValidationHundredMessage"), string.Join(",", violatingHundred)), Localizer.Instance.GetString("PlaneLengthValidationTitle"));
+				await dialog.ShowAsync();
+				return false;
+			}
+
 			return true;
 		}
 
@@ -112,11 +146,24 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 		public void OnSelectedBodyTypeIndexChanged()
 		{
 			BodyType = (BodyType)SelectedBodyTypeIndex;
+			if (_autogenerateLabel)
+			{
+				SetLocalizedAndNumberedLabelName();
+			}
+		}
+
+		private void SetLocalizedAndNumberedLabelName()
+		{
+			var movementTypeName = ResourceLoader.GetForCurrentView().GetString($"BodyType_{BodyType.ToString("g")}");
+			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
+			Label = generatedName;
 		}
 
 		public BodyType[] BodyTypes { get; } = Enum.GetValues(typeof(BodyType)).OfType<BodyType>().ToArray();
 
 		public BodyType BodyType { get; private set; }
+
+		public string Label { get; set; }
 
 		public float Radius { get; set; } = 0.1f;
 
@@ -135,6 +182,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 		public MotionSetup CreateMotionSetup()
 		{
 			return new MotionSetup(
+				Label,
 				BodyType,
 				Mass,
 				Gravity,

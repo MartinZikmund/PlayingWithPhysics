@@ -126,7 +126,7 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Rotační pohyb těles na nakloněné rovině</value>
+    <value>Hrátky s fyzikou: Rotační pohyb těles po nakloněné rovině</value>
   </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Válec</value>
@@ -137,11 +137,20 @@ Grafika: Petr Weinlich</value>
   <data name="BodyType_Sphere" xml:space="preserve">
     <value>Koule</value>
   </data>
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Změny platí pro všechna tělesa</value>
+  </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Úhel</value>
   </data>
+  <data name="Input_Body" xml:space="preserve">
+    <value>Těleso</value>
+  </data>
   <data name="Input_BodyType" xml:space="preserve">
     <value>Typ tělesa</value>
+  </data>
+  <data name="Input_Environment" xml:space="preserve">
+    <value>Prostředí</value>
   </data>
   <data name="Input_General" xml:space="preserve">
     <value>Obecné</value>
@@ -162,15 +171,21 @@ Grafika: Petr Weinlich</value>
     <value>Poloměr</value>
   </data>
   <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
-    <value>Délka nakloněné roviny musí být nejvýše stokrát větší než zadaný poloměr.</value>
+    <value>Délka nakloněné roviny musí být nejvýše stokrát větší než poloměr každého z objektů. Nyní to neplatí pro: {0}.</value>
   </data>
   <data name="PlaneLengthValidationTenMessage" xml:space="preserve">
-    <value>Délka nakloněné roviny musí být alespoň desetkrát větší než zadaný poloměr.</value>
+    <value>Délka nakloněné roviny musí být alespoň desetkrát větší než poloměr každého z objektů. Nyní to neplatí pro: {0}.</value>
   </data>
   <data name="PlaneLengthValidationTitle" xml:space="preserve">
     <value>Chyba ve vstupu</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Rotační pohyb těles na nakloněné rovině</value>
+    <value>Rotační pohyb těles po nakloněné rovině</value>
+  </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Není možné vykreslovat více než 5 pohybů najednou.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Vytvoření pohybu se nezdařilo.</value>
   </data>
 </root>

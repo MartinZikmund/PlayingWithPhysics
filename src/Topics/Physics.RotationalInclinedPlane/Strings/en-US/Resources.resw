@@ -137,11 +137,20 @@ Graphics: Petr Weinlich</value>
   <data name="BodyType_Sphere" xml:space="preserve">
     <value>Sphere</value>
   </data>
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Changes apply to all objects</value>
+  </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Angle</value>
   </data>
+  <data name="Input_Body" xml:space="preserve">
+    <value>Object</value>
+  </data>
   <data name="Input_BodyType" xml:space="preserve">
     <value>Body type</value>
+  </data>
+  <data name="Input_Environment" xml:space="preserve">
+    <value>Environment</value>
   </data>
   <data name="Input_General" xml:space="preserve">
     <value>General</value>
@@ -162,15 +171,21 @@ Graphics: Petr Weinlich</value>
     <value>Radius</value>
   </data>
   <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
-    <value>Length of the inclined plane must be at most 100 times bigger than the entered radius.</value>
+    <value>Length of the inclined plane must be at most 100 times bigger than the radius of any of the objects. The following objects currently violate this rule: {0}.</value>
   </data>
   <data name="PlaneLengthValidationTenMessage" xml:space="preserve">
-    <value>Length of the inclined plane must be at least 10 times bigger than the entered radius.</value>
+    <value>Length of the inclined plane must be at least 10 times bigger than the radius of any of the objects. The following objects currently violate this rule: {0}.</value>
   </data>
   <data name="PlaneLengthValidationTitle" xml:space="preserve">
     <value>Input error</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rotational Movement on Inclined Plane</value>
+  </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Can't render more than 5 motions at once. Plese remove one.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Can't add another motion</value>
   </data>
 </root>

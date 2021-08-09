@@ -57,6 +57,12 @@ namespace Physics.CompoundOscillations.Rendering
 
 		public void SetActiveOscillations(OscillationInfoViewModel[] info)
 		{
+			if (info == null || info.Length == 0)
+			{
+				_activeOscillations = null;
+				return;
+			}
+
 			_activeOscillations = info;
 			_oscillationTrajectories = new Dictionary<OscillationInfo, OscillationTrajectory>();
 			_oscillationFillPaints = new Dictionary<OscillationInfo, SKPaint>();
@@ -95,7 +101,7 @@ namespace Physics.CompoundOscillations.Rendering
 					oscillation.OscillationInfo.PhaseInRad,
 					oscillation.OscillationInfo.Color);
 
-				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);				
+				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
@@ -123,8 +129,6 @@ namespace Physics.CompoundOscillations.Rendering
 
 			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.OscillationInfo).ToArray());
 			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
-
-			
 		}
 
 		public void StartSimulation()

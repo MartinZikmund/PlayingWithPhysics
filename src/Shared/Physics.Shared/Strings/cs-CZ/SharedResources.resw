@@ -136,7 +136,7 @@
     <value>Cyklické děje</value>
   </data>
   <data name="AppName_Drag" xml:space="preserve">
-    <value>Pohyby tělesa v odporujícím prostředí</value>
+    <value>Pohyby těles v odporujícím prostředí</value>
   </data>
   <data name="AppName_EarthsGravitationalField" xml:space="preserve">
     <value>Pohyby v centrálním gravitačním poli Země</value>
@@ -154,13 +154,13 @@
     <value>Translační pohyb tělesa po nakloněné rovině</value>
   </data>
   <data name="AppName_LawOfConservationOfMomentum" xml:space="preserve">
-    <value>Zákony zachování hybnosti a energie při srážkách těles</value>
+    <value>Zákony zachování hybnosti a energie</value>
   </data>
   <data name="AppName_LissajousCurves" xml:space="preserve">
     <value>Lissajousovy obrazce</value>
   </data>
   <data name="AppName_MagneticField" xml:space="preserve">
-    <value>Pohyby v homogenním magnetickém poli</value>
+    <value>Pohyby částic v homogenním magnetickém poli</value>
   </data>
   <data name="AppName_OpticalInstruments" xml:space="preserve">
     <value>Optické přístroje</value>
@@ -172,7 +172,7 @@
     <value>Zákon radioaktivní přeměny</value>
   </data>
   <data name="AppName_RotationalInclinedPlane" xml:space="preserve">
-    <value>Rotační pohyb těles na nakloněné rovině</value>
+    <value>Rotační pohyb těles po nakloněné rovině</value>
   </data>
   <data name="AppName_StationaryWaves" xml:space="preserve">
     <value>Stojaté vlnění</value>
@@ -211,7 +211,7 @@
     <value>Demo</value>
   </data>
   <data name="Duplicate" xml:space="preserve">
-    <value>Duplikovat</value>
+    <value>Zkopírovat</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
     <value>Základní úroveň</value>

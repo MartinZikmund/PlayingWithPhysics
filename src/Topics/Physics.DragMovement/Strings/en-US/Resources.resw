@@ -159,6 +159,9 @@ Graphics: Petr Weinlich</value>
   <data name="Density" xml:space="preserve">
     <value>Density</value>
   </data>
+  <data name="DensityMustBeMoreThanHundred" xml:space="preserve">
+    <value>Object density must be at least 100 kg.m⁻³</value>
+  </data>
   <data name="Diameter" xml:space="preserve">
     <value>Diameter</value>
   </data>

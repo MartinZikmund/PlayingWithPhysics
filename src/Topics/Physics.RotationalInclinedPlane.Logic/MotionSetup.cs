@@ -5,6 +5,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 	public class MotionSetup
 	{
 		public MotionSetup(
+			string label,
 			BodyType bodyType,
 			float mass,
 			float gravity,
@@ -14,6 +15,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			float horizontalLength,
 			string color)
 		{
+			Label = label;
 			BodyType = bodyType;
 			Mass = mass;
 			InclinedAngle = inclinedAngle;
@@ -23,6 +25,8 @@ namespace Physics.RotationalInclinedPlane.Logic
 			Gravity = gravity;
 			Radius = radius;
 		}
+
+		public string Label { get; set; }
 
 		public BodyType BodyType { get; set; }
 
@@ -41,5 +45,8 @@ namespace Physics.RotationalInclinedPlane.Logic
 		public float HorizontalLength { get; set; }
 
 		public string Color { get; set; }
+
+		public MotionSetup Clone() =>
+			new MotionSetup(Label, BodyType, Mass, Gravity, Radius, InclinedLength, InclinedAngle, HorizontalLength, Color);
 	}
 }
