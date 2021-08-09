@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Physics.RotationalInclinedPlane.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -18,33 +19,27 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			Renderer?.Dispose();
 		}
 
-		public MotionSetup Motion { get; private set; }
+		public MotionSetup[] Motions { get; private set; } = Array.Empty<MotionSetup>();
 
-		public PhysicsService PhysicsService { get; private set; }
+		public PhysicsService[] PhysicsServices { get; private set; } = Array.Empty<PhysicsService>();
 
 		public ISkiaVariantRenderer Renderer { get; set; }
 
-		public void StartSimulation(MotionSetup motion)
+		public void StartSimulation(MotionSetup[] motions)
 		{
-			if (motion is null)
+			if (motions is null)
 			{
-				throw new ArgumentNullException(nameof(motion));
+				throw new ArgumentNullException(nameof(motions));
 			}
 
-			Motion = motion;
-			PhysicsService = new PhysicsService(motion);
+			Motions = motions;
+			PhysicsServices = motions.Select(m => new PhysicsService(m)).ToArray();
 			SimulationTime.Restart();
 		}
 
-		public void SetVariantRenderer(ISkiaVariantRenderer renderer)
-		{
-			Renderer = renderer;
-		}
+		public void SetVariantRenderer(ISkiaVariantRenderer renderer) => Renderer = renderer;
 
-		public override void Update(ISkiaCanvas sender)
-		{
-			Renderer?.Update(sender);
-		}
+		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{

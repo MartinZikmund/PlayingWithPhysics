@@ -20,7 +20,6 @@ namespace Physics.InclinedPlane.ValuesTable
 		public string W { get; set; }
 
 		public string Ep { get; set; }
-		public string Ek { get; set; }
 
 		public string Ek { get; set; }
 

@@ -127,6 +127,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Law of Conservation of Momentum</value>
   </data>
+  <data name="SetupCollision" xml:space="preserve">
+    <value>Setup collision</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Law of Conservation of Momentum</value>
   </data>

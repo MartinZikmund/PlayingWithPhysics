@@ -173,4 +173,10 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rotační pohyb těles po nakloněné rovině</value>
   </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Není možné vykreslovat více než 5 pohybů najednou.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Vytvoření pohybu se nezdařilo.</value>
+  </data>
 </root>

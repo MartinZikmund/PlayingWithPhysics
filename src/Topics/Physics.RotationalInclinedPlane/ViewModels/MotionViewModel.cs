@@ -49,6 +49,8 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			Er = _physicsService.CalculateEr(timeElapsed).ToString("0.##");
 		}
 
+		public string Label => MotionInfo.Label;
+
 		public string TimeElapsed { get; private set; } = "";
 
 		public string CurrentSpeed { get; private set; } = "";

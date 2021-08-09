@@ -7,8 +7,6 @@ namespace Physics.RotationalInclinedPlane.Logic
 {
 	public class PhysicsService
 	{
-		private readonly MotionSetup _setup;
-
 		public PhysicsService(MotionSetup setup)
 		{
 			if (setup is null)
@@ -16,15 +14,17 @@ namespace Physics.RotationalInclinedPlane.Logic
 				throw new ArgumentNullException(nameof(setup));
 			}
 
-			_setup = setup;
+			Setup = setup;
 		}
 
-		public float AngleInRad => MathHelpers.DegreesToRadians(_setup.InclinedAngle);
+		public float AngleInRad => MathHelpers.DegreesToRadians(Setup.InclinedAngle);
+
+		public MotionSetup Setup { get; }
 
 		public float CalculateAcceleration()
 		{
 			var accelerationCoefficient = GetAccelerationCoefficient();
-			return accelerationCoefficient * _setup.Gravity * (float)Math.Sin(AngleInRad);
+			return accelerationCoefficient * Setup.Gravity * (float)Math.Sin(AngleInRad);
 		}
 
 		public float CalculateVelocity(float timeInSeconds)
@@ -38,7 +38,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 		public float CalculateMaxT()
 		{
 			var acceleration = CalculateAcceleration();
-			return (float)Math.Sqrt(_setup.InclinedLength * 2 / acceleration);
+			return (float)Math.Sqrt(Setup.InclinedLength * 2 / acceleration);
 		}
 
 		public float CalculateAngularVelocity(float timeInSeconds)
@@ -46,7 +46,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var velocity = CalculateVelocity(timeInSeconds);
-			return velocity / _setup.Radius;
+			return velocity / Setup.Radius;
 		}
 
 		public float CalculateTotalAngleInRad(float timeInSeconds)
@@ -54,7 +54,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var distance = CalculateDistance(timeInSeconds);
-			var angleInRad = distance / (_setup.Radius);
+			var angleInRad = distance / (Setup.Radius);
 			return angleInRad;
 		}
 
@@ -85,12 +85,12 @@ namespace Physics.RotationalInclinedPlane.Logic
 
 		public float CalculateInclinedWidth()
 		{
-			return _setup.InclinedLength * (float)Math.Cos(AngleInRad);
+			return Setup.InclinedLength * (float)Math.Cos(AngleInRad);
 		}
 
 		public float CalculateTotalWidth()
 		{
-			return CalculateInclinedWidth() + _setup.HorizontalLength;
+			return CalculateInclinedWidth() + Setup.HorizontalLength;
 		}
 
 		public float CalculateHorizontalStartX()
@@ -110,14 +110,14 @@ namespace Physics.RotationalInclinedPlane.Logic
 			return 0;
 		}
 
-		public float CalculateStartY() => _setup.InclinedLength * (float)Math.Sin(AngleInRad);
+		public float CalculateStartY() => Setup.InclinedLength * (float)Math.Sin(AngleInRad);
 
 		public float CalculateEp(float timeInSeconds)
 		{
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var height = CalculateY(timeInSeconds);
-			return _setup.Mass * _setup.Gravity * height;
+			return Setup.Mass * Setup.Gravity * height;
 		}
 
 		public float CalculateEk(float timeInSeconds)
@@ -125,7 +125,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			timeInSeconds = Math.Min(timeInSeconds, CalculateMaxT());
 
 			var velocity = CalculateVelocity(timeInSeconds);
-			return 0.5f * _setup.Mass * velocity * velocity;
+			return 0.5f * Setup.Mass * velocity * velocity;
 		}
 
 		public float CalculateEr(float timeInSeconds)
@@ -140,11 +140,11 @@ namespace Physics.RotationalInclinedPlane.Logic
 		public float CalculateJ()
 		{
 			var jCoefficient = GetJCoefficient();
-			return jCoefficient * _setup.Mass * _setup.Radius * _setup.Radius;
+			return jCoefficient * Setup.Mass * Setup.Radius * Setup.Radius;
 		}
 
 		public float GetJCoefficient() =>
-			_setup.BodyType switch
+			Setup.BodyType switch
 			{
 				BodyType.HollowCylinder => 1,
 				BodyType.FullCylinder => 1 / 2.0f,
@@ -153,7 +153,7 @@ namespace Physics.RotationalInclinedPlane.Logic
 			};
 
 		public float GetAccelerationCoefficient() =>
-			_setup.BodyType switch
+			Setup.BodyType switch
 			{
 				BodyType.HollowCylinder => 1 / 2.0f,
 				BodyType.FullCylinder => 2 / 3.0f,

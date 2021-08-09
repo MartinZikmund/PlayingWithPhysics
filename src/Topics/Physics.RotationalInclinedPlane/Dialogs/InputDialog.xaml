@@ -71,7 +71,7 @@
                     </TransitionCollection>
                 </Grid.ChildrenTransitions>
 
-                <!--  Body type  -->
+				<!--  Body type  -->
                 <TextBlock FontWeight="SemiBold" Text="{extensions:Localize Key=Input_BodyType}" />
                 <winui:RadioButtons
                     Grid.Row="1"
@@ -94,29 +94,31 @@
                     </winui:RadioButtons.ItemTemplate>
                 </winui:RadioButtons>
 
-                <!--  Mass  -->
-                <TextBlock Grid.Row="2" Grid.Column="0">
+				<TextBox Grid.ColumnSpan="2" Grid.Row="2" Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
+
+				<!--  Mass  -->
+                <TextBlock Grid.Row="3" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Mass}" />
                     <Run FontWeight="SemiBold" Text="m" />
                     <Run Text="(kg)" />
                 </TextBlock>
                 <winui:NumberBox
                     x:Name="MassNumberBox"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Maximum="90"
                     Minimum="0.01"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
                 <!--  Radius  -->
-                <TextBlock Grid.Row="3" Grid.Column="0">
+                <TextBlock Grid.Row="4" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Radius}" />
                     <Run FontWeight="SemiBold" Text="r" />
                     <Run Text="(m)" />
                 </TextBlock>
                 <winui:NumberBox
                     x:Name="RadiusNumberBox"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Maximum="0.25"
                     Minimum="0.001"

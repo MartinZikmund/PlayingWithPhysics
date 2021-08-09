@@ -173,4 +173,10 @@ Graphics: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rotational Movement on Inclined Plane</value>
   </data>
+  <data name="TooManyMotionsDescription" xml:space="preserve">
+    <value>Can't render more than 5 motions at once. Plese remove one.</value>
+  </data>
+  <data name="TooManyMotionsTitle" xml:space="preserve">
+    <value>Can't add another motion</value>
+  </data>
 </root>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Physics.InclinedPlane.ValuesTable;
@@ -10,8 +12,10 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,19 +37,23 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			_timer.Tick += _timer_Tick;
 		}
 
-		public MotionSetup Setup { get; set; }
+		public ObservableCollection<MotionViewModel> Motions { get; } = new ObservableCollection<MotionViewModel>();
 
-		public MotionViewModel Motion { get; set; }
+		public bool AddMotionCommandEnabled => Motions.Count < 5;
 
-		public Visibility ShowCurrentValuesGrid => (Setup != null) ? Visibility.Visible : Visibility.Collapsed;
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<MotionViewModel>(ShowValuesTableAsync);
 
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
+		public ICommand AddMotionCommand => GetOrCreateAsyncCommand(AddMotionAsync);
 
-		public ICommand EditValuesCommand => GetOrCreateAsyncCommand(EditValuesAsync);
+		public ICommand EditMotionCommand => GetOrCreateAsyncCommand<MotionViewModel>(EditValuesAsync);
+
+		public ICommand DeleteMotionCommand => GetOrCreateAsyncCommand<MotionViewModel>(DeleteMotionAsync);
+
+		public ICommand DuplicateMotionCommand => GetOrCreateAsyncCommand<MotionViewModel>(DuplicateMotionAsync);
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
-			_difficulty = parameter.Difficulty;			
+			_difficulty = parameter.Difficulty;
 		}
 
 		public void SetController(RotationalInclinedPlaneCanvasController controller)
@@ -59,12 +67,12 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			SimulationPlayback.SetController(_controller);
 		}
 
-		private async Task ShowValuesTableAsync()
+		private async Task ShowValuesTableAsync(MotionViewModel motionViewModel)
 		{
 			var newWindow = await AppWindow.TryCreateAsync();
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-			var physicsService = new PhysicsService(Setup);
+			var physicsService = new PhysicsService(motionViewModel.MotionInfo);
 			var valuesTableService = new TableService(physicsService);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, _difficulty);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
@@ -84,31 +92,66 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			var shown = await newWindow.TryShowAsync();
 		}
 
-		public async Task EditValuesAsync()
+		public async Task AddMotionAsync()
 		{
-			InputDialogViewModel viewModel;
-			if (Setup == null)
+			var inputViewModel = new InputDialogViewModel(_difficulty);
+
+			var dialog = new InputDialog(inputViewModel);
+			var result = await dialog.ShowAsync();
+			if (result == ContentDialogResult.Primary)
 			{
-				viewModel = new InputDialogViewModel(_difficulty);
+				var setup = inputViewModel.CreateMotionSetup();
+				var viewModel = new MotionViewModel(setup);
+				Motions.Add(viewModel);
+				RestartSimulation();
 			}
-			else
-			{
-				viewModel = new InputDialogViewModel(Setup, _difficulty);
-			}
+		}
+
+		public async Task EditValuesAsync(MotionViewModel motionViewModel)
+		{
+			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty);
 
 			var dialog = new InputDialog(viewModel);
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				Setup = viewModel.CreateMotionSetup();
-				Motion = new MotionViewModel(Setup);
+				motionViewModel.MotionInfo = viewModel.CreateMotionSetup();
 				RestartSimulation();
 			}
 		}
 
+		private async Task DuplicateMotionAsync(MotionViewModel motionViewModel)
+		{
+			var resourceLoader = ResourceLoader.GetForCurrentView();
+			if (Motions.Count >= 5)
+			{
+				await new MessageDialog(resourceLoader.GetString("TooManyMotionsDescription"), resourceLoader.GetString("TooManyMotionsTitle")).ShowAsync();
+				return;
+			}
+			var duplicateMotion = motionViewModel.MotionInfo.Clone();
+			duplicateMotion.Label = $"{duplicateMotion.Label} ({resourceLoader.GetString("Copy")})";
+			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty);
+
+			var dialog = new InputDialog(viewModel);
+			var result = await dialog.ShowAsync();
+			if (result == ContentDialogResult.Primary)
+			{
+				motionViewModel.MotionInfo = viewModel.CreateMotionSetup();
+				RestartSimulation();
+			}
+		}
+
+		public Task DeleteMotionAsync(MotionViewModel motionViewModel)
+		{
+			Motions.Remove(motionViewModel);
+			RestartSimulation();
+			return Task.CompletedTask;
+		}
+
 		protected virtual void RestartSimulation()
 		{
-			_controller.StartSimulation(Motion.MotionInfo);
+			RaisePropertyChanged(nameof(AddMotionCommandEnabled));
+			_controller.StartSimulation(Motions.Select(vm => vm.MotionInfo).ToArray());
 			_timer.Start();
 		}
 
@@ -118,7 +161,10 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			{
 				float timeElapsed = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
 
-				Motion?.UpdateCurrentValues(timeElapsed);
+				foreach (var motion in Motions)
+				{
+					motion?.UpdateCurrentValues(timeElapsed);
+				}
 			}
 		}
 
