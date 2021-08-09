@@ -39,70 +39,72 @@
         HorizontalScrollMode="Auto"
         VerticalScrollBarVisibility="Auto"
         VerticalScrollMode="Auto">
-        <Grid>
+        <Grid RowSpacing="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
 
             </Grid.RowDefinitions>
 
             <!--  General inputs  -->
-            <Grid
+			<Grid
                 Grid.Row="0"
                 ColumnSpacing="8"
                 RowSpacing="8">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{StaticResource LabelColumnWidth}" />
-                    <ColumnDefinition Width="{StaticResource InputColumnWidth}" />
-                </Grid.ColumnDefinitions>
-                <Grid.ChildrenTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
-                    </TransitionCollection>
-                </Grid.ChildrenTransitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="{StaticResource LabelColumnWidth}" />
+					<ColumnDefinition Width="{StaticResource InputColumnWidth}" />
+				</Grid.ColumnDefinitions>
+				<Grid.ChildrenTransitions>
+					<TransitionCollection>
+						<EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+					</TransitionCollection>
+				</Grid.ChildrenTransitions>
 
 				<!--  Body type  -->
-                <TextBlock FontWeight="SemiBold" Text="{extensions:Localize Key=Input_BodyType}" />
-                <winui:RadioButtons
+				<TextBlock Grid.Row="0" Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Input_Body}" />
+				<winui:RadioButtons
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
                     ItemsSource="{x:Bind Model.BodyTypes}"
                     MaxColumns="3"
                     SelectedIndex="{x:Bind Model.SelectedBodyTypeIndex, Mode=TwoWay}">
-                    <winui:RadioButtons.Resources>
-                        <Style TargetType="RadioButton">
-                            <Setter Property="Padding" Value="8,0,8,0" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                        </Style>
-                    </winui:RadioButtons.Resources>
-                    <winui:RadioButtons.ItemTemplate>
-                        <DataTemplate>
-                            <RadioButton Content="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
-                        </DataTemplate>
-                    </winui:RadioButtons.ItemTemplate>
-                </winui:RadioButtons>
+					<winui:RadioButtons.Resources>
+						<Style TargetType="RadioButton">
+							<Setter Property="Padding" Value="8,0,8,0" />
+							<Setter Property="VerticalAlignment" Value="Center" />
+							<Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="HorizontalAlignment" Value="Center" />
+						</Style>
+					</winui:RadioButtons.Resources>
+					<winui:RadioButtons.ItemTemplate>
+						<DataTemplate>
+							<RadioButton Content="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</winui:RadioButtons.ItemTemplate>
+				</winui:RadioButtons>
 
 				<TextBox Grid.ColumnSpan="2" Grid.Row="2" Header="{extensions:Localize Key=Label}" Text="{x:Bind Model.Label, Mode=TwoWay}" />
 
 				<!--  Mass  -->
-                <TextBlock Grid.Row="3" Grid.Column="0">
+				<TextBlock Grid.Row="3" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Mass}" />
                     <Run FontWeight="SemiBold" Text="m" />
                     <Run Text="(kg)" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="MassNumberBox"
                     Grid.Row="3"
                     Grid.Column="1"
@@ -110,23 +112,45 @@
                     Minimum="0.01"
                     Value="{x:Bind Model.Mass, Mode=TwoWay}" />
 
-                <!--  Radius  -->
-                <TextBlock Grid.Row="4" Grid.Column="0">
+				<!--  Radius  -->
+				<TextBlock Grid.Row="4" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Radius}" />
                     <Run FontWeight="SemiBold" Text="r" />
                     <Run Text="(m)" />
-                </TextBlock>
-                <winui:NumberBox
+				</TextBlock>
+				<winui:NumberBox
                     x:Name="RadiusNumberBox"
                     Grid.Row="4"
                     Grid.Column="1"
                     Maximum="0.25"
                     Minimum="0.001"
                     Value="{x:Bind Model.Radius, Mode=TwoWay}" />
-            </Grid>
-            <Grid Grid.Row="1" ColumnSpacing="8">
+			</Grid>
+
+			<TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="{extensions:Localize Key=Color}" />
+			<GridView
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
+                SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
+				<GridView.ItemTemplate>
+					<DataTemplate>
+						<Border Width="32" Height="32">
+							<Border.Background>
+								<SolidColorBrush Color="{Binding}" />
+							</Border.Background>
+						</Border>
+					</DataTemplate>
+				</GridView.ItemTemplate>
+			</GridView>
+
+			<Grid Grid.Row="4" ColumnSpacing="8" Visibility="{x:Bind Model.IsAdvanced}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LabelColumnWidth}" />
@@ -137,7 +161,20 @@
                         <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
                     </TransitionCollection>
                 </Grid.ChildrenTransitions>
-                <Grid
+				<TextBlock Grid.Row="0" Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Input_Environment}" />
+				<StackPanel
+					Grid.Column="1"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Opacity="0.8"
+                Orientation="Horizontal"
+                Spacing="8">
+					<Viewbox Width="16" Height="16">
+						<SymbolIcon Foreground="DarkRed" Symbol="Link" />
+					</Viewbox>
+					<TextBlock Foreground="DarkRed" Text="{extensions:Localize Key=ChangesApplyToAll}" />
+				</StackPanel>
+				<Grid
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
                     ColumnSpacing="8"
@@ -196,7 +233,7 @@
 
             <!--  Inclined plane inputs  -->
             <Grid
-                Grid.Row="2"
+                Grid.Row="5"
                 ColumnSpacing="8"
                 RowSpacing="8">
                 <Grid.RowDefinitions>
@@ -217,7 +254,18 @@
                 </Grid.ChildrenTransitions>
 
                 <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Input_InclinedPlane}" />
-
+				<StackPanel
+					Grid.Column="1"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right"
+                Opacity="0.8"
+                Orientation="Horizontal"
+                Spacing="8">
+					<Viewbox Width="16" Height="16">
+						<SymbolIcon Foreground="DarkRed" Symbol="Link" />
+					</Viewbox>
+					<TextBlock Foreground="DarkRed" Text="{extensions:Localize Key=ChangesApplyToAll}" />
+				</StackPanel>
                 <!--  Inclined plane angle  -->
                 <TextBlock Grid.Row="1" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Angle}" />
@@ -247,25 +295,7 @@
                     Value="{x:Bind Model.InclinedLength, Mode=TwoWay}" />
             </Grid>
 
-            <TextBlock
-                Grid.Row="3"
-                Grid.Column="0"
-                Text="{extensions:Localize Key=Color}" />
-            <GridView
-                Grid.Row="4"
-                Grid.ColumnSpan="2"
-                ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
-                SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Width="32" Height="32">
-                            <Border.Background>
-                                <SolidColorBrush Color="{Binding}" />
-                            </Border.Background>
-                        </Border>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
+            
         </Grid>
     </ScrollViewer>
 </ContentDialog>

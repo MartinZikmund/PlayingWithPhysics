@@ -94,7 +94,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public async Task AddMotionAsync()
 		{
-			var inputViewModel = new InputDialogViewModel(_difficulty);
+			var inputViewModel = new InputDialogViewModel(_difficulty, Motions.Select(m => m.MotionInfo).ToArray());
 
 			var dialog = new InputDialog(inputViewModel);
 			var result = await dialog.ShowAsync();
@@ -103,19 +103,21 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 				var setup = inputViewModel.CreateMotionSetup();
 				var viewModel = new MotionViewModel(setup);
 				Motions.Add(viewModel);
+				ApplyInlinedPropertiesToAll(setup);
 				RestartSimulation();
 			}
 		}
 
 		public async Task EditValuesAsync(MotionViewModel motionViewModel)
 		{
-			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty);
+			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty, Motions.Except(new[] { motionViewModel }).Select(m => m.MotionInfo).ToArray());
 
 			var dialog = new InputDialog(viewModel);
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
 				motionViewModel.MotionInfo = viewModel.CreateMotionSetup();
+				ApplyInlinedPropertiesToAll(motionViewModel.MotionInfo);
 				RestartSimulation();
 			}
 		}
@@ -130,14 +132,33 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			}
 			var duplicateMotion = motionViewModel.MotionInfo.Clone();
 			duplicateMotion.Label = $"{duplicateMotion.Label} ({resourceLoader.GetString("Copy")})";
-			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty);
+			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty, Motions.Select(m => m.MotionInfo).ToArray());
 
 			var dialog = new InputDialog(viewModel);
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
 				motionViewModel.MotionInfo = viewModel.CreateMotionSetup();
+				ApplyInlinedPropertiesToAll(motionViewModel.MotionInfo);
 				RestartSimulation();
+			}
+		}
+
+		private void ApplyInlinedPropertiesToAll(MotionSetup source)
+		{
+			foreach (var motion in Motions)
+			{
+				var setup = new MotionSetup(
+					motion.MotionInfo.Label,
+					motion.MotionInfo.BodyType,
+					motion.MotionInfo.Mass,
+					source.Gravity,
+					motion.MotionInfo.Radius,
+					source.InclinedLength,
+					source.InclinedAngle,
+					source.HorizontalLength,
+					motion.MotionInfo.Color);
+				motion.MotionInfo = setup;
 			}
 		}
 
