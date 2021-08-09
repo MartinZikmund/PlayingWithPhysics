@@ -11,7 +11,7 @@ namespace Physics.WaveInterference.Dialogs
 		{
 			InitializeComponent();
 			DataContextChanged += AddOrUpdateOscillationDialog_DataContextChanged;
-			SetupNumberBoxFormattings();
+			SourceDistanceNumberBox.SetupFormatting(smallChange: 0.01, fractionDigits: 2, increment: 0.01);
 		}
 
 		public AddOrUpdateOscillationDialog(AddOrUpdateOscillationViewModel viewModel) : this()
@@ -19,12 +19,7 @@ namespace Physics.WaveInterference.Dialogs
 			DataContext = viewModel;
 		}
 
-		private void SetupNumberBoxFormattings()
-		{
-			AmplitudeNumberBox.SetupFormatting(increment: 0.1, fractionDigits: 1, smallChange: 0.1);
-			FrequencyNumberBox.SetupFormatting(fractionDigits: 2, smallChange: 0.1);
-			WaveLengthNumberBox.SetupFormatting(increment: 0.001, fractionDigits: 3, smallChange: 0.001, largeChange: 0.005);
-		}
+
 
 		private void AddOrUpdateOscillationDialog_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
 		{

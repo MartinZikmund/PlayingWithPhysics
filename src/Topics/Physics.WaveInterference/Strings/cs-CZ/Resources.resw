@@ -182,6 +182,9 @@ Grafika: Petr Weinlich</value>
   <data name="SimulationTimeLabel" xml:space="preserve">
     <value>Čas simulace:</value>
   </data>
+  <data name="SourceDistance" xml:space="preserve">
+    <value>Vzdálenost od zdrojů</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>

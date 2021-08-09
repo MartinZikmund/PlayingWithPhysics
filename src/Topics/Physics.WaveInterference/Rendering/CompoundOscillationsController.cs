@@ -94,6 +94,7 @@ namespace Physics.WaveInterference.Rendering
 					(float)(oscillation.WaveInfo.Frequency * _inherentSlowdown),
 					oscillation.WaveInfo.WaveLength,
 					oscillation.WaveInfo.PhaseInRad,
+					WaveDirection.Right,
 					oscillation.WaveInfo.Color);
 
 				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);				

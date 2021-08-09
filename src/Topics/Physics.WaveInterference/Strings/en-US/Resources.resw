@@ -182,6 +182,9 @@ Graphics: Petr Weinlich</value>
   <data name="SimulationTimeLabel" xml:space="preserve">
     <value>Simulation time:</value>
   </data>
+  <data name="SourceDistance" xml:space="preserve">
+    <value>Source distance</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
