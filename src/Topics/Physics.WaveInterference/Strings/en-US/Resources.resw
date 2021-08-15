@@ -194,6 +194,9 @@ Graphics: Petr Weinlich</value>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Camera control</value>
   </data>
+  <data name="TimeSinceStart" xml:space="preserve">
+    <value>Time since start</value>
+  </data>
   <data name="Wave" xml:space="preserve">
     <value>Wave</value>
   </data>

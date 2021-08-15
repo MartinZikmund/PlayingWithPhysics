@@ -53,7 +53,6 @@ namespace Physics.WaveInterference.ViewModels
 
 
 		public string WaveLengthText => WaveInfo.WaveLengthText;
-		//public string PhaseText => WaveInfo.PhaseInRad;
 		public string PeriodText => (1.0f / WaveInfo.Frequency).ToString("0.000");
 
 		public string TimeElapsed { get; private set; }

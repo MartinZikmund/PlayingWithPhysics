@@ -24,8 +24,10 @@ namespace Physics.WaveInterference.Logic
 		public string WaveLengthText => WaveLength.ToString("0.##");
 		public float PhaseInRad { get; set; }
 		public string PhaseInPiRadText => (PhaseInRad / Math.PI).ToString("0.###");
-		public string PeriodText => (1 / Frequency).ToString("0.###");
-		public string TimeSinceStartText => "1s";
+		public float Period => 1.0f / Frequency;
+		public string PeriodText => Period.ToString("0.###");
+		public float TimeSinceStart => 1.0f;
+		public string TimeSinceStartText => TimeSinceStart.ToString("0.###");
 		public WaveDirection Direction { get; set; }
 
 		public string Color { get; set; }

@@ -9,9 +9,9 @@ namespace Physics.WaveInterference.ValuesTable
 		private const int MaxCycles = 500;
 		private const int MaxTimeInSeconds = 120;
 
-		private IOscillationPhysicsService _physicsService;
+		private WavePhysicsService _physicsService;
 
-		public TableService(IOscillationPhysicsService physicsService)
+		public TableService(WavePhysicsService physicsService)
 		{
 			_physicsService = physicsService;
 		}
@@ -21,18 +21,27 @@ namespace Physics.WaveInterference.ValuesTable
 			List<TableRow> table = new List<TableRow>();
 			float cycles = 0;
 			float time;
-			do
-			{
-				time = timeInterval * cycles;
-				//Add TableRow
-				var y = _physicsService.CalculateY(time);
-				var v = _physicsService.CalculateV(time);
-				var a = _physicsService.CalculateA(time);
+			float x = -20f;
 
-				TableRow valuesRow = new TableRow(time, y, v, a);
+			while (x <= 20f)
+			{
+				var a = _physicsService.CalculateA(x);
+				TableRow valuesRow = new TableRow(0f, x, a);
 				table.Add(valuesRow);
-				cycles++;
-			} while (cycles < MaxCycles || time < MaxTimeInSeconds);
+
+				x += _physicsService.Delta;
+			}
+
+			//do
+			//{
+			//	time = timeInterval * cycles;
+			//	//Add TableRow
+			//	var a = _physicsService.CalculateA(time);
+
+			//	TableRow valuesRow = new TableRow(time, x, a);
+			//	table.Add(valuesRow);
+			//	cycles++;
+			//} while (cycles < MaxCycles || time < MaxTimeInSeconds);
 
 			return table;
 		}

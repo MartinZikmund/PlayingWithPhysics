@@ -22,8 +22,10 @@ namespace Physics.WaveInterference.ViewModels
 
 		private string[] _existingNames;
 
-		public AddOrUpdateOscillationViewModel(WaveInfo wave1, WaveInfo wave2, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
+		public AddOrUpdateOscillationViewModel(WaveInfo wave1, WaveInfo wave2, float sourceDistance, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
 		{
+			SourceDistance = sourceDistance;
+
 			DialogTitle = Localizer.Instance.GetString(EditOscillationKey);
 			
 			WaveEdits[0] = new EditWaveViewModel(wave1, difficulty);
@@ -76,7 +78,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		public string AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency).ToString("0.0");
 
-		public float Amplitude { get; set; } = 1;
+		public float Amplitude { get; set; }
 
 		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 

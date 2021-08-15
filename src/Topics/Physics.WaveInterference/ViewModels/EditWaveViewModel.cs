@@ -31,6 +31,7 @@ namespace Physics.WaveInterference.ViewModels
 			Color = ColorHelper.ToColor(oscillationInfo.Color);
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
+			WaveLength = oscillationInfo.WaveLength;
 			PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
 			IsEasyVariant = difficulty == DifficultyOption.Easy;
 			Result = oscillationInfo;
@@ -38,11 +39,11 @@ namespace Physics.WaveInterference.ViewModels
 
 		public EditWaveViewModel()
 		{
-						
+			Color = AvailableColors[new Random().Next(0,5)];
 		}
 
 		public List<WaveDirection> WaveDirections = new() { WaveDirection.Left, WaveDirection.Right };
-		public WaveDirection SelectedDirection { get; set; }
+		public WaveDirection SelectedDirection { get; set; } = WaveDirection.Left;
 		public bool IsEasyVariant { get; }
 
 		public string DialogTitle { get; }
@@ -61,7 +62,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		public string Label { get; set; }
 
-		public Color Color { get; set; } = ColorHelper.ToColor("#0063B1");
+		public Color Color { get; set; }
 
 		public float Frequency { get; set; } = 1;
 
@@ -71,12 +72,12 @@ namespace Physics.WaveInterference.ViewModels
 
 		public string AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency).ToString("0.0");
 
-		public float Amplitude { get; set; } = 1;
+		public float Amplitude { get; set; } = 1.0f;
 
 		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 		public float PhaseInPiRad { get; set; }
 		public float StartPhase { get; set; }
-		public float WaveLength { get; set; }
+		public float WaveLength { get; set; } = 0.5f;
 		public float SourceDistance { get; set; }
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
@@ -118,6 +119,7 @@ namespace Physics.WaveInterference.ViewModels
 				Result.Label = Label;
 				Result.Amplitude = Amplitude;
 				Result.Frequency = Frequency;
+				Result.WaveLength = WaveLength;
 				Result.PhaseInRad = PhaseInPiRad * (float)Math.PI;
 				Result.Direction = SelectedDirection;
 				Result.Color = ColorHelper.ToHex(Color);

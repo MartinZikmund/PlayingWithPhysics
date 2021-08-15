@@ -44,7 +44,7 @@
             Grid.Column="1"
             Maximum="5"
             Minimum="0.1"
-            Text="{x:Bind Wave.Amplitude, Mode=TwoWay}" />
+            Value="{x:Bind Wave.Amplitude, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="2" Grid.Column="0">
             <Run Text="{extensions:Localize Key=Frequency}" />

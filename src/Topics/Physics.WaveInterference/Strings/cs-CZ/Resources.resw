@@ -194,6 +194,9 @@ Grafika: Petr Weinlich</value>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Ovládání stativu</value>
   </data>
+  <data name="TimeSinceStart" xml:space="preserve">
+    <value>Čas od startu 1. vlnění</value>
+  </data>
   <data name="Wave" xml:space="preserve">
     <value>Vlnění</value>
   </data>
