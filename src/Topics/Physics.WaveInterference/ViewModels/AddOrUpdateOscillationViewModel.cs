@@ -133,6 +133,7 @@ namespace Physics.WaveInterference.ViewModels
 			{
 				wave.PrepareMotion();
 			}
+			WaveEdits[1].Result.SourceDistance = SourceDistance;
 			Result = WaveEdits;
 		}
 

@@ -9,11 +9,13 @@ namespace Physics.WaveInterference.ValuesTable
 		private const int MaxCycles = 500;
 		private const int MaxTimeInSeconds = 120;
 
-		private WavePhysicsService _physicsService;
+		private IWavePhysicsService _physicsService;
+		public bool Compound { get; }
 
-		public TableService(WavePhysicsService physicsService)
+		public TableService(IWavePhysicsService physicsService, bool compound)
 		{
 			_physicsService = physicsService;
+			Compound = compound;
 		}
 
 		public IEnumerable<TableRow> CalculateTable(float timeInterval)
@@ -28,8 +30,14 @@ namespace Physics.WaveInterference.ValuesTable
 				var a = _physicsService.CalculateA(x);
 				TableRow valuesRow = new TableRow(0f, x, a);
 				table.Add(valuesRow);
-
-				x += _physicsService.Delta;
+				if (Compound)
+				{
+					x += ((WaveInterferencePhysicsService)_physicsService).Delta;
+				}
+				else
+				{
+					x += ((WavePhysicsService)_physicsService).Delta;
+				}
 			}
 
 			//do

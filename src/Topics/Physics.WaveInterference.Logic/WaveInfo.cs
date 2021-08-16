@@ -4,7 +4,7 @@ namespace Physics.WaveInterference.Logic
 {
 	public class WaveInfo
 	{
-		public WaveInfo(string label, float amplitude, float frequency, float waveLength, float phase, WaveDirection direction, string color)
+		public WaveInfo(string label, float amplitude, float frequency, float waveLength, float phase, WaveDirection direction, float sourceDistance, string color)
 		{
 			Label = label;
 			Amplitude = amplitude;
@@ -12,9 +12,11 @@ namespace Physics.WaveInterference.Logic
 			WaveLength = waveLength;
 			PhaseInRad = phase;
 			Direction = direction;
+			SourceDistance = sourceDistance;
 			Color = color;
 		}
 
+		public float SourceDistance { get; set; }
 		public string Label { get; set; }
 		public float Amplitude { get; set; }
 		public string AmplitudeText => Amplitude.ToString("0.##");
@@ -31,6 +33,6 @@ namespace Physics.WaveInterference.Logic
 		public WaveDirection Direction { get; set; }
 
 		public string Color { get; set; }
-		public WaveInfo Clone() => new WaveInfo(Label, Amplitude, Frequency, WaveLength, PhaseInRad, Direction, Color);
+		public WaveInfo Clone() => new WaveInfo(Label, Amplitude, Frequency, WaveLength, PhaseInRad, Direction, SourceDistance, Color);
 	}
 }

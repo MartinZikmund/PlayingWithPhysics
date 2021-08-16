@@ -140,7 +140,6 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
 
                                                 <TextBlock
@@ -151,11 +150,16 @@
                                                     TextLineBounds="Tight"
                                                     TextTrimming="CharacterEllipsis"
                                                     TextWrapping="NoWrap" />
-
-                                                <ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}">
+                                                <Button
+                                                    Grid.Column="1"
+                                                    Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
+                                                    CommandParameter="{x:Bind}">
+                                                    <SymbolIcon Symbol="ViewAll" />
+                                                </Button>
+                                                <!--<ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}">
                                                     <SymbolIcon Symbol="View" />
-                                                </ToggleButton>
-                                                <Button Grid.Column="2">
+                                                </ToggleButton>-->
+                                                <!--<Button Grid.Column="2">
                                                     <Button.Flyout>
                                                         <MenuFlyout>
                                                             <MenuFlyoutItem
@@ -194,7 +198,7 @@
                                                         </MenuFlyout>
                                                     </Button.Flyout>
                                                     <SymbolIcon Symbol="More" />
-                                                </Button>
+                                                </Button>-->
                                             </Grid>
 
                                             <Grid
@@ -289,7 +293,7 @@
                                 <Button
                                     Margin="0,0,0,8"
                                     HorizontalAlignment="Stretch"
-                                    Command="{x:Bind Model.ShowValuesTableCommand}">
+                                    Command="{x:Bind Model.ShowWaveInterferenceValuesTableCommand}">
                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                         <Viewbox
                                             Width="16"

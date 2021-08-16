@@ -45,9 +45,9 @@ namespace Physics.WaveInterference.ViewModels
 
 		public ICommand DeleteOscillationCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(DeleteTrajectoryAsync);
 
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(ShowValuesTableAsync);
 
-		//public ICommand ShowCompoundOscillationValuesTableCommand => GetOrCreateAsyncCommand(ShowCompoundOscillationValuesTableAsync);
+		public ICommand ShowWaveInterferenceValuesTableCommand => GetOrCreateAsyncCommand(ShowWaveInterferenceValuesTableAsync);
 
 		public string TimeElapsed => _controller?.GetSimulationDisplayTime().ToString("0.00") ?? "0.00";
 
@@ -127,28 +127,28 @@ namespace Physics.WaveInterference.ViewModels
 			//await StartSimulationAsync();
 		}
 
-		//private async Task ShowValuesTableAsync(WaveInfoViewModel viewModel)
-		//{
-		//	var physicsService = new WavePhysicsService(viewModel.WaveInfo);
-		//	await ShowValuesTableAsync(physicsService, viewModel.Label);
-		//}
+		private async Task ShowValuesTableAsync(WaveInfoViewModel viewModel)
+		{
+			var physicsService = new WavePhysicsService(viewModel.WaveInfo);
+			await ShowValuesTableAsync(physicsService, false);
+		}
 
-		//private async Task ShowCompoundOscillationValuesTableAsync()
-		//{
-		//	var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.WaveInfo).ToArray());
-		//	await ShowValuesTableAsync(physicsService, Localizer.Instance.GetString("WaveInterference"));
-		//}
+		private async Task ShowWaveInterferenceValuesTableAsync()
+		{
+			//var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.WaveInfo).ToArray());
+			var physicsServices = new WaveInterferencePhysicsService(new WavePhysicsService[] { new WavePhysicsService(Wave1.WaveInfo), new WavePhysicsService(Wave2.WaveInfo) });
+			await ShowValuesTableAsync(physicsServices, true);
+		}
 
-		private async Task ShowValuesTableAsync()
+		private async Task ShowValuesTableAsync(IWavePhysicsService physicsService, bool compound)
 		{
 			var newWindow = await AppWindow.TryCreateAsync();
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
-			var physicsService = new WavePhysicsService(Wave1.WaveInfo);
 			string title = Wave1.Label;
 
-			var valuesTableService = new TableService(physicsService);
+			var valuesTableService = new TableService(physicsService, compound);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.

@@ -112,6 +112,7 @@ namespace Physics.WaveInterference.ViewModels
 					WaveLength,
 					PhaseInPiRad * (float)Math.PI,
 					SelectedDirection,
+					SourceDistance,
 					ColorHelper.ToHex(Color));
 			}
 			else
@@ -122,6 +123,7 @@ namespace Physics.WaveInterference.ViewModels
 				Result.WaveLength = WaveLength;
 				Result.PhaseInRad = PhaseInPiRad * (float)Math.PI;
 				Result.Direction = SelectedDirection;
+				Result.SourceDistance = SourceDistance;
 				Result.Color = ColorHelper.ToHex(Color);
 			}
 		}

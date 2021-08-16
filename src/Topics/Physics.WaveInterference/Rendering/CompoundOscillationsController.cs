@@ -101,6 +101,7 @@ namespace Physics.WaveInterference.Rendering
 					oscillation.WaveInfo.WaveLength,
 					oscillation.WaveInfo.PhaseInRad,
 					WaveDirection.Right,
+					0.0f,
 					oscillation.WaveInfo.Color);
 
 				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);
