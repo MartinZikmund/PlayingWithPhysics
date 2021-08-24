@@ -7,10 +7,8 @@
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     Title="{extensions:Localize Key=SetupCollision}"
 	d:Title="Add oscillation"
-	PrimaryButtonClick="{x:Bind Model.Save}"
 	PrimaryButtonText="{extensions:Localize Key=Save}"
 	SecondaryButtonText="{extensions:Localize Key=Cancel}"
 	mc:Ignorable="d">
@@ -20,7 +18,8 @@
 		<GridLength x:Key="InputColumnWidth">200</GridLength>
 	</ContentDialog.Resources>
 	<Grid ColumnSpacing="8" RowSpacing="8">
-		<Grid.Resources>
+		<TextBox />
+		<!--<Grid.Resources>
 			<Style TargetType="controls:NumberBox">
 				<Setter Property="SpinButtonPlacementMode" Value="Compact" />
 				<Setter Property="VerticalAlignment" Value="Center" />
@@ -174,7 +173,7 @@
 					</Border>
 				</DataTemplate>
 			</GridView.ItemTemplate>
-		</GridView>
+		</GridView>-->
 
 	</Grid>
 </ContentDialog>
