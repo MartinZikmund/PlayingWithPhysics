@@ -26,6 +26,8 @@ variables:
 name: $(major).$(minor).$(rev:r).0
 
 steps:
+- checkout: self
+  lfs: true
 
 - task: DownloadSecureFile@1
   name: signingCert
