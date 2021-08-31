@@ -65,7 +65,8 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Width="400"
-            ItemsSource="{x:Bind Model.WaveEdits, Mode=OneWay}">
+            ItemsSource="{x:Bind Model.WaveEdits, Mode=OneWay}"
+			SelectedItem="{x:Bind Model.SelectedWave, Mode=TwoWay}">
             <Pivot.HeaderTemplate>
                 <DataTemplate x:DataType="viewModels:EditWaveViewModel">
                     <TextBlock FontSize="18" Text="{x:Bind Label}" />

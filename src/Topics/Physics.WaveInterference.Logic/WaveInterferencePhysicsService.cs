@@ -12,9 +12,9 @@ namespace Physics.WaveInterference.Logic
 		{
 			_physicsServices = physicsServices;
 		}
-		public double CalculateA(float x)
+		public double CalculateA(float x, float time)
 		{
-			double result = _physicsServices[0].CalculateA(x) + _physicsServices[1].CalculateA(x);
+			double result = _physicsServices[0].CalculateA(x, time) + _physicsServices[1].CalculateA(x, time);
 			return result;
 		}
 	}

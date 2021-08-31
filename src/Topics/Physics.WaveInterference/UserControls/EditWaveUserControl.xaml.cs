@@ -29,12 +29,12 @@ namespace Physics.WaveInterference.UserControls
 
 		public EditWaveViewModel Wave
 		{
-			get { return (EditWaveViewModel)GetValue(WaveProperty); }
-			set { SetValue(WaveProperty, value); }
+			get => (EditWaveViewModel)GetValue(WaveProperty);
+			set => SetValue(WaveProperty, value);
 		}
 
 		public static readonly DependencyProperty WaveProperty =
-			DependencyProperty.Register("Wave", typeof(EditWaveViewModel), typeof(EditWaveUserControl), new PropertyMetadata(null));
+			DependencyProperty.Register(nameof(Wave), typeof(EditWaveViewModel), typeof(EditWaveUserControl), new PropertyMetadata(null));
 
 		private void SetupNumberBoxFormattings()
 		{

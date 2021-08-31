@@ -141,10 +141,10 @@ Graphics: Petr Weinlich</value>
     <value>Playing with Physics: Compound Oscillations</value>
   </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
-    <value>Change applies to all oscillations</value>
+    <value>Changes apply to both waves</value>
   </data>
   <data name="EditWave" xml:space="preserve">
-    <value>Edit oscillation</value>
+    <value>Configure waves</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
@@ -210,7 +210,7 @@ Graphics: Petr Weinlich</value>
     <value>Right</value>
   </data>
   <data name="WaveInterference" xml:space="preserve">
-    <value>WaveInterference</value>
+    <value>Wave interference</value>
   </data>
   <data name="WaveLength" xml:space="preserve">
     <value>Wave length</value>

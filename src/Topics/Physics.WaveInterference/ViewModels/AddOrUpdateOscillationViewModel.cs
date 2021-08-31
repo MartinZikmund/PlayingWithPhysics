@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using MvvmCross;
 using MvvmCross.ViewModels;
-using Physics.WaveInterference.Logic;
 using Physics.Shared.Helpers;
 using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
+using Physics.WaveInterference.Logic;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
-using System.Collections.Generic;
 
 namespace Physics.WaveInterference.ViewModels
 {
@@ -22,12 +22,12 @@ namespace Physics.WaveInterference.ViewModels
 
 		private string[] _existingNames;
 
-		public AddOrUpdateOscillationViewModel(WaveInfo wave1, WaveInfo wave2, float sourceDistance, DifficultyOption difficulty, params string[] existingNames) : this(difficulty, existingNames)
+		public AddOrUpdateOscillationViewModel(WaveInfo wave1, WaveInfo wave2, float sourceDistance, DifficultyOption difficulty) : this(difficulty)
 		{
 			SourceDistance = sourceDistance;
 
 			DialogTitle = Localizer.Instance.GetString(EditOscillationKey);
-			
+
 			WaveEdits[0] = new EditWaveViewModel(wave1, difficulty);
 			WaveEdits[0].Label = Localizer.Instance.GetString("Wave") + " 1";
 
@@ -35,20 +35,47 @@ namespace Physics.WaveInterference.ViewModels
 			WaveEdits[1].Label = Localizer.Instance.GetString("Wave") + " 2";
 		}
 
-		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty, params string[] existingNames)
+		public EditWaveViewModel SelectedWave { get; set; }
+
+		internal void OnSelectedWaveChanged()
+		{
+			// Sync values from previously edited wave in case of Easy difficulty
+			if (SelectedWave == null || Difficulty == DifficultyOption.Advanced)
+			{
+				return;
+			}
+
+			EditWaveViewModel sourceWave;
+			if (SelectedWave == WaveEdits[0])
+			{
+				sourceWave = WaveEdits[1];
+			}
+			else
+			{
+				sourceWave = WaveEdits[0];
+			}
+
+			SelectedWave.Frequency = sourceWave.Frequency;
+			//SelectedWave.PhaseInPiRad = sourceWave.PhaseInPiRad;
+			SelectedWave.WaveLength = sourceWave.WaveLength;
+		}
+
+		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty)
 		{
 			DialogTitle = Localizer.Instance.GetString(AddOscillationKey);
-			WaveEdits[0] = new EditWaveViewModel();
+			WaveEdits[0] = new EditWaveViewModel(difficulty);
 			WaveEdits[0].Label = Localizer.Instance.GetString("Wave") + " 1";
+			WaveEdits[0].Color = WaveEdits[0].AvailableColors[0];
 
-			WaveEdits[1] = new EditWaveViewModel();
+			WaveEdits[1] = new EditWaveViewModel(difficulty);
 			WaveEdits[1].Label = Localizer.Instance.GetString("Wave") + " 2";
+			WaveEdits[1].Color = WaveEdits[1].AvailableColors[1];
 
 			IsEasyVariant = difficulty == DifficultyOption.Easy;
 			Difficulty = difficulty;
 		}
 
-		public List<WaveDirection> WaveDirections = new (){ WaveDirection.Left, WaveDirection.Right };
+		public List<WaveDirection> WaveDirections = new() { WaveDirection.Left, WaveDirection.Right };
 
 		public bool IsEasyVariant { get; }
 
@@ -68,25 +95,8 @@ namespace Physics.WaveInterference.ViewModels
 
 		public string Label { get; set; }
 
-		public Color Color { get; set; } = ColorHelper.ToColor("#0063B1");
-
-		public float Frequency { get; set; } = 1;
-
-		public float Period => 1 / Frequency;
-
-		public string AngularSpeedInRad => PhysicsHelpers.FrequencyToAngularSpeedInRad(Frequency).ToString("0.0");
-
-		public string AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency).ToString("0.0");
-
-		public float Amplitude { get; set; }
-
-		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
-
-		public float PhaseInPiRad { get; set; }
-		public float StartPhase { get; set; }
-
-		public float WaveLength { get; set; }
 		public float SourceDistance { get; set; }
+
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
 			var deferral = args.GetDeferral();
@@ -129,7 +139,7 @@ namespace Physics.WaveInterference.ViewModels
 			//	Result.PhaseInRad = PhaseInPiRad * (float)Math.PI;
 			//	Result.Color = ColorHelper.ToHex(Color);
 			//}
-			foreach(var wave in WaveEdits)
+			foreach (var wave in WaveEdits)
 			{
 				wave.PrepareMotion();
 			}

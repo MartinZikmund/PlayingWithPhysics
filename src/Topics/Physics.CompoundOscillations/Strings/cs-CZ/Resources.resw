@@ -141,7 +141,7 @@ Grafika: Petr Weinlich</value>
     <value>Hrátky s fyzikou: Skládání kmitání</value>
   </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
-    <value>Změna se aplikuje na všechna kmitání</value>
+    <value>Změny se projeví u všech kmitání</value>
   </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Složené kmitání</value>

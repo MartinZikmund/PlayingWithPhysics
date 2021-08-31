@@ -29,10 +29,15 @@ namespace Physics.Shared.UI.Views
 
 		public BaseSkiaView()
 		{
+			DataContextChanged += ViewContextChanged;
+			Loaded += ViewLoaded;
+			Unloaded += ViewUnloaded;			
+		}
+
+		private void ViewLoaded(object sender, RoutedEventArgs e)
+		{
 			SetupInkCanvas();
 			SetupMenuShadow();
-			DataContextChanged += ViewContextChanged;
-			Unloaded += ViewUnloaded;			
 		}
 
 		public TViewModel Model { get; private set; }

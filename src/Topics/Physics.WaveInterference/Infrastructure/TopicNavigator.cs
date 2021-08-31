@@ -17,7 +17,7 @@ namespace Physics.WaveInterference.Infrastructure
 		public TopicNavigator(IMvxNavigationService navigationService) =>
 			_navigationService = navigationService;
 
-		public bool HasAdvancedDifficulty => false;
+		public bool HasAdvancedDifficulty => true;
 
 		public bool HasStudyMode => false;
 

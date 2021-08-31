@@ -22,12 +22,12 @@ namespace Physics.WaveInterference.ValuesTable
 		{
 			List<TableRow> table = new List<TableRow>();
 			float cycles = 0;
-			float time;
+			float time = 0;
 			float x = -20f;
 
 			while (x <= 20f)
 			{
-				var a = _physicsService.CalculateA(x);
+				var a = _physicsService.CalculateA(x, time);
 				TableRow valuesRow = new TableRow(0f, x, a);
 				table.Add(valuesRow);
 				if (Compound)

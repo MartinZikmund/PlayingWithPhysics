@@ -129,7 +129,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rendering\CompoundOscillationsController.cs" />
+    <Compile Include="Rendering\WaveInterferenceController.cs" />
     <Compile Include="UserControls\EditWaveUserControl.xaml.cs">
       <DependentUpon>EditWaveUserControl.xaml</DependentUpon>
     </Compile>

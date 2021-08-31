@@ -141,10 +141,10 @@ Grafika: Petr Weinlich</value>
     <value>Hrátky s fyzikou: Interference vlnění</value>
   </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
-    <value>Změna se aplikuje na všechna kmitání</value>
+    <value>Změny se projeví u obou vln</value>
   </data>
   <data name="EditWave" xml:space="preserve">
-    <value>Upravit vlnění</value>
+    <value>Nastavit vlnění</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>

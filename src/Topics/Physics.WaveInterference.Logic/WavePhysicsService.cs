@@ -13,9 +13,9 @@ namespace Physics.WaveInterference.Logic
 		{
 			_wave = wave;
 		}
-		public double CalculateA(float x)
+		public double CalculateA(float x, float time)
 		{
-			double amplitude = _wave.Amplitude * Math.Sin(2 * Math.PI * ((_wave.TimeSinceStart / _wave.Period) - (double)_wave.Direction * ((x + _wave.SourceDistance) / _wave.WaveLength)));
+			double amplitude = _wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) - (double)_wave.Direction * ((x + _wave.SourceDistance) / _wave.WaveLength)));
 			return amplitude;
 		}
 	}

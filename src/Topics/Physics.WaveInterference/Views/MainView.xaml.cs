@@ -21,10 +21,10 @@ namespace Physics.WaveInterference.Views
 		internal void FocusSimulationControls() => SimulationControls.Focus(Windows.UI.Xaml.FocusState.Programmatic);
 	}
 
-	public class MainViewBase : BaseSkiaView<MainViewModel, CompoundOscillationsController>
+	public class MainViewBase : BaseSkiaView<MainViewModel, WaveInterferenceController>
 	{
 		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
-		protected override CompoundOscillationsController CreateController(ISkiaCanvas canvas) => new CompoundOscillationsController(canvas);
+		protected override WaveInterferenceController CreateController(ISkiaCanvas canvas) => new WaveInterferenceController(canvas);
 	}
 }

@@ -25,9 +25,9 @@ using Windows.UI.Xaml.Hosting;
 namespace Physics.WaveInterference.ViewModels
 {
 	public class MainViewModel : SimulationViewModelBase<DifficultyNavigationModel>,
-		IReceiveController<CompoundOscillationsController>
+		IReceiveController<WaveInterferenceController>
 	{
-		private CompoundOscillationsController _controller;
+		private WaveInterferenceController _controller;
 		private readonly IContentDialogHelper _contentDialogHelper;
 
 		private readonly DispatcherTimer _timer = new DispatcherTimer();
@@ -41,10 +41,6 @@ namespace Physics.WaveInterference.ViewModels
 			_timer.Tick += _timer_Tick;
 		}
 
-		public ICommand EditOscillationCommand => GetOrCreateAsyncCommand(EditOscillationAsync);
-
-		public ICommand DeleteOscillationCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(DeleteTrajectoryAsync);
-
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(ShowValuesTableAsync);
 
 		public ICommand ShowWaveInterferenceValuesTableCommand => GetOrCreateAsyncCommand(ShowWaveInterferenceValuesTableAsync);
@@ -57,9 +53,14 @@ namespace Physics.WaveInterference.ViewModels
 		}
 
 		public ObservableCollection<WaveInfoViewModel> Waves { get; set; } = new ObservableCollection<WaveInfoViewModel>();
-		public WaveInfoViewModel Wave1 { get; set; }
-		public WaveInfoViewModel Wave2 { get; set; }
-		public void SetController(CompoundOscillationsController controller)
+
+		public WaveInfoViewModel Wave1 => Waves.Count > 0 ? Waves[0] : null;
+
+		public WaveInfoViewModel Wave2 => Waves.Count > 0 ? Waves[1] : null;
+
+		public bool AreWavesConfigured => Waves.Count > 0;
+
+		public void SetController(WaveInterferenceController controller)
 		{
 			if (controller is null)
 			{
@@ -81,11 +82,11 @@ namespace Physics.WaveInterference.ViewModels
 				AddOrUpdateOscillationViewModel dialogViewModel;
 				if (Wave1 == null || Wave2 == null)
 				{
-					dialogViewModel = new AddOrUpdateOscillationViewModel(Difficulty, Waves.Select(m => m.Label).ToArray());
+					dialogViewModel = new AddOrUpdateOscillationViewModel(Difficulty);
 				}
 				else
 				{
-					dialogViewModel = new AddOrUpdateOscillationViewModel(Wave1.WaveInfo, Wave2.WaveInfo, SourceDistance, Difficulty, Waves.Select(m => m.Label).ToArray());
+					dialogViewModel = new AddOrUpdateOscillationViewModel(Wave1.WaveInfo, Wave2.WaveInfo, SourceDistance, Difficulty);
 				}
 				var dialog = new AddOrUpdateOscillationDialog();
 				dialog.DataContext = dialogViewModel;
@@ -93,13 +94,10 @@ namespace Physics.WaveInterference.ViewModels
 				if (result == ContentDialogResult.Primary)
 				{
 					Waves.Clear();
-					Wave1 = new WaveInfoViewModel(dialogViewModel.Result[0].Result);
-					Wave2 = new WaveInfoViewModel(dialogViewModel.Result[1].Result);
-					Waves.Add(Wave1);
-					Waves.Add(Wave2);
+					Waves.Add(new WaveInfoViewModel(dialogViewModel.Result[0].Result));
+					Waves.Add(new WaveInfoViewModel(dialogViewModel.Result[1].Result));
 					SourceDistance = dialogViewModel.SourceDistance;
-					//OnOscillationsChange(dialogViewModel.Result);
-					//await StartSimulationAsync();
+					await RaisePropertyChanged(nameof(AreWavesConfigured));
 				}
 			}
 			catch (Exception ex)
@@ -108,45 +106,26 @@ namespace Physics.WaveInterference.ViewModels
 			}
 		}
 
-
-		private async Task EditOscillationAsync()
-		{
-			var dialogViewModel = new AddOrUpdateOscillationViewModel(Wave1.WaveInfo, Wave2.WaveInfo, SourceDistance, Difficulty, Oscillations.Select(m => m.Label).ToArray());
-			var dialog = new AddOrUpdateOscillationDialog(dialogViewModel);
-			var result = await dialog.ShowAsync();
-			if (result == ContentDialogResult.Primary)
-			{
-				//OnOscillationsChange(arg.WaveInfo);
-				//await StartSimulationAsync();
-			}
-		}
-
-		private async Task DeleteTrajectoryAsync(WaveInfoViewModel arg)
-		{
-			Waves.Remove(arg);
-			//await StartSimulationAsync();
-		}
-
 		private async Task ShowValuesTableAsync(WaveInfoViewModel viewModel)
 		{
 			var physicsService = new WavePhysicsService(viewModel.WaveInfo);
-			await ShowValuesTableAsync(physicsService, false);
+			await ShowValuesTableAsync(viewModel.WaveInfo, physicsService, false);
 		}
 
 		private async Task ShowWaveInterferenceValuesTableAsync()
 		{
 			//var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.WaveInfo).ToArray());
 			var physicsServices = new WaveInterferencePhysicsService(new WavePhysicsService[] { new WavePhysicsService(Wave1.WaveInfo), new WavePhysicsService(Wave2.WaveInfo) });
-			await ShowValuesTableAsync(physicsServices, true);
+			await ShowValuesTableAsync(null, physicsServices, true);
 		}
 
-		private async Task ShowValuesTableAsync(IWavePhysicsService physicsService, bool compound)
+		private async Task ShowValuesTableAsync(WaveInfo waveInfo, IWavePhysicsService physicsService, bool compound)
 		{
 			var newWindow = await AppWindow.TryCreateAsync();
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
-			string title = Wave1.Label;
+			string title = waveInfo?.Label ?? Localizer.Instance.GetString("WaveInterference");
 
 			var valuesTableService = new TableService(physicsService, compound);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
@@ -187,17 +166,6 @@ namespace Physics.WaveInterference.ViewModels
 		private void FocusSimulationControls()
 		{
 			((Window.Current.Content as Frame)?.Content as MainView)?.FocusSimulationControls();
-		}
-
-		private void OnOscillationsChange(WaveInfo lastChanged)
-		{
-			if (Difficulty == DifficultyOption.Easy)
-			{
-				foreach (var oscillation in Oscillations)
-				{
-					oscillation.WaveInfo.Frequency = lastChanged.Frequency;
-				}
-			}
 		}
 
 		public override void ViewDestroy(bool viewFinishing = true)

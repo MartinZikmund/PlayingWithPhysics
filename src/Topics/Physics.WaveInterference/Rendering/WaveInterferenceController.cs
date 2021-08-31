@@ -9,7 +9,7 @@ using SkiaSharp;
 
 namespace Physics.WaveInterference.Rendering
 {
-	public class CompoundOscillationsController : SkiaCanvasController
+	public class WaveInterferenceController : SkiaCanvasController
 	{
 		private const float VerticalPadding = 12;
 
@@ -50,7 +50,7 @@ namespace Physics.WaveInterference.Rendering
 		private float _maximumFrequency;
 		private double _inherentSlowdown = 1.0;
 
-		public CompoundOscillationsController(ISkiaCanvas canvasAnimatedControl) :
+		public WaveInterferenceController(ISkiaCanvas canvasAnimatedControl) :
 			base(canvasAnimatedControl)
 		{
 		}
@@ -71,26 +71,7 @@ namespace Physics.WaveInterference.Rendering
 			_minY = 0;
 
 			_maximumFrequency = _activeOscillations.Max(o => o.WaveInfo.Frequency);
-			if (_maximumFrequency > 5000)
-			{
-				_inherentSlowdown = 1 / 10000.0;
-			}
-			else if (_maximumFrequency > 500)
-			{
-				_inherentSlowdown = 1 / 1000.0;
-			}
-			else if (_maximumFrequency > 50)
-			{
-				_inherentSlowdown = 1 / 100.0;
-			}
-			else if (_maximumFrequency > 5)
-			{
-				_inherentSlowdown = 1 / 10.0;
-			}
-			else
-			{
-				_inherentSlowdown = 1;
-			}
+			SetInherentSlowdown();
 
 			foreach (var oscillation in _activeOscillations)
 			{
@@ -136,6 +117,30 @@ namespace Physics.WaveInterference.Rendering
 
 		}
 
+		private void SetInherentSlowdown()
+		{
+			if (_maximumFrequency > 5000)
+			{
+				_inherentSlowdown = 1 / 10000.0;
+			}
+			else if (_maximumFrequency > 500)
+			{
+				_inherentSlowdown = 1 / 1000.0;
+			}
+			else if (_maximumFrequency > 50)
+			{
+				_inherentSlowdown = 1 / 100.0;
+			}
+			else if (_maximumFrequency > 5)
+			{
+				_inherentSlowdown = 1 / 10.0;
+			}
+			else
+			{
+				_inherentSlowdown = 1;
+			}
+		}
+
 		public void StartSimulation()
 		{
 			SimulationTime.Restart();
@@ -163,7 +168,7 @@ namespace Physics.WaveInterference.Rendering
 			var currentTime = GetAdjustedTotalTime();
 			var totalValue = 0.0f;
 
-			DrawAxes(sender, args);
+			//DrawAxes(sender, args);
 
 			foreach (var oscillation in _activeOscillations)
 			{

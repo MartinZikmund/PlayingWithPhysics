@@ -141,7 +141,7 @@ Graphics: Petr Weinlich</value>
     <value>Playing with Physics: Compound Oscillations</value>
   </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
-    <value>Change applies to all oscillations</value>
+    <value>Changes apply to all oscillations</value>
   </data>
   <data name="CompoundOscillation" xml:space="preserve">
     <value>Compound oscillation</value>

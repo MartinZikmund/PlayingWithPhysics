@@ -25,25 +25,26 @@ namespace Physics.WaveInterference.ViewModels
 
 		private string[] _existingNames;
 
-		public EditWaveViewModel(WaveInfo oscillationInfo, DifficultyOption difficulty, params string[] existingNames)
+		public EditWaveViewModel(WaveInfo oscillationInfo, DifficultyOption difficulty) : this(difficulty)
 		{
 			Label = oscillationInfo.Label;
 			Color = ColorHelper.ToColor(oscillationInfo.Color);
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
 			WaveLength = oscillationInfo.WaveLength;
-			PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
-			IsEasyVariant = difficulty == DifficultyOption.Easy;
+			//PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
 			Result = oscillationInfo;
 		}
 
-		public EditWaveViewModel()
+		public EditWaveViewModel(DifficultyOption difficulty)
 		{
-			Color = AvailableColors[new Random().Next(0,5)];
+			IsEasyVariant = difficulty == DifficultyOption.Easy;
 		}
 
 		public List<WaveDirection> WaveDirections = new() { WaveDirection.Left, WaveDirection.Right };
+
 		public WaveDirection SelectedDirection { get; set; } = WaveDirection.Left;
+
 		public bool IsEasyVariant { get; }
 
 		public string DialogTitle { get; }
@@ -51,8 +52,8 @@ namespace Physics.WaveInterference.ViewModels
 		public Color[] AvailableColors { get; } = new Color[]
 		{
 			ColorHelper.ToColor("#0063B1"),
-			ColorHelper.ToColor("#2D7D9A"),
 			ColorHelper.ToColor("#E81123"),
+			ColorHelper.ToColor("#2D7D9A"),
 			ColorHelper.ToColor("#881798"),
 			ColorHelper.ToColor("#498205"),
 			ColorHelper.ToColor("#515C6B"),
@@ -74,8 +75,8 @@ namespace Physics.WaveInterference.ViewModels
 
 		public float Amplitude { get; set; } = 1.0f;
 
-		public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
-		public float PhaseInPiRad { get; set; }
+		//public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
+		//public float PhaseInPiRad { get; set; }
 		public float StartPhase { get; set; }
 		public float WaveLength { get; set; } = 0.5f;
 		public float SourceDistance { get; set; }
