@@ -7,14 +7,22 @@ namespace Physics.WaveInterference.Logic
 	public class WaveInterferencePhysicsService : IWavePhysicsService
 	{
 		private WavePhysicsService[] _physicsServices;
-		public WaveInterferencePhysicsService(WavePhysicsService[] physicsServices)
+
+		public WaveInterferencePhysicsService(params WavePhysicsService[] physicsServices)
 		{
 			_physicsServices = physicsServices;
 		}
-		public double CalculateY(float x, float time)
+
+		public float? CalculateY(float x, float time)
 		{
-			double result = _physicsServices[0].CalculateY(x, time) + _physicsServices[1].CalculateY(x, time);
-			return result;
+			var wave1 = _physicsServices[0].CalculateY(x, time);
+			var wave2 = _physicsServices[1].CalculateY(x, time);
+			if (wave1 == null || wave2 == null)
+			{
+				return null;
+			}
+
+			return wave1.Value + wave2.Value;
 		}
 	}
 }

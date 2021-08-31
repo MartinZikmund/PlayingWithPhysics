@@ -197,6 +197,12 @@ Grafika: Petr Weinlich</value>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Ovládání stativu</value>
   </data>
+  <data name="TableHeaderInterference" xml:space="preserve">
+    <value>Výsledné vlnění</value>
+  </data>
+  <data name="TableHeaderWave" xml:space="preserve">
+    <value>Vlnění {0}</value>
+  </data>
   <data name="TimeForTable" xml:space="preserve">
     <value>Čas (s):</value>
   </data>

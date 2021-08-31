@@ -38,24 +38,14 @@ namespace Physics.WaveInterference.ValuesTable
 
 		public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)
 		{
-			if (eventArgs.Column.Header.ToString() == "Time")
+			if (eventArgs.Column.Header.ToString() == "X")
 			{
-				eventArgs.Column.Header = "t (s)";
+				eventArgs.Column.Header = "x (m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Y")
 			{
 				eventArgs.Column.Header = "y (m)";
-			}
-
-			if (eventArgs.Column.Header.ToString() == "V")
-			{
-				eventArgs.Column.Header = "v (m/s)";
-			}
-
-			if (eventArgs.Column.Header.ToString() == "A")
-			{
-				eventArgs.Column.Header = "a (m/s²)";
 			}
 		}
 

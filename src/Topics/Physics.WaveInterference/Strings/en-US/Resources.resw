@@ -197,6 +197,12 @@ Graphics: Petr Weinlich</value>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Camera control</value>
   </data>
+  <data name="TableHeaderInterference" xml:space="preserve">
+    <value>Interference</value>
+  </data>
+  <data name="TableHeaderWave" xml:space="preserve">
+    <value>Wave {0}</value>
+  </data>
   <data name="TimeForTable" xml:space="preserve">
     <value>Time (s):</value>
   </data>

@@ -16,7 +16,27 @@ namespace Physics.WaveInterference.Logic
 
 		public float MinY => -Math.Abs(_wave.Amplitude);
 
-		public double CalculateY(float distanceFromOrigin, float time) =>
-			_wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) + (double)_wave.Direction * ((distanceFromOrigin + _wave.OriginX) / _wave.WaveLength)));
+		public float? CalculateY(float x, float time)
+		{
+			// Can this wave have a value in this location?
+			if (_wave.Direction == WaveDirection.Left)
+			{
+				if (x > _wave.OriginX)
+				{
+					return null;
+				}
+			}
+
+			if (_wave.Direction == WaveDirection.Right)
+			{
+				if (x < _wave.OriginX)
+				{
+					return null;
+				}
+			}
+
+
+			return (float)(_wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) + (double)_wave.Direction * ((x + _wave.OriginX) / _wave.WaveLength))));
+		}
 	}
 }

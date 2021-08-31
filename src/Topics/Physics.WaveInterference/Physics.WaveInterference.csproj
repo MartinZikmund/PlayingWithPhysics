@@ -133,9 +133,15 @@
     <Compile Include="UserControls\EditWaveUserControl.xaml.cs">
       <DependentUpon>EditWaveUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValuesTable\InterferenceTableRow.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\InterferenceTableService.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\InterferenceValuesTableDialogViewModel.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\InterferenceValuesTablePage.xaml.cs">
+      <DependentUpon>InterferenceValuesTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
@@ -224,6 +230,10 @@
     <Page Include="UserControls\EditWaveUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValuesTable\InterferenceValuesTablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ValuesTable\ValuesTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>

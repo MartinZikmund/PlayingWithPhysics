@@ -44,7 +44,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand<WaveInfoViewModel>(ShowValuesTableAsync);
 
-		public ICommand ShowWaveInterferenceValuesTableCommand => GetOrCreateAsyncCommand(ShowWaveInterferenceValuesTableAsync);
+		public ICommand ShowWaveInterferenceValuesTableCommand => GetOrCreateAsyncCommand(ShowInterferenceValuesTableAsync);
 
 		public string TimeElapsed => _controller?.GetSimulationDisplayTime().ToString("0.00") ?? "0.00";
 
@@ -113,13 +113,6 @@ namespace Physics.WaveInterference.ViewModels
 			await ShowValuesTableAsync(viewModel.WaveInfo, physicsService, false);
 		}
 
-		private async Task ShowWaveInterferenceValuesTableAsync()
-		{
-			//var physicsService = new CompoundOscillationsPhysicsService(Oscillations.Where(o => o.IsEnabled).Select(o => o.WaveInfo).ToArray());
-			var physicsServices = new WaveInterferencePhysicsService(new WavePhysicsService[] { new WavePhysicsService(Wave1.WaveInfo), new WavePhysicsService(Wave2.WaveInfo) });
-			await ShowValuesTableAsync(null, physicsServices, true);
-		}
-
 		private async Task ShowValuesTableAsync(WaveInfo waveInfo, IWavePhysicsService physicsService, bool compound)
 		{
 			var newWindow = await AppWindow.TryCreateAsync();
@@ -131,6 +124,33 @@ namespace Physics.WaveInterference.ViewModels
 			var valuesTableService = new TableService(physicsService, compound);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+			// Attach the XAML content to the window.
+			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			newWindow.Title = title;
+
+			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+			newWindow.TitleBar.ForegroundColor = Colors.White;
+			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.RequestSize(new Size(480, 300));
+			var shown = await newWindow.TryShowAsync();
+		}
+
+		private async Task ShowInterferenceValuesTableAsync()
+		{
+			var newWindow = await AppWindow.TryCreateAsync();
+			var appWindowContentFrame = new Frame();
+			appWindowContentFrame.Navigate(typeof(InterferenceValuesTablePage));
+
+			string title = Localizer.Instance.GetString("WaveInterference");
+
+			var valuesTableService = new InterferenceTableService(Wave1.WaveInfo, Wave2.WaveInfo);
+			var valuesTableViewModel = new InterferenceValuesTableDialogViewModel(valuesTableService, Difficulty);
+			(appWindowContentFrame.Content as InterferenceValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.
 			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
 			newWindow.Title = title;
@@ -193,7 +213,7 @@ namespace Physics.WaveInterference.ViewModels
 					motion.UpdateCurrentValues(timeElapsed);
 				}
 
-				CurrentCompoundY = _waveInterferencePhysicsService.CalculateY(0, timeElapsed).ToString(" 0.00;-0.00; 0.00");
+				CurrentCompoundY = _waveInterferencePhysicsService.CalculateY(0, timeElapsed)?.ToString(" 0.00;-0.00; 0.00") ?? Constants.NoValueString;
 			}
 		}
 	}

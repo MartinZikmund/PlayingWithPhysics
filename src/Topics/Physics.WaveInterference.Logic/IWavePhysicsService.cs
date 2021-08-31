@@ -2,6 +2,6 @@
 {
 	public interface IWavePhysicsService
 	{
-		double CalculateY(float x, float time);
+		float? CalculateY(float x, float time);
 	}
 }
