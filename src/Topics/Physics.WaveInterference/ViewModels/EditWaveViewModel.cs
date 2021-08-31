@@ -122,7 +122,7 @@ namespace Physics.WaveInterference.ViewModels
 				Result.Frequency = Frequency;
 				Result.WaveLength = WaveLength;
 				Result.Direction = SelectedDirection;
-				Result.SourceDistance = SourceDistance;
+				Result.OriginX = SourceDistance;
 				Result.Color = ColorHelper.ToHex(Color);
 			}
 		}

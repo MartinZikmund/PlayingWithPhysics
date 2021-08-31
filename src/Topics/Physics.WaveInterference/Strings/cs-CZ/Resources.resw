@@ -143,6 +143,9 @@ Grafika: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změny se projeví u obou vln</value>
   </data>
+  <data name="DistanceIntervalForTable" xml:space="preserve">
+    <value>Interval vzdálenosti (m):</value>
+  </data>
   <data name="EditWave" xml:space="preserve">
     <value>Nastavit vlnění</value>
   </data>
@@ -193,6 +196,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StickHeightControl" xml:space="preserve">
     <value>Ovládání stativu</value>
+  </data>
+  <data name="TimeForTable" xml:space="preserve">
+    <value>Čas (s):</value>
   </data>
   <data name="TimeSinceStart" xml:space="preserve">
     <value>Čas od startu 1. vlnění</value>

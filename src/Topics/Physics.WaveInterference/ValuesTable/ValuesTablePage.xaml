@@ -25,18 +25,29 @@
             FrozenColumnCount="1"
             IsReadOnly="True"
             ItemsSource="{x:Bind Model.Values, Mode=OneWay}" />
-        <controls:NumberBox
-            x:Name="TimeIntervalNumberBox"
-            Grid.Row="2"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Header="{extensions:Localize Key=IntervalForTable}"
-            Minimum="0.001"
-            Width="120"
-            SmallChange="0.001"
-            SpinButtonPlacementMode="Inline"
-            Value="{x:Bind Model.TimeInterval, Mode=TwoWay}" />
-        <StackPanel
+		<StackPanel
+			Orientation="Horizontal"
+			HorizontalAlignment="Right"
+			Spacing="8"
+            Grid.Row="2">
+			<controls:NumberBox
+				x:Name="TimeNumberBox"
+				Header="{extensions:Localize Key=TimeForTable}"
+				Minimum="0.1"
+				Width="160"
+				SmallChange="0.1"
+				SpinButtonPlacementMode="Inline"
+				Value="{x:Bind Model.Time, Mode=TwoWay}" />
+			<controls:NumberBox
+				x:Name="DistanceIntervalNumberBox"
+				Header="{extensions:Localize Key=DistanceIntervalForTable}"
+				Minimum="0.1"
+				Width="160"
+				SmallChange="0.1"
+				SpinButtonPlacementMode="Inline"
+				Value="{x:Bind Model.DistanceInterval, Mode=TwoWay}" />
+		</StackPanel>
+		<StackPanel
             Grid.Row="2"
             Orientation="Horizontal"
             Spacing="4">

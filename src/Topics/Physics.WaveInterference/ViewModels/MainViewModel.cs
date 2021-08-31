@@ -193,7 +193,7 @@ namespace Physics.WaveInterference.ViewModels
 					motion.UpdateCurrentValues(timeElapsed);
 				}
 
-				CurrentCompoundY = _waveInterferencePhysicsService.CalculateA(0, timeElapsed).ToString(" 0.00;-0.00; 0.00");
+				CurrentCompoundY = _waveInterferencePhysicsService.CalculateY(0, timeElapsed).ToString(" 0.00;-0.00; 0.00");
 			}
 		}
 	}

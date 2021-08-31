@@ -1,4 +1,5 @@
 ﻿ using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.Shared.UI.Helpers;
 using Physics.WaveInterference.ValuesTable;
 using Windows.Globalization.NumberFormatting;
 using Windows.UI.Xaml.Controls;
@@ -21,15 +22,8 @@ namespace Physics.WaveInterference.Views
 
 		private void SetupFormatting()
 		{
-			var rounder = new IncrementNumberRounder();
-			rounder.Increment = 0.001;
-			rounder.RoundingAlgorithm = RoundingAlgorithm.RoundHalfUp;
-
-			var formatter = new DecimalFormatter();
-			formatter.IntegerDigits = 1;
-			formatter.FractionDigits = 3;
-			formatter.NumberRounder = rounder;
-			TimeIntervalNumberBox.NumberFormatter = formatter;
+			TimeNumberBox.SetupFormatting(0.1, 1, 1, 0.1, 1);
+			DistanceIntervalNumberBox.SetupFormatting(0.1, 1, 1, 0.1, 1);
 		}
 
 		public ValuesTableDialogViewModel Model { get; set; }

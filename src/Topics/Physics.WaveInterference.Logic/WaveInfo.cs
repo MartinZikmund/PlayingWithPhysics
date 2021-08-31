@@ -11,11 +11,11 @@ namespace Physics.WaveInterference.Logic
 			Frequency = frequency;
 			WaveLength = waveLength;
 			Direction = direction;
-			SourceDistance = sourceDistance;
+			OriginX = sourceDistance;
 			Color = color;
 		}
 
-		public float SourceDistance { get; set; }
+		public float OriginX { get; set; }
 		public string Label { get; set; }
 		public float Amplitude { get; set; }
 		public string AmplitudeText => Amplitude.ToString("0.##");
@@ -28,6 +28,6 @@ namespace Physics.WaveInterference.Logic
 		public WaveDirection Direction { get; set; }
 
 		public string Color { get; set; }
-		public WaveInfo Clone() => new WaveInfo(Label, Amplitude, Frequency, WaveLength, Direction, SourceDistance, Color);
+		public WaveInfo Clone() => new WaveInfo(Label, Amplitude, Frequency, WaveLength, Direction, OriginX, Color);
 	}
 }

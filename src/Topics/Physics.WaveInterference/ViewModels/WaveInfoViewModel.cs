@@ -44,7 +44,7 @@ namespace Physics.WaveInterference.ViewModels
 		public void UpdateCurrentValues(float timeElapsed)
 		{
 			TimeElapsed = timeElapsed.ToString("0.##");
-			var currentY = _physicsService.CalculateA(0, timeElapsed);
+			var currentY = _physicsService.CalculateY(0, timeElapsed);
 			CurrentYText = currentY.ToString(" 0.00;-0.00; 0.00");
 			RaisePropertyChanged(nameof(WaveInfo));
 			RaisePropertyChanged(nameof(PeriodText));

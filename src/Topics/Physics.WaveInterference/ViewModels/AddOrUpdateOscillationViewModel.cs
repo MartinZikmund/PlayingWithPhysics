@@ -37,6 +37,8 @@ namespace Physics.WaveInterference.ViewModels
 
 		public EditWaveViewModel SelectedWave { get; set; }
 
+		private EditWaveViewModel GetTheOtherWave(EditWaveViewModel wave) => wave == WaveEdits[0] ? WaveEdits[1] : WaveEdits[0];
+
 		internal void OnSelectedWaveChanged()
 		{
 			// Sync values from previously edited wave in case of Easy difficulty
@@ -45,19 +47,14 @@ namespace Physics.WaveInterference.ViewModels
 				return;
 			}
 
-			EditWaveViewModel sourceWave;
-			if (SelectedWave == WaveEdits[0])
-			{
-				sourceWave = WaveEdits[1];
-			}
-			else
-			{
-				sourceWave = WaveEdits[0];
-			}
+			var sourceWave = GetTheOtherWave(SelectedWave);
+			SyncEasyModeValues(sourceWave, SelectedWave);
+		}
 
-			SelectedWave.Frequency = sourceWave.Frequency;
-			//SelectedWave.PhaseInPiRad = sourceWave.PhaseInPiRad;
-			SelectedWave.WaveLength = sourceWave.WaveLength;
+		private void SyncEasyModeValues(EditWaveViewModel from, EditWaveViewModel to)
+		{
+			to.Frequency = from.Frequency;
+			to.WaveLength = from.WaveLength;
 		}
 
 		public AddOrUpdateOscillationViewModel(DifficultyOption difficulty)
@@ -121,6 +118,12 @@ namespace Physics.WaveInterference.ViewModels
 
 		private void PrepareMotion()
 		{
+			if (SelectedWave != null && Difficulty == DifficultyOption.Easy)
+			{
+				// Ensure values of current wave sync to the other wave
+				var targetWave = GetTheOtherWave(SelectedWave);
+				SyncEasyModeValues(SelectedWave, targetWave);
+			}
 			//if (Result == null)
 			//{
 			//	Result = new WaveInfo(
@@ -143,7 +146,7 @@ namespace Physics.WaveInterference.ViewModels
 			{
 				wave.PrepareMotion();
 			}
-			WaveEdits[1].Result.SourceDistance = SourceDistance;
+			WaveEdits[1].Result.OriginX = SourceDistance;
 			Result = WaveEdits;
 		}
 

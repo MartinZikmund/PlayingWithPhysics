@@ -12,11 +12,21 @@ namespace Physics.WaveInterference.ValuesTable
 	{
 		private DifficultyOption _difficulty;
 
-		public ValuesTableDialogViewModel(ITableService<TableRow> tableService, DifficultyOption movementType)
+		public ValuesTableDialogViewModel(TableService tableService, DifficultyOption movementType)
 			: base(tableService)
 		{
 			_difficulty = movementType;
+			tableService.Owner = this;
+			UpdateTable();
 		}
+
+		public float Time { get; set; } = 0f;
+
+		public float DistanceInterval { get; set; } = 0.1f;
+
+		internal void OnTimeChanged() => UpdateTable();
+
+		internal void OnDistanceIntervalChanged() => UpdateTable();
 
 		internal void Reset(TableService tableService, DifficultyOption difficulty)
 		{

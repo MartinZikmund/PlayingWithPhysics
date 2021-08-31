@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Physics.WaveInterference.Logic;
+﻿using System;
+using System.Collections.Generic;
 using Physics.Shared.UI.Services.ValuesTable;
+using Physics.WaveInterference.Logic;
 
 namespace Physics.WaveInterference.ValuesTable
 {
@@ -10,6 +11,7 @@ namespace Physics.WaveInterference.ValuesTable
 		private const int MaxTimeInSeconds = 120;
 
 		private IWavePhysicsService _physicsService;
+
 		public bool Compound { get; }
 
 		public TableService(IWavePhysicsService physicsService, bool compound)
@@ -18,38 +20,29 @@ namespace Physics.WaveInterference.ValuesTable
 			Compound = compound;
 		}
 
+		public ValuesTableDialogViewModel Owner { get; set; }
+
 		public IEnumerable<TableRow> CalculateTable(float timeInterval)
 		{
+			if (Owner == null)
+			{
+				return Array.Empty<TableRow>();
+			}
+
+			var time = Owner.Time;
+			var distanceInterval = Owner.DistanceInterval;
+
 			List<TableRow> table = new List<TableRow>();
-			float cycles = 0;
-			float time = 0;
+
 			float x = -20f;
 
 			while (x <= 20f)
 			{
-				var a = _physicsService.CalculateA(x, time);
+				var a = _physicsService.CalculateY(x, time);
 				TableRow valuesRow = new TableRow(0f, x, a);
 				table.Add(valuesRow);
-				if (Compound)
-				{
-					x += ((WaveInterferencePhysicsService)_physicsService).Delta;
-				}
-				else
-				{
-					x += ((WavePhysicsService)_physicsService).Delta;
-				}
+				x += distanceInterval;
 			}
-
-			//do
-			//{
-			//	time = timeInterval * cycles;
-			//	//Add TableRow
-			//	var a = _physicsService.CalculateA(time);
-
-			//	TableRow valuesRow = new TableRow(time, x, a);
-			//	table.Add(valuesRow);
-			//	cycles++;
-			//} while (cycles < MaxCycles || time < MaxTimeInSeconds);
 
 			return table;
 		}

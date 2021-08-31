@@ -6,8 +6,6 @@ namespace Physics.WaveInterference.Logic
 {
 	public class WavePhysicsService : IWavePhysicsService
 	{
-		public float Delta = 0.1f;
-		public float X = -20f;
 		public WaveInfo _wave;
 		public WavePhysicsService(WaveInfo wave)
 		{
@@ -18,10 +16,7 @@ namespace Physics.WaveInterference.Logic
 
 		public float MinY => -Math.Abs(_wave.Amplitude);
 
-		public double CalculateA(float x, float time)
-		{
-			double amplitude = _wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) - (double)_wave.Direction * ((x + _wave.SourceDistance) / _wave.WaveLength)));
-			return amplitude;
-		}
+		public double CalculateY(float distanceFromOrigin, float time) =>
+			_wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) + (double)_wave.Direction * ((distanceFromOrigin + _wave.OriginX) / _wave.WaveLength)));
 	}
 }

@@ -21,6 +21,7 @@ namespace Physics.WaveInterference.Rendering
 		private Dictionary<WaveInfo, SKPaint> _oscillationFillPaints;
 		private Dictionary<WaveInfo, SKPaint> _oscillationStrokePaints;		
 		private CompoundOscillationTrajectory _compoundOscillationTrajectory;
+
 		private SKPaint _compoundFillPaint = new SKPaint()
 		{
 			IsStroke = false,
