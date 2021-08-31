@@ -39,7 +39,7 @@ namespace Physics.WaveInterference.ValuesTable
 			while (x <= 20f)
 			{
 				var a = _physicsService.CalculateY(x, time);
-				TableRow valuesRow = new TableRow(0f, x, a);
+				TableRow valuesRow = new TableRow(x, a);
 				table.Add(valuesRow);
 				x += distanceInterval;
 			}

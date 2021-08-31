@@ -20,9 +20,8 @@ namespace Physics.WaveInterference.ValuesTable
 
 		public string Y { get; set; }
 
-        public TableRow(float time, double x, float? y)
+        public TableRow(double x, float? y)
         {
-            //Time = time.ToString(TimeFormatting);
             X = x.ToString(DistanceFormatting);
 			Y = y?.ToString(YFormatting) ?? Constants.NoValueString;
 		}
