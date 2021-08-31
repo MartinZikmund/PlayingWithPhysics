@@ -77,7 +77,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		//public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 		//public float PhaseInPiRad { get; set; }
-		public float StartPhase { get; set; }
+		//public float StartPhase { get; set; }
 		public float WaveLength { get; set; } = 0.5f;
 		public float SourceDistance { get; set; }
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
@@ -111,7 +111,6 @@ namespace Physics.WaveInterference.ViewModels
 					Amplitude,
 					Frequency,
 					WaveLength,
-					PhaseInPiRad * (float)Math.PI,
 					SelectedDirection,
 					SourceDistance,
 					ColorHelper.ToHex(Color));
@@ -122,7 +121,6 @@ namespace Physics.WaveInterference.ViewModels
 				Result.Amplitude = Amplitude;
 				Result.Frequency = Frequency;
 				Result.WaveLength = WaveLength;
-				Result.PhaseInRad = PhaseInPiRad * (float)Math.PI;
 				Result.Direction = SelectedDirection;
 				Result.SourceDistance = SourceDistance;
 				Result.Color = ColorHelper.ToHex(Color);

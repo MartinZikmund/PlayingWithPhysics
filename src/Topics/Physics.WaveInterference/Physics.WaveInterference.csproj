@@ -142,7 +142,6 @@
     <Compile Include="ViewModels\AddOrUpdateOscillationViewModel.cs" />
     <Compile Include="ViewModels\EditWaveViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\OscillationInfoViewModel.cs" />
     <Compile Include="ViewModels\WaveInfoViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

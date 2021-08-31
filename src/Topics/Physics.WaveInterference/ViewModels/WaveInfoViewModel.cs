@@ -6,7 +6,7 @@ namespace Physics.WaveInterference.ViewModels
 {
 	public class WaveInfoViewModel : MvxNotifyPropertyChanged
 	{
-		private IOscillationPhysicsService _physicsService = null;
+		private WavePhysicsService _physicsService = null;
 
 		public WaveInfoViewModel(WaveInfo throwInfo)
 		{
@@ -17,20 +17,19 @@ namespace Physics.WaveInterference.ViewModels
 
 		public WaveInfo WaveInfo
 		{
-			get
-			{
-				return _waveInfo;
-			}
+			get => _waveInfo;
 			set
 			{
 				if (value == null)
 				{
 					throw new ArgumentNullException(nameof(value));
 				}
-				_physicsService = new OscillationPhysicsService(value);
+				_physicsService = new WavePhysicsService(value);
 				SetProperty(ref _waveInfo, value);
 			}
 		}
+
+		public WavePhysicsService PhysicsService => _physicsService;
 
 		public string Label
 		{
@@ -45,12 +44,11 @@ namespace Physics.WaveInterference.ViewModels
 		public void UpdateCurrentValues(float timeElapsed)
 		{
 			TimeElapsed = timeElapsed.ToString("0.##");
-			var currentY = _physicsService.CalculateY(timeElapsed);
+			var currentY = _physicsService.CalculateA(0, timeElapsed);
 			CurrentYText = currentY.ToString(" 0.00;-0.00; 0.00");
 			RaisePropertyChanged(nameof(WaveInfo));
 			RaisePropertyChanged(nameof(PeriodText));
 		}
-
 
 		public string WaveLengthText => WaveInfo.WaveLengthText;
 		public string PeriodText => (1.0f / WaveInfo.Frequency).ToString("0.000");

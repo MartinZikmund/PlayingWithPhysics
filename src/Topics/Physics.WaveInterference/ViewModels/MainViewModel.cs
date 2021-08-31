@@ -32,6 +32,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		private readonly DispatcherTimer _timer = new DispatcherTimer();
 
+		private WaveInterferencePhysicsService _waveInterferencePhysicsService = null;
 		internal DifficultyOption Difficulty { get; private set; }
 
 		public MainViewModel(IContentDialogHelper contentDialogHelper)
@@ -152,7 +153,8 @@ namespace Physics.WaveInterference.ViewModels
 			{
 				return;
 			}
-			_compoundOscillationService = new CompoundOscillationsPhysicsService(Oscillations.Select(o => o.WaveInfo).ToArray());
+			//TODO:
+			//_waveInterferencePhysicsService = new WaveInterferencePhysicsService(Waves.Select(o => o.WaveInfo).ToArray());
 			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
 			{
@@ -174,9 +176,8 @@ namespace Physics.WaveInterference.ViewModels
 			_timer.Stop();
 		}
 
-		public CompoundOscillationsPhysicsService _compoundOscillationService = new CompoundOscillationsPhysicsService();
-
 		public float SourceDistance { get; set; }
+
 		public string CurrentCompoundY { get; set; }
 
 		private void _timer_Tick(object sender, object e)
@@ -192,7 +193,7 @@ namespace Physics.WaveInterference.ViewModels
 					motion.UpdateCurrentValues(timeElapsed);
 				}
 
-				CurrentCompoundY = _compoundOscillationService.CalculateY(timeElapsed).ToString(" 0.00;-0.00; 0.00");
+				CurrentCompoundY = _waveInterferencePhysicsService.CalculateA(0, timeElapsed).ToString(" 0.00;-0.00; 0.00");
 			}
 		}
 	}

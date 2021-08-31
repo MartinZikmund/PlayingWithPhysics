@@ -19,8 +19,7 @@ namespace Physics.WaveInterference.Rendering
 		private WaveInfoViewModel[] _activeOscillations;
 		private Dictionary<WaveInfo, OscillationTrajectory> _oscillationTrajectories;
 		private Dictionary<WaveInfo, SKPaint> _oscillationFillPaints;
-		private Dictionary<WaveInfo, SKPaint> _oscillationStrokePaints;
-		private CompoundOscillationsPhysicsService _compoundOscillationsPhysicsService;
+		private Dictionary<WaveInfo, SKPaint> _oscillationStrokePaints;		
 		private CompoundOscillationTrajectory _compoundOscillationTrajectory;
 		private SKPaint _compoundFillPaint = new SKPaint()
 		{
@@ -80,17 +79,17 @@ namespace Physics.WaveInterference.Rendering
 					oscillation.WaveInfo.Amplitude,
 					(float)(oscillation.WaveInfo.Frequency * _inherentSlowdown),
 					oscillation.WaveInfo.WaveLength,
-					oscillation.WaveInfo.PhaseInRad,
 					WaveDirection.Right,
 					0.0f,
 					oscillation.WaveInfo.Color);
 
-				var physicsService = new OscillationPhysicsService(slowedDownOscillationInfo);
+				var physicsService = new WavePhysicsService(slowedDownOscillationInfo);
 
 				_maxY += physicsService.MaxY;
 				_minY += physicsService.MinY;
 
-				_oscillationTrajectories.Add(oscillation.WaveInfo, physicsService.CreateTrajectoryData());
+				//TODO:
+				//_oscillationTrajectories.Add(oscillation.WaveInfo, physicsService.CreateTrajectoryData());
 
 				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(oscillation.WaveInfo.Color);
 				var skColor = new SKColor(color.R, color.G, color.B);
@@ -111,8 +110,9 @@ namespace Physics.WaveInterference.Rendering
 				_oscillationStrokePaints.Add(oscillation.WaveInfo, strokePaint);
 			}
 
-			_compoundOscillationsPhysicsService = new CompoundOscillationsPhysicsService(_activeOscillations.Select(oscillation => oscillation.WaveInfo).ToArray());
-			_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
+			//TODO:
+			//_compoundOscillationsPhysicsService = new WavePhysicsService(_activeOscillations.Select(wave => wave.WaveInfo).ToArray());
+			//_compoundOscillationTrajectory = new CompoundOscillationTrajectory(_oscillationTrajectories.Select(t => t.Value).ToArray());
 
 
 		}

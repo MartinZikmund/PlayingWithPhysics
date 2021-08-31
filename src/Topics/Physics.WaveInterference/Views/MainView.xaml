@@ -198,22 +198,15 @@
                                                     <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.AmplitudeText, Mode=OneWay}" />
                                                     <Run Text="m" />
                                                 </TextBlock>
-                                                <TextBlock
+												<TextBlock
                                                     Grid.Row="1"
                                                     Grid.Column="1"
                                                     Style="{StaticResource InfoTextBlockStyle}">
                                                     <Run Text="{extensions:Localize Key=WaveLength}" /><Run Text=": " />
                                                     <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.WaveLengthText, Mode=OneWay}" />
                                                     <Run Text="m" />
-                                                </TextBlock>                                                <TextBlock
-                                                    Grid.Row="2"
-                                                    Grid.Column="1"
-                                                    Style="{StaticResource InfoTextBlockStyle}">
-                                                    <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=": " />
-                                                    <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.PhaseInPiRadText, Mode=OneWay}" />
-                                                    <Run Text="m/s" />
-                                                </TextBlock>
-                                                <TextBlock
+												</TextBlock>
+												<TextBlock
                                                     Grid.Row="3"
                                                     Grid.Column="0"
                                                     Style="{StaticResource InfoTextBlockStyle}">
