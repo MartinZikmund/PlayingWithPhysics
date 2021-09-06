@@ -27,22 +27,24 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(async () =>
 		{
-			AddOrUpdateMovementDialog dialog;
+			SetupCollisionDialogViewModel viewModel;
 			if (Motion != null && SelectedCollisionType == Motion.Setup.Type)
 			{
-				dialog = new SetupCollisionDialog(new MainInputViewModel(Variant, Motion.MotionInfo));
+				viewModel = new SetupCollisionDialogViewModel(SelectedCollisionType, Motion.Setup);
 			}
 			else
 			{
-				dialog = new SetupCollisionDialog(new MainInputViewModel(Variant));
+				viewModel = new SetupCollisionDialogViewModel(SelectedCollisionType);
 			}
 
+			var dialog = new SetupCollisionDialog();
+			dialog.DataContext = viewModel;
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				Setup = dialog.Setup;
-				Motion = new MotionViewModel(Setup);
-				await StartSimulationAsync();
+				//Setup = viewModel.Result;
+				//Motion = new MotionViewModel(Setup);
+				//await StartSimulationAsync();
 			}
 		});
 
