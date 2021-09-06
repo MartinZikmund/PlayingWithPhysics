@@ -73,8 +73,6 @@ namespace Physics.WaveInterference.ViewModels
 			SimulationPlayback.PlaybackSpeed = 0.5f;
 		}
 
-		public ObservableCollection<WaveInfoViewModel> Oscillations { get; } = new ObservableCollection<WaveInfoViewModel>();
-
 		public async void AddOscillation()
 		{
 			try
@@ -99,6 +97,7 @@ namespace Physics.WaveInterference.ViewModels
 					Waves.Add(new WaveInfoViewModel(dialogViewModel.Result[1].Result));
 					SourceDistance = dialogViewModel.SourceDistance;
 					await RaisePropertyChanged(nameof(AreWavesConfigured));
+					await StartSimulationAsync();
 				}
 			}
 			catch (Exception ex)
@@ -179,7 +178,7 @@ namespace Physics.WaveInterference.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				_controller.SetActiveOscillations(Oscillations.ToArray());
+				_controller.SetActiveWaves(Waves.ToArray());
 				_controller.StartSimulation();
 			});
 			FocusSimulationControls();
@@ -208,12 +207,12 @@ namespace Physics.WaveInterference.ViewModels
 
 				RaisePropertyChanged(nameof(TimeElapsed));
 
-				foreach (var motion in Oscillations)
+				foreach (var motion in Waves)
 				{
 					motion.UpdateCurrentValues(timeElapsed);
 				}
-
-				CurrentCompoundY = _waveInterferencePhysicsService.CalculateY(0, timeElapsed)?.ToString(" 0.00;-0.00; 0.00") ?? Constants.NoValueString;
+				//TODO:
+				//CurrentCompoundY = _waveInterferencePhysicsService.CalculateY(0, timeElapsed)?.ToString(" 0.00;-0.00; 0.00") ?? Constants.NoValueString;
 			}
 		}
 	}
