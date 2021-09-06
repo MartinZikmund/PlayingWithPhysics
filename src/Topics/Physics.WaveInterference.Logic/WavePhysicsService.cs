@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Physics.WaveInterference.Logic
 {
@@ -11,6 +9,10 @@ namespace Physics.WaveInterference.Logic
 		{
 			_wave = wave;
 		}
+
+		public float StartX => _wave.Direction == WaveDirection.Right ? _wave.OriginX : float.NegativeInfinity;
+
+		public float EndX => _wave.Direction == WaveDirection.Left ? _wave.OriginX : float.PositiveInfinity;
 
 		public float MaxY => Math.Abs(_wave.Amplitude);
 
@@ -36,7 +38,7 @@ namespace Physics.WaveInterference.Logic
 			}
 
 
-			return (float)(_wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) + (double)_wave.Direction * ((x + _wave.OriginX) / _wave.WaveLength))));
+			return (float)(_wave.Amplitude * Math.Sin(2 * Math.PI * ((time / _wave.Period) - (double)_wave.Direction * ((x + _wave.OriginX) / _wave.WaveLength))));
 		}
 	}
 }

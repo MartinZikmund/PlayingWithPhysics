@@ -254,7 +254,7 @@
                 </Grid.ChildrenTransitions>
 
                 <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Input_InclinedPlane}" />
-				<StackPanel
+				<!--<StackPanel
 					Grid.Column="1"
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Right"
@@ -265,7 +265,7 @@
 						<SymbolIcon Foreground="DarkRed" Symbol="Link" />
 					</Viewbox>
 					<TextBlock Foreground="DarkRed" Text="{extensions:Localize Key=ChangesApplyToAll}" />
-				</StackPanel>
+				</StackPanel>-->
                 <!--  Inclined plane angle  -->
                 <TextBlock Grid.Row="1" Grid.Column="0">
                     <Run Text="{extensions:Localize Key=Input_Angle}" />

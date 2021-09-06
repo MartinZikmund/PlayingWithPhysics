@@ -5,7 +5,6 @@ using Physics.Shared.UI.Extensions;
 using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
-using Windows.UI.Xaml.Controls;
 
 namespace Physics.RotationalInclinedPlane.Rendering
 {
@@ -67,7 +66,7 @@ namespace Physics.RotationalInclinedPlane.Rendering
 				var canvas = surface.Canvas;
 				canvas.Clear(new SKColor(255, 244, 244, 244));
 				DrawFloor(imageInfo, surface);
-				DrawInclinedPlane(imageInfo, surface);
+				DrawInclinedPlanes(imageInfo, surface);
 				DrawObjects(imageInfo, surface);
 
 				args.Canvas.DrawSurface(surface, new SKPoint(_padding, _padding), _linePaint);
@@ -76,10 +75,15 @@ namespace Physics.RotationalInclinedPlane.Rendering
 
 		private void DrawObjects(SKImageInfo imageInfo, SKSurface surface)
 		{
+			var maxX = _canvasController.PhysicsServices.Max(s => s.Setup.InclinedLength * Math.Cos(MathHelpers.DegreesToRadians(s.Setup.InclinedAngle)));
+
 			foreach (var physicsService in _canvasController.PhysicsServices)
 			{
+				var thisHorizontalWidth = physicsService.CalculateInclinedWidth();
+				var startOffset = maxX - thisHorizontalWidth;
+
 				var t = (float)_canvasController.SimulationTime.TotalTime.TotalSeconds;
-				var x = physicsService.CalculateX(t) * _scalingRatio;
+				var x = (float)(startOffset + physicsService.CalculateX(t)) * _scalingRatio;
 				var y = physicsService.CalculateY(t) * _scalingRatio;
 
 				var color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(physicsService.Setup.Color);
@@ -167,9 +171,9 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			_scalingRatio = _simulationBounds.Size.ScaleToFit(surface.ScaledSize.ReduceBy(_padding * 2));
 		}
 
-		private float CalculateTotalHeightInMeters() => _canvasController.PhysicsServices[0].CalculateY(0) + 3f * _maxRadius;
+		private float CalculateTotalHeightInMeters() => _canvasController.PhysicsServices.Max(s => s.CalculateY(0) + 3f * s.Setup.Radius);
 
-		private float CalculateTotalWidthInMeters() => _canvasController.PhysicsServices[0].CalculateTotalWidth() + 3f * _maxRadius;
+		private float CalculateTotalWidthInMeters() => _canvasController.PhysicsServices.Max(s => s.CalculateTotalWidth()) + 3f * _maxRadius;
 
 		private float GetMaxRadius() => _canvasController.Motions.Max(m => m.Radius);
 
@@ -192,16 +196,21 @@ namespace Physics.RotationalInclinedPlane.Rendering
 		//	return _padding + _canvasController.Motions[0].Radius * _canvasController.Motion.Radius * _scalingRatio;
 		//}
 
-		private void DrawInclinedPlane(SKImageInfo info, SKSurface surface)
+		private void DrawInclinedPlanes(SKImageInfo info, SKSurface surface)
 		{
-			var motion = _canvasController.Motions[0];
-			var angleInRad = MathHelpers.DegreesToRadians(motion.InclinedAngle);
-			var y = (float)motion.InclinedLength * (float)Math.Sin(angleInRad);
-			var x = motion.InclinedLength * Math.Cos(angleInRad);
-			surface.Canvas.DrawLine(
-				new SKPoint(PadX(info, 0), FlipY(info, (float)y * _scalingRatio)),
-				new SKPoint(PadX(info, (float)x * _scalingRatio), FlipY(info, 0)),
-				_linePaint);
+			var maxX = _canvasController.PhysicsServices.Max(s => s.Setup.InclinedLength * Math.Cos(MathHelpers.DegreesToRadians(s.Setup.InclinedAngle)));
+
+			foreach (var service in _canvasController.PhysicsServices)
+			{
+				var motion = service.Setup;
+				var angleInRad = MathHelpers.DegreesToRadians(motion.InclinedAngle);
+				var y = (float)motion.InclinedLength * (float)Math.Sin(angleInRad);
+				var x = motion.InclinedLength * Math.Cos(angleInRad);
+
+				var from = new SKPoint(PadX(info, (float)(maxX - x) * _scalingRatio), FlipY(info, (float)y * _scalingRatio));
+				var to = new SKPoint(PadX(info, (float)maxX * _scalingRatio), FlipY(info, 0));
+				surface.Canvas.DrawLine(from, to, _linePaint);
+			}
 		}
 
 		private void DrawFloor(SKImageInfo info, SKSurface surface)

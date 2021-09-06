@@ -145,10 +145,14 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 
 		public void OnSelectedBodyTypeIndexChanged()
 		{
-			BodyType = (BodyType)SelectedBodyTypeIndex;
-			if (_autogenerateLabel)
+			if (SelectedBodyTypeIndex >= 0)
 			{
-				SetLocalizedAndNumberedLabelName();
+				BodyType = (BodyType)SelectedBodyTypeIndex;
+				var startsWithKnownPrefix = Enum.GetNames(typeof(BodyType)).Any(nameKey => Label?.StartsWith(ResourceLoader.GetForCurrentView().GetString($"BodyType_{BodyType.ToString("g")}"), StringComparison.InvariantCultureIgnoreCase) == true);
+				if (_autogenerateLabel || startsWithKnownPrefix)
+				{
+					SetLocalizedAndNumberedLabelName();
+				}
 			}
 		}
 
