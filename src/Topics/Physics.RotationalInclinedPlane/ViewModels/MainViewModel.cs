@@ -154,8 +154,8 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 					motion.MotionInfo.Mass,
 					source.Gravity,
 					motion.MotionInfo.Radius,
-					source.InclinedLength,
-					source.InclinedAngle,
+					motion.MotionInfo.InclinedLength,
+					motion.MotionInfo.InclinedAngle,
 					source.HorizontalLength,
 					motion.MotionInfo.Color);
 				motion.MotionInfo = setup;
