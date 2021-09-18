@@ -136,6 +136,21 @@ Graphics: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Changes apply to both</value>
   </data>
+  <data name="CoefficientOfRestitution" xml:space="preserve">
+    <value>Coefficient of restitution</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
+    <value>Velocities have opposite direction</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsSameDirection" xml:space="preserve">
+    <value>Velocities have the same direction</value>
+  </data>
+  <data name="CollisionSubtype_V2Zero" xml:space="preserve">
+    <value>v2 = 0</value>
+  </data>
+  <data name="CollisionSubtype_V2ZeroM2BiggerThanM1" xml:space="preserve">
+    <value>v2 = 0, m2 &gt;&gt; m1</value>
+  </data>
   <data name="CollisionType_ImperfectlyElastic" xml:space="preserve">
     <value>Imperfectly Elastic Collision</value>
   </data>
@@ -147,6 +162,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Mass</value>
   </data>
   <data name="Period" xml:space="preserve">
     <value>Period</value>
@@ -162,5 +180,8 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Start phase</value>
+  </data>
+  <data name="Velocity" xml:space="preserve">
+    <value>Velocity</value>
   </data>
 </root>

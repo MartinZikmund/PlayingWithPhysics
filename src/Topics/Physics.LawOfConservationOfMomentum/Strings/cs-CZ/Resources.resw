@@ -136,6 +136,21 @@ Grafika: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změny se projeví u obou</value>
   </data>
+  <data name="CoefficientOfRestitution" xml:space="preserve">
+    <value>Koeficient vzpruživosti</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
+    <value>Rychlosti těles mají opačný směr volba</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsSameDirection" xml:space="preserve">
+    <value>Rychlosti těles mají stejný směr</value>
+  </data>
+  <data name="CollisionSubtype_V2Zero" xml:space="preserve">
+    <value>v2 = 0</value>
+  </data>
+  <data name="CollisionSubtype_V2ZeroM2BiggerThanM1" xml:space="preserve">
+    <value>v2 = 0, m2 &gt;&gt; m1</value>
+  </data>
   <data name="CollisionType_ImperfectlyElastic" xml:space="preserve">
     <value>Nedokonale pružná srážka</value>
   </data>
@@ -147,6 +162,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Hmotnost tělesa</value>
   </data>
   <data name="Period" xml:space="preserve">
     <value>Perioda</value>
@@ -162,5 +180,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Počáteční fáze</value>
+  </data>
+  <data name="Velocity" xml:space="preserve">
+    <value>Rychlost tělesa</value>
   </data>
 </root>

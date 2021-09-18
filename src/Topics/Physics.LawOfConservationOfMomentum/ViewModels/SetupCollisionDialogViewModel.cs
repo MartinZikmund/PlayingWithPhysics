@@ -24,6 +24,7 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 		public SetupCollisionDialogViewModel(CollisionType variant)
 		{
 			_variant = variant;
+			Configuration = VariantConfigurations.All[0];
 		}
 		public SetupCollisionDialogViewModel(CollisionType variant, MotionSetup setup) : this(variant)
 		{
@@ -47,25 +48,44 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 			Label = generatedName;
 		}
 
-		public float Amplitude { get; set; }
-		public float Frequency { get; set; }
-		public float Period => 1 / Frequency;
-		public string AngularSpeedInDeg => PhysicsHelpers.FrequencyToAngularSpeedInDeg(Frequency).ToString("0.0");
-		public string AngularSpeedInRad => PhysicsHelpers.FrequencyToAngularSpeedInRad(Frequency).ToString("0.0");
-		public float PhaseInPiRad { get; set; }
-		public float PhaseInDeg { get; set; }
-
+		public VariantConfiguration Configuration { get; set; }
 		public Color Color { get; set; }
 		public Color[] AvailableColors { get; } = new Color[]
-{
+		{
 			ColorHelper.ToColor("#0063B1"),
 			ColorHelper.ToColor("#2D7D9A"),
 			ColorHelper.ToColor("#E81123"),
 			ColorHelper.ToColor("#881798"),
 			ColorHelper.ToColor("#498205"),
 			ColorHelper.ToColor("#515C6B"),
-};
+		};
 		public Visibility IsEasyVariant { get; set; }
+		public float MassOne { get; set; }
+		public float MassTwo { get; set; }
+		public float VelocityOne { get; set; }
+		public float VelocityTwo { get; set; }
+		public float CoefficientOfRestitution { get; set; }
+
+		public List<CollisionSubtype> Subtypes { get; } = new List<CollisionSubtype>
+		{
+			CollisionSubtype.V2ZeroM2BiggerThanM1,
+			CollisionSubtype.V2Zero,
+			CollisionSubtype.SpeedsSameDirection,
+			CollisionSubtype.SpeedsOppositeDirection
+		};
+
+		public int SelectedSubtypeIndex { get; set; } = 0;
+
+		public void OnSelectedSubtypeIndexChanged()
+		{
+			if (SelectedSubtypeIndex <= 0)
+			{
+				return;
+			}
+			Configuration = VariantConfigurations.All.FirstOrDefault(c => c.Subtype == (CollisionSubtype)SelectedSubtypeIndex);
+		}
+
+		public bool CoefficientOfRestitutionVisibility => _variant == CollisionType.ImperfectlyElastic;
 
 		public MotionSetup Result;
 		public string Label { get; set; }
