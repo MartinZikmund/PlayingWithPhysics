@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplituda</value>
+  </data>
+  <data name="AngularSpeed" xml:space="preserve">
+    <value>Úhlová frekvence</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>V izolované soustavě těles, tedy v soustavě, na kterou z vnějšku nepůsobí žádná síla nebo výslednice všech vnějších sil je nulová, platí zákon zachování hybnosti. Tělesa v izolované soustavě však na sebe vzájemně působit mohou. Těmito silami se mění jejich hybnosti, avšak celková hybnost soustavy jako celku se nemění. Také energie se v izolované soustavě zachovává.
 
@@ -127,10 +133,55 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Zákony zachování hybnosti a energie</value>
   </data>
-  <data name="SetUpCollision" xml:space="preserve">
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Změny se projeví u obou</value>
+  </data>
+  <data name="CoefficientOfRestitution" xml:space="preserve">
+    <value>Koeficient vzpruživosti</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
+    <value>Rychlosti těles mají opačný směr volba</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsSameDirection" xml:space="preserve">
+    <value>Rychlosti těles mají stejný směr</value>
+  </data>
+  <data name="CollisionSubtype_V2Zero" xml:space="preserve">
+    <value>v2 = 0</value>
+  </data>
+  <data name="CollisionSubtype_V2ZeroM2BiggerThanM1" xml:space="preserve">
+    <value>v2 = 0, m2 &gt;&gt; m1</value>
+  </data>
+  <data name="CollisionType_ImperfectlyElastic" xml:space="preserve">
+    <value>Nedokonale pružná srážka</value>
+  </data>
+  <data name="CollisionType_PerfectlyElastic" xml:space="preserve">
+    <value>Dokonale pružná srážka</value>
+  </data>
+  <data name="CollisionType_PerfectlyInelastic" xml:space="preserve">
+    <value>Dokonale nepružná srážka</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frekvence</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Hmotnost tělesa</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Perioda</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Nastavit parametry</value>
+  </data>
+  <data name="SetupCollision" xml:space="preserve">
     <value>Nastavení kolize</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Zákony zachování hybnosti a energie</value>
+  </data>
+  <data name="StartPhase" xml:space="preserve">
+    <value>Počáteční fáze</value>
+  </data>
+  <data name="Velocity" xml:space="preserve">
+    <value>Rychlost tělesa</value>
   </data>
 </root>

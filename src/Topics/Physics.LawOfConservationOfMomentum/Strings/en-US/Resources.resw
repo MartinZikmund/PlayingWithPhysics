@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplitude</value>
+  </data>
+  <data name="AngularSpeed" xml:space="preserve">
+    <value>Angular speed</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>In an isolated system of bodies, ie in a system on which no force acts from the outside or the resultant of all external forces is zero, the law of conservation of momentum applies. However, bodies in an isolated system can interact with each other. These forces change their momentum, but the overall momentum of the system as a whole does not change. Energy is also stored in an isolated system.
 
@@ -127,10 +133,55 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Law of Conservation of Momentum</value>
   </data>
+  <data name="ChangesApplyToAll" xml:space="preserve">
+    <value>Changes apply to both</value>
+  </data>
+  <data name="CoefficientOfRestitution" xml:space="preserve">
+    <value>Coefficient of restitution</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
+    <value>Velocities have opposite direction</value>
+  </data>
+  <data name="CollisionSubtype_SpeedsSameDirection" xml:space="preserve">
+    <value>Velocities have the same direction</value>
+  </data>
+  <data name="CollisionSubtype_V2Zero" xml:space="preserve">
+    <value>v2 = 0</value>
+  </data>
+  <data name="CollisionSubtype_V2ZeroM2BiggerThanM1" xml:space="preserve">
+    <value>v2 = 0, m2 &gt;&gt; m1</value>
+  </data>
+  <data name="CollisionType_ImperfectlyElastic" xml:space="preserve">
+    <value>Imperfectly Elastic Collision</value>
+  </data>
+  <data name="CollisionType_PerfectlyElastic" xml:space="preserve">
+    <value>Perfectly Elastic Collision</value>
+  </data>
+  <data name="CollisionType_PerfectlyInelastic" xml:space="preserve">
+    <value>Perfectly Inelastic Collision</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Set Parameters</value>
+  </data>
   <data name="SetupCollision" xml:space="preserve">
     <value>Setup collision</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Law of Conservation of Momentum</value>
+  </data>
+  <data name="StartPhase" xml:space="preserve">
+    <value>Start phase</value>
+  </data>
+  <data name="Velocity" xml:space="preserve">
+    <value>Velocity</value>
   </data>
 </root>
