@@ -34,7 +34,7 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 		public InputDialogViewModel(MotionSetup setup, DifficultyOption difficulty, MotionSetup[] otherSetups) : this(difficulty, otherSetups)
 		{
 			_otherSetups = otherSetups;
-			_autogenerateLabel = false; // Do not autogenerate for edit mode.
+			_autogenerateLabel = true; // Do not autogenerate for edit mode.
 			BodyType = setup.BodyType;
 			SelectedBodyTypeIndex = (int)setup.BodyType;
 			Radius = setup.Radius;

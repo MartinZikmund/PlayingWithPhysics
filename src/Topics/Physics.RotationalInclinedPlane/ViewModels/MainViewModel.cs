@@ -132,13 +132,15 @@ namespace Physics.RotationalInclinedPlane.ViewModels
 			}
 			var duplicateMotion = motionViewModel.MotionInfo.Clone();
 			duplicateMotion.Label = $"{duplicateMotion.Label} ({resourceLoader.GetString("Copy")})";
-			var viewModel = new InputDialogViewModel(motionViewModel.MotionInfo, _difficulty, Motions.Select(m => m.MotionInfo).ToArray());
+			var viewModel = new InputDialogViewModel(duplicateMotion, _difficulty, Motions.Select(m => m.MotionInfo).ToArray());
 
 			var dialog = new InputDialog(viewModel);
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				motionViewModel.MotionInfo = viewModel.CreateMotionSetup();
+				var setup = viewModel.CreateMotionSetup();
+				var newMotionViewModel = new MotionViewModel(setup);
+				Motions.Add(newMotionViewModel);
 				ApplyInlinedPropertiesToAll(motionViewModel.MotionInfo);
 				RestartSimulation();
 			}
