@@ -120,9 +120,31 @@ namespace Physics.WaveInterference.Rendering
 			_waveInterferencePhysicsService = new WaveInterferencePhysicsService(_wavePhysicsServices.Values.ToArray());
 			_waveInterferenceTrajectory = new WaveInterferenceTrajectory(_waveTrajectories.Values.ToArray());
 
-			//TODO:
-			_minX = -20;
-			_maxX = 20;
+			var distance = _activeWaves.Max(w => w.WaveInfo.OriginX);
+			var maxLambda = _activeWaves.Max(w => w.WaveInfo.WaveLength);
+			var displayWidth = 0f;
+			if (_activeWaves[0].WaveInfo.Direction == _activeWaves[1].WaveInfo.Direction)
+			{
+				displayWidth = distance + 3 * maxLambda;
+				if (_activeWaves[0].WaveInfo.Direction == WaveDirection.Left)
+				{
+					_maxX = _activeWaves[1].WaveInfo.OriginX;
+					_minX = _maxX - displayWidth;
+				}
+				else
+				{
+					_minX = 0;
+					_maxX = displayWidth;
+				}
+			}
+			else
+			{
+				displayWidth = distance + 4 * maxLambda;
+
+				var fakeCenter = _activeWaves[1].WaveInfo.OriginX / 2;
+				_minX = fakeCenter - displayWidth / 2;
+				_maxX = fakeCenter + displayWidth / 2;
+			}
 		}
 
 		private void SetInherentSlowdown()
