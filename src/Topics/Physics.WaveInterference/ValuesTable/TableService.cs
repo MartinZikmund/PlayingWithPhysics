@@ -34,14 +34,20 @@ namespace Physics.WaveInterference.ValuesTable
 
 			List<TableRow> table = new List<TableRow>();
 
-			float x = -20f;
-
-			while (x <= 20f)
+			float minX = Math.Max(_physicsService.StartX, _physicsService.Wave.OriginX - _physicsService.Wave.WaveLength * 3);
+			float maxX = Math.Min(_physicsService.EndX, _physicsService.Wave.OriginX + _physicsService.Wave.WaveLength * 3);
+			var x = minX;
+			while (x <= maxX)
 			{
 				var a = _physicsService.CalculateY(x, time);
 				TableRow valuesRow = new TableRow(x, a);
 				table.Add(valuesRow);
+				if (x == maxX)
+				{
+					break;
+				}
 				x += distanceInterval;
+				x = Math.Min(x, maxX);
 			}
 
 			return table;

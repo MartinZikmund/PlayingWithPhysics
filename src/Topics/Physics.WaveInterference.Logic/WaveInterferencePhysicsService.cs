@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Physics.WaveInterference.Logic
 {
-	public class WaveInterferencePhysicsService : IWavePhysicsService
+	public class WaveInterferencePhysicsService
 	{
 		private WavePhysicsService[] _physicsServices;
 

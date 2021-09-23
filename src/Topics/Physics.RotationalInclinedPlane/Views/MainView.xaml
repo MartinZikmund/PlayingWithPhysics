@@ -82,6 +82,13 @@
                         <NavigationViewItemSeparator />
 
                         <ListView ItemsSource="{x:Bind Model.Motions, Mode=OneWay}" SelectionMode="None">
+							<ListView.ItemContainerStyle>
+								<Style TargetType="ListViewItem">
+									<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+									<Setter Property="Margin" Value="0" />
+									<Setter Property="Padding" Value="0" />
+								</Style>
+							</ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="viewmodels:MotionViewModel">
                                     <StackPanel>
@@ -146,7 +153,7 @@
 												<SymbolIcon Symbol="More" />
 											</Button>
 										</Grid>
-										<Grid Margin="16,8,8,0">
+										<Grid Margin="16,0,0,8">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />

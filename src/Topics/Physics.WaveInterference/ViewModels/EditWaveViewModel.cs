@@ -32,6 +32,7 @@ namespace Physics.WaveInterference.ViewModels
 			Frequency = oscillationInfo.Frequency;
 			Amplitude = oscillationInfo.Amplitude;
 			WaveLength = oscillationInfo.WaveLength;
+			SelectedDirection = oscillationInfo.Direction;
 			//PhaseInPiRad = oscillationInfo.PhaseInRad / (float)Math.PI;
 			Result = oscillationInfo;
 		}
@@ -43,7 +44,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		public List<WaveDirection> WaveDirections = new() { WaveDirection.Left, WaveDirection.Right };
 
-		public WaveDirection SelectedDirection { get; set; } = WaveDirection.Left;
+		public WaveDirection SelectedDirection { get; set; } = WaveDirection.Right;
 
 		public bool IsEasyVariant { get; }
 
@@ -78,8 +79,10 @@ namespace Physics.WaveInterference.ViewModels
 		//public string PhaseInDeg => MathHelpers.RadiansToDegrees(PhaseInPiRad * (float)Math.PI).ToString("0.0");
 		//public float PhaseInPiRad { get; set; }
 		//public float StartPhase { get; set; }
-		public float WaveLength { get; set; } = 0.5f;
-		public float SourceDistance { get; set; }
+		public float WaveLength { get; set; } = 5f;
+
+		public float SourceDistance { get; set; } = 0;
+
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
 			var deferral = args.GetDeferral();

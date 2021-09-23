@@ -50,14 +50,14 @@
 
         <TextBlock Grid.Row="0">
             <Run Text="{extensions:Localize Key=SourceDistance}" />
-            <Run FontWeight="Bold" Text="λ" />
+            <Run FontWeight="Bold" Text="d" />
             <Run Text="[m]" />
         </TextBlock>
         <controls:NumberBox
             x:Name="SourceDistanceNumberBox"
             Grid.Row="0"
             Grid.Column="1"
-            Maximum="50"
+            Maximum="20"
             Minimum="0"
             Value="{x:Bind Model.SourceDistance, Mode=TwoWay}" />
 
