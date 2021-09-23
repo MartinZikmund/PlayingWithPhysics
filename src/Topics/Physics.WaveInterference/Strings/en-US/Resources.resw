@@ -138,7 +138,7 @@ Programmers: Martin Zikmund, Daniel Zikmund
 Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Compound Oscillations</value>
+    <value>Playing with Physics: Wave Interference</value>
   </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Changes apply to both waves</value>
