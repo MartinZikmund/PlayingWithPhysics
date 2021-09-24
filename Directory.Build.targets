@@ -22,7 +22,7 @@
     <PackageReference Update="Microsoft.Toolkit" Version="7.0.2" />
     <PackageReference Update="Microsoft.Toolkit.Mvvm" Version="7.0.2" />
     <PackageReference Update="Microsoft.Toolkit.Uwp" Version="7.0.2" />
-    <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.2" />
+    <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.0" />
     <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Animations" Version="7.0.2" />
     <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="7.0.2" />
 
