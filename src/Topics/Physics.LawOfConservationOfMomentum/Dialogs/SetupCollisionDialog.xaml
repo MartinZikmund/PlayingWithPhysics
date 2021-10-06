@@ -81,41 +81,42 @@
             Grid.Column="1"
             Maximum="10"
             Minimum="0.1"
-            Text="{x:Bind Model.MassOne, Mode=TwoWay}"
+            Value="{x:Bind Model.MassOne, Mode=TwoWay}"
             Visibility="{x:Bind Model.Configuration.M1.IsVisible, Mode=OneWay}" />
 
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="0"
-            Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}">
-            <Run Text="{extensions:Localize Key=Mass}" />
-            <Run FontWeight="Bold" Text="m" /><Run Text="2" Typography.Variants="Subscript" />
-            <Run Text="(kg)" />
-        </TextBlock>
-        <controls:NumberBox
-            x:Name="MassTwoNumberBox"
-            Grid.Row="3"
-            Grid.Column="1"
-            Maximum="10"
-            Minimum="0.1"
-            Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}"
-            Value="{x:Bind Model.MassTwo, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="4" Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}">
+		<TextBlock Grid.Row="3" Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=Velocity}" />
             <Run FontWeight="Bold" Text="v" /><Run Text="1" Typography.Variants="Subscript" />
             <Run Text="(m/s)" />
-        </TextBlock>
-        <controls:NumberBox
+		</TextBlock>
+		<controls:NumberBox
             x:Name="VelocityOneNumberBox"
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             Maximum="20"
             Minimum="1"
             Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.VelocityOne, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.Configuration.V2.IsVisible, Mode=OneWay}">
+		<TextBlock
+            Grid.Row="4"
+            Grid.Column="0"
+            Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=Mass}" />
+            <Run FontWeight="Bold" Text="m" /><Run Text="2" Typography.Variants="Subscript" />
+            <Run Text="(kg)" />
+        </TextBlock>
+		<controls:NumberBox
+            x:Name="MassTwoNumberBox"
+            Grid.Row="4"
+            Grid.Column="1"
+            Maximum="10"
+            Minimum="0.1"
+            Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}"
+            Value="{x:Bind Model.MassTwo, Mode=TwoWay}" />
+
+		<TextBlock Grid.Row="5" Visibility="{x:Bind Model.Configuration.V2.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=Velocity}" />
             <Run FontWeight="Bold" Text="v" /><Run Text="2" Typography.Variants="Subscript" />
             <Run Text="(m/s)" />
@@ -138,7 +139,7 @@
             Grid.Column="1"
             Maximum="1"
             Minimum="0"
-            Value="{x:Bind Model.CoefficientOfRestitution, Mode=TwoWay}" />
+            Value="{x:Bind Model.CoefficientOfRestitution, Mode=TwoWay}" Visibility="{x:Bind Model.CoefficientOfRestitutionVisibility, Mode=OneWay}" />
 
         <GridView
             Grid.Row="7"

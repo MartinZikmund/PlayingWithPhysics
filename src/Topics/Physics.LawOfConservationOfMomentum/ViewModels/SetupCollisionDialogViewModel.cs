@@ -39,6 +39,14 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 		public void PrepareMotion()
 		{
 			//Fill in Result
+			Result = new MotionSetup(
+				_variant,
+				(CollisionSubtype)SelectedSubtypeIndex,
+				VelocityOne,
+				MassOne,
+				VelocityTwo,
+				MassTwo,
+				CoefficientOfRestitution);
 		}
 
 		private void SetLocalizedAndNumberedLabelName()

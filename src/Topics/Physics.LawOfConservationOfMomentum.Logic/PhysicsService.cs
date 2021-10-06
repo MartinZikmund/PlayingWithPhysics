@@ -82,10 +82,10 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 			{
 				_collisionX = _setup.Subtype switch
 				{
-					CollisionSubtype.V2ZeroM2BiggerThanM1 => GetDistance(0),
-					CollisionSubtype.V2Zero => GetDistance(0),
-					CollisionSubtype.SpeedsSameDirection => _setup.V1 * GetDistance(0) / (_setup.V1 - _setup.V2),
-					CollisionSubtype.SpeedsOppositeDirection => _setup.V1 * GetDistance(0) / (_setup.V1 + _setup.V2),
+					CollisionSubtype.V2ZeroM2BiggerThanM1 => 2 * GetDisplayWidth() / 3,
+					CollisionSubtype.V2Zero => 2 * GetDisplayWidth() / 3,
+					CollisionSubtype.SpeedsSameDirection => _setup.V1 * GetX2Start() / (_setup.V1 - _setup.V2), //TODO Verify
+					CollisionSubtype.SpeedsOppositeDirection => _setup.V1 * GetX2Start() / (_setup.V1 + _setup.V2),
 					_ => throw new InvalidOperationException("Invalid subtype"),
 				};
 			}

@@ -2,9 +2,10 @@
 {
 	public class MotionSetup
 	{
-		public MotionSetup(CollisionType type, float v1, float m1, float v2, float m2, float coefficientOfRestitution)
+		public MotionSetup(CollisionType type, CollisionSubtype subtype, float v1, float m1, float v2, float m2, float coefficientOfRestitution)
 		{
 			Type = type;
+			Subtype = subtype;
 			V1 = v1;
 			M1 = m1;
 			V2 = v2;
