@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Physics.LawOfConservationOfMomentum.Dialogs;
 using Physics.LawOfConservationOfMomentum.Logic;
@@ -25,6 +26,8 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public MotionViewModel Motion { get; set; }
 
+		public MotionSetup Setup { get; set; }
+
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(async () =>
 		{
 			SetupCollisionDialogViewModel viewModel;
@@ -42,9 +45,9 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 			var result = await dialog.ShowAsync();
 			if (result == ContentDialogResult.Primary)
 			{
-				//Setup = viewModel.Result;
-				//Motion = new MotionViewModel(Setup);
-				//await StartSimulationAsync();
+				Setup = viewModel.Result;
+				Motion = new MotionViewModel(Setup);
+				await StartSimulationAsync();
 			}
 		});
 
@@ -73,6 +76,12 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+		}
+
+		protected async Task StartSimulationAsync()
+		{
+			_controller.StartSimulation(Setup);
+			//_timer.Start();
 		}
 	}
 }

@@ -110,19 +110,13 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 			return _collisionTime.Value;
 		}
 
-		public float GetX1(float time)
-		{
-			var collisionTime = GetCollisionTime();
-			if (time <= collisionTime)
-			{
-				return _setup.V1 * time;
-			}
-		}
+		public float GetX1(float time) =>
+			time <= GetCollisionTime() ?
+				GetX1BeforeCollision(time) : GetX1AfterCollision(time);
 
-		public float GetX2(float time)
-		{
-			throw new NotImplementedException();
-		}
+		public float GetX2(float time) =>
+			time <= GetCollisionTime() ?
+				GetX2BeforeCollision(time) : GetX2AfterCollision(time);
 
 		public float GetV1(float time) =>
 			time <= GetCollisionTime() ?
@@ -207,5 +201,9 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 		public float GetX1BeforeCollision(float time) => _setup.V1 * time;
 
 		public float GetX2BeforeCollision(float time) => GetX2Start() - _setup.V2 * time;
+
+		public float GetX1AfterCollision(float time) => GetCollisionX() + GetV1AfterCollision() * (time - GetCollisionTime());
+
+		public float GetX2AfterCollision(float time) => GetCollisionX() + GetV2AfterCollision() * (time - GetCollisionTime());
 	}
 }
