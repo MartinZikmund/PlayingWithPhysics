@@ -55,8 +55,8 @@ namespace Physics.Shared.UI.Rendering
 		}
 
 		public void Restart()
-        {            
-            _stopwatch.Restart();
+		{
+			_stopwatch.Restart();
             TotalTime = TimeSpan.Zero;
 			UpdateCount = 0;
 			_lastElapsedMilliseconds = 0;

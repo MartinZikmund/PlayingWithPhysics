@@ -80,7 +80,7 @@
                                 Grid.Row="0"
                                 Margin="0,0,0,12"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"
-                                Text="Varianty" />
+                                Text="{extensions:Localize Key=Variants}" />
 
                             <winui:RadioButtons
                                 Grid.Row="1"
@@ -133,6 +133,7 @@
                 BackwardVisibility="Collapsed"
                 ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"

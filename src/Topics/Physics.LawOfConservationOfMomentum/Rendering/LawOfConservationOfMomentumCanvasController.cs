@@ -54,9 +54,9 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			}
 
 			var firstX = PhysicsService.GetX1((float)SimulationTime.TotalTime.TotalSeconds);
-			DrawObject(sender, args, firstX, _firstObjectPaint);
+			DrawObject(sender, args, firstX, _firstObjectPaint, 0);
 			var secondX = PhysicsService.GetX2((float)SimulationTime.TotalTime.TotalSeconds);
-			DrawObject(sender, args, secondX, _secondObjectPaint);
+			DrawObject(sender, args, secondX, _secondObjectPaint, 1);
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -70,10 +70,11 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			_metersToPixels = (sender.ScaledSize.Width - HorizontalPadding * 2) / displayWidth;
 		}
 
-		private void DrawObject(ISkiaCanvas sender, SKSurface args, float x, SKPaint paint)
+		private void DrawObject(ISkiaCanvas sender, SKSurface args, float x, SKPaint paint, int objectIndex)
 		{
 			var renderX = PadX(x * _metersToPixels);
-			args.Canvas.DrawCircle(renderX, sender.ScaledSize.Height / 2, 8, paint);
+
+			args.Canvas.DrawCircle(objectIndex == 0 ? renderX - 4 : renderX + 4, sender.ScaledSize.Height / 2, 8, paint);
 		}
 
 		public float PadX(float x) => HorizontalPadding + x;

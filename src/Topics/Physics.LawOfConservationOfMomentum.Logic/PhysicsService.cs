@@ -126,6 +126,15 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 			time <= GetCollisionTime() ?
 				_setup.V2 : GetV2AfterCollision();
 
+		public float GetV2BeforeCollision() => _setup.Subtype switch
+		{
+			CollisionSubtype.V2ZeroM2BiggerThanM1 => 0,
+			CollisionSubtype.V2Zero => 0,
+			CollisionSubtype.SpeedsSameDirection => _setup.V2,
+			CollisionSubtype.SpeedsOppositeDirection => _setup.V2,
+			_ => throw new NotImplementedException(),
+		};
+
 		public float GetV1AfterCollision()
 		{
 			switch (_setup.Type)
@@ -133,7 +142,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 				case CollisionType.PerfectlyElastic:
 					return _setup.Subtype switch
 					{
-						CollisionSubtype.V2ZeroM2BiggerThanM1 => _setup.V1,
+						CollisionSubtype.V2ZeroM2BiggerThanM1 => -_setup.V1,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1 - _setup.M2 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (2 * _setup.V2 - _setup.V1)) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (-2 * _setup.V2 - _setup.V1)) / (_setup.M1 + _setup.M2),
@@ -200,7 +209,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 
 		public float GetX1BeforeCollision(float time) => _setup.V1 * time;
 
-		public float GetX2BeforeCollision(float time) => GetX2Start() - _setup.V2 * time;
+		public float GetX2BeforeCollision(float time) => GetX2Start() - GetV2BeforeCollision() * time;
 
 		public float GetX1AfterCollision(float time) => GetCollisionX() + GetV1AfterCollision() * (time - GetCollisionTime());
 

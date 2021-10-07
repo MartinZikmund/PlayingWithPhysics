@@ -139,6 +139,9 @@ Grafika: Petr Weinlich</value>
   <data name="CoefficientOfRestitution" xml:space="preserve">
     <value>Koeficient vzpruživosti</value>
   </data>
+  <data name="CollisionSetup" xml:space="preserve">
+    <value>Nastavení kolize</value>
+  </data>
   <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
     <value>Rychlosti těles mají opačný směr volba</value>
   </data>
@@ -180,6 +183,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Počáteční fáze</value>
+  </data>
+  <data name="Variants" xml:space="preserve">
+    <value>Varianty</value>
   </data>
   <data name="Velocity" xml:space="preserve">
     <value>Rychlost tělesa</value>
