@@ -76,6 +76,14 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 			return Math.Abs(x1 - x2);
 		}
 
+		public float GetStartDistance()
+		{
+			var x1 = GetX1Start();
+			var x2 = GetX2Start();
+
+			return Math.Abs(x1 - x2);
+		}
+
 		public float GetCollisionX()
 		{
 			if (_collisionX == null)
@@ -83,7 +91,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 				_collisionX = _setup.Subtype switch
 				{
 					CollisionSubtype.V2ZeroM2BiggerThanM1 => 2 * GetDisplayWidth() / 3,
-					CollisionSubtype.V2Zero => 2 * GetDisplayWidth() / 3,
+					CollisionSubtype.V2Zero => GetDisplayWidth() / 2,
 					CollisionSubtype.SpeedsSameDirection => _setup.V1 * GetX2Start() / (_setup.V1 - _setup.V2), //TODO Verify
 					CollisionSubtype.SpeedsOppositeDirection => _setup.V1 * GetX2Start() / (_setup.V1 + _setup.V2),
 					_ => throw new InvalidOperationException("Invalid subtype"),
@@ -101,8 +109,8 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 				{
 					CollisionSubtype.V2ZeroM2BiggerThanM1 => GetCollisionX() / _setup.V1,
 					CollisionSubtype.V2Zero => GetCollisionX() / _setup.V1,
-					CollisionSubtype.SpeedsSameDirection => GetDistance(0) / (_setup.V1 - _setup.V2),
-					CollisionSubtype.SpeedsOppositeDirection => GetDistance(0) / (_setup.V1 + _setup.V2),
+					CollisionSubtype.SpeedsSameDirection => GetStartDistance() / (_setup.V1 - _setup.V2),
+					CollisionSubtype.SpeedsOppositeDirection => GetStartDistance() / (_setup.V1 + _setup.V2),
 					_ => throw new NotImplementedException("Invalid subtype"),
 				};
 			}
