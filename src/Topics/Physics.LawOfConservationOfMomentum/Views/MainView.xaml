@@ -67,8 +67,9 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ChildrenTransitions>
                                 <TransitionCollection>
@@ -105,7 +106,13 @@
                                 Command="{x:Bind Model.SetParametersCommand}"
                                 Content="{extensions:Localize Key=SetParameters}" />
 
-                        </Grid>
+							<Button
+                                Grid.Row="4"
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.ShowValuesTableCommand}"
+                                Content="{extensions:Localize Key=ShowValuesTable}" />
+						</Grid>
                     </Grid>
                 </ScrollViewer>
             </Border>

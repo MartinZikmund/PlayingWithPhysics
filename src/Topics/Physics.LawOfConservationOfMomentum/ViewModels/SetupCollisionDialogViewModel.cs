@@ -75,7 +75,7 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public void OnSelectedSubtypeIndexChanged()
 		{
-			if (SelectedSubtypeIndex <= 0)
+			if (SelectedSubtypeIndex < 0)
 			{
 				return;
 			}

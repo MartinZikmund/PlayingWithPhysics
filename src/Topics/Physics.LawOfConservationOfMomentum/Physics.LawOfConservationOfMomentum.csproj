@@ -130,10 +130,16 @@
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\LawOfConservationOfMomentumCanvasController.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MotionViewModel.cs" />
     <Compile Include="ViewModels\SetupCollisionDialogViewModel.cs" />
     <Compile Include="ViewModels\SetupCollisionViewModel.cs" />
+    <Compile Include="ViewModels\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -209,6 +215,10 @@
     <Page Include="Dialogs\SetupCollisionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModels\ValuesTablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>

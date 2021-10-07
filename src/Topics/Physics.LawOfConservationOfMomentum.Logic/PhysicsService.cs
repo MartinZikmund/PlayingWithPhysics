@@ -124,7 +124,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 
 		public float GetV2(float time) =>
 			time <= GetCollisionTime() ?
-				_setup.V2 : GetV2AfterCollision();
+				GetV2BeforeCollision() : GetV2AfterCollision();
 
 		public float GetV2BeforeCollision() => _setup.Subtype switch
 		{
@@ -209,7 +209,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 
 		public float GetX1BeforeCollision(float time) => _setup.V1 * time;
 
-		public float GetX2BeforeCollision(float time) => GetX2Start() - GetV2BeforeCollision() * time;
+		public float GetX2BeforeCollision(float time) => GetX2Start() + GetV2BeforeCollision() * time;
 
 		public float GetX1AfterCollision(float time) => GetCollisionX() + GetV1AfterCollision() * (time - GetCollisionTime());
 

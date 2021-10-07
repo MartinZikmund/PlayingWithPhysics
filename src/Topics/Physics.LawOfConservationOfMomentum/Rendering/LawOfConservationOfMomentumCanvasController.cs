@@ -8,17 +8,20 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 	public class LawOfConservationOfMomentumCanvasController : SkiaCanvasController
 	{
 		public const float HorizontalPadding = 20f;
+		public const float ObjectSize = 12f;
 
 		private readonly SKPaint _firstObjectPaint = new SKPaint()
 		{
 			IsStroke = false,
-			Color = SKColors.Red
+			Color = SKColors.Red,
+			IsAntialias = true,
 		};
 
 		private readonly SKPaint _secondObjectPaint = new SKPaint()
 		{
 			IsStroke = false,
-			Color = SKColors.Blue
+			Color = SKColors.Blue,
+			IsAntialias = true,
 		};
 
 		private float _metersToPixels = 0;
@@ -74,7 +77,7 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 		{
 			var renderX = PadX(x * _metersToPixels);
 
-			args.Canvas.DrawCircle(objectIndex == 0 ? renderX - 4 : renderX + 4, sender.ScaledSize.Height / 2, 8, paint);
+			args.Canvas.DrawCircle(objectIndex == 0 ? renderX - ObjectSize : renderX + ObjectSize, sender.ScaledSize.Height / 2, ObjectSize, paint);
 		}
 
 		public float PadX(float x) => HorizontalPadding + x;

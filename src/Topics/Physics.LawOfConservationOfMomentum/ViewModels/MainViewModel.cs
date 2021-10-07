@@ -5,11 +5,18 @@ using System.Windows.Input;
 using Physics.LawOfConservationOfMomentum.Dialogs;
 using Physics.LawOfConservationOfMomentum.Logic;
 using Physics.LawOfConservationOfMomentum.Rendering;
+using Physics.LawOfConservationOfMomentum.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+using Physics.LawOfConservationOfMomentum.ValuesTable;
+using Windows.UI;
 
 namespace Physics.LawOfConservationOfMomentum.ViewModels
 {
@@ -27,6 +34,8 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 		public MotionViewModel Motion { get; set; }
 
 		public MotionSetup Setup { get; set; }
+
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(async () =>
 		{
@@ -50,6 +59,31 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 				await StartSimulationAsync();
 			}
 		});
+
+		private async Task ShowValuesTableAsync()
+		{
+			var newWindow = await AppWindow.TryCreateAsync();
+			var appWindowContentFrame = new Frame();
+			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+			var physicsService = new PhysicsService(Setup);
+			var valuesTableService = new TableService(physicsService);
+			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, _difficulty);
+			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+			// Attach the XAML content to the window.
+			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			newWindow.Title = "Table";
+
+			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+			newWindow.TitleBar.ForegroundColor = Colors.White;
+			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.RequestSize(new Size(600, 400));
+			var shown = await newWindow.TryShowAsync();
+		}
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
