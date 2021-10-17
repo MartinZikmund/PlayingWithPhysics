@@ -10,6 +10,7 @@
 			M1 = m1;
 			V2 = v2;
 			M2 = m2;
+			CoefficientOfRestitution = coefficientOfRestitution;
 		}
 
 		public CollisionType Type { get; set; }

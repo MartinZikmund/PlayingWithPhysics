@@ -137,8 +137,8 @@
                 x:Name="SimulationControls"
                 Grid.Row="1"
                 d:Visibility="Collapsed"
-                BackwardVisibility="Collapsed"
-                ForwardVisibility="Collapsed"
+                BackwardVisibility="Visible"
+                ForwardVisibility="Visible"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
 				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
@@ -149,7 +149,7 @@
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
-                SpeedControlVisibility="Collapsed">
+                SpeedControlVisibility="Visible">
                 <sharedControls:SimulationControls.Background>
                     <AcrylicBrush
                         BackgroundSource="Backdrop"

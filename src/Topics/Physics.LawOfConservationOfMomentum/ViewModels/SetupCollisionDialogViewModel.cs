@@ -32,7 +32,7 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 			MassOne = setup.M1;
 			MassTwo = setup.M2;
 			VelocityOne = setup.V1;
-			VelocityTwo = setup.V2;
+			VelocityTwo = Math.Abs(setup.V2);
 			CoefficientOfRestitution = setup.CoefficientOfRestitution;
 		}
 
@@ -44,13 +44,14 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public void PrepareMotion()
 		{
+			var subtype = (CollisionSubtype)SelectedSubtypeIndex;
 			//Fill in Result
 			Result = new MotionSetup(
 				_variant,
-				(CollisionSubtype)SelectedSubtypeIndex,
+				subtype,
 				VelocityOne,
 				MassOne,
-				VelocityTwo,
+				subtype == CollisionSubtype.SpeedsOppositeDirection ? -VelocityTwo : VelocityTwo,
 				MassTwo,
 				CoefficientOfRestitution);
 		}

@@ -92,8 +92,8 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 				{
 					CollisionSubtype.V2ZeroM2BiggerThanM1 => 2 * GetDisplayWidth() / 3,
 					CollisionSubtype.V2Zero => GetDisplayWidth() / 2,
-					CollisionSubtype.SpeedsSameDirection => _setup.V1 * GetX2Start() / (_setup.V1 - _setup.V2), //TODO Verify
-					CollisionSubtype.SpeedsOppositeDirection => _setup.V1 * GetX2Start() / (_setup.V1 + _setup.V2),
+					CollisionSubtype.SpeedsSameDirection => _setup.V1 * GetStartDistance() / (_setup.V1 - _setup.V2), //TODO Verify
+					CollisionSubtype.SpeedsOppositeDirection => GetX1Start() + _setup.V1 * GetStartDistance() / (_setup.V1 - _setup.V2),
 					_ => throw new InvalidOperationException("Invalid subtype"),
 				};
 			}
@@ -110,7 +110,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 					CollisionSubtype.V2ZeroM2BiggerThanM1 => GetCollisionX() / _setup.V1,
 					CollisionSubtype.V2Zero => GetCollisionX() / _setup.V1,
 					CollisionSubtype.SpeedsSameDirection => GetStartDistance() / (_setup.V1 - _setup.V2),
-					CollisionSubtype.SpeedsOppositeDirection => GetStartDistance() / (_setup.V1 + _setup.V2),
+					CollisionSubtype.SpeedsOppositeDirection => GetStartDistance() / (_setup.V1 - _setup.V2),
 					_ => throw new NotImplementedException("Invalid subtype"),
 				};
 			}
@@ -153,7 +153,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => -_setup.V1,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1 - _setup.M2 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (2 * _setup.V2 - _setup.V1)) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (-2 * _setup.V2 - _setup.V1)) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (2 * _setup.V2 - _setup.V1)) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 				case CollisionType.PerfectlyInelastic:
@@ -168,7 +168,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 				case CollisionType.ImperfectlyElastic:
 					return _setup.Subtype switch
 					{
-						CollisionSubtype.V2ZeroM2BiggerThanM1 => _setup.V1 * _setup.CoefficientOfRestitution,
+						CollisionSubtype.V2ZeroM2BiggerThanM1 => -_setup.V1 * _setup.CoefficientOfRestitution,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1 - _setup.CoefficientOfRestitution * _setup.M2 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (_setup.V2 + _setup.CoefficientOfRestitution * _setup.V2 - _setup.CoefficientOfRestitution * _setup.V1)) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (-_setup.CoefficientOfRestitution * _setup.V1 - _setup.V2 - _setup.CoefficientOfRestitution * _setup.V2)) / (_setup.M1 + _setup.M2),
@@ -215,7 +215,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 			throw new InvalidOperationException("Invalid type");
 		}
 
-		public float GetX1BeforeCollision(float time) => _setup.V1 * time;
+		public float GetX1BeforeCollision(float time) => GetX1Start() + _setup.V1 * time;
 
 		public float GetX2BeforeCollision(float time) => GetX2Start() + GetV2BeforeCollision() * time;
 
