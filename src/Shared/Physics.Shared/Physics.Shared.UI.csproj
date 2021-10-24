@@ -307,7 +307,7 @@
     <Content Include="Assets\Logos\EarthsGravitationalField.jpg" />
     <Content Include="Assets\Logos\ElectricField.jpg" />
     <Content Include="Assets\Logos\FluidFlow.jpg" />
-    <Content Include="Assets\Logos\HuygensFrenselPrinciple.jpg" />
+    <Content Include="Assets\Logos\HuygensPrinciple.jpg" />
     <Content Include="Assets\Logos\InclinedPlane.jpg" />
     <Content Include="Assets\Logos\LawOfConservationOfMomentum.jpg" />
     <Content Include="Assets\Logos\LissajousCurves.jpg" />
