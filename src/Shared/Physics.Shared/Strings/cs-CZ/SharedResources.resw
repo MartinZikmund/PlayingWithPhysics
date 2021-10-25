@@ -172,7 +172,7 @@
     <value>Zákon radioaktivní přeměny</value>
   </data>
   <data name="AppName_RotationalInclinedPlane" xml:space="preserve">
-    <value>Rotační pohyb těles po nakloněné rovině</value>
+    <value>Valivý pohyb těles po nakloněné rovině</value>
   </data>
   <data name="AppName_StationaryWaves" xml:space="preserve">
     <value>Stojaté vlnění</value>
