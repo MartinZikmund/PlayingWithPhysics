@@ -117,114 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Action" xml:space="preserve">
-    <value>Action!</value>
-  </data>
   <data name="AddWave" xml:space="preserve">
-    <value>Add oscillation</value>
+    <value>Přidat vlnění</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
-    <value>Amplitude</value>
+    <value>Amplituda</value>
   </data>
-  <data name="AngularSpeed" xml:space="preserve">
-    <value>Angular speed</value>
+  <data name="AmplitudeLabel" xml:space="preserve">
+    <value>Amplituda:</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>The composition of several harmonic oscillations creates an oscillation that may no longer be harmonic.
-The program allows to use the principle of superposition to compose harmonic oscillations, which will be specified by angular velocity. The result will be a time diagram of the compound oscillation. In the time diagram, it will be possible to step and display the individual deviations as well as the resulting deviation as the sum of the deviations.
+    <value>Animace zobrazí odraz jedné vlny na pevném či volném konci nebo pomocí principu superpozice zobrazí stojaté vlnění složením přímého a odraženého vlnění. 
 
-Content authors: Pavel Mládek, Pavel Jirman
-Programmers: Martin Zikmund, Daniel Zikmund
-Graphics: Petr Weinlich</value>
+Autoři obsahu: Pavel Mládek, Pavel Jirman
+Programátoři: Daniel Zikmund, Martin Zikmund
+Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Wave Interference</value>
+    <value>Hrátky s fyzikou: Stojaté vlnění</value>
   </data>
-  <data name="ChangesApplyToAll" xml:space="preserve">
-    <value>Changes apply to both waves</value>
+  <data name="AVariant_Quarter" xml:space="preserve">
+    <value>a = 0,25</value>
   </data>
-  <data name="DistanceIntervalForTable" xml:space="preserve">
-    <value>Distance interval (m):</value>
+  <data name="AVariant_Zero" xml:space="preserve">
+    <value>a = 0</value>
   </data>
-  <data name="EditWave" xml:space="preserve">
-    <value>Configure waves</value>
-  </data>
-  <data name="Frequency" xml:space="preserve">
-    <value>Frequency</value>
-  </data>
-  <data name="GameGuide" xml:space="preserve">
-    <value>Deliver the best possible take for your slightly irritated director. While the robot moves, adjust the camera height so that it stays level with the actress' face as accurately as possible.</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="Legend" xml:space="preserve">
-    <value>Legend</value>
-  </data>
-  <data name="LegendBlack" xml:space="preserve">
-    <value>⚫ Black - Resulting position of camera</value>
-  </data>
-  <data name="LegendBlue" xml:space="preserve">
-    <value>🔵 Blue - Robot movement</value>
-  </data>
-  <data name="LegendGreen" xml:space="preserve">
-    <value>🟢 Green - Stick movement</value>
-  </data>
-  <data name="Period" xml:space="preserve">
-    <value>Period</value>
-  </data>
-  <data name="PhaseVelocity" xml:space="preserve">
-    <value>Phase velocity</value>
+  <data name="Range" xml:space="preserve">
+    <value>Rozsah</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Wave Interference</value>
-  </data>
-  <data name="ShowTableOfVisibleWaves" xml:space="preserve">
-    <value>Show table of wave interference</value>
-  </data>
-  <data name="SimulationTimeLabel" xml:space="preserve">
-    <value>Simulation time:</value>
-  </data>
-  <data name="SourceDistance" xml:space="preserve">
-    <value>Source distance</value>
-  </data>
-  <data name="Start" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="StartPhase" xml:space="preserve">
-    <value>Start phase</value>
-  </data>
-  <data name="StickHeightControl" xml:space="preserve">
-    <value>Camera control</value>
-  </data>
-  <data name="TableHeaderInterference" xml:space="preserve">
-    <value>Interference</value>
-  </data>
-  <data name="TableHeaderWave" xml:space="preserve">
-    <value>Wave {0}</value>
-  </data>
-  <data name="TimeForTable" xml:space="preserve">
-    <value>Time (s):</value>
-  </data>
-  <data name="TimeSinceStart" xml:space="preserve">
-    <value>Time since start</value>
-  </data>
-  <data name="Wave" xml:space="preserve">
-    <value>Wave</value>
-  </data>
-  <data name="WaveDirectionLabel" xml:space="preserve">
-    <value>Wave direction</value>
-  </data>
-  <data name="WaveDirection_Left" xml:space="preserve">
-    <value>Left</value>
-  </data>
-  <data name="WaveDirection_Right" xml:space="preserve">
-    <value>Right</value>
-  </data>
-  <data name="WaveInterference" xml:space="preserve">
-    <value>Wave interference</value>
-  </data>
-  <data name="WaveLength" xml:space="preserve">
-    <value>Wave length</value>
+    <value>Stojaté vlnění</value>
   </data>
 </root>

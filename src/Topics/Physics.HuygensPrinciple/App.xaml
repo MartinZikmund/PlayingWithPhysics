@@ -1,0 +1,22 @@
+﻿<local:PhysicsApp
+    x:Class="Physics.HuygensPrinciple.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Physics.HuygensPrinciple"
+    xmlns:selfstudy="using:Physics.SelfStudy.Resources"
+	RequestedTheme="Light">
+	
+	<local:PhysicsApp.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
+				<selfstudy:SelfStudyResources />
+			</ResourceDictionary.MergedDictionaries>
+			<Color x:Key="AppThemeColor">#0EA9BB</Color>
+			<Color x:Key="DarkAppThemeColor">#097380</Color>
+			<Color x:Key="AppTitleBarColor">#097380</Color>
+		</ResourceDictionary>
+	</local:PhysicsApp.Resources>
+
+</local:PhysicsApp>
