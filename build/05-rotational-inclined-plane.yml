@@ -48,8 +48,7 @@ steps:
     msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" 
                   /p:AppxPackageDir="$(appxPackageDir)" 
                   /p:AppxBundle=Always 
-                  /p:UapAppxPackageBuildMode=CI 
-                  /p:AppxPackageSigningEnabled=true'
+                  /p:UapAppxPackageBuildMode=CI'
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
