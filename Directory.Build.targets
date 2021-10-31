@@ -7,7 +7,7 @@
 
     <!-- AppCenter-->
     <PackageReference Update="Microsoft.AppCenter" Version="4.3.0" />
-    <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.3.0" />
+    <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.4.0" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="4.3.0" />
 
     <!-- Microsoft Extensions -->
