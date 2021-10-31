@@ -162,7 +162,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => 0,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 - _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 				case CollisionType.ImperfectlyElastic:
@@ -171,7 +171,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => -_setup.V1 * _setup.CoefficientOfRestitution,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1 - _setup.CoefficientOfRestitution * _setup.M2 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (_setup.V2 + _setup.CoefficientOfRestitution * _setup.V2 - _setup.CoefficientOfRestitution * _setup.V1)) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (-_setup.CoefficientOfRestitution * _setup.V1 - _setup.V2 - _setup.CoefficientOfRestitution * _setup.V2)) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * (-_setup.CoefficientOfRestitution * _setup.V1 + _setup.V2 * _setup.CoefficientOfRestitution + _setup.V2)) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 			}
@@ -189,7 +189,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => 0,
 						CollisionSubtype.V2Zero => (2 * _setup.M1 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M2 * _setup.V2 + _setup.M1 * (2 * _setup.V1 - _setup.V2)) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (-_setup.M2 * _setup.V2 + _setup.M1 * (2 * _setup.V1 + _setup.V2)) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M2 * _setup.V2 + _setup.M1 * (2 * _setup.V1 - _setup.V2)) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 				case CollisionType.PerfectlyInelastic:
@@ -198,7 +198,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => 0,
 						CollisionSubtype.V2Zero => (_setup.M1 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M1 * _setup.V1 + _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 - _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M1 * _setup.V1 + _setup.M2 * _setup.V2) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 				case CollisionType.ImperfectlyElastic:
@@ -207,7 +207,7 @@ namespace Physics.LawOfConservationOfMomentum.Logic
 						CollisionSubtype.V2ZeroM2BiggerThanM1 => 0,
 						CollisionSubtype.V2Zero => ((1 + _setup.CoefficientOfRestitution) * _setup.M1 * _setup.V1) / (_setup.M1 + _setup.M2),
 						CollisionSubtype.SpeedsSameDirection => (_setup.M2 * _setup.V2 + _setup.M1 * (_setup.V1 + _setup.CoefficientOfRestitution * _setup.V1 - _setup.CoefficientOfRestitution * _setup.V2)) / (_setup.M1 + _setup.M2),
-						CollisionSubtype.SpeedsOppositeDirection => (-_setup.M2 * _setup.V1 + _setup.M1 * (_setup.V1 + _setup.CoefficientOfRestitution * _setup.V1 + _setup.CoefficientOfRestitution * _setup.V2)) / (_setup.M1 + _setup.M2),
+						CollisionSubtype.SpeedsOppositeDirection => (_setup.M2 * _setup.V2 + _setup.M1 * (_setup.V1 + _setup.CoefficientOfRestitution * _setup.V1 - _setup.CoefficientOfRestitution * _setup.V2)) / (_setup.M1 + _setup.M2),
 						_ => throw new NotImplementedException(),
 					};
 			}

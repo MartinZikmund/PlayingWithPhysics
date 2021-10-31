@@ -29,7 +29,7 @@ namespace Physics.Shared.UI.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public float TimeInterval { get; set; } = 0.1f;
+        public float TimeInterval { get; set; } = 0.5f;
 
         public ObservableCollection<TValuesTableRow> Values { get; private set; }
 
