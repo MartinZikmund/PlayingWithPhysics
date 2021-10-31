@@ -163,7 +163,7 @@
     <value>Pohyby částic v homogenním magnetickém poli</value>
   </data>
   <data name="AppName_OpticalInstruments" xml:space="preserve">
-    <value>Optické přístroje</value>
+    <value>Simulátor optických přístrojů</value>
   </data>
   <data name="AppName_ProjectileMotions" xml:space="preserve">
     <value>Pohyby těles v homogenním tíhovém poli</value>
