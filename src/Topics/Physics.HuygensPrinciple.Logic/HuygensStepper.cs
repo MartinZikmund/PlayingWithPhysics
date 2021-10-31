@@ -5,24 +5,34 @@ using System.Drawing;
 namespace Physics.HuygensPrinciple.Logic
 {
 	public class HuygensStepper
-	{		
+	{
+		private readonly Point[] _neighborCoordinates = new Point[]
+		{
+			new Point(0, 1),
+			new Point(0, -1),
+			new Point(1, 0),
+			new Point(-1, 0)
+		};
+
 		private readonly int _fieldWidth;
 		private readonly int _fieldHeight;
+		private readonly int _stepRadius;
+
+		private readonly List<StepInfo> _stepsCache = new List<StepInfo>();
+
 		private CellState[,] _originalField;
 		private CellState[,] _currentField;
 
-		public HuygensStepper(CellState[,] field)
+		public HuygensStepper(CellState[,] field, int stepRadius)
 		{
 			_originalField = field;
 			_fieldWidth = _originalField.GetLength(0);
 			_fieldHeight = _originalField.GetLength(1);
+			_stepRadius = stepRadius;
 		}
 
-		public HuygensStepper(int x, int y)
+		public HuygensStepper(int x, int y, int stepRadius) : this(new CellState[x, y], stepRadius)
 		{
-			_originalField = new CellState[x, y];
-			_fieldWidth = x;
-			_fieldHeight = y;
 		}
 
 		public int CurrentStep { get; set; } = 0;
@@ -35,8 +45,8 @@ namespace Physics.HuygensPrinciple.Logic
 			{
 				for (int y = 0; x < _fieldHeight; x++)
 				{
-					if (_currentField[x,y] == CellState.Wave ||
-						_currentField[x,y] == CellState.WaveEdge)
+					if (_currentField[x, y] == CellState.Wave ||
+						_currentField[x, y] == CellState.WaveEdge)
 					{
 						_currentField[x, y] = CellState.Empty;
 					}
@@ -45,14 +55,16 @@ namespace Physics.HuygensPrinciple.Logic
 
 			// Store as original and make a copy for state.
 			_originalField = _currentField;
-			_currentField = new CellState[_fieldWidth, _fieldHeight];
-			Array.Copy(_originalField, _currentField, _originalField.Length);
+			_stepsCache.Clear();
 
-			// We are at the beginning.
-			CurrentStep = 0;
+			ResetField();
 		}
 
-		public void EmptyField() => Array.Clear(_originalField, 0, _originalField.Length);
+		public void ClearField()
+		{
+			Array.Clear(_originalField, 0, _originalField.Length);
+			ResetField();
+		}
 
 		public IList<CellStateChange> PutRectangle(Point leftUpper, Point rightLower, CellState fill = CellState.Source, bool avoidObjects = true)
 		{
@@ -114,19 +126,113 @@ namespace Physics.HuygensPrinciple.Logic
 			return results;
 		}
 
-		public Point[] GetBorderPoints(CellState spot, int background = 0)
+		public IList<Point> GetBorderPoints(CellState spotState, CellState backgroundState = 0)
 		{
+			var results = new List<Point>();
+			for (int x = 0; x < _fieldWidth - 1; x++)
+			{
+				for (int y = 0; y < _fieldHeight - 1; y++)
+				{
+					if (_currentField[x, y] == spotState)
+					{
+						bool hasBackgroundNeighbor = false;
+						for (int i = 0; i < _neighborCoordinates.Length; i++)
+						{
+							var point = new Point(x + _neighborCoordinates[i].X, y + _neighborCoordinates[i].Y);
 
+							if (point.X < 0 ||
+								point.Y < 0 ||
+								point.X >= _fieldWidth ||
+								point.Y >= _fieldHeight)
+							{
+								continue;
+							}
+
+							if (_currentField[point.X, point.Y] == backgroundState)
+							{
+								hasBackgroundNeighbor = true;
+								break;
+							}
+						}
+
+						if (hasBackgroundNeighbor)
+						{
+							results.Add(new Point(x, y));
+						}
+					}
+				}
+			}
+
+			return results;
+		}
+
+		public Point[] GetBorderLayer(CellState spot, CellState background = CellState.Empty)
+		{
+			return null;
 		}
 
 		public CellStateChange[] NextStep()
 		{
+			if (CurrentStep < _stepsCache.Count)
+			{
+				PerformCachedStep(CurrentStep);
+				CurrentStep++;
+				return _stepsCache[CurrentStep - 1].CellStateChanges;
+			}
 
+			var spotState = CellState.Wave;
+			if (CurrentStep == 0)
+			{
+				spotState = CellState.Source;
+			}
+
+			var currentSources = GetBorderPoints(spotState);
+
+			var allChanges = new List<CellStateChange>();
+			foreach (var source in currentSources)
+			{
+				var changes = PutCircle(source, _stepRadius, CellState.Wave);
+				allChanges.AddRange(changes);
+			}
+
+			// Cache step
+			var allChangesArray = allChanges.ToArray();
+			_stepsCache.Add(new StepInfo(allChangesArray));
+
+			return allChangesArray;
 		}
 
-		public int SetStep(int step)
+		public void SetStep(int step)
 		{
+			ResetField();
 
+			for (int i = 0; i < step; i++)
+			{
+				NextStep();
+			}
+		}
+
+		private void PerformCachedStep(int step)
+		{
+			if (step >= _stepsCache.Count)
+			{
+				throw new InvalidOperationException("This step is not cached yet.");
+			}
+
+			var stepInfo = _stepsCache[step];
+			foreach (var cellStateChange in stepInfo.CellStateChanges)
+			{
+				_currentField[cellStateChange.X, cellStateChange.Y] = cellStateChange.NewState;
+			}
+		}
+
+		private void ResetField()
+		{
+			_currentField = new CellState[_fieldWidth, _fieldHeight];
+			Array.Copy(_originalField, _currentField, _originalField.Length);
+
+			// We are at the beginning.
+			CurrentStep = 0;
 		}
 	}
 }
