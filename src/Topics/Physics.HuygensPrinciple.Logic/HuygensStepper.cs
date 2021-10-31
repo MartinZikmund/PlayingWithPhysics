@@ -25,10 +25,11 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public HuygensStepper(CellState[,] field, int stepRadius)
 		{
-			_originalField = field;
-			_fieldWidth = _originalField.GetLength(0);
-			_fieldHeight = _originalField.GetLength(1);
+			_currentField = field;
+			_fieldWidth = _currentField.GetLength(0);
+			_fieldHeight = _currentField.GetLength(1);
 			_stepRadius = stepRadius;
+			SaveOriginalField();
 		}
 
 		public HuygensStepper(int x, int y, int stepRadius) : this(new CellState[x, y], stepRadius)
@@ -38,6 +39,10 @@ namespace Physics.HuygensPrinciple.Logic
 		public int CurrentStep { get; set; } = 0;
 
 		public CellState[,] CurrentField => _currentField;
+
+		public int FieldHeight => _fieldHeight;
+
+		public int FieldWidth => _fieldWidth;
 
 		public void SaveOriginalField()
 		{
@@ -74,14 +79,14 @@ namespace Physics.HuygensPrinciple.Logic
 			{
 				for (int y = leftUpper.Y; y <= rightLower.Y; y++)
 				{
-					if (avoidObjects && (_originalField[x, y] == CellState.Source || _originalField[x, y] == CellState.Wall))
+					if (avoidObjects && (_currentField[x, y] == CellState.Source || _currentField[x, y] == CellState.Wall))
 					{
 						continue;
 					}
 
-					if (_originalField[x, y] != fill)
+					if (_currentField[x, y] != fill)
 					{
-						_originalField[x, y] = fill;
+						_currentField[x, y] = fill;
 						results.Add(new CellStateChange(x, y, fill));
 					}
 				}
@@ -109,14 +114,14 @@ namespace Physics.HuygensPrinciple.Logic
 				{
 					if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= radius2)
 					{
-						if (avoidObjects && (_originalField[x, y] == CellState.Source || _originalField[x, y] == CellState.Wall))
+						if (avoidObjects && (_currentField[x, y] == CellState.Source || _currentField[x, y] == CellState.Wall))
 						{
 							continue;
 						}
 
-						if (_originalField[x, y] != fill)
+						if (_currentField[x, y] != fill)
 						{
-							_originalField[x, y] = fill;
+							_currentField[x, y] = fill;
 							results.Add(new CellStateChange(x, y, fill));
 						}
 					}
@@ -210,6 +215,22 @@ namespace Physics.HuygensPrinciple.Logic
 			{
 				NextStep();
 			}
+		}
+
+		public void PrecalculateSteps()
+		{
+			if (_originalField == null)
+			{
+				throw new InvalidOperationException("No original field saved.");
+			}
+
+			int lastChangeCount;
+			do
+			{
+				lastChangeCount = NextStep().Length;
+			} while (lastChangeCount > 0);
+
+			ResetField();
 		}
 
 		private void PerformCachedStep(int step)

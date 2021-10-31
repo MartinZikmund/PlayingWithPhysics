@@ -4,6 +4,7 @@ using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
 using Physics.HuygensPrinciple.Rendering;
+using Physics.HuygensPrinciple.Logic;
 
 namespace Physics.HuygensPrinciple.ViewModels
 {
@@ -26,6 +27,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+			_controller.StartSimulation(ScenePresets.Presets[0]);
 		}
 	}
 }
