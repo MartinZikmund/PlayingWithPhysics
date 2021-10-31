@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Huygensův princip umožňuje znázornit vlnění v izotropním prostředí, tj. v prostředí, ve kterém se vlnění šíří ve všech směrech stejnou rychlostí. Vlnění se znázorňuje pomocí vlnoploch a paprsků.
+    <value>Huygensův princip umožňuje znázornit vlnění v izotropním prostředí, tj. v prostředí, ve kterém se vlnění šíří ve všech směrech stejnou rychlostí. Vlnění se znázorňuje pomocí vlnoploch a paprsků. Vlnoplochy mají kulový tvar a ve velké vzdálenosti od zdroje vlnění se považují za rovinu. Paprsky jako kolmice k vlnoploše zobrazují směr šíření vlnění v daném bodě.
 
 Autoři obsahu: Matěj Hudec
 Programátoři: Daniel Zikmund, Martin Zikmund

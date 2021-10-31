@@ -92,7 +92,7 @@ namespace Physics.WaveInterference.ViewModels
 
 		public string Label { get; set; }
 
-		public float SourceDistance { get; set; }
+		public float SourceDistance { get; set; } = 11;
 
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{

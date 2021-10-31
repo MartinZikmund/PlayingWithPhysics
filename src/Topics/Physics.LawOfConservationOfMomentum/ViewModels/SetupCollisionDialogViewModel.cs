@@ -18,7 +18,6 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 	{
 
 		private CollisionType _variant;
-		private MotionSetup _setup;
 
 		private string[] _existingNames;
 		public SetupCollisionDialogViewModel(CollisionType variant)
@@ -26,10 +25,17 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 			_variant = variant;
 			Configuration = VariantConfigurations.All[0];
 		}
+
 		public SetupCollisionDialogViewModel(CollisionType variant, MotionSetup setup) : this(variant)
 		{
-			_setup = setup;
+			SelectedSubtypeIndex = (int)setup.Subtype;
+			MassOne = setup.M1;
+			MassTwo = setup.M2;
+			VelocityOne = setup.V1;
+			VelocityTwo = Math.Abs(setup.V2);
+			CoefficientOfRestitution = setup.CoefficientOfRestitution;
 		}
+
 		public async void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
 			PrepareMotion(); //Fills in Result
@@ -38,33 +44,25 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public void PrepareMotion()
 		{
+			var subtype = (CollisionSubtype)SelectedSubtypeIndex;
 			//Fill in Result
-		}
-
-		private void SetLocalizedAndNumberedLabelName()
-		{
-			var movementTypeName = Localizer.Instance.GetString("Wave");
-			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
-			Label = generatedName;
+			Result = new MotionSetup(
+				_variant,
+				subtype,
+				VelocityOne,
+				MassOne,
+				subtype == CollisionSubtype.SpeedsOppositeDirection ? -VelocityTwo : VelocityTwo,
+				MassTwo,
+				CoefficientOfRestitution);
 		}
 
 		public VariantConfiguration Configuration { get; set; }
-		public Color Color { get; set; }
-		public Color[] AvailableColors { get; } = new Color[]
-		{
-			ColorHelper.ToColor("#0063B1"),
-			ColorHelper.ToColor("#2D7D9A"),
-			ColorHelper.ToColor("#E81123"),
-			ColorHelper.ToColor("#881798"),
-			ColorHelper.ToColor("#498205"),
-			ColorHelper.ToColor("#515C6B"),
-		};
 		public Visibility IsEasyVariant { get; set; }
-		public float MassOne { get; set; }
-		public float MassTwo { get; set; }
-		public float VelocityOne { get; set; }
-		public float VelocityTwo { get; set; }
-		public float CoefficientOfRestitution { get; set; }
+		public float MassOne { get; set; } = 1;
+		public float MassTwo { get; set; } = 1;
+		public float VelocityOne { get; set; } = 1;
+		public float VelocityTwo { get; set; } = 1;
+		public float CoefficientOfRestitution { get; set; } = 1;
 
 		public List<CollisionSubtype> Subtypes { get; } = new List<CollisionSubtype>
 		{
@@ -78,7 +76,7 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public void OnSelectedSubtypeIndexChanged()
 		{
-			if (SelectedSubtypeIndex <= 0)
+			if (SelectedSubtypeIndex < 0)
 			{
 				return;
 			}
@@ -88,6 +86,5 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 		public bool CoefficientOfRestitutionVisibility => _variant == CollisionType.ImperfectlyElastic;
 
 		public MotionSetup Result;
-		public string Label { get; set; }
 	}
 }

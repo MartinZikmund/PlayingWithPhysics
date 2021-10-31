@@ -9,7 +9,6 @@
     xmlns:logic="using:Physics.LawOfConservationOfMomentum.Logic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="{extensions:Localize Key=SetupCollision}"
-    d:Title="Add oscillation"
     PrimaryButtonClick="{x:Bind Model.Save}"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
@@ -46,19 +45,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="{StaticResource InputColumnWidth}" />
         </Grid.ColumnDefinitions>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
 
-        <TextBox
-            Grid.ColumnSpan="2"
-            PlaceholderText="{extensions:Localize Key=Label}"
-            Text="{x:Bind Model.Label, Mode=TwoWay}" />
-
-        <controls:RadioButtons
-            Grid.Row="1"
+		<controls:RadioButtons
+            Grid.Row="0"
             Grid.ColumnSpan="2"
             ItemsSource="{x:Bind Model.Subtypes, Mode=OneWay}"
             MaxColumns="2"
@@ -70,21 +64,36 @@
             </controls:RadioButtons.ItemTemplate>
         </controls:RadioButtons>
 
-        <TextBlock Grid.Row="2" Visibility="{x:Bind Model.Configuration.M1.IsVisible, Mode=OneWay}">
+        <TextBlock Grid.Row="1" Visibility="{x:Bind Model.Configuration.M1.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=Mass}" />
             <Run FontWeight="Bold" Text="m" /><Run Text="1" Typography.Variants="Subscript" />
             <Run Text="(kg)" />
         </TextBlock>
         <controls:NumberBox
             x:Name="MassOneNumberBox"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="1"
             Maximum="10"
             Minimum="0.1"
-            Text="{x:Bind Model.MassOne, Mode=TwoWay}"
+            Value="{x:Bind Model.MassOne, Mode=TwoWay}"
             Visibility="{x:Bind Model.Configuration.M1.IsVisible, Mode=OneWay}" />
 
-        <TextBlock
+
+		<TextBlock Grid.Row="2" Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=Velocity}" />
+            <Run FontWeight="Bold" Text="v" /><Run Text="1" Typography.Variants="Subscript" />
+            <Run Text="(m/s)" />
+		</TextBlock>
+		<controls:NumberBox
+            x:Name="VelocityOneNumberBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Maximum="20"
+            Minimum="1"
+            Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}"
+            Value="{x:Bind Model.VelocityOne, Mode=TwoWay}" />
+
+		<TextBlock
             Grid.Row="3"
             Grid.Column="0"
             Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}">
@@ -92,7 +101,7 @@
             <Run FontWeight="Bold" Text="m" /><Run Text="2" Typography.Variants="Subscript" />
             <Run Text="(kg)" />
         </TextBlock>
-        <controls:NumberBox
+		<controls:NumberBox
             x:Name="MassTwoNumberBox"
             Grid.Row="3"
             Grid.Column="1"
@@ -101,47 +110,33 @@
             Visibility="{x:Bind Model.Configuration.M2.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.MassTwo, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="4" Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}">
-            <Run Text="{extensions:Localize Key=Velocity}" />
-            <Run FontWeight="Bold" Text="v" /><Run Text="1" Typography.Variants="Subscript" />
-            <Run Text="(m/s)" />
-        </TextBlock>
-        <controls:NumberBox
-            x:Name="VelocityOneNumberBox"
-            Grid.Row="4"
-            Grid.Column="1"
-            Maximum="20"
-            Minimum="1"
-            Visibility="{x:Bind Model.Configuration.V1.IsVisible, Mode=OneWay}"
-            Value="{x:Bind Model.VelocityOne, Mode=TwoWay}" />
-
-        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.Configuration.V2.IsVisible, Mode=OneWay}">
+		<TextBlock Grid.Row="4" Visibility="{x:Bind Model.Configuration.V2.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=Velocity}" />
             <Run FontWeight="Bold" Text="v" /><Run Text="2" Typography.Variants="Subscript" />
             <Run Text="(m/s)" />
         </TextBlock>
         <controls:NumberBox
             x:Name="VelocityTwoNumberBox"
-            Grid.Row="5"
+            Grid.Row="4"
             Grid.Column="1"
             Maximum="20"
             Minimum="1"
             Visibility="{x:Bind Model.Configuration.V2.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.VelocityTwo, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="6" Visibility="{x:Bind Model.CoefficientOfRestitutionVisibility, Mode=OneWay}">
+        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.CoefficientOfRestitutionVisibility, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=CoefficientOfRestitution}" />
         </TextBlock>
         <controls:NumberBox
             x:Name="CoefficientOfRestitutionNumberBox"
-            Grid.Row="6"
+            Grid.Row="5"
             Grid.Column="1"
             Maximum="1"
             Minimum="0"
-            Value="{x:Bind Model.CoefficientOfRestitution, Mode=TwoWay}" />
+            Value="{x:Bind Model.CoefficientOfRestitution, Mode=TwoWay}" Visibility="{x:Bind Model.CoefficientOfRestitutionVisibility, Mode=OneWay}" />
 
-        <GridView
-            Grid.Row="7"
+        <!--<GridView
+            Grid.Row="6"
             Grid.ColumnSpan="2"
             Header="{extensions:Localize Key=Color}"
             ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
@@ -158,7 +153,7 @@
                     </Border>
                 </DataTemplate>
             </GridView.ItemTemplate>
-        </GridView>
+        </GridView>-->
 
     </Grid>
 </ContentDialog>

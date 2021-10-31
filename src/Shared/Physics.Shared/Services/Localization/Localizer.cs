@@ -22,7 +22,7 @@ namespace Physics.Shared.UI.Localization
         public string GetString(string key)
         {
             _resourceLoader ??= ResourceLoader.GetForCurrentView();
-            var result = _resourceLoader.GetString(key);
+            var result = _resourceLoader.GetString(key ?? "");
             if (string.IsNullOrEmpty(result))
             {
                 // use shared resources

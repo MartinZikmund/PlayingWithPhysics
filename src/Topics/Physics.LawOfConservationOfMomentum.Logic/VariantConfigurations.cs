@@ -20,6 +20,7 @@
 			{
 				Subtype = CollisionSubtype.V2Zero,
 				V1 = CreateSpeedConfiguration(),
+				V2 = FieldConfiguration.CreateInvisible(),
 				M1 = CreateWeightConfiguration(),
 				M2 = CreateWeightConfiguration(),
 			},

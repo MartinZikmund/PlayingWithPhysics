@@ -22,6 +22,8 @@ namespace Physics.WaveInterference.Logic
 
 		public float EndX => _wavePhysicsService.EndX;
 
+		public float OriginX => _waveInfo.OriginX;
+
 		public float? GetY(float x, float time, bool accurate = false)
 		{
 			return _wavePhysicsService.CalculateY(x, time);

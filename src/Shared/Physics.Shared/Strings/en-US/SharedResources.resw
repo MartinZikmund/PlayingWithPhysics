@@ -147,7 +147,7 @@
   <data name="AppName_FluidFlow" xml:space="preserve">
     <value>Fluid Flow</value>
   </data>
-  <data name="AppName_HuygensFrenselPrinciple" xml:space="preserve">
+  <data name="AppName_HuygensPrinciple" xml:space="preserve">
     <value>Huygens–Fresnel Principle</value>
   </data>
   <data name="AppName_InclinedPlane" xml:space="preserve">

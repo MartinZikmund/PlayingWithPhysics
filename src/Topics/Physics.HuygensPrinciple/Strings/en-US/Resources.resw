@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>The Huygens principle makes it possible to represent waves in an isotropic medium, ie in an environment in which the waves propagate in all directions at the same speed. Waves are represented by wavefronts and rays.
+    <value>The Huygens–Fresnel principle makes it possible to represent waves in an isotropic medium, ie in an environment in which the waves propagate in all directions at the same speed. Waves are represented by wavefronts and rays. The wavefronts have a spherical shape and are considered to be a plane at a great distance from the source of the waves. The rays as perpendicular to the wavefront show the direction of propagation of the waves at a given point.
 
 Content authors: Matěj Hudec
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: The Huygens Principle</value>
+    <value>Playing with Physics: Huygens–Fresnel Principle</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>The Huygens Principle</value>
+    <value>Huygens–Fresnel Principle</value>
   </data>
 </root>

@@ -139,6 +139,9 @@ Graphics: Petr Weinlich</value>
   <data name="CoefficientOfRestitution" xml:space="preserve">
     <value>Coefficient of restitution</value>
   </data>
+  <data name="CollisionSetup" xml:space="preserve">
+    <value>Collision setup</value>
+  </data>
   <data name="CollisionSubtype_SpeedsOppositeDirection" xml:space="preserve">
     <value>Velocities have opposite direction</value>
   </data>
@@ -180,6 +183,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="StartPhase" xml:space="preserve">
     <value>Start phase</value>
+  </data>
+  <data name="Variants" xml:space="preserve">
+    <value>Varianty</value>
   </data>
   <data name="Velocity" xml:space="preserve">
     <value>Velocity</value>

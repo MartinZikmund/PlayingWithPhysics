@@ -67,8 +67,9 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ChildrenTransitions>
                                 <TransitionCollection>
@@ -80,7 +81,7 @@
                                 Grid.Row="0"
                                 Margin="0,0,0,12"
                                 Style="{ThemeResource SubtitleTextBlockStyle}"
-                                Text="Varianty" />
+                                Text="{extensions:Localize Key=Variants}" />
 
                             <winui:RadioButtons
                                 Grid.Row="1"
@@ -105,7 +106,13 @@
                                 Command="{x:Bind Model.SetParametersCommand}"
                                 Content="{extensions:Localize Key=SetParameters}" />
 
-                        </Grid>
+							<Button
+                                Grid.Row="4"
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.ShowValuesTableCommand}"
+                                Content="{extensions:Localize Key=ShowValuesTable}" />
+						</Grid>
                     </Grid>
                 </ScrollViewer>
             </Border>
@@ -130,9 +137,10 @@
                 x:Name="SimulationControls"
                 Grid.Row="1"
                 d:Visibility="Collapsed"
-                BackwardVisibility="Collapsed"
-                ForwardVisibility="Collapsed"
+                BackwardVisibility="Visible"
+                ForwardVisibility="Visible"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
@@ -141,7 +149,7 @@
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
-                SpeedControlVisibility="Collapsed">
+                SpeedControlVisibility="Visible">
                 <sharedControls:SimulationControls.Background>
                     <AcrylicBrush
                         BackgroundSource="Backdrop"

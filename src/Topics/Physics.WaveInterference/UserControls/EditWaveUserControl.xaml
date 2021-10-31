@@ -48,7 +48,7 @@
 
         <TextBlock Grid.Row="2" Grid.Column="0">
             <Run Text="{extensions:Localize Key=Frequency}" />
-            <Run FontWeight="Bold" Text="F" />
+            <Run FontWeight="Bold" Text="f" />
             <Run Text="[Hz]" />
         </TextBlock>
         <controls:NumberBox
@@ -123,8 +123,8 @@
             x:Name="WaveLengthNumberBox"
             Grid.Row="4"
             Grid.Column="1"
-            Maximum="5"
-            Minimum="0.5"
+            Maximum="10"
+            Minimum="3"
             Value="{x:Bind Wave.WaveLength, Mode=TwoWay}" />
 		<StackPanel
 			Grid.Row="5"

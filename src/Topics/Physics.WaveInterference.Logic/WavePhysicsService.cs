@@ -18,6 +18,8 @@ namespace Physics.WaveInterference.Logic
 
 		public float MinY => -Math.Abs(_wave.Amplitude);
 
+		public WaveInfo Wave => _wave;
+
 		public float? CalculateY(float x, float time)
 		{
 			// Can this wave have a value in this location?

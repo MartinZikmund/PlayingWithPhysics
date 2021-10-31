@@ -33,7 +33,7 @@
 			<controls:NumberBox
 				x:Name="TimeNumberBox"
 				Header="{extensions:Localize Key=TimeForTable}"
-				Minimum="0.1"
+				Minimum="0"
 				Width="160"
 				SmallChange="0.1"
 				SpinButtonPlacementMode="Inline"

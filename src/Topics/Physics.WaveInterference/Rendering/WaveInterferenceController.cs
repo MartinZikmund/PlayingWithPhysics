@@ -12,9 +12,10 @@ namespace Physics.WaveInterference.Rendering
 	public class WaveInterferenceController : SkiaCanvasController
 	{
 		private const float VerticalPadding = 12;
+		private const float HorizontalPadding = 12;
 
-		private float _verticalScale = 1f;
-		private float _horizontalScale = 300f;
+		private float _pixelsPerMeter = 0;
+		private float _metersPerPixel = 0;
 
 		private WaveInfoViewModel[] _activeWaves;
 		private Dictionary<WaveInfo, WavePhysicsService> _wavePhysicsServices;
@@ -35,15 +36,23 @@ namespace Physics.WaveInterference.Rendering
 			IsStroke = true,
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High,
-			StrokeWidth = 3,
+			StrokeWidth = 5,
 			Color = SKColors.Black
 		};
 
-		private SKPaint _axesPaint = new SKPaint()
+		private SKPaint _axis1Paint = new SKPaint()
 		{
 			IsStroke = true,
 			IsAntialias = true,
 			StrokeWidth = 1,
+			Color = SKColors.Black
+		};
+
+		private SKPaint _axis2Paint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1.5f,
 			Color = SKColors.Black
 		};
 
@@ -80,6 +89,7 @@ namespace Physics.WaveInterference.Rendering
 			_maximumFrequency = _activeWaves.Max(o => o.WaveInfo.Frequency);
 			SetInherentSlowdown();
 
+			var strokePaintWidthAdjustment = 2f;
 			foreach (var wave in _activeWaves)
 			{
 				var slowedDownWaveInfo = new WaveInfo(
@@ -111,18 +121,16 @@ namespace Physics.WaveInterference.Rendering
 				{
 					Color = skColor,
 					IsStroke = true,
-					StrokeWidth = 2,
+					StrokeJoin = SKStrokeJoin.Round,
+					StrokeWidth = 2 + strokePaintWidthAdjustment,
 					IsAntialias = true,
 				};
 				_waveStrokePaints.Add(wave.WaveInfo, strokePaint);
+				strokePaintWidthAdjustment = 0f;
 			}
 
 			_waveInterferencePhysicsService = new WaveInterferencePhysicsService(_wavePhysicsServices.Values.ToArray());
 			_waveInterferenceTrajectory = new WaveInterferenceTrajectory(_waveTrajectories.Values.ToArray());
-
-			//TODO:
-			_minX = -20;
-			_maxX = 20;
 		}
 
 		private void SetInherentSlowdown()
@@ -159,10 +167,86 @@ namespace Physics.WaveInterference.Rendering
 		{
 			if (_activeWaves != null)
 			{
-				var verticalPadding = sender.ScaledSize.Height * 0.15;
-				_verticalScale = (float)(sender.ScaledSize.Height - 2 * verticalPadding) / (_maxY - _minY);
+				var (minX, maxX) = CalculatePreferredWaveXBounds();
+				var horizontalWidthInMeters = maxX - minX;
+				var screenWidth = sender.ScaledSize.Width - HorizontalPadding * 2;
+				_pixelsPerMeter = screenWidth / horizontalWidthInMeters;
+				_metersPerPixel = horizontalWidthInMeters / screenWidth;
+
+				if ((_maxY - _minY) * _pixelsPerMeter > GetDisplayHeightInPixels(sender))
+				{
+					// Vertical axis must fit, adjust X
+					var verticalPixelsPerMeterRequirement = GetDisplayHeightInPixels(sender) / (_maxY - _minY);
+					_pixelsPerMeter = verticalPixelsPerMeterRequirement;
+
+					var originDistance = _activeWaves[1].WaveInfo.OriginX;
+					var displayWidthInMeters = GetDisplayWidthInPixels(sender) / _pixelsPerMeter;
+					if (_activeWaves[0].WaveInfo.Direction == _activeWaves[1].WaveInfo.Direction)
+					{
+						if (_activeWaves[0].WaveInfo.Direction == WaveDirection.Left)
+						{
+							_maxX = _activeWaves[1].WaveInfo.OriginX;
+							_minX = _maxX - displayWidthInMeters;
+						}
+						else
+						{
+							_minX = 0;
+							_maxX = displayWidthInMeters;
+						}
+					}
+					else
+					{
+						var fakeCenter = _activeWaves[1].WaveInfo.OriginX / 2;
+						_minX = fakeCenter - displayWidthInMeters / 2;
+						_maxX = fakeCenter + displayWidthInMeters / 2;
+					}
+				}
+				else
+				{
+					_minX = minX;
+					_maxX = maxX;
+				}
 			}
 		}
+
+		private (float minX, float maxX) CalculatePreferredWaveXBounds()
+		{
+			float minX = 0;
+			float maxX = 0;
+
+			var distance = _activeWaves.Max(w => w.WaveInfo.OriginX);
+			var maxLambda = _activeWaves.Max(w => w.WaveInfo.WaveLength);
+
+			var displayWidth = 0f;
+			if (_activeWaves[0].WaveInfo.Direction == _activeWaves[1].WaveInfo.Direction)
+			{
+				displayWidth = distance + 3 * maxLambda;
+				if (_activeWaves[0].WaveInfo.Direction == WaveDirection.Left)
+				{
+					maxX = _activeWaves[1].WaveInfo.OriginX;
+					minX = _maxX - displayWidth;
+				}
+				else
+				{
+					minX = 0;
+					maxX = displayWidth;
+				}
+			}
+			else
+			{
+				displayWidth = distance + 4 * maxLambda;
+
+				var fakeCenter = _activeWaves[1].WaveInfo.OriginX / 2;
+				minX = fakeCenter - displayWidth / 2;
+				maxX = fakeCenter + displayWidth / 2;
+			}
+
+			return (minX, maxX);
+		}
+
+		private float GetDisplayHeightInPixels(ISkiaCanvas sender) => (float)(sender.ScaledSize.Height - sender.ScaledSize.Height * 0.3);
+
+		private float GetDisplayWidthInPixels(ISkiaCanvas sender) => (float)(sender.ScaledSize.Width - 2 * HorizontalPadding);
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
@@ -173,9 +257,15 @@ namespace Physics.WaveInterference.Rendering
 				return;
 			}
 
-			var currentTime = GetAdjustedTotalTime();
-			var totalValue = 0.0f;
+			DrawAxes(sender, args);
 
+			if (_activeWaves.Length > 1)
+			{
+				DrawTrajectory(sender, args, _waveInterferenceTrajectory, _interferenceStrokePaint, true);
+				//DrawWaveCurrentPoint(sender, args, totalValue, _interferenceFillPaint);
+			}
+
+			var pointSize = 6f;
 			foreach (var wave in _activeWaves)
 			{
 				var trajectory = _waveTrajectories[wave.WaveInfo];
@@ -183,13 +273,8 @@ namespace Physics.WaveInterference.Rendering
 				var strokePain = _waveStrokePaints[wave.WaveInfo];
 				DrawTrajectory(sender, args, trajectory, strokePain, false);
 				var fillPaint = _waveFillPaints[wave.WaveInfo];
-				//DrawWaveCurrentPoint(sender, args, y, fillPaint);
-			}
-
-			if (_activeWaves.Length > 1)
-			{
-				DrawTrajectory(sender, args, _waveInterferenceTrajectory, _interferenceStrokePaint, true);
-				//DrawWaveCurrentPoint(sender, args, totalValue, _interferenceFillPaint);
+				DrawWaveOriginPoint(sender, args, trajectory, fillPaint, pointSize);
+				pointSize -= 2;
 			}
 		}
 
@@ -205,23 +290,19 @@ namespace Physics.WaveInterference.Rendering
 				return;
 			}
 
-			var horizontalWidthInMeters = _maxX - _minX;
-			var screenWidth = sender.ScaledSize.Width;
-			var pixelsPerMeter = screenWidth / horizontalWidthInMeters;
-			var metersPerPixel = horizontalWidthInMeters / screenWidth;
-			var stepSizeInPixels = screenWidth / 300;
-			var stepSizeInMeters = stepSizeInPixels * metersPerPixel;
+			var stepSizeInPixels = GetDisplayWidthInPixels(sender) / 1500;
+			var stepSizeInMeters = stepSizeInPixels * _metersPerPixel;
 			var lastRenderTime = GetAdjustedTotalTime();
 			using SKPath path = new SKPath();
 			var currentX = Math.Max(_minX, trajectory.StartX);
 
-			float lastRenderX = (currentX - _minX) * pixelsPerMeter;
+			float lastRenderX = GetRenderX(currentX);
 			float lastRenderY = GetRenderY(trajectory.GetY(currentX, (float)lastRenderTime).Value);
 			path.MoveTo(lastRenderX, lastRenderY);
 
-			while (currentX <= Math.Min(sender.ScaledSize.Width, trajectory.EndX))
+			while (currentX <= Math.Min(_maxX, trajectory.EndX))
 			{
-				var renderX = (currentX - _minX) * pixelsPerMeter;
+				var renderX = GetRenderX(currentX);
 				var y = trajectory.GetY(currentX, (float)lastRenderTime);
 				float renderY = GetRenderY(y.Value);
 
@@ -233,20 +314,25 @@ namespace Physics.WaveInterference.Rendering
 			args.Canvas.DrawPath(path, paint);
 		}
 
-		private float GetRenderY(float y) => (float)(_canvas.ScaledSize.Height / 2 - y * _verticalScale);
+		private float GetRenderY(float y) => (float)(_canvas.ScaledSize.Height / 2 - y * _pixelsPerMeter);
+
+		private float GetRenderX(float x) => ((x - _minX) * _pixelsPerMeter + HorizontalPadding);
 
 		private SkiaAxesRenderer _axesRenderer = new SkiaAxesRenderer();
 
 		private void DrawAxes(ISkiaCanvas sender, SKSurface args)
 		{
-			var axesBounds = new SimulationBounds(30, 10, (float)sender.ScaledSize.Width - 20, (float)sender.ScaledSize.Height - 10);
+			float relativeOriginPosition = Math.Abs(_minX / (_maxX - _minX));
+
+			var axesBounds = new SimulationBounds(HorizontalPadding, 10, (float)sender.ScaledSize.Width - HorizontalPadding, (float)sender.ScaledSize.Height - 10);
 			var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 			var horizontalPixelDiff = endRenderX - axesBounds.Left;
 			var endTime = GetAdjustedTotalTime();
-			var originSeconds = ((float)endTime - horizontalPixelDiff / _horizontalScale) * (float)_inherentSlowdown;
-
-			_axesRenderer.YUnitSizeInPixels = _verticalScale;
-			_axesRenderer.XUnitSizeInPixels = (float)(_horizontalScale / _inherentSlowdown);
+			var originSeconds = ((float)endTime - horizontalPixelDiff / _pixelsPerMeter) * (float)_inherentSlowdown;
+			_axesRenderer.ShouldDrawYAxis = false;
+			_axesRenderer.ShouldDrawYMeasure = false;
+			_axesRenderer.YUnitSizeInPixels = _pixelsPerMeter;
+			_axesRenderer.XUnitSizeInPixels = (float)_pixelsPerMeter;
 
 			var formatString = "0.#";
 			if (_maximumFrequency > 5000)
@@ -267,31 +353,21 @@ namespace Physics.WaveInterference.Rendering
 			}
 			_axesRenderer.XUnitFormatString = formatString;
 
-			_axesRenderer.OriginUnitCoordinates = new SKPoint(originSeconds, 0);
+			_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
 			_axesRenderer.TargetBounds = axesBounds;
-			_axesRenderer.OriginRelativePosition = new SKPoint(0, 0.5f);
+			_axesRenderer.OriginRelativePosition = new SKPoint(relativeOriginPosition, 0.5f);
 			_axesRenderer.Draw(sender, args);
 		}
 
-		private void DrawVerticalAxis()
+		private void DrawWaveOriginPoint(ISkiaCanvas sender, SKSurface args, WaveTrajectory wave, SKPaint paint, float pointSize)
 		{
+			if (wave.GetY(wave.OriginX, (float)GetAdjustedTotalTime(), true) is float y)
+			{
+				var renderX = GetRenderX(wave.OriginX);
+				var renderY = GetRenderY(y);
 
+				args.Canvas.DrawCircle(renderX, renderY, pointSize, paint);
+			}
 		}
-
-		private void DrawHorizontalAxis()
-		{
-
-		}
-
-		private void DrawWaveCurrentPoint(ISkiaCanvas sender, SKSurface args, float y, SKPaint paint)
-		{
-			var renderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-			var renderY = GetRenderY(y);
-
-			args.Canvas.DrawCircle(renderX, renderY, 6, paint);
-		}
-
-
-		private float HorizontalPadding => _canvas.ScaledSize.Width * 0.1f;
 	}
 }
