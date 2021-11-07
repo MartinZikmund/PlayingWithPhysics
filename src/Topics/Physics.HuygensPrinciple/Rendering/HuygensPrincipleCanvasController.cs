@@ -28,7 +28,7 @@ namespace Physics.HuygensPrinciple.Rendering
 		public void StartSimulation(ScenePreset scenePreset)
 		{
 			_stepper = new HuygensStepper(FieldWidth, FieldHeight, 5);
-			scenePreset.Render(_stepper);
+			scenePreset.Draw(_stepper);
 			_stepper.SaveOriginalField();
 			_stepper.PrecalculateSteps();
 			DrawFullField();

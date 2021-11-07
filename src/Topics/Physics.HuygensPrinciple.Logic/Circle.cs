@@ -15,10 +15,10 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public float Radius { get; }
 
-		public void Render(HuygensStepper stepper)
+		public void Draw(HuygensField field)
 		{
-			var width = stepper.FieldWidth;
-			var height = stepper.FieldHeight;
+			var width = field.Width;
+			var height = field.Height;
 
 			var centerX = width * Center.X;
 			var centerY = height * Center.Y;
@@ -26,7 +26,7 @@ namespace Physics.HuygensPrinciple.Logic
 			var dimension = Math.Min(width, height);
 			var radius = Radius * dimension;
 
-			stepper.PutCircle(new Point((int)centerX, (int)centerY), radius);
+			HuygensShapeDrawer.DrawCircle(field, new Point((int)centerX, (int)centerY), radius);
 		}
 	}
 }
