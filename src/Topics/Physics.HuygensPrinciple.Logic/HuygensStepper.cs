@@ -54,14 +54,14 @@ namespace Physics.HuygensPrinciple.Logic
 			} while (step.CellStateChanges.Length > 0);
 		}
 
-		public IList<Point> GetBorderPoints(CellState spotState, CellState backgroundState = 0)
+		private IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
 		{
 			var results = new List<Point>();
 			for (int x = 0; x < _originalField.Width - 1; x++)
 			{
 				for (int y = 0; y < _originalField.Height - 1; y++)
 				{
-					if (_currentField[x, y] == spotState)
+					if (field[x, y] == spotState)
 					{
 						bool hasBackgroundNeighbor = false;
 						for (int i = 0; i < _neighborCoordinates.Length; i++)
@@ -70,13 +70,13 @@ namespace Physics.HuygensPrinciple.Logic
 
 							if (point.X < 0 ||
 								point.Y < 0 ||
-								point.X >= _fieldWidth ||
-								point.Y >= _originalField.Height)
+								point.X >= field.Width ||
+								point.Y >= field.Height)
 							{
 								continue;
 							}
 
-							if (_currentField[point.X, point.Y] == backgroundState)
+							if (field[point.X, point.Y] == backgroundState)
 							{
 								hasBackgroundNeighbor = true;
 								break;
@@ -94,12 +94,12 @@ namespace Physics.HuygensPrinciple.Logic
 			return results;
 		}
 
-		public Point[] GetBorderLayer(CellState spot, CellState background = CellState.Empty)
+		private Point[] GetBorderLayer(CellState spot, CellState background = CellState.Empty)
 		{
 			return null;
 		}
 
-		public StepInfo NextStep(HuygensField field, bool firstStep)
+		private StepInfo NextStep(HuygensField field, bool firstStep)
 		{
 			var spotState = CellState.Wave;
 			if (firstStep)
@@ -107,22 +107,16 @@ namespace Physics.HuygensPrinciple.Logic
 				spotState = CellState.Source;
 			}
 
-			var currentSources = GetBorderPoints(spotState);
+			var currentSources = GetBorderPoints(field, spotState);
 
 			var allChanges = new List<CellStateChange>();
 			foreach (var source in currentSources)
 			{
-				var changes = PutCircle(source, _stepRadius, CellState.Wave);
+				var changes = HuygensShapeDrawer.DrawCircle(field, source, _stepRadius, CellState.Wave);
 				allChanges.AddRange(changes);
 			}
 
-			// Cache step
-			var allChangesArray = allChanges.ToArray();
-			_stepsCache.Add(new StepInfo(allChangesArray));
-
-			return allChangesArray;
+			return new StepInfo(allChanges.ToArray());
 		}
-
-
 	}
 }

@@ -16,12 +16,12 @@
 
 		public void SetStep(int step)
 		{
-			ResetField();
+			//ResetField();
 
-			for (int i = 0; i < step; i++)
-			{
-				NextStep();
-			}
+			//for (int i = 0; i < step; i++)
+			//{
+			//	NextStep();
+			//}
 		}
 
 		public int CurrentStep { get; set; } = 0;
