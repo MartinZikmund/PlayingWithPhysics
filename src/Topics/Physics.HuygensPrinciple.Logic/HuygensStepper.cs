@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +23,8 @@ namespace Physics.HuygensPrinciple.Logic
 		private readonly List<StepInfo> _stepsCache = new List<StepInfo>();
 
 		private HuygensField _originalField;
+
+		public Stopwatch _borderSw = new Stopwatch();
 
 		public HuygensStepper(HuygensField field, int stepRadius)
 		{
@@ -47,15 +51,17 @@ namespace Physics.HuygensPrinciple.Logic
 		{
 			var huygensField = _originalField.Clone();
 			StepInfo step;
+			IList<Point> nextSteps = null;
 			do
 			{
-				step = NextStep(huygensField, _stepsCache.Count == 0);
+				(step, nextSteps) = NextStep(huygensField, nextSteps);
 				_stepsCache.Add(step);
 			} while (step.CellStateChanges.Length > 0);
 		}
 
 		private IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
 		{
+			_borderSw.Start();
 			var results = new List<Point>();
 			for (int x = 0; x < _originalField.Width - 1; x++)
 			{
@@ -63,34 +69,16 @@ namespace Physics.HuygensPrinciple.Logic
 				{
 					if (field[x, y] == spotState)
 					{
-						bool hasBackgroundNeighbor = false;
-						for (int i = 0; i < _neighborCoordinates.Length; i++)
+						var point = new Point(x, y);
+						if (HasBackgroundNeighbor(point, field, backgroundState))
 						{
-							var point = new Point(x + _neighborCoordinates[i].X, y + _neighborCoordinates[i].Y);
-
-							if (point.X < 0 ||
-								point.Y < 0 ||
-								point.X >= field.Width ||
-								point.Y >= field.Height)
-							{
-								continue;
-							}
-
-							if (field[point.X, point.Y] == backgroundState)
-							{
-								hasBackgroundNeighbor = true;
-								break;
-							}
-						}
-
-						if (hasBackgroundNeighbor)
-						{
-							results.Add(new Point(x, y));
+							results.Add(point);
 						}
 					}
 				}
 			}
 
+			_borderSw.Stop();
 			return results;
 		}
 
@@ -99,15 +87,14 @@ namespace Physics.HuygensPrinciple.Logic
 			return null;
 		}
 
-		private StepInfo NextStep(HuygensField field, bool firstStep)
+		private (StepInfo step, IList<Point> nextSources) NextStep(HuygensField field, IList<Point> currentSources = null)
 		{
-			var spotState = CellState.Wave;
-			if (firstStep)
+			if (currentSources == null)
 			{
-				spotState = CellState.Source;
+				currentSources = GetBorderPoints(field, CellState.Source);
 			}
 
-			var currentSources = GetBorderPoints(field, spotState);
+			HashSet<Point> nextSources = new HashSet<Point>();
 
 			var allChanges = new List<CellStateChange>();
 			foreach (var source in currentSources)
@@ -116,7 +103,44 @@ namespace Physics.HuygensPrinciple.Logic
 				allChanges.AddRange(changes);
 			}
 
-			return new StepInfo(allChanges.ToArray());
+			foreach (var change in allChanges)
+			{
+				var point = new Point(change.X, change.Y);
+				if (HasBackgroundNeighbor(point, field, CellState.Empty))
+				{
+					nextSources.Add(point);
+				}
+				else
+				{
+					nextSources.Remove(point);
+				}
+			}
+
+			return (new StepInfo(allChanges.ToArray()), nextSources.ToArray());
+		}
+		private bool HasBackgroundNeighbor(Point point, HuygensField field, CellState backgroundState)
+		{
+			bool hasBackgroundNeighbor = false;
+			for (int i = 0; i < _neighborCoordinates.Length; i++)
+			{
+				var neighborPoint = new Point(point.X + _neighborCoordinates[i].X, point.Y + _neighborCoordinates[i].Y);
+
+				if (neighborPoint.X < 0 ||
+					neighborPoint.Y < 0 ||
+					neighborPoint.X >= field.Width ||
+					neighborPoint.Y >= field.Height)
+				{
+					continue;
+				}
+
+				if (field[neighborPoint.X, neighborPoint.Y] == backgroundState)
+				{
+					hasBackgroundNeighbor = true;
+					break;
+				}
+			}
+
+			return hasBackgroundNeighbor;
 		}
 	}
 }

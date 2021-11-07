@@ -17,7 +17,12 @@ namespace Physics.HuygensPrinciple.Logic.Benchmarks
 		}
 
 		[Benchmark]
-		public Task PrecalculateSimple() => new HuygensStepper(_builder.Build(), 5).PrecalculateStepsAsync();
+		public async Task PrecalculateSimple()
+		{
+			var h = new HuygensStepper(_builder.Build(), 5);
+			await h.PrecalculateStepsAsync();
+			Console.Write("Stepper took " + h._borderSw.ElapsedMilliseconds + " ms");
+		}
 	}
 
 	public class Program
