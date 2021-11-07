@@ -21,7 +21,6 @@ namespace Physics.HuygensPrinciple.Logic.Benchmarks
 		{
 			var h = new HuygensStepper(_builder.Build(), 5);
 			await h.PrecalculateStepsAsync();
-			Console.Write("Stepper took " + h._borderSw.ElapsedMilliseconds + " ms");
 		}
 	}
 

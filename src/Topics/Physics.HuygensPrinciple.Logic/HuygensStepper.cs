@@ -24,8 +24,6 @@ namespace Physics.HuygensPrinciple.Logic
 
 		private HuygensField _originalField;
 
-		public Stopwatch _borderSw = new Stopwatch();
-
 		public HuygensStepper(HuygensField field, int stepRadius)
 		{
 			_originalField = field;
@@ -61,7 +59,6 @@ namespace Physics.HuygensPrinciple.Logic
 
 		private IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
 		{
-			_borderSw.Start();
 			var results = new List<Point>();
 			for (int x = 0; x < _originalField.Width - 1; x++)
 			{
@@ -77,8 +74,6 @@ namespace Physics.HuygensPrinciple.Logic
 					}
 				}
 			}
-
-			_borderSw.Stop();
 			return results;
 		}
 

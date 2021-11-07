@@ -1,4 +1,9 @@
-﻿namespace Physics.HuygensPrinciple.Logic
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Physics.HuygensPrinciple.Logic
 {
 	public class HuygensManager
 	{
@@ -12,10 +17,23 @@
 		public HuygensManager(HuygensField originalField)
 		{
 			_originalField = originalField;
+			_currentField = _originalField.Clone();
+			_stepper = new HuygensStepper(originalField, 5);
 		}
 
-		public void SetStep(int step)
+		public HuygensField CurrentField => _currentField;
+
+		public async Task PrecalculateAsync() => await _stepper.PrecalculateStepsAsync();
+
+		public CellStateChange[] NextStep()
 		{
+			if (CurrentStep >= _stepper.StepsAvailable)
+			{
+				return Array.Empty<CellStateChange>();
+			}
+			var step = _stepper.GetStep(CurrentStep);
+			CurrentStep++;
+			return step.CellStateChanges;
 			//ResetField();
 
 			//for (int i = 0; i < step; i++)
@@ -29,19 +47,5 @@
 		public int FieldHeight => _fieldHeight;
 
 		public int FieldWidth => _fieldWidth;
-
-		//private void PerformCachedStep(int step)
-		//{
-		//	if (step >= _stepsCache.Count)
-		//	{
-		//		throw new InvalidOperationException("This step is not cached yet.");
-		//	}
-
-		//	var stepInfo = _stepsCache[step];
-		//	foreach (var cellStateChange in stepInfo.CellStateChanges)
-		//	{
-		//		_currentField[cellStateChange.X, cellStateChange.Y] = cellStateChange.NewState;
-		//	}
-		//}
 	}
 }

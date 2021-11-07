@@ -10,9 +10,9 @@ namespace Physics.HuygensPrinciple.Logic
 		{
 			var results = new List<CellStateChange>();
 
-			for (int x = leftUpper.X; x <= rightLower.X; x++)
+			for (int x = Math.Max(0, leftUpper.X); x <= Math.Min(rightLower.X, field.Width - 1); x++)
 			{
-				for (int y = leftUpper.Y; y <= rightLower.Y; y++)
+				for (int y = Math.Max(0, leftUpper.Y); y <= Math.Min(rightLower.Y, field.Height - 1); y++)
 				{
 					if (avoidObjects && (field[x, y] == CellState.Source || field[x, y] == CellState.Wall))
 					{

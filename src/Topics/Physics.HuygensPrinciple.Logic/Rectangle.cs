@@ -4,10 +4,13 @@ namespace Physics.HuygensPrinciple.Logic
 {
 	public class Rectangle : IShape
     {
-		public Rectangle(PointF topLeft, PointF bottomRight)
+		private CellState _state;
+
+		public Rectangle(PointF topLeft, PointF bottomRight, CellState state = CellState.Source)
 		{
 			TopLeft = topLeft;
 			BottomRight = bottomRight;
+			_state = state;
 		}
 
         public PointF TopLeft { get; }
@@ -24,7 +27,7 @@ namespace Physics.HuygensPrinciple.Logic
 			var left = width * TopLeft.X;
 			var right = width * BottomRight.X;
 
-			HuygensShapeDrawer.DrawRectangle(field, new Point((int)left, (int)top), new Point((int)right, (int)bottom));
+			HuygensShapeDrawer.DrawRectangle(field, new Point((int)left, (int)top), new Point((int)right, (int)bottom), _state);
 		}
 	}
 }
