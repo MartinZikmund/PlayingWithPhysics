@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="46cd2bb6-544c-40fb-b659-d357d89882d1"
-    Publisher="CN=Martin"
+    Name="20845VzdlvaccentrumTurnov.PlayingwithPhysicsHuygen"
+    Publisher="CN=A6F764E0-1925-4422-B964-85FBFFADB7B0"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="46cd2bb6-544c-40fb-b659-d357d89882d1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="faf505fe-8615-442b-abd1-ed710882a679" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Physics.HuygensPrinciple</DisplayName>
-    <PublisherDisplayName>Martin</PublisherDisplayName>
+    <DisplayName>Playing with Physics: Huygens–Fresnel Principle</DisplayName>
+    <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
