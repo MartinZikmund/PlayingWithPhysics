@@ -1,0 +1,65 @@
+trigger:
+  none
+
+pr: none
+  
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+- group: MicrosoftStoreSigning
+- name: 'solution'
+  value: '**/*.sln'
+- name: project
+  value: 'src/Topics/Physics.StationaryWaves/Physics.StationaryWaves.csproj'
+- name: buildPlatform
+  value: 'x86|x64|ARM|ARM64'
+- name: buildConfiguration
+  value: 'Release'
+- name: 'appxPackageDir'
+  value: '$(build.artifactStagingDirectory)\AppxPackages\\'
+- name: 'major'
+  value: '0'
+- name: 'minor'
+  value: '1'
+
+name: $(major).$(minor).$(rev:r).0
+
+steps:
+- checkout: self
+  lfs: true
+  
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VersionAPPX@2
+  inputs:
+    Path: '$(Build.SourcesDirectory)'
+    VersionNumber: '$(Build.BuildNumber)'
+    InjectVersion: true
+    OutputVersion: 'OutputedVersion'
+
+- task: VSBuild@1
+  inputs:
+    platform: 'x86'
+    solution: '$(project)'
+    configuration: '$(buildConfiguration)'
+    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" 
+                  /p:AppxPackageDir="$(appxPackageDir)" 
+                  /p:AppxBundle=Always 
+                  /p:UapAppxPackageBuildMode=CI'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**\bin\$(BuildConfiguration)\**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
