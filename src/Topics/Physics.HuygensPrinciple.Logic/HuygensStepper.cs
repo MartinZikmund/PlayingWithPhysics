@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Physics.HuygensPrinciple.Logic
 {
@@ -14,246 +18,124 @@ namespace Physics.HuygensPrinciple.Logic
 			new Point(-1, 0)
 		};
 
-		private readonly int _fieldWidth;
-		private readonly int _fieldHeight;
 		private readonly int _stepRadius;
 
 		private readonly List<StepInfo> _stepsCache = new List<StepInfo>();
 
-		private CellState[,] _originalField;
-		private CellState[,] _currentField;
+		private HuygensField _originalField;
 
-		public HuygensStepper(CellState[,] field, int stepRadius)
+		public HuygensStepper(HuygensField field, int stepRadius)
 		{
-			_currentField = field;
-			_fieldWidth = _currentField.GetLength(0);
-			_fieldHeight = _currentField.GetLength(1);
+			_originalField = field;
 			_stepRadius = stepRadius;
-			SaveOriginalField();
 		}
 
-		public HuygensStepper(int x, int y, int stepRadius) : this(new CellState[x, y], stepRadius)
+		public int StepsAvailable => _stepsCache.Count;
+
+		public StepInfo GetStep(int step)
 		{
-		}
-
-		public int CurrentStep { get; set; } = 0;
-
-		public CellState[,] CurrentField => _currentField;
-
-		public int FieldHeight => _fieldHeight;
-
-		public int FieldWidth => _fieldWidth;
-
-		public void SaveOriginalField()
-		{
-			for (int x = 0; x < _fieldWidth; x++)
+			if (step >= _stepsCache.Count)
 			{
-				for (int y = 0; x < _fieldHeight; x++)
-				{
-					if (_currentField[x, y] == CellState.Wave ||
-						_currentField[x, y] == CellState.WaveEdge)
-					{
-						_currentField[x, y] = CellState.Empty;
-					}
-				}
+				throw new InvalidOperationException("This step is not yet available");
 			}
 
-			// Store as original and make a copy for state.
-			_originalField = _currentField;
-			_stepsCache.Clear();
-
-			ResetField();
+			return _stepsCache[step];
 		}
 
-		public void ClearField()
-		{
-			Array.Clear(_originalField, 0, _originalField.Length);
-			ResetField();
-		}
+		public Task PrecalculateStepsAsync(CancellationToken token = default) =>
+			Task.Run(() => PrecalculateSteps(token));
 
-		public IList<CellStateChange> PutRectangle(Point leftUpper, Point rightLower, CellState fill = CellState.Source, bool avoidObjects = true)
+		private void PrecalculateSteps(CancellationToken token)
 		{
-			var results = new List<CellStateChange>();
-
-			for (int x = leftUpper.X; x <= rightLower.X; x++)
+			var huygensField = _originalField.Clone();
+			StepInfo step;
+			IList<Point> nextSteps = null;
+			do
 			{
-				for (int y = leftUpper.Y; y <= rightLower.Y; y++)
-				{
-					if (avoidObjects && (_currentField[x, y] == CellState.Source || _currentField[x, y] == CellState.Wall))
-					{
-						continue;
-					}
-
-					if (_currentField[x, y] != fill)
-					{
-						_currentField[x, y] = fill;
-						results.Add(new CellStateChange(x, y, fill));
-					}
-				}
-			}
-
-			return results;
+				(step, nextSteps) = NextStep(huygensField, nextSteps);
+				_stepsCache.Add(step);
+			} while (step.CellStateChanges.Length > 0);
 		}
 
-		public IList<CellStateChange> PutCircle(Point center, float radius, CellState fill = CellState.Source, bool avoidObjects = true)
-		{
-			var results = new List<CellStateChange>();
-
-			var (cX, cY) = (center.X, center.Y);
-			var xStart = Math.Max((int)(cX - radius - 1), 0);
-			var xEnd = Math.Min((int)(cX + radius + 1), _fieldWidth - 1);
-
-			var yStart = Math.Max((int)(cY - radius - 1), 0);
-			var yEnd = Math.Min((int)(cY + radius + 1), _fieldHeight - 1);
-
-			var radius2 = radius * radius;
-
-			for (int x = xStart; x <= xEnd; x++)
-			{
-				for (int y = yStart; y <= yEnd; y++)
-				{
-					if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= radius2)
-					{
-						if (avoidObjects && (_currentField[x, y] == CellState.Source || _currentField[x, y] == CellState.Wall))
-						{
-							continue;
-						}
-
-						if (_currentField[x, y] != fill)
-						{
-							_currentField[x, y] = fill;
-							results.Add(new CellStateChange(x, y, fill));
-						}
-					}
-				}
-			}
-
-			return results;
-		}
-
-		public IList<Point> GetBorderPoints(CellState spotState, CellState backgroundState = 0)
+		private IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
 		{
 			var results = new List<Point>();
-			for (int x = 0; x < _fieldWidth - 1; x++)
+			for (int x = 0; x < _originalField.Width - 1; x++)
 			{
-				for (int y = 0; y < _fieldHeight - 1; y++)
+				for (int y = 0; y < _originalField.Height - 1; y++)
 				{
-					if (_currentField[x, y] == spotState)
+					if (field[x, y] == spotState)
 					{
-						bool hasBackgroundNeighbor = false;
-						for (int i = 0; i < _neighborCoordinates.Length; i++)
+						var point = new Point(x, y);
+						if (HasBackgroundNeighbor(point, field, backgroundState))
 						{
-							var point = new Point(x + _neighborCoordinates[i].X, y + _neighborCoordinates[i].Y);
-
-							if (point.X < 0 ||
-								point.Y < 0 ||
-								point.X >= _fieldWidth ||
-								point.Y >= _fieldHeight)
-							{
-								continue;
-							}
-
-							if (_currentField[point.X, point.Y] == backgroundState)
-							{
-								hasBackgroundNeighbor = true;
-								break;
-							}
-						}
-
-						if (hasBackgroundNeighbor)
-						{
-							results.Add(new Point(x, y));
+							results.Add(point);
 						}
 					}
 				}
 			}
-
 			return results;
 		}
 
-		public Point[] GetBorderLayer(CellState spot, CellState background = CellState.Empty)
+		private Point[] GetBorderLayer(CellState spot, CellState background = CellState.Empty)
 		{
 			return null;
 		}
 
-		public CellStateChange[] NextStep()
+		private (StepInfo step, IList<Point> nextSources) NextStep(HuygensField field, IList<Point> currentSources = null)
 		{
-			if (CurrentStep < _stepsCache.Count)
+			if (currentSources == null)
 			{
-				PerformCachedStep(CurrentStep);
-				CurrentStep++;
-				return _stepsCache[CurrentStep - 1].CellStateChanges;
+				currentSources = GetBorderPoints(field, CellState.Source);
 			}
 
-			var spotState = CellState.Wave;
-			if (CurrentStep == 0)
-			{
-				spotState = CellState.Source;
-			}
-
-			var currentSources = GetBorderPoints(spotState);
+			HashSet<Point> nextSources = new HashSet<Point>();
 
 			var allChanges = new List<CellStateChange>();
 			foreach (var source in currentSources)
 			{
-				var changes = PutCircle(source, _stepRadius, CellState.Wave);
+				var changes = HuygensShapeDrawer.DrawCircle(field, source, _stepRadius, CellState.Wave);
 				allChanges.AddRange(changes);
 			}
 
-			// Cache step
-			var allChangesArray = allChanges.ToArray();
-			_stepsCache.Add(new StepInfo(allChangesArray));
-
-			return allChangesArray;
-		}
-
-		public void SetStep(int step)
-		{
-			ResetField();
-
-			for (int i = 0; i < step; i++)
+			foreach (var change in allChanges)
 			{
-				NextStep();
-			}
-		}
-
-		public void PrecalculateSteps()
-		{
-			if (_originalField == null)
-			{
-				throw new InvalidOperationException("No original field saved.");
+				var point = new Point(change.X, change.Y);
+				if (HasBackgroundNeighbor(point, field, CellState.Empty))
+				{
+					nextSources.Add(point);
+				}
+				else
+				{
+					nextSources.Remove(point);
+				}
 			}
 
-			int lastChangeCount;
-			do
-			{
-				lastChangeCount = NextStep().Length;
-			} while (lastChangeCount > 0);
-
-			ResetField();
+			return (new StepInfo(allChanges.ToArray()), nextSources.ToArray());
 		}
-
-		private void PerformCachedStep(int step)
+		private bool HasBackgroundNeighbor(Point point, HuygensField field, CellState backgroundState)
 		{
-			if (step >= _stepsCache.Count)
+			bool hasBackgroundNeighbor = false;
+			for (int i = 0; i < _neighborCoordinates.Length; i++)
 			{
-				throw new InvalidOperationException("This step is not cached yet.");
+				var neighborPoint = new Point(point.X + _neighborCoordinates[i].X, point.Y + _neighborCoordinates[i].Y);
+
+				if (neighborPoint.X < 0 ||
+					neighborPoint.Y < 0 ||
+					neighborPoint.X >= field.Width ||
+					neighborPoint.Y >= field.Height)
+				{
+					continue;
+				}
+
+				if (field[neighborPoint.X, neighborPoint.Y] == backgroundState)
+				{
+					hasBackgroundNeighbor = true;
+					break;
+				}
 			}
 
-			var stepInfo = _stepsCache[step];
-			foreach (var cellStateChange in stepInfo.CellStateChanges)
-			{
-				_currentField[cellStateChange.X, cellStateChange.Y] = cellStateChange.NewState;
-			}
-		}
-
-		private void ResetField()
-		{
-			_currentField = new CellState[_fieldWidth, _fieldHeight];
-			Array.Copy(_originalField, _currentField, _originalField.Length);
-
-			// We are at the beginning.
-			CurrentStep = 0;
+			return hasBackgroundNeighbor;
 		}
 	}
 }

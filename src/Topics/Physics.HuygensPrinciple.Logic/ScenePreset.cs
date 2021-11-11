@@ -14,14 +14,6 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public string Name { get; }
 
-		public void Render(HuygensStepper stepper)
-		{
-			foreach (var shape in _shapes)
-			{
-				shape.Render(stepper);
-			}
-		}
-
 		public void Add(IShape shape) => _shapes.Add(shape);
 
 		public IEnumerator<IShape> GetEnumerator() => _shapes.GetEnumerator();

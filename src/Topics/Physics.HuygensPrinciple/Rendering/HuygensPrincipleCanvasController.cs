@@ -17,7 +17,7 @@ namespace Physics.HuygensPrinciple.Rendering
 		private readonly SKColor _wallColor = SKColors.Brown;
 		private readonly SKColor _sourceColor = SKColors.Orange;
 
-		private HuygensStepper _stepper = null;
+		private HuygensManager _manager = null;
 		private SKBitmap _fieldImage = new SKBitmap(FieldWidth, FieldHeight);
 
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
@@ -25,21 +25,19 @@ namespace Physics.HuygensPrinciple.Rendering
 		{
 		}
 
-		public void StartSimulation(ScenePreset scenePreset)
-		{
-			_stepper = new HuygensStepper(FieldWidth, FieldHeight, 5);
-			scenePreset.Render(_stepper);
-			_stepper.SaveOriginalField();
-			_stepper.PrecalculateSteps();
-			DrawFullField();
+		public void StartSimulation(HuygensManager manager)
+		{			
 			SimulationTime.Restart();
+			_manager = manager;
+			DrawFullField();
+			_lastUpdate = new TimeSpan();
 		}
 
 		private TimeSpan _lastUpdate = new TimeSpan();
 
 		public override void Update(ISkiaCanvas sender)
 		{
-			if (_stepper == null)
+			if (_manager == null)
 			{
 				return;
 			}
@@ -47,7 +45,7 @@ namespace Physics.HuygensPrinciple.Rendering
 			if ((SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 200)
 			{
 				_lastUpdate = SimulationTime.TotalTime;
-				DrawStep(_stepper.NextStep());
+				DrawStep(_manager.NextStep());
 			}
 		}
 
@@ -61,7 +59,7 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
-			if (_stepper == null)
+			if (_manager == null)
 			{
 				return;
 			}
@@ -75,7 +73,7 @@ namespace Physics.HuygensPrinciple.Rendering
 			{
 				for (int y = 0; y < FieldHeight; y++)
 				{
-					_fieldImage.SetPixel(x, y, GetPixelColor(_stepper.CurrentField[x, y]));
+					_fieldImage.SetPixel(x, y, GetPixelColor(_manager.CurrentField[x, y]));
 				}
 			}
 		}

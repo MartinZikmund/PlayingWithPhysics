@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Physics.HuygensPrinciple.Logic;
+using Physics.HuygensPrinciple.Rendering;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
-using Physics.HuygensPrinciple.Rendering;
-using Physics.HuygensPrinciple.Logic;
 
 namespace Physics.HuygensPrinciple.ViewModels
 {
@@ -18,6 +20,8 @@ namespace Physics.HuygensPrinciple.ViewModels
 			_difficulty = parameter.Difficulty;
 		}
 
+		public bool IsLoading { get; set; }
+
 		public void SetController(HuygensPrincipleCanvasController controller)
 		{
 			if (controller is null)
@@ -27,7 +31,20 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
-			_controller.StartSimulation(ScenePresets.Presets[0]);
+		}
+
+		public ICommand DrawSceneCommand => GetOrCreateAsyncCommand<int>(DrawSceneAsync);
+
+		public async Task DrawSceneAsync(int sceneId)
+		{
+			IsLoading = true;
+			var huygensBuilder = new HuygensFieldBuilder(500, 500);
+			huygensBuilder.DrawScene(ScenePresets.Presets[sceneId]);
+
+			var manager = new HuygensManager(huygensBuilder.Build());
+			await manager.PrecalculateAsync();
+			_controller.StartSimulation(manager);
+			IsLoading = false;
 		}
 	}
 }

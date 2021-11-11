@@ -5,7 +5,7 @@
     xmlns:local="using:Physics.HuygensPrinciple.Views"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions" xmlns:mux="using:Microsoft.UI.Xaml.Controls"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Transitions>
@@ -45,8 +45,13 @@
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="0,12,0,0">
-			</Border>
+			<StackPanel Grid.Row="1" Margin="0,12,0,0">
+				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="0">Point</Button>
+				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="1">Circle</Button>
+				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="2">Square</Button>
+				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="3">Line</Button>
+				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="4">Wall</Button>
+			</StackPanel>
 		</Grid>
 		<Grid
             x:Name="SecondPane"
@@ -87,6 +92,9 @@
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
 				</sharedControls:SimulationControls.Background>
 			</sharedControls:SimulationControls>
+		</Grid>
+		<Grid Visibility="{x:Bind Model.IsLoading, Mode=OneWay}" Background="#AA000000">
+			<mux:ProgressRing IsActive="{x:Bind Model.IsLoading, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
 		</Grid>
 	</Grid>
 </local:MainViewBase>
