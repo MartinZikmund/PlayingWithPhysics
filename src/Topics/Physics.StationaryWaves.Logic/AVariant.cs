@@ -7,6 +7,6 @@ namespace Physics.StationaryWaves.Logic
 	public enum AVariant
 	{
 		Zero,
-		Quarter
+		Pi
 	}
 }

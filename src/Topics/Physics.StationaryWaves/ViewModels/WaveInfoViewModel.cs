@@ -1,12 +1,13 @@
 ﻿using System;
 using MvvmCross.ViewModels;
+using Physics.Shared.UI.Localization;
 using Physics.StationaryWaves.Logic;
 
 namespace Physics.StationaryWaves.ViewModels
 {
 	public class WaveInfoViewModel : MvxNotifyPropertyChanged
 	{
-		private WavePhysicsService _physicsService = null;
+		private EasyWavePhysicsService _physicsService = null;
 
 		public WaveInfoViewModel(WaveInfo throwInfo)
 		{
@@ -29,7 +30,7 @@ namespace Physics.StationaryWaves.ViewModels
 			}
 		}
 
-		public WavePhysicsService PhysicsService => _physicsService;
+		public EasyWavePhysicsService PhysicsService => _physicsService;
 
 		public string Label
 		{
@@ -50,6 +51,20 @@ namespace Physics.StationaryWaves.ViewModels
 			RaisePropertyChanged(nameof(WaveInfo));
 		}
 
+		public string AVariantText
+		{
+			get
+			{
+				switch (WaveInfo.A)
+				{
+					case AVariant.Pi:
+						return Localizer.Instance["AVariantPiLabel"];
+					case AVariant.Zero:
+					default:
+						return Localizer.Instance["AVariantZeroLabel"];
+				}
+			}
+		}
 		public string TimeElapsed { get; private set; }
 
 		public string CurrentYText { get; private set; }

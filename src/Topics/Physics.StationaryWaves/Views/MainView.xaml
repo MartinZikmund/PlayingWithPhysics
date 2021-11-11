@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.StationaryWaves.ViewModels"
+    x:Name="Page"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Transitions>
@@ -72,94 +73,84 @@
                                 Width="16"
                                 Height="16"
                                 VerticalAlignment="Center">
-                                <SymbolIcon Symbol="Add" />
+                                <SymbolIcon Symbol="Edit" />
                             </Viewbox>
-                            <TextBlock Text="{extensions:Localize Key=AddWave}" />
+                            <TextBlock Text="{extensions:Localize Key=SetWaves}" />
                         </StackPanel>
                     </Button>
-                    <ListView
-                        Grid.Row="2"
-                        IsItemClickEnabled="False"
-                        ItemsSource="{x:Bind Model.Waves, Mode=OneWay}"
-                        SelectionMode="None">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="Margin" Value="0,8" />
-                                <Setter Property="Padding" Value="0" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="viewModels:WaveInfoViewModel">
-                                <Grid ColumnSpacing="16" RowSpacing="8">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Border
-                                        Grid.RowSpan="2"
-                                        Width="8"
-                                        CornerRadius="4">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="{x:Bind WaveInfo.Color, Mode=OneWay}" />
-                                        </Border.Background>
-                                    </Border>
-                                    <Grid
-                                        Grid.Column="1"
-                                        ColumnSpacing="8"
-                                        CornerRadius="2"
-                                        RowSpacing="4">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
+                    <Grid
+                        Grid.Row="3"
+                        Margin="0,8,0,0"
+                        ColumnSpacing="16"
+                        RowSpacing="8"
+                        Visibility="{x:Bind Model.IsWaveConfigured, Mode=OneWay}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Grid.RowSpan="2"
+                            Width="8"
+                            CornerRadius="4">
+                            <Border.Background>
+                                <SolidColorBrush Color="{x:Bind Model.Wave.WaveInfo.Color, Mode=OneWay}" />
+                            </Border.Background>
+                        </Border>
+                        <Grid
+                            Grid.Column="1"
+                            ColumnSpacing="8"
+                            CornerRadius="2"
+                            RowSpacing="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                                        <TextBlock
-                                            VerticalAlignment="Center"
-                                            FontWeight="SemiBold"
-                                            Style="{ThemeResource SubtitleTextBlockStyle}"
-                                            Text="{x:Bind Label, Mode=OneWay}"
-                                            TextLineBounds="Tight"
-                                            TextTrimming="CharacterEllipsis"
-                                            TextWrapping="NoWrap" />
-                                        <Button
-                                            Grid.Column="1"
-                                            Command="{Binding ElementName=Page, Path=Model.ShowValuesTableCommand}"
-                                            CommandParameter="{x:Bind}">
-                                            <SymbolIcon Symbol="ViewAll" />
-                                        </Button>
-                                    </Grid>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="SemiBold"
+                                Style="{ThemeResource SubtitleTextBlockStyle}"
+                                Text="{x:Bind Model.Wave.Label, Mode=OneWay}"
+                                TextLineBounds="Tight"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap" />
+                            <Button Grid.Column="1" Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}">
+                                <SymbolIcon Symbol="ViewAll" />
+                            </Button>
+                        </Grid>
 
-                                    <Grid
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Grid.ColumnSpan="1"
-                                        ColumnSpacing="8"
-                                        RowSpacing="4">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Style="{StaticResource InfoTextBlockStyle}">
-                                            <Run Text="{extensions:Localize Key=AmplitudeLabel}" />
-                                            <Run FontFamily="Consolas" Text="{x:Bind WaveInfo.AmplitudeText, Mode=OneWay}" />
-                                        </TextBlock>
-                                    </Grid>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        <Grid
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="1"
+                            ColumnSpacing="8"
+                            RowSpacing="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource InfoTextBlockStyle}">
+                                <Run FontWeight="Bold" Text="{extensions:Localize Key=AmplitudeLabel}" />
+                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.WaveInfo.AmplitudeText, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" Style="{StaticResource InfoTextBlockStyle}">
+                                <Run FontWeight="Bold" Text="{extensions:Localize Key=ALabel}" />
+                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.AVariantText, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock Grid.Row="2" Style="{StaticResource InfoTextBlockStyle}">
+                                <Run FontWeight="Bold" Text="{extensions:Localize Key=DrawingRangeLabel}" />
+                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.WaveInfo.DrawingRangeText, Mode=OneWay}" />
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>

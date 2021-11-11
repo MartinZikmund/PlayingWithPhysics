@@ -120,6 +120,9 @@
   <data name="AddWave" xml:space="preserve">
     <value>Add wave</value>
   </data>
+  <data name="ALabel" xml:space="preserve">
+    <value>a:</value>
+  </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Amplitude</value>
   </data>
@@ -136,16 +139,52 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Stationary Waves</value>
   </data>
-  <data name="AVariant_Quarter" xml:space="preserve">
-    <value>a = 0.25</value>
+  <data name="AVariantPiLabel" xml:space="preserve">
+    <value>vlevo uzel</value>
+  </data>
+  <data name="AVariantZeroLabel" xml:space="preserve">
+    <value>vlevo kmitna</value>
+  </data>
+  <data name="AVariant_Pi" xml:space="preserve">
+    <value>a = π</value>
   </data>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BouncingPoint" xml:space="preserve">
+    <value>Bouncing point</value>
+  </data>
+  <data name="BouncingPoints_FreeEnd" xml:space="preserve">
+    <value>On the free end</value>
+  </data>
+  <data name="BouncingPoints_RigidEnd" xml:space="preserve">
+    <value>On the rigid end</value>
+  </data>
+  <data name="DistanceIntervalForTable" xml:space="preserve">
+    <value>Distance interval (m):</value>
+  </data>
+  <data name="DrawingRangeLabel" xml:space="preserve">
+    <value>Range:</value>
+  </data>
+  <data name="EditWave" xml:space="preserve">
+    <value>Edit Wave</value>
+  </data>
+  <data name="OnlySecondWave" xml:space="preserve">
+    <value>(only applies to the second wave)</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
   </data>
+  <data name="SetWaves" xml:space="preserve">
+    <value>Set waves</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Stationary Waves</value>
+  </data>
+  <data name="TimeForTable" xml:space="preserve">
+    <value>Time (s):</value>
+  </data>
+  <data name="Wave" xml:space="preserve">
+    <value>Wave</value>
   </data>
 </root>

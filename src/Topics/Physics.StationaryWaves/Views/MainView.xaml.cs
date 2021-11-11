@@ -8,6 +8,8 @@ namespace Physics.StationaryWaves.Views
 	public sealed partial class MainView : MainViewBase
 	{
 		public MainView() => InitializeComponent();
+
+		internal void FocusSimulationControls() => SimulationControls.Focus(Windows.UI.Xaml.FocusState.Programmatic);
 	}
 
 	public class MainViewBase : BaseSkiaView<MainViewModel, StationaryWavesCanvasController>

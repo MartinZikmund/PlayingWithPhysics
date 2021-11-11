@@ -120,6 +120,9 @@
   <data name="AddWave" xml:space="preserve">
     <value>Přidat vlnění</value>
   </data>
+  <data name="ALabel" xml:space="preserve">
+    <value>a:</value>
+  </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Amplituda</value>
   </data>
@@ -136,16 +139,52 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Stojaté vlnění</value>
   </data>
-  <data name="AVariant_Quarter" xml:space="preserve">
-    <value>a = 0,25</value>
+  <data name="AVariantPiLabel" xml:space="preserve">
+    <value>vlevo uzel</value>
+  </data>
+  <data name="AVariantZeroLabel" xml:space="preserve">
+    <value>vlevo kmitna</value>
+  </data>
+  <data name="AVariant_Pi" xml:space="preserve">
+    <value>a = π</value>
   </data>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BouncingPoint" xml:space="preserve">
+    <value>Místo odrazu</value>
+  </data>
+  <data name="BouncingPoints_FreeEnd" xml:space="preserve">
+    <value>Na volném konci</value>
+  </data>
+  <data name="BouncingPoints_RigidEnd" xml:space="preserve">
+    <value>Na pevném konci</value>
+  </data>
+  <data name="DistanceIntervalForTable" xml:space="preserve">
+    <value>Interval vzdálenosti (m):</value>
+  </data>
+  <data name="DrawingRangeLabel" xml:space="preserve">
+    <value>Rozsah:</value>
+  </data>
+  <data name="EditWave" xml:space="preserve">
+    <value>Upravit vlnění</value>
+  </data>
+  <data name="OnlySecondWave" xml:space="preserve">
+    <value>(platí jen pro druhé vlnění)</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Rozsah</value>
   </data>
+  <data name="SetWaves" xml:space="preserve">
+    <value>Nastavit vlnění</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Stojaté vlnění</value>
+  </data>
+  <data name="TimeForTable" xml:space="preserve">
+    <value>Čas (s):</value>
+  </data>
+  <data name="Wave" xml:space="preserve">
+    <value>Vlnění</value>
   </data>
 </root>

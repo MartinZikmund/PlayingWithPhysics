@@ -4,19 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.StationaryWaves"
     xmlns:selfstudy="using:Physics.SelfStudy.Resources"
-	RequestedTheme="Light">
-	
-	<local:PhysicsApp.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
-				<selfstudy:SelfStudyResources />
-			</ResourceDictionary.MergedDictionaries>
-			<Color x:Key="AppThemeColor">#D5A682</Color>
-			<Color x:Key="DarkAppThemeColor">#AA8468</Color>
-			<Color x:Key="AppTitleBarColor">#DEDBCA</Color>
-		</ResourceDictionary>
-	</local:PhysicsApp.Resources>
+    RequestedTheme="Light">
+
+    <local:PhysicsApp.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
+                <selfstudy:SelfStudyResources />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="AppThemeColor">#D5A682</Color>
+            <Color x:Key="DarkAppThemeColor">#AA8468</Color>
+            <Color x:Key="AppTitleBarColor">#DEDBCA</Color>
+        </ResourceDictionary>
+    </local:PhysicsApp.Resources>
 
 </local:PhysicsApp>

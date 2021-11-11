@@ -28,7 +28,7 @@ namespace Physics.WaveInterference.Rendering
 		{
 			IsStroke = false,
 			IsAntialias = true,
-			Color = SKColors.Black
+			Color = SKColors.Red
 		};
 
 		private SKPaint _interferenceStrokePaint = new SKPaint()
@@ -37,7 +37,7 @@ namespace Physics.WaveInterference.Rendering
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 5,
-			Color = SKColors.Black
+			Color = SKColors.Red
 		};
 
 		private SKPaint _axis1Paint = new SKPaint()

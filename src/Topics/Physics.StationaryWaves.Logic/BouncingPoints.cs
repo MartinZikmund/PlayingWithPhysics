@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Physics.StationaryWaves.Logic
 {
-	public class WavePhysicsService : IWavePhysicsService
+	public enum BouncingPoints
 	{
-		public float? CalculateY(float x, float time) => 0.0f;
+		FreeEnd = 1,
+		RigidEnd = -1
 	}
 }
