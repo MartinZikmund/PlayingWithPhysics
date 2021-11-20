@@ -15,7 +15,11 @@ namespace Physics.HuygensPrinciple.Logic
 			new Point(0, 1),
 			new Point(0, -1),
 			new Point(1, 0),
-			new Point(-1, 0)
+			new Point(-1, 0),
+			new Point(-1, -1),
+			new Point(1, 1),
+			new Point(-1, 1),
+			new Point(1, -1),
 		};
 
 		private readonly int _stepRadius;

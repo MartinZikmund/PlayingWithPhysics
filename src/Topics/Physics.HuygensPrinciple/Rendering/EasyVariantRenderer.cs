@@ -13,9 +13,22 @@ namespace Physics.HuygensPrinciple.Rendering
 			_controller = controller;
 		}
 
-		public void Dispose() => throw new System.NotImplementedException();
-		public void Draw(ISkiaCanvas sender, SKSurface args) => throw new System.NotImplementedException();
-		public void StartSimulation() => throw new System.NotImplementedException();
-		public void Update(ISkiaCanvas sender) => throw new System.NotImplementedException();
+		public void Dispose() { }
+
+		public void Draw(ISkiaCanvas sender, SKSurface args)
+		{
+			if (_controller._manager == null)
+			{
+				return;
+			}
+
+			_controller.DrawInitalScene(sender, args);			
+		}
+
+		public void StartSimulation() { }
+
+		public void Update(ISkiaCanvas sender)
+		{
+		}
 	}
 }
