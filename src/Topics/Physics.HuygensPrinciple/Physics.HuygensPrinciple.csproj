@@ -130,6 +130,7 @@
     <Compile Include="Rendering\EasyVariantRenderer.cs" />
     <Compile Include="Rendering\HuygensPrincipleCanvasController.cs" />
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
+    <Compile Include="Rendering\RenderingConfiguration.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

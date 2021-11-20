@@ -34,6 +34,14 @@ namespace Physics.HuygensPrinciple.Rendering
 			IsAntialias = true
 		};
 
+		internal float GetSquareSize(ISkiaCanvas canvas) => Math.Min(canvas.ScaledSize.Width, canvas.ScaledSize.Height);
+
+		internal SKPoint GetRenderTopLeft(ISkiaCanvas canvas)
+		{
+			var squareSize = GetSquareSize(canvas);
+			return new SKPoint(canvas.ScaledSize.Width / 2 - squareSize / 2, canvas.ScaledSize.Height / 2 - squareSize / 2);
+		}
+
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
@@ -62,16 +70,16 @@ namespace Physics.HuygensPrinciple.Rendering
 			Renderer?.Draw(sender, args);
 		}
 
-		internal void DrawInitalScene(SKBitmap bitmap)
+		internal void DrawInitalScene(ISkiaCanvas sender, SKSurface args)
 		{
-			using SKCanvas canvas = new SKCanvas(bitmap);
-
+			var squareSize = GetSquareSize(sender);
+			var topLeft = GetRenderTopLeft(sender);
 			foreach (var shape in _scene)
 			{
 				if (shape is Circle circle)
 				{
-					var width = bitmap.Width;
-					var height = bitmap.Height;
+					var width = squareSize;
+					var height = squareSize;
 
 					var centerX = width * circle.Center.X;
 					var centerY = height * circle.Center.Y;
@@ -79,19 +87,19 @@ namespace Physics.HuygensPrinciple.Rendering
 					var dimension = Math.Min(width, height);
 					var radius = circle.Radius * dimension;
 
-					canvas.DrawCircle(centerX, centerY, radius, circle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
+					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, circle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
 				}
 				else if (shape is Rectangle rectangle)
 				{
-					var width = bitmap.Width;
-					var height = bitmap.Height;
+					var width = squareSize;
+					var height = squareSize;
 
 					var top = height * rectangle.TopLeft.Y;
 					var bottom = height * rectangle.BottomRight.Y;
 					var left = width * rectangle.TopLeft.X;
 					var right = width * rectangle.BottomRight.X;
 
-					canvas.DrawRect(left, top, right - left, bottom - top, rectangle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
+					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, rectangle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
 				}
 			}
 		}

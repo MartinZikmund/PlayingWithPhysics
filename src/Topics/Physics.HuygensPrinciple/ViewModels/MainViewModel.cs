@@ -39,7 +39,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public async Task DrawSceneAsync(int sceneId)
 		{
 			IsLoading = true;
-			var huygensBuilder = new HuygensFieldBuilder(500, 500);
+			var huygensBuilder = new HuygensFieldBuilder(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
 			huygensBuilder.DrawScene(ScenePresets.Presets[sceneId]);
 
 			var manager = new HuygensManager(huygensBuilder.Build());

@@ -7,12 +7,9 @@ namespace Physics.HuygensPrinciple.Rendering
 {
 	public class AdvancedVariantRenderer : IHuygensVariantRenderer
 	{
-		private const int FieldWidth = 500;
-		private const int FieldHeight = 500;
-
 		private readonly HuygensPrincipleCanvasController _controller;
 
-		private SKBitmap _fieldImage = new SKBitmap(FieldWidth, FieldHeight);
+		private SKBitmap _fieldImage = new SKBitmap(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
 
 		private TimeSpan _lastUpdate = new TimeSpan();
 
@@ -50,14 +47,17 @@ namespace Physics.HuygensPrinciple.Rendering
 				return;
 			}
 
-			args.Canvas.DrawBitmap(_fieldImage, new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+			var squareSize = _controller.GetSquareSize(sender);
+			var topLeft = _controller.GetRenderTopLeft(sender);
+			args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+			_controller.DrawInitalScene(sender, args);
 		}
 
 		private void DrawFullField()
 		{
-			for (int x = 0; x < FieldWidth; x++)
+			for (int x = 0; x < RenderingConfiguration.FieldSize; x++)
 			{
-				for (int y = 0; y < FieldHeight; y++)
+				for (int y = 0; y < RenderingConfiguration.FieldSize; y++)
 				{
 					_fieldImage.SetPixel(x, y, GetPixelColor(_controller._manager.CurrentField[x, y]));
 				}
@@ -79,8 +79,9 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		public void StartSimulation()
 		{
-			//_fieldImage.Reset();
-			_controller.DrawInitalScene(_fieldImage);
+			_lastUpdate = TimeSpan.Zero;
+			using SKCanvas canvas = new SKCanvas(_fieldImage);
+			canvas.Clear(SKColors.White);
 		}
 	}
 }
