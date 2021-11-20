@@ -126,7 +126,10 @@
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\AdvancedVariantRenderer.cs" />
+    <Compile Include="Rendering\EasyVariantRenderer.cs" />
     <Compile Include="Rendering\HuygensPrincipleCanvasController.cs" />
+    <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

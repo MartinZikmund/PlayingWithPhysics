@@ -30,6 +30,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 			}
 
 			_controller = controller;
+			_controller.SetVariantRenderer(_difficulty == DifficultyOption.Easy ? (IHuygensVariantRenderer)new EasyVariantRenderer(_controller) : new AdvancedVariantRenderer(_controller));
 			SimulationPlayback.SetController(_controller);
 		}
 
@@ -43,7 +44,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 			var manager = new HuygensManager(huygensBuilder.Build());
 			await manager.PrecalculateAsync();
-			_controller.StartSimulation(manager);
+			_controller.StartSimulation(manager, ScenePresets.Presets[sceneId]);
 			IsLoading = false;
 		}
 	}

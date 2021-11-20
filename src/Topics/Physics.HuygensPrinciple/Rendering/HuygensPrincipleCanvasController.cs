@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Physics.HuygensPrinciple.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -8,85 +7,93 @@ namespace Physics.HuygensPrinciple.Rendering
 {
 	public class HuygensPrincipleCanvasController : SkiaCanvasController
 	{
-		private const int FieldWidth = 500;
-		private const int FieldHeight = 500;
+		internal ScenePreset _scene = null;
+		internal HuygensManager _manager = null;
 
-		private readonly SKColor _waveColor = SKColors.Aqua;
-		private readonly SKColor _waveEdgeColor = SKColors.Blue;
-		private readonly SKColor _emptyColor = SKColors.White;
-		private readonly SKColor _wallColor = SKColors.Brown;
-		private readonly SKColor _sourceColor = SKColors.Orange;
+		internal readonly SKColor _waveColor = SKColors.Aqua;
+		internal readonly SKColor _waveEdgeColor = SKColors.Blue;
+		internal readonly SKColor _emptyColor = SKColors.White;
+		internal readonly SKColor _wallColor = SKColors.Brown;
+		internal readonly SKColor _sourceColor = SKColors.Orange;
 
-		private HuygensManager _manager = null;
-		private SKBitmap _fieldImage = new SKBitmap(FieldWidth, FieldHeight);
+		internal readonly SKPaint _waveFillPaint = new SKPaint()
+		{
+			IsStroke = false,
+			IsAntialias = true
+		};
+
+		internal readonly SKPaint _wallFillPaint = new SKPaint()
+		{
+			IsStroke = false,
+			IsAntialias = true
+		};
+
+		internal readonly SKPaint _sourceFillPaint = new SKPaint()
+		{
+			IsStroke = false,
+			IsAntialias = true
+		};
 
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
+			_waveFillPaint.Color = _waveColor;
+			_wallFillPaint.Color = _wallColor;
+			_sourceFillPaint.Color = _sourceColor;
 		}
 
-		public void StartSimulation(HuygensManager manager)
-		{			
+		public IHuygensVariantRenderer Renderer { get; private set; }
+
+		public void StartSimulation(HuygensManager manager, ScenePreset scene)
+		{
 			SimulationTime.Restart();
-			_manager = manager;
-			DrawFullField();
-			_lastUpdate = new TimeSpan();
+			_manager = manager ?? throw new ArgumentNullException(nameof(manager));
+			_scene = scene ?? throw new ArgumentNullException(nameof(scene));
+			Renderer.StartSimulation();
 		}
 
-		private TimeSpan _lastUpdate = new TimeSpan();
+		public void SetVariantRenderer(IHuygensVariantRenderer renderer) => Renderer = renderer;
 
-		public override void Update(ISkiaCanvas sender)
-		{
-			if (_manager == null)
-			{
-				return;
-			}
-
-			if ((SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 200)
-			{
-				_lastUpdate = SimulationTime.TotalTime;
-				DrawStep(_manager.NextStep());
-			}
-		}
-
-		private void DrawStep(CellStateChange[] cellStateChanges)
-		{
-			foreach(var change in cellStateChanges)
-			{
-				_fieldImage.SetPixel(change.X, change.Y, GetPixelColor(change.NewState));
-			}
-		}
+		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
-			if (_manager == null)
-			{
-				return;
-			}
-
-			args.Canvas.DrawBitmap(_fieldImage, new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
+			Renderer?.Draw(sender, args);
 		}
 
-		private void DrawFullField()
+		internal void DrawInitalScene(SKBitmap bitmap)
 		{
-			for (int x = 0; x < FieldWidth; x++)
+			using SKCanvas canvas = new SKCanvas(bitmap);
+
+			foreach (var shape in _scene)
 			{
-				for (int y = 0; y < FieldHeight; y++)
+				if (shape is Circle circle)
 				{
-					_fieldImage.SetPixel(x, y, GetPixelColor(_manager.CurrentField[x, y]));
+					var width = bitmap.Width;
+					var height = bitmap.Height;
+
+					var centerX = width * circle.Center.X;
+					var centerY = height * circle.Center.Y;
+
+					var dimension = Math.Min(width, height);
+					var radius = circle.Radius * dimension;
+
+					canvas.DrawCircle(centerX, centerY, radius, circle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
+				}
+				else if (shape is Rectangle rectangle)
+				{
+					var width = bitmap.Width;
+					var height = bitmap.Height;
+
+					var top = height * rectangle.TopLeft.Y;
+					var bottom = height * rectangle.BottomRight.Y;
+					var left = width * rectangle.TopLeft.X;
+					var right = width * rectangle.BottomRight.X;
+
+					canvas.DrawRect(left, top, right - left, bottom - top, rectangle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
 				}
 			}
 		}
-
-		private SKColor GetPixelColor(CellState cellState) =>
-			cellState switch
-			{
-				CellState.Empty => _emptyColor,
-				CellState.Source => _sourceColor,
-				CellState.Wave => _waveColor,
-				CellState.Wall => _wallColor,
-				CellState.WaveEdge => _waveEdgeColor,
-				_ => _emptyColor
-			};
 	}
 }
