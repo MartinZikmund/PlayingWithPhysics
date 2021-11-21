@@ -1,5 +1,6 @@
 ﻿using System;
 using Physics.HuygensPrinciple.Logic;
+using Physics.HuygensPrinciple.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -9,12 +10,12 @@ namespace Physics.HuygensPrinciple.Rendering
 	{
 		internal ScenePreset _scene = null;
 		internal HuygensManager _manager = null;
-
+		internal RenderConfigurationViewModel _renderConfiguration;
 		internal readonly SKColor _waveColor = SKColors.Aqua;
 		internal readonly SKColor _waveEdgeColor = SKColors.Blue;
 		internal readonly SKColor _emptyColor = SKColors.White;
 		internal readonly SKColor _wallColor = SKColors.Brown;
-		internal readonly SKColor _sourceColor = SKColors.Orange;
+		internal readonly SKColor _sourceColor = SKColors.DarkOrange;
 
 		internal readonly SKPaint _waveFillPaint = new SKPaint()
 		{
@@ -26,6 +27,13 @@ namespace Physics.HuygensPrinciple.Rendering
 		{
 			IsStroke = false,
 			IsAntialias = true
+		};
+
+		internal readonly SKPaint _waveEdgeStrokePaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 4
 		};
 
 		internal readonly SKPaint _sourceFillPaint = new SKPaint()
@@ -42,12 +50,18 @@ namespace Physics.HuygensPrinciple.Rendering
 			return new SKPoint(canvas.ScaledSize.Width / 2 - squareSize / 2, canvas.ScaledSize.Height / 2 - squareSize / 2);
 		}
 
+		internal void SetRenderConfiguration(RenderConfigurationViewModel renderConfiguration)
+		{
+			_renderConfiguration = renderConfiguration;
+		}
+
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
 			_waveFillPaint.Color = _waveColor;
 			_wallFillPaint.Color = _wallColor;
 			_sourceFillPaint.Color = _sourceColor;
+			_waveEdgeStrokePaint.Color = _waveEdgeColor;
 		}
 
 		public IHuygensVariantRenderer Renderer { get; private set; }
@@ -66,7 +80,7 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
-			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
+			args.Canvas.Clear(new SKColor(255, 255, 255, 255));
 			Renderer?.Draw(sender, args);
 		}
 

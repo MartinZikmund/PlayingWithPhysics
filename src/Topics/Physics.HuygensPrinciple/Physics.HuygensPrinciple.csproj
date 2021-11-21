@@ -132,8 +132,14 @@
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
     <Compile Include="Rendering\RenderingConfiguration.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RenderConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\ScenePickerViewModel.cs" />
+    <Compile Include="ViewModels\ScenePresetViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScenePickerDialog.xaml.cs">
+      <DependentUpon>ScenePickerDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +153,14 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Presets\Brick.png" />
+    <Content Include="Assets\Presets\Circle.png" />
+    <Content Include="Assets\Presets\Line.png" />
+    <Content Include="Assets\Presets\LineWall.png" />
+    <Content Include="Assets\Presets\Point.png" />
+    <Content Include="Assets\Presets\PointWall.png" />
+    <Content Include="Assets\Presets\Snowman.png" />
+    <Content Include="Assets\Presets\Square.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -248,6 +262,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScenePickerDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

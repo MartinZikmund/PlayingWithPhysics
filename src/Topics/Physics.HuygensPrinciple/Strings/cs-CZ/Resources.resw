@@ -127,7 +127,37 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Huygensův princip</value>
   </data>
+  <data name="PickScenePreset" xml:space="preserve">
+    <value>Vybrat scénář...</value>
+  </data>
+  <data name="ScenePreset_Brick" xml:space="preserve">
+    <value>Cihla</value>
+  </data>
+  <data name="ScenePreset_Circle" xml:space="preserve">
+    <value>Kruh</value>
+  </data>
+  <data name="ScenePreset_Line" xml:space="preserve">
+    <value>Přímka</value>
+  </data>
+  <data name="ScenePreset_LineWall" xml:space="preserve">
+    <value>Přímka se zdí</value>
+  </data>
+  <data name="ScenePreset_PointWall" xml:space="preserve">
+    <value>Bod se zdí</value>
+  </data>
+  <data name="ScenePreset_Snowman" xml:space="preserve">
+    <value>Sněhulák</value>
+  </data>
+  <data name="ScenePreset_Square" xml:space="preserve">
+    <value>Čtverec</value>
+  </data>
+  <data name="SenePreset_Point" xml:space="preserve">
+    <value>Bod</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Huygensův princip</value>
+  </data>
+  <data name="ShowWaveEdge" xml:space="preserve">
+    <value>Zobrazit okraj vlny</value>
   </data>
 </root>

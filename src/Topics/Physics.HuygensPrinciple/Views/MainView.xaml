@@ -45,12 +45,12 @@
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<StackPanel Grid.Row="1" Margin="0,12,0,0">
-				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="0">Point</Button>
-				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="1">Circle</Button>
-				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="2">Square</Button>
-				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="3">Line</Button>
-				<Button Command="{x:Bind Model.DrawSceneCommand}" CommandParameter="4">Wall</Button>
+			<StackPanel Grid.Row="1" Padding="8" Margin="0,12,0,0">
+				<Button
+					HorizontalAlignment="Stretch"
+					Command="{x:Bind Model.PickScenePresetCommand}"
+					Content="{extensions:Localize Key=PickScenePreset}" />
+				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" Content="{extensions:Localize Key=ShowWaveEdge}" />
 			</StackPanel>
 		</Grid>
 		<Grid
@@ -61,7 +61,7 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
+			<Grid x:Name="CanvasHolder" Background="#F3F3F3" SizeChanged="CanvasHolder_SizeChanged" />
 			<InkCanvas x:Name="InkCanvas" />
 			<InkToolbar
                 x:Name="inkToolbar"

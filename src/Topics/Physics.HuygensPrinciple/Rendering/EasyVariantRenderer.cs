@@ -29,6 +29,14 @@ namespace Physics.HuygensPrinciple.Rendering
 			var size = _controller.GetSquareSize(sender);
 			var radius = (float)_controller.SimulationTime.TotalTime.TotalSeconds * 10;
 
+			if (_controller._renderConfiguration.ShowWaveEdge)
+			{
+				foreach (var point in _primarySources)
+				{
+					args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._waveEdgeStrokePaint);
+				}
+			}
+
 			foreach (var point in _primarySources)
 			{
 				args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._waveFillPaint);

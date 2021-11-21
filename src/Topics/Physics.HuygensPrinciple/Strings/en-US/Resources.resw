@@ -127,7 +127,37 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Huygens–Fresnel Principle</value>
   </data>
+  <data name="PickScenePreset" xml:space="preserve">
+    <value>Pick a scenario...</value>
+  </data>
+  <data name="ScenePreset_Brick" xml:space="preserve">
+    <value>Brick</value>
+  </data>
+  <data name="ScenePreset_Circle" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="ScenePreset_Line" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="ScenePreset_LineWall" xml:space="preserve">
+    <value>Line with wall</value>
+  </data>
+  <data name="ScenePreset_Point" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="ScenePreset_PointWall" xml:space="preserve">
+    <value>Point with wall</value>
+  </data>
+  <data name="ScenePreset_Snowman" xml:space="preserve">
+    <value>Snowman</value>
+  </data>
+  <data name="ScenePreset_Square" xml:space="preserve">
+    <value>Square</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Huygens–Fresnel Principle</value>
+  </data>
+  <data name="ShowWaveEdge" xml:space="preserve">
+    <value>Show edge of wave</value>
   </data>
 </root>
