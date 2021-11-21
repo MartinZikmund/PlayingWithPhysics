@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace Physics.HuygensPrinciple.Logic
@@ -18,10 +18,17 @@ namespace Physics.HuygensPrinciple.Logic
 		{
 			_originalField = originalField;
 			_currentField = _originalField.Clone();
+			_fieldHeight = _originalField.Height;
+			_fieldWidth = _originalField.Width;
 			_stepper = new HuygensStepper(originalField, 4);
 		}
 
+		public HuygensField OriginalField => _originalField;
+
 		public HuygensField CurrentField => _currentField;
+
+		public IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0) =>
+			_stepper.GetBorderPoints(field, spotState, backgroundState);
 
 		public async Task PrecalculateAsync() => await _stepper.PrecalculateStepsAsync();
 
