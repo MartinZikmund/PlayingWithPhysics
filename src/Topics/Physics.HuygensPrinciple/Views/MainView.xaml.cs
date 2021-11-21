@@ -21,7 +21,7 @@ namespace Physics.HuygensPrinciple.Views
 			}
 
 			// Resize to square
-			var squareSize = Math.Min(e.NewSize.Width, e.NewSize.Height) - 100;
+			var squareSize = Math.Min(e.NewSize.Width, e.NewSize.Height) - 0;
 			child.Width = squareSize;
 			child.Height = squareSize;
 			child.HorizontalAlignment = HorizontalAlignment.Center;

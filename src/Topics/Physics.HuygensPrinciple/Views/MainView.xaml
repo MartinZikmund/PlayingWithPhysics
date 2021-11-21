@@ -58,20 +58,22 @@
             Grid.Column="1"
             Padding="0">
 			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			<Grid x:Name="CanvasHolder" Background="#F3F3F3" SizeChanged="CanvasHolder_SizeChanged" />
-			<InkCanvas x:Name="InkCanvas" />
 			<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
+			<Grid x:Name="CanvasHolder" Grid.Row="1" Background="#F3F3F3" SizeChanged="CanvasHolder_SizeChanged" />
+			<InkCanvas Grid.Row="1" x:Name="InkCanvas" />
+			
 			<sharedControls:SimulationControls
                 x:Name="SimulationControls"
-                Grid.Row="1"
+                Grid.Row="2"
                 d:Visibility="Collapsed"
 				ForwardVisibility="Collapsed"
 				BackwardVisibility="Collapsed"
