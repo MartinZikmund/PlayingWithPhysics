@@ -14,7 +14,6 @@ namespace Physics.LawOfConservationOfMomentum.Views
 	{
 		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
-		protected override LawOfConservationOfMomentumCanvasController CreateController(ISkiaCanvas canvas) =>
-			new LawOfConservationOfMomentumCanvasController(canvas);
+		protected override LawOfConservationOfMomentumCanvasController CreateController(ISkiaCanvas canvas) => Model.CreateController(canvas);
 	}
 }

@@ -17,6 +17,8 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Physics.LawOfConservationOfMomentum.ValuesTable;
 using Windows.UI;
+using Physics.Shared.UI.Rendering.Skia;
+using Physics.Shared.Services.Sounds;
 
 namespace Physics.LawOfConservationOfMomentum.ViewModels
 {
@@ -24,6 +26,12 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 	{
 		private DifficultyOption _difficulty;
 		private LawOfConservationOfMomentumCanvasController _controller;
+		private readonly ISoundPlayer _soundPlayer;
+
+		public MainViewModel(ISoundPlayer soundPlayer)
+		{
+			_soundPlayer = soundPlayer;
+		}
 
 		public CollisionType[] CollisionTypes { get; set; }
 
@@ -34,6 +42,8 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 		public MotionViewModel Motion { get; set; }
 
 		public MotionSetup Setup { get; set; }
+
+		internal LawOfConservationOfMomentumCanvasController CreateController(ISkiaCanvas canvas) => new LawOfConservationOfMomentumCanvasController(canvas, _soundPlayer);
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
