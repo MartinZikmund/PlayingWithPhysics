@@ -53,7 +53,7 @@
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Update="XamlFlair.UWP" Version="1.2.7" />
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
-    <PackageReference Update="ReactiveUI" Version="16.2.6" />
+    <PackageReference Update="ReactiveUI" Version="17.0.1" />
 
     <PackageReference Update="Moq" Version="4.16.1" />
     <PackageReference Update="xunit" Version="2.4.1" />
