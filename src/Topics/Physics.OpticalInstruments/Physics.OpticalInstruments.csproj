@@ -125,7 +125,14 @@
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\ConcaveLensRenderer.cs" />
+    <Compile Include="Rendering\ConcaveMirrorRenderer.cs" />
+    <Compile Include="Rendering\ConvexLensRenderer.cs" />
+    <Compile Include="Rendering\ConvexMirrorRenderer.cs" />
+    <Compile Include="Rendering\LensRenderer.cs" />
+    <Compile Include="Rendering\MirrorRenderer.cs" />
     <Compile Include="Rendering\OpticalInstrumentsCanvasController.cs" />
+    <Compile Include="Rendering\OpticalInstrumentsRenderer.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
