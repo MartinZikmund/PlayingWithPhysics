@@ -1,4 +1,5 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using Physics.OpticalInstruments.Logic;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
 namespace Physics.OpticalInstruments.Rendering
@@ -10,14 +11,14 @@ namespace Physics.OpticalInstruments.Rendering
 		{
 		}
 
-		public override void Draw(ISkiaCanvas sender, SKSurface args)
-		{
+		public OpticalInstrumentsRenderer Renderer { get; private set; }
 
-		}
+		public SceneConfiguration SceneConfiguration { get; set; }
 
-		public override void Update(ISkiaCanvas sender)
-		{
+		public void SetVariantRenderer(OpticalInstrumentsRenderer renderer) => Renderer = renderer;
 
-		}
+		public override void Draw(ISkiaCanvas sender, SKSurface args) => Renderer?.Draw(sender, args);
+
+		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
 	}
 }

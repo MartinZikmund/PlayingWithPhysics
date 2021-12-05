@@ -1,14 +1,113 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using System;
+using Microsoft.AppCenter.Crashes;
+using Physics.OpticalInstruments.Logic;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
 namespace Physics.OpticalInstruments.Rendering
 {
 	public abstract class OpticalInstrumentsRenderer : ISkiaVariantRenderer
 	{
+		private const float AxisPointSize = 4;
+
+		protected readonly OpticalInstrumentsCanvasController _controller;
+
+		private SKSize _canvasSize;
+
+		protected readonly SKPaint _axisStrokePaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2,
+		};
+
+		protected readonly SKPaint _axisLabelPaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1,
+			TextAlign = SKTextAlign.Center,
+			TextSize = 12,
+		};
+
+		public OpticalInstrumentsRenderer(OpticalInstrumentsCanvasController controller) =>
+			_controller = controller;
+
+		protected SceneConfiguration SceneConfiguration => _controller.SceneConfiguration;
+
+		protected float PixelsPerMeter { get; private set; }
+
+		protected abstract float RelativeOpticalInstrumentX { get; }
+
+		protected float MinX { get; private set; }
+
+		protected float MaxX { get; private set; }
+
 		public void Dispose() { }
 
-		public abstract void Draw(ISkiaCanvas sender, SKSurface args);
+		public void Draw(ISkiaCanvas sender, SKSurface args)
+		{
+			DrawXAxis(sender, args);
+			DrawConfiguration(sender, args);
+		}
 
-		public abstract void Update(ISkiaCanvas sender);
+		public void Update(ISkiaCanvas sender)
+		{
+			_canvasSize = sender.ScaledSize;
+			UpdateScalingRatio();
+			UpdateBounds();
+		}
+
+		protected virtual void DrawConfiguration(ISkiaCanvas sender, SKSurface args) { }
+
+		protected void DrawAxisPoint(
+			ISkiaCanvas sender,
+			SKSurface args,
+			float x,
+			string label)
+		{
+			var renderX = GetRenderX(x);
+			var y = GetRenderY(0);
+			args.Canvas.DrawLine(renderX, y - AxisPointSize, renderX, y + AxisPointSize, _axisStrokePaint);
+			args.Canvas.DrawText(label, renderX, y + AxisPointSize + 14, _axisLabelPaint);
+		}
+
+		protected float GetRenderX(float xInMeters) =>
+			_canvasSize.Width * RelativeOpticalInstrumentX + xInMeters * PixelsPerMeter;
+
+		protected float GetRenderY(float yInMeters) =>
+			_canvasSize.Height / 2 + yInMeters * PixelsPerMeter;
+
+		private void DrawXAxis(ISkiaCanvas sender, SKSurface args)
+		{
+			var y = GetRenderY(0);
+			args.Canvas.DrawLine(0, y, sender.ScaledSize.Width, y, _axisStrokePaint);
+		}
+
+		private void UpdateScalingRatio()
+		{
+			var focalDistance = _controller.SceneConfiguration.FocalDistance;
+
+			// Screen should be focal distance * 5 wide
+			var widthInMeters = focalDistance * 5;
+			var pixelsPerMeterX = _canvasSize.Width / widthInMeters;
+
+			// Screen should be focal distance * 4 high
+			var heightInMeters = focalDistance * 4;
+			var pixelsPerMeterY = _canvasSize.Height / heightInMeters;
+
+			// Take the lower value
+			PixelsPerMeter = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
+		}
+
+		private void UpdateBounds()
+		{
+			// X = 0 is at the optical instrument's center.
+			var opticalInstrumentRenderX = _canvasSize.Width * RelativeOpticalInstrumentX;
+			MinX = -(opticalInstrumentRenderX / PixelsPerMeter);
+			MaxX = (_canvasSize.Width - opticalInstrumentRenderX) / PixelsPerMeter;
+		}
 	}
 }

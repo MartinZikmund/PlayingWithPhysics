@@ -127,6 +127,18 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Simulátor optických přístrojů</value>
   </data>
+  <data name="ConcaveLens" xml:space="preserve">
+    <value>Dutá čočka</value>
+  </data>
+  <data name="ConcaveMirror" xml:space="preserve">
+    <value>Duté zrcadlo</value>
+  </data>
+  <data name="ConvexLens" xml:space="preserve">
+    <value>Vypulká čočka</value>
+  </data>
+  <data name="ConvexMirror" xml:space="preserve">
+    <value>Vypulké zrcadlo</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Simulátor optických přístrojů</value>
   </data>

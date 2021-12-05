@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Physics.OpticalInstruments.Rendering
+﻿namespace Physics.OpticalInstruments.Rendering
 {
-    public class ConcaveLensRenderer
-    {
-        
-    }
+	public class ConcaveLensRenderer : LensRenderer
+	{
+		public ConcaveLensRenderer(OpticalInstrumentsCanvasController controller) :
+			base(controller)
+		{
+		}
+
+		protected override float RelativeOpticalInstrumentX => 0.5f;
+	}
 }
