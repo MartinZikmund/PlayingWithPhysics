@@ -6,6 +6,9 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
+using SkiaSharp;
+using Windows.Foundation;
+using Windows.UI.Input;
 
 namespace Physics.OpticalInstruments.ViewModels
 {
@@ -21,6 +24,23 @@ namespace Physics.OpticalInstruments.ViewModels
 				.OfType<InstrumentType>()
 				.Select(i => new InstrumentTypeViewModel(i))
 				.ToArray();
+
+		internal void TrySetObject(Point desiredPoint)
+		{
+			if (_controller == null)
+			{
+				return;
+			}
+
+			var pointerPoint = new SKPoint((float)desiredPoint.X, (float)desiredPoint.Y);
+			if (_controller.TryGetObjectPosition(
+				pointerPoint,
+				out var objectPoint))
+			{
+				SceneConfiguration.ObjectDistance = objectPoint.X;
+				SceneConfiguration.ObjectHeight = objectPoint.Y;
+			};
+		}
 
 		public InstrumentTypeViewModel SelectedInstrumentType { get; set; }
 

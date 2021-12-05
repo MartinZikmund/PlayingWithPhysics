@@ -32,6 +32,26 @@ namespace Physics.OpticalInstruments.Rendering
 			TextSize = 12,
 		};
 
+		protected readonly SKPaint _objectPaint = new SKPaint()
+		{
+			Color = SKColors.Red,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2
+		};
+
+		internal bool TryGetObjectPosition(SKPoint pointerPoint, out SKPoint objectPoint)
+		{
+			var metersPerPixel = 1 / PixelsPerMeter;
+			var centerX = GetRenderX(0);
+			var centerY = GetRenderY(0);
+
+			var distance = pointerPoint.X - centerX;
+			var height = centerY - pointerPoint.Y;
+			objectPoint = new SKPoint(distance * metersPerPixel, height * metersPerPixel);
+			return true;
+		}
+
 		public OpticalInstrumentsRenderer(OpticalInstrumentsCanvasController controller) =>
 			_controller = controller;
 
@@ -51,6 +71,7 @@ namespace Physics.OpticalInstruments.Rendering
 		{
 			DrawXAxis(sender, args);
 			DrawConfiguration(sender, args);
+			DrawObject(args);
 		}
 
 		public void Update(ISkiaCanvas sender)
@@ -62,11 +83,7 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected virtual void DrawConfiguration(ISkiaCanvas sender, SKSurface args) { }
 
-		protected void DrawAxisPoint(
-			ISkiaCanvas sender,
-			SKSurface args,
-			float x,
-			string label)
+		protected void DrawAxisPoint(SKSurface args, float x, string label)
 		{
 			var renderX = GetRenderX(x);
 			var y = GetRenderY(0);
@@ -78,7 +95,15 @@ namespace Physics.OpticalInstruments.Rendering
 			_canvasSize.Width * RelativeOpticalInstrumentX + xInMeters * PixelsPerMeter;
 
 		protected float GetRenderY(float yInMeters) =>
-			_canvasSize.Height / 2 + yInMeters * PixelsPerMeter;
+			_canvasSize.Height / 2 - yInMeters * PixelsPerMeter;
+
+		protected void DrawObject(SKSurface args)
+		{
+			var renderX = GetRenderX(SceneConfiguration.ObjectDistance);
+			var from = new SKPoint(renderX, GetRenderY(0));
+			var to = new SKPoint(renderX, GetRenderY(SceneConfiguration.ObjectHeight));
+			ArrowRenderer.Draw(args, from, to, 6, _objectPaint);
+		}
 
 		private void DrawXAxis(ISkiaCanvas sender, SKSurface args)
 		{

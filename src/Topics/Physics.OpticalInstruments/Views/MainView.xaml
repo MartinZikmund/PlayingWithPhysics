@@ -72,35 +72,17 @@
 			</Grid.RowDefinitions>
 			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
 			<InkCanvas x:Name="InkCanvas" />
-			<InkToolbar
-                x:Name="inkToolbar"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                RequestedTheme="Light"
-                TargetInkCanvas="{x:Bind InkCanvas}" />
-			<!--<sharedControls:SimulationControls
-                x:Name="SimulationControls"
-                Grid.Row="1"
-                d:Visibility="Collapsed"
-				ForwardVisibility="Collapsed"
-				BackwardVisibility="Collapsed"
-				SpeedControlVisibility="Collapsed"
-                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
-                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
-                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
-                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
-                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
-                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
-                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
-                RequestedTheme="Light"
-                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
-				<sharedControls:SimulationControls.Background>
-					<AcrylicBrush
-                        BackgroundSource="Backdrop"
-                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
-                        TintColor="{ThemeResource SystemChromeMediumColor}" />
-				</sharedControls:SimulationControls.Background>
-			</sharedControls:SimulationControls>-->
+			<StackPanel
+				Orientation="Horizontal"
+				RequestedTheme="Light"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top">
+				<InkToolbar
+					x:Name="inkToolbar"					
+					IsEnabled="{Binding ElementName=InkToolbarSwitch, Path=IsOn}"
+					TargetInkCanvas="{x:Bind InkCanvas}" />
+				<ToggleSwitch x:Name="InkToolbarSwitch" IsOn="False" Toggled="InkToolbarSwitch_Toggled" />
+			</StackPanel>
 		</Grid>
 	</Grid>
 </local:MainViewBase>
