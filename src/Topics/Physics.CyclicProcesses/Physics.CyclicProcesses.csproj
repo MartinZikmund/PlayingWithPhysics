@@ -137,6 +137,25 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Animations\adiabat.html" />
+    <Content Include="Assets\Animations\adiabat.js" />
+    <Content Include="Assets\Animations\images\adiabat_atlas_1.png" />
+    <Content Include="Assets\Animations\images\ani_motor_atlas_1.png" />
+    <Content Include="Assets\Animations\images\izobar_atlas_1.png" />
+    <Content Include="Assets\Animations\images\izobar_atlas_2.png" />
+    <Content Include="Assets\Animations\images\izochor_atlas_1.png" />
+    <Content Include="Assets\Animations\images\izochor_atlas_2.png" />
+    <Content Include="Assets\Animations\images\izoterm_atlas_1.png" />
+    <Content Include="Assets\Animations\images\izoterm_atlas_2.png" />
+    <Content Include="Assets\Animations\images\motor_atlas_1.png" />
+    <Content Include="Assets\Animations\izobar.html" />
+    <Content Include="Assets\Animations\izobar.js" />
+    <Content Include="Assets\Animations\izochor.html" />
+    <Content Include="Assets\Animations\izochor.js" />
+    <Content Include="Assets\Animations\izoterm.html" />
+    <Content Include="Assets\Animations\izoterm.js" />
+    <Content Include="Assets\Animations\motor.html" />
+    <Content Include="Assets\Animations\motor.js" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

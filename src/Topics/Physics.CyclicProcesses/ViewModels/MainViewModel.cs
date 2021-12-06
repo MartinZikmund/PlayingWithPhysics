@@ -27,5 +27,7 @@ namespace Physics.CyclicProcesses.ViewModels
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
 		}
+
+		public Uri AnimationSource { get; set; }
 	}
 }
