@@ -32,7 +32,7 @@ namespace Physics.StationaryWaves.Rendering
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 5,
-			Color = SKColors.Black
+			Color = SKColors.Red
 		};
 
 		private SKPaint _axis1Paint = new SKPaint()
@@ -40,10 +40,18 @@ namespace Physics.StationaryWaves.Rendering
 			IsStroke = true,
 			IsAntialias = true,
 			StrokeWidth = 1,
-			Color = SKColors.Black
+			Color = SKColors.Green
 		};
 
 		private SKPaint _axis2Paint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 1.5f,
+			Color = SKColors.Blue
+		};
+
+		private SKPaint _axisPaintHorizontal = new SKPaint()
 		{
 			IsStroke = true,
 			IsAntialias = true,
@@ -84,7 +92,7 @@ namespace Physics.StationaryWaves.Rendering
 			}
 
 			//DrawAxes(sender, args);
-			args.Canvas.DrawLine(new SKPoint(0, GetDisplayHeightInPixels(sender) / 2), new SKPoint(GetDisplayWidthInPixels(sender), GetDisplayHeightInPixels(sender) / 2), _axis1Paint);
+			args.Canvas.DrawLine(new SKPoint(0, GetDisplayHeightInPixels(sender) / 2), new SKPoint(GetDisplayWidthInPixels(sender), GetDisplayHeightInPixels(sender) / 2), _axisPaintHorizontal);
 
 			//var pointSize = 6f;
 			//foreach (var wave in _activeWaves)
@@ -102,7 +110,7 @@ namespace Physics.StationaryWaves.Rendering
 			DrawTrajectory(sender, args, trajectory1, _axis1Paint);
 
 			var trajectory2 = _waveTrajectories[1];
-			DrawTrajectory(sender, args, trajectory2, _axis1Paint);
+			DrawTrajectory(sender, args, trajectory2, _axis2Paint);
 
 			DrawTrajectory(sender, args, _compoundTrajectory, _interferenceStrokePaint);
 		}
