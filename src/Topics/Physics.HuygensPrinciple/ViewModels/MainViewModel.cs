@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Physics.HuygensPrinciple.Logic;
 using Physics.HuygensPrinciple.Rendering;
+using Physics.HuygensPrinciple.Views;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.HuygensPrinciple.ViewModels
 {
@@ -30,20 +32,34 @@ namespace Physics.HuygensPrinciple.ViewModels
 			}
 
 			_controller = controller;
+			_controller.SetVariantRenderer(_difficulty == DifficultyOption.Easy ? (IHuygensVariantRenderer)new EasyVariantRenderer(_controller) : new AdvancedVariantRenderer(_controller));
+			_controller.SetRenderConfiguration(RenderConfiguration);
 			SimulationPlayback.SetController(_controller);
 		}
 
-		public ICommand DrawSceneCommand => GetOrCreateAsyncCommand<int>(DrawSceneAsync);
+		public RenderConfigurationViewModel RenderConfiguration { get; } = new RenderConfigurationViewModel();
 
-		public async Task DrawSceneAsync(int sceneId)
+		public ICommand PickScenePresetCommand => GetOrCreateAsyncCommand(PickSceneAsync);
+
+		private async Task PickSceneAsync()
+		{
+			var scenePicker = new ScenePickerDialog(_difficulty);
+			if (await scenePicker.ShowAsync() == ContentDialogResult.Primary)
+			{
+				var scene = scenePicker.ViewModel.SelectedScene;
+				await DrawSceneAsync(scene.Preset);
+			}
+		}
+
+		public async Task DrawSceneAsync(ScenePreset scene)
 		{
 			IsLoading = true;
-			var huygensBuilder = new HuygensFieldBuilder(500, 500);
-			huygensBuilder.DrawScene(ScenePresets.Presets[sceneId]);
+			var huygensBuilder = new HuygensFieldBuilder(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
+			huygensBuilder.DrawScene(scene);
 
 			var manager = new HuygensManager(huygensBuilder.Build());
 			await manager.PrecalculateAsync();
-			_controller.StartSimulation(manager);
+			_controller.StartSimulation(manager, scene);
 			IsLoading = false;
 		}
 	}

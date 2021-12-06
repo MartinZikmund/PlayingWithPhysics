@@ -5,15 +5,18 @@ namespace Physics.HuygensPrinciple.Logic
 {
 	public class Circle : IShape
 	{
-		public Circle(PointF center, float radius)
+		public Circle(PointF center, float radius, CellState state = CellState.Source)
 		{
 			Center = center;
 			Radius = radius;
+			State = state;
 		}
 
 		public PointF Center { get; }
 
 		public float Radius { get; }
+
+		public CellState State { get; }
 
 		public void Draw(HuygensField field)
 		{
@@ -26,7 +29,7 @@ namespace Physics.HuygensPrinciple.Logic
 			var dimension = Math.Min(width, height);
 			var radius = Radius * dimension;
 
-			HuygensShapeDrawer.DrawCircle(field, new Point((int)centerX, (int)centerY), radius);
+			HuygensShapeDrawer.DrawCircle(field, new Point((int)centerX, (int)centerY), radius, State);
 		}
 	}
 }

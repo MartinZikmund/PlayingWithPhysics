@@ -15,7 +15,11 @@ namespace Physics.HuygensPrinciple.Logic
 			new Point(0, 1),
 			new Point(0, -1),
 			new Point(1, 0),
-			new Point(-1, 0)
+			new Point(-1, 0),
+			new Point(-1, -1),
+			new Point(1, 1),
+			new Point(-1, 1),
+			new Point(1, -1),
 		};
 
 		private readonly int _stepRadius;
@@ -57,7 +61,7 @@ namespace Physics.HuygensPrinciple.Logic
 			} while (step.CellStateChanges.Length > 0);
 		}
 
-		private IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
+		public IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0)
 		{
 			var results = new List<Point>();
 			for (int x = 0; x < _originalField.Width - 1; x++)

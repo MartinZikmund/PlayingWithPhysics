@@ -1,5 +1,6 @@
 ﻿using System;
 using Physics.LawOfConservationOfMomentum.Logic;
+using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -9,6 +10,8 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 	{
 		public const float HorizontalPadding = 20f;
 		public const float ObjectSize = 12f;
+
+		private readonly ISoundPlayer _soundPlayer = null;
 
 		private readonly SKPaint _firstObjectPaint = new SKPaint()
 		{
@@ -40,9 +43,10 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 
 		public PhysicsService PhysicsService { get; private set; }
 
-		public LawOfConservationOfMomentumCanvasController(ISkiaCanvas canvasAnimatedControl)
+		public LawOfConservationOfMomentumCanvasController(ISkiaCanvas canvasAnimatedControl, ISoundPlayer soundPlayer)
 			: base(canvasAnimatedControl)
 		{
+			_soundPlayer = soundPlayer;
 		}
 
 		public void StartSimulation(MotionSetup motion)
@@ -78,12 +82,23 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			}
 		}
 
+		private double _previousUpdateTime = 0;
+
 		public override void Update(ISkiaCanvas sender)
 		{
 			if (Motion == null)
 			{
 				return;
 			}
+
+			var currentUpdateTime = SimulationTime.TotalTime.TotalSeconds;
+			var collisionTime = PhysicsService.GetCollisionTime();
+			if (_previousUpdateTime <= collisionTime && currentUpdateTime > collisionTime)
+			{
+				var collisionType = Motion.Type;
+				_soundPlayer.PlaySound(collisionType.ToString("g"), volume: 0.5);
+			}
+			_previousUpdateTime = currentUpdateTime;
 
 			var displayWidth = PhysicsService.GetDisplayWidth();
 			_metersToPixels = (sender.ScaledSize.Width - HorizontalPadding * 2) / displayWidth;
@@ -104,5 +119,13 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 		}
 
 		public float PadX(float x) => HorizontalPadding + x;
+
+		public override void Initialized(ISkiaCanvas sender, SKSurface args)
+		{
+			// TODO: Allow async initialization in Skia
+			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/ImperfectlyElastic.wav", UriKind.Absolute), CollisionType.ImperfectlyElastic.ToString("g"));
+			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyElastic.wav", UriKind.Absolute), CollisionType.PerfectlyElastic.ToString("g"));
+			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyInelastic.wav", UriKind.Absolute), CollisionType.PerfectlyInelastic.ToString("g"));
+		}
 	}
 }

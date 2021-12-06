@@ -5,7 +5,7 @@
     xmlns:local="using:Physics.OpticalInstruments.Views"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions" xmlns:viewmodels="using:Physics.OpticalInstruments.ViewModels"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.Transitions>
@@ -45,7 +45,21 @@
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="0,12,0,0">
+			<Border Grid.Row="1" Margin="8,12,8,0">
+				<ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind Model.SelectedInstrumentType, Mode=TwoWay}" ItemsSource="{x:Bind Model.InstrumentTypes}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate x:DataType="viewmodels:InstrumentTypeViewModel">
+							<Grid ColumnSpacing="8">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Image Height="48" Width="48" Stretch="Uniform" Source="{Binding Image}" />
+								<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Name}" />
+							</Grid>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
 			</Border>
 		</Grid>
 		<Grid
@@ -58,35 +72,17 @@
 			</Grid.RowDefinitions>
 			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
 			<InkCanvas x:Name="InkCanvas" />
-			<InkToolbar
-                x:Name="inkToolbar"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                RequestedTheme="Light"
-                TargetInkCanvas="{x:Bind InkCanvas}" />
-			<sharedControls:SimulationControls
-                x:Name="SimulationControls"
-                Grid.Row="1"
-                d:Visibility="Collapsed"
-				ForwardVisibility="Collapsed"
-				BackwardVisibility="Collapsed"
-				SpeedControlVisibility="Collapsed"
-                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
-                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
-                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
-                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
-                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
-                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
-                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
-                RequestedTheme="Light"
-                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}">
-				<sharedControls:SimulationControls.Background>
-					<AcrylicBrush
-                        BackgroundSource="Backdrop"
-                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
-                        TintColor="{ThemeResource SystemChromeMediumColor}" />
-				</sharedControls:SimulationControls.Background>
-			</sharedControls:SimulationControls>
+			<StackPanel
+				Orientation="Horizontal"
+				RequestedTheme="Light"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top">
+				<InkToolbar
+					x:Name="inkToolbar"					
+					IsEnabled="{Binding ElementName=InkToolbarSwitch, Path=IsOn}"
+					TargetInkCanvas="{x:Bind InkCanvas}" />
+				<ToggleSwitch x:Name="InkToolbarSwitch" IsOn="False" Toggled="InkToolbarSwitch_Toggled" />
+			</StackPanel>
 		</Grid>
 	</Grid>
 </local:MainViewBase>

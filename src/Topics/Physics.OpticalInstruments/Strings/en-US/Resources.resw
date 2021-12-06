@@ -127,6 +127,18 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Optical Instruments</value>
   </data>
+  <data name="ConcaveLens" xml:space="preserve">
+    <value>Concave lens</value>
+  </data>
+  <data name="ConcaveMirror" xml:space="preserve">
+    <value>Concave mirror</value>
+  </data>
+  <data name="ConvexLens" xml:space="preserve">
+    <value>Convex lens</value>
+  </data>
+  <data name="ConvexMirror" xml:space="preserve">
+    <value>Convex mirror</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Optical Instruments</value>
   </data>
