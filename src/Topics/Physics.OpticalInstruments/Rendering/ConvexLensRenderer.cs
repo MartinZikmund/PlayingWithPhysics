@@ -1,4 +1,6 @@
-﻿namespace Physics.OpticalInstruments.Rendering
+﻿using Physics.OpticalInstruments.Logic;
+
+namespace Physics.OpticalInstruments.Rendering
 {
 	public class ConvexLensRenderer : LensRenderer
 	{
@@ -8,5 +10,7 @@
 		}
 
 		protected override float RelativeOpticalInstrumentX => 0.5f;
+
+		protected override InstrumentType InstrumentType => InstrumentType.ConvexLens;
 	}
 }

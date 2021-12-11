@@ -1,4 +1,5 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using Physics.OpticalInstruments.Logic;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
 namespace Physics.OpticalInstruments.Rendering
@@ -11,6 +12,8 @@ namespace Physics.OpticalInstruments.Rendering
 		}
 
 		protected override float RelativeOpticalInstrumentX => 0.5f;
+
+		protected override InstrumentType InstrumentType => InstrumentType.ConvexMirror;
 
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{

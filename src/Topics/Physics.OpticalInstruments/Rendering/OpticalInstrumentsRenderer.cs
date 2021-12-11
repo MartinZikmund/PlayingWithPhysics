@@ -40,11 +40,33 @@ namespace Physics.OpticalInstruments.Rendering
 			StrokeWidth = 2
 		};
 
+		protected readonly SKPaint _objectImagePaint = new SKPaint()
+		{
+			Color = SKColors.HotPink,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2
+		};
+
+		protected readonly SKPaint _lightBeamPaint = new SKPaint()
+		{
+			Color = SKColors.Blue,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2
+		};
+
 		internal bool TryGetObjectPosition(SKPoint pointerPoint, out SKPoint objectPoint)
 		{
 			var metersPerPixel = 1 / PixelsPerMeter;
 			var centerX = GetRenderX(0);
 			var centerY = GetRenderY(0);
+
+			objectPoint = SKPoint.Empty;
+			if (pointerPoint.X >= centerX)
+			{
+				return false;
+			}
 
 			var distance = pointerPoint.X - centerX;
 			var height = centerY - pointerPoint.Y;
@@ -57,9 +79,13 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected SceneConfiguration SceneConfiguration => _controller.SceneConfiguration;
 
+		protected PhysicsService PhysicsService { get; } = new PhysicsService();
+
 		protected float PixelsPerMeter { get; private set; }
 
 		protected abstract float RelativeOpticalInstrumentX { get; }
+
+		protected abstract InstrumentType InstrumentType { get; }
 
 		protected float MinX { get; private set; }
 
@@ -72,6 +98,7 @@ namespace Physics.OpticalInstruments.Rendering
 			DrawXAxis(sender, args);
 			DrawConfiguration(sender, args);
 			DrawObject(args);
+			DrawObjectImage(args);
 		}
 
 		public void Update(ISkiaCanvas sender)
@@ -79,6 +106,8 @@ namespace Physics.OpticalInstruments.Rendering
 			_canvasSize = sender.ScaledSize;
 			UpdateScalingRatio();
 			UpdateBounds();
+
+			ImageInfo = PhysicsService.CalculateObjectImage(InstrumentType, SceneConfiguration);
 		}
 
 		protected virtual void DrawConfiguration(ISkiaCanvas sender, SKSurface args) { }
@@ -104,6 +133,16 @@ namespace Physics.OpticalInstruments.Rendering
 			var to = new SKPoint(renderX, GetRenderY(SceneConfiguration.ObjectHeight));
 			ArrowRenderer.Draw(args, from, to, 6, _objectPaint);
 		}
+
+		protected void DrawObjectImage(SKSurface args)
+		{
+			var renderX = GetRenderX(ImageInfo.ImageDistance);
+			var from = new SKPoint(renderX, GetRenderY(0));
+			var to = new SKPoint(renderX, GetRenderY(ImageInfo.ImageHeight));
+			ArrowRenderer.Draw(args, from, to, 6, _objectImagePaint);
+		}
+
+		protected ObjectImageInfo ImageInfo { get; private set; }
 
 		private void DrawXAxis(ISkiaCanvas sender, SKSurface args)
 		{
