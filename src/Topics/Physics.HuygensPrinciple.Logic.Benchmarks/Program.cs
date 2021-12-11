@@ -12,7 +12,7 @@ namespace Physics.HuygensPrinciple.Logic.Benchmarks
 		public HuygensStepperBenchmarks()
 		{
 			var data = new HuygensFieldBuilder(1920, 1080);
-			data.DrawScene(ScenePresets.Presets[0]);
+			data.DrawScene(ScenePresets.EasyVariant[0]);
 			_builder = data;
 		}
 
