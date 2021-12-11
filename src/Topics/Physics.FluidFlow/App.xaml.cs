@@ -10,6 +10,6 @@ namespace Physics.FluidFlow
 
 	public class PhysicsApp : PhysicsAppBase<AppSetup, DefaultApp>
 	{
-		protected override string AppCenterKey => "TemplateAppCenterKey";
+		protected override string AppCenterKey => "374dcb15-a616-4309-aede-904789443db5";
 	}
 }

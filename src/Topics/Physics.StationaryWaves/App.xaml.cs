@@ -10,6 +10,6 @@ namespace Physics.StationaryWaves
 
 	public class PhysicsApp : PhysicsAppBase<AppSetup, DefaultApp>
 	{
-		protected override string AppCenterKey => "TemplateAppCenterKey";
+		protected override string AppCenterKey => "510fc6d3-9c2d-4489-a859-0cf09ad31d78";
 	}
 }

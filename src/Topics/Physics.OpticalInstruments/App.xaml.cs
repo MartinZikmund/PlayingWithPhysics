@@ -10,6 +10,6 @@ namespace Physics.OpticalInstruments
 
 	public class PhysicsApp : PhysicsAppBase<AppSetup, DefaultApp>
 	{
-		protected override string AppCenterKey => "TemplateAppCenterKey";
+		protected override string AppCenterKey => "33d55242-9c2f-46f7-be1e-eceeec195567";
 	}
 }

@@ -10,6 +10,6 @@ namespace Physics.LawOfConservationOfMomentum
 
 	public class PhysicsApp : PhysicsAppBase<AppSetup, DefaultApp>
 	{
-		protected override string AppCenterKey => "TemplateAppCenterKey";
+		protected override string AppCenterKey => "c65582db-eec5-4938-9334-a8ca0d292e7e";
 	}
 }
