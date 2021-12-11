@@ -249,7 +249,7 @@
       <Name>Physics.Shared.UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Physics.OpticalInstruments.Logic\Physics.OpticalInstruments.Logic.csproj">
-      <Project>{7cb28f64-f2cc-4617-a9a2-791067b77b84}</Project>
+      <Project>{cd2ec75c-b688-4cf8-a649-dd4330392067}</Project>
       <Name>Physics.OpticalInstruments.Logic</Name>
     </ProjectReference>
   </ItemGroup>
