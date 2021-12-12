@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"adiabat_atlas_1", frames: [[796,0,948,808],[796,810,525,143],[0,0,794,975],[1548,810,323,493],[0,1480,525,143],[1054,1480,346,71],[527,1480,525,143],[1892,0,95,98],[1746,0,144,215],[1548,1305,468,178],[0,1246,1546,232],[0,977,1546,267]]}
+		{name:"adiabat_atlas_1", frames: [[796,0,948,808],[796,810,525,134],[0,0,794,975],[1548,810,323,493],[0,1480,525,134],[1054,1480,346,71],[527,1480,525,134],[1892,0,95,92],[1746,0,144,215],[1548,1305,468,178],[0,1246,1546,232],[0,977,1546,267]]}
 ];
 
 
@@ -27,84 +27,84 @@ lib.ssMetadata = [
 
 
 
-(lib.CachedBmp_94 = function() {
+(lib.CachedBmp_27 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_93 = function() {
+(lib.CachedBmp_26 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_92 = function() {
+(lib.CachedBmp_25 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_91 = function() {
+(lib.CachedBmp_24 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_90 = function() {
+(lib.CachedBmp_23 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_89 = function() {
+(lib.CachedBmp_22 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_88 = function() {
+(lib.CachedBmp_21 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_87 = function() {
+(lib.CachedBmp_20 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_86 = function() {
+(lib.CachedBmp_19 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_85 = function() {
+(lib.CachedBmp_18 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_84 = function() {
+(lib.CachedBmp_17 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_83 = function() {
+(lib.CachedBmp_16 = function() {
 	this.initialize(ss["adiabat_atlas_1"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
@@ -139,13 +139,13 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Vrstva_1
-	this.instance = new lib.CachedBmp_94();
+	this.instance = new lib.CachedBmp_27();
 	this.instance.setTransform(49.45,141.95,0.3212,0.3212);
 
-	this.instance_1 = new lib.CachedBmp_93();
+	this.instance_1 = new lib.CachedBmp_26();
 	this.instance_1.setTransform(356,109.3,0.3212,0.3212);
 
-	this.instance_2 = new lib.CachedBmp_92();
+	this.instance_2 = new lib.CachedBmp_25();
 	this.instance_2.setTransform(49.4,-0.45,0.3212,0.3212);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -167,7 +167,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Vrstva_1
-	this.instance = new lib.CachedBmp_91();
+	this.instance = new lib.CachedBmp_24();
 	this.instance.setTransform(-0.5,-0.45,0.3212,0.3212);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -189,7 +189,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Vrstva_2
-	this.instance = new lib.CachedBmp_90();
+	this.instance = new lib.CachedBmp_23();
 	this.instance.setTransform(-8.75,-21,0.3212,0.3212);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -218,19 +218,19 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Vrstva_1
-	this.instance = new lib.CachedBmp_89();
+	this.instance = new lib.CachedBmp_22();
 	this.instance.setTransform(42,77.55,0.3212,0.3212);
 
-	this.instance_1 = new lib.CachedBmp_88();
+	this.instance_1 = new lib.CachedBmp_21();
 	this.instance_1.setTransform(-20.15,44.75,0.3212,0.3212);
 
-	this.instance_2 = new lib.CachedBmp_87();
+	this.instance_2 = new lib.CachedBmp_20();
 	this.instance_2.setTransform(189.85,25.55,0.3212,0.3212);
 
-	this.instance_3 = new lib.CachedBmp_86();
+	this.instance_3 = new lib.CachedBmp_19();
 	this.instance_3.setTransform(179.05,-0.45,0.3212,0.3212);
 
-	this.instance_4 = new lib.CachedBmp_85();
+	this.instance_4 = new lib.CachedBmp_18();
 	this.instance_4.setTransform(127.85,51.8,0.3212,0.3212);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -303,10 +303,10 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Vrstva_1
-	this.instance = new lib.CachedBmp_84();
+	this.instance = new lib.CachedBmp_17();
 	this.instance.setTransform(1147.25,31.3,0.5,0.5);
 
-	this.instance_1 = new lib.CachedBmp_83();
+	this.instance_1 = new lib.CachedBmp_16();
 	this.instance_1.setTransform(1150.6,169.2,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(133));

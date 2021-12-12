@@ -10,94 +10,85 @@
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <DrillInNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-    <Page.Resources>
-        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
-        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
-        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
-    </Page.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="320" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
-        <Grid
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<DrillInNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
+	<Page.Resources>
+		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+	</Page.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="320" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid
             x:Name="MenuPane"
             Grid.Column="0"
             RequestedTheme="Dark">
-            <Grid.Background>
-                <AcrylicBrush
+			<Grid.Background>
+				<AcrylicBrush
                     BackgroundSource="HostBackdrop"
                     FallbackColor="{ThemeResource AppThemeColor}"
                     TintColor="{ThemeResource AppThemeColor}"
                     TintOpacity="0.85" />
-            </Grid.Background>
-            <Windows10version1903:Grid.Shadow>
-                <ThemeShadow />
-            </Windows10version1903:Grid.Shadow>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+			</Grid.Background>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
 
-            <sharedControls:SkewedMenuHeader
+			<sharedControls:SkewedMenuHeader
                 FontSize="16"
                 GoBackCommand="{x:Bind Model.GoBackCommand}"
                 Text="{extensions:Localize Key=ShortAppName}" />
 
-            <Border Grid.Row="1" Margin="0,12,0,0">
-                <Grid Margin="8">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Margin="0,4,12,0" Text="Děj:" />
-                        <ComboBox x:Name="AnimationSelection" SelectedIndex="0">
-                            <ComboBoxItem Content="Adiabatický děj" />
-                            <ComboBoxItem Content="Izobarický děj" />
-                            <ComboBoxItem Content="Izotermický děj" />
-                            <ComboBoxItem Content="Izochorický děj" />
-                            <ComboBoxItem Content="Motor" />
-                        </ComboBox>
-                    </StackPanel>
-                    <Button
-                        Grid.Row="1"
-                        Margin="0,12,0,0"
-                        HorizontalAlignment="Stretch"
-                        Click="Button_Click"
-                        Content="Zobrazit" />
-                </Grid>
-            </Border>
-        </Grid>
-        <Grid
+			<Border Grid.Row="1" Margin="0,12,0,0">
+				<Grid Margin="8">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<ComboBox HorizontalAlignment="Stretch" SelectionChanged="AnimationSelection_SelectionChanged" x:Name="AnimationSelection" SelectedIndex="0">
+						<ComboBoxItem Content="Adiabatický děj" />
+						<ComboBoxItem Content="Izobarický děj" />
+						<ComboBoxItem Content="Izotermický děj" />
+						<ComboBoxItem Content="Izochorický děj" />
+						<ComboBoxItem Content="Motor" />
+					</ComboBox>
+				</Grid>
+			</Border>
+		</Grid>
+		<Grid
             x:Name="SecondPane"
             Grid.Column="1"
             Padding="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid x:Name="CanvasHolder" Background="#F4F4F4">
-                <WebView x:Name="AnimationView" CanBeScrollAnchor="True" />
-            </Grid>
-            <InkCanvas x:Name="InkCanvas" />
-            <InkToolbar
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="CanvasHolder" Background="#F4F4F4">
+				<WebView x:Name="AnimationView" CanBeScrollAnchor="True" />
+			</Grid>
+			<InkCanvas x:Name="InkCanvas" />
+			<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <sharedControls:SimulationControls
+			<sharedControls:SimulationControls
                 x:Name="SimulationControls"
                 Grid.Row="1"
                 d:Visibility="Collapsed"
@@ -114,13 +105,13 @@
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
                 SpeedControlVisibility="Collapsed"
                 Visibility="Collapsed">
-                <sharedControls:SimulationControls.Background>
-                    <AcrylicBrush
+				<sharedControls:SimulationControls.Background>
+					<AcrylicBrush
                         BackgroundSource="Backdrop"
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
-                </sharedControls:SimulationControls.Background>
-            </sharedControls:SimulationControls>
-        </Grid>
-    </Grid>
+				</sharedControls:SimulationControls.Background>
+			</sharedControls:SimulationControls>
+		</Grid>
+	</Grid>
 </local:MainViewBase>

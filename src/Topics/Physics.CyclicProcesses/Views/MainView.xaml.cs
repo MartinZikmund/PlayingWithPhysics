@@ -8,11 +8,20 @@ namespace Physics.CyclicProcesses.Views
 {
 	public sealed partial class MainView : MainViewBase
 	{
-		public MainView() => InitializeComponent();
-
-		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		public MainView()
 		{
-			switch(AnimationSelection.SelectedIndex)
+			InitializeComponent();
+			AnimationSelection_SelectionChanged(null, null);
+		}
+
+		private void AnimationSelection_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
+		{
+			if (AnimationView == null)
+			{
+				return;
+			}
+
+			switch (AnimationSelection.SelectedIndex)
 			{
 				case 0:
 					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/adiabat.html"));
