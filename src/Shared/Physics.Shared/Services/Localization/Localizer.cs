@@ -8,34 +8,44 @@ using MvvmCross.Binding.Binders;
 
 namespace Physics.Shared.UI.Localization
 {
-    public class Localizer
-    {
-        private static ResourceLoader _resourceLoader = null;
-        private static ResourceLoader _sharedResourceLoader = null;
+	public class Localizer
+	{
+		private static ResourceLoader _resourceLoader = null;
+		private static ResourceLoader _sharedResourceLoader = null;
 
-        private Localizer()
-        {
-        }
+		private Localizer()
+		{
+		}
 
-        public static Localizer Instance { get; } = new Localizer();
+		public static Localizer Instance { get; } = new Localizer();
 
-        public string GetString(string key)
-        {
-            _resourceLoader ??= ResourceLoader.GetForCurrentView();
-            var result = _resourceLoader.GetString(key ?? "");
-            if (string.IsNullOrEmpty(result))
-            {
-                // use shared resources
-                _sharedResourceLoader ??= ResourceLoader.GetForCurrentView("Physics.Shared.UI/SharedResources");
-                result = _sharedResourceLoader.GetString(key);
-                if (string.IsNullOrEmpty(result))
-                {
-                    result = "?????" + key + "?????";
-                }
-            }
-            return result;
-        }
+		public string GetString(string key)
+		{
+			_resourceLoader ??= ResourceLoader.GetForCurrentView();
+			try
+			{
+				var result = _resourceLoader.GetString(key ?? "");
+				if (!string.IsNullOrEmpty(result))
+				{
+					return result;
+				}
 
-        public string this[string key] => GetString(key);        
-    }
+				// Fallback to shared resources
+				_sharedResourceLoader ??= ResourceLoader.GetForCurrentView("Physics.Shared.UI/SharedResources");
+				result = _sharedResourceLoader.GetString(key);
+				if (!string.IsNullOrEmpty(result))
+				{
+					return result;
+				}
+			}
+			catch (Exception)
+			{
+				// This condition only happens for empty key (design time issue)
+			}
+
+			return "?????" + key + "?????";
+		}
+
+		public string this[string key] => GetString(key);
+	}
 }

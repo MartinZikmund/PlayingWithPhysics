@@ -1,4 +1,5 @@
 ﻿using Physics.OpticalInstruments.Logic;
+using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 

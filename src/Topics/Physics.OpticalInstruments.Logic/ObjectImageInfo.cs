@@ -1,14 +1,22 @@
-﻿using Physics.Shared.Logic.Geometry;
+﻿using System;
+using Physics.Shared.Logic.Geometry;
 
 namespace Physics.OpticalInstruments.Logic
 {
 	public class ObjectImageInfo
     {
-        public bool IsReal { get; set; }
+		private readonly float _objectHeight;
 
-		public bool IsSmaller { get; set; }
+		public ObjectImageInfo(float objectHeight)
+		{
+			_objectHeight = objectHeight;
+		}
 
-		public bool IsFlipped { get; set; }
+		public bool IsReal => ImageDistance < 0;
+
+		public bool IsSmaller => Math.Abs(ImageHeight) > Math.Abs(_objectHeight);
+
+		public bool IsFlipped => _objectHeight * ImageHeight < 0;
 
 		public float ImageDistance { get; set; }
 

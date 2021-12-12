@@ -17,33 +17,52 @@ namespace Physics.OpticalInstruments.Logic
 			};
 		private ObjectImageInfo CalculateConcaveLensImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
-			return new ObjectImageInfo()
-			{
-				IsReal = false
-			};
+			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
+			var radius = scene.FocalDistance * 2;
+
+			// Object is beyond the focal distance - image is real, smaller and flipped
+			var imageDistance = 1 / (1 / (-scene.FocalDistance) - 1 / (-scene.ObjectDistance));
+			var imageHeight = -imageDistance / (-scene.ObjectDistance) * scene.ObjectHeight;
+
+			objectImageInfo.ImageDistance = imageDistance;
+			objectImageInfo.ImageHeight = imageHeight;
+
+			return objectImageInfo;
 		}
 
 		private ObjectImageInfo CalculateConvexLensImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
-			return new ObjectImageInfo()
-			{
-				IsReal = false
-			};
+			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
+			var radius = scene.FocalDistance * 2;
+
+			// Object is beyond the focal distance - image is real, smaller and flipped
+			var imageDistance = 1 / (1 / (scene.FocalDistance) - 1 / (-scene.ObjectDistance));
+			var imageHeight = -imageDistance / (-scene.ObjectDistance) * scene.ObjectHeight;
+
+			objectImageInfo.ImageDistance = imageDistance;
+			objectImageInfo.ImageHeight = imageHeight;
+
+			return objectImageInfo;
 		}
 
 		private ObjectImageInfo CalculateConcaveMirrorImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
-			var objectImageInfo = new ObjectImageInfo();
+			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
 			var radius = scene.FocalDistance * 2;
 			if (Math.Abs(scene.ObjectDistance) > scene.FocalDistance)
 			{
-				// Object is beyond the radius distance - image is real, smaller and flipped
-				objectImageInfo.IsReal = true;
-				objectImageInfo.IsSmaller = true;
-				objectImageInfo.IsFlipped = true;
-
+				// Object is beyond the focal distance - image is real, smaller and flipped
 				var imageDistance = 1 / (1 / (-scene.FocalDistance) - 1 / scene.ObjectDistance);
-				var imageHeight = - imageDistance / scene.ObjectDistance * scene.ObjectHeight;
+				var imageHeight = -imageDistance / scene.ObjectDistance * scene.ObjectHeight;
+
+				objectImageInfo.ImageDistance = imageDistance;
+				objectImageInfo.ImageHeight = imageHeight;
+			}
+			else if (Math.Abs(scene.ObjectDistance) < scene.FocalDistance)
+			{
+				// Object is closer to mirror than focal distance - image is imaginary, bigger, and upright
+				var imageDistance = 1 / (1 / (-scene.FocalDistance) - 1 / scene.ObjectDistance);
+				var imageHeight = -imageDistance / scene.ObjectDistance * scene.ObjectHeight;
 
 				objectImageInfo.ImageDistance = imageDistance;
 				objectImageInfo.ImageHeight = imageHeight;
@@ -54,10 +73,17 @@ namespace Physics.OpticalInstruments.Logic
 
 		private ObjectImageInfo CalculateConvexMirrorImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
-			return new ObjectImageInfo()
-			{
-				IsReal = false
-			};
+			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
+			var radius = scene.FocalDistance * 2;
+
+			// Object is beyond the focal distance - image is real, smaller and flipped
+			var imageDistance = 1 / (1 / (scene.FocalDistance) - 1 / scene.ObjectDistance);
+			var imageHeight = -imageDistance / scene.ObjectDistance * scene.ObjectHeight;
+
+			objectImageInfo.ImageDistance = imageDistance;
+			objectImageInfo.ImageHeight = imageHeight;
+
+			return objectImageInfo;
 		}
 	}
 }

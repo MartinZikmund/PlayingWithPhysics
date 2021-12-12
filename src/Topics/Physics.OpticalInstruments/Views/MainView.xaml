@@ -5,6 +5,7 @@
     xmlns:local="using:Physics.OpticalInstruments.Views"
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:extensions="using:Physics.Shared.Extensions" xmlns:viewmodels="using:Physics.OpticalInstruments.ViewModels"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -46,20 +47,24 @@
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
 			<Border Grid.Row="1" Margin="8,12,8,0">
-				<ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind Model.SelectedInstrumentType, Mode=TwoWay}" ItemsSource="{x:Bind Model.InstrumentTypes}">
-					<ComboBox.ItemTemplate>
-						<DataTemplate x:DataType="viewmodels:InstrumentTypeViewModel">
-							<Grid ColumnSpacing="8">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<Image Height="48" Width="48" Stretch="Uniform" Source="{Binding Image}" />
-								<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Name}" />
-							</Grid>
-						</DataTemplate>
-					</ComboBox.ItemTemplate>
-				</ComboBox>
+				<StackPanel Spacing="8">
+					<ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind Model.SelectedInstrumentType, Mode=TwoWay}" ItemsSource="{x:Bind Model.InstrumentTypes}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate x:DataType="viewmodels:InstrumentTypeViewModel">
+								<Grid ColumnSpacing="8">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Image Height="48" Width="48" Stretch="Uniform" Source="{Binding Image}" />
+									<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Name}" />
+								</Grid>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<winui:NumberBox Header="{extensions:Localize Key=FocalDistance}" Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}" />
+					
+				</StackPanel>
 			</Border>
 		</Grid>
 		<Grid

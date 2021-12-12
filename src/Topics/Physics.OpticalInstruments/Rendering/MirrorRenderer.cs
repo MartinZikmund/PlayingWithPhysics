@@ -1,4 +1,5 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using Physics.Shared.Logic.Geometry;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
 namespace Physics.OpticalInstruments.Rendering

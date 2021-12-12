@@ -139,6 +139,9 @@ Graphics: Petr Weinlich</value>
   <data name="ConvexMirror" xml:space="preserve">
     <value>Convex mirror</value>
   </data>
+  <data name="FocalDistance" xml:space="preserve">
+    <value>Focal distance</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Optical Instruments</value>
   </data>

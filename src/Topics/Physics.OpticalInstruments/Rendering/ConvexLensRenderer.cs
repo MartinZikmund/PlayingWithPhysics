@@ -17,15 +17,17 @@ namespace Physics.OpticalInstruments.Rendering
 		
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
+			DrawAxisPoint(args, -SceneConfiguration.FocalDistance, "F");
+			DrawAxisPoint(args, SceneConfiguration.FocalDistance, "F'");
 			DrawLens(sender, args);
 		}
 
 		protected override void DrawLens(ISkiaCanvas canvas, SKSurface surface)
 		{
 			var yBase = GetRenderY(0);
-			var yExtentUp = GetRenderY(3);
-			var yExtentDown = GetRenderY(-3);
-			var x = GetRenderX(RelativeOpticalInstrumentX);
+			var yExtentUp = GetRenderY(5);
+			var yExtentDown = GetRenderY(-5);
+			var x = GetRenderX(0);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentUp), 6, _axisStrokePaint);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentDown), 6, _axisStrokePaint);
 		}

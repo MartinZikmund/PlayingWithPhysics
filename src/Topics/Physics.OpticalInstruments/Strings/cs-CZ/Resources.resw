@@ -139,6 +139,9 @@ Grafika: Petr Weinlich</value>
   <data name="ConvexMirror" xml:space="preserve">
     <value>Vypulké zrcadlo</value>
   </data>
+  <data name="FocalDistance" xml:space="preserve">
+    <value>Ohnisková vzdálenost</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Simulátor optických přístrojů</value>
   </data>
