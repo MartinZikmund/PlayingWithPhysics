@@ -12,6 +12,8 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected override float RelativeOpticalInstrumentX => 0.5f;
 
+		protected override InstrumentType InstrumentType => InstrumentType.ConcaveLens;
+		
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
 			DrawLens(sender, args);
