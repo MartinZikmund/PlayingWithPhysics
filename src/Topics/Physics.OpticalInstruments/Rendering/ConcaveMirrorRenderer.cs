@@ -10,7 +10,7 @@ namespace Physics.OpticalInstruments.Rendering
 		{
 		}
 
-		protected override float RelativeOpticalInstrumentX => 0.95f;
+		protected override float RelativeOpticalInstrumentX => 0.5f;
 
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
