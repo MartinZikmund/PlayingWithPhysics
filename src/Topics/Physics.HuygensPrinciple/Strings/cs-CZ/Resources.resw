@@ -157,6 +157,15 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Huygensův princip</value>
   </data>
+  <data name="ShowObject" xml:space="preserve">
+    <value>Zobrazit objekt</value>
+  </data>
+  <data name="ShowSignificantPoints" xml:space="preserve">
+    <value>Zobrazit ukázkové body</value>
+  </data>
+  <data name="ShowWave" xml:space="preserve">
+    <value>Zobrazit vlnu</value>
+  </data>
   <data name="ShowWaveEdge" xml:space="preserve">
     <value>Zobrazit okraj vlny</value>
   </data>

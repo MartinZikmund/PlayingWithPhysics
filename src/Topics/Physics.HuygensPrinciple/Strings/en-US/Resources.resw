@@ -157,6 +157,15 @@ Graphics: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Huygens–Fresnel Principle</value>
   </data>
+  <data name="ShowObject" xml:space="preserve">
+    <value>Show object</value>
+  </data>
+  <data name="ShowSignificantPoints" xml:space="preserve">
+    <value>Show sample points</value>
+  </data>
+  <data name="ShowWave" xml:space="preserve">
+    <value>Show wave</value>
+  </data>
   <data name="ShowWaveEdge" xml:space="preserve">
     <value>Show edge of wave</value>
   </data>

@@ -131,6 +131,7 @@
     <Compile Include="Rendering\HuygensPrincipleCanvasController.cs" />
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
     <Compile Include="Rendering\RenderingConfiguration.cs" />
+    <Compile Include="ViewModels\DrawingStateViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RenderConfigurationViewModel.cs" />
     <Compile Include="ViewModels\ScenePickerViewModel.cs" />

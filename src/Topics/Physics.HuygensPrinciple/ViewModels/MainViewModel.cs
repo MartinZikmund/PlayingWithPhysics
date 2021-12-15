@@ -20,9 +20,28 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
 			_difficulty = parameter.Difficulty;
+			DrawingState.IsDrawingChanged += DrawingState_IsDrawingChanged;
 		}
 
+		private async void DrawingState_IsDrawingChanged(object sender, EventArgs e)
+		{
+			if (DrawingState.IsDrawing)
+			{
+				// Stop and clear simulation
+
+			}
+			else
+			{
+				// Restart simulation
+				await DrawSceneAsync(CurrentPreset);
+			}
+		}
+
+		public ScenePreset CurrentPreset { get; set; } = new ScenePreset("Empty");
+
 		public bool IsLoading { get; set; }
+
+		public DrawingStateViewModel DrawingState { get; } = new DrawingStateViewModel();
 
 		public void SetController(HuygensPrincipleCanvasController controller)
 		{
@@ -47,7 +66,8 @@ namespace Physics.HuygensPrinciple.ViewModels
 			if (await scenePicker.ShowAsync() == ContentDialogResult.Primary)
 			{
 				var scene = scenePicker.ViewModel.SelectedScene;
-				await DrawSceneAsync(scene.Preset);
+				CurrentPreset = scene.Preset.Clone();
+				await DrawSceneAsync(CurrentPreset);
 			}
 		}
 

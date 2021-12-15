@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Physics.Shared.Logic.Geometry;
 
 namespace Physics.HuygensPrinciple.Logic
 {
@@ -6,21 +7,21 @@ namespace Physics.HuygensPrinciple.Logic
 	{
 		public static ScenePreset[] EasyVariant { get; } = new ScenePreset[]
 		{
-			new ScenePreset("Point")
+			new ScenePreset("Point", new []{new PointF(0.5f, 0.5f) })
 			{
 				new Circle(new PointF(0.5f, 0.5f), 0.002f)
 			},
-			new ScenePreset("Square")
+			new ScenePreset("Square", new []{new PointF(0.48f, 0.48f), new PointF(0.48f, 0.52f), new PointF(0.52f, 0.48f), new PointF(0.52f, 0.52f)})
 			{
 				new Rectangle(new PointF(0.48f,0.48f), new PointF(0.52f, 0.52f))
 			},
-			new ScenePreset("Brick")
+			new ScenePreset("Brick", new []{new PointF(0.44f, 0.48f), new PointF(0.44f, 0.52f), new PointF(0.56f, 0.48f), new PointF(0.56f, 0.52f)})
 			{
 				new Rectangle(new PointF(0.44f,0.48f), new PointF(0.56f, 0.52f))
 			},
 			new ScenePreset("Circle")
 			{
-				new Circle(new PointF(0.5f, 0.5f), 0.05f)				
+				new Circle(new PointF(0.5f, 0.5f), 0.05f)
 			},
 			new ScenePreset("Line")
 			{

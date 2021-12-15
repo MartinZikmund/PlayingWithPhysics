@@ -51,6 +51,15 @@
 					Command="{x:Bind Model.PickScenePresetCommand}"
 					Content="{extensions:Localize Key=PickScenePreset}" />
 				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" Content="{extensions:Localize Key=ShowWaveEdge}" />
+				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowWave, Mode=TwoWay}" Content="{extensions:Localize Key=ShowWave}" />
+				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" Content="{extensions:Localize Key=ShowSignificantPoints}" />
+				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowObject, Mode=TwoWay}" Content="{extensions:Localize Key=ShowSource}" />
+
+				<TextBlock Text="{extensions:Localize Key=Drawing}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+				<ToggleSwitch IsOn="{x:Bind Model.DrawingState.IsDrawing, Mode=TwoWay}" OnContent="{extensions:Localize Key=On}" OffContent="{extensions:Localize Key=Off}" />
+				<Slider Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" Minimum="2" Maximum="20" />
+				<TextBlock Text="{extensions:Localize Key=Source}" />
+				<Ellipse />
 			</StackPanel>
 		</Grid>
 		<Grid
@@ -62,27 +71,29 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
-			<InkToolbar
+			<!--<InkToolbar
                 x:Name="inkToolbar"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
-                TargetInkCanvas="{x:Bind InkCanvas}" />
+                TargetInkCanvas="{x:Bind InkCanvas}" />-->
 			<Grid x:Name="CanvasHolder" Grid.Row="1" Background="#F3F3F3" SizeChanged="CanvasHolder_SizeChanged" />
-			<InkCanvas Grid.Row="1" x:Name="InkCanvas" />
+			<Canvas Grid.Row="1" PointerMoved="CanvasHolder_PointerMoved" PointerPressed="CanvasHolder_PointerMoved" PointerExited="CanvasHolder_PointerExited" x:Name="DrawingSurface" Background="Transparent" />
+			<!--<InkCanvas Grid.Row="1" x:Name="InkCanvas" />-->
 			
 			<sharedControls:SimulationControls
                 x:Name="SimulationControls"
                 Grid.Row="2"
                 d:Visibility="Collapsed"
-				ForwardVisibility="Collapsed"
-				BackwardVisibility="Collapsed"
-				SpeedControlVisibility="Collapsed"
+				ForwardVisibility="Visible"
+				BackwardVisibility="Visible"
+				SpeedControlVisibility="Visible"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
                 JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"

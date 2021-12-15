@@ -20,7 +20,7 @@ namespace Physics.HuygensPrinciple.Logic
 			_currentField = _originalField.Clone();
 			_fieldHeight = _originalField.Height;
 			_fieldWidth = _originalField.Width;
-			_stepper = new HuygensStepper(originalField, 4);
+			_stepper = new HuygensStepper(originalField, 10.5f);
 		}
 
 		public HuygensField OriginalField => _originalField;
