@@ -11,6 +11,7 @@ namespace Physics.HuygensPrinciple.Rendering
 		internal ScenePreset _scene = null;
 		internal HuygensManager _manager = null;
 		internal RenderConfigurationViewModel _renderConfiguration;
+		internal DrawingStateViewModel _drawingState;
 		internal readonly SKColor _waveColor = SKColors.Aqua;
 		internal readonly SKColor _waveEdgeColor = SKColors.Blue;
 		internal readonly SKColor _emptyColor = SKColors.White;
@@ -74,6 +75,11 @@ namespace Physics.HuygensPrinciple.Rendering
 			_renderConfiguration = renderConfiguration;
 		}
 
+		internal void SetDrawingState(DrawingStateViewModel drawingState)
+		{
+			_drawingState = drawingState;
+		}
+
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
@@ -113,6 +119,14 @@ namespace Physics.HuygensPrinciple.Rendering
 			var topLeft = GetRenderTopLeft(sender);
 			foreach (var shape in _scene)
 			{
+				var paint = shape.State switch
+				{
+					CellState.Source => sourcePaint,
+					CellState.Empty => _emptyFillPaint,
+					CellState.Wall => _wallFillPaint,
+					_ => throw new InvalidOperationException()
+				};
+
 				if (shape is Circle circle)
 				{
 					var width = squareSize;
@@ -124,7 +138,8 @@ namespace Physics.HuygensPrinciple.Rendering
 					var dimension = Math.Min(width, height);
 					var radius = circle.Radius * dimension;
 
-					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, circle.State == CellState.Source ? sourcePaint : _wallFillPaint);
+
+					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, paint);
 				}
 				else if (shape is Rectangle rectangle)
 				{
@@ -136,7 +151,7 @@ namespace Physics.HuygensPrinciple.Rendering
 					var left = width * rectangle.TopLeft.X;
 					var right = width * rectangle.BottomRight.X;
 
-					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, rectangle.State == CellState.Source ? sourcePaint : _wallFillPaint);
+					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, paint);
 				}
 			}
 		}

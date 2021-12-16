@@ -3,5 +3,7 @@
 	public interface IShape
 	{
 		void Draw(HuygensField field);
+
+		public CellState State { get; }
 	}
 }

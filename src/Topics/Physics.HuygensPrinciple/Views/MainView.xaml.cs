@@ -15,6 +15,8 @@ namespace Physics.HuygensPrinciple.Views
 {
 	public sealed partial class MainView : MainViewBase
 	{
+		private SolidColorBrush _brushBorder = new SolidColorBrush(Colors.Gray);
+		private SolidColorBrush _emptyBrush = new SolidColorBrush(Colors.White);
 		private SolidColorBrush _sourceBrush = new SolidColorBrush(Colors.DarkOrange);
 		private SolidColorBrush _wallBrush = new SolidColorBrush(Colors.Brown);
 
@@ -78,7 +80,19 @@ namespace Physics.HuygensPrinciple.Views
 				DrawingSurface.Children.Add(child);
 			}
 
-			child.Fill = Model.DrawingState.IsSource ? _sourceBrush : _wallBrush;
+			var brush = _sourceBrush;
+			switch (Model.DrawingState.SurfaceType)
+			{
+				case CellState.Empty:
+					brush = _emptyBrush;
+					break;
+				case CellState.Wall:
+					brush = _wallBrush;
+					break;
+			}
+			child.Fill = brush;
+			child.Stroke = _brushBorder;
+			child.StrokeThickness = 1;
 			child.Width = Model.DrawingState.Size;
 			child.Height = Model.DrawingState.Size;
 
@@ -96,18 +110,24 @@ namespace Physics.HuygensPrinciple.Views
 				return;
 			}
 
-			var relativeX = x / DrawingSurface.Width;
-			var relativeY = y / DrawingSurface.Height;
-			var relativeSize = Model.DrawingState.Size / DrawingSurface.Width;
+			var relativeSize = Model.DrawingState.Size / DrawingSurface.Width / 2;
+			var relativeX = point.Position.X / DrawingSurface.Width;
+			var relativeY = point.Position.Y / DrawingSurface.Height;
+			
 			IShape addedShape;
 			if (Model.DrawingState.Shape == ShapeType.Circle)
 			{
-				addedShape = new Circle(new System.Drawing.PointF((float)relativeX, (float)relativeY), (float)relativeSize, Model.DrawingState.IsSource ? CellState.Source : CellState.Wall);
+				addedShape = new Circle(new System.Drawing.PointF((float)relativeX, (float)relativeY), (float)relativeSize, Model.DrawingState.SurfaceType);
 			}
 			else
 			{
-				addedShape = new Circle(new System.Drawing.PointF((float)relativeX, (float)relativeY), (float)relativeSize, Model.DrawingState.IsSource ? CellState.Source : CellState.Wall);
+				var left = relativeX - relativeSize;
+				var top = relativeY - relativeSize;
+				var right = relativeX + relativeSize;
+				var bottom = relativeY + relativeSize;
+				addedShape = new Logic.Rectangle(new System.Drawing.PointF((float)left, (float)top), new System.Drawing.PointF((float)right, (float)bottom), Model.DrawingState.SurfaceType);
 			}
+
 			Model.CurrentPreset.Add(addedShape);
 		}
 	}

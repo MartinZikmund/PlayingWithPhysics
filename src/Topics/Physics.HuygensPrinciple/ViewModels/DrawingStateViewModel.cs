@@ -19,8 +19,8 @@ namespace Physics.HuygensPrinciple.ViewModels
 			{
 				if (_isDrawing != value)
 				{
-					IsDrawingChanged?.Invoke(this, EventArgs.Empty);
 					_isDrawing = value;
+					IsDrawingChanged?.Invoke(this, EventArgs.Empty);
 				}
 			}
 		}
@@ -28,7 +28,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public float Size { get; set; } = 10;
 
-		public bool IsSource { get; set; } = true;
+		public CellState SurfaceType { get; set; } = CellState.Source;
 
 		public event EventHandler IsDrawingChanged;
 	}

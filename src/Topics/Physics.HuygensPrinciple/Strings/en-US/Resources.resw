@@ -127,8 +127,35 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Huygens–Fresnel Principle</value>
   </data>
+  <data name="BrushShape" xml:space="preserve">
+    <value>Brush shape</value>
+  </data>
+  <data name="BrushSize" xml:space="preserve">
+    <value>Brush size</value>
+  </data>
+  <data name="CellState_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="CellState_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="CellState_Wall" xml:space="preserve">
+    <value>Wall</value>
+  </data>
+  <data name="Drawing" xml:space="preserve">
+    <value>Drawing</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
   <data name="PickScenePreset" xml:space="preserve">
     <value>Pick a scenario...</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="ScenePreset_Brick" xml:space="preserve">
     <value>Brick</value>
@@ -154,19 +181,28 @@ Graphics: Petr Weinlich</value>
   <data name="ScenePreset_Square" xml:space="preserve">
     <value>Square</value>
   </data>
+  <data name="ShapeType_Circle" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="ShapeType_Square" xml:space="preserve">
+    <value>Square</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Huygens–Fresnel Principle</value>
   </data>
-  <data name="ShowObject" xml:space="preserve">
-    <value>Show object</value>
-  </data>
-  <data name="ShowSignificantPoints" xml:space="preserve">
+  <data name="ShowSamplePoints" xml:space="preserve">
     <value>Show sample points</value>
+  </data>
+  <data name="ShowSource" xml:space="preserve">
+    <value>Show source</value>
   </data>
   <data name="ShowWave" xml:space="preserve">
     <value>Show wave</value>
   </data>
   <data name="ShowWaveEdge" xml:space="preserve">
     <value>Show edge of wave</value>
+  </data>
+  <data name="SurfaceType" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

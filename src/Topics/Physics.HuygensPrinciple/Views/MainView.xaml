@@ -45,21 +45,37 @@
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<StackPanel Grid.Row="1" Padding="8" Margin="0,12,0,0">
+			<StackPanel Grid.Row="1" Spacing="8" Padding="8" Margin="0,12,0,0">
 				<Button
 					HorizontalAlignment="Stretch"
 					Command="{x:Bind Model.PickScenePresetCommand}"
 					Content="{extensions:Localize Key=PickScenePreset}" />
 				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" Content="{extensions:Localize Key=ShowWaveEdge}" />
 				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowWave, Mode=TwoWay}" Content="{extensions:Localize Key=ShowWave}" />
-				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" Content="{extensions:Localize Key=ShowSignificantPoints}" />
+				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" Content="{extensions:Localize Key=ShowSamplePoints}" />
 				<CheckBox IsChecked="{x:Bind Model.RenderConfiguration.ShowObject, Mode=TwoWay}" Content="{extensions:Localize Key=ShowSource}" />
 
 				<TextBlock Text="{extensions:Localize Key=Drawing}" Style="{ThemeResource SubtitleTextBlockStyle}" />
 				<ToggleSwitch IsOn="{x:Bind Model.DrawingState.IsDrawing, Mode=TwoWay}" OnContent="{extensions:Localize Key=On}" OffContent="{extensions:Localize Key=Off}" />
-				<Slider Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" Minimum="2" Maximum="20" />
-				<TextBlock Text="{extensions:Localize Key=Source}" />
-				<Ellipse />
+				<Slider Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" Minimum="2" Maximum="20" Header="{extensions:Localize Key=BrushSize}" />
+				<ComboBox Header="{extensions:Localize Key=SurfaceType}" ItemsSource="{x:Bind Model.SurfaceTypes}" SelectedItem="{x:Bind Model.DrawingState.SurfaceType, Mode=TwoWay}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<ComboBox Header="{extensions:Localize Key=BrushShape}" ItemsSource="{x:Bind Model.ShapeTypes}" SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<Button
+					HorizontalAlignment="Stretch"
+					Command="{x:Bind Model.ResetPresetCommand}"
+					Content="{extensions:Localize Key=Reset}" />
 			</StackPanel>
 		</Grid>
 		<Grid
