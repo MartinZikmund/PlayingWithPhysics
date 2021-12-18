@@ -24,22 +24,34 @@ namespace Physics.HuygensPrinciple.Rendering
 				return;
 			}
 
-
-			var topLeft = _controller.GetRenderTopLeft(sender);
-			var size = _controller.GetSquareSize(sender);
-			var radius = (float)_controller.SimulationTime.TotalTime.TotalSeconds * 10;
-
-			if (_controller._renderConfiguration.ShowWaveEdge)
+			if (!_controller._drawingState.IsDrawing)
 			{
+				var topLeft = _controller.GetRenderTopLeft(sender);
+				var size = _controller.GetSquareSize(sender);
+				var radius = (float)_controller.SimulationTime.TotalTime.TotalSeconds * 10;
+
+				if (_controller._renderConfiguration.ShowWaveEdge)
+				{
+					foreach (var point in _primarySources)
+					{
+						args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._waveEdgeStrokePaint);
+					}
+				}
+
+				var wavePaint = _controller._renderConfiguration.ShowWave ? _controller._waveFillPaint : _controller._emptyFillPaint;
 				foreach (var point in _primarySources)
 				{
-					args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._waveEdgeStrokePaint);
+					args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, wavePaint);
 				}
-			}
 
-			foreach (var point in _primarySources)
-			{
-				args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._waveFillPaint);
+				if (_controller._renderConfiguration.ShowSignificantPoints)
+				{
+					foreach (var point in _controller._scene.SignificantPoints)
+					{
+						args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, 2, _controller._significantPointPaint);
+						args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._significantPointEllipsePaint);
+					}
+				}
 			}
 
 			_controller.DrawInitalScene(sender, args);
@@ -52,7 +64,6 @@ namespace Physics.HuygensPrinciple.Rendering
 			_primarySources = manager.GetBorderPoints(manager.OriginalField, Logic.CellState.Source)
 				.Select(p => new SKPoint(p.X * 1.0f / (manager.FieldWidth - 1), p.Y * 1.0f / (manager.FieldHeight - 1)))
 				.ToList();
-
 		}
 
 		public void Update(ISkiaCanvas sender)

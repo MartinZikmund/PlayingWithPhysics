@@ -47,9 +47,12 @@ namespace Physics.HuygensPrinciple.Rendering
 				return;
 			}
 
-			var squareSize = _controller.GetSquareSize(sender);
-			var topLeft = _controller.GetRenderTopLeft(sender);
-			args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+			if (!_controller._drawingState.IsDrawing)
+			{
+				var squareSize = _controller.GetSquareSize(sender);
+				var topLeft = _controller.GetRenderTopLeft(sender);
+				args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+			}
 			_controller.DrawInitalScene(sender, args);
 		}
 

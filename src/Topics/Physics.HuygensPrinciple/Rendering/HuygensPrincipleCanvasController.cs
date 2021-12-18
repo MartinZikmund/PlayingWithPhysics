@@ -11,6 +11,7 @@ namespace Physics.HuygensPrinciple.Rendering
 		internal ScenePreset _scene = null;
 		internal HuygensManager _manager = null;
 		internal RenderConfigurationViewModel _renderConfiguration;
+		internal DrawingStateViewModel _drawingState;
 		internal readonly SKColor _waveColor = SKColors.Aqua;
 		internal readonly SKColor _waveEdgeColor = SKColors.Blue;
 		internal readonly SKColor _emptyColor = SKColors.White;
@@ -36,7 +37,26 @@ namespace Physics.HuygensPrinciple.Rendering
 			StrokeWidth = 4
 		};
 
+		internal readonly SKPaint _significantPointPaint = new SKPaint()
+		{
+			IsStroke = false,
+			IsAntialias = true,
+		};
+
+		internal readonly SKPaint _significantPointEllipsePaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2
+		};
+
 		internal readonly SKPaint _sourceFillPaint = new SKPaint()
+		{
+			IsStroke = false,
+			IsAntialias = true
+		};
+
+		internal readonly SKPaint _emptyFillPaint = new SKPaint()
 		{
 			IsStroke = false,
 			IsAntialias = true
@@ -55,6 +75,11 @@ namespace Physics.HuygensPrinciple.Rendering
 			_renderConfiguration = renderConfiguration;
 		}
 
+		internal void SetDrawingState(DrawingStateViewModel drawingState)
+		{
+			_drawingState = drawingState;
+		}
+
 		public HuygensPrincipleCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
@@ -62,6 +87,9 @@ namespace Physics.HuygensPrinciple.Rendering
 			_wallFillPaint.Color = _wallColor;
 			_sourceFillPaint.Color = _sourceColor;
 			_waveEdgeStrokePaint.Color = _waveEdgeColor;
+			_emptyFillPaint.Color = _emptyColor;
+			_significantPointEllipsePaint.Color = SKColors.Red;
+			_significantPointPaint.Color = SKColors.Red;
 		}
 
 		public IHuygensVariantRenderer Renderer { get; private set; }
@@ -86,10 +114,19 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		internal void DrawInitalScene(ISkiaCanvas sender, SKSurface args)
 		{
+			var sourcePaint = _renderConfiguration.ShowObject ? _sourceFillPaint : _emptyFillPaint;
 			var squareSize = GetSquareSize(sender);
 			var topLeft = GetRenderTopLeft(sender);
 			foreach (var shape in _scene)
 			{
+				var paint = shape.State switch
+				{
+					CellState.Source => sourcePaint,
+					CellState.Empty => _emptyFillPaint,
+					CellState.Wall => _wallFillPaint,
+					_ => throw new InvalidOperationException()
+				};
+
 				if (shape is Circle circle)
 				{
 					var width = squareSize;
@@ -101,7 +138,8 @@ namespace Physics.HuygensPrinciple.Rendering
 					var dimension = Math.Min(width, height);
 					var radius = circle.Radius * dimension;
 
-					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, circle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
+
+					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, paint);
 				}
 				else if (shape is Rectangle rectangle)
 				{
@@ -113,7 +151,7 @@ namespace Physics.HuygensPrinciple.Rendering
 					var left = width * rectangle.TopLeft.X;
 					var right = width * rectangle.BottomRight.X;
 
-					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, rectangle.State == CellState.Source ? _sourceFillPaint : _wallFillPaint);
+					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, paint);
 				}
 			}
 		}

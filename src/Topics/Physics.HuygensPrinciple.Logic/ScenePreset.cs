@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using Physics.Shared.Logic.Geometry;
 
 namespace Physics.HuygensPrinciple.Logic
 {
@@ -7,17 +11,27 @@ namespace Physics.HuygensPrinciple.Logic
 	{
 		private readonly List<IShape> _shapes = new List<IShape>();
 
-		public ScenePreset(string name)
+		public ScenePreset(string name, PointF[] significantPoints = null)
 		{
 			Name = name;
+			SignificantPoints = significantPoints ?? Array.Empty<PointF>();
 		}
 
 		public string Name { get; }
+
+		public PointF[] SignificantPoints { get; }
 
 		public void Add(IShape shape) => _shapes.Add(shape);
 
 		public IEnumerator<IShape> GetEnumerator() => _shapes.GetEnumerator();
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+		public ScenePreset Clone()
+		{
+			var preset = new ScenePreset(Name, SignificantPoints.ToArray());
+			preset._shapes.AddRange(_shapes);
+			return preset;
+		}
 	}
 }

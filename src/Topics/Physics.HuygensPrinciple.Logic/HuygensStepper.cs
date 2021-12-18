@@ -22,13 +22,13 @@ namespace Physics.HuygensPrinciple.Logic
 			new Point(1, -1),
 		};
 
-		private readonly int _stepRadius;
+		private readonly float _stepRadius;
 
 		private readonly List<StepInfo> _stepsCache = new List<StepInfo>();
 
 		private HuygensField _originalField;
 
-		public HuygensStepper(HuygensField field, int stepRadius)
+		public HuygensStepper(HuygensField field, float stepRadius)
 		{
 			_originalField = field;
 			_stepRadius = stepRadius;
