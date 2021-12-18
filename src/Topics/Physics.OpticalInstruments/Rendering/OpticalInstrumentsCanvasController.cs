@@ -21,6 +21,7 @@ namespace Physics.OpticalInstruments.Rendering
 		public override void Draw(ISkiaCanvas sender, SKSurface args) => Renderer?.Draw(sender, args);
 
 		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
+
 		internal bool TryGetObjectPosition(SKPoint pointerPoint, out SKPoint objectPoint)
 		{
 			if (Renderer == null)

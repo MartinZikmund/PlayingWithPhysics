@@ -21,6 +21,5 @@ namespace Physics.StationaryWaves.Logic
 		}
 
 		public float? GetY(float x, float time) => _first ? _wavePhysicsService.CalculateFirstWaveY(x, time) : _wavePhysicsService.CalculateSecondWaveY(x, time);
-
 	}
 }
