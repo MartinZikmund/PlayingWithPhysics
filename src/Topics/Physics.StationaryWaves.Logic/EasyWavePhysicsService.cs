@@ -6,27 +6,82 @@ namespace Physics.StationaryWaves.Logic
 {
 	public class EasyWavePhysicsService : IWavePhysicsService
 	{
-		public const double MaxTime = 6 * Math.PI;
-		public List<(float Time, float Y)> Values = new List<(float, float)>();
+		private const float XMax = 2 * (float)Math.PI * 3 / 2;
 
-		public EasyWavePhysicsService(WaveInfo wave)
+		private readonly WaveInfo _waveInfo = new WaveInfo()
 		{
-			Wave = wave;
+			Amplitude = 1,
+			T = 1,
+			WaveLength = 2 * (float)Math.PI
+		};
+
+		private readonly BounceType _leftEndBounce;
+		private readonly float _rightEndDistance;
+
+		public EasyWavePhysicsService(BounceType leftEndBounce, float rightEndDistance)
+		{
+			_leftEndBounce = leftEndBounce;
+			_rightEndDistance = rightEndDistance;
 		}
 
-		public float CalculateFirstWaveY(float x, float time)
+		public float? CalculateCompoundY(float x, float time)
 		{
-			//y = 3.sin⁡(t - x)
-			return 3.0f * (float)Math.Sin(time - x);
+			if (x < 0 || x > _rightEndDistance)
+			{
+				return null;
+			}
+
+			var firstWaveY = CalculateFirstWaveY(x, time);
+			var secondWaveY = CalculateSecondWaveY(x, time);
+			if (firstWaveY == null || secondWaveY == null)
+			{
+				return null;
+			}
+
+			return firstWaveY.Value + secondWaveY.Value;
 		}
 
-
-		public float CalculateSecondWaveY(float x, float time)
+		public float? CalculateFirstWaveY(float x, float time)
 		{
-			//y = k.3.sin⁡(t + x)
-			return (float)Wave.SelectedBouncingPoint * 3.0f * (float)Math.Sin(time + x);
+			var y =
+				_waveInfo.Amplitude *
+				Math.Sin(
+					2 * Math.PI *
+					((time / _waveInfo.T) - (x / _waveInfo.WaveLength)));
+
+			return (float)y;
 		}
 
-		public WaveInfo Wave { get; set; }
+		public float? CalculateSecondWaveY(float x, float time)
+		{
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+
+			var y =
+				_waveInfo.Amplitude *
+				Math.Sin(
+					2 * Math.PI *
+					((time / _waveInfo.T) + ((x + leftEndConstant * Math.PI) / _waveInfo.WaveLength)));
+
+			return (float)y;
+		}
+
+		public float? CalculateWavePackage(float x, float time)
+		{
+			if (x > _rightEndDistance || x < 0)
+			{
+				return null;
+			}
+
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+
+			var y1 =
+				2 * _waveInfo.Amplitude *
+				Math.Sin(
+					2 * Math.PI *
+					(leftEndConstant * Math.PI / 2 +
+					x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
+
+			return (float)Math.Abs(y1);
+		}
 	}
 }

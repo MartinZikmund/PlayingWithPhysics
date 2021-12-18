@@ -6,33 +6,69 @@ namespace Physics.StationaryWaves.Logic
 {
 	public class AdvancedWavePhysicsService : IWavePhysicsService
 	{
-		public WaveInfo Wave { get; set; }
-		private const float B = 1;
-		public float MaxY => Math.Abs(Wave.Amplitude);
+		private const float XMax = 1;
 
-		public float MinY => -Math.Abs(Wave.Amplitude);
-
-		public AdvancedWavePhysicsService(WaveInfo wave)
+		private readonly WaveInfo _waveInfo = new WaveInfo()
 		{
-			Wave = wave;
+			Amplitude = 1,
+			WaveLength = 1,
+			T = 1
+		};
+
+		private readonly BounceType _bounceType;
+
+		public AdvancedWavePhysicsService(BounceType bounceType)
+		{
+			_bounceType = bounceType;
 		}
 
-		public float CalculateCompoundY(float x, float time)
-		{
-			return CalculateFirstWaveY(x, time) + CalculateSecondWaveY(x, time);
+		public float? CalculateWaveFrontX(float time) =>
+			_waveInfo.WaveLength * time / _waveInfo.T;
 
+		public float? CalculateCompoundY(float x, float time)
+		{
+			var firstWaveY = CalculateFirstWaveY(x, time);
+			var secondWaveY = CalculateSecondWaveY(x, time);
+			if (firstWaveY == null || secondWaveY == null)
+			{
+				return null;
+			}
+
+			return firstWaveY.Value + secondWaveY.Value;
 		}
 
-		public float CalculateFirstWaveY(float x, float time)
+		public float? CalculateFirstWaveY(float x, float time)
 		{
-			//y1=A*sin⁡(t/b-x)
-			return Wave.Amplitude * (float)Math.Sin(time / B - x);
+			if (x > CalculateWaveFrontX(time))
+			{
+				return null;
+			}
+
+			var y =
+				_waveInfo.Amplitude *
+				Math.Sin(
+					2 * Math.PI *
+					((time / _waveInfo.T) - (x / _waveInfo.WaveLength)));
+
+			return (float)y;
 		}
 
-		public float CalculateSecondWaveY(float x, float time)
+		public float? CalculateSecondWaveY(float x, float time)
 		{
-			//y2=A*sin⁡(t/b+x-a)
-			return Wave.Amplitude * (float)Math.Sin(time / B + x - (int)Wave.A);
+			if (2 * XMax - x > CalculateWaveFrontX(time))
+			{
+				return null;
+			}
+
+			var bounceConstant = _bounceType == BounceType.Static ? 0.5f : 0f;
+
+			var y =
+				_waveInfo.Amplitude *
+				Math.Sin(
+					2 * Math.PI *
+					((time / _waveInfo.T) - (2 * XMax - x + bounceConstant) / _waveInfo.WaveLength));
+
+			return (float)y;
 		}
 	}
 }

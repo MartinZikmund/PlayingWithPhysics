@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Topics", "Topics", "{381E6158-59BC-4D40-9F33-084C4140E44D}"
 EndProject
@@ -142,7 +142,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.OpticalInstruments"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.OpticalInstruments.Logic", "src\Topics\Physics.OpticalInstruments.Logic\Physics.OpticalInstruments.Logic.csproj", "{CD2EC75C-B688-4CF8-A649-DD4330392067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.HuygensPrinciple.Logic.Benchmarks", "src\Topics\Physics.HuygensPrinciple.Logic.Benchmarks\Physics.HuygensPrinciple.Logic.Benchmarks.csproj", "{CC75164F-5FC3-47B6-ABCD-08CFA2583320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.HuygensPrinciple.Logic.Benchmarks", "src\Topics\Physics.HuygensPrinciple.Logic.Benchmarks\Physics.HuygensPrinciple.Logic.Benchmarks.csproj", "{CC75164F-5FC3-47B6-ABCD-08CFA2583320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.StationaryWaves.Logic.Tests", "tests\Topics\Physics.StationaryWaves.Logic.Tests\Physics.StationaryWaves.Logic.Tests.csproj", "{83AD9B31-165F-4EA0-9ABE-108E55B44488}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1212,6 +1214,26 @@ Global
 		{CC75164F-5FC3-47B6-ABCD-08CFA2583320}.Release|x64.Build.0 = Release|Any CPU
 		{CC75164F-5FC3-47B6-ABCD-08CFA2583320}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC75164F-5FC3-47B6-ABCD-08CFA2583320}.Release|x86.Build.0 = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|ARM.Build.0 = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|x64.Build.0 = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Debug|x86.Build.0 = Debug|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|ARM.ActiveCfg = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|ARM.Build.0 = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|ARM64.Build.0 = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|x64.ActiveCfg = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|x64.Build.0 = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|x86.ActiveCfg = Release|Any CPU
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1282,6 +1304,7 @@ Global
 		{35A2F5BB-CF15-4E5F-8D6E-F2BCC5FF578E} = {08EC2A0E-8014-4417-B18A-8D5CC035C007}
 		{CD2EC75C-B688-4CF8-A649-DD4330392067} = {08EC2A0E-8014-4417-B18A-8D5CC035C007}
 		{CC75164F-5FC3-47B6-ABCD-08CFA2583320} = {26DC5E86-50A6-4100-BEC5-A83C755026FB}
+		{83AD9B31-165F-4EA0-9ABE-108E55B44488} = {75291074-9766-4B79-AE65-7BFE6A41A28E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED552938-F303-42AA-9225-9FC231B27BB4}
