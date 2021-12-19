@@ -37,7 +37,7 @@
 		<Grid
             x:Name="MenuPane"
             Grid.Column="0"
-            RequestedTheme="Dark"
+            RequestedTheme="Light"
             RowSpacing="8">
 			<Grid.Background>
 				<AcrylicBrush
@@ -63,7 +63,7 @@
                         GoBackCommand="{x:Bind Model.GoBackCommand}"
                         Text="{extensions:Localize Key=ShortAppName}" />
 
-					<StackPanel Grid.Row="1" Visibility="{x:Bind Model.IsEasy, Mode=OneWay}">
+					<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsEasy, Mode=OneWay}">
 						<ComboBox Header="{extensions:Localize Key=LeftEndType}" ItemsSource="{x:Bind Model.EasyBounceTypes}" SelectedItem="{x:Bind Model.EasyBounceType, Mode=TwoWay}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -75,7 +75,7 @@
 						<Slider Background="Red" Orientation="Horizontal" Header="{extensions:Localize Key=RightEndDistance}" Value="{x:Bind Model.RightEndDistance, Mode=TwoWay}" Minimum="0.5" Maximum="20" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" />
 					</StackPanel>
 
-					<StackPanel Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+					<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
 						<ComboBox Header="{extensions:Localize Key=RightEndType}" ItemsSource="{x:Bind Model.AdvancedBounceTypes}" SelectedItem="{x:Bind Model.AdvancedBounceType, Mode=TwoWay}">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
