@@ -31,17 +31,7 @@ namespace Physics.StationaryWaves.ViewModels
 		}
 
 		public EasyWavePhysicsService PhysicsService => _physicsService;
-
-		public string Label
-		{
-			get => WaveInfo.Label;
-			set
-			{
-				WaveInfo.Label = value;
-				RaisePropertyChanged();
-			}
-		}
-
+		
 		public void UpdateCurrentValues(float timeElapsed)
 		{
 			TimeElapsed = timeElapsed.ToString("0.##");
@@ -50,21 +40,7 @@ namespace Physics.StationaryWaves.ViewModels
 			//CurrentYText = currentY?.ToString(" 0.00;-0.00; 0.00") ?? Constants.NoValueString;
 			RaisePropertyChanged(nameof(WaveInfo));
 		}
-
-		public string AVariantText
-		{
-			get
-			{
-				switch (WaveInfo.A)
-				{
-					case AVariant.Pi:
-						return Localizer.Instance["AVariantPiLabel"];
-					case AVariant.Zero:
-					default:
-						return Localizer.Instance["AVariantZeroLabel"];
-				}
-			}
-		}
+		
 		public string TimeElapsed { get; private set; }
 
 		public string CurrentYText { get; private set; }

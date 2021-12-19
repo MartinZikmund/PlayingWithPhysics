@@ -120,6 +120,12 @@
   <data name="AddWave" xml:space="preserve">
     <value>Add wave</value>
   </data>
+  <data name="AdvancedBounceType_Oscillating" xml:space="preserve">
+    <value>Oscillating</value>
+  </data>
+  <data name="AdvancedBounceType_Static" xml:space="preserve">
+    <value>Static</value>
+  </data>
   <data name="ALabel" xml:space="preserve">
     <value>a:</value>
   </data>
@@ -151,6 +157,15 @@ Graphics: Petr Weinlich</value>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BounceType" xml:space="preserve">
+    <value>Bounce type</value>
+  </data>
+  <data name="BounceType_Oscillating" xml:space="preserve">
+    <value>Oscillating</value>
+  </data>
+  <data name="BounceType_Static" xml:space="preserve">
+    <value>Static</value>
+  </data>
   <data name="BouncingPoint" xml:space="preserve">
     <value>Bouncing point</value>
   </data>
@@ -169,11 +184,20 @@ Graphics: Petr Weinlich</value>
   <data name="EditWave" xml:space="preserve">
     <value>Edit Wave</value>
   </data>
+  <data name="LeftEndType" xml:space="preserve">
+    <value>Left end type</value>
+  </data>
   <data name="OnlySecondWave" xml:space="preserve">
     <value>(only applies to the second wave)</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
+  </data>
+  <data name="RightEndDistance" xml:space="preserve">
+    <value>Right end distance</value>
+  </data>
+  <data name="RightEndType" xml:space="preserve">
+    <value>Right end type</value>
   </data>
   <data name="SetWaves" xml:space="preserve">
     <value>Set waves</value>

@@ -6,8 +6,6 @@ namespace Physics.StationaryWaves.Logic
 {
 	public class EasyWavePhysicsService : IWavePhysicsService
 	{
-		private const float XMax = 2 * (float)Math.PI * 3 / 2;
-
 		private readonly WaveInfo _waveInfo = new WaveInfo()
 		{
 			Amplitude = 1,
@@ -23,6 +21,12 @@ namespace Physics.StationaryWaves.Logic
 			_leftEndBounce = leftEndBounce;
 			_rightEndDistance = rightEndDistance;
 		}
+
+		public float Amplitude => _waveInfo.Amplitude;
+
+		public float MinX => 0;
+
+		public float MaxX => _rightEndDistance;
 
 		public float? CalculateCompoundY(float x, float time)
 		{

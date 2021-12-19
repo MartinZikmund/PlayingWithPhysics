@@ -120,6 +120,12 @@
   <data name="AddWave" xml:space="preserve">
     <value>Přidat vlnění</value>
   </data>
+  <data name="AdvancedBounceType_Oscillating" xml:space="preserve">
+    <value>Odraz na volném konci</value>
+  </data>
+  <data name="AdvancedBounceType_Static" xml:space="preserve">
+    <value>Odraz na pevném konci</value>
+  </data>
   <data name="ALabel" xml:space="preserve">
     <value>a:</value>
   </data>
@@ -151,6 +157,15 @@ Grafika: Petr Weinlich</value>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BounceType" xml:space="preserve">
+    <value>Typ odrazu</value>
+  </data>
+  <data name="BounceType_Oscillating" xml:space="preserve">
+    <value>Kmitna</value>
+  </data>
+  <data name="BounceType_Static" xml:space="preserve">
+    <value>Uzel</value>
+  </data>
   <data name="BouncingPoint" xml:space="preserve">
     <value>Místo odrazu</value>
   </data>
@@ -169,11 +184,17 @@ Grafika: Petr Weinlich</value>
   <data name="EditWave" xml:space="preserve">
     <value>Upravit vlnění</value>
   </data>
+  <data name="LeftEndType" xml:space="preserve">
+    <value>Levý konec</value>
+  </data>
   <data name="OnlySecondWave" xml:space="preserve">
     <value>(platí jen pro druhé vlnění)</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Rozsah</value>
+  </data>
+  <data name="RightEndDistance" xml:space="preserve">
+    <value>Vzdálenost pravého konce</value>
   </data>
   <data name="SetWaves" xml:space="preserve">
     <value>Nastavit vlnění</value>

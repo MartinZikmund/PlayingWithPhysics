@@ -123,9 +123,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AddOrUpdateWave.xaml.cs">
-      <DependentUpon>AddOrUpdateWave.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,7 +136,6 @@
     <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddOrUpdateWaveViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WaveInfoViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -261,10 +257,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Dialogs\AddOrUpdateWave.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ValuesTable\ValuesTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

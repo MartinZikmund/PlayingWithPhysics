@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Physics.Shared.UI.Infrastructure.Topics;
@@ -10,7 +11,6 @@ using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.Services.Dialogs;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
-using Physics.StationaryWaves.Dialogs;
 using Physics.StationaryWaves.Logic;
 using Physics.StationaryWaves.Rendering;
 using Physics.StationaryWaves.ValuesTable;
@@ -46,31 +46,29 @@ namespace Physics.StationaryWaves.ViewModels
 			_contentDialogHelper = contentDialogHelper;
 		}
 
-		public async void AddWave()
-		{
-			{
-				try
-				{
-					var resourceLoader = ResourceLoader.GetForCurrentView();
-					AddOrUpdateWaveViewModel dialogViewModel = new AddOrUpdateWaveViewModel(Difficulty);
-					var dialog = new AddOrUpdateWave();
-					dialog.DataContext = dialogViewModel;
-					var result = await dialog.ShowAsync();
-					if (result == ContentDialogResult.Primary)
-					{
-						Wave = new WaveInfoViewModel(dialogViewModel.ResultWaveInfo);
-						Windows.Storage.ApplicationData.Current.LocalSettings.Values["ValueTable_Time"] = null;
-						Windows.Storage.ApplicationData.Current.LocalSettings.Values["ValueTable_DistanceInterval"] = null;
-						//await RaisePropertyChanged(nameof(AddWaveEnabled));
-						await StartSimulationAsync();
-					}
-				}
-				catch (Exception ex)
-				{
-					await _contentDialogHelper.ShowAsync("Error", ex.ToString());
-				}
-			}
-		}
+		public bool IsAdvanced => Difficulty == DifficultyOption.Advanced;
+
+		public bool IsEasy => Difficulty == DifficultyOption.Easy;
+
+		public float RightEndDistance { get; set; } = 2 * (float)Math.PI;
+
+		public AdvancedBounceType AdvancedBounceType { get; set; } = AdvancedBounceType.Oscillating;
+
+		public AdvancedBounceType[] AdvancedBounceTypes { get; } = Enum.GetValues(typeof(AdvancedBounceType))
+			.OfType<AdvancedBounceType>()
+			.ToArray();
+
+		public BounceType EasyBounceType { get; set; } = BounceType.Oscillating;
+
+		public BounceType[] EasyBounceTypes { get; } = Enum.GetValues(typeof(BounceType))
+			.OfType<BounceType>()
+			.ToArray();
+
+		internal async void OnRightEndDistanceChanged() => await StartSimulationAsync();
+
+		internal async void OnAdvancedBounceTypeChanged() => await StartSimulationAsync();
+
+		internal async void OnEasyBounceTypeChanged() => await StartSimulationAsync();
 
 		private async Task StartSimulationAsync()
 		{
@@ -84,8 +82,15 @@ namespace Physics.StationaryWaves.ViewModels
 			await _controller.RunOnGameLoopAsync(() =>
 			{
 				SimulationPlayback.Play();
-				_controller.SetActiveWaves(Wave.WaveInfo);
-				_controller.StartSimulation();
+				SimulationPlayback.PlaybackSpeed = 0.25f;
+				if (Difficulty == DifficultyOption.Easy)
+				{
+					_controller.StartSimulation(EasyBounceType, RightEndDistance);
+				}
+				else
+				{
+					_controller.StartSimulation((BounceType)(int)AdvancedBounceType, RightEndDistance);
+				}
 			});
 			FocusSimulationControls();
 		}
@@ -99,38 +104,37 @@ namespace Physics.StationaryWaves.ViewModels
 
 		private async Task ShowValuesTableAsync()
 		{
-			var physicsService = new AdvancedWavePhysicsService(Wave.WaveInfo);
-			await ShowValuesTableAsync(Wave.WaveInfo, physicsService, false);
+			//await ShowValuesTableAsync(Wave.WaveInfo, physicsService, false);
 		}
 
 		private async Task ShowValuesTableAsync(WaveInfo waveInfo, IWavePhysicsService physicsService, bool compound)
 		{
-			var newWindow = await AppWindow.TryCreateAsync();
-			var appWindowContentFrame = new Frame();
-			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+			//var newWindow = await AppWindow.TryCreateAsync();
+			//var appWindowContentFrame = new Frame();
+			//appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
-			string title = waveInfo?.Label ?? Localizer.Instance.GetString("StationaryWaves");
+			//string title = waveInfo?.Label ?? Localizer.Instance.GetString("StationaryWaves");
 
-			var valuesTableService = new TableService(physicsService, compound);
-			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
-			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
-			// Attach the XAML content to the window.
-			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
-			newWindow.Title = title;
+			//var valuesTableService = new TableService(physicsService, compound);
+			//var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
+			//(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+			//// Attach the XAML content to the window.
+			//ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			//newWindow.Title = title;
 
-			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
-			newWindow.TitleBar.ForegroundColor = Colors.White;
-			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.RequestSize(new Size(640, 400));
-			var shown = await newWindow.TryShowAsync();
+			//newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+			//newWindow.TitleBar.ForegroundColor = Colors.White;
+			//newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			//newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			//newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			//newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+			//newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			//newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			//newWindow.RequestSize(new Size(640, 400));
+			//var shown = await newWindow.TryShowAsync();
 		}
 
-		public void SetController(StationaryWavesCanvasController controller)
+		public async void SetController(StationaryWavesCanvasController controller)
 		{
 			if (controller is null)
 			{
@@ -138,7 +142,11 @@ namespace Physics.StationaryWaves.ViewModels
 			}
 
 			_controller = controller;
+			_controller.SetVariantRenderer(Difficulty == DifficultyOption.Easy ?
+				(StationaryWavesRenderer)new EasyWavesRenderer(_controller) :
+				new AdvancedWavesRenderer(_controller));
 			SimulationPlayback.SetController(_controller);
+			await StartSimulationAsync();
 		}
 	}
 }

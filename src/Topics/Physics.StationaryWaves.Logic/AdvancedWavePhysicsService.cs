@@ -17,6 +17,12 @@ namespace Physics.StationaryWaves.Logic
 
 		private readonly BounceType _bounceType;
 
+		public float Amplitude => _waveInfo.Amplitude;
+
+		public float MinX => 0;
+
+		public float MaxX => XMax;
+
 		public AdvancedWavePhysicsService(BounceType bounceType)
 		{
 			_bounceType = bounceType;

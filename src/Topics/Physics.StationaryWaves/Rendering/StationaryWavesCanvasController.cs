@@ -13,6 +13,8 @@ namespace Physics.StationaryWaves.Rendering
 		{
 		}
 
+		public ISkiaCanvas Canvas => _canvas;
+
 		public StationaryWavesRenderer Renderer { get; private set; }
 
 		public void SetVariantRenderer(StationaryWavesRenderer renderer) => Renderer = renderer;
@@ -21,8 +23,9 @@ namespace Physics.StationaryWaves.Rendering
 
 		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
 		
-		public abstract void StartSimulation(BounceType bounceType, float width)
+		public void StartSimulation(BounceType bounceType, float width)
 		{
+			Renderer?.StartSimulation(bounceType, width);
 			SimulationTime.Restart();
 			Play();
 		}		
