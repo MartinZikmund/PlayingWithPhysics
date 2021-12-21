@@ -1,0 +1,246 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par \\textit{Doktor R. V. Jones si olízl suché rty a napil se vody.\\\\\r\\par „Věc se má tak, pane, že Němci mají několik vysílačů, které dokážou vysílat rádiový signál v úzkých paprscích.\\\\\r\r\\par Pokud letadlo letí v levém paprsku, navigátor slyší ve sluchátku Morseho tečky a pokud v pravém, tak čárky. Signály jsou provázány tak, že v místě, kde se paprsky překrývají, navigátor slyší souvislý tón. Pilotovi pak stačí sledovat stopu souvislého signálu a ta ho dovede až k cíli, kde mu další signály, které tento vodící signál kříží, umožní přesné bombardování.\\\\\r\r\\par Obávám se, že Němci zvládli navigaci poslepu. Noc, dým ani maskování tak naše města a továrny neochrání před jejich bombami.\\\\\r\r\\par Vlastně se jedná o upravený Lorenzův systém, který se už nějakých 8 let využívá v civilním letectví. Němci mu říkají X-Gerät a podle výpovědí zajatců by s ním dokázali zacílit jednotlivé budovy, tovární haly či lodě v přístavech“\\\\\r\r\\par Muž sedící za stolem trpělivě čekal, až Jones přednese svoji zprávu, upil brandy z broušené sklenice a pronikavě se zahleděl na doktora.\\\\\r\r\\par „A co můžeme dělat, Jonesi, abychom neprohráli válku?“ zeptal se Winston Churchill a potáhl z prvotřídního doutníku. Byl červen 1940 a zatím neměl moc důvodů k radosti.}\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "1. Co je to vlnění?",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Všichni jsme si už zkusili hodit kámen do vody. V místě, kam kámen dopadl, začne kmitat voda nahoru a dolů a vzápětí se po vodní hladině začnou šířit vlny tvaru soustředných kružnic se středem v místě dopadu kamene. Dopad kamene způsobil kmitavý rozruch, který se postupně přenesl na jiné místo a vyvolal tam kmitání.\\\\\r\r\\par Děj, při kterém se kmitavý rozruch šíří prostředím, se nazývá vlnění. V našem případě se vlnění šířilo po vodní hladině tak, že si částice postupně předávaly energii. Vlněním se tedy nešíří hmota, ale energie.\\\\\r\rVlnění je jedním z nejrozšířenějších fyzikálních dějů. Vlněním se šíří zvuk, světlo, televizní či mobilní signál. Jedná se tedy o problematiku velmi širokou a rozmanitou. My si vysvětlíme základní poznatky o jednom druhu vlnění, kterému říkáme mechanické.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Postupné mechanické vlnění",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Mechanické vlnění probíhá ve všech skupenstvích a je umožněno existencí vazebných sil mezi částicemi pevných, kapalných i plynných látek. Vlnění se v látce šíří všemi směry, my ale budeme pro jednoduchost předpokládat, že se vlnění šíří v jednom převládajícím směru. Pro takovou představu dobře poslouží těleso tvaru dlouhé tyče nebo třeba gumová hadice.\\\\\r\r\\par Takové dlouhé těleso je vlastně řadou bodů, ve které se po rozkmitání počátečního bodu začne šířit rozruch (energie), který se postupně předává mezi body tělesa, a tím se začne šířit tzv. postupné vlnění.\\\\\r\r\\par Pokud si představíme bič, kterým kočí pohání koně, tak jednotlivé body kmitají kolmo na směr postupu vlny. Takovému vlnění říkáme postupné vlnění příčné.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 1: Demonstrace příčného vlnění pomocí vlnostroje\\\\\r\r\\par Pro demonstraci dalšího druhu vlnění nám může dobře posloužit dlouhá pružina. Podobnou můžete zakoupit v hračkářství pod názvem Spring – skákací pružina. Pokud tuto pružinu položíme na stůl, natáhneme ji na šířku stolu a kmitáme rukou ve směru délky pružiny, tak vidíme, jak se pružina střídavě smršťuje a natahuje. Tato změna se šíří pružinou jako postupné vlnění podélné. Při podélném vlnění kmitají body bodové řady ve stejném směru, jakým se vlnění šíří. \\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 2: Demonstrace podélného vlnění pomocí pružiny\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Z uvedených vlnění vyber vlnění podélné:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Vlnění šířící se bičem při švihnutí s tímto bičem.",
+          "Vlnění šířící se po povrchu vodní hladiny po plácnutí rukou do vody.",
+          "Vlnění vzduchu šířící se z reproduktorů k vám při pouštění písničky."
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "3. Fázová rychlost vlnění",
+    "Contents": [
+      {
+        "Type": "Image",
+        "ImageName": "08-03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 3: Postupné vlnění v řadě bodů\\\\\r\r\\par K vysvětlení toho, jak se vlnění šíří, využijeme obrázek č. 3. Jsou zde vyznačeny okamžité polohy řady bodů, do nichž vlnění dospěje postupně v intervalech $\\frac{1}{8}T$, kde $T$ je perioda kmitání zdroje vlnění. Na našem obrázku je tímto zdrojem bod 0. Jestliže rozruch vyjde z počátečního bodu 0, postoupí do bodu 1 za $\\frac{1}{8}T$, do bodu 2 za $\\frac{2}{8}T$, do bodu 3 za $\\frac{3}{8}T$ a do bodu 4 $\\frac{1}{8}T$, tedy za polovinu periody. Za dobu celé periody $T$ vykoná bod 0 celý kmit a vlnění dospěje do bodu 8.\\\\\r\r\\par Vzdálenost, do níž dospěje vlnění za dobu jedné periody kmitání zdroje vlnění (bod 0), nazýváme vlnová délka a značíme ji řeckým písmenem lambda $\\lambda$. Vlnovou délku můžeme vyjádřit pomocí vztahu pro dráhu rovnoměrného pohybu, kde dráhou je vlnová délka $\\lambda$, časem je perioda T a rychlost, kterou se vlnění šíří prostředím, je fázová rychlost vlnění $v$.$$\\lambda=vT$$\\\\\r\r\\par Mezi periodou kmitání zdroje vlnění $T$ a jeho frekvencí $f$ platí vztah $T=\\frac{1}{f}$. Vztah pro vlnovou délku lze proto vyjádřit také vztahem $$\\lambda=\\frac{v}{f}.$$\\\\\r\r\\par Fázovou rychlostí se přemísťuje rovněž fáze kmitání jednotlivých bodů. Například u příčného vlnění se fázovou rychlostí přemísťuje největší výchylka ve směru, kterým vlnění postupuje. Z toho hlediska je vlnová délka vzdáleností dvou nejbližších bodů, které kmitají se stejnou fází.\\\\\r\r\\par Fázová rychlost závisí na vlastnostech prostředí, v němž se vlnění šíří. Proto je fázová rychlost šíření vlnění v různých prostředích různá. Obecně platí, že čím je větší homogenita (stejnorodost, jednolitost) látky, tím se vlnění šíří rychleji. Například rychlost šíření zvukového vlnění ve vodě je 4,5krát vyšší než ve vzduchu a v oceli je rychlost zvuku dokonce 16krát vyšší než ve vzduchu.\\\\\r\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Urči frekvenci ladičky, která je zdrojem zvukového vlnění o vlnové délce 68 cm. Rychlost zvuku ve vzduchu je 340 m/s.",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "$f=$ 228 Hz",
+          "$f =$ 500 Hz",
+          "$f =$ 5 Hz"
+        ]
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Rychlost šíření vlnění je dána vztahem $v=\\frac{\\lambda}{T}$ (resp. $v=\\lambda f$), kde $v$ je fázová rychlost vlnění, $\\lambda$ je vlnová délka, $T$ je perioda vlnění a $f$ je frekvence vlnění.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "4. Rovnice postupné vlny",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pokud se vlnění šíří rychlostí $v$, pak do bodu $M$ ve vzdálenosti $x$ od zdroje dorazí za dobu $\\tau=\\frac{x}{v}$.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-04.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 4: Odvození rovnice postupné vlny\\\\\r\r\\par Kmitání bodu $M$ bude mít tedy stejnou výchylku jako zdroj $Z$ o dobu $\\tau$ později. Je zřejmé, že výchylka libovolného bodu nezávisí jen na čase $t$, jak tomu bylo u kmitání bodu, ale závisí také na vzdálenosti $x$ od zdroje vlnění $Z$.\\\\\r\r\\par Okamžitá výchylka bodu $M$ je určena vztahem $$y=y_m\\sin{\\omega(t-\\tau)}=y_m\\sin{\\omega\\left(t-\\frac{x}{v} \\right)}.$$\\\\\r\r\\par Dosadíme $\\omega=\\frac{2\\pi}{T}$ a $\\lambda=vT$ a dostaneme okamžitou výchylku $y$ v jakémkoliv bodě $x$ řady kmitajících bodů v libovolném časovém okamžiku $t$, takzvanou rovnici postupné vlny $$y=y_m\\sin{2\\pi\\left(\\frac{t}{T}-\\frac{x}{\\lambda} \\right)}.$$\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Rozdíl mezi kmitáním a vlněním je patrný z rovnic obou dějů.\\\\\r\r\\par Kmitání dané vztahem$$y=y_m\\sin{\\omega t}$$je rovnicí závislou na čase.\\\\\r\r\\par Proti tomu rovnice postupného vlnění $$y=y_m\\sin{2\\pi\\left(\\frac{t}{T}-\\frac{x}{\\lambda} \\right)}$$závisí nejen na čase, ale i na vzdálenosti bodu od zdroje vlnění.\\\\\r\r\\par Vlnění je tedy děj periodický v čase i v prostoru.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "RealWorld",
+        "Title": "K zamyšlení",
+        "Text": "\\par Veličina $\\varphi =2\\pi\\left(\\frac{t}{T}-\\frac{x}{\\lambda} \\right)$ se nazývá fáze vlnění. Jak by vypadal výraz, kdyby vlnění postupovalo proti směru osy $x$?",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Vlnění má amplitudu 0,1 m, vlnovou délku 0,3 m a fázovou rychlost 1,5 m/s. Která rovnice postupného vlnění odpovídá těmto parametrům?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "$y=0,1\\cdot\\sin{2\\pi(5t-0,3x)}$",
+          "$y=0,1\\cdot\\sin{2\\pi(0,2t-3,3x)}$",
+          "$y=0,1\\cdot\\sin{2\\pi(5t-3,3x)}$"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "5. Interference vlnění",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Jestliže se prostředím šíří dvě nebo více vlnění stejného druhu, šíří se navzájem nezávisle. V místech, kde se vlnění překrývají, probíhá skládání neboli interference vlnění. Dochází k jejich zesílení nebo naopak k zeslabení, avšak obě vlnění postupují dále, jako by se šířila samostatně.\\\\\r\r\\par Na úvodním obrázku k aplikaci Interference vlnění jsou kruhovité vlnky vzniklé současným dopadem kapek na vodní hladinu. Tyto vlnky se navzájem překrývají, projdou jedna přes druhou a dále pokračují jako by se vůbec nesetkaly. Pouze v místech, kde se překrývají, nastala interference vlnění. Interference se projevuje tak, že výsledný kmitavý pohyb hmotných bodů prostředí je určen superpozicí kmitání vyvolaných vlněním. V místech, kde se vlnění překrývají, kmitají body s větší nebo menší amplitudou než jinde.\\\\\r\r\\par Různé případy interference vlnění jsou obecně složité. Interferující vlnění se mohou lišit vlnovou délkou $λ$, amplitudou $y_m$, fází $\\varphi$ i směrem vlnění.\\\\\r\r\\par V základní úrovni aplikace se omezíme na interferenci vlnění o stejné frekvenci a vlnové délce, postupujících bodovou řadou se stejnou fázovou rychlostí.\\\\\r\r\\par V pokročilé úrovni je možné nechat interferovat dvě vlnění s různou frekvencí a vlnovou délkou.\\\\\r\r\\par Uvažujme, že zdroje vlnění leží v jedné přímce a kmitají se stejnou počáteční fází. Každé vlnění lze popsat rovnicí postupného vlnění. Ve vzdálenosti $x$ od zdroje vlnění bude v čase $t=$ 0 s fáze vlnění $\\varphi=-\\frac{2\\pi x}{\\lambda}$.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-05.png",
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 5: Interference vlnění v řadě bodů\\\\\r\r\\par Pro fáze vlnění, které dospívají do bodu $M$ ze zdrojů $Z_1$ a $Z_2$, platí $$\\omega t-\\varphi_1=2\\pi\\left(\\frac{t}{T}-\\frac{x_1}{\\lambda} \\right)$$ $$\\omega t-\\varphi_2=2\\pi\\left(\\frac{t}{T}-\\frac{x_2}{\\lambda} \\right)$$\\\\\r\r\\par V libovolném místě bodové řady mají pak obě vlnění konstantní fázový rozdíl $$\\varphi_2-\\varphi_1=\\frac{2\\pi}{\\lambda}(x_2-x_1)=\\frac{2\\pi}{\\lambda}d.$$\r\r\\par Výraz $d=x_2-x_1$ označíme jako dráhový rozdíl. Jedná se vlastně o vzdálenost dvou bodů, v nichž mají obě vlnění stejnou fázi. Jak je patrné, je fázový rozdíl vlnění v daném bodě přímo úměrný dráhovému rozdílu.\\\\\r\r\\par Je-li fázový rozdíl dvou interferujících vlnění konstantní, což znamená, že nezávisí na čase, jsou vlnění takzvaně koherentní. Příklad takových koherentních vlnění vidíte na obrázku č. 5.\\\\\r\r\\par Průběh výsledné vlny dostaneme sčítáním okamžitých výchylek obou interferujících vlnění v jednotlivých bodech osy $x$. Je patrné, že výsledné vlnění má stejnou vlnovou délku jako skládaná vlnění. Má však jinou amplitudu.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "6. Speciální případy interference",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par První zvláštní případ interference nastane, když je dráhový posun roven sudému počtu půlvln, tedy celému počtu vln. $d=2k\\frac{\\lambda}{2}$, kde $k=$ 0, 1, 2, 3...\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-06.png",
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 6: Interference vlnění se stejnou fází\\\\\r\r\\par Interferující vlnění se setkávají v každém bodě se stejnou fází a vzniká vlnění, jehož amplituda je součtem amplitud obou vlnění. Říkáme, že vlnění jsou „ve fázi“.\\\\\r \r\\par Druhý zvláštní případ interference nastane, když je dráhový posun roven lichému počtu půlvln. $d=2(k+1)\\frac{\\lambda}{2}$, kde $k=$ 0, 1, 2, 3...\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "08-07.png",
+        "Title": "Obrázek č. 7"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 7 Interference vlnění s opačnou fází\\\\\r\r\\par Interferující vlnění se setkávají v každém bodě s opačnou fází a navzájem se ruší. Amplituda výsledného vlnění je v případě vlnění se stejnými amplitudami nulová. V případě interference vlnění s různými amplitudami je výsledná amplituda rovna absolutní hodnotě rozdílu obou amplitud.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Výsledná amplituda při interferenci dvou stejných vlnění je největší v místech, v nichž se obě vlnění setkávají se stejnou fází, a nejmenší v místech, v nichž mají obě vlnění fázi opačnou. Interference je často důležitým kritériem při rozhodování, zda má fyzikální jev vlnovou povahu.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Dva zdroje zvukového vlnění jsou od sebe vzdáleny 0,5 m. Oba kmitají se stejnou frekvencí 170 Hz a se stejnou počáteční fází. Rychlost zvukového vlnění je 340 m/s. Určete dráhový a fázový rozdíl vlnění.",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Dráhový rozdíl je 2 m, fázový rozdíl je π rad",
+          "Dráhový rozdíl je 2 m, fázový rozdíl je π/2 rad",
+          "Dráhový rozdíl je 1 m, fázový rozdíl je π/2 rad",
+          "Dráhový rozdíl je 1 m, fázový rozdíl je π rad"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "7. Literatura",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par LEPIL, Oldřich. Fyzika pro 2. ročník gymnázií: mechanické kmitání a vlnění. Praha: SPN, 1991, 39 - 49. Učebnice pro střední školy. ISBN 80-04-25971-5.\\\\\r\r\\par REICHL, Jaroslav a Martin VŠETIČKA. Vznik a druhy vlnění. Encyklopedie fyziky [online]. 2006 - 2021 [cit. 2021-9-21]. Dostupné z: http://fyzika.jreichl.com/main.article/view/165-vznik-a-druhy-vlneni.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Navigation;
+using Physics.SelfStudy;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.ViewModels.Navigation;
 using Physics.WaveInterference.ViewModels;
+using Windows.ApplicationModel;
 
 namespace Physics.WaveInterference.Infrastructure
 {
@@ -19,7 +22,7 @@ namespace Physics.WaveInterference.Infrastructure
 
 		public bool HasAdvancedDifficulty => true;
 
-		public bool HasStudyMode => false;
+		public bool HasStudyMode => true;
 
 		public bool HasGame => false;
 
@@ -36,7 +39,7 @@ namespace Physics.WaveInterference.Infrastructure
 
 		public async Task GoToStudyModeAsync()
 		{
-			throw new NotImplementedException();
+			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
 		}
 
 		public Task OpenStudyTextAsync()
