@@ -1,0 +1,135 @@
+[
+  {
+    "Title": "Valivý pohyb po nakloněné rovině",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Untitled",
+        "Text": "\\par \\textit{Flo Earlyová stojí na vrcholu kopce Coopr´s Hill a dívá se na řady skandujících diváků, které lemují prudký sráz.\\\\\r\r\\par Před chvílí proběhl druhý závod tohoto dne. Sanitky odvážejí několik zraněných závodníků. Zatím je to dobré. V roce 1993 bylo zraněno patnáct závodníků. V roce 1997 odvezly sanitky 33 běžců.\\\\\r\r\\par Zatím je to dobré…\\\\\r\r\\par Ceremoniář zvedá kulatý bochník sýra.\\\\ \r\r\\par Závodnice se připravují.\\\\\r\r\\par Sýr se kutálí dolů a poskakuje po nerovném terénu.  Běžkyně se vrhají za ním. Klopýtají. Padají jedna pod druhou a podrážejí si nohy. Některé se obratně drží na nohou a stíhají ten poskakující kulatý předmět. Flo je mezi nimi.\\\\\r\r\\par Dvě stě yardů běhu. Dvě stě yardů pádů, odřenin a zlomenin.\\\\\r\r\\par Když se ještě používal pravý sýr, a ne jeho pěnová náhražka, dokázal na své cestě nabrat rychlost až 110 km/h a pokud někoho zasáhlo touto rychlostí 7 liber kvalitního Double Gloucesteru, nedopadlo to dobře.\\\\\r\r\\par Flo Earlyová dobíhá do cíle jako první. Je 27. květen roku 2019 a Flo se stává počtvrté vítězkou ženského kola závodu Cooper's Hill Cheese-Rolling and Wake.}\\\\\r\r\\par Po nakloněné rovině se těleso může valit. Dá se očekávat, že pohyb bude záviset na sklonu roviny a tíhovém zrychlení. Co ale může být pro někoho překvapivé, tak pohyb závisí i na rozložení hmoty v tělese.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Kinetická energie tuhého tělesa",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Tuhé těleso může konat pohyb posuvný, otáčivý nebo oba tyto pohyby zároveň.\\\\\r\r\\par Při posuvném (translačním) pohybu se všechny body tělesa pohybují po stejných trajektoriích stejnou rychlostí $v$. Kinetickou energii tělesa vypočítáme jako součet kinetických energií všech bodů tělesa: $$E_{kt}=\\frac{1}{2}m_1v^2+\\frac{1}{2}m_2v^2+...+\\frac{1}{2}m_nv^2$$ $$E_{kt}=\\frac{1}{2}\\left(m_1+m_2+...+m_n\\right)v^2$$ $$E_{kt}=\\frac{1}{2}mv^2$$\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Kinetická energie tělesa o hmotnosti $m$ pohybujícího se posuvným  (translačním) pohybem o rychlosti $v$ je rovna kinetické energii hmotného bodu se stejnou hmotností a stejnou rychlostí.$$E_{kt}=\\frac{1}{2}mv^2$$\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při otáčivém (rotačním) pohybu se všechny body tělesa pohybují po kružnicích, které mají střed na ose otáčení, a mají stejnou úhlovou rychlost $\\omega$. Kinetickou energii vypočítáme jako součet kinetických energií všech bodů tělesa: $$E_{kr}=\\frac{1}{2}m_1v_1^2+\\frac{1}{2}m_2v_2^2+...+\\frac{1}{2}m_nv_n^2$$Protože $v=r\\omega$, můžeme psát $$E_{kr}=\\frac{1}{2}m_1r_1^2\\omega^2+\\frac{1}{2}m_2r_2^2\\omega^2+...+\\frac{1}{2}m_nr_n^2\\omega^2$$ $$E_{kr}=\\frac{1}{2}\\left(m_1r_1^2+m_2r_2^2+...+m_nr_n^2\\right)\\omega^2$$ $$E_{kr}=\\frac{1}{2}J\\omega^2$$\\\\\r\r\\par Veličina $J$ se nazývá moment setrvačnosti tuhého tělesa vzhledem k ose otáčení a je definován vztahem $$J=m_1r_1^2+m_2r_2^2+...+m_nr_n^2$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaká je jednotka momentu setrvačnosti $J$ tuhého tělesa vzhledem k ose otáčení?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "$kg.m$",
+          "$kg^2.m$",
+          "$kg.m^2$",
+          "$kg^2.m^2$"
+        ]
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Kinetická energie tuhého tělesa otáčejícího se kolem nehybné osy úhlovou rychlostí $\\omega$ je dána vztahem $$E_{kr}=\\frac{1}{2}J\\omega^2,$$kde $J$ je moment setrvačnosti vzhledem k ose otáčení.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "05_obr_1.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Momenty setrvačnosti některých těles:\\\\dutý válec $J=mR^2$\\\\válec  $J=\\frac{1}{2}mR^2$\\\\koule  $J=\\frac{2}{5}mR^2$\\\\\r\r\\par Libovolný pohyb tělesa lze složit ze dvou pohybů: z posuvného a z otáčivého pohybu kolem osy procházející těžištěm. \\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Koná-li těleso současně posuvný pohyb a otáčivý pohyb kolem osy procházející těžištěm tělesa, je jeho celková kinetická energie rovna součtu energie posuvného pohybu a energie otáčivého pohybu:$$E_k=E_{kt}+E_{kr}=\\frac{1}{2}mv^2+\\frac{1}{2}J\\omega^2$$\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Valivý pohyb po nakloněné rovině",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Valivý pohyb tělesa po nakloněné rovině probíhá při malých rychlostech, kdy můžeme zanedbat odpor vzduchu – těleso se bude pohybovat rovnoměrně zrychleně. Součinitel smykového tření mezi tělesem a rovinou je většinou dostatečně velký a pohyb probíhá bez klouzání. Když je rovina dostatečně tuhá (působením tíhy tělesa se nedeformuje), můžeme zanedbat i valivý odpor, a v takovém případě platí zákon zachování mechanické energie.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "05_obr_2.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na obrázku je znázorněn valivý pohyb po nakloněné rovině se sklonem α, který začíná v klidu v bodě A. Po proběhnutí dráhy l má těleso v bodě B kinetickou energii, která je rovna úbytku energie potenciální.$$E_k=E_p$$ $$\\frac{1}{2}mv^2+\\frac{1}{2}J\\omega^2=mgh$$Protože $\\omega=\\frac{v}{R}$ a $h=l\\sin{\\alpha}$, můžeme psát $$\\frac{1}{2}mv^2+\\frac{1}{2}J\\left(\\frac{v}{R}\\right)^2=mgl\\sin{\\alpha}$$ $$\\frac{1}{2}\\left(m+\\frac{J}{R^2}\\right)v^2=mgl\\sin{\\alpha}$$Odtud určíme velikost rychlosti tělesa v bodě B: $$v=\\sqrt{\\frac{2hg}{\\frac{J}{mR^2}+1}}.$$\\\\\r\r\\par Po dosazení příslušných momentů setrvačnosti získáme velikosti rychlostí:\\\\ dutý válec $v=\\sqrt{gh}$, \\\\válec $v=\\sqrt{\\frac{4}{3}gh},$ \\\\koule $v=\\sqrt{\\frac{10}{7}gh}$.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se valí těleso po nakloněné rovině ve srovnání s tělesem klouzajícím po téže nakloněné rovině bez tření, pokud budou mít obě nulovou počáteční rychlost?",
+        "CorrectResponse": "Těleso klouzající po nakloněné rovině bez tření se bude pohybovat rychlostí $v=\\sqrt{2hg}$. Rychlosti valících se těles jsou vždy menší, protože dochází k přeměně polohové energie nejenom na energii pohybovou posuvnou, ale i otáčivou.",
+        "WrongResponse": "Těleso klouzající po nakloněné rovině bez tření se bude pohybovat rychlostí $v=\\sqrt{2hg}$. Rychlosti valících se těles jsou vždy menší, protože dochází k přeměně polohové energie nejenom na energii pohybovou posuvnou, ale i otáčivou.",
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Valící se těleso je rychlejší než klouzající",
+          "Valící a klouzající těleso jsou stejně rychlé",
+          "Valící těleso je pomalejší než klouzající",
+          "Nelze jednoznačně určit"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Valivý pohyb po nakloněné rovině je pohyb rovnoměrně zrychlený.\\\\\r\r\\par Těleso urazí při valivém pohybu po nakloněné rovině z bodu A do bodu B za dobu $t$ dráhu $$l=\\frac{1}{2}at^2$$Ze vztahu $a=\\frac{v}{t}$ vyjádříme $t=\\frac{v}{a}$ a můžeme psát$$l=\\frac{1}{2}a\\left(\\frac{v}{a}\\right)^2=\\frac{v^2}{2a}$$\\\\\r\r\\par Určíme velikost zrychlení tělesa v bodě B:$$a=\\frac{v^2}{2l}=\\frac{2gh}{2l\\left(\\frac{J}{mR^2}+1\\right)}=\\frac{g\\sin{\\alpha}}{\\frac{J}{mR^2}+1}$$\\\\\r\r\\par Po dosazení příslušných momentů setrvačnosti získáme velikosti zrychlení:\\\\pro dutý válec $a=\\frac{1}{2}g\\sin{\\alpha}$,\\\\pro válec $a=\\frac{2}{3}g\\sin{\\alpha}$,\\\\pro kouli $a=\\frac{5}{7}g\\sin{\\alpha}$.\\\\\r\r\\par Velikost rychlosti v daném čase můžeme vypočítat ze vztahu $$v=at,$$dráhu$$s=\\frac{1}{2}at^2.$$\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "05_obr_3.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Okamžitou polohu tělesa vypočítáme dle vztahů $$x=s\\cos{\\alpha},$$ $$y=h-s\\sin{\\alpha}.$$\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par SVOBODA, E., BEDNAŘÍK M., ŠIROKÁ M. Fyzika pro gymnázia - Mechanika. 5., přeprac. vyd. Praha: Prometheus, 2013. ISBN 978-80-7196-431-5.\\\\\r\r\\par Kinetická energie tuhého tělesa :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 30.08.2021]. Dostupné z: http://fyzika.jreichl.com/main.article/view/103-kineticka-energie-tuheho-telesa\\\\\r\r\\par Králová, M. MOMENT SETRVAČNOSTI [online]. [cit. 30.08.2021]. Dostupné z: http://edu.techmania.cz/cs/encyklopedie/fyzika/sila/moment-setrvacnosti\\\\\r\r\\par Volf, I., Šedivý, P. ROVNOMĚRNĚ ZRYCHLENÉ A ZPOMALENÉ POHYBY [online]. [cit. 30.08.2021]. Dostupné z: http://fyzikalniolympiada.cz/texty/zrych1.pdf\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]
