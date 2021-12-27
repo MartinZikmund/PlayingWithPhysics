@@ -2,6 +2,8 @@
 using Physics.Shared.UI.Views;
 using Physics.OpticalInstruments.Rendering;
 using Physics.OpticalInstruments.ViewModels;
+using System;
+using Physics.Shared.UI.Helpers;
 
 namespace Physics.OpticalInstruments.Views
 {
@@ -10,9 +12,16 @@ namespace Physics.OpticalInstruments.Views
 		public MainView()
 		{
 			InitializeComponent();
+			SetupNumberBoxes();
 			InkCanvas.PointerMoved += InkCanvasPointerManipulation;
 			InkCanvas.PointerPressed += InkCanvasPointerManipulation;
 			UpdateInkPresenterInput();
+		}
+
+		private void SetupNumberBoxes()
+		{
+			ObjectDistanceNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
+			FocalDistanceNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
 		}
 
 		private void InkCanvasPointerManipulation(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)

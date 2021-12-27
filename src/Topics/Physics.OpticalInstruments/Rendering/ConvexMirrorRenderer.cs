@@ -14,6 +14,8 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected override float RelativeOpticalInstrumentX => 0.5f;
 
+		protected override bool FlipX => true;
+
 		protected override InstrumentType InstrumentType => InstrumentType.ConvexMirror;
 
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)

@@ -142,6 +142,33 @@ Grafika: Petr Weinlich</value>
   <data name="FocalDistance" xml:space="preserve">
     <value>Ohnisková vzdálenost</value>
   </data>
+  <data name="ImageOrientationType_Flipped" xml:space="preserve">
+    <value>Převrácený</value>
+  </data>
+  <data name="ImageOrientationType_Straight" xml:space="preserve">
+    <value>Přímý</value>
+  </data>
+  <data name="ImageSizeType_Larger" xml:space="preserve">
+    <value>Zvětšený</value>
+  </data>
+  <data name="ImageSizeType_Same" xml:space="preserve">
+    <value>Stejný</value>
+  </data>
+  <data name="ImageSizeType_Smaller" xml:space="preserve">
+    <value>Zmenšený</value>
+  </data>
+  <data name="ImageType_Imaginary" xml:space="preserve">
+    <value>Zdánlivý</value>
+  </data>
+  <data name="ImageType_None" xml:space="preserve">
+    <value>Nevzniká</value>
+  </data>
+  <data name="ImageType_Real" xml:space="preserve">
+    <value>Skutečný</value>
+  </data>
+  <data name="ObjectDistance" xml:space="preserve">
+    <value>Objeková vzdálenost</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Simulátor optických přístrojů</value>
   </data>

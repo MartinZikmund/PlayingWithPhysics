@@ -70,7 +70,7 @@ namespace Physics.OpticalInstruments.Rendering
 
 			var distance = pointerPoint.X - centerX;
 			var height = centerY - pointerPoint.Y;
-			objectPoint = new SKPoint(distance * metersPerPixel, height * metersPerPixel);
+			objectPoint = new SKPoint(Math.Abs(distance * metersPerPixel), height * metersPerPixel);
 			return true;
 		}
 
@@ -79,11 +79,15 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected SceneConfiguration SceneConfiguration => _controller.SceneConfiguration;
 
+		protected float ObjectPositionX => FlipX ? SceneConfiguration.ObjectDistance : -SceneConfiguration.ObjectDistance;
+
 		protected PhysicsService PhysicsService { get; } = new PhysicsService();
 
 		protected float PixelsPerMeter { get; private set; }
 
 		protected abstract float RelativeOpticalInstrumentX { get; }
+
+		protected abstract bool FlipX { get; }
 
 		protected abstract InstrumentType InstrumentType { get; }
 
@@ -121,14 +125,14 @@ namespace Physics.OpticalInstruments.Rendering
 		}
 
 		protected float GetRenderX(float xInMeters) =>
-			_canvasSize.Width * RelativeOpticalInstrumentX + xInMeters * PixelsPerMeter;
+			_canvasSize.Width * RelativeOpticalInstrumentX + (xInMeters * (FlipX ? -1 : 1)) * PixelsPerMeter;
 
 		protected float GetRenderY(float yInMeters) =>
 			_canvasSize.Height / 2 - yInMeters * PixelsPerMeter;
 
 		protected void DrawObject(SKSurface args)
 		{
-			var renderX = GetRenderX(SceneConfiguration.ObjectDistance);
+			var renderX = GetRenderX(ObjectPositionX);
 			var from = new SKPoint(renderX, GetRenderY(0));
 			var to = new SKPoint(renderX, GetRenderY(SceneConfiguration.ObjectHeight));
 			ArrowRenderer.Draw(args, from, to, 6, _objectPaint);
@@ -155,11 +159,11 @@ namespace Physics.OpticalInstruments.Rendering
 			var focalDistance = _controller.SceneConfiguration.FocalDistance;
 
 			// Screen should be focal distance * 5 wide
-			var widthInMeters = focalDistance * 5;
+			var widthInMeters = Math.Abs(focalDistance) * 8;
 			var pixelsPerMeterX = _canvasSize.Width / widthInMeters;
 
 			// Screen should be focal distance * 4 high
-			var heightInMeters = focalDistance * 4;
+			var heightInMeters = Math.Abs(focalDistance) * 4;
 			var pixelsPerMeterY = _canvasSize.Height / heightInMeters;
 
 			// Take the lower value

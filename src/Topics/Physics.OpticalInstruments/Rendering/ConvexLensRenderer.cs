@@ -14,7 +14,9 @@ namespace Physics.OpticalInstruments.Rendering
 		protected override float RelativeOpticalInstrumentX => 0.5f;
 
 		protected override InstrumentType InstrumentType => InstrumentType.ConvexLens;
-		
+
+		protected override bool FlipX => false;
+
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
 			DrawAxisPoint(args, -SceneConfiguration.FocalDistance, "F");

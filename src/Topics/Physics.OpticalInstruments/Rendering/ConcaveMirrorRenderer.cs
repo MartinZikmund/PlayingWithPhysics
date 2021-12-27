@@ -13,9 +13,11 @@ namespace Physics.OpticalInstruments.Rendering
 		{
 		}
 
-		protected override float RelativeOpticalInstrumentX => 0.75f;
+		protected override float RelativeOpticalInstrumentX => 0.6f;
 
 		protected override InstrumentType InstrumentType => InstrumentType.ConcaveMirror;
+
+		protected override bool FlipX => false;
 
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
@@ -41,7 +43,7 @@ namespace Physics.OpticalInstruments.Rendering
 		private void DrawLightBeams(ISkiaCanvas canvas, SKSurface surface)
 		{
 			// Light beam through mirror center
-			var objectTipX = GetRenderX(SceneConfiguration.ObjectDistance);
+			var objectTipX = GetRenderX(ObjectPositionX);
 			var objectTipY = GetRenderY(SceneConfiguration.ObjectHeight);
 
 			var centerX = GetRenderX(-2 * SceneConfiguration.FocalDistance);

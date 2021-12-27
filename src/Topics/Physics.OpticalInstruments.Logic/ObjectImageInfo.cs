@@ -12,11 +12,32 @@ namespace Physics.OpticalInstruments.Logic
 			_objectHeight = objectHeight;
 		}
 
-		public bool IsReal => ImageDistance < 0;
+		public bool ImageExists => ImageType != ImageType.None;
 
-		public bool IsSmaller => Math.Abs(ImageHeight) > Math.Abs(_objectHeight);
+		public ImageType ImageType { get; set; }
 
-		public bool IsFlipped => _objectHeight * ImageHeight < 0;
+		public ImageSizeType SizeType
+		{
+			get
+			{
+				var diff = Math.Abs(ImageHeight) - Math.Abs(_objectHeight);
+
+				if (Math.Abs(diff) < 0.00001f)
+				{
+					return ImageSizeType.Same;
+				}
+				else if (diff > 0)
+				{
+					return ImageSizeType.Larger;
+				}
+				else
+				{
+					return ImageSizeType.Smaller;
+				}
+			}
+		}
+
+		public ImageOrientationType ImageOrientation => _objectHeight * ImageHeight < 0 ? ImageOrientationType.Flipped : ImageOrientationType.Straight;
 
 		public float ImageDistance { get; set; }
 

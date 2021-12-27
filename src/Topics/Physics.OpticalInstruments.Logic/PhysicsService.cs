@@ -18,11 +18,10 @@ namespace Physics.OpticalInstruments.Logic
 		private ObjectImageInfo CalculateConcaveLensImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
 			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
-			var radius = scene.FocalDistance * 2;
 
 			// Object is beyond the focal distance - image is real, smaller and flipped
-			var imageDistance = 1 / (1 / (-scene.FocalDistance) - 1 / (-scene.ObjectDistance));
-			var imageHeight = -imageDistance / (-scene.ObjectDistance) * scene.ObjectHeight;
+			var imageDistance = 1 / (1 / (scene.FocalDistance) - 1 / (scene.ObjectDistance));
+			var imageHeight = imageDistance / (scene.ObjectDistance) * scene.ObjectHeight;
 
 			objectImageInfo.ImageDistance = imageDistance;
 			objectImageInfo.ImageHeight = imageHeight;
@@ -33,11 +32,25 @@ namespace Physics.OpticalInstruments.Logic
 		private ObjectImageInfo CalculateConvexLensImage(InstrumentType instrumentType, SceneConfiguration scene)
 		{
 			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
-			var radius = scene.FocalDistance * 2;
+
+			if (Math.Abs(scene.ObjectDistance - scene.FocalDistance) < 0.01)
+			{
+				objectImageInfo.ImageType = ImageType.None;
+				return objectImageInfo;
+			}
+
+			if (scene.ObjectDistance < scene.FocalDistance)
+			{
+				objectImageInfo.ImageType = ImageType.Imaginary;
+			}
+			else
+			{
+				objectImageInfo.ImageType = ImageType.Real;
+			}
 
 			// Object is beyond the focal distance - image is real, smaller and flipped
-			var imageDistance = 1 / (1 / (scene.FocalDistance) - 1 / (-scene.ObjectDistance));
-			var imageHeight = -imageDistance / (-scene.ObjectDistance) * scene.ObjectHeight;
+			var imageDistance = 1 / ((1 / scene.FocalDistance) - (1 / scene.ObjectDistance));
+			var imageHeight = -imageDistance / scene.ObjectDistance * scene.ObjectHeight;
 
 			objectImageInfo.ImageDistance = imageDistance;
 			objectImageInfo.ImageHeight = imageHeight;

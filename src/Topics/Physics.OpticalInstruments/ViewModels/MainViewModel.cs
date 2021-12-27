@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Physics.OpticalInstruments.Logic;
 using Physics.OpticalInstruments.Rendering;
 using Physics.Shared.UI.Infrastructure.Topics;
@@ -46,6 +47,8 @@ namespace Physics.OpticalInstruments.ViewModels
 
 		public SceneConfiguration SceneConfiguration { get; } = new();
 
+		public ObjectImageInfo ImageInfo { get; set; } = new ObjectImageInfo(0) { ImageType = ImageType.None };
+
 		public override void Prepare(SimulationNavigationModel parameter) => _difficulty = parameter.Difficulty;
 
 		public void SetController(OpticalInstrumentsCanvasController controller)
@@ -60,7 +63,7 @@ namespace Physics.OpticalInstruments.ViewModels
 			SelectedInstrumentType = InstrumentTypes.First();
 		}
 
-		public void OnSelectedInstrumentTypeChanged()
+		public async void OnSelectedInstrumentTypeChanged()
 		{
 			if (_controller == null || SelectedInstrumentType == null)
 			{
@@ -84,6 +87,9 @@ namespace Physics.OpticalInstruments.ViewModels
 				default:
 					break;
 			}
+
+			await Task.Yield();
+			SceneConfiguration.FocalDistance = SelectedInstrumentType.DefaultFocalDistance;
 		}
 
 		//private async Task PickSceneAsync()

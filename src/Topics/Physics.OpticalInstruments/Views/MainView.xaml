@@ -62,8 +62,24 @@
 							</DataTemplate>
 						</ComboBox.ItemTemplate>
 					</ComboBox>
-					<winui:NumberBox Header="{extensions:Localize Key=FocalDistance}" Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}" />
-					
+					<winui:NumberBox
+						x:Name="FocalDistanceNumberBox"
+						Header="{extensions:Localize Key=FocalDistance}"
+						Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}"
+						Minimum="{x:Bind Model.SelectedInstrumentType.MinFocalDistance, Mode=OneWay}"
+						Maximum="{x:Bind Model.SelectedInstrumentType.MaxFocalDistance, Mode=OneWay}"
+						SpinButtonPlacementMode="Inline" />
+
+					<winui:NumberBox
+						x:Name="ObjectDistanceNumberBox"
+						Header="{extensions:Localize Key=ObjectDistance}"
+						Value="{x:Bind Model.SceneConfiguration.ObjectDistance, Mode=TwoWay}"
+						SpinButtonPlacementMode="Inline" />
+
+					<TextBlock Text="{extensions:Localize Key=ImageProperties}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+					<TextBlock Text="{extensions:Localize Key=Orientation}" />
+					<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay} />
+					<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay} />
 				</StackPanel>
 			</Border>
 		</Grid>
