@@ -25,7 +25,7 @@
 	</Page.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="320" />
+			<ColumnDefinition Width="320" />
 			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
 		<Grid
@@ -40,66 +40,99 @@
 			</Windows10version1903:Grid.Shadow>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
 			<sharedControls:SkewedMenuHeader FontSize="16" GoBackCommand="{x:Bind Model.GoBackCommand}" Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="8,12,8,0">
-				<StackPanel Spacing="8">
-					<ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind Model.SelectedInstrumentType, Mode=TwoWay}" ItemsSource="{x:Bind Model.InstrumentTypes}">
-						<ComboBox.ItemTemplate>
-							<DataTemplate x:DataType="viewmodels:InstrumentTypeViewModel">
-								<Grid ColumnSpacing="8">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="*" />
-									</Grid.ColumnDefinitions>
-									<Image Height="48" Width="48" Stretch="Uniform" Source="{Binding Image}" />
-									<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{x:Bind Name}" />
-								</Grid>
-							</DataTemplate>
-						</ComboBox.ItemTemplate>
-					</ComboBox>
-					<winui:NumberBox
-						x:Name="FocalDistanceNumberBox"
-						Header="{extensions:Localize Key=FocalDistance}"
-						Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}"
-						Minimum="{x:Bind Model.SelectedInstrumentType.MinFocalDistance, Mode=OneWay}"
-						Maximum="{x:Bind Model.SelectedInstrumentType.MaxFocalDistance, Mode=OneWay}"
-						SpinButtonPlacementMode="Inline" />
+			<ScrollViewer Grid.Row="1" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+				<Border Margin="8,8,8,0">
+					<StackPanel Spacing="8">
+						<GridView HorizontalAlignment="Center" SelectedItem="{x:Bind Model.SelectedInstrumentType, Mode=TwoWay}" ItemsSource="{x:Bind Model.InstrumentTypes}">
+							<GridView.ItemTemplate>
+								<DataTemplate x:DataType="viewmodels:InstrumentTypeViewModel">
+									<Grid Padding="4" Background="White" ColumnSpacing="8">
+										<Image Grid.Row="1" Height="80" Margin="10" Width="80" Stretch="Uniform" Source="{Binding Image}" />
+										<TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Text="{x:Bind Name}" />
+									</Grid>
+								</DataTemplate>
+							</GridView.ItemTemplate>
+						</GridView>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<winui:NumberBox
+							x:Name="FocalDistanceNumberBox"
+							Header="{extensions:Localize Key=FocalDistance}"
+							Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}"
+							Minimum="{x:Bind Model.SelectedInstrumentType.MinFocalDistance, Mode=OneWay}"
+							Maximum="{x:Bind Model.SelectedInstrumentType.MaxFocalDistance, Mode=OneWay}"
+							SpinButtonPlacementMode="Inline" />
+							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+						</Grid>
 
-					<winui:NumberBox
-						x:Name="ObjectDistanceNumberBox"
-						Header="{extensions:Localize Key=ObjectDistance}"
-						Value="{x:Bind Model.SceneConfiguration.ObjectDistance, Mode=TwoWay}"
-						SpinButtonPlacementMode="Inline" />
-
-					<StackPanel>
 						<StackPanel Spacing="4">
-							<TextBlock Text="{extensions:Localize Key=ImageProperties}" Style="{ThemeResource SubtitleTextBlockStyle}" />
-							<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageType}" />
-							<TextBlock Text="{x:Bind Model.ImageInfo.ImageType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+							<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=Diopters}" />
+							<TextBlock>
+							<Run Text="{x:Bind Model.SceneConfiguration.DioptersString, Mode=OneWay}" />
+							<Run Text="D" />
+							</TextBlock>
 						</StackPanel>
-						<StackPanel Spacing="4" Visibility="{x:Bind Model.ImageInfo.ImageExists, Mode=OneWay}">
-							<TextBlock Text="{extensions:Localize Key=ImageSizeType}" />
-							<TextBlock Text="{x:Bind Model.ImageInfo.SizeType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
-							<TextBlock Text="{extensions:Localize Key=ImageOrienation}" />
-							<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
-							<TextBlock Text="{extensions:Localize Key=ImageHeight}" />
-							<TextBlock Text="{x:Bind Model.ImageInfo.ImageHeight, Mode=OneWay}" />
-							<TextBlock Text="{extensions:Localize Key=ImageDistance}" />
-							<TextBlock Text="{x:Bind Model.ImageInfo.ImageDistance, Mode=OneWay}" />
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<winui:NumberBox
+							x:Name="ObjectDistanceNumberBox"
+							Header="{extensions:Localize Key=ObjectDistance}"
+							Value="{x:Bind Model.SceneConfiguration.ObjectDistance, Mode=TwoWay}"
+							SpinButtonPlacementMode="Inline" />
+							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+						</Grid>
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<winui:NumberBox
+							x:Name="ObjectHeightNumberBox"
+							Header="{extensions:Localize Key=ObjectHeight}"
+							Value="{x:Bind Model.SceneConfiguration.ObjectHeight, Mode=TwoWay}"
+							SpinButtonPlacementMode="Inline" />
+							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+						</Grid>
+
+						<StackPanel>
+							<StackPanel Spacing="4">
+								<TextBlock Text="{extensions:Localize Key=ImageProperties}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageType}" />
+								<TextBlock Text="{x:Bind Model.ImageInfo.ImageType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+							</StackPanel>
+							<StackPanel Margin="0,4,0,0" Spacing="4" Visibility="{x:Bind Model.ImageInfo.ImageExists, Mode=OneWay}">
+								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageSizeType}" />
+								<TextBlock Text="{x:Bind Model.ImageInfo.SizeType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageOrientation}" />
+								<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageHeight}" />
+								<TextBlock>
+								<Run Text="{x:Bind Model.ImageInfo.ImageHeightString, Mode=OneWay}" />
+								<Run Text="m" />
+								</TextBlock>
+								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageDistance}" />
+								<TextBlock>
+								<Run Text="{x:Bind Model.ImageInfo.ImageDistanceString, Mode=OneWay}" />
+								<Run Text="m" />
+								</TextBlock>
+							</StackPanel>
 						</StackPanel>
 					</StackPanel>
-					<!--<StackPanel>
-						<TextBlock Text="{extensions:Localize Key=Orientation}" />
-						<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}} />
-						<TextBlock Text="{x:Bind Model.ImageInfo.ImageType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}} />
-					</StackPanel>-->
-				</StackPanel>
 			</Border>
+			</ScrollViewer>
 		</Grid>
 		<Grid
             x:Name="SecondPane"

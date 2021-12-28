@@ -157,6 +157,9 @@ Graphics: Petr Weinlich</value>
   <data name="ImageOrientationType_Straight" xml:space="preserve">
     <value>Straight</value>
   </data>
+  <data name="ImageProperties" xml:space="preserve">
+    <value>Image properties</value>
+  </data>
   <data name="ImageSizeType" xml:space="preserve">
     <value>Image size</value>
   </data>
@@ -183,6 +186,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ObjectDistance" xml:space="preserve">
     <value>Object distance</value>
+  </data>
+  <data name="ObjectHeight" xml:space="preserve">
+    <value>Object height</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Optical Instruments</value>

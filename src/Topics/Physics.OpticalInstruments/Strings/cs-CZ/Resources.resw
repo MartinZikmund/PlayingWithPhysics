@@ -157,6 +157,9 @@ Grafika: Petr Weinlich</value>
   <data name="ImageOrientationType_Straight" xml:space="preserve">
     <value>Přímý</value>
   </data>
+  <data name="ImageProperties" xml:space="preserve">
+    <value>Vlastnosti obrazu</value>
+  </data>
   <data name="ImageSizeType" xml:space="preserve">
     <value>Velikost obrazu</value>
   </data>
@@ -183,6 +186,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ObjectDistance" xml:space="preserve">
     <value>Objeková vzdálenost</value>
+  </data>
+  <data name="ObjectHeight" xml:space="preserve">
+    <value>Výška objektu</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Simulátor optických přístrojů</value>

@@ -21,6 +21,7 @@ namespace Physics.OpticalInstruments.Views
 		private void SetupNumberBoxes()
 		{
 			ObjectDistanceNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
+			ObjectHeightNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
 			FocalDistanceNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
 		}
 

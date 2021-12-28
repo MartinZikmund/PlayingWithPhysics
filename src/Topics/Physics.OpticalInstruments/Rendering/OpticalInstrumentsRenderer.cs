@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AppCenter.Crashes;
 using Physics.OpticalInstruments.Logic;
+using Physics.Shared.Helpers;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
@@ -74,12 +75,26 @@ namespace Physics.OpticalInstruments.Rendering
 			objectPoint = SKPoint.Empty;
 			if (pointerPoint.X >= centerX)
 			{
-				return false;
+				pointerPoint.X = centerX;
 			}
 
 			var distance = pointerPoint.X - centerX;
+			var actualDistance = Math.Abs(distance * metersPerPixel);
+			if (actualDistance < Math.Abs(SceneConfiguration.FocalDistance) / 10)
+			{
+				actualDistance = Math.Abs(SceneConfiguration.FocalDistance) / 10;
+			}
 			var height = centerY - pointerPoint.Y;
-			objectPoint = new SKPoint(Math.Abs(distance * metersPerPixel), height * metersPerPixel);
+			var actualHeight = height * metersPerPixel;
+			var heightClampScale =
+				InstrumentType == InstrumentType.ConcaveLens ||
+				InstrumentType == InstrumentType.ConvexLens ?
+					1.5f : 0.8f;
+			actualHeight = MathHelpers.Clamp(
+				actualHeight,
+				-Math.Abs(SceneConfiguration.FocalDistance * heightClampScale),
+				Math.Abs(SceneConfiguration.FocalDistance * heightClampScale));
+			objectPoint = new SKPoint(actualDistance, actualHeight);
 			return true;
 		}
 
@@ -167,12 +182,20 @@ namespace Physics.OpticalInstruments.Rendering
 		{
 			var focalDistance = _controller.SceneConfiguration.FocalDistance;
 
-			// Screen should be focal distance * 5 wide
-			var widthInMeters = Math.Abs(focalDistance) * 8;
+			// Screen should be focal distance * 7 wide
+			var widthInMeters = Math.Abs(focalDistance) * 7;
 			var pixelsPerMeterX = _canvasSize.Width / widthInMeters;
 
-			// Screen should be focal distance * 4 high
-			var heightInMeters = Math.Abs(focalDistance) * 4;
+			// Screen should be focal distance * ?? high
+			var heightInMeters = 0f;
+			if (InstrumentType == InstrumentType.ConcaveLens || InstrumentType == InstrumentType.ConvexLens)
+			{
+				heightInMeters = Math.Abs(focalDistance) * 5f;
+			}
+			else
+			{
+				heightInMeters = Math.Abs(focalDistance) * 3f;
+			}
 			var pixelsPerMeterY = _canvasSize.Height / heightInMeters;
 
 			// Take the lower value

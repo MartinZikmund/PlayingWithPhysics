@@ -41,6 +41,10 @@ namespace Physics.OpticalInstruments.Logic
 
 		public float ImageDistance { get; set; }
 
+		public string ImageDistanceString => ImageDistance.ToString("0.00");
+
 		public float ImageHeight { get; set; }
-    }
+
+		public string ImageHeightString => ImageHeight.ToString("0.00");
+	}
 }

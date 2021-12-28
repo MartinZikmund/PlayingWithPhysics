@@ -33,8 +33,8 @@ namespace Physics.OpticalInstruments.Rendering
 		protected override void DrawLens(ISkiaCanvas canvas, SKSurface surface)
 		{
 			var yBase = GetRenderY(0);
-			var yExtentUp = GetRenderY(5);
-			var yExtentDown = GetRenderY(-5);
+			var yExtentUp = GetRenderY(2*SceneConfiguration.FocalDistance);
+			var yExtentDown = GetRenderY(-2 * SceneConfiguration.FocalDistance);
 			var x = GetRenderX(0);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentUp), 6, _axisStrokePaint);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentDown), 6, _axisStrokePaint);
@@ -49,7 +49,7 @@ namespace Physics.OpticalInstruments.Rendering
 			var centerX = GetRenderX(-2 * SceneConfiguration.FocalDistance);
 			var centerY = GetRenderY(0);
 
-			var focalX = GetRenderX(-SceneConfiguration.FocalDistance);
+			var focalX = GetRenderX(SceneConfiguration.FocalDistance);
 			var focalY = GetRenderY(0);
 
 			var imageTipX = GetRenderX(ImageInfo.ImageDistance);
@@ -61,37 +61,22 @@ namespace Physics.OpticalInstruments.Rendering
 			var lensIntersectionX = GetRenderX(0);
 			surface.Canvas.DrawLine(objectTipX, objectTipY, lensIntersectionX, objectTipY, _lightBeamPaint);
 
-			surface.Canvas.DrawLine(objectTipX, objectTipY, zeroX, zeroY, _imaginaryLightBeamPaint);
-
-			var imageTipLineIntersection = IntersectWithLens(new SKPoint(objectTipX, objectTipY), new SKPoint(imageTipX, imageTipY));
-
-			if (SceneConfiguration.ObjectDistance <= -2 * SceneConfiguration.FocalDistance)
+			if (SceneConfiguration.ObjectDistance <= SceneConfiguration.FocalDistance)
 			{
-				if (imageTipLineIntersection != null)
-				{
-					surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
-				}
-				//surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
-			}
-			else if (
-				SceneConfiguration.ObjectDistance > -2 * SceneConfiguration.FocalDistance &&
-				SceneConfiguration.ObjectDistance < -SceneConfiguration.FocalDistance)
-			{
-				surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
-				//surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
+				// Center to image lines
+				surface.Canvas.DrawLine(objectTipX, objectTipY, zeroX, zeroY, _lightBeamPaint);
+				surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _imaginaryLightBeamPaint);
+
+				// Focal to image lines
+				surface.Canvas.DrawLine(zeroX, objectTipY, focalX, zeroY, _lightBeamPaint);
+				surface.Canvas.DrawLine(zeroX, objectTipY, imageTipX,imageTipY, _imaginaryLightBeamPaint);
 			}
 			else
 			{
-				surface.Canvas.DrawLine(centerX, centerY, imageTipX, imageTipY, _lightBeamPaint);
-				surface.Canvas.DrawLine(focalX, focalY, imageTipX, imageTipY, _lightBeamPaint);
-			}
-
-			var targetPoint = imageTipLineIntersection.Value;
-			var lineToMirror = new Line2d(new Point2d(objectTipX, objectTipY), new Point2d(imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y));
-			var lineToImage = new Line2d(new Point2d(objectTipX, objectTipY), new Point2d(imageTipX, imageTipY));
-			if (lineToImage.Length > lineToMirror.Length)
-			{
-				targetPoint = new SKPoint(imageTipX, imageTipY);
+				// From lens intersection to image tip
+				surface.Canvas.DrawLine(zeroX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
+				// From object tip to image tip
+				surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
 			}
 		}
 
