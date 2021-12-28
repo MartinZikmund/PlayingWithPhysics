@@ -17,6 +17,7 @@ namespace Physics.OpticalInstruments.ViewModels
 	{
 		private DifficultyOption _difficulty;
 		private OpticalInstrumentsCanvasController _controller;
+		private readonly PhysicsService _physicsService = new PhysicsService();
 
 		public bool IsLoading { get; set; }
 
@@ -61,6 +62,16 @@ namespace Physics.OpticalInstruments.ViewModels
 			_controller = controller;
 			_controller.SceneConfiguration = SceneConfiguration;
 			SelectedInstrumentType = InstrumentTypes.First();
+			SceneConfiguration.PropertyChanged += SceneConfiguration_PropertyChanged;
+		}
+
+		private void SceneConfiguration_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			if (SelectedInstrumentType == null)
+			{
+				return;
+			}
+			ImageInfo = _physicsService.CalculateObjectImage(SelectedInstrumentType.Type, SceneConfiguration);
 		}
 
 		public async void OnSelectedInstrumentTypeChanged()

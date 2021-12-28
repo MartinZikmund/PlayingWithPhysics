@@ -142,11 +142,23 @@ Grafika: Petr Weinlich</value>
   <data name="FocalDistance" xml:space="preserve">
     <value>Ohnisková vzdálenost</value>
   </data>
+  <data name="ImageDistance" xml:space="preserve">
+    <value>Vzdálenost obrazu</value>
+  </data>
+  <data name="ImageHeight" xml:space="preserve">
+    <value>Výška obrazu</value>
+  </data>
+  <data name="ImageOrientation" xml:space="preserve">
+    <value>Orientace obrazu</value>
+  </data>
   <data name="ImageOrientationType_Flipped" xml:space="preserve">
     <value>Převrácený</value>
   </data>
   <data name="ImageOrientationType_Straight" xml:space="preserve">
     <value>Přímý</value>
+  </data>
+  <data name="ImageSizeType" xml:space="preserve">
+    <value>Velikost obrazu</value>
   </data>
   <data name="ImageSizeType_Larger" xml:space="preserve">
     <value>Zvětšený</value>
@@ -156,6 +168,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ImageSizeType_Smaller" xml:space="preserve">
     <value>Zmenšený</value>
+  </data>
+  <data name="ImageType" xml:space="preserve">
+    <value>Typ obrazu</value>
   </data>
   <data name="ImageType_Imaginary" xml:space="preserve">
     <value>Zdánlivý</value>

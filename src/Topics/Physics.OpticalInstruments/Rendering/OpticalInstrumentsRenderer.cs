@@ -56,6 +56,15 @@ namespace Physics.OpticalInstruments.Rendering
 			StrokeWidth = 2
 		};
 
+		protected readonly SKPaint _imaginaryLightBeamPaint = new SKPaint()
+		{
+			Color = SKColors.Blue,
+			IsStroke = true,
+			IsAntialias = true,
+			StrokeWidth = 2,
+			PathEffect = SKPathEffect.CreateDash(new[] { 4f, 2f }, 0)
+		};
+
 		internal bool TryGetObjectPosition(SKPoint pointerPoint, out SKPoint objectPoint)
 		{
 			var metersPerPixel = 1 / PixelsPerMeter;

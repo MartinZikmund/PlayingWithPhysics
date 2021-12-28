@@ -76,10 +76,28 @@
 						Value="{x:Bind Model.SceneConfiguration.ObjectDistance, Mode=TwoWay}"
 						SpinButtonPlacementMode="Inline" />
 
-					<TextBlock Text="{extensions:Localize Key=ImageProperties}" Style="{ThemeResource SubtitleTextBlockStyle}" />
-					<TextBlock Text="{extensions:Localize Key=Orientation}" />
-					<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay} />
-					<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay} />
+					<StackPanel>
+						<StackPanel Spacing="4">
+							<TextBlock Text="{extensions:Localize Key=ImageProperties}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+							<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageType}" />
+							<TextBlock Text="{x:Bind Model.ImageInfo.ImageType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+						</StackPanel>
+						<StackPanel Spacing="4" Visibility="{x:Bind Model.ImageInfo.ImageExists, Mode=OneWay}">
+							<TextBlock Text="{extensions:Localize Key=ImageSizeType}" />
+							<TextBlock Text="{x:Bind Model.ImageInfo.SizeType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+							<TextBlock Text="{extensions:Localize Key=ImageOrienation}" />
+							<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}}" />
+							<TextBlock Text="{extensions:Localize Key=ImageHeight}" />
+							<TextBlock Text="{x:Bind Model.ImageInfo.ImageHeight, Mode=OneWay}" />
+							<TextBlock Text="{extensions:Localize Key=ImageDistance}" />
+							<TextBlock Text="{x:Bind Model.ImageInfo.ImageDistance, Mode=OneWay}" />
+						</StackPanel>
+					</StackPanel>
+					<!--<StackPanel>
+						<TextBlock Text="{extensions:Localize Key=Orientation}" />
+						<TextBlock Text="{x:Bind Model.ImageInfo.ImageOrientation, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}} />
+						<TextBlock Text="{x:Bind Model.ImageInfo.ImageType, Mode=OneWay, Converter={StaticResource EnumLocalizationConverter}} />
+					</StackPanel>-->
 				</StackPanel>
 			</Border>
 		</Grid>

@@ -17,12 +17,12 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected override InstrumentType InstrumentType => InstrumentType.ConcaveMirror;
 
-		protected override bool FlipX => false;
+		protected override bool FlipX => true;
 
 		protected override void DrawConfiguration(ISkiaCanvas sender, SKSurface args)
 		{
-			DrawAxisPoint(args, -SceneConfiguration.FocalDistance, "F");
-			DrawAxisPoint(args, -SceneConfiguration.FocalDistance * 2, "C");
+			DrawAxisPoint(args, SceneConfiguration.FocalDistance, "F");
+			DrawAxisPoint(args, SceneConfiguration.FocalDistance * 2, "C");
 			DrawMirror(sender, args);
 
 			DrawLightBeams(sender, args);
@@ -30,7 +30,7 @@ namespace Physics.OpticalInstruments.Rendering
 
 		protected override void DrawMirror(ISkiaCanvas canvas, SKSurface surface)
 		{
-			var centerX = GetRenderX(-SceneConfiguration.FocalDistance * 2);
+			var centerX = GetRenderX(SceneConfiguration.FocalDistance * 2);
 			var centerY = GetRenderY(0);
 			var radius = MirrorRadius * PixelsPerMeter;
 			var bounds = new SKRect(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
