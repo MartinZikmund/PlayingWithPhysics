@@ -312,6 +312,9 @@
   <data name="StudyText" xml:space="preserve">
     <value>Learning text</value>
   </data>
+  <data name="TimeJumpSize" xml:space="preserve">
+    <value>Time jump size</value>
+  </data>
   <data name="TryAgain" xml:space="preserve">
     <value>Try again</value>
   </data>

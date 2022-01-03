@@ -60,6 +60,8 @@ namespace Physics.Shared.UI.Rendering
 
 		public string XUnitFormatString { get; set; } = "0.#";
 
+		public float? XJumpSize { get; set; }
+
 		public void Update(ISkiaCanvas sender)
 		{
 		}
@@ -249,7 +251,7 @@ namespace Physics.Shared.UI.Rendering
 
 			var axisInUnits = TargetBounds.Width / XUnitSizeInPixels;
 
-			var jumpSize = CalculateOptimalJumpSize(axisInUnits, maxTicks);
+			var jumpSize = XJumpSize ?? CalculateOptimalJumpSize(axisInUnits, maxTicks);
 			var jumps = (float)axisInUnits / jumpSize;
 
 			var units = jumps * jumpSize;

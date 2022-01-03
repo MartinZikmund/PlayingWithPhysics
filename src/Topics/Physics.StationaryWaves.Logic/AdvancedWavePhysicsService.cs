@@ -23,6 +23,10 @@ namespace Physics.StationaryWaves.Logic
 
 		public float MaxX => XMax;
 
+		public float WaveLength => _waveInfo.WaveLength;
+
+		public bool HasWavePackage => false;
+
 		public AdvancedWavePhysicsService(BounceType bounceType)
 		{
 			_bounceType = bounceType;
@@ -76,5 +80,7 @@ namespace Physics.StationaryWaves.Logic
 
 			return (float)y;
 		}
+
+		public float? CalculateWavePackageY(float x, float time) => null;
 	}
 }

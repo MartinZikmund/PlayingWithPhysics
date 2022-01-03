@@ -8,13 +8,12 @@ namespace Physics.StationaryWaves.ValuesTable
 	public class TableService : ITableService<TableRow>
 	{
 		private IWavePhysicsService _physicsService;
+		private readonly float _rightEnd;
 
-		public bool Compound { get; }
-
-		public TableService(IWavePhysicsService physicsService, bool compound)
+		public TableService(IWavePhysicsService physicsService, float rightEnd)
 		{
 			_physicsService = physicsService;
-			Compound = compound;
+			_rightEnd = rightEnd;
 		}
 
 		public ValuesTableDialogViewModel Owner { get; set; }
@@ -32,7 +31,7 @@ namespace Physics.StationaryWaves.ValuesTable
 			List<TableRow> table = new List<TableRow>();
 
 			float minX = 0;
-			float maxX = 6 * (float)Math.PI;
+			float maxX = _rightEnd;
 			var x = minX;
 			while (x <= maxX)
 			{

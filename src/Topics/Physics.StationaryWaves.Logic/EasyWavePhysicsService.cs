@@ -28,6 +28,10 @@ namespace Physics.StationaryWaves.Logic
 
 		public float MaxX => _rightEndDistance;
 
+		public float WaveLength => _waveInfo.WaveLength;
+
+		public bool HasWavePackage => true;
+
 		public float? CalculateCompoundY(float x, float time)
 		{
 			if (x < 0 || x > _rightEndDistance)
@@ -43,6 +47,20 @@ namespace Physics.StationaryWaves.Logic
 			}
 
 			return firstWaveY.Value + secondWaveY.Value;
+		}
+
+		public float? CalculateWavePackageY(float x, float time)
+		{
+			if (x < 0 || x > _rightEndDistance)
+			{
+				return null;
+			}
+
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+			return 2 * _waveInfo.Amplitude *
+				(float)Math.Sin(
+					2 * Math.PI *
+					(leftEndConstant * Math.PI / 2 + x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
 		}
 
 		public float? CalculateFirstWaveY(float x, float time)

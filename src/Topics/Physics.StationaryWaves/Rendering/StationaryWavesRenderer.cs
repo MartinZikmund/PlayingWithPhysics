@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.StationaryWaves.Logic;
 using SkiaSharp;
@@ -13,7 +12,9 @@ namespace Physics.StationaryWaves.Rendering
 		protected readonly ISkiaCanvas _canvas;
 
 		private const float HorizontalPadding = 12;
-		private AdvancedWavePhysicsService _physicsService;
+		private const float InherentSlowdown = 0.25f;
+
+		private readonly SkiaAxesRenderer _axesRenderer = new SkiaAxesRenderer();
 
 		private float _pixelsPerUnitX;
 		private float _pixelsPerUnitY;
@@ -35,6 +36,15 @@ namespace Physics.StationaryWaves.Rendering
 			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 5,
 			Color = SKColors.Red
+		};
+
+		private SKPaint _wavePackageStrokePaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
+			StrokeWidth = 5,
+			Color = SKColors.Gray
 		};
 
 		private SKPaint _axis1Paint = new SKPaint()
@@ -67,7 +77,7 @@ namespace Physics.StationaryWaves.Rendering
 			_canvas = controller.Canvas;
 		}
 
-		protected abstract IWavePhysicsService WavePhysicsService { get; }
+		public abstract IWavePhysicsService WavePhysicsService { get; }
 
 		internal abstract void StartSimulation(BounceType bounceType, float width);
 
@@ -81,7 +91,7 @@ namespace Physics.StationaryWaves.Rendering
 				return;
 			}
 
-			//DrawAxes(sender, args);
+			DrawAxes(sender, args);
 			args.Canvas.DrawLine(new SKPoint(0, GetDisplayHeightInPixels(sender) / 2), new SKPoint(GetDisplayWidthInPixels(sender), GetDisplayHeightInPixels(sender) / 2), _axisPaintHorizontal);
 
 			//var pointSize = 6f;
@@ -96,9 +106,46 @@ namespace Physics.StationaryWaves.Rendering
 			//	pointSize -= 2;
 			//}
 
+			if (WavePhysicsService.HasWavePackage)
+			{
+				DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateWavePackageY(x, time), _wavePackageStrokePaint);
+				DrawTrajectory(sender, args, (x, time) =>
+				{
+					var y = WavePhysicsService.CalculateWavePackageY(x, time);
+					if (y == null)
+					{
+						return null;
+					}
+					else
+					{
+						return -y.Value;
+					}
+				}, _wavePackageStrokePaint);
+			}
 			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateFirstWaveY(x, time), _axis1Paint);
 			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateSecondWaveY(x, time), _axis2Paint);
-			DrawTrajectory(sender, args, (x,time) => WavePhysicsService.CalculateCompoundY(x, time), _interferenceStrokePaint);
+			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateCompoundY(x, time), _interferenceStrokePaint);
+		}
+
+
+		private void DrawAxes(ISkiaCanvas sender, SKSurface args)
+		{
+			var axesBounds = new SimulationBounds(0, 0, (float)sender.ScaledSize.Width, (float)sender.ScaledSize.Height);
+			var endRenderX = (float)sender.ScaledSize.Width;
+			var horizontalPixelDiff = endRenderX - axesBounds.Left;
+			var endTime = GetAdjustedTotalTime();
+
+			_axesRenderer.YUnitSizeInPixels = 1;
+			_axesRenderer.XUnitSizeInPixels = (float)sender.ScaledSize.Width / (WavePhysicsService.MaxX / WavePhysicsService.WaveLength);
+			_axesRenderer.ShouldDrawYAxis = false;
+			_axesRenderer.ShouldDrawYMeasure = false;
+			_axesRenderer.XUnitFormatString = "0.## λ";
+			_axesRenderer.XJumpSize = 0.25f;
+
+			_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
+			_axesRenderer.TargetBounds = axesBounds;
+			_axesRenderer.OriginRelativePosition = new SKPoint(0, 0.5f);
+			_axesRenderer.Draw(sender, args);
 		}
 
 		public void Update(ISkiaCanvas sender)
@@ -157,7 +204,7 @@ namespace Physics.StationaryWaves.Rendering
 			args.Canvas.DrawPath(path, paint);
 		}
 
-		private double GetAdjustedTotalTime() => Math.Truncate(_controller.SimulationTime.TotalTime.TotalMilliseconds) / 1000;
+		private double GetAdjustedTotalTime() => Math.Truncate(_controller.SimulationTime.TotalTime.TotalMilliseconds) / 1000 * InherentSlowdown;
 
 		private float GetDisplayHeightInPixels(ISkiaCanvas sender) => (float)sender.ScaledSize.Height;
 

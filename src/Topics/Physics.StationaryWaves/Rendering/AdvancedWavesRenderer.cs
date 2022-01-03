@@ -10,7 +10,7 @@ namespace Physics.StationaryWaves.Rendering
 		{
 		}
 
-		protected override IWavePhysicsService WavePhysicsService => _wavePhysicsService;
+		public override IWavePhysicsService WavePhysicsService => _wavePhysicsService;
 
 		internal override void StartSimulation(BounceType bounceType, float width)
 		{

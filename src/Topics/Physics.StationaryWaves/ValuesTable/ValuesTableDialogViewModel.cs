@@ -78,21 +78,21 @@ namespace Physics.StationaryWaves.ValuesTable
 
 			if (eventArgs.Column.Header.ToString() == "Y1")
 			{
-				eventArgs.Column.Header = "y1 (m)";
+				eventArgs.Column.Header = "y₁ (m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Y1")
 			{
-				eventArgs.Column.Header = "y2 (m)";
+				eventArgs.Column.Header = "y₂ (m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Y")
 			{
-				eventArgs.Column.Header = "y1 + y2 (m)";
+				eventArgs.Column.Header = "y₁ + y₂ (m)";
 			}
 		}
 
-		public void CopyToClipboard()
+		public override void CopyToClipboard()
 		{
 			var clipboardContents = new StringBuilder();
 			foreach (var data in Values)

@@ -67,7 +67,7 @@
                     <Flyout>
                         <winui:NumberBox
                             x:Name="StepSizeNumberBox"
-                            Header="{extensions:Localize Key=JumpSize}"
+                            Header="{extensions:Localize Key=TimeJumpSize}"
                             LargeChange="0.1"
                             Minimum="0.1"
                             SmallChange="0.1"
@@ -103,7 +103,7 @@
                     <Flyout>
                         <winui:NumberBox
                             x:Name="StepSizeForwardNumberBox"
-                            Header="{extensions:Localize Key=JumpSize}"
+                            Header="{extensions:Localize Key=TimeJumpSize}"
                             LargeChange="0.1"
                             Minimum="0.1"
                             SmallChange="0.1"

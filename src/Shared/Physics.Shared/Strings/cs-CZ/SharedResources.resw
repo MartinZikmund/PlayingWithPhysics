@@ -309,6 +309,9 @@
   <data name="StudyText" xml:space="preserve">
     <value>Samostudium</value>
   </data>
+  <data name="TimeJumpSize" xml:space="preserve">
+    <value>Rozsah časového skoku</value>
+  </data>
   <data name="TryAgain" xml:space="preserve">
     <value>Zkusit znovu</value>
   </data>

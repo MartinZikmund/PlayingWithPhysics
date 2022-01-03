@@ -194,7 +194,7 @@ Graphics: Petr Weinlich</value>
     <value>Range</value>
   </data>
   <data name="RightEndDistance" xml:space="preserve">
-    <value>Right end distance</value>
+    <value>Right end distance (multiple of λ)</value>
   </data>
   <data name="RightEndType" xml:space="preserve">
     <value>Right end type</value>
@@ -204,6 +204,12 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Stationary Waves</value>
+  </data>
+  <data name="ShowValuesTable" xml:space="preserve">
+    <value>Show values table</value>
+  </data>
+  <data name="StationaryWaves" xml:space="preserve">
+    <value>Stationary waves</value>
   </data>
   <data name="TimeForTable" xml:space="preserve">
     <value>Time (s):</value>

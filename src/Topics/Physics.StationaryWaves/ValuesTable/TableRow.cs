@@ -15,10 +15,16 @@ namespace Physics.StationaryWaves.ValuesTable
 
         //public string Time { get; set; }
 
+		[ValuesTableHeader("x")]
 		public string X { get; set; }
 
+		[ValuesTableHeader("y₁")]
 		public string Y1 { get; set; }
+
+		[ValuesTableHeader("y₂")]
 		public string Y2 { get; set; }
+
+		[ValuesTableHeader("y")]
 		public string Y { get; set; }
 
         public TableRow(double x, float? y1, float? y2, float? y)
@@ -32,7 +38,7 @@ namespace Physics.StationaryWaves.ValuesTable
         protected override IEnumerable<string> GetCellValuesInOrder()
         {
 			yield return X;
-			yield return Y2;
+			yield return Y1;
 			yield return Y2;
 			yield return Y;
         }

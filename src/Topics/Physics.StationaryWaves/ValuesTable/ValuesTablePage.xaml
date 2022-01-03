@@ -42,7 +42,7 @@
                 x:Name="DistanceIntervalNumberBox"
                 Width="160"
                 Header="{extensions:Localize Key=DistanceIntervalForTable}"
-                Minimum="0.1"
+                Minimum="0.05"
                 SmallChange="0.1"
                 SpinButtonPlacementMode="Inline"
                 Value="{x:Bind Model.DistanceInterval, Mode=TwoWay}" />

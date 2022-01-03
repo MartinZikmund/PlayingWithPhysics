@@ -194,12 +194,18 @@ Grafika: Petr Weinlich</value>
     <value>Rozsah</value>
   </data>
   <data name="RightEndDistance" xml:space="preserve">
-    <value>Vzdálenost pravého konce</value>
+    <value>Vzdálenost pravého konce (násobek λ)</value>
   </data>
   <data name="SetWaves" xml:space="preserve">
     <value>Nastavit vlnění</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
+    <value>Stojaté vlnění</value>
+  </data>
+  <data name="ShowValuesTable" xml:space="preserve">
+    <value>Zobrazit tabulku hodnot</value>
+  </data>
+  <data name="StationaryWaves" xml:space="preserve">
     <value>Stojaté vlnění</value>
   </data>
   <data name="TimeForTable" xml:space="preserve">
