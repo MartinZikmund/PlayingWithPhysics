@@ -36,9 +36,15 @@ namespace Physics.OpticalInstruments.Rendering
 			var centerY = GetRenderY(0);
 			var radius = MirrorRadius * PixelsPerMeter;
 			var bounds = new SKRect(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
+			var shadowBounds = new SKRect(centerX + _mirrorShadowPaint.StrokeWidth / 2 - radius, centerY - radius, centerX + _mirrorShadowPaint.StrokeWidth / 2 + radius, centerY + radius);
 
 			using var path = new SKPath();
 			path.AddArc(bounds, -40, 80);
+
+			using var shadowPath = new SKPath();
+			shadowPath.AddArc(shadowBounds, -41, 82);
+
+			surface.Canvas.DrawPath(shadowPath, _mirrorShadowPaint);
 			surface.Canvas.DrawPath(path, _axisStrokePaint);
 		}
 
