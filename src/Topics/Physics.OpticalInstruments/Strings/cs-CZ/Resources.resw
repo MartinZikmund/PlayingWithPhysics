@@ -125,25 +125,28 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Simulátor optických přístrojů</value>
+    <value>Hrátky s fyzikou: Zobrazení odrazem a lomem</value>
   </data>
   <data name="ConcaveLens" xml:space="preserve">
-    <value>Dutá čočka</value>
+    <value>Rozptylná čočka</value>
   </data>
   <data name="ConcaveMirror" xml:space="preserve">
     <value>Duté zrcadlo</value>
   </data>
   <data name="ConvexLens" xml:space="preserve">
-    <value>Vypulká čočka</value>
+    <value>Spojná čočka</value>
   </data>
   <data name="ConvexMirror" xml:space="preserve">
     <value>Vypulké zrcadlo</value>
+  </data>
+  <data name="Diopters" xml:space="preserve">
+    <value>Dioptrie</value>
   </data>
   <data name="FocalDistance" xml:space="preserve">
     <value>Ohnisková vzdálenost</value>
   </data>
   <data name="ImageDistance" xml:space="preserve">
-    <value>Vzdálenost obrazu</value>
+    <value>Obrazová vzdálenost</value>
   </data>
   <data name="ImageHeight" xml:space="preserve">
     <value>Výška obrazu</value>
@@ -176,7 +179,7 @@ Grafika: Petr Weinlich</value>
     <value>Typ obrazu</value>
   </data>
   <data name="ImageType_Imaginary" xml:space="preserve">
-    <value>Zdánlivý</value>
+    <value>Neskutečný</value>
   </data>
   <data name="ImageType_None" xml:space="preserve">
     <value>Nevzniká</value>
@@ -185,12 +188,12 @@ Grafika: Petr Weinlich</value>
     <value>Skutečný</value>
   </data>
   <data name="ObjectDistance" xml:space="preserve">
-    <value>Objeková vzdálenost</value>
+    <value>Předmětová vzdálenost</value>
   </data>
   <data name="ObjectHeight" xml:space="preserve">
     <value>Výška objektu</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Simulátor optických přístrojů</value>
+    <value>Zobrazení odrazem a lomem</value>
   </data>
 </root>

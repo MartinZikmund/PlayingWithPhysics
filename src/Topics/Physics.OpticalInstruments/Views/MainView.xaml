@@ -66,11 +66,11 @@
 							<winui:NumberBox
 							x:Name="FocalDistanceNumberBox"
 							Header="{extensions:Localize Key=FocalDistance}"
-							Value="{x:Bind Model.SceneConfiguration.FocalDistance, Mode=TwoWay}"
-							Minimum="{x:Bind Model.SelectedInstrumentType.MinFocalDistance, Mode=OneWay}"
-							Maximum="{x:Bind Model.SelectedInstrumentType.MaxFocalDistance, Mode=OneWay}"
+							Value="{x:Bind Model.SceneConfiguration.FocalDistanceCm, Mode=TwoWay}"
+							Minimum="{x:Bind Model.SelectedInstrumentType.MinFocalDistanceCm, Mode=OneWay}"
+							Maximum="{x:Bind Model.SelectedInstrumentType.MaxFocalDistanceCm, Mode=OneWay}"
 							SpinButtonPlacementMode="Inline" />
-							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>
 
 						<StackPanel Spacing="4">
@@ -89,9 +89,9 @@
 							<winui:NumberBox
 							x:Name="ObjectDistanceNumberBox"
 							Header="{extensions:Localize Key=ObjectDistance}"
-							Value="{x:Bind Model.SceneConfiguration.ObjectDistance, Mode=TwoWay}"
+							Value="{x:Bind Model.SceneConfiguration.ObjectDistanceCm, Mode=TwoWay}"
 							SpinButtonPlacementMode="Inline" />
-							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>
 
 						<Grid>
@@ -102,9 +102,9 @@
 							<winui:NumberBox
 							x:Name="ObjectHeightNumberBox"
 							Header="{extensions:Localize Key=ObjectHeight}"
-							Value="{x:Bind Model.SceneConfiguration.ObjectHeight, Mode=TwoWay}"
+							Value="{x:Bind Model.SceneConfiguration.ObjectHeightCm, Mode=TwoWay}"
 							SpinButtonPlacementMode="Inline" />
-							<TextBlock Text="m" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
+							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>
 
 						<StackPanel>
@@ -121,12 +121,12 @@
 								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageHeight}" />
 								<TextBlock>
 								<Run Text="{x:Bind Model.ImageInfo.ImageHeightString, Mode=OneWay}" />
-								<Run Text="m" />
+								<Run Text="cm" />
 								</TextBlock>
 								<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=ImageDistance}" />
 								<TextBlock>
 								<Run Text="{x:Bind Model.ImageInfo.ImageDistanceString, Mode=OneWay}" />
-								<Run Text="m" />
+								<Run Text="cm" />
 								</TextBlock>
 							</StackPanel>
 						</StackPanel>

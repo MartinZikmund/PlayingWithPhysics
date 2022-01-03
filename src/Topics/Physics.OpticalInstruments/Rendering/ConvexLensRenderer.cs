@@ -33,8 +33,8 @@ namespace Physics.OpticalInstruments.Rendering
 		protected override void DrawLens(ISkiaCanvas canvas, SKSurface surface)
 		{
 			var yBase = GetRenderY(0);
-			var yExtentUp = GetRenderY(2*SceneConfiguration.FocalDistance);
-			var yExtentDown = GetRenderY(-2 * SceneConfiguration.FocalDistance);
+			var yExtentUp = GetRenderY(SceneConfiguration.FocalDistance);
+			var yExtentDown = GetRenderY(-SceneConfiguration.FocalDistance);
 			var x = GetRenderX(0);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentUp), 6, _axisStrokePaint);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentDown), 6, _axisStrokePaint);

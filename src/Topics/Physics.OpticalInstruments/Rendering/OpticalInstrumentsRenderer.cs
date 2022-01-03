@@ -20,6 +20,7 @@ namespace Physics.OpticalInstruments.Rendering
 			Color = SKColors.Black,
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 2,
 		};
 
@@ -29,6 +30,7 @@ namespace Physics.OpticalInstruments.Rendering
 			IsStroke = true,
 			IsAntialias = true,
 			StrokeWidth = 1,
+			FilterQuality = SKFilterQuality.High,
 			TextAlign = SKTextAlign.Center,
 			TextSize = 12,
 		};
@@ -38,6 +40,7 @@ namespace Physics.OpticalInstruments.Rendering
 			Color = SKColors.Red,
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 2
 		};
 
@@ -46,6 +49,7 @@ namespace Physics.OpticalInstruments.Rendering
 			Color = SKColors.HotPink,
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 2
 		};
 
@@ -54,6 +58,7 @@ namespace Physics.OpticalInstruments.Rendering
 			Color = SKColors.Blue,
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 2
 		};
 
@@ -62,6 +67,7 @@ namespace Physics.OpticalInstruments.Rendering
 			Color = SKColors.Blue,
 			IsStroke = true,
 			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
 			StrokeWidth = 2,
 			PathEffect = SKPathEffect.CreateDash(new[] { 4f, 2f }, 0)
 		};
@@ -89,7 +95,7 @@ namespace Physics.OpticalInstruments.Rendering
 			var heightClampScale =
 				InstrumentType == InstrumentType.ConcaveLens ||
 				InstrumentType == InstrumentType.ConvexLens ?
-					1.5f : 0.8f;
+					0.8f : 0.8f;
 			actualHeight = MathHelpers.Clamp(
 				actualHeight,
 				-Math.Abs(SceneConfiguration.FocalDistance * heightClampScale),
@@ -190,7 +196,7 @@ namespace Physics.OpticalInstruments.Rendering
 			var heightInMeters = 0f;
 			if (InstrumentType == InstrumentType.ConcaveLens || InstrumentType == InstrumentType.ConvexLens)
 			{
-				heightInMeters = Math.Abs(focalDistance) * 5f;
+				heightInMeters = Math.Abs(focalDistance) * 3f;
 			}
 			else
 			{
