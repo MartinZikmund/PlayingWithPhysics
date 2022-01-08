@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Physics.OpticalInstruments.Logic;
 using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Rendering.Skia;
@@ -66,27 +67,50 @@ namespace Physics.OpticalInstruments.Rendering
 			var zeroX = GetRenderX(0);
 
 			var parallelLineIntersection = IntersectWithMirror(new SKPoint(objectTipY, objectTipY), new SKPoint(GetRenderX(0), objectTipY));
+			var imageTipLineIntersection = Math.Abs(objectTipX - imageTipX) > 1 ? IntersectWithMirror(new SKPoint(objectTipX, objectTipY), new SKPoint(imageTipX, imageTipY)) : null;
+
+			Point2d? axisIntersection = null;
+
 			if (parallelLineIntersection != null)
 			{
-				surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
-			}
+				var lineParallelToImage = new Line2d(new Point2d(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y), new Point2d(imageTipX, imageTipY));
+				var lineAxis = new Line2d(new Point2d(GetRenderX(0), GetRenderY(0)), new Point2d(focalX, focalY));
+				axisIntersection = lineParallelToImage.IntersectWith(lineAxis);
 
-			var imageTipLineIntersection = IntersectWithMirror(new SKPoint(objectTipX, objectTipY), new SKPoint(imageTipX, imageTipY));
+				if (axisIntersection != null && !IsValidFocalLightBeamDistance(GetRealX((float)axisIntersection.Value.X)))
+				{
+					axisIntersection = null;
+				}
+			}
 
 			if (SceneConfiguration.ObjectDistance >= 2 * SceneConfiguration.FocalDistance)
 			{
-				if (imageTipLineIntersection != null)
+				if (axisIntersection != null)
 				{
-					surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
+					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
+
+					if (imageTipLineIntersection != null && SceneConfiguration.ObjectDistance >= 3 * SceneConfiguration.FocalDistance)
+					{
+						surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
+					}
+					else
+					{
+						surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
+					}
+					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
 				}
-				surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
 			}
 			else if (
 				SceneConfiguration.ObjectDistance <= 2 * SceneConfiguration.FocalDistance &&
 				SceneConfiguration.ObjectDistance > SceneConfiguration.FocalDistance)
 			{
 				surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
-				surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
+				if (axisIntersection != null)
+				{
+					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
+
+					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
+				}
 			}
 			else
 			{
@@ -103,18 +127,10 @@ namespace Physics.OpticalInstruments.Rendering
 					surface.Canvas.DrawLine(imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, imageTipX, imageTipY, _imaginaryLightBeamPaint);
 				}
 
-				if (parallelLineIntersection != null)
+				if (axisIntersection != null)
 				{
 					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, zeroX, objectTipY, _imaginaryLightBeamPaint);
 				}
-			}
-
-			var targetPoint = imageTipLineIntersection.Value;
-			var lineToMirror = new Line2d(new Point2d(objectTipX, objectTipY), new Point2d(imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y));
-			var lineToImage = new Line2d(new Point2d(objectTipX, objectTipY), new Point2d(imageTipX, imageTipY));
-			if (lineToImage.Length > lineToMirror.Length)
-			{
-				targetPoint = new SKPoint(imageTipX, imageTipY);
 			}
 		}
 

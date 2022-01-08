@@ -6,9 +6,13 @@ namespace Physics.OpticalInstruments.Logic
 {
 	public class SceneConfiguration : MvxNotifyPropertyChanged
 	{
-		public float MinObjectDistanceCm => Math.Abs(FocalDistanceCm) / 10f;
+		public const float MinObjectDistanceMultiplier = 0.2f;
 
-		public float MaxObjectDistanceCm => Math.Abs(FocalDistanceCm) * 4f;
+		public const float MaxObjectDistanceMultiplier = 4f;
+
+		public float MinObjectDistanceCm => Math.Abs(FocalDistanceCm) * MinObjectDistanceMultiplier;
+
+		public float MaxObjectDistanceCm => Math.Abs(FocalDistanceCm) * MaxObjectDistanceMultiplier;
 
 		public float FocalDistance { get; set; } = 2.5f;
 

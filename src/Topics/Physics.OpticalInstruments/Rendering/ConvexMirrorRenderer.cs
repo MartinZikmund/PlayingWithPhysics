@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Physics.OpticalInstruments.Logic;
 using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Rendering.Skia;
@@ -66,14 +67,17 @@ namespace Physics.OpticalInstruments.Rendering
 			var parallelLineIntersection = IntersectWithMirror(new SKPoint(objectTipX, objectTipY), new SKPoint(GetRenderX(0), objectTipY));
 			if (parallelLineIntersection != null)
 			{
-				surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
-
 				var lineMirror = new Line2d(new Point2d(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y), new Point2d(imageTipX, imageTipY));
 				var lineAxis = new Line2d(new Point2d(GetRenderX(0), GetRenderY(0)), new Point2d(focalX, focalY));
 				var intersection = lineMirror.IntersectWith(lineAxis);
 				if (intersection != null)
 				{
-					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, (float)intersection.Value.X, (float)intersection.Value.Y, _imaginaryLightBeamPaint);
+					var realX = GetRealX((float)intersection.Value.X);					
+					if (IsValidFocalLightBeamDistance(realX))
+					{
+						surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
+						surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, (float)intersection.Value.X, (float)intersection.Value.Y, _imaginaryLightBeamPaint);
+					}
 				}
 			}
 

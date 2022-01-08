@@ -88,8 +88,8 @@ namespace Physics.OpticalInstruments.Rendering
 			var actualDistance = Math.Abs(distance * metersPerPixel);
 			actualDistance = MathHelpers.Clamp(
 				actualDistance,
-				Math.Abs(SceneConfiguration.FocalDistance) / 10,
-				Math.Abs(SceneConfiguration.FocalDistance) * 4);
+				Math.Abs(SceneConfiguration.FocalDistance) * SceneConfiguration.MinObjectDistanceMultiplier,
+				Math.Abs(SceneConfiguration.FocalDistance) * SceneConfiguration.MaxObjectDistanceMultiplier);
 
 			var height = centerY - pointerPoint.Y;
 			var actualHeight = height * metersPerPixel;
@@ -155,8 +155,18 @@ namespace Physics.OpticalInstruments.Rendering
 			args.Canvas.DrawText(label, renderX, y + AxisPointSize + 14, _axisLabelPaint);
 		}
 
+		protected bool IsValidFocalLightBeamDistance(float lightBeamRealX)
+		{
+			var absFocal = Math.Abs(SceneConfiguration.FocalDistance);
+			var distanceInMeters = Math.Abs(Math.Abs(lightBeamRealX) - absFocal);
+			return distanceInMeters / absFocal < 0.1;
+		}
+
 		protected float GetRenderX(float xInMeters) =>
 			_canvasSize.Width * RelativeOpticalInstrumentX + (xInMeters * (FlipX ? -1 : 1)) * PixelsPerMeter;
+
+		protected float GetRealX(float renderX) =>
+			(renderX - _canvasSize.Width * RelativeOpticalInstrumentX) / PixelsPerMeter / (FlipX ? -1 : 1);
 
 		protected float GetRenderY(float yInMeters) =>
 			_canvasSize.Height / 2 - yInMeters * PixelsPerMeter;
