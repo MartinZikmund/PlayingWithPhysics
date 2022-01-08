@@ -41,6 +41,8 @@ namespace Physics.StationaryWaves.ViewModels
 			_contentDialogHelper = contentDialogHelper;
 		}
 
+		public DisplaySettingsViewModel DisplaySettings { get; } = new DisplaySettingsViewModel();
+
 		public bool IsAdvanced => Difficulty == DifficultyOption.Advanced;
 
 		public bool IsEasy => Difficulty == DifficultyOption.Easy;
@@ -73,6 +75,7 @@ namespace Physics.StationaryWaves.ViewModels
 			}
 			//TODO:
 			//_waveInterferencePhysicsService = new WaveInterferencePhysicsService(Waves.Select(o => o.WaveInfo).ToArray());
+			_controller.SetDisplaySettings(DisplaySettings);
 			_timer.Start();
 			await _controller.RunOnGameLoopAsync(() =>
 			{

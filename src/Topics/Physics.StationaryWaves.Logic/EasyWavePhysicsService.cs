@@ -105,5 +105,13 @@ namespace Physics.StationaryWaves.Logic
 
 			return (float)Math.Abs(y1);
 		}
+
+		public float CalculateFirstWaveMinX(float time) => MinX;
+
+		public float CalculateFirstWaveMaxX(float time) => MaxX;
+
+		public float CalculateSecondWaveMinX(float time) => MinX;
+
+		public float CalculateSecondWaveMaxX(float time) => MaxX;
 	}
 }

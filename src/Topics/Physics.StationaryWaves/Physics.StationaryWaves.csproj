@@ -136,6 +136,7 @@
     <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DisplaySettingsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WaveInfoViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">

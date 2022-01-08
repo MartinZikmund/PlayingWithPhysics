@@ -51,137 +51,61 @@
 			</Windows10version1903:Grid.Shadow>
 
 			<Border Margin="12">
-				<Grid RowSpacing="8">
+				<Grid>
 					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-
 					<sharedControls:SkewedMenuHeader
                         FontSize="16"
                         GoBackCommand="{x:Bind Model.GoBackCommand}"
                         Text="{extensions:Localize Key=ShortAppName}" />
+					<ScrollViewer Grid.Row="1">
+						<Grid RowSpacing="8">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
 
-					<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsEasy, Mode=OneWay}">
-						<ComboBox Header="{extensions:Localize Key=LeftEndType}" ItemsSource="{x:Bind Model.EasyBounceTypes}" SelectedItem="{x:Bind Model.EasyBounceType, Mode=TwoWay}">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
+							<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsEasy, Mode=OneWay}">
+								<ComboBox HorizontalAlignment="Stretch" Header="{extensions:Localize Key=LeftEndType}" ItemsSource="{x:Bind Model.EasyBounceTypes}" SelectedItem="{x:Bind Model.EasyBounceType, Mode=TwoWay}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
 
-						<Slider Orientation="Horizontal" Header="{extensions:Localize Key=RightEndDistance}" Value="{x:Bind Model.RightEndDistance, Mode=TwoWay}" Minimum="0.25" StepFrequency="0.25" SmallChange="0.25" LargeChange="0.25" Maximum="3.25" />
-					</StackPanel>
+								<Slider Orientation="Horizontal" Header="{extensions:Localize Key=RightEndDistance}" Value="{x:Bind Model.RightEndDistance, Mode=TwoWay}" Minimum="0.25" StepFrequency="0.25" SmallChange="0.25" LargeChange="0.25" Maximum="3.25" />
+							</StackPanel>
 
-					<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
-						<ComboBox Header="{extensions:Localize Key=RightEndType}" ItemsSource="{x:Bind Model.AdvancedBounceTypes}" SelectedItem="{x:Bind Model.AdvancedBounceType, Mode=TwoWay}">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
-					</StackPanel>
+							<StackPanel Spacing="8" Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+								<ComboBox HorizontalAlignment="Stretch" Header="{extensions:Localize Key=RightEndType}" ItemsSource="{x:Bind Model.AdvancedBounceTypes}" SelectedItem="{x:Bind Model.AdvancedBounceType, Mode=TwoWay}">
+									<ComboBox.ItemTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+										</DataTemplate>
+									</ComboBox.ItemTemplate>
+								</ComboBox>
+							</StackPanel>
 
-					<Button Grid.Row="2" HorizontalAlignment="Stretch" Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}">
-						<StackPanel Spacing="8" Orientation="Horizontal">
-							<SymbolIcon Symbol="ViewAll" />
-							<TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
-						</StackPanel>
-					</Button>
-					<!--<Button
-                        Grid.Row="1"
-                        Margin="8,0,8,0"
-                        HorizontalAlignment="Stretch"
-                        Click="{x:Bind Model.AddWave}">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Viewbox
-                                Width="16"
-                                Height="16"
-                                VerticalAlignment="Center">
-                                <SymbolIcon Symbol="Edit" />
-                            </Viewbox>
-                            <TextBlock Text="{extensions:Localize Key=SetWaves}" />
-                        </StackPanel>
-                    </Button>
-                    <Grid
-                        Grid.Row="3"
-                        Margin="0,8,0,0"
-                        ColumnSpacing="16"
-                        RowSpacing="8"
-                        Visibility="{x:Bind Model.IsWaveConfigured, Mode=OneWay}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Border
-                            Grid.RowSpan="2"
-                            Width="8"
-                            CornerRadius="4">
-                            <Border.Background>
-                                <SolidColorBrush Color="{x:Bind Model.Wave.WaveInfo.Color, Mode=OneWay}" />
-                            </Border.Background>
-                        </Border>
-                        <Grid
-                            Grid.Column="1"
-                            ColumnSpacing="8"
-                            CornerRadius="2"
-                            RowSpacing="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+							<Button Grid.Row="2" HorizontalAlignment="Stretch" Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}">
+								<StackPanel Spacing="8" Orientation="Horizontal">
+									<SymbolIcon Symbol="ViewAll" />
+									<TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
+								</StackPanel>
+							</Button>
 
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontWeight="SemiBold"
-                                Style="{ThemeResource SubtitleTextBlockStyle}"
-                                Text="{x:Bind Model.Wave.Label, Mode=OneWay}"
-                                TextLineBounds="Tight"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="NoWrap" />
-                            <Button Grid.Column="1" Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}">
-                                <SymbolIcon Symbol="ViewAll" />
-                            </Button>
-                        </Grid>
-
-                        <Grid
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="1"
-                            ColumnSpacing="8"
-                            RowSpacing="4">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            -->
-					<!--<TextBlock
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Style="{StaticResource InfoTextBlockStyle}">
-                                <Run FontWeight="Bold" Text="{extensions:Localize Key=AmplitudeLabel}" />
-                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.WaveInfo.AmplitudeText, Mode=OneWay}" />
-                            </TextBlock>
-                            <TextBlock Grid.Row="1" Style="{StaticResource InfoTextBlockStyle}">
-                                <Run FontWeight="Bold" Text="{extensions:Localize Key=ALabel}" />
-                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.AVariantText, Mode=OneWay}" />
-                            </TextBlock>
-                            <TextBlock Grid.Row="2" Style="{StaticResource InfoTextBlockStyle}">
-                                <Run FontWeight="Bold" Text="{extensions:Localize Key=DrawingRangeLabel}" />
-                                <Run FontFamily="Consolas" Text="{x:Bind Model.Wave.WaveInfo.DrawingRangeText, Mode=OneWay}" />
-                            </TextBlock>-->
-					<!--
-                        </Grid>
-                    </Grid>-->
+							<StackPanel Spacing="8" Grid.Row="3">
+								<TextBlock Text="{extensions:Localize Key=DisplaySettings}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+								<ToggleSwitch IsOn="{x:Bind Model.DisplaySettings.ShowBaseWaves, Mode=TwoWay}" OffContent="{extensions:Localize Key=BaseWaves}" OnContent="{extensions:Localize Key=BaseWaves}" />
+								<ToggleSwitch IsOn="{x:Bind Model.DisplaySettings.ShowResultingWave, Mode=TwoWay}" OffContent="{extensions:Localize Key=ResultingWave}" OnContent="{extensions:Localize Key=ResultingWave}" />
+								<ToggleSwitch IsOn="{x:Bind Model.DisplaySettings.ShowWavePackage, Mode=TwoWay}" OffContent="{extensions:Localize Key=WavePackage}" OnContent="{extensions:Localize Key=WavePackage}" Visibility="{x:Bind Model.IsEasy, Mode=OneWay}" />
+							</StackPanel>
+						</Grid>
+					</ScrollViewer>
 				</Grid>
 			</Border>
 		</Grid>

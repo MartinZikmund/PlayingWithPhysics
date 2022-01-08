@@ -10,6 +10,14 @@
 
 		float? CalculateWavePackageY(float x, float time);
 
+		float CalculateFirstWaveMinX(float time);
+
+		float CalculateFirstWaveMaxX(float time);
+
+		float CalculateSecondWaveMinX(float time);
+
+		float CalculateSecondWaveMaxX(float time);
+
 		float Amplitude { get; }
 
 		float MinX { get; }

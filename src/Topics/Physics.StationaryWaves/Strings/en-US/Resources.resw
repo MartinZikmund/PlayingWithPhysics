@@ -157,6 +157,9 @@ Graphics: Petr Weinlich</value>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BaseWaves" xml:space="preserve">
+    <value>Base waves</value>
+  </data>
   <data name="BounceType" xml:space="preserve">
     <value>Bounce type</value>
   </data>
@@ -175,6 +178,9 @@ Graphics: Petr Weinlich</value>
   <data name="BouncingPoints_RigidEnd" xml:space="preserve">
     <value>On the rigid end</value>
   </data>
+  <data name="DisplaySettings" xml:space="preserve">
+    <value>Display settings</value>
+  </data>
   <data name="DistanceIntervalForTable" xml:space="preserve">
     <value>Distance interval (m):</value>
   </data>
@@ -192,6 +198,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
+  </data>
+  <data name="ResultingWave" xml:space="preserve">
+    <value>Resulting wave</value>
   </data>
   <data name="RightEndDistance" xml:space="preserve">
     <value>Right end distance (multiple of λ)</value>
@@ -216,5 +225,8 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Wave" xml:space="preserve">
     <value>Wave</value>
+  </data>
+  <data name="WavePackage" xml:space="preserve">
+    <value>Wave package</value>
   </data>
 </root>

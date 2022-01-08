@@ -82,5 +82,13 @@ namespace Physics.StationaryWaves.Logic
 		}
 
 		public float? CalculateWavePackageY(float x, float time) => null;
+
+		public float CalculateFirstWaveMinX(float time) => MinX;
+
+		public float CalculateFirstWaveMaxX(float time) => Math.Min(time, XMax);
+
+		public float CalculateSecondWaveMinX(float time) => Math.Max(0, 1 - (time - 1));
+
+		public float CalculateSecondWaveMaxX(float time) => MaxX;
 	}
 }

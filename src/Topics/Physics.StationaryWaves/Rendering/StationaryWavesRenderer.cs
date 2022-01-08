@@ -22,6 +22,13 @@ namespace Physics.StationaryWaves.Rendering
 		private float _minX;
 		private float _maxX;
 
+		private SKPaint _outOfBoundsFillPaint = new SKPaint()
+		{
+			IsStroke = true,
+			IsAntialias = true,
+			Color = new SKColor(0, 0, 0, 20)
+		};
+
 		private SKPaint _interferenceFillPaint = new SKPaint()
 		{
 			IsStroke = false,
@@ -91,8 +98,11 @@ namespace Physics.StationaryWaves.Rendering
 				return;
 			}
 
-			DrawAxes(sender, args);
+			args.Canvas.DrawLine(HorizontalPadding, 0, HorizontalPadding, sender.ScaledSize.Height, _outOfBoundsFillPaint);
+			args.Canvas.DrawLine(sender.ScaledSize.Width - HorizontalPadding, 0, sender.ScaledSize.Width - HorizontalPadding, sender.ScaledSize.Height, _outOfBoundsFillPaint);
+
 			args.Canvas.DrawLine(new SKPoint(0, GetDisplayHeightInPixels(sender) / 2), new SKPoint(GetDisplayWidthInPixels(sender), GetDisplayHeightInPixels(sender) / 2), _axisPaintHorizontal);
+			DrawAxes(sender, args);
 
 			//var pointSize = 6f;
 			//foreach (var wave in _activeWaves)
@@ -105,38 +115,90 @@ namespace Physics.StationaryWaves.Rendering
 			//	DrawWaveOriginPoint(sender, args, trajectory, fillPaint, pointSize);
 			//	pointSize -= 2;
 			//}
+			var lastRenderTime = (float)GetAdjustedTotalTime();
 
-			if (WavePhysicsService.HasWavePackage)
+			var firstWaveMinX = WavePhysicsService.CalculateFirstWaveMinX(lastRenderTime);
+			var secondWaveMinX = WavePhysicsService.CalculateSecondWaveMinX(lastRenderTime);
+			var compoundWaveMinX = Math.Max(firstWaveMinX, secondWaveMinX);
+
+			var firstWaveMaxX = WavePhysicsService.CalculateFirstWaveMaxX(lastRenderTime);
+			var secondWaveMaxX = WavePhysicsService.CalculateSecondWaveMaxX(lastRenderTime);
+			var compoundWaveMaxX = Math.Min(firstWaveMaxX, secondWaveMaxX);
+
+			if (WavePhysicsService.HasWavePackage && _controller.DisplaySettings.ShowWavePackage)
 			{
-				DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateWavePackageY(x, time), _wavePackageStrokePaint);
-				DrawTrajectory(sender, args, (x, time) =>
-				{
-					var y = WavePhysicsService.CalculateWavePackageY(x, time);
-					if (y == null)
+				DrawTrajectory(
+					sender,
+					args,
+					lastRenderTime,
+					(x, time) => WavePhysicsService.CalculateWavePackageY(x, time),
+					compoundWaveMinX,
+					compoundWaveMaxX,
+					_wavePackageStrokePaint);
+
+				DrawTrajectory(
+					sender,
+					args,
+					lastRenderTime,
+					(x, time) =>
 					{
-						return null;
-					}
-					else
-					{
-						return -y.Value;
-					}
-				}, _wavePackageStrokePaint);
+						var y = WavePhysicsService.CalculateWavePackageY(x, time);
+						if (y == null)
+						{
+							return null;
+						}
+						else
+						{
+							return -y.Value;
+						}
+					},
+					compoundWaveMinX,
+					compoundWaveMaxX,
+					_wavePackageStrokePaint);
 			}
-			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateFirstWaveY(x, time), _axis1Paint);
-			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateSecondWaveY(x, time), _axis2Paint);
-			DrawTrajectory(sender, args, (x, time) => WavePhysicsService.CalculateCompoundY(x, time), _interferenceStrokePaint);
+
+			if (_controller.DisplaySettings.ShowBaseWaves)
+			{
+				DrawTrajectory(
+					sender,
+					args,
+					lastRenderTime,
+					(x, time) => WavePhysicsService.CalculateFirstWaveY(x, time),
+					firstWaveMinX,
+					firstWaveMaxX,
+					_axis1Paint);
+				DrawTrajectory(
+					sender,
+					args,
+					lastRenderTime,
+					(x, time) => WavePhysicsService.CalculateSecondWaveY(x, time),
+					secondWaveMinX,
+					secondWaveMaxX,
+					_axis2Paint);
+			}
+			if (_controller.DisplaySettings.ShowResultingWave)
+			{
+				DrawTrajectory(
+					sender,
+					args,
+					lastRenderTime,
+					(x, time) => WavePhysicsService.CalculateCompoundY(x, time),
+					compoundWaveMinX,
+					compoundWaveMaxX,
+					_interferenceStrokePaint);
+			}
 		}
 
 
 		private void DrawAxes(ISkiaCanvas sender, SKSurface args)
 		{
-			var axesBounds = new SimulationBounds(0, 0, (float)sender.ScaledSize.Width, (float)sender.ScaledSize.Height);
+			var axesBounds = new SimulationBounds(HorizontalPadding, 0, (float)sender.ScaledSize.Width - HorizontalPadding, (float)sender.ScaledSize.Height);
 			var endRenderX = (float)sender.ScaledSize.Width;
 			var horizontalPixelDiff = endRenderX - axesBounds.Left;
 			var endTime = GetAdjustedTotalTime();
 
 			_axesRenderer.YUnitSizeInPixels = 1;
-			_axesRenderer.XUnitSizeInPixels = (float)sender.ScaledSize.Width / (WavePhysicsService.MaxX / WavePhysicsService.WaveLength);
+			_axesRenderer.XUnitSizeInPixels = ((float)sender.ScaledSize.Width - 2 * HorizontalPadding) / (WavePhysicsService.MaxX / WavePhysicsService.WaveLength);
 			_axesRenderer.ShouldDrawYAxis = false;
 			_axesRenderer.ShouldDrawYMeasure = false;
 			_axesRenderer.XUnitFormatString = "0.## λ";
@@ -152,7 +214,7 @@ namespace Physics.StationaryWaves.Rendering
 		{
 			if (WavePhysicsService != null)
 			{
-				_pixelsPerUnitX = (float)_canvas.ScaledSize.Width / WavePhysicsService.MaxX;
+				_pixelsPerUnitX = ((float)_canvas.ScaledSize.Width - 2 * HorizontalPadding) / WavePhysicsService.MaxX;
 				_pixelsPerUnitY = (float)_canvas.ScaledSize.Height / (WavePhysicsService.Amplitude * 4.5f);
 
 
@@ -161,25 +223,30 @@ namespace Physics.StationaryWaves.Rendering
 			}
 		}
 
-		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, Func<float, float, float?> trajectoryCalculator, SKPaint paint)
+		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args, float adjustedTime, Func<float, float, float?> trajectoryCalculator, float minX, float maxX, SKPaint paint)
 		{
+			if (minX > maxX)
+			{
+				return;
+			}
+
 			float stepSizeInUnits = 0.01f;
-			var lastRenderTime = GetAdjustedTotalTime();
+
 			using SKPath path = new SKPath();
-			var currentX = _minX;
+			var currentX = minX;
 
 			float lastRenderX = GetRenderX(currentX);
-			var y = trajectoryCalculator(currentX, (float)lastRenderTime);
+			var y = trajectoryCalculator(currentX, (float)adjustedTime);
 			var penUp = y == null;
 			if (y != null)
 			{
 				float lastRenderY = GetRenderY(y.Value);
 				path.MoveTo(lastRenderX, lastRenderY);
 			}
-			while (currentX <= _maxX)
+			while (currentX <= maxX)
 			{
 				var renderX = GetRenderX(currentX);
-				y = trajectoryCalculator(currentX, (float)lastRenderTime);
+				y = trajectoryCalculator(currentX, (float)adjustedTime);
 				if (y != null)
 				{
 					float renderY = GetRenderY(y.Value);
@@ -198,7 +265,13 @@ namespace Physics.StationaryWaves.Rendering
 				{
 					penUp = true;
 				}
-				currentX += stepSizeInUnits;
+
+				if (currentX >= maxX)
+				{
+					break;
+				}
+
+				currentX = Math.Min(currentX + stepSizeInUnits, maxX);
 			}
 
 			args.Canvas.DrawPath(path, paint);
@@ -212,6 +285,6 @@ namespace Physics.StationaryWaves.Rendering
 
 		private float GetRenderY(float y) => (float)(_canvas.ScaledSize.Height / 2 - y * _pixelsPerUnitY);
 
-		private float GetRenderX(float x) => (float)(_canvas.ScaledSize.Width / 2) + ((-WavePhysicsService.MaxX / 2 + x) * _pixelsPerUnitX);
+		private float GetRenderX(float x) => HorizontalPadding + (float)((_canvas.ScaledSize.Width - (2 * HorizontalPadding)) / 2) + ((-WavePhysicsService.MaxX / 2 + x) * _pixelsPerUnitX);
 	}
 }

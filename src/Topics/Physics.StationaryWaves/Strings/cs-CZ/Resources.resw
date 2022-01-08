@@ -157,6 +157,9 @@ Grafika: Petr Weinlich</value>
   <data name="AVariant_Zero" xml:space="preserve">
     <value>a = 0</value>
   </data>
+  <data name="BaseWaves" xml:space="preserve">
+    <value>Skládaná vlnění</value>
+  </data>
   <data name="BounceType" xml:space="preserve">
     <value>Typ odrazu</value>
   </data>
@@ -175,6 +178,9 @@ Grafika: Petr Weinlich</value>
   <data name="BouncingPoints_RigidEnd" xml:space="preserve">
     <value>Na pevném konci</value>
   </data>
+  <data name="DisplaySettings" xml:space="preserve">
+    <value>Nastavení zobrazení</value>
+  </data>
   <data name="DistanceIntervalForTable" xml:space="preserve">
     <value>Interval vzdálenosti (m):</value>
   </data>
@@ -192,6 +198,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Rozsah</value>
+  </data>
+  <data name="ResultingWave" xml:space="preserve">
+    <value>Výsledné vlnění</value>
   </data>
   <data name="RightEndDistance" xml:space="preserve">
     <value>Vzdálenost pravého konce (násobek λ)</value>
@@ -213,5 +222,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Wave" xml:space="preserve">
     <value>Vlnění</value>
+  </data>
+  <data name="WavePackage" xml:space="preserve">
+    <value>Vlnový obal</value>
   </data>
 </root>
