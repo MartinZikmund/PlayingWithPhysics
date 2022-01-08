@@ -105,6 +105,8 @@
 							x:Name="ObjectHeightNumberBox"
 							Header="{extensions:Localize Key=ObjectHeight}"
 							Value="{x:Bind Model.SceneConfiguration.ObjectHeightCm, Mode=TwoWay}"
+							Minimum="{x:Bind Model.SceneConfiguration.MinObjectHeightCm, Mode=OneWay}"
+							Maximum="{x:Bind Model.SceneConfiguration.MaxObjectHeightCm, Mode=OneWay}"
 							SpinButtonPlacementMode="Inline" />
 							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>
@@ -133,7 +135,7 @@
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
-			</Border>
+				</Border>
 			</ScrollViewer>
 		</Grid>
 		<Grid

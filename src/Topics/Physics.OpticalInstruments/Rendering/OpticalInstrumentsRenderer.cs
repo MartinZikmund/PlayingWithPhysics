@@ -86,16 +86,14 @@ namespace Physics.OpticalInstruments.Rendering
 
 			var distance = pointerPoint.X - centerX;
 			var actualDistance = Math.Abs(distance * metersPerPixel);
-			if (actualDistance < Math.Abs(SceneConfiguration.FocalDistance) / 10)
-			{
-				actualDistance = Math.Abs(SceneConfiguration.FocalDistance) / 10;
-			}
+			actualDistance = MathHelpers.Clamp(
+				actualDistance,
+				Math.Abs(SceneConfiguration.FocalDistance) / 10,
+				Math.Abs(SceneConfiguration.FocalDistance) * 4);
+
 			var height = centerY - pointerPoint.Y;
 			var actualHeight = height * metersPerPixel;
-			var heightClampScale =
-				InstrumentType == InstrumentType.ConcaveLens ||
-				InstrumentType == InstrumentType.ConvexLens ?
-					0.8f : 0.8f;
+			var heightClampScale = 0.8f;
 			actualHeight = MathHelpers.Clamp(
 				actualHeight,
 				-Math.Abs(SceneConfiguration.FocalDistance * heightClampScale),
@@ -192,7 +190,7 @@ namespace Physics.OpticalInstruments.Rendering
 			var focalDistance = _controller.SceneConfiguration.FocalDistance;
 
 			// Screen should be focal distance * 7 wide
-			var widthInMeters = Math.Abs(focalDistance) * 7;
+			var widthInMeters = Math.Abs(focalDistance) * 8;
 			var pixelsPerMeterX = _canvasSize.Width / widthInMeters;
 
 			// Screen should be focal distance * ?? high

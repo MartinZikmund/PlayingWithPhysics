@@ -84,6 +84,8 @@ namespace Physics.OpticalInstruments.ViewModels
 			}
 
 			SceneConfiguration.IsLoading = true;
+			var objectDistance = SceneConfiguration.ObjectDistance;
+			var objectHeight = SceneConfiguration.ObjectHeight;
 			switch (SelectedInstrumentType.Type)
 			{
 				case InstrumentType.ConvexMirror:
@@ -104,6 +106,8 @@ namespace Physics.OpticalInstruments.ViewModels
 
 			await Task.Yield();
 			SceneConfiguration.FocalDistance = SelectedInstrumentType.DefaultFocalDistance;
+			SceneConfiguration.ObjectHeight = objectHeight;
+			SceneConfiguration.ObjectDistance = objectDistance;
 			SceneConfiguration.IsLoading = false;
 		}
 

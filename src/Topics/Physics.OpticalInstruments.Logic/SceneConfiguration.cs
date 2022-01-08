@@ -22,6 +22,10 @@ namespace Physics.OpticalInstruments.Logic
 
 		public float ObjectHeight { get; set; } = 0.5f;
 
+		public float MinObjectHeightCm => -Math.Abs(FocalDistanceCm * 0.8f);
+
+		public float MaxObjectHeightCm => Math.Abs(FocalDistanceCm * 0.8f);
+
 		public float ObjectHeightCm { get => ObjectHeight * 100; set => ObjectHeight = value / 100; }
 
 		public float ObjectDistance { get; set; } = 0.25f;
