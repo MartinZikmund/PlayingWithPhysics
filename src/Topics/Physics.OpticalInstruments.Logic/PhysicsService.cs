@@ -34,7 +34,7 @@ namespace Physics.OpticalInstruments.Logic
 		{
 			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
 
-			if (Math.Abs(scene.ObjectDistance - scene.FocalDistance) < 0.01)
+			if (Math.Abs(scene.ObjectDistance - scene.FocalDistance) < 0.001)
 			{
 				objectImageInfo.ImageType = ImageType.None;
 				return objectImageInfo;
@@ -63,7 +63,7 @@ namespace Physics.OpticalInstruments.Logic
 		{
 			var objectImageInfo = new ObjectImageInfo(scene.ObjectHeight);
 
-			if (Math.Abs(scene.ObjectDistance - scene.FocalDistance) < 0.01)
+			if (Math.Abs(scene.ObjectDistance - scene.FocalDistance) < 0.001)
 			{
 				objectImageInfo.ImageType = ImageType.None;
 				return objectImageInfo;

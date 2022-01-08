@@ -22,7 +22,7 @@ namespace Physics.OpticalInstruments.Logic
 			{
 				var diff = Math.Abs(ImageHeight) - Math.Abs(_objectHeight);
 
-				if (Math.Abs(diff) < 0.00001f)
+				if (Math.Abs(diff) < 0.001f)
 				{
 					return ImageSizeType.Same;
 				}
