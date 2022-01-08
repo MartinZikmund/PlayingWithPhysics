@@ -132,7 +132,10 @@ namespace Physics.OpticalInstruments.Rendering
 			DrawXAxis(sender, args);
 			DrawConfiguration(sender, args);
 			DrawObject(args);
-			DrawObjectImage(args);
+			if (!SceneConfiguration.IsLoading)
+			{
+				DrawObjectImage(args);
+			}
 		}
 
 		public void Update(ISkiaCanvas sender)

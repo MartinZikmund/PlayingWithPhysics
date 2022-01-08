@@ -58,7 +58,7 @@
 								</DataTemplate>
 							</GridView.ItemTemplate>
 						</GridView>
-						<Grid>
+						<Grid Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="Auto" />
@@ -73,7 +73,7 @@
 							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>
 
-						<StackPanel Spacing="4">
+						<StackPanel Spacing="4" Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
 							<TextBlock FontWeight="Bold" Text="{extensions:Localize Key=Diopters}" />
 							<TextBlock>
 							<Run Text="{x:Bind Model.SceneConfiguration.DioptersString, Mode=OneWay}" />
@@ -81,7 +81,7 @@
 							</TextBlock>
 						</StackPanel>
 
-						<Grid>
+						<Grid Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="Auto" />
@@ -89,7 +89,9 @@
 							<winui:NumberBox
 							x:Name="ObjectDistanceNumberBox"
 							Header="{extensions:Localize Key=ObjectDistance}"
-							Value="{x:Bind Model.SceneConfiguration.ObjectDistanceCm, Mode=TwoWay}"
+							Value="{x:Bind Model.SceneConfiguration.ObjectDistanceCm, Mode=TwoWay}"								
+							Minimum="{x:Bind Model.SceneConfiguration.MinObjectDistanceCm, Mode=OneWay}"
+							Maximum="{x:Bind Model.SceneConfiguration.MaxObjectDistanceCm, Mode=OneWay}"
 							SpinButtonPlacementMode="Inline" />
 							<TextBlock Text="cm" VerticalAlignment="Bottom" Margin="8,0,0,8" Grid.Column="1" />
 						</Grid>

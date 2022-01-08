@@ -21,6 +21,8 @@ namespace Physics.OpticalInstruments.ViewModels
 
 		public bool IsLoading { get; set; }
 
+		public bool IsAdvanced => _difficulty == DifficultyOption.Advanced;
+
 		public InstrumentTypeViewModel[] InstrumentTypes { get; } =
 			Enum.GetValues(typeof(InstrumentType))
 				.OfType<InstrumentType>()
@@ -67,7 +69,7 @@ namespace Physics.OpticalInstruments.ViewModels
 
 		private void SceneConfiguration_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-			if (SelectedInstrumentType == null)
+			if (SelectedInstrumentType == null || SceneConfiguration.IsLoading)
 			{
 				return;
 			}
@@ -81,6 +83,7 @@ namespace Physics.OpticalInstruments.ViewModels
 				return;
 			}
 
+			SceneConfiguration.IsLoading = true;
 			switch (SelectedInstrumentType.Type)
 			{
 				case InstrumentType.ConvexMirror:
@@ -101,6 +104,7 @@ namespace Physics.OpticalInstruments.ViewModels
 
 			await Task.Yield();
 			SceneConfiguration.FocalDistance = SelectedInstrumentType.DefaultFocalDistance;
+			SceneConfiguration.IsLoading = false;
 		}
 
 		//private async Task PickSceneAsync()

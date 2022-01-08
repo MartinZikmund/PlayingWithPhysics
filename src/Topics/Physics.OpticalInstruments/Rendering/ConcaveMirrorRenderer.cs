@@ -24,7 +24,7 @@ namespace Physics.OpticalInstruments.Rendering
 			DrawAxisPoint(args, SceneConfiguration.FocalDistance, "F");
 			DrawAxisPoint(args, SceneConfiguration.FocalDistance * 2, "C");
 			DrawMirror(sender, args);
-			if (ImageInfo.ImageType != ImageType.None)
+			if (ImageInfo.ImageType != ImageType.None && !SceneConfiguration.IsLoading)
 			{
 				DrawLightBeams(sender, args);
 			}

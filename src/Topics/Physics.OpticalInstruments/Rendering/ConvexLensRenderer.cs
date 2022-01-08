@@ -24,7 +24,7 @@ namespace Physics.OpticalInstruments.Rendering
 			DrawAxisPoint(args, -SceneConfiguration.FocalDistance, "F");
 			DrawAxisPoint(args, SceneConfiguration.FocalDistance, "F'");
 			DrawLens(sender, args);
-			if (ImageInfo.ImageType != ImageType.None)
+			if (ImageInfo.ImageType != ImageType.None && !SceneConfiguration.IsLoading)
 			{
 				DrawLightBeams(sender, args);
 			}
@@ -33,8 +33,8 @@ namespace Physics.OpticalInstruments.Rendering
 		protected override void DrawLens(ISkiaCanvas canvas, SKSurface surface)
 		{
 			var yBase = GetRenderY(0);
-			var yExtentUp = GetRenderY(SceneConfiguration.FocalDistance);
-			var yExtentDown = GetRenderY(-SceneConfiguration.FocalDistance);
+			var yExtentUp = GetRenderY(SceneConfiguration.FocalDistance * 1.3f);
+			var yExtentDown = GetRenderY(-SceneConfiguration.FocalDistance * 1.3f);
 			var x = GetRenderX(0);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentUp), 6, _axisStrokePaint);
 			ArrowRenderer.Draw(surface, new SKPoint(x, yBase), new SKPoint(x, yExtentDown), 6, _axisStrokePaint);
