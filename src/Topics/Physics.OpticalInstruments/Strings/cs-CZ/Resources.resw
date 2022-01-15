@@ -140,7 +140,7 @@ Grafika: Petr Weinlich</value>
     <value>Vypulké zrcadlo</value>
   </data>
   <data name="Diopters" xml:space="preserve">
-    <value>Dioptrie</value>
+    <value>Optická mohutnost</value>
   </data>
   <data name="FocalDistance" xml:space="preserve">
     <value>Ohnisková vzdálenost</value>
@@ -170,7 +170,7 @@ Grafika: Petr Weinlich</value>
     <value>Zvětšený</value>
   </data>
   <data name="ImageSizeType_Same" xml:space="preserve">
-    <value>Stejný</value>
+    <value>Stejně veliký</value>
   </data>
   <data name="ImageSizeType_Smaller" xml:space="preserve">
     <value>Zmenšený</value>

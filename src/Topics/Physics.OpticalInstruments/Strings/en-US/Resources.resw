@@ -140,7 +140,7 @@ Graphics: Petr Weinlich</value>
     <value>Convex mirror</value>
   </data>
   <data name="Diopters" xml:space="preserve">
-    <value>Diopters</value>
+    <value>Optical strength</value>
   </data>
   <data name="FocalDistance" xml:space="preserve">
     <value>Focal distance</value>
@@ -170,7 +170,7 @@ Graphics: Petr Weinlich</value>
     <value>Larger</value>
   </data>
   <data name="ImageSizeType_Same" xml:space="preserve">
-    <value>Same</value>
+    <value>Same size</value>
   </data>
   <data name="ImageSizeType_Smaller" xml:space="preserve">
     <value>Smaller</value>

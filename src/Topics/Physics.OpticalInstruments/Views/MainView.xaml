@@ -81,7 +81,7 @@
 							</TextBlock>
 						</StackPanel>
 
-						<Grid Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*" />
 								<ColumnDefinition Width="Auto" />

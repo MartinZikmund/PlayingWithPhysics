@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Physics.OpticalInstruments.Logic;
+using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -49,6 +50,12 @@ namespace Physics.OpticalInstruments.Rendering
 			surface.Canvas.DrawPath(path, _axisStrokePaint);
 		}
 
+		private float GetIntersectionLimitX()
+		{
+			var radius = Math.Abs(SceneConfiguration.FocalDistance) * 2;
+			return (float)(radius - Math.Cos(MathHelpers.DegreesToRadians(40)) * radius);
+		}
+
 		private void DrawLightBeams(ISkiaCanvas canvas, SKSurface surface)
 		{
 			// Light beam through mirror center
@@ -89,7 +96,9 @@ namespace Physics.OpticalInstruments.Rendering
 				{
 					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
 
-					if (imageTipLineIntersection != null && SceneConfiguration.ObjectDistance >= 3 * SceneConfiguration.FocalDistance)
+					var limitXReal = GetIntersectionLimitX();
+					var limitX = GetRenderX(limitXReal);
+					if (imageTipLineIntersection != null && imageTipLineIntersection.Value.X >= limitX)
 					{
 						surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
 					}
