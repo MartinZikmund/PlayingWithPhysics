@@ -22,8 +22,8 @@ namespace Physics.StationaryWaves.Views
 
 		private void SetupFormatting()
 		{
-			TimeNumberBox.SetupFormatting(0.1, 1, 1, 0.1, 1);
-			DistanceIntervalNumberBox.SetupFormatting(0.1, 1, 1, 0.1, 1);
+			TimeNumberBox.SetupFormatting(0.01, 1, 2, 0.01, 0.1);
+			DistanceIntervalNumberBox.SetupFormatting(0.01, 1, 2, 0.01, 0.1);
 		}
 
 		public ValuesTableDialogViewModel Model { get; set; }

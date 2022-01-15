@@ -35,15 +35,15 @@
                 Width="160"
                 Header="{extensions:Localize Key=TimeForTable}"
                 Minimum="0"
-                SmallChange="0.1"
+                SmallChange="0.01"
                 SpinButtonPlacementMode="Inline"
                 Value="{x:Bind Model.Time, Mode=TwoWay}" />
             <controls:NumberBox
                 x:Name="DistanceIntervalNumberBox"
                 Width="160"
                 Header="{extensions:Localize Key=DistanceIntervalForTable}"
-                Minimum="0.05"
-                SmallChange="0.1"
+                Minimum="0.01"
+                SmallChange="0.01"
                 SpinButtonPlacementMode="Inline"
                 Value="{x:Bind Model.DistanceInterval, Mode=TwoWay}" />
         </StackPanel>

@@ -10,7 +10,7 @@ namespace Physics.StationaryWaves.ValuesTable
     public class TableRow : ValuesTableRowBase
     {
         private const string TimeFormatting = "0.00";
-        private const string DistanceFormatting = "0.0";
+        private const string DistanceFormatting = "0.00";
 		private const string YFormatting = "0.000";
 
         //public string Time { get; set; }
