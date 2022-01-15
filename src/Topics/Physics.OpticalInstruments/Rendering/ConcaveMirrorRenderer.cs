@@ -92,20 +92,13 @@ namespace Physics.OpticalInstruments.Rendering
 
 			if (SceneConfiguration.ObjectDistance >= 2 * SceneConfiguration.FocalDistance)
 			{
-				if (axisIntersection != null)
+				var limitXReal = GetIntersectionLimitX();
+				var limitX = GetRenderX(limitXReal);
+				if (axisIntersection != null && imageTipLineIntersection != null && imageTipLineIntersection.Value.X >= limitX)
 				{
 					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
 
-					var limitXReal = GetIntersectionLimitX();
-					var limitX = GetRenderX(limitXReal);
-					if (imageTipLineIntersection != null && imageTipLineIntersection.Value.X >= limitX)
-					{
-						surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
-					}
-					else
-					{
-						surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
-					}
+					surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
 					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
 				}
 			}
@@ -113,9 +106,10 @@ namespace Physics.OpticalInstruments.Rendering
 				SceneConfiguration.ObjectDistance <= 2 * SceneConfiguration.FocalDistance &&
 				SceneConfiguration.ObjectDistance > SceneConfiguration.FocalDistance)
 			{
-				surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
 				if (axisIntersection != null)
 				{
+					surface.Canvas.DrawLine(objectTipX, objectTipY, imageTipX, imageTipY, _lightBeamPaint);
+
 					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, _lightBeamPaint);
 
 					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, imageTipX, imageTipY, _lightBeamPaint);
@@ -123,22 +117,12 @@ namespace Physics.OpticalInstruments.Rendering
 			}
 			else
 			{
-				var focalLineIntersection = IntersectWithMirror(new SKPoint(focalX, focalY), new SKPoint(imageTipX, imageTipY));
-				if (focalLineIntersection != null)
-				{
-					surface.Canvas.DrawLine(focalX, focalY, focalLineIntersection.Value.X, focalLineIntersection.Value.Y, _lightBeamPaint);
-					surface.Canvas.DrawLine(focalLineIntersection.Value.X, focalLineIntersection.Value.Y, imageTipX, imageTipY, _imaginaryLightBeamPaint);
-				}
-
-				if (imageTipLineIntersection != null)
+				if (imageTipLineIntersection != null && axisIntersection != null)
 				{
 					surface.Canvas.DrawLine(centerX, centerY, imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, _lightBeamPaint);
 					surface.Canvas.DrawLine(imageTipLineIntersection.Value.X, imageTipLineIntersection.Value.Y, imageTipX, imageTipY, _imaginaryLightBeamPaint);
-				}
-
-				if (axisIntersection != null)
-				{
-					surface.Canvas.DrawLine(parallelLineIntersection.Value.X, parallelLineIntersection.Value.Y, zeroX, objectTipY, _imaginaryLightBeamPaint);
+					surface.Canvas.DrawLine(objectTipX, objectTipY, parallelLineIntersection.Value.X, objectTipY, _lightBeamPaint);
+					surface.Canvas.DrawLine((float)axisIntersection.Value.X, (float)axisIntersection.Value.Y, imageTipX, imageTipY, _imaginaryLightBeamPaint);
 				}
 			}
 		}
