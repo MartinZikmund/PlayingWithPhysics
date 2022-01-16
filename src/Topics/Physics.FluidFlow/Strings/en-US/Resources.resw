@@ -127,6 +127,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Fluid Flow</value>
   </data>
+  <data name="Fluid" xml:space="preserve">
+    <value>Fluid</value>
+  </data>
   <data name="Fluid_Air" xml:space="preserve">
     <value>Air</value>
   </data>
@@ -135,6 +138,18 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Water</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
+    <value>Bernoulli equation (with height change)</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
+    <value>Bernoulli equation (without height change)</value>
+  </data>
+  <data name="InputVariant_ContinuityEquation" xml:space="preserve">
+    <value>Continuity equation</value>
+  </data>
+  <data name="InputVariant_RealFluidMovement" xml:space="preserve">
+    <value>Real fluid motion</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Fluid Flow</value>

@@ -127,6 +127,9 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Proudění kapalin</value>
   </data>
+  <data name="Fluid" xml:space="preserve">
+    <value>Tekutina</value>
+  </data>
   <data name="Fluid_Air" xml:space="preserve">
     <value>Vzduch</value>
   </data>
@@ -135,6 +138,18 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Voda</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
+    <value>Bernoulliho rovnice se změnou výšky</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
+    <value>Bernoulliho rovnice bez změny výšky</value>
+  </data>
+  <data name="InputVariant_ContinuityEquation" xml:space="preserve">
+    <value>Rovnice kontinuity</value>
+  </data>
+  <data name="InputVariant_RealFluidMovement" xml:space="preserve">
+    <value>Pohyb reálné vody v potrubí</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Proudění kapalin</value>

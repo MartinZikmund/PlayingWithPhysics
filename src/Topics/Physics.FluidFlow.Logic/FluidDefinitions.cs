@@ -1,8 +1,8 @@
 ﻿namespace Physics.FluidFlow.Logic
 {
-	public class FluidDefinitions
+	public static class FluidDefinitions
 	{
-		public FluidDefinition[] Definitions { get; } = new FluidDefinition[]
+		public static FluidDefinition[] Definitions { get; } = new FluidDefinition[]
 		{
 			("Air", 1.2f),
 			("Oil", 830f),

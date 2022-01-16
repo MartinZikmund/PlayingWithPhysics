@@ -291,6 +291,9 @@
   <data name="Save" xml:space="preserve">
     <value>Uložit</value>
   </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Nastavit parametry</value>
+  </data>
   <data name="Show" xml:space="preserve">
     <value>Zobrazit</value>
   </data>

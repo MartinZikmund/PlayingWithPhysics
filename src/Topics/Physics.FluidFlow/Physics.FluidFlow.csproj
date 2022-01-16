@@ -131,6 +131,7 @@
     <Compile Include="Rendering\FluidFlowCanvasController.cs" />
     <Compile Include="ViewModels\FluidDefinitionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SceneConfigurationDialogViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
