@@ -56,7 +56,8 @@ namespace Physics.HuygensPrinciple.Logic
 			IList<Point> nextSteps = null;
 			do
 			{
-				(step, nextSteps) = NextStep(huygensField, nextSteps);
+				step = NextStep(huygensField, nextSteps);
+				nextSteps = step.WaveBorder;
 				_stepsCache.Add(step);
 			} while (step.CellStateChanges.Length > 0);
 		}
@@ -86,7 +87,7 @@ namespace Physics.HuygensPrinciple.Logic
 			return null;
 		}
 
-		private (StepInfo step, IList<Point> nextSources) NextStep(HuygensField field, IList<Point> currentSources = null)
+		private StepInfo NextStep(HuygensField field, IList<Point> currentSources = null)
 		{
 			if (currentSources == null)
 			{
@@ -114,8 +115,9 @@ namespace Physics.HuygensPrinciple.Logic
 					nextSources.Remove(point);
 				}
 			}
+			var nextSourcesArray = nextSources.ToArray();
 
-			return (new StepInfo(allChanges.ToArray()), nextSources.ToArray());
+			return new StepInfo(allChanges.ToArray(), nextSourcesArray);
 		}
 		private bool HasBackgroundNeighbor(Point point, HuygensField field, CellState backgroundState)
 		{

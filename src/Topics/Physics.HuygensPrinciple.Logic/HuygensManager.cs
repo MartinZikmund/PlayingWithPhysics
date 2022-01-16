@@ -20,7 +20,7 @@ namespace Physics.HuygensPrinciple.Logic
 			_currentField = _originalField.Clone();
 			_fieldHeight = _originalField.Height;
 			_fieldWidth = _originalField.Width;
-			_stepper = new HuygensStepper(originalField, 10.5f);
+			_stepper = new HuygensStepper(originalField, 13.5f);
 		}
 
 		public HuygensField OriginalField => _originalField;
@@ -32,15 +32,15 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public async Task PrecalculateAsync() => await _stepper.PrecalculateStepsAsync();
 
-		public CellStateChange[] NextStep()
+		public StepInfo NextStep()
 		{
 			if (CurrentStep >= _stepper.StepsAvailable)
 			{
-				return Array.Empty<CellStateChange>();
+				return null;
 			}
 			var step = _stepper.GetStep(CurrentStep);
 			CurrentStep++;
-			return step.CellStateChanges;
+			return step;
 			//ResetField();
 
 			//for (int i = 0; i < step; i++)

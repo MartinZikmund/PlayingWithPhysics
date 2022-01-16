@@ -2,6 +2,7 @@
 using Physics.HuygensPrinciple.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using Windows.UI.WebUI;
 
 namespace Physics.HuygensPrinciple.Rendering
 {
@@ -10,6 +11,7 @@ namespace Physics.HuygensPrinciple.Rendering
 		private readonly HuygensPrincipleCanvasController _controller;
 
 		private SKBitmap _fieldImage = new SKBitmap(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
+		private SKBitmap _waveBorderImage = new SKBitmap(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
 
 		private TimeSpan _lastUpdate = new TimeSpan();
 
@@ -25,22 +27,28 @@ namespace Physics.HuygensPrinciple.Rendering
 				return;
 			}
 
-			if ((_controller.SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 200)
+			if ((_controller.SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 500)
 			{
 				_lastUpdate = _controller.SimulationTime.TotalTime;
-				DrawStep(_controller._manager.NextStep());
-			}
-			else if (_controller.SimulationTime.TotalTime < _lastUpdate)
-			{
-				
+				var step = _controller._manager.NextStep();
+				if (step != null)
+				{
+					DrawStep(step);
+				}
 			}
 		}
 
-		private void DrawStep(CellStateChange[] cellStateChanges)
+		private void DrawStep(StepInfo step)
 		{
-			foreach (var change in cellStateChanges)
+			foreach (var change in step.CellStateChanges)
 			{
 				_fieldImage.SetPixel(change.X, change.Y, GetPixelColor(change.NewState));
+			}
+			using SKCanvas canvas = new SKCanvas(_waveBorderImage);
+			canvas.Clear(SKColors.Transparent);
+			foreach (var change in step.WaveBorder)
+			{
+				canvas.DrawCircle(change.X, change.Y, 1, _controller._waveEdgeStrokePaint);
 			}
 		}
 
@@ -56,6 +64,10 @@ namespace Physics.HuygensPrinciple.Rendering
 				var squareSize = _controller.GetSquareSize(sender);
 				var topLeft = _controller.GetRenderTopLeft(sender);
 				args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				if (_controller._renderConfiguration.ShowWaveEdge)
+				{
+					args.Canvas.DrawBitmap(_waveBorderImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				}
 			}
 			_controller.DrawInitalScene(sender, args);
 		}
