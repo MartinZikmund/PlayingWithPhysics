@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using MvvmCross.ViewModels;
 using Physics.HuygensPrinciple.Logic;
@@ -29,6 +30,15 @@ namespace Physics.HuygensPrinciple.ViewModels
 				}
 			}
 		}
+
+		public DrawingTool ActiveTool { get; set; }
+
+		public bool IsBrush => ActiveTool == DrawingTool.Brush;
+
+		public bool IsEraser => ActiveTool == DrawingTool.Eraser;
+
+		public DrawingTool[] DrawingTools { get; } = Enum.GetValues(typeof(DrawingTool)).OfType<DrawingTool>().ToArray();
+
 		public ShapeType Shape { get; set; } = ShapeType.Circle;
 
 		public float Size { get; set; } = 10;

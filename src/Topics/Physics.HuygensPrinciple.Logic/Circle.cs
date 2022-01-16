@@ -29,7 +29,14 @@ namespace Physics.HuygensPrinciple.Logic
 			var dimension = Math.Min(width, height);
 			var radius = Radius * dimension;
 
-			HuygensShapeDrawer.DrawCircle(field, new Point((int)centerX, (int)centerY), radius, State);
+			HuygensShapeDrawer.DrawCircle(field, new Point((int)centerX, (int)centerY), radius, State, false);
+		}
+
+		public bool HitTest(double relativeX, double relativeY)
+		{
+			var distX = Math.Abs(relativeX - Center.X);
+			var distY = Math.Abs(relativeY - Center.Y);
+			return Math.Sqrt(distX * distX + distY * distY) <= Radius;
 		}
 	}
 }

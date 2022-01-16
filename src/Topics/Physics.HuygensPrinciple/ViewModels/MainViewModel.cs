@@ -25,6 +25,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 			{
 				SurfaceTypes.Insert(1, CellState.Wall);
 			}
+			RaisePropertyChanged(nameof(IsAdvanced));
 
 			DrawingState.IsDrawingChanged += DrawingState_IsDrawingChanged;
 		}
@@ -41,6 +42,10 @@ namespace Physics.HuygensPrinciple.ViewModels
 				
 			}
 		}
+
+		public bool IsEasy => _difficulty == DifficultyOption.Easy;
+
+		public bool IsAdvanced => _difficulty == DifficultyOption.Advanced;
 
 		public ScenePreset TemplatePreset { get; set; } = new ScenePreset("Empty");
 
@@ -110,7 +115,10 @@ namespace Physics.HuygensPrinciple.ViewModels
 			huygensBuilder.DrawScene(scene);
 
 			var manager = new HuygensManager(huygensBuilder.Build());
-			await manager.PrecalculateAsync();
+			if (_difficulty == DifficultyOption.Advanced)
+			{
+				await manager.PrecalculateAsync();
+			}
 			_controller.StartSimulation(manager, scene);
 			_controller.Play();
 			IsLoading = false;

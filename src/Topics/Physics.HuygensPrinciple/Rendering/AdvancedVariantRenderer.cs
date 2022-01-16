@@ -30,6 +30,10 @@ namespace Physics.HuygensPrinciple.Rendering
 				_lastUpdate = _controller.SimulationTime.TotalTime;
 				DrawStep(_controller._manager.NextStep());
 			}
+			else if (_controller.SimulationTime.TotalTime < _lastUpdate)
+			{
+				
+			}
 		}
 
 		private void DrawStep(CellStateChange[] cellStateChanges)

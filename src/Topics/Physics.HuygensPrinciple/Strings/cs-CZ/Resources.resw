@@ -127,6 +127,9 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Huygensův princip</value>
   </data>
+  <data name="Brush" xml:space="preserve">
+    <value>Štětec</value>
+  </data>
   <data name="BrushShape" xml:space="preserve">
     <value>Tvar štětce</value>
   </data>
@@ -147,6 +150,18 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Drawing" xml:space="preserve">
     <value>Kreslení</value>
+  </data>
+  <data name="DrawingTool" xml:space="preserve">
+    <value>Nástroj</value>
+  </data>
+  <data name="DrawingTool_Brush" xml:space="preserve">
+    <value>Štětec</value>
+  </data>
+  <data name="DrawingTool_Eraser" xml:space="preserve">
+    <value>Zmizík</value>
+  </data>
+  <data name="Eraser" xml:space="preserve">
+    <value>Zmizík</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>Vypnuto</value>

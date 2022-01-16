@@ -9,4 +9,5 @@
     <converters:BoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" Inverted="True" />
     <converters:EnumLocalizationConverter x:Key="EnumLocalizationConverter" />
     <converters:ValueMatchVisibilityConverter x:Key="ValueMatchVisibilityConverter" />
+    <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
 </ResourceDictionary>

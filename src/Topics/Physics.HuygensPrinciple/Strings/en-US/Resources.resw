@@ -127,6 +127,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Huygens–Fresnel Principle</value>
   </data>
+  <data name="Brush" xml:space="preserve">
+    <value>Brush</value>
+  </data>
   <data name="BrushShape" xml:space="preserve">
     <value>Brush shape</value>
   </data>
@@ -147,6 +150,18 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Drawing" xml:space="preserve">
     <value>Drawing</value>
+  </data>
+  <data name="DrawingTool" xml:space="preserve">
+    <value>Tool</value>
+  </data>
+  <data name="DrawingTool_Brush" xml:space="preserve">
+    <value>Brush</value>
+  </data>
+  <data name="DrawingTool_Eraser" xml:space="preserve">
+    <value>Eraser</value>
+  </data>
+  <data name="Eraser" xml:space="preserve">
+    <value>Eraser</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>

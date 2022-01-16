@@ -6,6 +6,7 @@ using Physics.HuygensPrinciple.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -15,7 +16,18 @@ namespace Physics.HuygensPrinciple.Views
 {
 	public sealed partial class MainView : MainViewBase
 	{
-		public MainView() => InitializeComponent();
+		private CoreCursor _cachedCursor = null;
+
+		public MainView()
+		{
+			InitializeComponent();
+			Unloaded += MainView_Unloaded;
+		}
+
+		private void MainView_Unloaded(object sender, RoutedEventArgs e)
+		{
+			ResetArrowCursor();
+		}
 
 		private void CanvasHolder_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
 		{
@@ -40,6 +52,7 @@ namespace Physics.HuygensPrinciple.Views
 
 		private void CanvasHolder_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
+			ResetArrowCursor();
 			DrawingSurface.Children.Clear();
 		}
 
@@ -47,6 +60,7 @@ namespace Physics.HuygensPrinciple.Views
 		{
 			if (!Model.DrawingState.IsDrawing)
 			{
+				ResetArrowCursor();
 				if (DrawingSurface.Children.Count > 0)
 				{
 					DrawingSurface.Children.Clear();
@@ -54,76 +68,124 @@ namespace Physics.HuygensPrinciple.Views
 				return;
 			}
 
-			var expectedShape = typeof(Ellipse);
-			if (Model.DrawingState.Shape == ShapeType.Square)
+			if (Model.DrawingState.ActiveTool == DrawingTool.Brush)
 			{
-				expectedShape = typeof(Windows.UI.Xaml.Shapes.Rectangle);
-			}
-
-			var child = DrawingSurface.Children.FirstOrDefault() as Shape;
-			if (child?.GetType() != expectedShape)
-			{
-				DrawingSurface.Children.Clear();
+				ResetArrowCursor();
+				var expectedShape = typeof(Ellipse);
 				if (Model.DrawingState.Shape == ShapeType.Square)
 				{
-					child = new Windows.UI.Xaml.Shapes.Rectangle();
+					expectedShape = typeof(Windows.UI.Xaml.Shapes.Rectangle);
+				}
+
+				var child = DrawingSurface.Children.FirstOrDefault() as Shape;
+				if (child?.GetType() != expectedShape)
+				{
+					DrawingSurface.Children.Clear();
+					if (Model.DrawingState.Shape == ShapeType.Square)
+					{
+						child = new Windows.UI.Xaml.Shapes.Rectangle();
+					}
+					else
+					{
+						child = new Ellipse();
+					}
+					DrawingSurface.Children.Add(child);
+				}
+
+				var brush = DrawingStateViewModel.SourceBrush;
+				switch (Model.DrawingState.SurfaceType)
+				{
+					case CellState.Empty:
+						brush = DrawingStateViewModel.EmptyBrush;
+						break;
+					case CellState.Wall:
+						brush = DrawingStateViewModel.WallBrush;
+						break;
+				}
+				child.Fill = brush;
+				child.Stroke = DrawingStateViewModel.BrushBorder;
+				child.StrokeThickness = 1;
+				child.Width = Model.DrawingState.Size;
+				child.Height = Model.DrawingState.Size;
+
+				var point = e.GetCurrentPoint(DrawingSurface);
+				var x = point.Position.X - Model.DrawingState.Size / 2;
+				var y = point.Position.Y - Model.DrawingState.Size / 2;
+				child.SetValue(Canvas.LeftProperty, x);
+				child.SetValue(Canvas.TopProperty, y);
+
+				child.Visibility = x > 0 && y > 0 && x < DrawingSurface.Width && y < DrawingSurface.Height ?
+					Visibility.Visible : Visibility.Collapsed;
+
+				if (!e.Pointer.IsInContact)
+				{
+					return;
+				}
+
+				var relativeSize = Model.DrawingState.Size / DrawingSurface.Width / 2;
+				var relativeX = point.Position.X / DrawingSurface.Width;
+				var relativeY = point.Position.Y / DrawingSurface.Height;
+
+				IShape addedShape;
+				if (Model.DrawingState.Shape == ShapeType.Circle)
+				{
+					addedShape = new Circle(new System.Drawing.PointF((float)relativeX, (float)relativeY), (float)relativeSize, Model.DrawingState.SurfaceType);
 				}
 				else
 				{
-					child = new Ellipse();
+					var left = relativeX - relativeSize;
+					var top = relativeY - relativeSize;
+					var right = relativeX + relativeSize;
+					var bottom = relativeY + relativeSize;
+					addedShape = new Logic.Rectangle(new System.Drawing.PointF((float)left, (float)top), new System.Drawing.PointF((float)right, (float)bottom), Model.DrawingState.SurfaceType);
 				}
-				DrawingSurface.Children.Add(child);
-			}
 
-			var brush = DrawingStateViewModel.SourceBrush;
-			switch (Model.DrawingState.SurfaceType)
-			{
-				case CellState.Empty:
-					brush = DrawingStateViewModel.EmptyBrush;
-					break;
-				case CellState.Wall:
-					brush = DrawingStateViewModel.WallBrush;
-					break;
-			}
-			child.Fill = brush;
-			child.Stroke = DrawingStateViewModel.BrushBorder;
-			child.StrokeThickness = 1;
-			child.Width = Model.DrawingState.Size;
-			child.Height = Model.DrawingState.Size;
-
-			var point = e.GetCurrentPoint(DrawingSurface);
-			var x = point.Position.X - Model.DrawingState.Size / 2;
-			var y = point.Position.Y - Model.DrawingState.Size / 2;
-			child.SetValue(Canvas.LeftProperty, x);
-			child.SetValue(Canvas.TopProperty, y);
-
-			child.Visibility = x > 0 && y > 0 && x < DrawingSurface.Width && y < DrawingSurface.Height ?
-				Visibility.Visible : Visibility.Collapsed;
-
-			if (!e.Pointer.IsInContact)
-			{
-				return;
-			}
-
-			var relativeSize = Model.DrawingState.Size / DrawingSurface.Width / 2;
-			var relativeX = point.Position.X / DrawingSurface.Width;
-			var relativeY = point.Position.Y / DrawingSurface.Height;
-			
-			IShape addedShape;
-			if (Model.DrawingState.Shape == ShapeType.Circle)
-			{
-				addedShape = new Circle(new System.Drawing.PointF((float)relativeX, (float)relativeY), (float)relativeSize, Model.DrawingState.SurfaceType);
+				Model.CurrentPreset.Add(addedShape);
 			}
 			else
 			{
-				var left = relativeX - relativeSize;
-				var top = relativeY - relativeSize;
-				var right = relativeX + relativeSize;
-				var bottom = relativeY + relativeSize;
-				addedShape = new Logic.Rectangle(new System.Drawing.PointF((float)left, (float)top), new System.Drawing.PointF((float)right, (float)bottom), Model.DrawingState.SurfaceType);
-			}
+				CoreWindow.GetForCurrentThread().PointerCursor = null;
+				var child = DrawingSurface.Children.FirstOrDefault() as BitmapIcon;
+				if (child == null)
+				{
+					DrawingSurface.Children.Clear();
+					child = new BitmapIcon();
+					child.Width = 20;
+					child.Height = 20;
+					child.ShowAsMonochrome = false;
+					child.UriSource = new Uri("ms-appx:///Assets/Eraser.png");
+					DrawingSurface.Children.Add(child);
+				}
 
-			Model.CurrentPreset.Add(addedShape);
+				var point = e.GetCurrentPoint(DrawingSurface);
+				var x = point.Position.X - 4;
+				var y = point.Position.Y - 4;
+				child.SetValue(Canvas.LeftProperty, x);
+				child.SetValue(Canvas.TopProperty, y);
+
+				if (!e.Pointer.IsInContact)
+				{
+					return;
+				}
+
+				var relativeX = point.Position.X / DrawingSurface.Width;
+				var relativeY = point.Position.Y / DrawingSurface.Height;
+
+				Model.CurrentPreset.EraseAt(relativeX, relativeY);
+			}
+		}
+
+		private void ResetArrowCursor()
+		{
+			if (CoreWindow.GetForCurrentThread().PointerCursor == null)
+			{
+				CoreWindow.GetForCurrentThread().PointerCursor = new CoreCursor(CoreCursorType.Arrow, 0);
+			}
+		}
+
+		private void DrawingSurface_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		{
+			ResetArrowCursor();
 		}
 	}
 

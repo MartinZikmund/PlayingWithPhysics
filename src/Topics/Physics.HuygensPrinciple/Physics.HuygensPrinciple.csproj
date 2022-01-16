@@ -132,6 +132,7 @@
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
     <Compile Include="Rendering\RenderingConfiguration.cs" />
     <Compile Include="ViewModels\DrawingStateViewModel.cs" />
+    <Compile Include="ViewModels\DrawingTool.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RenderConfigurationViewModel.cs" />
     <Compile Include="ViewModels\ScenePickerViewModel.cs" />
@@ -149,6 +150,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Eraser.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />

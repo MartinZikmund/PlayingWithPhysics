@@ -23,6 +23,8 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public void Add(IShape shape) => _shapes.Add(shape);
 
+		public void Remove(IShape shape) => _shapes.Remove(shape);
+
 		public IEnumerator<IShape> GetEnumerator() => _shapes.GetEnumerator();
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -32,6 +34,19 @@ namespace Physics.HuygensPrinciple.Logic
 			var preset = new ScenePreset(Name, SignificantPoints.ToArray());
 			preset._shapes.AddRange(_shapes);
 			return preset;
+		}
+
+		public void EraseAt(double relativeX, double relativeY)
+		{
+			for (int i = _shapes.Count - 1; i >= 0; i--)
+			{
+				var shape = _shapes[i];
+				if (shape.HitTest(relativeX, relativeY))
+				{
+					Remove(shape);
+				}
+
+			}
 		}
 	}
 }

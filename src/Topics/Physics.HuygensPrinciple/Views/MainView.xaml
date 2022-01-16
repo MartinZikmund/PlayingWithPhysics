@@ -83,66 +83,97 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
+                    <ComboBox
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        Header="{extensions:Localize Key=DrawingTool}"
+                        ItemsSource="{x:Bind Model.DrawingState.DrawingTools}"
+                        SelectedItem="{x:Bind Model.DrawingState.ActiveTool, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Grid
+                        Grid.Row="1"
                         Grid.Column="1"
                         Width="100"
                         Height="100"
                         Background="White">
-                        <Ellipse
-                            Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
-                            Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                        <Grid Visibility="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
+                            <Ellipse
+                                Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
+                                Stroke="Gray"
+                                StrokeThickness="1"
+                                Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}" />
+                            <Rectangle
+                                Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
+                                Stroke="Gray"
+                                StrokeThickness="1"
+                                Visibility="{x:Bind Model.DrawingState.IsSquare, Mode=OneWay}" />
+                        </Grid>
+                        <Image
+                            Width="20"
+                            Height="20"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
-                            Stroke="Gray"
-                            StrokeThickness="1"
-                            Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}" />
-                        <Rectangle
-                            Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
-                            Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
-                            Stroke="Gray"
-                            StrokeThickness="1"
-                            Visibility="{x:Bind Model.DrawingState.IsSquare, Mode=OneWay}" />
+                            Source="ms-appx:///Assets/Eraser.png"
+                            Visibility="{x:Bind Model.DrawingState.IsEraser, Mode=OneWay}" />
                     </Grid>
-                    <StackPanel Grid.Column="0" Spacing="8">
-                        <Slider
-                            Header="{extensions:Localize Key=BrushSize}"
-                            Maximum="40"
-                            Minimum="4"
-                            Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
-                        <ComboBox
-                            HorizontalAlignment="Stretch"
-                            Header="{extensions:Localize Key=SurfaceType}"
-                            ItemsSource="{x:Bind Model.SurfaceTypes}"
-                            SelectedItem="{x:Bind Model.DrawingState.SurfaceType, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox
-                            HorizontalAlignment="Stretch"
-                            Header="{extensions:Localize Key=BrushShape}"
-                            ItemsSource="{x:Bind Model.ShapeTypes}"
-                            SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                    <Grid
+                    <ContentControl
                         Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        IsEnabled="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
+                        <StackPanel Spacing="8">
+                            <Slider
+                                Header="{extensions:Localize Key=BrushSize}"
+                                Maximum="40"
+                                Minimum="4"
+                                Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
+                            <ComboBox
+                                HorizontalAlignment="Stretch"
+                                Header="{extensions:Localize Key=SurfaceType}"
+                                ItemsSource="{x:Bind Model.SurfaceTypes}"
+                                SelectedItem="{x:Bind Model.DrawingState.SurfaceType, Mode=TwoWay}"
+                                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox
+                                HorizontalAlignment="Stretch"
+                                Header="{extensions:Localize Key=BrushShape}"
+                                ItemsSource="{x:Bind Model.ShapeTypes}"
+                                SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </ContentControl>
+                    <Grid
+                        Grid.Row="2"
                         Grid.ColumnSpan="2"
                         ColumnSpacing="8">
                         <Grid.ColumnDefinitions>
@@ -189,34 +220,39 @@
                 Background="Transparent"
                 PointerExited="CanvasHolder_PointerExited"
                 PointerMoved="CanvasHolder_PointerMoved"
-                PointerPressed="CanvasHolder_PointerMoved" />
+                PointerPressed="CanvasHolder_PointerMoved"
+                PointerReleased="DrawingSurface_PointerReleased" />
             <!--<InkCanvas Grid.Row="1" x:Name="InkCanvas" />-->
 
-            <sharedControls:SimulationControls
-                x:Name="SimulationControls"
+            <ContentControl
                 Grid.Row="2"
-                d:Visibility="Collapsed"
-                BackwardVisibility="Visible"
-                ForwardVisibility="Visible"
-                IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
-                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
-                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
-                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
-                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
-                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
-                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
-                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
-                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
-                RequestedTheme="Light"
-                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
-                SpeedControlVisibility="Visible">
-                <sharedControls:SimulationControls.Background>
-                    <AcrylicBrush
-                        BackgroundSource="Backdrop"
-                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
-                        TintColor="{ThemeResource SystemChromeMediumColor}" />
-                </sharedControls:SimulationControls.Background>
-            </sharedControls:SimulationControls>
+                HorizontalContentAlignment="Stretch"
+                IsEnabled="{x:Bind Model.IsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}">
+                <sharedControls:SimulationControls
+                    x:Name="SimulationControls"
+                    d:Visibility="Collapsed"
+                    BackwardVisibility="{x:Bind Model.IsEasy, Mode=OneWay}"
+                    ForwardVisibility="{x:Bind Model.IsEasy, Mode=OneWay}"
+                    IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
+                    IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                    JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+                    JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                    JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                    JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                    JumpToStartCommand="{x:Bind Model.ResetPresetCommand}"
+                    PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                    PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                    RequestedTheme="Light"
+                    SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
+                    SpeedControlVisibility="Visible">
+                    <sharedControls:SimulationControls.Background>
+                        <AcrylicBrush
+                            BackgroundSource="Backdrop"
+                            FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                            TintColor="{ThemeResource SystemChromeMediumColor}" />
+                    </sharedControls:SimulationControls.Background>
+                </sharedControls:SimulationControls>
+            </ContentControl>
         </Grid>
         <Grid Background="#AA000000" Visibility="{x:Bind Model.IsLoading, Mode=OneWay}">
             <mux:ProgressRing
