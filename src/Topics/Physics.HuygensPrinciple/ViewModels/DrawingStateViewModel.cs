@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using MvvmCross.ViewModels;
 using Physics.HuygensPrinciple.Logic;
-using Windows.UI.Xaml.Shapes;
+using Physics.Shared.ViewModels;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace Physics.HuygensPrinciple.ViewModels
 {
-	public class DrawingStateViewModel
+	public class DrawingStateViewModel : ViewModelBase
 	{
+		public static readonly SolidColorBrush BrushBorder = new SolidColorBrush(Colors.Gray);
+		public static readonly SolidColorBrush EmptyBrush = new SolidColorBrush(Colors.White);
+		public static readonly SolidColorBrush SourceBrush = new SolidColorBrush(Colors.DarkOrange);
+		public static readonly SolidColorBrush WallBrush = new SolidColorBrush(Colors.Brown);
+
 		private bool _isDrawing = false;
 
 		public bool IsDrawing
@@ -31,5 +36,22 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public CellState SurfaceType { get; set; } = CellState.Source;
 
 		public event EventHandler IsDrawingChanged;
+
+		public bool CanStart => !IsDrawing;
+
+		public ICommand StartDrawingCommand => GetOrCreateCommand(() => IsDrawing = true);
+
+		public Brush SampleBrush =>
+			SurfaceType switch
+			{
+				CellState.Empty => EmptyBrush,
+				CellState.Source => SourceBrush,
+				CellState.Wall => WallBrush,
+				_ => throw new InvalidOperationException()
+			};
+
+		public bool IsSquare => Shape == ShapeType.Square;
+
+		public bool IsCircle => Shape == ShapeType.Circle;
 	}
 }

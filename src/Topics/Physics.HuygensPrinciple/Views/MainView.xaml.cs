@@ -15,11 +15,6 @@ namespace Physics.HuygensPrinciple.Views
 {
 	public sealed partial class MainView : MainViewBase
 	{
-		private SolidColorBrush _brushBorder = new SolidColorBrush(Colors.Gray);
-		private SolidColorBrush _emptyBrush = new SolidColorBrush(Colors.White);
-		private SolidColorBrush _sourceBrush = new SolidColorBrush(Colors.DarkOrange);
-		private SolidColorBrush _wallBrush = new SolidColorBrush(Colors.Brown);
-
 		public MainView() => InitializeComponent();
 
 		private void CanvasHolder_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
@@ -80,18 +75,18 @@ namespace Physics.HuygensPrinciple.Views
 				DrawingSurface.Children.Add(child);
 			}
 
-			var brush = _sourceBrush;
+			var brush = DrawingStateViewModel.SourceBrush;
 			switch (Model.DrawingState.SurfaceType)
 			{
 				case CellState.Empty:
-					brush = _emptyBrush;
+					brush = DrawingStateViewModel.EmptyBrush;
 					break;
 				case CellState.Wall:
-					brush = _wallBrush;
+					brush = DrawingStateViewModel.WallBrush;
 					break;
 			}
 			child.Fill = brush;
-			child.Stroke = _brushBorder;
+			child.Stroke = DrawingStateViewModel.BrushBorder;
 			child.StrokeThickness = 1;
 			child.Width = Model.DrawingState.Size;
 			child.Height = Model.DrawingState.Size;

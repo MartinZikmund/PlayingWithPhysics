@@ -36,6 +36,10 @@ namespace Physics.HuygensPrinciple.ViewModels
 				// Restart simulation
 				await DrawSceneAsync(CurrentPreset);
 			}
+			else
+			{
+				
+			}
 		}
 
 		public ScenePreset TemplatePreset { get; set; } = new ScenePreset("Empty");
@@ -71,6 +75,8 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public ICommand ResetPresetCommand => GetOrCreateCommand(ResetPreset);
 
+		public ICommand ConfirmDrawingCommand => GetOrCreateCommand(ConfirmDrawing);
+
 		private async Task PickSceneAsync()
 		{
 			var scenePicker = new ScenePickerDialog(_difficulty);
@@ -87,6 +93,12 @@ namespace Physics.HuygensPrinciple.ViewModels
 		{
 			CurrentPreset = TemplatePreset.Clone();
 			await DrawSceneAsync(CurrentPreset);
+			DrawingState.IsDrawing = false;
+		}
+
+		private void ConfirmDrawing()
+		{
+			DrawingState.IsDrawing = false;
 		}
 
 		public async Task DrawSceneAsync(ScenePreset scene)
@@ -102,6 +114,11 @@ namespace Physics.HuygensPrinciple.ViewModels
 			_controller.StartSimulation(manager, scene);
 			_controller.Play();
 			IsLoading = false;
+		}
+
+		public void ClearScene()
+		{
+
 		}
 	}
 }

@@ -11,10 +11,19 @@ namespace Physics.Shared.UI.ViewModels
         public void SetController(IRenderingPlayback canvasController)
         {
             _renderingPlayback = canvasController;
+			if (_renderingPlayback != null)
+			{
+				_renderingPlayback.PlayStateChanged += PlayStateChanged;
+			}
             RaisePropertyChanged(nameof(IsPaused));
         }
 
-        public ICommand PlayCommand => GetOrCreateCommand(Play);
+		private void PlayStateChanged(object sender, System.EventArgs e)
+		{
+			RaisePropertyChanged(nameof(IsPaused));
+		}
+
+		public ICommand PlayCommand => GetOrCreateCommand(Play);
 
         public ICommand PauseCommand => GetOrCreateCommand(Pause);
 

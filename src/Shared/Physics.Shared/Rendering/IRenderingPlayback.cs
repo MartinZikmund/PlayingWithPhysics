@@ -15,5 +15,7 @@ namespace Physics.Shared.UI.Rendering
         void Rewind(float jumpSize);
         void Pause();
         void Play();
+
+		event EventHandler PlayStateChanged;
     }
 }
