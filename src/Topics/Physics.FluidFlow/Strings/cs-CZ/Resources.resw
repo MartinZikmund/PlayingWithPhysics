@@ -127,6 +127,15 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Proudění kapalin</value>
   </data>
+  <data name="Fluid_Air" xml:space="preserve">
+    <value>Vzduch</value>
+  </data>
+  <data name="Fluid_Oil" xml:space="preserve">
+    <value>Nafta</value>
+  </data>
+  <data name="Fluid_Water" xml:space="preserve">
+    <value>Voda</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Proudění kapalin</value>
   </data>

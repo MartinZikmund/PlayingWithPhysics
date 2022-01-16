@@ -127,6 +127,15 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Fluid Flow</value>
   </data>
+  <data name="Fluid_Air" xml:space="preserve">
+    <value>Air</value>
+  </data>
+  <data name="Fluid_Oil" xml:space="preserve">
+    <value>Oil</value>
+  </data>
+  <data name="Fluid_Water" xml:space="preserve">
+    <value>Water</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Fluid Flow</value>
   </data>
