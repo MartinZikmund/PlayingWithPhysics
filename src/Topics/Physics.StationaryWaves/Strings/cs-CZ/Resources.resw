@@ -205,6 +205,9 @@ Grafika: Petr Weinlich</value>
   <data name="RightEndDistance" xml:space="preserve">
     <value>Vzdálenost pravého konce (násobek λ)</value>
   </data>
+  <data name="RightEndType" xml:space="preserve">
+    <value>Pravý konec</value>
+  </data>
   <data name="SetWaves" xml:space="preserve">
     <value>Nastavit vlnění</value>
   </data>

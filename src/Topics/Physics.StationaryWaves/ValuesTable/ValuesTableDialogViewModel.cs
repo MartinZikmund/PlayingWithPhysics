@@ -13,27 +13,15 @@ namespace Physics.StationaryWaves.ValuesTable
 	{
 		private DifficultyOption _difficulty;
 		private float _time = 0f;
-		private float _distanceInterval = 0.1f;
+		private float _distanceInterval = 0.05f;
 		private ApplicationDataContainer _localSettings = ApplicationData.Current.LocalSettings;
-		private float distanceInterval = 0.1f;
 
 		public ValuesTableDialogViewModel(TableService tableService, DifficultyOption movementType)
 			: base(tableService)
 		{
 			_difficulty = movementType;
 			tableService.Owner = this;
-			object timeSetting = _localSettings.Values["ValueTable_Time"];
-			if (timeSetting != null)
-			{
-				Time = (float)timeSetting;
-			}
-
-			object distanceIntervalSetting = _localSettings.Values["ValueTable_DistanceInterval"]; ;
-			if (distanceIntervalSetting != null)
-			{
-				DistanceInterval = (float)distanceIntervalSetting;
-			}
-
+			_time = movementType == DifficultyOption.Advanced ? 2.1f : 0f;
 			UpdateTable();
 		}
 
@@ -43,7 +31,6 @@ namespace Physics.StationaryWaves.ValuesTable
 
 			set
 			{
-				_localSettings.Values["ValueTable_Time"] = value;
 				_time = value;
 			}
 		}
@@ -53,7 +40,6 @@ namespace Physics.StationaryWaves.ValuesTable
 			get => _distanceInterval;
 			set
 			{
-				_localSettings.Values["ValueTable_DistanceInterval"] = value;
 				_distanceInterval = value;
 			}
 		}
@@ -81,7 +67,7 @@ namespace Physics.StationaryWaves.ValuesTable
 				eventArgs.Column.Header = "y₁ (m)";
 			}
 
-			if (eventArgs.Column.Header.ToString() == "Y1")
+			if (eventArgs.Column.Header.ToString() == "Y2")
 			{
 				eventArgs.Column.Header = "y₂ (m)";
 			}
