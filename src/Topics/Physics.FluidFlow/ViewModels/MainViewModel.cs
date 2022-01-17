@@ -25,7 +25,7 @@ namespace Physics.FluidFlow.ViewModels
 				InputVariants = new[]
 				{
 					InputVariant.ContinuityEquation,
-					InputVariant.BernoulliEquationWithoutHeightChange,
+					InputVariant.BernoulliEquationWithoutHeightDecrease,
 				};
 				SelectedVariantIndex = (int)InputVariant.ContinuityEquation;
 			}
@@ -33,7 +33,7 @@ namespace Physics.FluidFlow.ViewModels
 			{
 				InputVariants = new[]
 				{
-					InputVariant.BernoulliEquationWithHeightChange,
+					InputVariant.BernoulliEquationWithHeightDecrease,
 					InputVariant.RealFluidMovement,
 				};
 				SelectedVariantIndex = (int)InputVariant.ContinuityEquation;
@@ -58,27 +58,24 @@ namespace Physics.FluidFlow.ViewModels
 
 		public int SelectedVariantIndex { get; set; }
 
-		public InputVariant SelectedVariant => (InputVariant)SelectedVariantIndex;
+		public InputVariant SelectedVariant => SelectedVariantIndex >= 0 ? InputVariants[SelectedVariantIndex] : default;
 
 		internal async void OnSelectedVariantIndexChanged()
 		{
-			if (IsLoading)
+			if (IsLoading || SelectedVariantIndex < 0)
 			{
 				// Ignore initial set value
 				return;
 			}
 
-			if (Enum.IsDefined(typeof(InputVariant), SelectedVariantIndex))
-			{
-				await SetParametersAsync();
-			}
+			await SetParametersAsync();
 		}
 
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
 
 		private async Task SetParametersAsync()
 		{
-			var sceneConfigurationDialog = new SceneConfigurationDialog();
+			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant);
 			await sceneConfigurationDialog.ShowAsync();
 		}
 	}

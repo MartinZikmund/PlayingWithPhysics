@@ -127,6 +127,21 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Proudění kapalin</value>
   </data>
+  <data name="DiameterLabel" xml:space="preserve">
+    <value>Průměr potrubí</value>
+  </data>
+  <data name="DiameterRelationType_Equal" xml:space="preserve">
+    <value>S₁ = S₂</value>
+  </data>
+  <data name="DiameterRelationType_S1Larger" xml:space="preserve">
+    <value>S₁ &gt; S₂</value>
+  </data>
+  <data name="DiameterRelationType_S2Larger" xml:space="preserve">
+    <value>S₁ &lt; S₂</value>
+  </data>
+  <data name="FlowVelocityLabel" xml:space="preserve">
+    <value>Rychlost proudění</value>
+  </data>
   <data name="Fluid" xml:space="preserve">
     <value>Tekutina</value>
   </data>
@@ -139,10 +154,13 @@ Grafika: Petr Weinlich</value>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Voda</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
+  <data name="HeightDecreaseLabel" xml:space="preserve">
+    <value>Pokles výšky potrubí</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
     <value>Bernoulliho rovnice se změnou výšky</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
+  <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
     <value>Bernoulliho rovnice bez změny výšky</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
@@ -150,6 +168,18 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="InputVariant_RealFluidMovement" xml:space="preserve">
     <value>Pohyb reálné vody v potrubí</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Neplatný vstup</value>
+  </data>
+  <data name="LengthLabel" xml:space="preserve">
+    <value>Délka potrubí</value>
+  </data>
+  <data name="S1MustBeLargerMessage" xml:space="preserve">
+    <value>Musí platit d₁ &gt; d₂, upravte prosím vstupní hodnoty.</value>
+  </data>
+  <data name="S2MustBeLargerMessage" xml:space="preserve">
+    <value>Musí platit d₁ &lt; d₂, upravte prosím vstupní hodnoty.</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Proudění kapalin</value>

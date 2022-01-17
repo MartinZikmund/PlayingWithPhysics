@@ -2,13 +2,15 @@
     x:Class="Physics.FluidFlow.Controls.SceneConfigurationDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.FluidFlow.Controls"
+    xmlns:logic="using:Physics.FluidFlow.Logic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="using:Physics.FluidFlow.ViewModels"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Title="{extensions:Localize Key=SetParameters}"
+    x:DefaultBindMode="OneWay"
     PrimaryButtonClick="{x:Bind Model.Save}"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
@@ -17,21 +19,28 @@
     <ContentDialog.Resources>
         <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:SceneConfigurationDialog" />
         <GridLength x:Key="InputColumnWidth">200</GridLength>
+        <Style TargetType="winui:NumberBox">
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
     </ContentDialog.Resources>
-    <Grid ColumnSpacing="8" RowSpacing="8">
+    <Grid ColumnSpacing="8">
         <Grid.Resources>
-            <Style TargetType="controls:NumberBox">
+            <Style TargetType="winui:NumberBox">
                 <Setter Property="SpinButtonPlacementMode" Value="Compact" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="Margin" Value="0,0,0,4" />
+                <Setter Property="Margin" Value="0,8,0,0" />
             </Style>
             <Style TargetType="TextBlock">
-                <Setter Property="Margin" Value="0,0,0,4" />
+                <Setter Property="Margin" Value="0,8,0,0" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -52,6 +61,7 @@
 
         <ComboBox
             Grid.ColumnSpan="2"
+            Margin="0,0,0,8"
             HorizontalAlignment="Stretch"
             Header="{extensions:Localize Key=Fluid}"
             ItemsSource="{x:Bind Model.Fluids}"
@@ -64,7 +74,11 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{x:Bind LocalizedName}" />
-                        <TextBlock Grid.Column="1" Opacity="0.8">
+                        <TextBlock
+                            Grid.Column="1"
+                            Foreground="#333"
+                            Opacity="1">
+                            <Run Text="ρ =" />
                             <Run Text="{x:Bind Density}" />
                             <Run Text="kg.m⁻³" />
                         </TextBlock>
@@ -73,5 +87,97 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
+        <TextBlock Grid.Row="1">
+            <Run Text="{extensions:Localize Key=FlowVelocityLabel}" />
+            <Run FontWeight="Bold" Text="v" />
+            <Run Text="(m.s⁻¹)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="VelocityNumberBox"
+            Grid.Row="1"
+            Grid.Column="1"
+            Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="2" Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}">
+            <Run Text="{extensions:Localize Key=HeightDecreaseLabel}" />
+            <Run FontWeight="Bold" Text="Δh" />
+            <Run Text="(cm)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="HeightDecreaseNumberBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}"
+            Value="{x:Bind Model.HeightDecreaseInCm, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="3" Visibility="{x:Bind Model.InputConfiguration.LengthConfiguration.IsVisible}">
+            <Run Text="{extensions:Localize Key=LengthLabel}" />
+            <Run FontWeight="Bold" Text="l" />
+            <Run Text="(m)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="LengthNumberBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.LengthConfiguration.IsVisible}"
+            Value="{x:Bind Model.Length, Mode=TwoWay}" />
+
+        <winui:RadioButtons
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            ItemsSource="{x:Bind Model.DiameterRelationTypes, Mode=OneWay}"
+            MaxColumns="3"
+            SelectedIndex="{x:Bind Model.SelectedDiameterRelationTypeIndex, Mode=TwoWay}"
+            Visibility="{x:Bind Model.ShowDiameterRelationPicker, Mode=OneWay}">
+            <winui:RadioButtons.ItemTemplate>
+                <DataTemplate x:DataType="logic:DiameterRelationType">
+                    <RadioButton HorizontalAlignment="Center" Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+                </DataTemplate>
+            </winui:RadioButtons.ItemTemplate>
+        </winui:RadioButtons>
+
+        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.InputConfiguration.DiameterConfiguration.IsVisible}">
+            <Run Text="{extensions:Localize Key=DiameterLabel}" />
+            <Run FontWeight="Bold" Text="d" />
+            <Run Text="(cm)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="DiameterNumberBox"
+            Grid.Row="5"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.DiameterConfiguration.IsVisible}"
+            Value="{x:Bind Model.DiameterInCm, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.InputConfiguration.Diameter1Configuration.IsVisible}">
+            <Run Text="{extensions:Localize Key=DiameterLabel}" />
+            <Run FontWeight="Bold" Text="d₁" />
+            <Run Text="(cm)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="Diameter1NumberBox"
+            Grid.Row="5"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.Diameter1Configuration.IsVisible}"
+            Value="{x:Bind Model.Diameter1InCm, Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="6" Visibility="{x:Bind Model.InputConfiguration.Diameter2Configuration.IsVisible}">
+            <Run Text="{extensions:Localize Key=DiameterLabel}" />
+            <Run FontWeight="Bold" Text="d₂" />
+            <Run Text="(cm)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="Diameter2NumberBox"
+            Grid.Row="6"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.Diameter2Configuration.IsVisible}"
+            Value="{x:Bind Model.Diameter2InCm, Mode=TwoWay}" />
+
+        <TextBlock
+            Grid.Row="7"
+            Grid.ColumnSpan="2"
+            Foreground="Red"
+            Text="{x:Bind Model.ErrorMessage}"
+            TextWrapping="WrapWholeWords"
+            Visibility="{x:Bind Model.HasErrors}" />
     </Grid>
 </ContentDialog>

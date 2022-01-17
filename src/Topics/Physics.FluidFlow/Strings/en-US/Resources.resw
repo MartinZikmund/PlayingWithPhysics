@@ -127,6 +127,21 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Fluid Flow</value>
   </data>
+  <data name="DiameterLabel" xml:space="preserve">
+    <value>Plumbing diameter</value>
+  </data>
+  <data name="DiameterRelationType_Equal" xml:space="preserve">
+    <value>S₁ = S₂</value>
+  </data>
+  <data name="DiameterRelationType_S1Larger" xml:space="preserve">
+    <value>S₁ &gt; S₂</value>
+  </data>
+  <data name="DiameterRelationType_S2Larger" xml:space="preserve">
+    <value>S₁ &lt; S₂</value>
+  </data>
+  <data name="FlowVelocityLabel" xml:space="preserve">
+    <value>Flow Velocity</value>
+  </data>
   <data name="Fluid" xml:space="preserve">
     <value>Fluid</value>
   </data>
@@ -139,17 +154,23 @@ Graphics: Petr Weinlich</value>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Water</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
-    <value>Bernoulli equation (with height change)</value>
+  <data name="HeightDecreaseLabel" xml:space="preserve">
+    <value>Height decrease</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
-    <value>Bernoulli equation (without height change)</value>
+  <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
+    <value>Bernoulli equation (with height decrease)</value>
+  </data>
+  <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
+    <value>Bernoulli equation (without height decrease)</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
     <value>Continuity equation</value>
   </data>
   <data name="InputVariant_RealFluidMovement" xml:space="preserve">
     <value>Real fluid motion</value>
+  </data>
+  <data name="LengthLabel" xml:space="preserve">
+    <value>Plumbing length</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Fluid Flow</value>
