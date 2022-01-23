@@ -136,18 +136,6 @@ Graphics: Petr Weinlich</value>
   <data name="ErrorMessage_V2MustBeLargerThanV1" xml:space="preserve">
     <value>V₂ must be larger than V₁</value>
   </data>
-  <data name="InputVariant_Adiabatic" xml:space="preserve">
-    <value>Adiabatic</value>
-  </data>
-  <data name="InputVariant_Isobaric" xml:space="preserve">
-    <value>Isobaric</value>
-  </data>
-  <data name="InputVariant_Isochoric" xml:space="preserve">
-    <value>Isochoric</value>
-  </data>
-  <data name="InputVariant_Isotermic" xml:space="preserve">
-    <value>Isotermic</value>
-  </data>
   <data name="NDescription" xml:space="preserve">
     <value>Amount of substance</value>
   </data>
@@ -156,6 +144,21 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="PDescription" xml:space="preserve">
     <value>Pressure</value>
+  </data>
+  <data name="ProcessType_Adiabatic" xml:space="preserve">
+    <value>Adiabatic</value>
+  </data>
+  <data name="ProcessType_Isobaric" xml:space="preserve">
+    <value>Isobaric</value>
+  </data>
+  <data name="ProcessType_Isochoric" xml:space="preserve">
+    <value>Isochoric</value>
+  </data>
+  <data name="ProcessType_Isotermic" xml:space="preserve">
+    <value>Isotermic</value>
+  </data>
+  <data name="ProcessType_StirlingEngine" xml:space="preserve">
+    <value>Stirling engine</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyclic Processes</value>

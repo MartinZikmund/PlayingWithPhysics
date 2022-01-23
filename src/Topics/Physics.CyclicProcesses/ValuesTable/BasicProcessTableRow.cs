@@ -11,12 +11,12 @@ namespace Physics.CyclicProcesses.ValuesTable
 
 		public BasicProcessTableRow(double v, float p, float t, float w, float q, float deltaU)
 		{
-			V = v.ToString(DistanceFormatting);
-			P = p.ToString(YFormatting) ?? "";
-			T = t.ToString(YFormatting) ?? "";
-			W = w.ToString(YFormatting) ?? "";
-			Q = q.ToString(YFormatting) ?? "";
-			DeltaU = deltaU.ToString(YFormatting) ?? "";
+			V = v.ToString("0.######");
+			P = p.ToString("0.###") ?? "";
+			T = t.ToString("0.#") ?? "";
+			W = w.ToString("0.###") ?? "";
+			Q = q.ToString("0.###") ?? "";
+			DeltaU = deltaU.ToString("0.###") ?? "";
 		}
 
 		[ValuesTableHeader("V (m³)")]

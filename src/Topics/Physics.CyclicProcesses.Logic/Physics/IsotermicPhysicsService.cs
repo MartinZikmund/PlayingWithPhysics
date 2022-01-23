@@ -2,7 +2,7 @@
 
 namespace Physics.CyclicProcesses.Logic.Physics;
 
-public class IsotermicPhysicsService : PhysicsService
+public class IsotermicPhysicsService : PhysicsService, IBasicProcessPhysicsService
 {
 	private readonly IsotermicInputConfiguration _input;
 	private readonly float _nRT;
@@ -20,7 +20,13 @@ public class IsotermicPhysicsService : PhysicsService
 
 	public override float CalculateP(float time) => _nRT / CalculateV(time);
 
+	public float CalculateT(float time) => _input.T;
+
 	public override float CalculateV(float time) => CalculateCycleValue(_input.V1, _input.V2, time);
 
 	public float CalculateW(float time) => _nRT * (float)Math.Log(CalculateV(time) / _input.V1);
+
+	public float CalculateQ(float time) => CalculateW(time);
+
+	public float CalculateDeltaU(float time) => 0;
 }

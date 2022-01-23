@@ -10,7 +10,7 @@ using Windows.ApplicationModel.DataTransfer;
 
 namespace Physics.Shared.UI.ViewModels
 {
-    public class ValuesTableDialogViewModelBase<TValuesTableRow> : INotifyPropertyChanged
+    public class ValuesTableDialogViewModelBase<TValuesTableRow> : IValuesTableDialogViewModel, INotifyPropertyChanged
         where TValuesTableRow : IValuesTableRow
     {
         private const char TabSeparator = '\t';

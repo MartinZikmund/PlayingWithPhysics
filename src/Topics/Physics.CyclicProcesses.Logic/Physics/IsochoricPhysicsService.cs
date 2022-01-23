@@ -2,7 +2,7 @@
 
 namespace Physics.CyclicProcesses.Logic.Physics;
 
-public class IsochoricPhysicsService : PhysicsService
+public class IsochoricPhysicsService : PhysicsService, IBasicProcessPhysicsService
 {
 	private readonly IsochoricInputConfiguration _input;
 
@@ -23,4 +23,8 @@ public class IsochoricPhysicsService : PhysicsService
 	public float CalculateT(float time) => CalculateCycleValue(_input.T1, _input.T2, time);
 
 	public float CalculateQ(float time) => _input.N * Cv * (CalculateT(time) - _input.T1);
+
+	public float CalculateW(float time) => 0;
+
+	public float CalculateDeltaU(float time) => CalculateQ(time);
 }

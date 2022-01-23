@@ -130,13 +130,25 @@
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\CyclicProcessesCanvasController.cs" />
+    <Compile Include="Resources\DataTemplates.xaml.cs">
+      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ProcessStateDataTemplateSelector.cs" />
     <Compile Include="ValuesTable\BasicProcessTableDialogViewModel.cs" />
     <Compile Include="ValuesTable\BasicProcessTableRow.cs" />
     <Compile Include="ValuesTable\BasicProcessTableService.cs" />
+    <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AdvancedVariantViewModel.cs" />
     <Compile Include="ViewModels\EasyVariantViewModel.cs" />
     <Compile Include="ViewModels\Input\InputDialogViewModel.cs" />
+    <Compile Include="ViewModels\Process\AdiabaticStateViewModel.cs" />
+    <Compile Include="ViewModels\Process\IsobaricStateViewModel.cs" />
+    <Compile Include="ViewModels\Process\IsochoricStateViewModel.cs" />
+    <Compile Include="ViewModels\Process\IsotermicStateViewModel.cs" />
     <Compile Include="ViewModels\Process\ProcessStateViewModel.cs" />
+    <Compile Include="ViewModels\Process\StirlingEngineStateViewModel.cs" />
     <Compile Include="Views\AdvancedVariantView.xaml.cs">
       <DependentUpon>AdvancedVariantView.xaml</DependentUpon>
     </Compile>
@@ -243,7 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\StudyMode\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en-US\Resources.resw" />
@@ -274,6 +285,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Dialogs\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValuesTable\ValuesTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

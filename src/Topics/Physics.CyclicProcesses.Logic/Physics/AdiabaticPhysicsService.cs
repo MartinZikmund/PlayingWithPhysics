@@ -3,7 +3,7 @@ using Physics.CyclicProcesses.Logic.Input;
 
 namespace Physics.CyclicProcesses.Logic.Physics;
 
-public class AdiabaticPhysicsService : PhysicsService
+public class AdiabaticPhysicsService : PhysicsService, IBasicProcessPhysicsService
 {
 	private readonly AdiabaticInputConfiguration _input;
 
@@ -44,5 +44,7 @@ public class AdiabaticPhysicsService : PhysicsService
 
 	public float CalculateW(float time) => CalculateP(time) * CalculateV(time) - _input.P1 * _input.V1 / (K - 1);
 
-	public float CalculateU(float time) => -CalculateW(time);
+	public float CalculateQ(float time) => 0;
+
+	public float CalculateDeltaU(float time) => -CalculateW(time);
 }

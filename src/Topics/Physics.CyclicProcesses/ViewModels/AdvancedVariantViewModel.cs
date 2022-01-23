@@ -15,6 +15,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Physics.CyclicProcesses.Dialogs;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.WindowManagement;
+using Physics.CyclicProcesses.ValuesTable;
+using Physics.Shared.UI.Localization;
+using Windows.UI.Xaml.Hosting;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.Foundation;
 
 namespace Physics.CyclicProcesses.ViewModels
 {
@@ -30,6 +37,8 @@ namespace Physics.CyclicProcesses.ViewModels
 		}
 
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
+
+		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
 		public ProcessType[] ProcessTypes { get; } = Enum.GetValues(typeof(ProcessType)).OfType<ProcessType>().ToArray();
 
@@ -62,8 +71,47 @@ namespace Physics.CyclicProcesses.ViewModels
 			if (await inputDialog.ShowAsync() == ContentDialogResult.Primary)
 			{
 				var result = inputDialog.Model.Result;
+				Input = result;
+				PhysicsService = PhysicsServiceFactory.GetPhysicsService(Input);
+				ProcessState = ProcessStateViewModel.Create(Input);
 				_inputConfigurationCache[SelectedProcessType] = result;
 			}
+		}
+
+		private async Task ShowValuesTableAsync()
+		{
+			if (Input == null)
+			{
+				return;
+			}
+
+			var newWindow = await AppWindow.TryCreateAsync();
+			var appWindowContentFrame = new Frame();
+			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+
+			string title = Localizer.Instance.GetString("ProcessType_" + SelectedProcessType.ToString("g"));
+
+			IValuesTableDialogViewModel tableViewModel = null;
+			if (PhysicsService is IBasicProcessPhysicsService basicProcessPhysicsService)
+			{
+				var valuesTableService = new BasicProcessTableService(basicProcessPhysicsService);
+				tableViewModel = new BasicProcessTableDialogViewModel(valuesTableService);
+			}
+			(appWindowContentFrame.Content as ValuesTablePage).Initialize(tableViewModel);
+			// Attach the XAML content to the window.
+			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			newWindow.Title = title;
+
+			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+			newWindow.TitleBar.ForegroundColor = Colors.White;
+			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+			newWindow.RequestSize(new Size(640, 400));
+			var shown = await newWindow.TryShowAsync();
 		}
 
 		internal async void OnSelectedProcessTypeIndexChanged()

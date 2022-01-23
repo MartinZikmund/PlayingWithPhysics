@@ -213,6 +213,7 @@
     <Compile Include="Services\ValuesTable\ValuesTableHeaderAttribute.cs" />
     <Compile Include="Services\ValuesTable\ValuesTableRowBase.cs" />
     <Compile Include="ViewModels\AppListViewModel.cs" />
+    <Compile Include="ViewModels\IValuesTableDialogViewModel.cs" />
     <Compile Include="ViewModels\Navigation\DifficultyNavigationModel.cs" />
     <Compile Include="ViewModels\SelfStudyViewModel.cs" />
     <Compile Include="ViewModels\SimulationPlaybackViewModel.cs" />

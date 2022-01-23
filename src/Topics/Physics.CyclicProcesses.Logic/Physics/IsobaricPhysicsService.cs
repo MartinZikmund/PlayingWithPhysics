@@ -2,7 +2,7 @@
 
 namespace Physics.CyclicProcesses.Logic.Physics;
 
-public class IsobaricPhysicsService : PhysicsService
+public class IsobaricPhysicsService : PhysicsService, IBasicProcessPhysicsService
 {
 	private readonly IsobaricInputConfiguration _input;
 
@@ -35,7 +35,7 @@ public class IsobaricPhysicsService : PhysicsService
 
 	public float CalculateW(float time) => _input.P * (CalculateV(time) - _input.V1);
 
-	public float CalculateU(float time) => _input.N * Cv * (CalculateT(time) - T1);
+	public float CalculateDeltaU(float time) => _input.N * Cv * (CalculateT(time) - T1);
 
 	public float CalculateQ(float time) => _input.N * Cp * (CalculateT(time) - T1);
 }

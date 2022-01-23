@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    x:Class="Physics.CyclicProcesses.Resources.DataTemplates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:process="using:Physics.CyclicProcesses.ViewModels.Process"
+    xmlns:resources="using:Physics.CyclicProcesses.Resources">
+    <DataTemplate x:Key="IsobaricStateDataTemplate" x:DataType="process:IsobaricStateViewModel">
+        <Grid />
+    </DataTemplate>
+    <DataTemplate x:Key="IsochoricStateDataTemplate" x:DataType="process:IsochoricStateViewModel">
+        <Grid />
+    </DataTemplate>
+    <DataTemplate x:Key="AdiabaticStateDataTemplate" x:DataType="process:AdiabaticStateViewModel">
+        <Grid />
+    </DataTemplate>
+    <DataTemplate x:Key="IsotermicStateDataTemplate" x:DataType="process:IsotermicStateViewModel">
+        <Grid />
+    </DataTemplate>
+    <DataTemplate x:Key="StirlingEngineStateDataTemplate" x:DataType="process:StirlingEngineStateViewModel">
+        <Grid />
+    </DataTemplate>
+
+    <resources:ProcessStateDataTemplateSelector x:Key="ProcessStateDataTemplateSelector" />
+</ResourceDictionary>

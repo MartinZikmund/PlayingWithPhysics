@@ -3,20 +3,22 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.CyclicProcesses"
+    xmlns:resources="using:Physics.CyclicProcesses.Resources"
     xmlns:selfstudy="using:Physics.SelfStudy.Resources"
-	RequestedTheme="Light">
-	
-	<local:PhysicsApp.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
-				<selfstudy:SelfStudyResources />
-			</ResourceDictionary.MergedDictionaries>
-			<Color x:Key="AppThemeColor">#5F7189</Color>
-			<Color x:Key="DarkAppThemeColor">#414E5E</Color>
-			<Color x:Key="AppTitleBarColor">#414E5E</Color>
-		</ResourceDictionary>
-	</local:PhysicsApp.Resources>
+    RequestedTheme="Light">
+
+    <local:PhysicsApp.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
+                <selfstudy:SelfStudyResources />
+                <resources:DataTemplates />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="AppThemeColor">#5F7189</Color>
+            <Color x:Key="DarkAppThemeColor">#414E5E</Color>
+            <Color x:Key="AppTitleBarColor">#414E5E</Color>
+        </ResourceDictionary>
+    </local:PhysicsApp.Resources>
 
 </local:PhysicsApp>
