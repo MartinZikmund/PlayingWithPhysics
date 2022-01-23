@@ -4,10 +4,13 @@ using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
 using Physics.CyclicProcesses.Rendering;
+using Physics.CyclicProcesses.Logic.Input;
+using Physics.CyclicProcesses.Logic.Physics;
+using Physics.CyclicProcesses.ViewModels.Process;
 
 namespace Physics.CyclicProcesses.ViewModels
 {
-	public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<CyclicProcessesCanvasController>
+	public class AdvancedVariantViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<CyclicProcessesCanvasController>
 	{
 		private DifficultyOption _difficulty;
 		private CyclicProcessesCanvasController _controller;
@@ -16,6 +19,12 @@ namespace Physics.CyclicProcesses.ViewModels
 		{
 			_difficulty = parameter.Difficulty;
 		}
+
+		public IInputConfiguration Input { get; set; }
+
+		public IPhysicsService PhysicsService { get; set; }
+
+		public ProcessStateViewModel ProcessState { get; set; }
 
 		public void SetController(CyclicProcessesCanvasController controller)
 		{
@@ -27,7 +36,5 @@ namespace Physics.CyclicProcesses.ViewModels
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
 		}
-
-		public Uri AnimationSource { get; set; }
 	}
 }

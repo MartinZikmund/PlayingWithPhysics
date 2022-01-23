@@ -28,7 +28,17 @@ namespace Physics.CyclicProcesses.Infrastructure
 
 		public int Id => 12;
 
-		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+		public async Task GoToDifficultyAsync(DifficultyOption option)
+		{
+			if (option == DifficultyOption.Easy)
+			{
+				await _navigationService.Navigate<EasyVariantViewModel>();
+			}
+			else
+			{
+				await _navigationService.Navigate<AdvancedVariantViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+			}
+		}
 
 		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
 

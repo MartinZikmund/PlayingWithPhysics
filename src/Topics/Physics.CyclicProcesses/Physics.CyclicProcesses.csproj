@@ -123,13 +123,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\CyclicProcessesCanvasController.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="ViewModels\AdvancedVariantViewModel.cs" />
+    <Compile Include="ViewModels\EasyVariantViewModel.cs" />
+    <Compile Include="ViewModels\Input\InputDialogViewModel.cs" />
+    <Compile Include="ViewModels\Process\ProcessStateViewModel.cs" />
+    <Compile Include="Views\AdvancedVariantView.xaml.cs">
+      <DependentUpon>AdvancedVariantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EasyVariantView.xaml.cs">
+      <DependentUpon>EasyVariantView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +270,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Dialogs\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdvancedVariantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EasyVariantView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

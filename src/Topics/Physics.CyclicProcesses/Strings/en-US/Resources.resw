@@ -127,6 +127,18 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Cyclic Processes</value>
   </data>
+  <data name="InputVariant_Adiabatic" xml:space="preserve">
+    <value>Adiabatic</value>
+  </data>
+  <data name="InputVariant_Isobaric" xml:space="preserve">
+    <value>Isobaric</value>
+  </data>
+  <data name="InputVariant_Isochoric" xml:space="preserve">
+    <value>Isochoric</value>
+  </data>
+  <data name="InputVariant_Isotermic" xml:space="preserve">
+    <value>Isotermic</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyclic Processes</value>
   </data>

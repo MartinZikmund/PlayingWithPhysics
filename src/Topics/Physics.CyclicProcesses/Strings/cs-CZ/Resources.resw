@@ -127,6 +127,21 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Cyklické děje</value>
   </data>
+  <data name="InputVariant_Adiabatic" xml:space="preserve">
+    <value>Adiabata</value>
+  </data>
+  <data name="InputVariant_Isobaric" xml:space="preserve">
+    <value>Izobara</value>
+  </data>
+  <data name="InputVariant_Isochoric" xml:space="preserve">
+    <value>Izochora</value>
+  </data>
+  <data name="InputVariant_Isotermic" xml:space="preserve">
+    <value>Izoterma</value>
+  </data>
+  <data name="InputVariant_StirlingEngine" xml:space="preserve">
+    <value>Stirlingův motor</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyklické děje</value>
   </data>
