@@ -3,7 +3,7 @@
 public class IsochoricInputConfiguration : IInputConfiguration
 {
 	public IsochoricInputConfiguration(
-		int n,
+		float n,
 		float v,
 		float t1,
 		float t2)
@@ -37,6 +37,6 @@ public class IsochoricInputConfiguration : IInputConfiguration
 	/// <summary>
 	/// Number of mols.
 	/// </summary>
-	public int N { get; set; }
+	public float N { get; set; }
 }
 

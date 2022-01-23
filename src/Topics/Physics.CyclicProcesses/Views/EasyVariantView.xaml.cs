@@ -4,6 +4,9 @@ using Physics.CyclicProcesses.Rendering;
 using Physics.CyclicProcesses.ViewModels;
 using System;
 using Windows.UI.Xaml.Controls;
+using MvvmCross.ViewModels;
+using Physics.Shared.Views;
+using Windows.UI.Xaml;
 
 namespace Physics.CyclicProcesses.Views
 {
@@ -12,8 +15,19 @@ namespace Physics.CyclicProcesses.Views
 		public EasyVariantView()
 		{
 			InitializeComponent();
+			DataContextChanged += ViewContextChanged;
 			AnimationSelection_SelectionChanged(null, null);
 		}
+
+		private void ViewContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+		{
+			if (args.NewValue is EasyVariantViewModel model)
+			{
+				Model = model;
+			}
+		}
+
+		public EasyVariantViewModel Model { get; private set; }
 
 		private void AnimationSelection_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
 		{
@@ -43,7 +57,7 @@ namespace Physics.CyclicProcesses.Views
 		}
 	}
 
-	public class EasyVariantViewBase : Page
+	public class EasyVariantViewBase : BaseView
 	{
 	}
 }

@@ -130,6 +130,9 @@
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\CyclicProcessesCanvasController.cs" />
+    <Compile Include="ValuesTable\BasicProcessTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\BasicProcessTableRow.cs" />
+    <Compile Include="ValuesTable\BasicProcessTableService.cs" />
     <Compile Include="ViewModels\AdvancedVariantViewModel.cs" />
     <Compile Include="ViewModels\EasyVariantViewModel.cs" />
     <Compile Include="ViewModels\Input\InputDialogViewModel.cs" />

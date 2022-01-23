@@ -4,5 +4,5 @@ public interface IInputConfiguration
 {
 	ProcessType Process { get; }
 
-	int N { get; }
+	float N { get; }
 }

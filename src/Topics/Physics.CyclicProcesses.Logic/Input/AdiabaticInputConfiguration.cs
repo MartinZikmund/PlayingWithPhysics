@@ -3,7 +3,7 @@
 public class AdiabaticInputConfiguration : IInputConfiguration
 {
 	public AdiabaticInputConfiguration(
-		int n,
+		float n,
 		float p1,
 		float v1,
 		float v2)
@@ -37,6 +37,6 @@ public class AdiabaticInputConfiguration : IInputConfiguration
 	/// <summary>
 	/// Number of mols.
 	/// </summary>
-	public int N { get; set; }
+	public float N { get; set; }
 }
 

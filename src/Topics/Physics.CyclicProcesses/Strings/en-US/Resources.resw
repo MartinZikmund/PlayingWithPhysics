@@ -127,6 +127,15 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Cyclic Processes</value>
   </data>
+  <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
+    <value>T₂ must be larger than T₁</value>
+  </data>
+  <data name="ErrorMessage_T34MustBeLargerThanT12" xml:space="preserve">
+    <value>T₃₄ must be larger than T₁₂</value>
+  </data>
+  <data name="ErrorMessage_V2MustBeLargerThanV1" xml:space="preserve">
+    <value>V₂ must be larger than V₁</value>
+  </data>
   <data name="InputVariant_Adiabatic" xml:space="preserve">
     <value>Adiabatic</value>
   </data>
@@ -139,7 +148,40 @@ Graphics: Petr Weinlich</value>
   <data name="InputVariant_Isotermic" xml:space="preserve">
     <value>Isotermic</value>
   </data>
+  <data name="NDescription" xml:space="preserve">
+    <value>Amount of substance</value>
+  </data>
+  <data name="P1Description" xml:space="preserve">
+    <value>Starting pressure</value>
+  </data>
+  <data name="PDescription" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyclic Processes</value>
+  </data>
+  <data name="T12Description" xml:space="preserve">
+    <value>Heater temperature</value>
+  </data>
+  <data name="T1Description" xml:space="preserve">
+    <value>Lower temperature</value>
+  </data>
+  <data name="T2Description" xml:space="preserve">
+    <value>Upper temperature</value>
+  </data>
+  <data name="T34Description" xml:space="preserve">
+    <value>Cooler temperature</value>
+  </data>
+  <data name="TDescription" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
+  <data name="V1Description" xml:space="preserve">
+    <value>Lower volume</value>
+  </data>
+  <data name="V2Description" xml:space="preserve">
+    <value>Upper volume</value>
+  </data>
+  <data name="VDescription" xml:space="preserve">
+    <value>Gas volume</value>
   </data>
 </root>

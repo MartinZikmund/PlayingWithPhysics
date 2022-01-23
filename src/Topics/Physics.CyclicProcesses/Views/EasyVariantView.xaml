@@ -65,11 +65,11 @@
                         HorizontalAlignment="Stretch"
                         SelectedIndex="0"
                         SelectionChanged="AnimationSelection_SelectionChanged">
-                        <ComboBoxItem Content="Adiabatický děj" />
-                        <ComboBoxItem Content="Izobarický děj" />
-                        <ComboBoxItem Content="Izotermický děj" />
-                        <ComboBoxItem Content="Izochorický děj" />
-                        <ComboBoxItem Content="Motor" />
+                        <ComboBoxItem Content="{extensions:Localize Key=ProcessType_Adiabatic}" />
+                        <ComboBoxItem Content="{extensions:Localize Key=ProcessType_Isobaric}" />
+                        <ComboBoxItem Content="{extensions:Localize Key=ProcessType_Isotermic}" />
+                        <ComboBoxItem Content="{extensions:Localize Key=ProcessType_Isochoric}" />
+                        <ComboBoxItem Content="{extensions:Localize Key=ProcessType_StirlingEngine}" />
                     </ComboBox>
                 </Grid>
             </Border>
@@ -92,7 +92,7 @@
                 VerticalAlignment="Top"
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
-            <sharedControls:SimulationControls
+            <!--<sharedControls:SimulationControls
                 x:Name="SimulationControls"
                 Grid.Row="1"
                 d:Visibility="Collapsed"
@@ -115,7 +115,7 @@
                         FallbackColor="{ThemeResource SystemChromeMediumColor}"
                         TintColor="{ThemeResource SystemChromeMediumColor}" />
                 </sharedControls:SimulationControls.Background>
-            </sharedControls:SimulationControls>
+            </sharedControls:SimulationControls>-->
         </Grid>
     </Grid>
 </local:EasyVariantViewBase>

@@ -3,7 +3,7 @@
 	public class StirlingEngineInputConfiguration : IInputConfiguration
 	{
 		public StirlingEngineInputConfiguration(
-			int n,
+			float n,
 			float v1,
 			float v2,
 			float t12,
@@ -44,6 +44,6 @@
 		/// <summary>
 		/// Number of mols.
 		/// </summary>
-		public int N { get; set; }
+		public float N { get; set; }
 	}
 }

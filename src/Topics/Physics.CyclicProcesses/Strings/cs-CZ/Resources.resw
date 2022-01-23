@@ -127,22 +127,64 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Cyklické děje</value>
   </data>
-  <data name="InputVariant_Adiabatic" xml:space="preserve">
+  <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
+    <value>T₂ musí být větší než T₁</value>
+  </data>
+  <data name="ErrorMessage_T34MustBeLargerThanT12" xml:space="preserve">
+    <value>T₃₄ musí být větší než T₁₂</value>
+  </data>
+  <data name="ErrorMessage_V2MustBeLargerThanV1" xml:space="preserve">
+    <value>V₂ musí být větší než V₁</value>
+  </data>
+  <data name="NDescription" xml:space="preserve">
+    <value>Látkové množství</value>
+  </data>
+  <data name="P1Description" xml:space="preserve">
+    <value>Počáteční tlak</value>
+  </data>
+  <data name="PDescription" xml:space="preserve">
+    <value>Tlak</value>
+  </data>
+  <data name="ProcessType_Adiabatic" xml:space="preserve">
     <value>Adiabata</value>
   </data>
-  <data name="InputVariant_Isobaric" xml:space="preserve">
+  <data name="ProcessType_Isobaric" xml:space="preserve">
     <value>Izobara</value>
   </data>
-  <data name="InputVariant_Isochoric" xml:space="preserve">
+  <data name="ProcessType_Isochoric" xml:space="preserve">
     <value>Izochora</value>
   </data>
-  <data name="InputVariant_Isotermic" xml:space="preserve">
+  <data name="ProcessType_Isotermic" xml:space="preserve">
     <value>Izoterma</value>
   </data>
-  <data name="InputVariant_StirlingEngine" xml:space="preserve">
+  <data name="ProcessType_StirlingEngine" xml:space="preserve">
     <value>Stirlingův motor</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyklické děje</value>
+  </data>
+  <data name="T12Description" xml:space="preserve">
+    <value>Teplota ohřívače</value>
+  </data>
+  <data name="T1Description" xml:space="preserve">
+    <value>Spodní teplota</value>
+  </data>
+  <data name="T2Description" xml:space="preserve">
+    <value>Horní teplota</value>
+  </data>
+  <data name="T34Description" xml:space="preserve">
+    <value>Teplota chladiče</value>
+  </data>
+  <data name="TDescription" xml:space="preserve">
+    <value>Teplota lázně</value>
+  </data>
+  <data name="V1Description" xml:space="preserve">
+    <value>Spodní objem</value>
+  </data>
+  <data name="V2Description" xml:space="preserve">
+    <value>Horní objem</value>
+  </data>
+  <data name="VDescription" xml:space="preserve">
+    <value>Objem plynu</value>
   </data>
 </root>

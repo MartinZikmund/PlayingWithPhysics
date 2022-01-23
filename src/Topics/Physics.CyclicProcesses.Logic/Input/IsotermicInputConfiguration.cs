@@ -3,7 +3,7 @@
 public class IsotermicInputConfiguration : IInputConfiguration
 {
 	public IsotermicInputConfiguration(
-		int n,
+		float n,
 		float v1,
 		float v2,
 		float t)
@@ -37,5 +37,5 @@ public class IsotermicInputConfiguration : IInputConfiguration
 	/// <summary>
 	/// Number of mols.
 	/// </summary>
-	public int N { get; set; }
+	public float N { get; set; }
 }

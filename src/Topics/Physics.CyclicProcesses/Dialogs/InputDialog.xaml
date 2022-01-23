@@ -3,11 +3,214 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.CyclicProcesses.Dialogs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Title="{extensions:Localize Key=SetParameters}"
     d:DesignHeight="300"
     d:DesignWidth="400"
+    x:DefaultBindMode="OneWay"
+    PrimaryButtonClick="{x:Bind Model.Save}"
+    PrimaryButtonText="{extensions:Localize Key=Save}"
+    SecondaryButtonText="{extensions:Localize Key=Cancel}"
     mc:Ignorable="d">
 
-    <Grid />
+    <ContentDialog.Resources>
+        <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:InputDialog" />
+        <GridLength x:Key="InputColumnWidth">200</GridLength>
+        <Style TargetType="winui:NumberBox">
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
+    </ContentDialog.Resources>
+    <Grid ColumnSpacing="8">
+        <Grid.Resources>
+            <Style TargetType="winui:NumberBox">
+                <Setter Property="SpinButtonPlacementMode" Value="Inline" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Margin" Value="0,8,0,0" />
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="0,8,0,0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="{StaticResource InputColumnWidth}" />
+        </Grid.ColumnDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <!--  N  -->
+        <TextBlock Grid.Row="0">
+            <Run Text="{extensions:Localize Key=NDescription}" />
+            <Run FontWeight="Bold" Text="n" />
+            <Run Text="(mol)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="NNumberBox"
+            Grid.Row="0"
+            Grid.Column="1"
+            Value="{x:Bind Model.N, Mode=TwoWay}" />
+
+        <!--  P  -->
+        <TextBlock Grid.Row="1" Visibility="{x:Bind Model.DialogConfiguration.IsPVisible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=PDescription}" />
+            <Run FontWeight="Bold" Text="p" />
+            <Run Text="(Pa)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="PNumberBox"
+            Grid.Row="1"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsPVisible, Mode=OneWay}"
+            Value="{x:Bind Model.P, Mode=TwoWay}" />
+
+        <!--  P1  -->
+        <TextBlock Grid.Row="2" Visibility="{x:Bind Model.DialogConfiguration.IsP1Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=P1Description}" />
+            <Run FontWeight="Bold" Text="p₁" />
+            <Run Text="(Pa)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="P1NumberBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsP1Visible, Mode=OneWay}"
+            Value="{x:Bind Model.P1, Mode=TwoWay}" />
+
+        <!--  V  -->
+        <TextBlock Grid.Row="3" Visibility="{x:Bind Model.DialogConfiguration.IsVVisible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=VDescription}" />
+            <Run FontWeight="Bold" Text="V" />
+            <Run Text="(m³)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="VNumberBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsVVisible, Mode=OneWay}"
+            Value="{x:Bind Model.V, Mode=TwoWay}" />
+
+        <!--  V1  -->
+        <TextBlock Grid.Row="4" Visibility="{x:Bind Model.DialogConfiguration.IsV1Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=P1Description}" />
+            <Run FontWeight="Bold" Text="V₁" />
+            <Run Text="(m³)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="V1NumberBox"
+            Grid.Row="4"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsV1Visible, Mode=OneWay}"
+            Value="{x:Bind Model.V1, Mode=TwoWay}" />
+
+        <!--  V2  -->
+        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.DialogConfiguration.IsV2Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=V2Description}" />
+            <Run FontWeight="Bold" Text="V₂" />
+            <Run Text="(m³)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="V2NumberBox"
+            Grid.Row="5"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsV2Visible, Mode=OneWay}"
+            Value="{x:Bind Model.V2, Mode=TwoWay}" />
+
+        <!--  T  -->
+        <TextBlock Grid.Row="6" Visibility="{x:Bind Model.DialogConfiguration.IsTVisible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=TDescription}" />
+            <Run FontWeight="Bold" Text="T" />
+            <Run Text="(K)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="TNumberBox"
+            Grid.Row="6"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsTVisible, Mode=OneWay}"
+            Value="{x:Bind Model.T, Mode=TwoWay}" />
+
+        <!--  T1  -->
+        <TextBlock Grid.Row="7" Visibility="{x:Bind Model.DialogConfiguration.IsT1Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=T1Description}" />
+            <Run FontWeight="Bold" Text="T₁" />
+            <Run Text="(K)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="T1NumberBox"
+            Grid.Row="7"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsT1Visible, Mode=OneWay}"
+            Value="{x:Bind Model.T1, Mode=TwoWay}" />
+
+        <!--  T2  -->
+        <TextBlock Grid.Row="8" Visibility="{x:Bind Model.DialogConfiguration.IsT2Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=T2Description}" />
+            <Run FontWeight="Bold" Text="T₂" />
+            <Run Text="(K)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="T2NumberBox"
+            Grid.Row="8"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsT2Visible, Mode=OneWay}"
+            Value="{x:Bind Model.T2, Mode=TwoWay}" />
+
+        <!--  T12  -->
+        <TextBlock Grid.Row="9" Visibility="{x:Bind Model.DialogConfiguration.IsT12Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=T12Description}" />
+            <Run FontWeight="Bold" Text="T₁₂" />
+            <Run Text="(K)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="T12NumberBox"
+            Grid.Row="9"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsT12Visible, Mode=OneWay}"
+            Value="{x:Bind Model.T12, Mode=TwoWay}" />
+
+        <!--  T34  -->
+        <TextBlock Grid.Row="10" Visibility="{x:Bind Model.DialogConfiguration.IsT34Visible, Mode=OneWay}">
+            <Run Text="{extensions:Localize Key=T34Description}" />
+            <Run FontWeight="Bold" Text="T₃₄" />
+            <Run Text="(K)" />
+        </TextBlock>
+        <winui:NumberBox
+            x:Name="T34NumberBox"
+            Grid.Row="10"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.DialogConfiguration.IsT34Visible, Mode=OneWay}"
+            Value="{x:Bind Model.T34, Mode=TwoWay}" />
+
+        <!--  Error message  -->
+        <TextBlock
+            Grid.Row="11"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            Text="{x:Bind Model.ErrorMessage, Mode=OneWay}"
+            Visibility="{x:Bind Model.HasError, Mode=OneWay}" />
+    </Grid>
 </ContentDialog>

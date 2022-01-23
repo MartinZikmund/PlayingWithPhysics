@@ -3,7 +3,7 @@
 public class IsobaricInputConfiguration : IInputConfiguration
 {
 	public IsobaricInputConfiguration(
-		int n,
+		float n,
 		float p,
 		float v1,
 		float v2)
@@ -37,6 +37,6 @@ public class IsobaricInputConfiguration : IInputConfiguration
 	/// <summary>
 	/// Number of mols.
 	/// </summary>
-	public int N { get; set; }
+	public float N { get; set; }
 }
 
