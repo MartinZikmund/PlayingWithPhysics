@@ -1,4 +1,5 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
+﻿using Physics.FluidFlow.Logic;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 
 namespace Physics.FluidFlow.Rendering
@@ -10,14 +11,21 @@ namespace Physics.FluidFlow.Rendering
 		{
 		}
 
-		public override void Draw(ISkiaCanvas sender, SKSurface args)
+		public ISkiaCanvas Canvas => _canvas;
+
+		public FluidFlowRenderer Renderer { get; private set; }
+
+		public void SetVariantRenderer(FluidFlowRenderer renderer) => Renderer = renderer;
+
+		public override void Draw(ISkiaCanvas sender, SKSurface args) => Renderer?.Draw(sender, args);
+
+		public override void Update(ISkiaCanvas sender) => Renderer?.Update(sender);
+
+		public void StartSimulation(SceneConfiguration sceneConfiguration)
 		{
-
-		}
-
-		public override void Update(ISkiaCanvas sender)
-		{
-
+			Renderer?.StartSimulation(sceneConfiguration);
+			SimulationTime.Restart();
+			Play();
 		}
 	}
 }

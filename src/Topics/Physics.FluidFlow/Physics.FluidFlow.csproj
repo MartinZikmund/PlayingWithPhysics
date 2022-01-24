@@ -21,6 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
     <LangVersion>8.0</LangVersion>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -128,7 +129,12 @@
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\BernoulliEquationWithHeightDecreaseRenderer.cs" />
+    <Compile Include="Rendering\BernoulliEquationWithoutHeightDecreaseRenderer.cs" />
+    <Compile Include="Rendering\RealFluidMovementRenderer.cs" />
+    <Compile Include="Rendering\ContinuityEquationRenderer.cs" />
     <Compile Include="Rendering\FluidFlowCanvasController.cs" />
+    <Compile Include="Rendering\FluidFlowRenderer.cs" />
     <Compile Include="ViewModels\FluidDefinitionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SceneConfigurationDialogViewModel.cs" />
@@ -187,6 +193,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

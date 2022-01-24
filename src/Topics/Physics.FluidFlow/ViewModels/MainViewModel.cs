@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using Physics.FluidFlow.Logic;
 using Physics.FluidFlow.Controls;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.FluidFlow.ViewModels
 {
@@ -60,6 +61,8 @@ namespace Physics.FluidFlow.ViewModels
 
 		public InputVariant SelectedVariant => SelectedVariantIndex >= 0 ? InputVariants[SelectedVariantIndex] : default;
 
+		public SceneConfiguration SceneConfiguration { get; set; }
+
 		internal async void OnSelectedVariantIndexChanged()
 		{
 			if (IsLoading || SelectedVariantIndex < 0)
@@ -76,7 +79,40 @@ namespace Physics.FluidFlow.ViewModels
 		private async Task SetParametersAsync()
 		{
 			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant);
-			await sceneConfigurationDialog.ShowAsync();
+			if (await sceneConfigurationDialog.ShowAsync() == ContentDialogResult.Primary)
+			{
+				SceneConfiguration = sceneConfigurationDialog.Model.Result;
+				StartSimulation();
+			}
+		}
+
+		private void StartSimulation()
+		{
+			if (_controller == null || SceneConfiguration == null)
+			{
+				return;
+			}
+
+			IsLoading = true;
+			switch (SceneConfiguration.InputVariant)
+			{
+				case InputVariant.ContinuityEquation:
+					_controller.SetVariantRenderer(new ContinuityEquationRenderer(_controller));
+					break;
+				case InputVariant.BernoulliEquationWithoutHeightDecrease:
+					_controller.SetVariantRenderer(new BernoulliEquationWithoutHeightDecreaseRenderer(_controller));
+					break;
+				case InputVariant.BernoulliEquationWithHeightDecrease:
+					_controller.SetVariantRenderer(new BernoulliEquationWithHeightDecreaseRenderer(_controller));
+					break;
+				case InputVariant.RealFluidMovement:
+					_controller.SetVariantRenderer(new RealFluidMovementRenderer(_controller));
+					break;
+			}
+
+			_controller.StartSimulation(SceneConfiguration);
+
+			IsLoading = false;
 		}
 	}
 }
