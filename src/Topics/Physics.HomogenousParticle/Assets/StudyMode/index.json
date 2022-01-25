@@ -124,7 +124,7 @@
       {
         "Type": "Text",
         "Title": "Untitled",
-        "Text": "\\par Do vztahu ${F}={B}\\cdot{I}\\cdot{l}\\cdot{\\sin\\alpha}$ dosadíme z definice proudu ${I}=\\frac{q}{t}$  a dostaneme vztah ${F}={B}\\cdot\\frac{q}{t}\\cdot\\sin\\alpha$. Poměr $\\frac{l}{t}$ je nejjednodušší definice okamžité rychlosti. Po úpravě tedy dostaneme konečný vztah\r$${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$$\r\\\\kde ${v}$ je okamžitá rychlost částice,\r\\\\$\\alpha $ je úhel mezi směrem rychlosti kladné částice (technický směr proudu) a indukčními čarami.\\\\\r",
+        "Text": "\\par Do vztahu ${F}={B}\\cdot{I}\\cdot{l}\\cdot{\\sin\\alpha}$ dosadíme z definice proudu ${I}=\\frac{q}{t}$  a dostaneme vztah ${F}={B}\\cdot\\frac{q}{t}\\cdot l\\cdot \\sin\\alpha$. Poměr $\\frac{l}{t}$ je nejjednodušší definice okamžité rychlosti. Po úpravě tedy dostaneme konečný vztah\r$${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$$\r\\\\kde ${v}$ je okamžitá rychlost částice,\r\\\\$\\alpha $ je úhel mezi směrem rychlosti kladné částice (technický směr proudu) a indukčními čarami.\\\\\r",
         "IsHtml": false
       },
       {
