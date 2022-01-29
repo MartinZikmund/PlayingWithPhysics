@@ -96,7 +96,7 @@ namespace Physics.FluidFlow.Rendering
 			_horizontalPadding = _canvas.ScaledSize.Width / 10;
 
 			_pixelsPerUnitX = ((float)_canvas.ScaledSize.Width - 2 * _horizontalPadding) / PhysicsService.XMax;
-			_pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (PhysicsService.YMax * 2);
+			_pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
 		}
 
 		public void Draw(ISkiaCanvas sender, SKSurface args)
@@ -196,6 +196,6 @@ namespace Physics.FluidFlow.Rendering
 
 		private float GetRenderX(float x) => _horizontalPadding + x * _pixelsPerUnitX;
 
-		private float GetRenderY(float y) => _canvas.ScaledSize.Height / 2 - y * _pixelsPerUnitY;
+		private float GetRenderY(float y) => _canvas.ScaledSize.Height / 2 - (y - PhysicsService.YMin) * _pixelsPerUnitY + Math.Abs(PhysicsService.YMax - PhysicsService.YMin) / 2 * _pixelsPerUnitY;
 	}
 }

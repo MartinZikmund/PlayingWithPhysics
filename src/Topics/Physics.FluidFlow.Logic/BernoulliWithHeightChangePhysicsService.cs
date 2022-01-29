@@ -3,11 +3,11 @@ using Physics.Shared.Logic.Geometry;
 
 namespace Physics.FluidFlow.Logic
 {
-	public class ContinuityEquationPhysicsService : IPhysicsService
+	public class BernoulliWithHeightChangePhysicsService : IPhysicsService
 	{
 		private readonly SceneConfiguration _input;
 
-		public ContinuityEquationPhysicsService(SceneConfiguration input)
+		public BernoulliWithHeightChangePhysicsService(SceneConfiguration input)
 		{
 			_input = input;
 		}
@@ -26,38 +26,20 @@ namespace Physics.FluidFlow.Logic
 		public float YMax =>
 			_input.DiameterRelationType switch
 			{
-				DiameterRelationType.Equal => _input.YMax,
-				DiameterRelationType.S1Larger => 20,
-				DiameterRelationType.S2Larger => 20,
+				DiameterRelationType.S1Larger => 60,
+				DiameterRelationType.S2Larger => 60,
 				_ => throw new InvalidOperationException("Invalid diameter type"),
 			};
 
-		public float YMin => -YMax;
+		public float YMin => 0;
 
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			_input.DiameterRelationType switch
 			{
-				DiameterRelationType.Equal => GetDiameterEqualParticlePosition(time, particleId),
 				DiameterRelationType.S1Larger => GetS1LargerParticlePosition(time, particleId),
 				DiameterRelationType.S2Larger => GetS2LargerParticlePosition(time, particleId),
 				_ => throw new InvalidOperationException("Invalid diameter type"),
 			};
-
-		private Point2d GetDiameterEqualParticlePosition(float time, int particleId)
-		{
-			time = Math.Min(time, 58);
-			return particleId switch
-			{
-				0 => new Point2d(_input.Velocity * time, _input.YMax),
-				1 => new Point2d(_input.Velocity * time, 2 / 3.0 * _input.YMax),
-				2 => new Point2d(_input.Velocity * time, 1 / 3.0 * _input.YMax),
-				3 => new Point2d(_input.Velocity * time, 0),
-				4 => new Point2d(_input.Velocity * time, -1 / 3.0 * _input.YMax),
-				5 => new Point2d(_input.Velocity * time, -2 / 3.0 * _input.YMax),
-				6 => new Point2d(_input.Velocity * time, -_input.YMax),
-				_ => throw new InvalidOperationException()
-			};
-		}
 
 		private Point2d GetS1LargerParticlePosition(float time, int particleId)
 		{
@@ -65,11 +47,11 @@ namespace Physics.FluidFlow.Logic
 			{
 				return particleId switch
 				{
-					0 => new Point2d(time, 20),
-					1 => new Point2d(time, 10),
-					2 => new Point2d(time, 0),
-					3 => new Point2d(time, -10),
-					4 => new Point2d(time, -20),
+					0 => new Point2d(time, 60),
+					1 => new Point2d(time, 50),
+					2 => new Point2d(time, 40),
+					3 => new Point2d(time, 30),
+					4 => new Point2d(time, 20),
 					_ => throw new InvalidOperationException()
 				};
 			}
@@ -79,11 +61,11 @@ namespace Physics.FluidFlow.Logic
 				var xDiff = x - 40;
 				return particleId switch
 				{
-					0 => new Point2d(x, 20 - xDiff * 0.5),
-					1 => new Point2d(x, 10 - xDiff * 0.25),
-					2 => new Point2d(x, 0),
-					3 => new Point2d(x, -10 + xDiff * 0.25),
-					4 => new Point2d(x, -20 + xDiff * 0.5),
+					0 => new Point2d(x, 60 - xDiff * 2),
+					1 => new Point2d(x, 50 - xDiff * 7/4.0),
+					2 => new Point2d(x, 40 - xDiff * 3/2.0),
+					3 => new Point2d(x, 30 - xDiff * 1.25),
+					4 => new Point2d(x, 20 - xDiff),
 					_ => throw new InvalidOperationException()
 				};
 			}
@@ -93,11 +75,11 @@ namespace Physics.FluidFlow.Logic
 				var x = 60 + 4 * (time - 48);
 				return particleId switch
 				{
-					0 => new Point2d(x, 10),
-					1 => new Point2d(x, 5),
-					2 => new Point2d(x, 0),
-					3 => new Point2d(x, -5),
-					4 => new Point2d(x, -10),
+					0 => new Point2d(x, 20),
+					1 => new Point2d(x, 15),
+					2 => new Point2d(x, 10),
+					3 => new Point2d(x, 5),
+					4 => new Point2d(x, 0),
 					_ => throw new InvalidOperationException()
 				};
 			}
@@ -109,11 +91,11 @@ namespace Physics.FluidFlow.Logic
 			{
 				return particleId switch
 				{
-					0 => new Point2d(4 * time, 10),
-					1 => new Point2d(4 * time, 5),
-					2 => new Point2d(4 * time, 0),
-					3 => new Point2d(4 * time, -5),
-					4 => new Point2d(4 * time, -10),
+					0 => new Point2d(4 * time, 20),
+					1 => new Point2d(4 * time, 15),
+					2 => new Point2d(4 * time, 10),
+					3 => new Point2d(4 * time, 5),
+					4 => new Point2d(4 * time, 0),
 					_ => throw new InvalidOperationException()
 				};
 			}
@@ -123,11 +105,11 @@ namespace Physics.FluidFlow.Logic
 				var xDiff = x - 40;
 				return particleId switch
 				{
-					0 => new Point2d(x, 10 + xDiff * 0.5),
-					1 => new Point2d(x, 5 + xDiff * 0.25),
-					2 => new Point2d(x, 0),
-					3 => new Point2d(x, -5 - xDiff * 0.25),
-					4 => new Point2d(x, -10 - xDiff * 0.5),
+					0 => new Point2d(x, 20 + xDiff * 2),
+					1 => new Point2d(x, 15 + xDiff * 1.75),
+					2 => new Point2d(x, 10 + xDiff * 1.5),
+					3 => new Point2d(x, 5 + xDiff * 1.25),
+					4 => new Point2d(x, xDiff),
 					_ => throw new InvalidOperationException()
 				};
 			}
@@ -137,11 +119,11 @@ namespace Physics.FluidFlow.Logic
 				var x = 60 + (time - 18);
 				return particleId switch
 				{
-					0 => new Point2d(x, 20),
-					1 => new Point2d(x, 10),
-					2 => new Point2d(x, 0),
-					3 => new Point2d(x, -10),
-					4 => new Point2d(x, -20),
+					0 => new Point2d(x, 60),
+					1 => new Point2d(x, 50),
+					2 => new Point2d(x, 40),
+					3 => new Point2d(x, 30),
+					4 => new Point2d(x, 20),
 					_ => throw new InvalidOperationException()
 				};
 			}

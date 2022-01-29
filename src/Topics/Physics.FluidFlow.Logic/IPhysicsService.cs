@@ -10,6 +10,8 @@ namespace Physics.FluidFlow.Logic
 
 		float YMax { get; }
 
+		float YMin { get; }
+
 		Point2d GetParticlePosition(float time, int particleId);
 	}
 }
