@@ -1,7 +1,9 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Physics.CyclicProcesses.Logic;
 using Physics.CyclicProcesses.Logic.Input;
+using Physics.CyclicProcesses.Logic.Input.Dialog;
 using Physics.CyclicProcesses.ViewModels.Input;
+using Physics.Shared.UI.Helpers;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.CyclicProcesses.Dialogs
@@ -19,32 +21,40 @@ namespace Physics.CyclicProcesses.Dialogs
 
 		private void SetupNumberBoxes()
 		{
-			//SetupNumberBox(VelocityNumberBox, Model.InputConfiguration.VelocityConfiguration);
-			//SetupNumberBox(HeightDecreaseNumberBox, Model.InputConfiguration.HeightDecreaseConfiguration);
-			//SetupNumberBox(LengthNumberBox, Model.InputConfiguration.LengthConfiguration);
-			//SetupNumberBox(DiameterNumberBox, Model.InputConfiguration.DiameterConfiguration);
-			//SetupNumberBox(Diameter1NumberBox, Model.InputConfiguration.Diameter1Configuration);
-			//SetupNumberBox(Diameter2NumberBox, Model.InputConfiguration.Diameter2Configuration);
+			SetupNumberBox(NNumberBox, FieldConfiguration.CreateRestricted(0.1, 10, step: 0.1f));
+			var tConfiguration = FieldConfiguration.CreateRestricted(1, 1000, step: 1f);
+			SetupNumberBox(TNumberBox, tConfiguration);
+			SetupNumberBox(T1NumberBox, tConfiguration);
+			SetupNumberBox(T2NumberBox, tConfiguration);
+			SetupNumberBox(T12NumberBox, tConfiguration);
+			SetupNumberBox(T34NumberBox, tConfiguration);
+			var pConfiguration = FieldConfiguration.CreateRestricted(1, 1000, step: 1f);
+			SetupNumberBox(PNumberBox, pConfiguration);
+			SetupNumberBox(P1NumberBox, pConfiguration);
+			var vConfiguration = FieldConfiguration.CreateRestricted(1, 100, step: 1f);
+			SetupNumberBox(VNumberBox, vConfiguration);
+			SetupNumberBox(V1NumberBox, vConfiguration);
+			SetupNumberBox(V2NumberBox, vConfiguration);
 		}
 
-		//private void SetupNumberBox(NumberBox numberBox)
-		//{
-		//	if (fieldConfiguration.IsVisible)
-		//	{
-		//		var fieldStep = fieldConfiguration.Step ?? 0.1f;
-		//		numberBox.SetupFormatting(
-		//			smallChange: fieldStep,
-		//			largeChange: fieldStep,
-		//			increment: GetIncrement(fieldStep),
-		//			fractionDigits: GetFractionDigits(fieldStep));
+		private void SetupNumberBox(NumberBox numberBox, FieldConfiguration fieldConfiguration)
+		{
+			if (fieldConfiguration.IsVisible)
+			{
+				var fieldStep = fieldConfiguration.Step ?? 0.1f;
+				numberBox.SetupFormatting(
+					smallChange: fieldStep,
+					largeChange: fieldStep,
+					increment: GetIncrement(fieldStep),
+					fractionDigits: GetFractionDigits(fieldStep));
 
-		//		numberBox.Minimum = fieldConfiguration.Minimum;
-		//		numberBox.Maximum = fieldConfiguration.Maximum;
+				numberBox.Minimum = fieldConfiguration.Minimum;
+				numberBox.Maximum = fieldConfiguration.Maximum;
 
-		//		numberBox.SpinButtonPlacementMode = NumberBoxSpinButtonPlacementMode.Compact;
-		//		numberBox.SpinButtonPlacementMode = NumberBoxSpinButtonPlacementMode.Inline;
-		//	}
-		//}
+				numberBox.SpinButtonPlacementMode = NumberBoxSpinButtonPlacementMode.Compact;
+				numberBox.SpinButtonPlacementMode = NumberBoxSpinButtonPlacementMode.Inline;
+			}
+		}
 
 		private int GetFractionDigits(float step) => step == 1 ? 0 : 1;
 

@@ -75,7 +75,18 @@ namespace Physics.CyclicProcesses.ViewModels
 				PhysicsService = PhysicsServiceFactory.GetPhysicsService(Input);
 				ProcessState = ProcessStateViewModel.Create(Input);
 				_inputConfigurationCache[SelectedProcessType] = result;
+				StartSimulation();
 			}
+		}
+
+		private void StartSimulation()
+		{
+			if (_controller == null)
+			{
+				return;
+			}
+
+			_controller.StartSimulation(Input);			
 		}
 
 		private async Task ShowValuesTableAsync()

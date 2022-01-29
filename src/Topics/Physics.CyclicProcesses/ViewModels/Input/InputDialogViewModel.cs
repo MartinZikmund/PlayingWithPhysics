@@ -25,27 +25,57 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public InputDialogConfiguration DialogConfiguration { get; }
 
-		public float N { get; set; }
+		public float N { get; set; } = 1;
 
-		public float V { get; set; }
+		public float VInDm
+		{
+			get => V * 1000;
+			set => V = value / 1000;
+		}
 
-		public float V1 { get; set; }
+		public float V { get; set; } = 0.03f;
 
-		public float V2 { get; set; }
+		public float V1InDm
+		{
+			get => V1 * 1000;
+			set => V1 = value / 1000;
+		}
 
-		public float T { get; set; }
+		public float V1 { get; set; } = 0.023f;
 
-		public float T1 { get; set; }
+		public float V2InDm
+		{
+			get => V2 * 1000;
+			set => V2 = value / 1000;
+		}
 
-		public float T2 { get; set; }
+		public float V2 { get; set; } = 0.046f;
 
-		public float T12 { get; set; }
+		public float T { get; set; } = 300;
 
-		public float T34 { get; set; }
+		public float T1 { get; set; } = 300;
 
-		public float P { get; set; }
+		public float T2 { get; set; } = 400;
 
-		public float P1 { get; set; }
+		public float T12 { get; set; } = 300;
+
+		public float T34 { get; set; } = 400;
+
+		public float PInKPa
+		{
+			get => P / 1000;
+			set => P = value * 1000;
+		}
+
+		public float P { get; set; } = 100000;
+
+		public float P1InKPa
+		{
+			get => P1 / 1000;
+			set => P1 = value * 1000;
+		}
+
+		public float P1 { get; set; } = 100000;
 
 		public string ErrorMessage { get; set; }
 
@@ -55,10 +85,10 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
-			if (args.Cancel = !Validate())
-			{
-				return;
-			}
+			//if (args.Cancel = !Validate())
+			//{
+			//	return;
+			//}
 
 			Result = CreateResult();
 		}

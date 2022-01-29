@@ -2,22 +2,204 @@
     x:Class="Physics.CyclicProcesses.Resources.DataTemplates"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:process="using:Physics.CyclicProcesses.ViewModels.Process"
     xmlns:resources="using:Physics.CyclicProcesses.Resources">
     <DataTemplate x:Key="IsobaricStateDataTemplate" x:DataType="process:IsobaricStateViewModel">
-        <Grid />
+        <StackPanel Spacing="8">
+            <TextBlock>
+                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind W12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind Q12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="T₁" />
+                <Run Text="=" />
+                <Run Text="{x:Bind T1}" />
+                <Run Text="K" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="T₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind T2}" />
+                <Run Text="K" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run Text="=" />
+                <Run Text="{x:Bind DeltaVInDm}" />
+                <Run Text="dm³" />
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="IsochoricStateDataTemplate" x:DataType="process:IsochoricStateViewModel">
-        <Grid />
+        <StackPanel Spacing="8">
+            <TextBlock>
+                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run Text="=" />
+                <Run Text="0" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind Q12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫U₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind Q12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run Text="=" />
+                <Run Text="0" />
+                <Run Text="dm³" />
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="AdiabaticStateDataTemplate" x:DataType="process:AdiabaticStateViewModel">
-        <Grid />
+        <StackPanel Spacing="8">
+            <TextBlock>
+                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind W12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run Text="=" />
+                <Run Text="0" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="T₁" />
+                <Run Text="=" />
+                <Run Text="{x:Bind T1}" />
+                <Run Text="K" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="T₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind T2}" />
+                <Run Text="K" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫U₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind DeltaU12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run Text="=" />
+                <Run Text="{x:Bind DeltaVInDm}" />
+                <Run Text="dm³" />
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="IsotermicStateDataTemplate" x:DataType="process:IsotermicStateViewModel">
-        <Grid />
+        <StackPanel Spacing="8">
+            <TextBlock>
+                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind W12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind Q12}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫U" />
+                <Run Text="=" />
+                <Run Text="0" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run Text="=" />
+                <Run Text="{x:Bind DeltaVInDm}" />
+                <Run Text="dm³" />
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="StirlingEngineStateDataTemplate" x:DataType="process:StirlingEngineStateViewModel">
-        <Grid />
+        <StackPanel Spacing="8">
+            <TextBlock>
+                <Run FontWeight="Bold" Text="W" />
+                <Run Text="=" />
+                <Run Text="{x:Bind W}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="P₁" />
+                <Run Text="=" />
+                <Run Text="{x:Bind P1InKPa}" />
+                <Run Text="KPa" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="P₂" />
+                <Run Text="=" />
+                <Run Text="{x:Bind P2InKPa}" />
+                <Run Text="KPa" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="P₃" />
+                <Run Text="=" />
+                <Run Text="{x:Bind P3InKPa}" />
+                <Run Text="KPa" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="P₄" />
+                <Run Text="=" />
+                <Run Text="{x:Bind P4InKPa}" />
+                <Run Text="KPa" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q₋" />
+                <Run Text="=" />
+                <Run Text="{x:Bind QOut}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Q+" />
+                <Run Text="=" />
+                <Run Text="{x:Bind QIn}" />
+                <Run Text="J" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="{extensions:Localize Key=Effective}" />
+                <Run FontWeight="Bold" Text="η" />
+                <Run Text="=" />
+                <Run Text="{x:Bind EffectiveEfficiencyInPercent}" />
+                <Run Text="%" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="{extensions:Localize Key=Termic}" />
+                <Run FontWeight="Bold" Text="η" />
+                <Run Text="=" />
+                <Run Text="{x:Bind TermicEfficiencyInPercent}" />
+                <Run Text="%" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run Text="=" />
+                <Run Text="{x:Bind DeltaVInDm}" />
+                <Run Text="dm³" />
+            </TextBlock>
+        </StackPanel>
     </DataTemplate>
 
     <resources:ProcessStateDataTemplateSelector x:Key="ProcessStateDataTemplateSelector" />

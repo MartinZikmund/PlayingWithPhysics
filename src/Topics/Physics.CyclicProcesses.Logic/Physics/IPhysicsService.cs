@@ -7,5 +7,13 @@
 		float CalculateV(float time);
 
 		float CalculateP(float time);
+
+		float MinV { get; }
+
+		float MinP { get; }
+
+		float MaxV { get; }
+
+		float MaxP { get; }
 	}
 }

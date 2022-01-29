@@ -4,7 +4,7 @@ namespace Physics.CyclicProcesses.Logic.Physics;
 
 public abstract class PhysicsService : IPhysicsService
 {
-	protected const float CycleLengthInSeconds = 10f;
+	public const float CycleLengthInSeconds = 10f;
 
 	/// <summary>
 	/// Poisson constant.
@@ -34,6 +34,14 @@ public abstract class PhysicsService : IPhysicsService
 	}
 
 	public abstract ProcessType Process { get; }
+
+	public float MinV => 0;
+
+	public float MinP => 0;
+
+	public float MaxV => 0.1f;
+
+	public float MaxP => 1000000;
 
 	public abstract float CalculateP(float time);
 

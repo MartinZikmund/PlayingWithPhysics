@@ -60,13 +60,17 @@ namespace Physics.Shared.UI.Rendering
 
 		public string XUnitFormatString { get; set; } = "0.#";
 
+		public string YUnitFormatString { get; set; } = "0.#";
+
 		public float? XJumpSize { get; set; }
 
 		public void Update(ISkiaCanvas sender)
 		{
 		}
 
-		public void Draw(ISkiaCanvas sender, SKSurface args)
+		public void Draw(ISkiaCanvas sender, SKSurface args) => Draw(sender, args.Canvas);
+
+		public void Draw(ISkiaCanvas sender, SKCanvas args)
 		{
 			if (ShouldDrawXAxis)
 			{
@@ -103,23 +107,23 @@ namespace Physics.Shared.UI.Rendering
 			}
 		}
 
-		private void DrawXAxis(ISkiaCanvas sender, SKSurface args)
+		private void DrawXAxis(ISkiaCanvas sender, SKCanvas args)
 		{
-			var drawing = args.Canvas;
+			var drawing = args;
 
 			var renderOrigin = GetRenderOrigin();
 			drawing.DrawLine(TargetBounds.Left, renderOrigin.Y, TargetBounds.Right, renderOrigin.Y, XMeasurePaint);
 		}
 
-		private void DrawYAxis(ISkiaCanvas sender, SKSurface args)
+		private void DrawYAxis(ISkiaCanvas sender, SKCanvas args)
 		{
-			var drawing = args.Canvas;
+			var drawing = args;
 			drawing.DrawLine(TargetBounds.Left, TargetBounds.Bottom, TargetBounds.Left, TargetBounds.Top, YMeasurePaint);
 		}
 
-		private void DrawXMeasure(ISkiaCanvas sender, SKSurface args, int direction)
+		private void DrawXMeasure(ISkiaCanvas sender, SKCanvas args, int direction)
 		{
-			var drawing = args.Canvas;
+			var drawing = args;
 
 			//var axisInfo = GetXAxisInfo();
 
@@ -188,9 +192,9 @@ namespace Physics.Shared.UI.Rendering
 			}
 		}
 
-		private void DrawYMeasure(ISkiaCanvas sender, SKSurface args, int direction)
+		private void DrawYMeasure(ISkiaCanvas sender, SKCanvas args, int direction)
 		{
-			var drawing = args.Canvas;
+			var drawing = args;
 
 			var axisInfo = GetYAxisInfo();
 
@@ -216,7 +220,7 @@ namespace Physics.Shared.UI.Rendering
 					renderY,
 					YMeasurePaint);
 
-				var tickLabel = currentHeight.ToString("0.#");
+				var tickLabel = currentHeight.ToString(YUnitFormatString);
 				var textSize = YMeasurePaint.MeasureText(tickLabel);
 				drawing.DrawText(
 					tickLabel,

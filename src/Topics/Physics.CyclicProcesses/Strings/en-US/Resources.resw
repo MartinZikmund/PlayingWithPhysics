@@ -127,6 +127,9 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Cyclic Processes</value>
   </data>
+  <data name="Effective" xml:space="preserve">
+    <value>Effective</value>
+  </data>
   <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
     <value>T₂ must be larger than T₁</value>
   </data>
@@ -177,6 +180,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="TDescription" xml:space="preserve">
     <value>Temperature</value>
+  </data>
+  <data name="Termic" xml:space="preserve">
+    <value>Termic</value>
   </data>
   <data name="V1Description" xml:space="preserve">
     <value>Lower volume</value>

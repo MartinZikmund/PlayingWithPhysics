@@ -78,66 +78,66 @@
         <TextBlock Grid.Row="1" Visibility="{x:Bind Model.DialogConfiguration.IsPVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=PDescription}" />
             <Run FontWeight="Bold" Text="p" />
-            <Run Text="(Pa)" />
+            <Run Text="(KPa)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="PNumberBox"
             Grid.Row="1"
             Grid.Column="1"
             Visibility="{x:Bind Model.DialogConfiguration.IsPVisible, Mode=OneWay}"
-            Value="{x:Bind Model.P, Mode=TwoWay}" />
+            Value="{x:Bind Model.PInKPa, Mode=TwoWay}" />
 
         <!--  P1  -->
         <TextBlock Grid.Row="2" Visibility="{x:Bind Model.DialogConfiguration.IsP1Visible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=P1Description}" />
             <Run FontWeight="Bold" Text="p₁" />
-            <Run Text="(Pa)" />
+            <Run Text="(KPa)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="P1NumberBox"
             Grid.Row="2"
             Grid.Column="1"
             Visibility="{x:Bind Model.DialogConfiguration.IsP1Visible, Mode=OneWay}"
-            Value="{x:Bind Model.P1, Mode=TwoWay}" />
+            Value="{x:Bind Model.P1InKPa, Mode=TwoWay}" />
 
         <!--  V  -->
         <TextBlock Grid.Row="3" Visibility="{x:Bind Model.DialogConfiguration.IsVVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=VDescription}" />
             <Run FontWeight="Bold" Text="V" />
-            <Run Text="(m³)" />
+            <Run Text="(dm³)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="VNumberBox"
             Grid.Row="3"
             Grid.Column="1"
             Visibility="{x:Bind Model.DialogConfiguration.IsVVisible, Mode=OneWay}"
-            Value="{x:Bind Model.V, Mode=TwoWay}" />
+            Value="{x:Bind Model.VInDm, Mode=TwoWay}" />
 
         <!--  V1  -->
         <TextBlock Grid.Row="4" Visibility="{x:Bind Model.DialogConfiguration.IsV1Visible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=P1Description}" />
             <Run FontWeight="Bold" Text="V₁" />
-            <Run Text="(m³)" />
+            <Run Text="(dm³)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="V1NumberBox"
             Grid.Row="4"
             Grid.Column="1"
             Visibility="{x:Bind Model.DialogConfiguration.IsV1Visible, Mode=OneWay}"
-            Value="{x:Bind Model.V1, Mode=TwoWay}" />
+            Value="{x:Bind Model.V1InDm, Mode=TwoWay}" />
 
         <!--  V2  -->
         <TextBlock Grid.Row="5" Visibility="{x:Bind Model.DialogConfiguration.IsV2Visible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=V2Description}" />
             <Run FontWeight="Bold" Text="V₂" />
-            <Run Text="(m³)" />
+            <Run Text="(dm³)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="V2NumberBox"
             Grid.Row="5"
             Grid.Column="1"
             Visibility="{x:Bind Model.DialogConfiguration.IsV2Visible, Mode=OneWay}"
-            Value="{x:Bind Model.V2, Mode=TwoWay}" />
+            Value="{x:Bind Model.V2InDm, Mode=TwoWay}" />
 
         <!--  T  -->
         <TextBlock Grid.Row="6" Visibility="{x:Bind Model.DialogConfiguration.IsTVisible, Mode=OneWay}">

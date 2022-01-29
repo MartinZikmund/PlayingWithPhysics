@@ -127,6 +127,9 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Cyklické děje</value>
   </data>
+  <data name="Effective" xml:space="preserve">
+    <value>Efektivní</value>
+  </data>
   <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
     <value>T₂ musí být větší než T₁</value>
   </data>
@@ -177,6 +180,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="TDescription" xml:space="preserve">
     <value>Teplota lázně</value>
+  </data>
+  <data name="Termic" xml:space="preserve">
+    <value>Termická</value>
   </data>
   <data name="V1Description" xml:space="preserve">
     <value>Spodní objem</value>
