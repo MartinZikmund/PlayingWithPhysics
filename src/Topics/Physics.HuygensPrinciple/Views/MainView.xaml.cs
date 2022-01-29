@@ -3,12 +3,14 @@ using System.Linq;
 using Physics.HuygensPrinciple.Logic;
 using Physics.HuygensPrinciple.Rendering;
 using Physics.HuygensPrinciple.ViewModels;
+using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.Views;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
@@ -22,6 +24,8 @@ namespace Physics.HuygensPrinciple.Views
 		{
 			InitializeComponent();
 			Unloaded += MainView_Unloaded;
+			FieldSizeNumberBox.SetupFormatting(1, 1, 0, 1, 10);
+			StepRadiusNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
 		}
 
 		private void MainView_Unloaded(object sender, RoutedEventArgs e)
@@ -186,6 +190,17 @@ namespace Physics.HuygensPrinciple.Views
 		private void DrawingSurface_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			ResetArrowCursor();
+		}
+
+		private void Flyout_Closed(object sender, object e)
+		{
+			Model.CancelRenderSettings();
+		}
+
+		private void SaveRenderSettings_Click(object sender, RoutedEventArgs args)
+		{
+			Model.SaveRenderingSettings();
+			RenderSettingsFlyout.Hide();
 		}
 	}
 

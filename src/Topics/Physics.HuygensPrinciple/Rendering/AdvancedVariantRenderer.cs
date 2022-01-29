@@ -9,11 +9,15 @@ namespace Physics.HuygensPrinciple.Rendering
 	public class AdvancedVariantRenderer : IHuygensVariantRenderer
 	{
 		private readonly HuygensPrincipleCanvasController _controller;
+		private readonly Random _randomizer = new Random();
 
-		private SKBitmap _fieldImage = new SKBitmap(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
-		private SKBitmap _waveBorderImage = new SKBitmap(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
+		private SKBitmap _fieldImage;
+		private SKBitmap _waveBorderImage;
+		private SKBitmap _significantPointImage;
 
 		private TimeSpan _lastUpdate = new TimeSpan();
+
+		private StepInfo _lastStep = null;
 
 		public AdvancedVariantRenderer(HuygensPrincipleCanvasController controller)
 		{
@@ -27,13 +31,14 @@ namespace Physics.HuygensPrinciple.Rendering
 				return;
 			}
 
-			if ((_controller.SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 500)
+			if ((_controller.SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 1000)
 			{
-				_lastUpdate = _controller.SimulationTime.TotalTime;
 				var step = _controller._manager.NextStep();
 				if (step != null)
 				{
 					DrawStep(step);
+					_lastStep = step;
+					_lastUpdate = _controller.SimulationTime.TotalTime;
 				}
 			}
 		}
@@ -50,6 +55,8 @@ namespace Physics.HuygensPrinciple.Rendering
 			{
 				canvas.DrawCircle(change.X, change.Y, 1, _controller._waveEdgeStrokePaint);
 			}
+
+			DrawSignificantPoints(_lastStep);
 		}
 
 		public void Draw(ISkiaCanvas sender, SKSurface args)
@@ -68,19 +75,47 @@ namespace Physics.HuygensPrinciple.Rendering
 				{
 					args.Canvas.DrawBitmap(_waveBorderImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
 				}
+				if (_controller._renderConfiguration.ShowSignificantPoints)
+				{
+					args.Canvas.DrawBitmap(_significantPointImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				}
 			}
 			_controller.DrawInitalScene(sender, args);
 		}
 
 		private void DrawFullField()
 		{
-			for (int x = 0; x < RenderingConfiguration.FieldSize; x++)
+			for (int x = 0; x < _controller._manager.FieldWidth; x++)
 			{
-				for (int y = 0; y < RenderingConfiguration.FieldSize; y++)
+				for (int y = 0; y < _controller._manager.FieldHeight; y++)
 				{
 					_fieldImage.SetPixel(x, y, GetPixelColor(_controller._manager.CurrentField[x, y]));
 				}
 			}
+		}
+
+		private void DrawSignificantPoints(StepInfo step)
+		{
+			using SKCanvas canvas = new SKCanvas(_significantPointImage);
+			canvas.Clear(SKColors.Transparent);
+			if (_lastStep == null || _lastStep.WaveBorder.Length == 0)
+			{
+				foreach (var point in _controller._scene.SignificantPoints)
+				{
+					canvas.DrawCircle(point.X * _controller._manager.FieldWidth, point.Y * _controller._manager.FieldWidth, 2, _controller._significantPointPaint);
+					canvas.DrawCircle(point.X * _controller._manager.FieldHeight, point.Y * _controller._manager.FieldHeight, _controller._manager.StepRadius, _controller._significantPointEllipsePaint);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					var random = step.WaveBorder[_randomizer.Next(step.WaveBorder.Length)];
+					canvas.DrawCircle(random.X, random.Y, 2, _controller._significantPointPaint);
+					canvas.DrawCircle(random.X, random.Y, _controller._manager.StepRadius, _controller._significantPointEllipsePaint);
+				}
+			}
+			
 		}
 
 		private SKColor GetPixelColor(CellState cellState) =>
@@ -99,6 +134,12 @@ namespace Physics.HuygensPrinciple.Rendering
 		public void StartSimulation()
 		{
 			_lastUpdate = TimeSpan.Zero;
+			_lastStep = null;
+			_fieldImage?.Dispose();
+			_fieldImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight);
+			_waveBorderImage?.Dispose();
+			_waveBorderImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight); 
+			_significantPointImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight); 
 			using SKCanvas canvas = new SKCanvas(_fieldImage);
 			canvas.Clear(SKColors.White);
 		}

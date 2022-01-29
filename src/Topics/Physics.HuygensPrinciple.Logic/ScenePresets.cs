@@ -19,15 +19,15 @@ namespace Physics.HuygensPrinciple.Logic
 			{
 				new Rectangle(new PointF(0.44f,0.48f), new PointF(0.56f, 0.52f))
 			},
-			new ScenePreset("Circle")
+			new ScenePreset("Circle", new []{new PointF(0.45f, 0.5f), new PointF(0.55f, 0.5f), new PointF(0.5f, 0.45f), new PointF(0.5f, 0.55f)})
 			{
 				new Circle(new PointF(0.5f, 0.5f), 0.05f)
 			},
-			new ScenePreset("Line")
+			new ScenePreset("Line", new []{new PointF(0.25f, 0.01f), new PointF(0.5f, 0.01f), new PointF(0.75f, 0.01f)})
 			{
 				new Rectangle(new PointF(0,0), new PointF(1,0.01f))
 			},
-			new ScenePreset("Snowman")
+			new ScenePreset("Snowman", new []{new PointF(0.42f, 0.6f), new PointF(0.56f, 0.5f), new PointF(0.46f, 0.42f)})
 			{
 				new Circle(new PointF(0.5f, 0.42f), 0.04f),
 				new Circle(new PointF(0.5f, 0.5f), 0.06f),

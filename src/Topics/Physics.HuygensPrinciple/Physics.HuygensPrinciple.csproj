@@ -130,11 +130,11 @@
     <Compile Include="Rendering\EasyVariantRenderer.cs" />
     <Compile Include="Rendering\HuygensPrincipleCanvasController.cs" />
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
-    <Compile Include="Rendering\RenderingConfiguration.cs" />
     <Compile Include="ViewModels\DrawingStateViewModel.cs" />
     <Compile Include="ViewModels\DrawingTool.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RenderConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\RenderSettingsViewModel.cs" />
     <Compile Include="ViewModels\ScenePickerViewModel.cs" />
     <Compile Include="ViewModels\ScenePresetViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">

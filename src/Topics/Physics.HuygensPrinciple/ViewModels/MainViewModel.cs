@@ -53,6 +53,10 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public bool IsLoading { get; set; }
 
+		public float StepRadius { get; set; } = 12.5f;
+
+		public int FieldSize { get; set; } = 1080;
+
 		public DrawingStateViewModel DrawingState { get; } = new DrawingStateViewModel();
 
 		public ObservableCollection<CellState> SurfaceTypes { get; } = new ObservableCollection<CellState> { CellState.Source, CellState.Empty };
@@ -76,11 +80,40 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public RenderConfigurationViewModel RenderConfiguration { get; } = new RenderConfigurationViewModel();
 
+		public RenderSettingsViewModel SavedRenderSettings { get; private set; } = new RenderSettingsViewModel();
+
+		internal async void OnSavedRenderSettingsChanged()
+		{
+			await DrawSceneAsync(CurrentPreset);
+		}
+
+		public RenderSettingsViewModel UnconfirmedRenderSettings { get; private set; } = new RenderSettingsViewModel();
+
 		public ICommand PickScenePresetCommand => GetOrCreateAsyncCommand(PickSceneAsync);
 
 		public ICommand ResetPresetCommand => GetOrCreateCommand(ResetPreset);
 
 		public ICommand ConfirmDrawingCommand => GetOrCreateCommand(ConfirmDrawing);
+
+		public ICommand SaveRenderingSettingsCommand => GetOrCreateCommand(SaveRenderingSettings);
+
+		internal void SaveRenderingSettings()
+		{
+			SavedRenderSettings = new RenderSettingsViewModel()
+			{
+				FieldSize = UnconfirmedRenderSettings.FieldSize,
+				StepRadius = UnconfirmedRenderSettings.StepRadius
+			};
+		}
+
+		internal void CancelRenderSettings()
+		{
+			UnconfirmedRenderSettings = new RenderSettingsViewModel()
+			{
+				FieldSize = SavedRenderSettings.FieldSize,
+				StepRadius = SavedRenderSettings.StepRadius
+			};
+		}
 
 		private async Task PickSceneAsync()
 		{
@@ -108,16 +141,21 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public async Task DrawSceneAsync(ScenePreset scene)
 		{
+			if (scene == null)
+			{
+				return;
+			}
+
 			IsLoading = true;
 			_controller.SimulationTime.Restart();
 			_controller.Pause();
-			var huygensBuilder = new HuygensFieldBuilder(RenderingConfiguration.FieldSize, RenderingConfiguration.FieldSize);
+			var huygensBuilder = new HuygensFieldBuilder(FieldSize, FieldSize);
 			huygensBuilder.DrawScene(scene);
 
-			var manager = new HuygensManager(huygensBuilder.Build());
+			var manager = new HuygensManager(huygensBuilder.Build(), StepRadius);
 			if (_difficulty == DifficultyOption.Advanced)
 			{
-				await manager.PrecalculateAsync();
+				manager.PrecalculateAsync();
 			}
 			_controller.StartSimulation(manager, scene);
 			_controller.Play();

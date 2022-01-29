@@ -50,8 +50,8 @@
             </Windows10version1903:Grid.Shadow>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <sharedControls:SkewedMenuHeader
@@ -193,6 +193,33 @@
                     </Grid>
                 </Grid>
             </StackPanel>
+
+            <Button
+                Grid.Row="2"
+                Margin="8"
+                HorizontalAlignment="Center"
+                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+                <Button.Flyout>
+                    <Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
+                        <StackPanel>
+                            <mux:NumberBox
+                                x:Name="FieldSizeNumberBox"
+                                Header="{extensions:Localize Key=FieldSize}"
+                                Maximum="2000"
+                                Minimum="500"
+                                Value="{x:Bind Model.FieldSize, Mode=TwoWay}" />
+                            <mux:NumberBox
+                                x:Name="StepRadiusNumberBox"
+                                Header="{extensions:Localize Key=StepRadius}"
+                                Maximum="30"
+                                Minimum="3"
+                                Value="{x:Bind Model.StepRadius, Mode=TwoWay}" />
+                            <Button Click="SaveRenderSettings_Click" Content="{extensions:Localize Key=Save}" />
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+                <SymbolIcon Symbol="Setting" />
+            </Button>
         </Grid>
         <Grid
             x:Name="SecondPane"

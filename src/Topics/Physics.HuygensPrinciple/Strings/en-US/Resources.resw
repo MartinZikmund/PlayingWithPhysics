@@ -163,6 +163,9 @@ Graphics: Petr Weinlich</value>
   <data name="Eraser" xml:space="preserve">
     <value>Eraser</value>
   </data>
+  <data name="FieldSize" xml:space="preserve">
+    <value>Field size</value>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>
   </data>
@@ -225,6 +228,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="StartDrawing" xml:space="preserve">
     <value>Start drawing</value>
+  </data>
+  <data name="StepRadius" xml:space="preserve">
+    <value>Step radius</value>
   </data>
   <data name="SurfaceType" xml:space="preserve">
     <value>Type</value>

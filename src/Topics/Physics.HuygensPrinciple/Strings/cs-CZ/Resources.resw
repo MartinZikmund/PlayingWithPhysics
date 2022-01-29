@@ -163,6 +163,9 @@ Grafika: Petr Weinlich</value>
   <data name="Eraser" xml:space="preserve">
     <value>Zmizík</value>
   </data>
+  <data name="FieldSize" xml:space="preserve">
+    <value>Velikost pole</value>
+  </data>
   <data name="Off" xml:space="preserve">
     <value>Vypnuto</value>
   </data>
@@ -225,6 +228,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="StartDrawing" xml:space="preserve">
     <value>Spustit kreslení</value>
+  </data>
+  <data name="StepRadius" xml:space="preserve">
+    <value>Poloměr kroku</value>
   </data>
   <data name="SurfaceType" xml:space="preserve">
     <value>Typ</value>
