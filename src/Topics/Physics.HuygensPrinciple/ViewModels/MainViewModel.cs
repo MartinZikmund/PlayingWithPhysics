@@ -59,7 +59,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public DrawingStateViewModel DrawingState { get; } = new DrawingStateViewModel();
 
-		public ObservableCollection<CellState> SurfaceTypes { get; } = new ObservableCollection<CellState> { CellState.Source, CellState.Empty };
+		public ObservableCollection<CellState> SurfaceTypes { get; } = new ObservableCollection<CellState> { CellState.Source };
 
 		public ObservableCollection<ShapeType> ShapeTypes { get; } = new ObservableCollection<ShapeType> { ShapeType.Circle, ShapeType.Square };
 
@@ -93,6 +93,8 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public ICommand ResetPresetCommand => GetOrCreateCommand(ResetPreset);
 
+		public ICommand ResetSimulationCommand => GetOrCreateCommand(ResetSimulation);
+
 		public ICommand ConfirmDrawingCommand => GetOrCreateCommand(ConfirmDrawing);
 
 		public ICommand SaveRenderingSettingsCommand => GetOrCreateCommand(SaveRenderingSettings);
@@ -125,6 +127,12 @@ namespace Physics.HuygensPrinciple.ViewModels
 				CurrentPreset = scene.Preset.Clone();
 				await DrawSceneAsync(CurrentPreset);
 			}
+		}
+
+		private async void ResetSimulation()
+		{
+			await DrawSceneAsync(CurrentPreset);
+			DrawingState.IsDrawing = false;
 		}
 
 		private async void ResetPreset()

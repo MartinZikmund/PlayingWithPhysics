@@ -266,7 +266,7 @@
                     JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                     JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
                     JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
-                    JumpToStartCommand="{x:Bind Model.ResetPresetCommand}"
+                    JumpToStartCommand="{x:Bind Model.ResetSimulationCommand}"
                     PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                     PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                     RequestedTheme="Light"

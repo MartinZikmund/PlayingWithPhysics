@@ -124,7 +124,7 @@
     <value>Add motion</value>
   </data>
   <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Advanced difficulty</value>
+    <value>Advanced variant</value>
   </data>
   <data name="AppInfoAddress" xml:space="preserve">
     <value>Vzdělávací centrum Turnov, o.p.s., Jana Palacha 804, 511 01 Turnov, tel.: 604988480, web: www.vctu.cz, email: info@vctu.cz</value>
@@ -217,7 +217,7 @@
     <value>Duplicate</value>
   </data>
   <data name="EasyDifficulty" xml:space="preserve">
-    <value>Easy difficulty</value>
+    <value>Basic variant</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>

@@ -224,7 +224,7 @@ Graphics: Petr Weinlich</value>
     <value>Show wave</value>
   </data>
   <data name="ShowWaveEdge" xml:space="preserve">
-    <value>Show edge of wave</value>
+    <value>Show wavefront</value>
   </data>
   <data name="StartDrawing" xml:space="preserve">
     <value>Start drawing</value>
