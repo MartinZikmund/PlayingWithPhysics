@@ -127,6 +127,30 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Pohyby v centrálním gravitačním poli Země</value>
   </data>
+  <data name="CannotParseInputNumbers" xml:space="preserve">
+    <value>Vstupní čísla nejsou ve správném formátu.</value>
+  </data>
+  <data name="ElevationAngle" xml:space="preserve">
+    <value>Elevační úhel</value>
+  </data>
+  <data name="GravitationalConstant" xml:space="preserve">
+    <value>Gravitační konstanta</value>
+  </data>
+  <data name="InitialCoordinateAngle" xml:space="preserve">
+    <value>Počáteční souřadnicový úhel</value>
+  </data>
+  <data name="InitialHeight" xml:space="preserve">
+    <value>Počáteční výška nad povrchem</value>
+  </data>
+  <data name="InitialVelocity" xml:space="preserve">
+    <value>Počáteční rychlost</value>
+  </data>
+  <data name="PlanetMass" xml:space="preserve">
+    <value>Hmotnost planety</value>
+  </data>
+  <data name="PlanetRadius" xml:space="preserve">
+    <value>Poloměr planety</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby v centrálním gravitačním poli Země</value>
   </data>

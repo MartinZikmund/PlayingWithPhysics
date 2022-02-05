@@ -13,7 +13,6 @@ public class InputConfigurationTests
 			900000,
 			8000,
 			0,
-			6.67E-11,
 			90);
 
 		Assert.Equal(1.571, input.Phi0, 3);
@@ -56,7 +55,6 @@ public class InputConfigurationTests
 			248530000000,
 			21972,
 			0,
-			6.6743E-11,
 			90);
 
 		Assert.Equal(1.571, input.Phi0, 3);

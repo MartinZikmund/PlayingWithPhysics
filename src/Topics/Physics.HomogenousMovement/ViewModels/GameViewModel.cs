@@ -31,7 +31,7 @@ namespace Physics.HomogenousMovement.ViewModels
 
         private float _v0 = 50;
         private float _angle = 45;
-        private float _gravity = GravityConstants.Earth;
+        private float _gravity = PhysicsConstants.EarthGravity;
 
         public GameViewModel(IMvxMainThreadAsyncDispatcher dispatcher, ISoundPlayer soundPlayer, IPreferences preferences) 
             : base(dispatcher, preferences)

@@ -26,7 +26,7 @@ namespace Physics.HomogenousMovement.ViewModels
         private float _v0;
         private float _mass = 1;
         private float _angle;
-        private float _gravity = GravityConstants.Earth;
+        private float _gravity = PhysicsConstants.EarthGravity;
         private Color _color = ColorHelper.ToColor("#0063B1");
         private bool _autogenerateLabel = true;
 

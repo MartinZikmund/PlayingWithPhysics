@@ -30,7 +30,7 @@ namespace Physics.DragMovement.ViewModels
         private float _mass = 1;
         private float _angle;
         private float _area;
-        private float _gravity = GravityConstants.Earth;
+        private float _gravity = PhysicsConstants.EarthGravity;
         private Color _color = ColorHelper.ToColor("#0063B1");
         private bool _autogenerateLabel = true;
 

@@ -1,18 +1,18 @@
 ﻿using System;
 using Physics.Shared.Helpers;
+using Physics.Shared.Logic.Constants;
 
 namespace Physics.GravitationalFieldMovement.Logic;
 
 public class InputConfiguration
 {
-	public InputConfiguration(double planetRadius, double planetMass, double height, double startVelocity, double elevationAngle, double gravitationalConstant, double coordinateAngle)
+	public InputConfiguration(double planetRadius, double planetMass, double height, double startVelocity, double elevationAngle, double coordinateAngle)
 	{
 		Rz = planetRadius;
 		Mz = planetMass;
 		H = height;
 		V0 = startVelocity;
 		BetaDeg = elevationAngle;
-		G = gravitationalConstant;
 		Phi0Deg = coordinateAngle;
 
 		// Calculate extended parameters
@@ -24,7 +24,7 @@ public class InputConfiguration
 		SigBeta = Math.Sign(Beta);
 		Vx0 = V0 * Math.Cos(Phi0 - Beta + Math.PI / 2);
 		Vy0 = V0 * Math.Sin(Phi0 - Beta + Math.PI / 2);
-		Alpha = G * Mz;
+		Alpha = PhysicsConstants.GravitationalConstant * Mz;
 		L = R0 * V0 * Math.Cos(Beta);
 		SigL = Math.Sign(L);
 		En = V0 * V0 / 2 - Alpha / R0;
@@ -110,8 +110,6 @@ public class InputConfiguration
 	public double V0 { get; }
 
 	public double BetaDeg { get; }
-
-	public double G { get; }
 
 	public double Phi0Deg { get; }
 

@@ -20,7 +20,7 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -122,10 +122,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\GravitationalFieldMovementCanvasController.cs" />
+    <Compile Include="ValuesTable\TableRow.cs" />
+    <Compile Include="ValuesTable\TableService.cs" />
+    <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
+      <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\InputDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -240,6 +250,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialogs\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValuesTable\ValuesTablePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

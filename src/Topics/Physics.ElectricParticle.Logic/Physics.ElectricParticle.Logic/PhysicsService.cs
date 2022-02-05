@@ -195,7 +195,7 @@ namespace Physics.ElectricParticle.Logic
 
 		private BigNumber GravityAcceleration(BigNumber time)
 		{
-			return 0.5f * GravityConstants.Earth * time * time;
+			return 0.5f * PhysicsConstants.EarthGravity * time * time;
 		}
 
 		public BigNumber ComputeVx(BigNumber time)
@@ -278,7 +278,7 @@ namespace Physics.ElectricParticle.Logic
 
 		private BigNumber GravityVelocity(BigNumber time)
 		{
-			return GravityConstants.Earth * time;
+			return PhysicsConstants.EarthGravity * time;
 		}
 
 		public BigNumber ComputeAx()
@@ -308,11 +308,11 @@ namespace Physics.ElectricParticle.Logic
 				case InputVariant.EasyHorizontalNoGravity:
 					return ComplexAccelerationAxis(_setup.HorizontalPlane);
 				case InputVariant.EasyHorizontalWithGravity:
-					return ComplexAccelerationAxis(_setup.HorizontalPlane) - GravityConstants.Earth;
+					return ComplexAccelerationAxis(_setup.HorizontalPlane) - PhysicsConstants.EarthGravity;
 				case InputVariant.AdvancedVerticalHorizontalNoGravity:
 					return ComplexAccelerationAxis(_setup.HorizontalPlane);
 				case InputVariant.AdvancedVerticalWithGravity:
-					return -GravityConstants.Earth;
+					return -PhysicsConstants.EarthGravity;
 			}
 			return 0;
 		}

@@ -127,6 +127,30 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Earth Gravitational Field Movement</value>
   </data>
+  <data name="CannotParseInputNumbers" xml:space="preserve">
+    <value>Input numbers are not formatted correctly.</value>
+  </data>
+  <data name="ElevationAngle" xml:space="preserve">
+    <value>Elevation angle</value>
+  </data>
+  <data name="GravitationalConstant" xml:space="preserve">
+    <value>Gravitational constant</value>
+  </data>
+  <data name="InitialCoordinateAngle" xml:space="preserve">
+    <value>Initial coordinate angle</value>
+  </data>
+  <data name="InitialHeight" xml:space="preserve">
+    <value>Initial height above surface</value>
+  </data>
+  <data name="InitialVelocity" xml:space="preserve">
+    <value>Initial velocity</value>
+  </data>
+  <data name="PlanetMass" xml:space="preserve">
+    <value>Planet mass</value>
+  </data>
+  <data name="PlanetRadius" xml:space="preserve">
+    <value>Planet radius</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Earth Gravitational Field Movement</value>
   </data>

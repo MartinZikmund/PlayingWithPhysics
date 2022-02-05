@@ -7,7 +7,7 @@ namespace Physics.HomogenousMovement.Logic.PhysicsServices
 {
 	public class MotionInfo
 	{
-		public MotionInfo(MovementType movementType, Vector2 origin, float mass, float v0, float angle, string color, float g = GravityConstants.Earth)
+		public MotionInfo(MovementType movementType, Vector2 origin, float mass, float v0, float angle, string color, float g = PhysicsConstants.EarthGravity)
 		{
 			if (mass <= 0f)
 			{
