@@ -28,7 +28,7 @@ namespace Physics.LawOfConservationOfMomentum.ValuesTable
 				TableRow valuesRow = new TableRow(time, x1, v1, x2, v2);
 				table.Add(valuesRow);
 				time = time += timeInterval;
-			} while (time <= 20);
+			} while (time <= 60);
 
 			return table;
 		}

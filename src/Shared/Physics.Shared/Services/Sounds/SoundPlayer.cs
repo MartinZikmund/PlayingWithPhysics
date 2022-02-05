@@ -82,9 +82,16 @@ namespace Physics.Shared.Services.Sounds
 		/// </summary>
 		private void PlayAudioNode(AudioFileInputNode audio, double volume)
 		{
-			audio.OutgoingGain = volume;
-			audio.Seek(TimeSpan.Zero);
-			audio.Start();
+			try
+			{
+				audio.OutgoingGain = volume;
+				audio.Seek(TimeSpan.Zero);
+				audio.Start();
+			}
+			catch (Exception e)
+			{
+				Analytics.TrackEvent("Audio failed playback", new Dictionary<string, string>() { { "Message", e.Message } });
+			}
 		}
 
 

@@ -120,12 +120,12 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 
 		public float PadX(float x) => HorizontalPadding + x;
 
-		public override void Initialized(ISkiaCanvas sender, SKSurface args)
+		public override async void Initialized(ISkiaCanvas sender, SKSurface args)
 		{
 			// TODO: Allow async initialization in Skia
-			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/ImperfectlyElastic.wav", UriKind.Absolute), CollisionType.ImperfectlyElastic.ToString("g"));
-			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyElastic.wav", UriKind.Absolute), CollisionType.PerfectlyElastic.ToString("g"));
-			_soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyInelastic.wav", UriKind.Absolute), CollisionType.PerfectlyInelastic.ToString("g"));
+			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/ImperfectlyElastic.wav", UriKind.Absolute), CollisionType.ImperfectlyElastic.ToString("g"));
+			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyElastic.wav", UriKind.Absolute), CollisionType.PerfectlyElastic.ToString("g"));
+			await _soundPlayer.PreloadSoundAsync(new Uri("ms-appx:///Assets/Sounds/PerfectlyInelastic.wav", UriKind.Absolute), CollisionType.PerfectlyInelastic.ToString("g"));
 		}
 	}
 }

@@ -43,6 +43,8 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		public MotionSetup Setup { get; set; }
 
+		public bool HasSetup => Setup != null;
+
 		internal LawOfConservationOfMomentumCanvasController CreateController(ISkiaCanvas canvas) => new LawOfConservationOfMomentumCanvasController(canvas, _soundPlayer);
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
@@ -72,6 +74,11 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 
 		private async Task ShowValuesTableAsync()
 		{
+			if (Setup == null)
+			{
+				return;
+			}
+
 			var newWindow = await AppWindow.TryCreateAsync();
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
