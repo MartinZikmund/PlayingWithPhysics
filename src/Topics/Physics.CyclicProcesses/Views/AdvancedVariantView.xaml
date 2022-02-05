@@ -99,13 +99,42 @@
                     Command="{x:Bind Model.SetParametersCommand}"
                     Content="{extensions:Localize Key=SetParameters}" />
 
-                <Button HorizontalAlignment="Stretch" Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <SymbolIcon Symbol="ViewAll" />
-                        <TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
-                    </StackPanel>
-                </Button>
+                <Grid RowSpacing="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind Model.ShowValuesTableCommand, Mode=OneWay}"
+                        Visibility="{x:Bind Model.IsBasicProcess, Mode=OneWay}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <SymbolIcon Symbol="ViewAll" />
+                            <TextBlock Text="{extensions:Localize Key=ShowValuesTable}" />
+                        </StackPanel>
+                    </Button>
 
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind Model.ShowValuesTable12Command, Mode=OneWay}"
+                        Visibility="{x:Bind Model.IsStirling, Mode=OneWay}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <SymbolIcon Symbol="ViewAll" />
+                            <TextBlock Text="{extensions:Localize Key=ShowValuesTableT12}" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind Model.ShowValuesTable34Command, Mode=OneWay}"
+                        Visibility="{x:Bind Model.IsStirling, Mode=OneWay}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <SymbolIcon Symbol="ViewAll" />
+                            <TextBlock Text="{extensions:Localize Key=ShowValuesTableT34}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
                 <ContentControl Content="{x:Bind Model.ProcessState, Mode=OneWay}" ContentTemplateSelector="{StaticResource ProcessStateDataTemplateSelector}" />
             </StackPanel>
         </Grid>

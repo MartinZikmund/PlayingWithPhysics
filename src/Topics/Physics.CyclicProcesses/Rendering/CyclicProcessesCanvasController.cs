@@ -23,6 +23,15 @@ namespace Physics.CyclicProcesses.Rendering
 			FilterQuality = SKFilterQuality.High
 		};
 
+		private readonly SKPaint _textPaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			StrokeWidth = 1,
+			IsStroke = true,
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High
+		};
+
 		private IInputConfiguration _inputConfiguration;
 		private IPhysicsService _physicsService;
 
@@ -136,8 +145,14 @@ namespace Physics.CyclicProcesses.Rendering
 			var vertical1ToY = GetRenderY(stirling.P4);
 			var vertical2FromY = GetRenderY(stirling.P2);
 			var vertical2ToY = GetRenderY(stirling.P3);
+
 			canvas.DrawLine(vertical1X, vertical1FromY, vertical1X, vertical1ToY, _diagramPaint);
 			canvas.DrawLine(vertical2X, vertical2FromY, vertical2X, vertical2ToY, _diagramPaint);
+
+			canvas.DrawText("1", vertical1X - 10, vertical1FromY, _textPaint);
+			canvas.DrawText("2", vertical2X + 10, vertical2FromY, _textPaint);
+			canvas.DrawText("3", vertical2X + 10, vertical2ToY, _textPaint);
+			canvas.DrawText("4", vertical1X - 10, vertical1ToY, _textPaint);
 		}
 
 		private void DrawNonLinearProcess(SKCanvas canvas, IPhysicsService physicsService)

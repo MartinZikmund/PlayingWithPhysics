@@ -130,11 +130,11 @@ Graphics: Petr Weinlich</value>
   <data name="Effective" xml:space="preserve">
     <value>Effective</value>
   </data>
+  <data name="ErrorMessage_T12MustBeLargerThanT34" xml:space="preserve">
+    <value>T₁₂ must be larger than T₃₄</value>
+  </data>
   <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
     <value>T₂ must be larger than T₁</value>
-  </data>
-  <data name="ErrorMessage_T34MustBeLargerThanT12" xml:space="preserve">
-    <value>T₃₄ must be larger than T₁₂</value>
   </data>
   <data name="ErrorMessage_V2MustBeLargerThanV1" xml:space="preserve">
     <value>V₂ must be larger than V₁</value>
@@ -165,6 +165,12 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyclic Processes</value>
+  </data>
+  <data name="ShowValuesTableT12" xml:space="preserve">
+    <value>Show table for heater</value>
+  </data>
+  <data name="ShowValuesTableT34" xml:space="preserve">
+    <value>Show table for cooler</value>
   </data>
   <data name="T12Description" xml:space="preserve">
     <value>Heater temperature</value>

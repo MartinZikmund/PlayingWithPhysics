@@ -130,11 +130,11 @@ Grafika: Petr Weinlich</value>
   <data name="Effective" xml:space="preserve">
     <value>Efektivní</value>
   </data>
+  <data name="ErrorMessage_T12MustBeLargerThanT34" xml:space="preserve">
+    <value>T₁₂ musí být větší než T₃₄</value>
+  </data>
   <data name="ErrorMessage_T2MustBeLargerThanT1" xml:space="preserve">
     <value>T₂ musí být větší než T₁</value>
-  </data>
-  <data name="ErrorMessage_T34MustBeLargerThanT12" xml:space="preserve">
-    <value>T₃₄ musí být větší než T₁₂</value>
   </data>
   <data name="ErrorMessage_V2MustBeLargerThanV1" xml:space="preserve">
     <value>V₂ musí být větší než V₁</value>
@@ -165,6 +165,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyklické děje</value>
+  </data>
+  <data name="ShowValuesTableT12" xml:space="preserve">
+    <value>Zobrazit tabulku pro ohřívač</value>
+  </data>
+  <data name="ShowValuesTableT34" xml:space="preserve">
+    <value>Zobrazit tabulku pro chladič</value>
   </data>
   <data name="T12Description" xml:space="preserve">
     <value>Teplota ohřívače</value>

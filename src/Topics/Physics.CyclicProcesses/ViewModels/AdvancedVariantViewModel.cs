@@ -40,6 +40,10 @@ namespace Physics.CyclicProcesses.ViewModels
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
+		public ICommand ShowValuesTable12Command => GetOrCreateAsyncCommand(ShowValuesTable12Async);
+
+		public ICommand ShowValuesTable34Command => GetOrCreateAsyncCommand(ShowValuesTable34Async);
+
 		public ProcessType[] ProcessTypes { get; } = Enum.GetValues(typeof(ProcessType)).OfType<ProcessType>().ToArray();
 
 		public int SelectedProcessTypeIndex { get; set; }
@@ -50,7 +54,11 @@ namespace Physics.CyclicProcesses.ViewModels
 
 		public IPhysicsService PhysicsService { get; set; }
 
-		public ProcessStateViewModel ProcessState { get; set; }		
+		public ProcessStateViewModel ProcessState { get; set; }
+
+		public bool IsStirling => Input?.Process == ProcessType.StirlingEngine;
+
+		public bool IsBasicProcess => Input != null && Input.Process != ProcessType.StirlingEngine;
 
 		public void SetController(CyclicProcessesCanvasController controller)
 		{
@@ -86,10 +94,30 @@ namespace Physics.CyclicProcesses.ViewModels
 				return;
 			}
 
-			_controller.StartSimulation(Input);			
+			_controller.StartSimulation(Input);
 		}
 
-		private async Task ShowValuesTableAsync()
+		private async Task ShowValuesTable12Async()
+		{
+			var stirlingPhysics = PhysicsService as StirlingEnginePhysicsService;
+			if (stirlingPhysics != null)
+			{
+				await ShowValuesTableInternalAsync(stirlingPhysics.Isotermic1);
+			}
+		}
+
+		private async Task ShowValuesTable34Async()
+		{
+			var stirlingPhysics = PhysicsService as StirlingEnginePhysicsService;
+			if (stirlingPhysics != null)
+			{
+				await ShowValuesTableInternalAsync(stirlingPhysics.Isotermic2);
+			}
+		}
+
+		private Task ShowValuesTableAsync() => ShowValuesTableInternalAsync(PhysicsService);
+
+		private async Task ShowValuesTableInternalAsync(IPhysicsService physicsService)
 		{
 			if (Input == null)
 			{
@@ -103,7 +131,7 @@ namespace Physics.CyclicProcesses.ViewModels
 			string title = Localizer.Instance.GetString("ProcessType_" + SelectedProcessType.ToString("g"));
 
 			IValuesTableDialogViewModel tableViewModel = null;
-			if (PhysicsService is IBasicProcessPhysicsService basicProcessPhysicsService)
+			if (physicsService is IBasicProcessPhysicsService basicProcessPhysicsService)
 			{
 				var valuesTableService = new BasicProcessTableService(basicProcessPhysicsService);
 				tableViewModel = new BasicProcessTableDialogViewModel(valuesTableService);

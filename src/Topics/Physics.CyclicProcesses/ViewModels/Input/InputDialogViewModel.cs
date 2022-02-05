@@ -57,9 +57,9 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public float T2 { get; set; } = 400;
 
-		public float T12 { get; set; } = 300;
+		public float T12 { get; set; } = 400;
 
-		public float T34 { get; set; } = 400;
+		public float T34 { get; set; } = 300;
 
 		public float PInkPa
 		{
@@ -85,10 +85,10 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public void Save(ContentDialog dialog, ContentDialogButtonClickEventArgs args)
 		{
-			//if (args.Cancel = !Validate())
-			//{
-			//	return;
-			//}
+			if (args.Cancel = !Validate())
+			{
+				return;
+			}
 
 			Result = CreateResult();
 		}
@@ -110,39 +110,38 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 			switch (_processType)
 			{
-				case ProcessType.Isotermic:
-					if (V2 <= V1)
-					{
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
-					}
-					break;
-				case ProcessType.Isochoric:
-					if (T2 <= T1)
-					{
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_T2MustBeLargerThanT1"));
-					}
-					break;
-				case ProcessType.Isobaric:
-					if (V2 <= V1)
-					{
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
-					}
-					break;
-				case ProcessType.Adiabatic:
-					if (V2 <= V1)
-					{
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
-					}
-					break;
+				//case ProcessType.Isotermic:
+				//	if (V2 <= V1)
+				//	{
+				//		errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
+				//	}
+				//	break;
+				//case ProcessType.Isochoric:
+				//	if (T2 <= T1)
+				//	{
+				//		errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_T2MustBeLargerThanT1"));
+				//	}
+				//	break;
+				//case ProcessType.Isobaric:
+				//	if (V2 <= V1)
+				//	{
+				//		errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
+				//	}
+				//	break;
+				//case ProcessType.Adiabatic:
+				//	if (V2 <= V1)
+				//	{
+				//		errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
+				//	}
+				//	break;
 				case ProcessType.StirlingEngine:
-					if (V2 <= V1)
+					//if (V2 <= V1)
+					//{
+					//	errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
+					//}
+					if (T12 <= T34)
 					{
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_V2MustBeLargerThanV1"));
-					}
-					if (T34 <= T12)
-					{
-						errorMessageBuilder.AppendLine("");
-						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_T34MustBeLargerThanT12"));
+						errorMessageBuilder.Append(Localizer.Instance.GetString("ErrorMessage_T12MustBeLargerThanT34"));
 					}
 					break;
 			}
