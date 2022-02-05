@@ -34,6 +34,16 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 		public InputConfiguration Input { get; private set; }
 
+		public double Dt { get; set; }
+
+		internal void OnDtChanged()
+		{
+			if (Input != null && _controller != null)
+			{
+				StartSimulation();
+			}
+		}
+
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
 
 		public ICommand ShowDerivedParametersCommand => GetOrCreateAsyncCommand(ShowDerivedParametersAsync);
@@ -56,8 +66,23 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			var dialog = new InputDialog(_difficulty, Input);
 			if (await dialog.ShowAsync() == ContentDialogResult.Primary)
 			{
-				Input = dialog.Model.Result;
+
+				var input = dialog.Model.Result;
+				Input = null;
+				Dt = input.T / 30;//TODO
+				Input = input;
+				StartSimulation();
 			}
+		}
+
+		private void StartSimulation()
+		{
+			if (_controller == null || Input == null)
+			{
+				return;
+			}
+
+			_controller.SetInputConfiguration(Input, Dt);
 		}
 
 		private async Task ShowDerivedParametersAsync()
@@ -92,7 +117,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
 
 			string title = Localizer.Instance.GetString("ShortAppName");
-			var physicsService = new PhysicsService(Input);
+			var physicsService = new PhysicsService(Input, Dt);
 			var valuesTableService = new TableService(physicsService);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
