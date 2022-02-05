@@ -185,10 +185,10 @@ Graphics: Petr Weinlich</value>
     <value>Termic</value>
   </data>
   <data name="V1Description" xml:space="preserve">
-    <value>Lower volume</value>
+    <value>Initial volume</value>
   </data>
   <data name="V2Description" xml:space="preserve">
-    <value>Upper volume</value>
+    <value>Final volume</value>
   </data>
   <data name="VDescription" xml:space="preserve">
     <value>Gas volume</value>

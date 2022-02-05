@@ -8,31 +8,46 @@
     <DataTemplate x:Key="IsobaricStateDataTemplate" x:DataType="process:IsobaricStateViewModel">
         <StackPanel Spacing="8">
             <TextBlock>
-                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="W₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="T₁" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="T₁" />
                 <Run Text="=" />
                 <Run Text="{x:Bind T1}" />
                 <Run Text="K" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="T₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="T₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind T2}" />
                 <Run Text="K" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫V" />
                 <Run Text="=" />
                 <Run Text="{x:Bind DeltaVInDm}" />
                 <Run Text="dm³" />
@@ -42,25 +57,37 @@
     <DataTemplate x:Key="IsochoricStateDataTemplate" x:DataType="process:IsochoricStateViewModel">
         <StackPanel Spacing="8">
             <TextBlock>
-                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="W₁₂" />
                 <Run Text="=" />
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫U₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫U₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫V" />
                 <Run Text="=" />
                 <Run Text="0" />
                 <Run Text="dm³" />
@@ -70,37 +97,55 @@
     <DataTemplate x:Key="AdiabaticStateDataTemplate" x:DataType="process:AdiabaticStateViewModel">
         <StackPanel Spacing="8">
             <TextBlock>
-                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="W₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q₁₂" />
                 <Run Text="=" />
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="T₁" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="T₁" />
                 <Run Text="=" />
                 <Run Text="{x:Bind T1}" />
                 <Run Text="K" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="T₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="T₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind T2}" />
                 <Run Text="K" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫U₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫U₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind DeltaU12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫V" />
                 <Run Text="=" />
                 <Run Text="{x:Bind DeltaVInDm}" />
                 <Run Text="dm³" />
@@ -110,25 +155,37 @@
     <DataTemplate x:Key="IsotermicStateDataTemplate" x:DataType="process:IsotermicStateViewModel">
         <StackPanel Spacing="8">
             <TextBlock>
-                <Run FontWeight="Bold" Text="W₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="W₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q₁₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q₁₂" />
                 <Run Text="=" />
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫U" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫U" />
                 <Run Text="=" />
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫V" />
                 <Run Text="=" />
                 <Run Text="{x:Bind DeltaVInDm}" />
                 <Run Text="dm³" />
@@ -138,63 +195,99 @@
     <DataTemplate x:Key="StirlingEngineStateDataTemplate" x:DataType="process:StirlingEngineStateViewModel">
         <StackPanel Spacing="8">
             <TextBlock>
-                <Run FontWeight="Bold" Text="W" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="W" />
                 <Run Text="=" />
                 <Run Text="{x:Bind W}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="P₁" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="p₁" />
                 <Run Text="=" />
-                <Run Text="{x:Bind P1InKPa}" />
-                <Run Text="KPa" />
+                <Run Text="{x:Bind P1InkPa}" />
+                <Run Text="kPa" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="P₂" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="p₂" />
                 <Run Text="=" />
-                <Run Text="{x:Bind P2InKPa}" />
-                <Run Text="KPa" />
+                <Run Text="{x:Bind P2InkPa}" />
+                <Run Text="kPa" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="P₃" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="p₃" />
                 <Run Text="=" />
-                <Run Text="{x:Bind P3InKPa}" />
-                <Run Text="KPa" />
+                <Run Text="{x:Bind P3InkPa}" />
+                <Run Text="kPa" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="P₄" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="p₄" />
                 <Run Text="=" />
-                <Run Text="{x:Bind P4InKPa}" />
-                <Run Text="KPa" />
+                <Run Text="{x:Bind P4InkPa}" />
+                <Run Text="kPa" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q₋" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q₋" />
                 <Run Text="=" />
                 <Run Text="{x:Bind QOut}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="Q+" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="Q+" />
                 <Run Text="=" />
                 <Run Text="{x:Bind QIn}" />
                 <Run Text="J" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="{extensions:Localize Key=Effective}" />
-                <Run FontWeight="Bold" Text="η" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="{extensions:Localize Key=Effective}" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="η" />
                 <Run Text="=" />
                 <Run Text="{x:Bind EffectiveEfficiencyInPercent}" />
                 <Run Text="%" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="{extensions:Localize Key=Termic}" />
-                <Run FontWeight="Bold" Text="η" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="{extensions:Localize Key=Termic}" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="η" />
                 <Run Text="=" />
                 <Run Text="{x:Bind TermicEfficiencyInPercent}" />
                 <Run Text="%" />
             </TextBlock>
             <TextBlock>
-                <Run FontWeight="Bold" Text="𝚫V" />
+                <Run
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Text="𝚫V" />
                 <Run Text="=" />
                 <Run Text="{x:Bind DeltaVInDm}" />
                 <Run Text="dm³" />

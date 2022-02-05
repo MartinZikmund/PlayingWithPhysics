@@ -61,7 +61,7 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public float T34 { get; set; } = 400;
 
-		public float PInKPa
+		public float PInkPa
 		{
 			get => P / 1000;
 			set => P = value * 1000;
@@ -69,7 +69,7 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 
 		public float P { get; set; } = 100000;
 
-		public float P1InKPa
+		public float P1InkPa
 		{
 			get => P1 / 1000;
 			set => P1 = value * 1000;

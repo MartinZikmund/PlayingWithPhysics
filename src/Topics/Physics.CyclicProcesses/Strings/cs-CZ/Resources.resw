@@ -149,16 +149,16 @@ Grafika: Petr Weinlich</value>
     <value>Tlak</value>
   </data>
   <data name="ProcessType_Adiabatic" xml:space="preserve">
-    <value>Adiabata</value>
+    <value>Adiabatický děj</value>
   </data>
   <data name="ProcessType_Isobaric" xml:space="preserve">
-    <value>Izobara</value>
+    <value>Izobarický děj</value>
   </data>
   <data name="ProcessType_Isochoric" xml:space="preserve">
-    <value>Izochora</value>
+    <value>Izochorický děj</value>
   </data>
   <data name="ProcessType_Isotermic" xml:space="preserve">
-    <value>Izoterma</value>
+    <value>Izotermický děj</value>
   </data>
   <data name="ProcessType_StirlingEngine" xml:space="preserve">
     <value>Stirlingův motor</value>
@@ -185,10 +185,10 @@ Grafika: Petr Weinlich</value>
     <value>Termická</value>
   </data>
   <data name="V1Description" xml:space="preserve">
-    <value>Spodní objem</value>
+    <value>Počáteční objem</value>
   </data>
   <data name="V2Description" xml:space="preserve">
-    <value>Horní objem</value>
+    <value>Koncový objem</value>
   </data>
   <data name="VDescription" xml:space="preserve">
     <value>Objem plynu</value>

@@ -14,13 +14,13 @@ namespace Physics.CyclicProcesses.ViewModels.Process
 			_inputConfiguration = inputConfiguration;
 		}
 
-		public float P1InKPa => _physicsService.P1 / 1000;
+		public float P1InkPa => _physicsService.P1 / 1000;
 
-		public float P2InKPa => _physicsService.P2 / 1000;
+		public float P2InkPa => _physicsService.P2 / 1000;
 
-		public float P3InKPa => _physicsService.P3 / 1000;
+		public float P3InkPa => _physicsService.P3 / 1000;
 
-		public float P4InKPa => _physicsService.P4 / 1000;
+		public float P4InkPa => _physicsService.P4 / 1000;
 
 		public float QIn => _physicsService.QIn;
 

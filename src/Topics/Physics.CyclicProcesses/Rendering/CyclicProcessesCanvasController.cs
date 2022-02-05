@@ -87,7 +87,7 @@ namespace Physics.CyclicProcesses.Rendering
 			_axesRenderer.ShouldDrawYAxis = true;
 			_axesRenderer.ShouldDrawYMeasure = true;
 			_axesRenderer.XUnitFormatString = "0.## dm³";
-			_axesRenderer.YUnitFormatString = "0.## KPa";
+			_axesRenderer.YUnitFormatString = "0.## kPa";
 
 			_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
 			_axesRenderer.TargetBounds = axesBounds;
