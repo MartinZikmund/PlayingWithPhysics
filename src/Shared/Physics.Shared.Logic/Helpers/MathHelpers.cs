@@ -46,5 +46,10 @@ namespace Physics.Shared.Helpers
 
 			return value;
 		}
+
+		public static double Atanh(double x)
+		{
+			return (Math.Log(1 + x) - Math.Log(1 - x)) / 2;
+		}
 	}
 }

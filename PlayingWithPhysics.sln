@@ -146,7 +146,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.HuygensPrinciple.Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.StationaryWaves.Logic.Tests", "tests\Topics\Physics.StationaryWaves.Logic.Tests\Physics.StationaryWaves.Logic.Tests.csproj", "{83AD9B31-165F-4EA0-9ABE-108E55B44488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.OpticalInstruments.Logic.Tests", "tests\Topics\Physics.OpticalInstruments.Logic.Tests\Physics.OpticalInstruments.Logic.Tests.csproj", "{62925319-E4C0-4513-9556-F2EF854239D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Physics.OpticalInstruments.Logic.Tests", "tests\Topics\Physics.OpticalInstruments.Logic.Tests\Physics.OpticalInstruments.Logic.Tests.csproj", "{62925319-E4C0-4513-9556-F2EF854239D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics.GravitationalFieldMovement.Logic.Tests", "tests\Topics\Physics.GravitationalFieldMovement.Logic.Tests\Physics.GravitationalFieldMovement.Logic.Tests.csproj", "{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1256,6 +1258,26 @@ Global
 		{62925319-E4C0-4513-9556-F2EF854239D0}.Release|x64.Build.0 = Release|Any CPU
 		{62925319-E4C0-4513-9556-F2EF854239D0}.Release|x86.ActiveCfg = Release|Any CPU
 		{62925319-E4C0-4513-9556-F2EF854239D0}.Release|x86.Build.0 = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|x64.Build.0 = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|ARM.Build.0 = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|ARM64.Build.0 = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|x64.Build.0 = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1328,6 +1350,7 @@ Global
 		{CC75164F-5FC3-47B6-ABCD-08CFA2583320} = {26DC5E86-50A6-4100-BEC5-A83C755026FB}
 		{83AD9B31-165F-4EA0-9ABE-108E55B44488} = {75291074-9766-4B79-AE65-7BFE6A41A28E}
 		{62925319-E4C0-4513-9556-F2EF854239D0} = {08EC2A0E-8014-4417-B18A-8D5CC035C007}
+		{AA1DA3F3-E1FD-4CB3-840D-7F72013621A4} = {606D6DC5-2D5E-4CD8-B9C3-E2364BC3500E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED552938-F303-42AA-9225-9FC231B27BB4}
