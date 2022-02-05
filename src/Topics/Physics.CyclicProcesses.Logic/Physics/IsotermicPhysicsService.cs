@@ -14,6 +14,14 @@ public class IsotermicPhysicsService : PhysicsService, IBasicProcessPhysicsServi
 		W12 = _nRT * (float)Math.Log(_input.V2 / _input.V1);
 	}
 
+	public override float MinP => _nRT / MaxV;
+
+	public override float MaxP => _nRT / MinV;
+
+	public override float MinV => Math.Min(_input.V1, _input.V2);
+
+	public override float MaxV => Math.Max(_input.V1, _input.V2);
+
 	public override ProcessType Process => ProcessType.Isotermic;
 
 	public float W12 { get; }

@@ -25,6 +25,14 @@ public class StirlingEnginePhysicsService : PhysicsService
 		TermicEfficiency = 1 - _input.T34 / _input.T12;
 	}
 
+	public override float MinP => Math.Min(Math.Min(P1, P2), Math.Min(P3, P4));
+
+	public override float MaxP => Math.Max(Math.Max(P1, P2), Math.Max(P3, P4));
+
+	public override float MinV => Math.Min(_isotermic1.MinV, _isotermic2.MinV);
+
+	public override float MaxV => Math.Max(_isotermic1.MaxV, _isotermic2.MaxV);
+
 	public float P1 { get; }
 
 	public float P2 { get; }

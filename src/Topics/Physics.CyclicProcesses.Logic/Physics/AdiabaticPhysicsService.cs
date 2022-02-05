@@ -22,6 +22,14 @@ public class AdiabaticPhysicsService : PhysicsService, IBasicProcessPhysicsServi
 
 	public override ProcessType Process => ProcessType.Adiabatic;
 
+	public override float MinP => Math.Min(_input.P1, P2);
+
+	public override float MaxP => Math.Max(_input.P1, P2);
+
+	public override float MinV => Math.Min(_input.V1, _input.V2);
+
+	public override float MaxV => Math.Max(_input.V1, _input.V2);
+
 	public float P2 { get; }
 
 	public float T1 { get; }

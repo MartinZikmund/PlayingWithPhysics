@@ -25,6 +25,14 @@ public class IsobaricPhysicsService : PhysicsService, IBasicProcessPhysicsServic
 
 	public float Q12 { get; }
 
+	public override float MinP => _input.P;
+
+	public override float MaxP => _input.P;
+
+	public override float MinV => Math.Min(_input.V1, _input.V2);
+
+	public override float MaxV => Math.Max(_input.V1, _input.V2);
+
 	public override ProcessType Process => ProcessType.Isobaric;
 
 	public override float CalculateP(float time) => _input.P;

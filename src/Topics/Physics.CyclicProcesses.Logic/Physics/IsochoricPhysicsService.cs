@@ -12,6 +12,14 @@ public class IsochoricPhysicsService : PhysicsService, IBasicProcessPhysicsServi
 		Q12 = _input.N * Cv * (_input.T2 - _input.T1);
 	}
 
+	public override float MinP => _input.N * R * Math.Min(_input.T1, _input.T2) / _input.V;
+
+	public override float MaxP => _input.N * R * Math.Max(_input.T1, _input.T2) / _input.V;
+
+	public override float MinV => _input.V;
+
+	public override float MaxV => _input.V;
+
 	public float Q12 { get; }
 
 	public override ProcessType Process => ProcessType.Isochoric;

@@ -11,6 +11,7 @@ namespace Physics.CyclicProcesses.Rendering
 	public class CyclicProcessesCanvasController : SkiaCanvasController
 	{
 		private const float Padding = 0.1f;
+		private const float ChartPadding = 1.2f;
 
 		private readonly SkiaAxesRenderer _axesRenderer = new SkiaAxesRenderer();
 		private readonly SKPaint _diagramPaint = new SKPaint()
@@ -30,6 +31,10 @@ namespace Physics.CyclicProcesses.Rendering
 		private float _volumeToPixels = 1;
 		private float _pressureToPixels = 1;
 
+		private float _minAxisV = 0;
+		private float _maxAxisV = 0;
+		private float _minAxisP = 0;
+		private float _maxAxisP = 0;
 
 		public CyclicProcessesCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
@@ -77,8 +82,8 @@ namespace Physics.CyclicProcesses.Rendering
 			var yUnitInPixels = _pressureToPixels * 1000;
 			var xUnitInPixels = _volumeToPixels / 1000;
 
-			var right = (float)Math.Ceiling(horizontalPadding + xUnitInPixels * (_physicsService.MaxV * 1000 - _physicsService.MinV * 1000)) + 1;
-			var bottom = (float)Math.Ceiling(verticalPadding + yUnitInPixels * (_physicsService.MaxP / 1000 - _physicsService.MinP / 1000)) + 1;
+			var right = (float)Math.Ceiling(horizontalPadding + xUnitInPixels * (_maxAxisV * 1000 - _minAxisV * 1000)) + 1;
+			var bottom = (float)Math.Ceiling(verticalPadding + yUnitInPixels * (_maxAxisP / 1000 - _minAxisP / 1000)) + 1;
 
 			var axesBounds = new SimulationBounds(horizontalPadding, verticalPadding, right, bottom);
 
@@ -89,7 +94,7 @@ namespace Physics.CyclicProcesses.Rendering
 			_axesRenderer.XUnitFormatString = "0.## dm³";
 			_axesRenderer.YUnitFormatString = "0.## kPa";
 
-			_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
+			_axesRenderer.OriginUnitCoordinates = new SKPoint(_minAxisV * 1000, _minAxisP / 1000);
 			_axesRenderer.TargetBounds = axesBounds;
 			_axesRenderer.OriginRelativePosition = new SKPoint(0, 0f);
 			_axesRenderer.Draw(sender, canvas);
@@ -202,13 +207,30 @@ namespace Physics.CyclicProcesses.Rendering
 				var effectiveHeight = _canvas.ScaledSize.Height - (_canvas.ScaledSize.Height * Padding * 2);
 				var effectiveWidth = _canvas.ScaledSize.Width - (_canvas.ScaledSize.Width * Padding * 2);
 
-				_volumeToPixels = (float)(effectiveWidth / (_physicsService.MaxV - _physicsService.MinV));
-				_pressureToPixels = (float)(effectiveHeight / (_physicsService.MaxP - _physicsService.MinP));
+				var vDelta = _physicsService.MaxV - _physicsService.MinV;
+				if (vDelta == 0)
+				{
+					vDelta = 0.01f; // Arbitrary
+				}
+
+				_minAxisV = Math.Max(0, _physicsService.MinV - vDelta / 10);
+				_maxAxisV = Math.Min(0.1f, _physicsService.MaxV + vDelta / 10);
+
+				var pDelta = _physicsService.MaxP - _physicsService.MinP;
+				if (pDelta == 0)
+				{
+					pDelta = 1000f; // Arbitrary
+				}
+
+				_minAxisP = Math.Max(0, _physicsService.MinP - pDelta / 10);
+				_maxAxisP = Math.Min(1000000f, _physicsService.MaxP + pDelta / 10);
+				_volumeToPixels = (float)(effectiveWidth / (_maxAxisV - _minAxisV));
+				_pressureToPixels = (float)(effectiveHeight / (_maxAxisP - _minAxisP));
 			}
 		}
 
-		private float GetRenderX(float volume) => _canvas.ScaledSize.Width * Padding + _volumeToPixels * volume;
+		private float GetRenderX(float volume) => _canvas.ScaledSize.Width * Padding + _volumeToPixels * (volume - _minAxisV);
 
-		private float GetRenderY(float pressure) => _canvas.ScaledSize.Height - _canvas.ScaledSize.Height * Padding - _pressureToPixels * pressure;
+		private float GetRenderY(float pressure) => _canvas.ScaledSize.Height - _canvas.ScaledSize.Height * Padding - _pressureToPixels * (pressure - _minAxisP);
 	}
 }
