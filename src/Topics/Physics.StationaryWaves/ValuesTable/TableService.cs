@@ -45,6 +45,7 @@ namespace Physics.StationaryWaves.ValuesTable
 					break;
 				}
 				x += distanceInterval;
+				x = (float)Math.Round(x, 2);
 				x = Math.Min(x, maxX);
 			}
 

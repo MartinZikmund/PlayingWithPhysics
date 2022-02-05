@@ -193,6 +193,9 @@ Grafika: Petr Weinlich</value>
   <data name="LeftEndType" xml:space="preserve">
     <value>Levý konec</value>
   </data>
+  <data name="MultipleOfLambda" xml:space="preserve">
+    <value>násobek λ</value>
+  </data>
   <data name="OnlySecondWave" xml:space="preserve">
     <value>(platí jen pro druhé vlnění)</value>
   </data>

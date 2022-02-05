@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.ValuesTable;
 using Physics.Shared.UI.ViewModels;
 using Windows.ApplicationModel.DataTransfer;
@@ -59,7 +60,7 @@ namespace Physics.StationaryWaves.ValuesTable
 		{
 			if (eventArgs.Column.Header.ToString() == "X")
 			{
-				eventArgs.Column.Header = "x (m)";
+				eventArgs.Column.Header = "x (" + Localizer.Instance.GetString("MultipleOfLambda") + ")(m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Y1")

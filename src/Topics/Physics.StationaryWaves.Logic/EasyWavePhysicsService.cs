@@ -10,7 +10,7 @@ namespace Physics.StationaryWaves.Logic
 		{
 			Amplitude = 1,
 			T = 1,
-			WaveLength = 2 * (float)Math.PI
+			WaveLength = 1//2 * (float)Math.PI
 		};
 
 		private readonly BounceType _leftEndBounce;

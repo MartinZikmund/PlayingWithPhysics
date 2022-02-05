@@ -84,7 +84,7 @@ namespace Physics.StationaryWaves.ViewModels
 				SimulationPlayback.JumpSize = 0.2f;
 				if (Difficulty == DifficultyOption.Easy)
 				{
-					_controller.StartSimulation(EasyBounceType, RightEndDistance * 2 * (float)Math.PI);
+					_controller.StartSimulation(EasyBounceType, RightEndDistance);
 				}
 				else
 				{
@@ -114,7 +114,7 @@ namespace Physics.StationaryWaves.ViewModels
 
 			string title = Localizer.Instance.GetString("StationaryWaves");
 
-			var valuesTableService = new TableService(physicsService, Difficulty == DifficultyOption.Easy ? RightEndDistance * 2 * (float)Math.PI : 1);
+			var valuesTableService = new TableService(physicsService, Difficulty == DifficultyOption.Easy ? RightEndDistance: 1);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.

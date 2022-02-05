@@ -193,6 +193,9 @@ Graphics: Petr Weinlich</value>
   <data name="LeftEndType" xml:space="preserve">
     <value>Left end type</value>
   </data>
+  <data name="MultipleOfLambda" xml:space="preserve">
+    <value>multiple of λ</value>
+  </data>
   <data name="OnlySecondWave" xml:space="preserve">
     <value>(only applies to the second wave)</value>
   </data>
