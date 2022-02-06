@@ -10,7 +10,7 @@ namespace Physics.Shared.UI.Rendering.Skia
 	public static class ArrowRenderer
 	{
 		public static void Draw(
-			SKSurface surface,
+			SKCanvas canvas,
 			SKPoint from,
 			SKPoint to,
 			float tipSize,
@@ -21,14 +21,21 @@ namespace Physics.Shared.UI.Rendering.Skia
 				return;
 			}
 
-			surface.Canvas.DrawLine(from, to, paint);
+			canvas.DrawLine(from, to, paint);
 
 			var angle = Math.Atan2(to.Y - from.Y, to.X - from.X);
-			DrawArrowTip(surface, to, angle - (float)Math.PI, tipSize, paint);
+			DrawArrowTip(canvas, to, angle - (float)Math.PI, tipSize, paint);
 		}
 
 		public static void Draw(
 			SKSurface surface,
+			SKPoint from,
+			SKPoint to,
+			float tipSize,
+			SKPaint paint) => Draw(surface.Canvas, from, to, tipSize, paint);
+
+		public static void Draw(
+			SKCanvas canvas,
 			SKPoint from,
 			float length,
 			float angle,
@@ -44,11 +51,19 @@ namespace Physics.Shared.UI.Rendering.Skia
 				(float)(from.X + Math.Cos(angle) * length),
 				(float)(from.Y + Math.Sin(angle) * length));
 
-			Draw(surface, from, to, tipSize, paint);
+			Draw(canvas, from, to, tipSize, paint);
 		}
 
-		private static void DrawArrowTip(
+		public static void Draw(
 			SKSurface surface,
+			SKPoint from,
+			float length,
+			float angle,
+			float tipSize,
+			SKPaint paint) => Draw(surface.Canvas, from, length, angle, tipSize, paint);
+
+		private static void DrawArrowTip(
+			SKCanvas canvas,
 			SKPoint point,
 			double angle,
 			float tipSize,
@@ -67,8 +82,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 			var firstPoint = pointMovedBack + new SKPoint(vectorPerpendicular.X * 1, vectorPerpendicular.Y * 1);
 			var secondPoint = pointMovedBack - new SKPoint(vectorPerpendicular.X * 1, vectorPerpendicular.Y * 1);
 			// draw arrow lines
-			surface.Canvas.DrawLine(firstPoint, point, paint);
-			surface.Canvas.DrawLine(secondPoint, point, paint);
+			canvas.DrawLine(firstPoint, point, paint);
+			canvas.DrawLine(secondPoint, point, paint);
 		}
 	}
 }

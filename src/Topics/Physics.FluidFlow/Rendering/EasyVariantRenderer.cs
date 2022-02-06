@@ -1,21 +1,23 @@
 ﻿using Physics.FluidFlow.Logic;
+using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using Windows.UI.WebUI;
 
 namespace Physics.FluidFlow.Rendering
 {
-	public class BernoulliEquationWithHeightDecreaseRenderer : FluidFlowRenderer
+	public class EasyVariantRenderer : FluidFlowRenderer
 	{
-		private BernoulliWithHeightChangePhysicsService _physicsService;
-		private SceneConfiguration _sceneConfiguration;
+		private ContinuityEquationPhysicsService _physicsService;
+		private SceneConfiguration _sceneConfiguration = null;
 
-		public BernoulliEquationWithHeightDecreaseRenderer(FluidFlowCanvasController controller) : base(controller)
+		public EasyVariantRenderer(FluidFlowCanvasController controller) : base(controller)
 		{
 		}
 
 		internal override void StartSimulation(SceneConfiguration sceneConfiguration)
 		{
 			_sceneConfiguration = sceneConfiguration;
-			_physicsService = new BernoulliWithHeightChangePhysicsService(sceneConfiguration);
+			_physicsService = new ContinuityEquationPhysicsService(sceneConfiguration);
 		}
 
 		protected override float GetVelocityVectorSize(int vectorId, int particleId)

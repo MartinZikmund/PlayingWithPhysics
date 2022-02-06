@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Physics.FluidFlow.Logic;
 using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Extensions;
@@ -17,9 +14,6 @@ namespace Physics.FluidFlow.Rendering
 		protected readonly FluidFlowCanvasController _controller;
 		protected readonly ISkiaCanvas _canvas;
 
-		private SKBitmap _particlePathsBitmap;
-		private TimeSpan _pathBitmapRenderTime;
-
 		private float _horizontalPadding;
 
 		private float _pixelsPerUnitX;
@@ -27,8 +21,11 @@ namespace Physics.FluidFlow.Rendering
 
 		private SKPaint[] _particlePaints;
 		private SKPaint[] _particlePathPaints;
+		private SKPaint[] _particleVectorPaints;
 
-		private Dictionary<int, List<ParticleTrajectoryPoint>> _pathHistory = new Dictionary<int, List<ParticleTrajectoryPoint>>();
+		protected float MinRenderX { get; private set; }
+
+		protected float MaxRenderX { get; private set; }
 
 		public FluidFlowRenderer(FluidFlowCanvasController controller)
 		{
@@ -53,6 +50,7 @@ namespace Physics.FluidFlow.Rendering
 
 			var paints = new List<SKPaint>();
 			var pathPaints = new List<SKPaint>();
+			var vectorPaints = new List<SKPaint>();
 			foreach (var colorHex in colors)
 			{
 				var color = colorHex.ToSKColor();
@@ -70,9 +68,18 @@ namespace Physics.FluidFlow.Rendering
 					FilterQuality = SKFilterQuality.High,
 					Color = color
 				});
+				vectorPaints.Add(new SKPaint()
+				{
+					StrokeWidth = 2,
+					IsStroke = true,
+					IsAntialias = true,
+					FilterQuality = SKFilterQuality.High,
+					Color = color
+				});
 			}
 			_particlePaints = paints.ToArray();
 			_particlePathPaints = pathPaints.ToArray();
+			_particleVectorPaints = vectorPaints.ToArray();
 		}
 
 		public abstract IPhysicsService PhysicsService { get; }
@@ -88,19 +95,12 @@ namespace Physics.FluidFlow.Rendering
 				return;
 			}
 
-			if (_particlePathsBitmap?.Width != sender.ScaledSize.Width ||
-				_particlePathsBitmap?.Height != sender.ScaledSize.Height)
-			{
-				_particlePathsBitmap = null;
-			}
-
 			_horizontalPadding = _canvas.ScaledSize.Width / 10;
-
+			MinRenderX = _horizontalPadding;
+			MaxRenderX = _canvas.ScaledSize.Width - _horizontalPadding;
 			_pixelsPerUnitX = ((float)_canvas.ScaledSize.Width - 2 * _horizontalPadding) / PhysicsService.XMax;
 			_pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
 		}
-
-
 
 		public void Draw(ISkiaCanvas sender, SKSurface args)
 		{
@@ -110,96 +110,79 @@ namespace Physics.FluidFlow.Rendering
 				return;
 			}
 
-			if (_particlePathsBitmap == null)
-			{
-				_particlePathsBitmap = new SKBitmap((int)sender.ScaledSize.Width, (int)sender.ScaledSize.Height);
-				DrawAllParticlePaths();
-			}
+			DrawTrajectory(args.Canvas);
+			DrawVectors(args.Canvas);
 
 			var time = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
-			var anyAdded = false;
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
 				var position = PhysicsService.GetParticlePosition(time, particleId);
 				var x = GetRenderX((float)position.X);
 				var y = GetRenderY((float)position.Y);
 				args.Canvas.DrawCircle(x, y, 4, _particlePaints[particleId % _particlePaints.Length]);
-
-				anyAdded |= AddPointToPath(particleId, position);
 			}
-
-			if (anyAdded)
-			{
-				DrawLastPathParts();
-			}
-
-			args.Canvas.DrawBitmap(_particlePathsBitmap, new SKPoint(0, 0));
-
-			args.
 		}
 
-		protected abstract void DrawVectors(SKCanvas args);
-
-		private bool AddPointToPath(int particleId, Point2d position)
+		private void DrawTrajectory(SKCanvas canvas)
 		{
-			if (!_pathHistory.TryGetValue(particleId, out var path))
-			{
-				path = new List<Point2d>();
-				_pathHistory[particleId] = path;
-			}
-			if (path.Count == 0 ||
-				path[path.Count - 1].X != position.X ||
-				path[path.Count - 1].Y != position.Y)
-			{
-				path.Add(position);
-				return true;
-			}
-			return false;
-		}
-
-		private void DrawLastPathParts()
-		{
-			using var canvas = new SKCanvas(_particlePathsBitmap);
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
-				if (_pathHistory.TryGetValue(particleId, out var path))
+				var paint = _particlePathPaints[particleId % _particlePathPaints.Length];
+				using var path = new SKPath();
+				var startPoint = PhysicsService.GetParticlePosition(0, particleId);
+				path.MoveTo(GetRenderX((float)startPoint.X), GetRenderY((float)startPoint.Y));
+				var time = 0f;
+				var timeDiff = 1f;
+				bool pathFinished = false;
+				do
 				{
-					if (path.Count > 1)
+					time += timeDiff;
+					if (time > _controller.SimulationTime.TotalTime.TotalSeconds ||
+						time > PhysicsService.MaxT)
 					{
-						var previousPoint = path[path.Count - 2];
-						var point = path[path.Count - 1];
-						canvas.DrawLine(
-							GetRenderX((float)previousPoint.X),
-							GetRenderY((float)previousPoint.Y),
-							GetRenderX((float)point.X),
-							GetRenderY((float)point.Y),
-							_particlePathPaints[particleId % _particlePaints.Length]);
+						time = Math.Min(
+							(float)_controller.SimulationTime.TotalTime.TotalSeconds,
+							PhysicsService.MaxT);
+						pathFinished = true;
 					}
+
+					var newPosition = PhysicsService.GetParticlePosition(time, particleId);
+					path.LineTo(GetRenderX((float)newPosition.X), GetRenderY((float)newPosition.Y));
+
+				} while (!pathFinished);
+
+				canvas.DrawPath(path, paint);
+			}
+		}
+
+		private void DrawVectors(SKCanvas canvas)
+		{
+			var x16 = MinRenderX + (MaxRenderX - MinRenderX) / 6;
+			var x56 = MinRenderX + (MaxRenderX - MinRenderX) * 5 / 6;
+			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
+			{
+				var paint = _particleVectorPaints[particleId % _particleVectorPaints.Length];
+				// 1/6
+				var position = PhysicsService.GetParticlePosition(PhysicsService.MaxT / 6, particleId);
+				var size = GetVelocityVectorSize(0, particleId);
+				var y = GetRenderY((float)position.Y);
+				if (size > 0)
+				{
+					Shared.UI.Rendering.Skia.ArrowRenderer.Draw(canvas, new SKPoint(x16, y), new SKPoint(x16 + size, y), 3, paint);
+				}
+
+				// 5/6
+				position = PhysicsService.GetParticlePosition(PhysicsService.MaxT * 5 / 6, particleId);
+				size = GetVelocityVectorSize(1, particleId);
+				y = GetRenderY((float)position.Y);
+				if (size > 0)
+				{
+					Shared.UI.Rendering.Skia.ArrowRenderer.Draw(canvas, new SKPoint(x56, y), new SKPoint(x56 + size, y), 3, paint);
 				}
 			}
 		}
 
-		private void DrawAllParticlePaths()
-		{
-			using var canvas = new SKCanvas(_particlePathsBitmap);
-			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
-			{
-				if (_pathHistory.TryGetValue(particleId, out var path))
-				{
-					for (int i = 1; i < path.Count; i++)
-					{
-						var previousPoint = path[i - 1];
-						var point = path[i];
-						canvas.DrawLine(
-							GetRenderX((float)previousPoint.X),
-							GetRenderY((float)previousPoint.Y),
-							GetRenderX((float)point.X),
-							GetRenderY((float)point.Y),
-							_particlePathPaints[particleId % _particlePaints.Length]);
-					}
-				}
-			}
-		}
+		protected abstract float GetVelocityVectorSize(int vectorId, int particleId);
 
 		private float GetRenderX(float x) => _horizontalPadding + x * _pixelsPerUnitX;
 

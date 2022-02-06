@@ -3,7 +3,7 @@ using Physics.Shared.Logic.Geometry;
 
 namespace Physics.FluidFlow.Logic
 {
-	public class ContinuityEquationPhysicsService : IPhysicsService
+	public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsService
 	{
 		private readonly SceneConfiguration _input;
 
@@ -33,6 +33,8 @@ namespace Physics.FluidFlow.Logic
 			};
 
 		public float YMin => -YMax;
+
+		public override float MaxT => 60;
 
 		public bool CanRenderFlow => throw new NotImplementedException();
 

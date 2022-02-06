@@ -3,7 +3,7 @@ using Physics.Shared.Logic.Geometry;
 
 namespace Physics.FluidFlow.Logic
 {
-	public class RealFluidFlowPhysicsService : IPhysicsService
+	public class RealFluidFlowPhysicsService : PhysicsServiceBase, IPhysicsService
 	{
 		private readonly SceneConfiguration _input;
 

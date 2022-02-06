@@ -3,7 +3,7 @@ using Physics.Shared.Logic.Geometry;
 
 namespace Physics.FluidFlow.Logic
 {
-	public class BernoulliWithHeightChangePhysicsService : IPhysicsService
+	public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhysicsService
 	{
 		private readonly SceneConfiguration _input;
 
@@ -32,6 +32,8 @@ namespace Physics.FluidFlow.Logic
 			};
 
 		public float YMin => 0;
+
+		public override float MaxT => 58;
 
 		public bool CanRenderFlow => true;
 
