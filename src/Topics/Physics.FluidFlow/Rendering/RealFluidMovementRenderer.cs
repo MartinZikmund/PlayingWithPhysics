@@ -4,7 +4,7 @@ namespace Physics.FluidFlow.Rendering
 {
 	public class RealFluidMovementRenderer : FluidFlowRenderer
 	{
-		private BernoulliWithHeightChangePhysicsService _physicsService;
+		private RealFluidFlowPhysicsService _physicsService;
 
 		public RealFluidMovementRenderer(FluidFlowCanvasController controller) : base(controller)
 		{
@@ -12,7 +12,7 @@ namespace Physics.FluidFlow.Rendering
 
 		internal override void StartSimulation(SceneConfiguration sceneConfiguration)
 		{
-			_physicsService = new BernoulliWithHeightChangePhysicsService(sceneConfiguration);
+			_physicsService = new RealFluidFlowPhysicsService(sceneConfiguration);
 		}
 
 		public override IPhysicsService PhysicsService => _physicsService;

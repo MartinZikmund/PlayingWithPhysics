@@ -55,13 +55,15 @@ namespace Physics.FluidFlow.ViewModels
 			SimulationPlayback.SetController(_controller);
 		}
 
+		public bool HasConfiguration => SceneConfiguration != null;
+
 		public InputVariant[] InputVariants { get; private set; }
 
 		public int SelectedVariantIndex { get; set; }
 
 		public InputVariant SelectedVariant => SelectedVariantIndex >= 0 ? InputVariants[SelectedVariantIndex] : default;
 
-		public SceneConfiguration SceneConfiguration { get; set; }
+		public SceneConfigurationViewModel SceneConfiguration { get; set; }
 
 		internal async void OnSelectedVariantIndexChanged()
 		{
@@ -81,7 +83,7 @@ namespace Physics.FluidFlow.ViewModels
 			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant);
 			if (await sceneConfigurationDialog.ShowAsync() == ContentDialogResult.Primary)
 			{
-				SceneConfiguration = sceneConfigurationDialog.Model.Result;
+				SceneConfiguration = new SceneConfigurationViewModel(sceneConfigurationDialog.Model.Result);
 				StartSimulation();
 			}
 		}
@@ -94,7 +96,7 @@ namespace Physics.FluidFlow.ViewModels
 			}
 
 			IsLoading = true;
-			switch (SceneConfiguration.InputVariant)
+			switch (SceneConfiguration.Configuration.InputVariant)
 			{
 				case InputVariant.ContinuityEquation:
 					_controller.SetVariantRenderer(new ContinuityEquationRenderer(_controller));
@@ -110,7 +112,7 @@ namespace Physics.FluidFlow.ViewModels
 					break;
 			}
 
-			_controller.StartSimulation(SceneConfiguration);
+			_controller.StartSimulation(SceneConfiguration.Configuration);
 
 			IsLoading = false;
 		}

@@ -139,6 +139,9 @@ Graphics: Petr Weinlich</value>
   <data name="DiameterRelationType_S2Larger" xml:space="preserve">
     <value>S₁ &lt; S₂</value>
   </data>
+  <data name="ErrorRealFluidLowerDOrV" xml:space="preserve">
+    <value>Flow is not laminar, lower diameter or velocity.</value>
+  </data>
   <data name="FlowVelocityLabel" xml:space="preserve">
     <value>Flow Velocity</value>
   </data>
@@ -147,6 +150,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Fluid_Air" xml:space="preserve">
     <value>Air</value>
+  </data>
+  <data name="Fluid_HumanBlood" xml:space="preserve">
+    <value>Human blood</value>
   </data>
   <data name="Fluid_Oil" xml:space="preserve">
     <value>Oil</value>
@@ -171,6 +177,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="LengthLabel" xml:space="preserve">
     <value>Plumbing length</value>
+  </data>
+  <data name="SelectedParameters" xml:space="preserve">
+    <value>Selected parameters</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Fluid Flow</value>

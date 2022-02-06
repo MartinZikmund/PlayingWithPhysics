@@ -33,6 +33,10 @@ namespace Physics.FluidFlow.Logic
 
 		public float YMin => 0;
 
+		public bool CanRenderFlow => true;
+
+		public string ErrorKey => null;
+
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			_input.DiameterRelationType switch
 			{

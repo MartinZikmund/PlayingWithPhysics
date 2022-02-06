@@ -4,8 +4,9 @@
 	{
 		public static FluidDefinition[] Definitions { get; } = new FluidDefinition[]
 		{
-			("Oil", 830f),
 			("Water", 1000f),
+			("Oil", 830f),
+			("HumanBlood", 1060f),
 		};
 	}
 }

@@ -1,4 +1,5 @@
-﻿using Physics.ElectricParticle.Logic;
+﻿using System.Linq;
+using Physics.ElectricParticle.Logic;
 
 namespace Physics.FluidFlow.Logic
 {
@@ -13,6 +14,8 @@ namespace Physics.FluidFlow.Logic
 		public InputVariant InputVariant { get; }
 
 		public DiameterRelationType DiameterRelationType { get; }
+
+		public bool ShowDiameterTypePicker => InputConfigurations.Configurations.Where(c => c.InputVariant == InputVariant).Count() > 1;
 
 		public FieldConfiguration VelocityConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
 

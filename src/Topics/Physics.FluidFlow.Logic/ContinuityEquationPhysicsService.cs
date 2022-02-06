@@ -34,6 +34,10 @@ namespace Physics.FluidFlow.Logic
 
 		public float YMin => -YMax;
 
+		public bool CanRenderFlow => throw new NotImplementedException();
+
+		public string ErrorKey => throw new NotImplementedException();
+
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			_input.DiameterRelationType switch
 			{

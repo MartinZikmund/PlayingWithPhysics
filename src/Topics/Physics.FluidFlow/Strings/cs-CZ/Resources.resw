@@ -139,6 +139,9 @@ Grafika: Petr Weinlich</value>
   <data name="DiameterRelationType_S2Larger" xml:space="preserve">
     <value>S₁ &lt; S₂</value>
   </data>
+  <data name="ErrorRealFluidLowerDOrV" xml:space="preserve">
+    <value>Proudění není laminární, snižte hodnotu průměru nebo rychlosti.</value>
+  </data>
   <data name="FlowVelocityLabel" xml:space="preserve">
     <value>Rychlost proudění</value>
   </data>
@@ -148,8 +151,11 @@ Grafika: Petr Weinlich</value>
   <data name="Fluid_Air" xml:space="preserve">
     <value>Vzduch</value>
   </data>
+  <data name="Fluid_HumanBlood" xml:space="preserve">
+    <value>Lidská krev</value>
+  </data>
   <data name="Fluid_Oil" xml:space="preserve">
-    <value>Nafta</value>
+    <value>Ropa</value>
   </data>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Voda</value>
@@ -180,6 +186,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="S2MustBeLargerMessage" xml:space="preserve">
     <value>Musí platit d₁ &lt; d₂, upravte prosím vstupní hodnoty.</value>
+  </data>
+  <data name="SelectedParameters" xml:space="preserve">
+    <value>Vybrané parametry</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Proudění kapalin</value>

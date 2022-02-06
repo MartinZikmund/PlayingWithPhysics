@@ -18,6 +18,7 @@ namespace Physics.FluidFlow.Rendering
 		protected readonly ISkiaCanvas _canvas;
 
 		private SKBitmap _particlePathsBitmap;
+		private TimeSpan _pathBitmapRenderTime;
 
 		private float _horizontalPadding;
 
@@ -27,7 +28,7 @@ namespace Physics.FluidFlow.Rendering
 		private SKPaint[] _particlePaints;
 		private SKPaint[] _particlePathPaints;
 
-		private Dictionary<int, List<Point2d>> _pathHistory = new Dictionary<int, List<Point2d>>();
+		private Dictionary<int, List<ParticleTrajectoryPoint>> _pathHistory = new Dictionary<int, List<ParticleTrajectoryPoint>>();
 
 		public FluidFlowRenderer(FluidFlowCanvasController controller)
 		{
@@ -99,6 +100,8 @@ namespace Physics.FluidFlow.Rendering
 			_pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
 		}
 
+
+
 		public void Draw(ISkiaCanvas sender, SKSurface args)
 		{
 			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
@@ -131,7 +134,11 @@ namespace Physics.FluidFlow.Rendering
 			}
 
 			args.Canvas.DrawBitmap(_particlePathsBitmap, new SKPoint(0, 0));
+
+			args.
 		}
+
+		protected abstract void DrawVectors(SKCanvas args);
 
 		private bool AddPointToPath(int particleId, Point2d position)
 		{

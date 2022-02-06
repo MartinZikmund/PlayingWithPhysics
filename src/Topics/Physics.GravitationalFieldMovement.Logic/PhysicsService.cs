@@ -55,7 +55,9 @@ public class PhysicsService
 				E = (M - Input.Eps * (E * Math.Cos(E) - Math.Sin(E))) / (1 - Input.Eps * Math.Cos(E));
 			}
 
-			var theta = 2 * Math.Atan2(Math.Sqrt(1 + Input.Eps) * Math.Sin(E / 2), Math.Sqrt(1 - Input.Eps) * Math.Cos(E / 2));
+			var theta = 2 * Math.Atan2(
+				Math.Sqrt(1 + Input.Eps) * Math.Sin(E / 2),
+				Math.Sqrt(1 - Input.Eps) * Math.Cos(E / 2));
 			var r = Input.P / (1 + Input.Eps * Math.Cos(theta));
 			var phi = Input.Omega + Input.SigL * theta;
 			var x = r * Math.Cos(phi);

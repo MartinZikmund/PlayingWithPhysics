@@ -95,6 +95,73 @@
                     HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.SetParametersCommand}"
                     Content="{extensions:Localize Key=SetParameters}" />
+
+                <Grid x:DefaultBindMode="OneWay" Visibility="{x:Bind Model.HasConfiguration, Mode=OneWay}">
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="0,8,0,0" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=SelectedParameters}" />
+                    <TextBlock Grid.Row="1">
+                        <Run Text="{extensions:Localize Key=Fluid}" /><Run Text=":" />
+                        <Run FontWeight="Bold" Text="{x:Bind Model.SceneConfiguration.Fluid.LocalizedName}" />
+                        <Run Text="(ρ =" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Fluid.Density}" />
+                        <Run Text="kg.m⁻³)" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="2">
+                        <Run Text="{extensions:Localize Key=FlowVelocityLabel}" />
+                        <Run FontWeight="Bold" Text="v" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Configuration.Velocity}" />
+                        <Run Text="m.s⁻¹" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.HeightDecreaseConfiguration.IsVisible}">
+                        <Run Text="{extensions:Localize Key=HeightDecreaseLabel}" />
+                        <Run FontWeight="Bold" Text="Δh" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.HeightDecreaseInCm}" />
+                        <Run Text="cm" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="4" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.LengthConfiguration.IsVisible}">
+                        <Run Text="{extensions:Localize Key=LengthLabel}" />
+                        <Run FontWeight="Bold" Text="l" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Configuration.Length}" />
+                        <Run Text="m" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="5" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.ShowDiameterTypePicker}">
+                        <Run FontWeight="Bold" Text="{x:Bind Model.SceneConfiguration.Configuration.DiameterRelationType, Converter={StaticResource EnumLocalizationConverter}}" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="6" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.DiameterConfiguration.IsVisible}">
+                        <Run Text="{extensions:Localize Key=DiameterLabel}" />
+                        <Run FontWeight="Bold" Text="d" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Diameter1InCm}" />
+                        <Run Text="cm" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="7" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.Diameter1Configuration.IsVisible}">
+                        <Run Text="{extensions:Localize Key=DiameterLabel}" />
+                        <Run FontWeight="Bold" Text="d₁" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Diameter1InCm}" />
+                        <Run Text="cm" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="8" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.Diameter2Configuration.IsVisible}">
+                        <Run Text="{extensions:Localize Key=DiameterLabel}" />
+                        <Run FontWeight="Bold" Text="d₂" /><Run Text=":" />
+                        <Run Text="{x:Bind Model.SceneConfiguration.Diameter2InCm}" />
+                        <Run Text="cm" />
+                    </TextBlock>
+                </Grid>
             </StackPanel>
         </Grid>
         <Grid
