@@ -12,6 +12,8 @@ namespace Physics.Shared.Services.Sounds
 	public class SoundPlayer : ISoundPlayer
 	{
 		private bool _initialized = false;
+		private object _syncLock = new object();
+
 
 		private AudioGraph _graph;
 		private readonly Dictionary<string, AudioFileInputNode> _fileInputs = new Dictionary<string, AudioFileInputNode>();
@@ -28,7 +30,13 @@ namespace Physics.Shared.Services.Sounds
 			{
 				var file = await StorageFile.GetFileFromApplicationUriAsync(sound);
 				var fileInputNode = await GetSoundFromFileAsync(file);
-				_fileInputs.Add(name, fileInputNode);
+				lock (_fileInputs)
+				{
+					if (!_fileInputs.ContainsKey(name))
+					{
+						_fileInputs.Add(name, fileInputNode);
+					}
+				}
 			}
 		}
 
@@ -84,9 +92,12 @@ namespace Physics.Shared.Services.Sounds
 		{
 			try
 			{
-				audio.OutgoingGain = volume;
-				audio.Seek(TimeSpan.Zero);
-				audio.Start();
+				if (audio != null)
+				{
+					audio.OutgoingGain = volume;
+					audio.Seek(TimeSpan.Zero);
+					audio.Start();
+				}
 			}
 			catch (Exception e)
 			{

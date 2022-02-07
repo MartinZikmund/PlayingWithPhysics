@@ -87,7 +87,6 @@ namespace Physics.Shared.UI.Rendering.Skia
 
             _renderLoop = new RenderLoop();
             _renderLoop.Start(onUpdate);
-            Initialized?.Invoke(this, e.Surface);
         }
 
 		public async Task RunOnRenderThreadAsync(Action action)
