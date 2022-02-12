@@ -205,6 +205,9 @@ Grafika: Petr Weinlich</value>
   <data name="SenePreset_Point" xml:space="preserve">
     <value>Bod</value>
   </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Nastavit výchozí</value>
+  </data>
   <data name="ShapeType_Circle" xml:space="preserve">
     <value>Kruh</value>
   </data>

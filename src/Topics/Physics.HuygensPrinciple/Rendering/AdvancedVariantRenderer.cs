@@ -17,7 +17,10 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		private TimeSpan _lastUpdate = new TimeSpan();
 
-		private StepInfo _lastStep = null;
+		private StepInfo _previousStep = null;
+		private StepInfo _currentStep = null;
+
+		private bool _significantPointStep = true;
 
 		public AdvancedVariantRenderer(HuygensPrincipleCanvasController controller)
 		{
@@ -33,30 +36,49 @@ namespace Physics.HuygensPrinciple.Rendering
 
 			if ((_controller.SimulationTime.TotalTime - _lastUpdate).TotalMilliseconds > 1000)
 			{
-				var step = _controller._manager.NextStep();
-				if (step != null)
+				if (_significantPointStep)
 				{
-					DrawStep(step);
-					_lastStep = step;
-					_lastUpdate = _controller.SimulationTime.TotalTime;
+					_previousStep = _currentStep;
+					_currentStep = _controller._manager.NextStep();
+					if (_currentStep != null)
+					{
+						DrawStepPhase1();
+					}
 				}
+				else
+				{
+					if (_currentStep != null)
+					{
+						DrawStepPhase2();
+					}
+				}
+				_lastUpdate = _controller.SimulationTime.TotalTime;
+				_significantPointStep = !_significantPointStep;
 			}
 		}
 
-		private void DrawStep(StepInfo step)
+		private void DrawStepPhase1()
 		{
-			foreach (var change in step.CellStateChanges)
+			DrawSignificantPoints();
+		}
+
+		private void DrawStepPhase2()
+		{
+			DrawWave();
+		}
+
+		private void DrawWave()
+		{
+			foreach (var change in _currentStep.CellStateChanges)
 			{
 				_fieldImage.SetPixel(change.X, change.Y, GetPixelColor(change.NewState));
 			}
 			using SKCanvas canvas = new SKCanvas(_waveBorderImage);
 			canvas.Clear(SKColors.Transparent);
-			foreach (var change in step.WaveBorder)
+			foreach (var change in _currentStep.WaveBorder)
 			{
 				canvas.DrawCircle(change.X, change.Y, 1, _controller._waveEdgeStrokePaint);
 			}
-
-			DrawSignificantPoints(_lastStep);
 		}
 
 		public void Draw(ISkiaCanvas sender, SKSurface args)
@@ -70,7 +92,10 @@ namespace Physics.HuygensPrinciple.Rendering
 			{
 				var squareSize = _controller.GetSquareSize(sender);
 				var topLeft = _controller.GetRenderTopLeft(sender);
-				args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				if (_controller._renderConfiguration.ShowWave)
+				{
+					args.Canvas.DrawBitmap(_fieldImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				}
 				if (_controller._renderConfiguration.ShowWaveEdge)
 				{
 					args.Canvas.DrawBitmap(_waveBorderImage, new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
@@ -94,11 +119,11 @@ namespace Physics.HuygensPrinciple.Rendering
 			}
 		}
 
-		private void DrawSignificantPoints(StepInfo step)
+		private void DrawSignificantPoints()
 		{
 			using SKCanvas canvas = new SKCanvas(_significantPointImage);
 			canvas.Clear(SKColors.Transparent);
-			if (_lastStep == null || _lastStep.WaveBorder.Length == 0)
+			if (_previousStep == null || _previousStep.WaveBorder.Length == 0)
 			{
 				foreach (var point in _controller._scene.SignificantPoints)
 				{
@@ -110,12 +135,12 @@ namespace Physics.HuygensPrinciple.Rendering
 			{
 				for (int i = 0; i < 5; i++)
 				{
-					var random = step.WaveBorder[_randomizer.Next(step.WaveBorder.Length)];
+					var random = _previousStep.WaveBorder[_randomizer.Next(_previousStep.WaveBorder.Length)];
 					canvas.DrawCircle(random.X, random.Y, 2, _controller._significantPointPaint);
 					canvas.DrawCircle(random.X, random.Y, _controller._manager.StepRadius, _controller._significantPointEllipsePaint);
 				}
 			}
-			
+
 		}
 
 		private SKColor GetPixelColor(CellState cellState) =>
@@ -134,12 +159,14 @@ namespace Physics.HuygensPrinciple.Rendering
 		public void StartSimulation()
 		{
 			_lastUpdate = TimeSpan.Zero;
-			_lastStep = null;
+			_previousStep = null;
+			_currentStep = null;
+			_significantPointStep = true;
 			_fieldImage?.Dispose();
 			_fieldImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight);
 			_waveBorderImage?.Dispose();
-			_waveBorderImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight); 
-			_significantPointImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight); 
+			_waveBorderImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight);
+			_significantPointImage = new SKBitmap(_controller._manager.FieldWidth, _controller._manager.FieldHeight);
 			using SKCanvas canvas = new SKCanvas(_fieldImage);
 			canvas.Clear(SKColors.White);
 		}

@@ -9,7 +9,7 @@ namespace Physics.HuygensPrinciple.Logic
 		{
 			new ScenePreset("Point", new []{new PointF(0.5f, 0.5f) })
 			{
-				new Circle(new PointF(0.5f, 0.5f), 0.002f)
+				new Circle(new PointF(0.5f, 0.5f), 0.00001f)
 			},
 			new ScenePreset("Square", new []{new PointF(0.48f, 0.48f), new PointF(0.48f, 0.52f), new PointF(0.52f, 0.48f), new PointF(0.52f, 0.52f)})
 			{
@@ -40,14 +40,14 @@ namespace Physics.HuygensPrinciple.Logic
 			new ScenePreset("PointWall")
 			{
 				new Circle(new PointF(0.5f, 0.02f), 0.01f),
-				new Rectangle(new PointF(0,0.5f), new PointF(0.45f, 0.55f), CellState.Wall),
-				new Rectangle(new PointF(0.55f,0.5f), new PointF(1f, 0.55f), CellState.Wall),
+				new Rectangle(new PointF(0,0.5f), new PointF(0.45f, 0.6f), CellState.Wall),
+				new Rectangle(new PointF(0.55f,0.5f), new PointF(1f, 0.6f), CellState.Wall),
 			},
 			new ScenePreset("LineWall")
 			{
 				new Rectangle(new PointF(0,0), new PointF(1,0.01f)),
-				new Rectangle(new PointF(0,0.5f), new PointF(0.45f, 0.55f), CellState.Wall),
-				new Rectangle(new PointF(0.55f,0.5f), new PointF(1f, 0.55f), CellState.Wall),
+				new Rectangle(new PointF(0,0.5f), new PointF(0.45f, 0.6f), CellState.Wall),
+				new Rectangle(new PointF(0.55f,0.5f), new PointF(1f, 0.6f), CellState.Wall),
 			},
 		};
 	}

@@ -13,9 +13,9 @@
 				<ResourceDictionary Source="ms-appx:///Physics.Shared.UI/Resources/DefaultResources.xaml" />
 				<selfstudy:SelfStudyResources />
 			</ResourceDictionary.MergedDictionaries>
-			<Color x:Key="AppThemeColor">#0ea9bb</Color>
+			<Color x:Key="AppThemeColor">#087f8c</Color>
 			<Color x:Key="DarkAppThemeColor">#087c8a</Color>
-			<Color x:Key="AppTitleBarColor">#0ea9bb</Color>
+			<Color x:Key="AppTitleBarColor">#087f8c</Color>
 		</ResourceDictionary>
 	</local:PhysicsApp.Resources>
 

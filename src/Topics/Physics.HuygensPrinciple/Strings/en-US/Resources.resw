@@ -205,6 +205,9 @@ Graphics: Petr Weinlich</value>
   <data name="ScenePreset_Square" xml:space="preserve">
     <value>Square</value>
   </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set default</value>
+  </data>
   <data name="ShapeType_Circle" xml:space="preserve">
     <value>Circle</value>
   </data>

@@ -136,8 +136,14 @@ namespace Physics.HuygensPrinciple.Rendering
 					var centerY = height * circle.Center.Y;
 
 					var dimension = Math.Min(width, height);
+
 					var radius = circle.Radius * dimension;
 
+					if (circle.Radius < 0.0001)
+					{
+						// Fake point
+						radius = 2;
+					}
 
 					args.Canvas.DrawCircle(topLeft.X + centerX, topLeft.Y + centerY, radius, paint);
 				}

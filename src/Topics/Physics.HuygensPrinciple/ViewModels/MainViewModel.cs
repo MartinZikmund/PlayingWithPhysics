@@ -53,10 +53,6 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public bool IsLoading { get; set; }
 
-		public float StepRadius { get; set; } = 12.5f;
-
-		public int FieldSize { get; set; } = 1080;
-
 		public DrawingStateViewModel DrawingState { get; } = new DrawingStateViewModel();
 
 		public ObservableCollection<CellState> SurfaceTypes { get; } = new ObservableCollection<CellState> { CellState.Source };
@@ -98,6 +94,13 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public ICommand ConfirmDrawingCommand => GetOrCreateCommand(ConfirmDrawing);
 
 		public ICommand SaveRenderingSettingsCommand => GetOrCreateCommand(SaveRenderingSettings);
+
+		public ICommand SetDefaultRenderSettingsCommand => GetOrCreateCommand(SetDefaultRenderSettings);
+
+		private void SetDefaultRenderSettings()
+		{
+			UnconfirmedRenderSettings = new RenderSettingsViewModel();
+		}
 
 		internal void SaveRenderingSettings()
 		{
@@ -149,6 +152,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public async Task DrawSceneAsync(ScenePreset scene)
 		{
+			var wasPaused = SimulationPlayback.IsPaused;
 			if (scene == null)
 			{
 				return;
@@ -157,16 +161,20 @@ namespace Physics.HuygensPrinciple.ViewModels
 			IsLoading = true;
 			_controller.SimulationTime.Restart();
 			_controller.Pause();
-			var huygensBuilder = new HuygensFieldBuilder(FieldSize, FieldSize);
+			var huygensBuilder = new HuygensFieldBuilder(SavedRenderSettings.FieldSize, SavedRenderSettings.FieldSize);
 			huygensBuilder.DrawScene(scene);
 
-			var manager = new HuygensManager(huygensBuilder.Build(), StepRadius);
+			var manager = new HuygensManager(huygensBuilder.Build(), SavedRenderSettings.StepRadius);
 			if (_difficulty == DifficultyOption.Advanced)
 			{
 				manager.PrecalculateAsync();
 			}
 			_controller.StartSimulation(manager, scene);
-			_controller.Play();
+
+			if (!wasPaused)
+			{
+				_controller.Play();
+			}
 			IsLoading = false;
 		}
 

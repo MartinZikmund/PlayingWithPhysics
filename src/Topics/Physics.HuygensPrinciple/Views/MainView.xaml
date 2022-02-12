@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+	xmlns:logic="using:Physics.HuygensPrinciple.Logic"
     xmlns:viewModels="using:Physics.HuygensPrinciple.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
@@ -75,6 +76,7 @@
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Drawing}" />
                 <Button
+					HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.DrawingState.StartDrawingCommand}"
                     Content="{extensions:Localize Key=StartDrawing}"
                     IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
@@ -144,8 +146,8 @@
                         <StackPanel Spacing="8">
                             <Slider
                                 Header="{extensions:Localize Key=BrushSize}"
-                                Maximum="40"
-                                Minimum="4"
+                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxBrushSize}"
+                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinBrushSize}"
                                 Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
                             <ComboBox
                                 HorizontalAlignment="Stretch"
@@ -200,21 +202,36 @@
                 HorizontalAlignment="Center"
                 Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
                 <Button.Flyout>
-                    <Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
-                        <StackPanel>
+					<Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
+						<StackPanel Spacing="8" Width="200">
                             <mux:NumberBox
                                 x:Name="FieldSizeNumberBox"
                                 Header="{extensions:Localize Key=FieldSize}"
-                                Maximum="2000"
-                                Minimum="500"
-                                Value="{x:Bind Model.FieldSize, Mode=TwoWay}" />
+                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxFieldSize}"
+                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinFieldSize}"
+								SpinButtonPlacementMode="Inline"
+                                Value="{x:Bind Model.UnconfirmedRenderSettings.FieldSize, Mode=TwoWay}" />
                             <mux:NumberBox
                                 x:Name="StepRadiusNumberBox"
                                 Header="{extensions:Localize Key=StepRadius}"
-                                Maximum="30"
-                                Minimum="3"
-                                Value="{x:Bind Model.StepRadius, Mode=TwoWay}" />
-                            <Button Click="SaveRenderSettings_Click" Content="{extensions:Localize Key=Save}" />
+                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxStepRadius}"
+                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinStepRadius}"
+								SmallChange="0.1"
+								LargeChange="1"
+								SpinButtonPlacementMode="Inline"
+                                Value="{x:Bind Model.UnconfirmedRenderSettings.StepRadius, Mode=TwoWay}" />
+							<Button Margin="0,8,0,0" HorizontalAlignment="Stretch" Command="{x:Bind Model.SetDefaultRenderSettingsCommand}">
+								<StackPanel Spacing="8" Orientation="Horizontal">
+									<SymbolIcon Symbol="Undo" />
+									<TextBlock Text="{extensions:Localize Key=SetDefault}" />
+								</StackPanel>
+							</Button>
+							<Button HorizontalAlignment="Stretch" Style="{ThemeResource AccentButtonStyle}" Click="SaveRenderSettings_Click">
+								<StackPanel Spacing="8" Orientation="Horizontal">
+									<SymbolIcon Symbol="Save" />
+									<TextBlock Text="{extensions:Localize Key=Save}" />
+								</StackPanel>
+							</Button>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>

@@ -1,11 +1,19 @@
-﻿using MvvmCross.ViewModels;
+﻿using System;
+using MvvmCross.ViewModels;
+using Physics.HuygensPrinciple.Logic;
 
 namespace Physics.HuygensPrinciple.ViewModels
 {
 	public class RenderSettingsViewModel : MvxNotifyPropertyChanged
 	{
-		public float StepRadius { get; set; } = 12.5f;
+		public RenderSettingsViewModel()
+		{
+			FieldSize = RenderSettingsDefaults.DefaultFieldSize;
+			StepRadius = RenderSettingsDefaults.DefaultStepRadius;
+		}
 
-		public int FieldSize { get; set; } = 1080;
+		public float StepRadius { get; set; }
+
+		public int FieldSize { get; set; }
 	}
 }

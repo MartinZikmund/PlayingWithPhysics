@@ -41,7 +41,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public ShapeType Shape { get; set; } = ShapeType.Circle;
 
-		public float Size { get; set; } = 10;
+		public float Size { get; set; } = RenderSettingsDefaults.DefaultBrushSize;
 
 		public CellState SurfaceType { get; set; } = CellState.Source;
 
