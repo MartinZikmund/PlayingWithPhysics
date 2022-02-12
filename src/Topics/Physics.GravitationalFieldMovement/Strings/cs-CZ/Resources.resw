@@ -120,8 +120,8 @@
   <data name="AppDescription" xml:space="preserve">
     <value>Pro kosmonautiku mají velký význam pohyby, při nichž je tělesu udělena počáteční rychlost ve směru kolmém k vektoru intenzity gravitačního pole. Animace umožní volbu velikosti a směru počáteční rychlosti tělesa a místa nad povrchem Země, od kterého bude sledován pohyb daného tělesa.
 
-Autoři obsahu: Vladimír Kafka, Pavel Vlček
-Programátoři: Daniel Zikmund, Martin Zikmund
+Autoři obsahu: Matěj Hudec, Pavel Vlček
+Programátor: Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
