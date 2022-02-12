@@ -1,5 +1,6 @@
-﻿using System.Linq;
-using Physics.ElectricParticle.Logic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Physics.FluidFlow.Logic;
 
 namespace Physics.FluidFlow.Logic
 {
@@ -15,15 +16,17 @@ namespace Physics.FluidFlow.Logic
 
 		public DiameterRelationType DiameterRelationType { get; }
 
+		public FluidDefinition[] FluidDefinitions { get; set; }
+
 		public bool ShowDiameterTypePicker => InputConfigurations.Configurations.Where(c => c.InputVariant == InputVariant).Count() > 1;
 
-		public FieldConfiguration VelocityConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
+		public Dictionary<FluidDefinition, FieldConfiguration> VelocityConfigurations { get; set; } = new();
 
-		public FieldConfiguration DiameterConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
+		public Dictionary<FluidDefinition, FieldConfiguration> DiameterConfigurations { get; set; } = new();
 
-		public FieldConfiguration Diameter1Configuration { get; set; } = FieldConfiguration.CreateInvisible();
+		public Dictionary<FluidDefinition, FieldConfiguration> Diameter1Configurations { get; set; } = new();
 
-		public FieldConfiguration Diameter2Configuration { get; set; } = FieldConfiguration.CreateInvisible();
+		public Dictionary<FluidDefinition, FieldConfiguration> Diameter2Configurations { get; set; } = new();
 
 		public FieldConfiguration LengthConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
 

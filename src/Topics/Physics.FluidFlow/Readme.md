@@ -1,6 +1,6 @@
 ﻿# Template replacements
 
-- **FluidFlow** - Project name - e.g. "HomogenousMovement" or "ElectricParticle"
+- **FluidFlow** - Project name - e.g. "HomogenousMovement" or "FluidFlow"
 - **Materiál poslouží žákům k vytvoření nebo zpřesnění představy o tom, jak se chovají ideální nebo reálné kapaliny, které proudí daným potrubím. Pomocí modelu proudnic bude možné mapovat chování jednotlivých částí kapaliny.** - App description in CZ
 - **The material will help students to create or refine an idea of how ideal or real liquids that flow through a given pipe behave. Using the jet model, it will be possible to map the behavior of individual parts of the liquid.** - App description in EN
 - **Proudění kapalin** - App name in CZ - e.g. "Pohyby v homogenním poli země" or "Elektrické pole"

@@ -137,7 +137,7 @@
             </winui:RadioButtons.ItemTemplate>
         </winui:RadioButtons>
 
-        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.InputConfiguration.DiameterConfiguration.IsVisible}">
+		<TextBlock Grid.Row="5" Visibility="{x:Bind Model.DiameterConfiguration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d" />
             <Run Text="(cm)" />
@@ -146,10 +146,10 @@
             x:Name="DiameterNumberBox"
             Grid.Row="5"
             Grid.Column="1"
-            Visibility="{x:Bind Model.InputConfiguration.DiameterConfiguration.IsVisible}"
+            Visibility="{x:Bind Model.DiameterConfiguration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.DiameterInCm, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="5" Visibility="{x:Bind Model.InputConfiguration.Diameter1Configuration.IsVisible}">
+		<TextBlock Grid.Row="5" Visibility="{x:Bind Model.Diameter1Configuration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d₁" />
             <Run Text="(cm)" />
@@ -158,10 +158,10 @@
             x:Name="Diameter1NumberBox"
             Grid.Row="5"
             Grid.Column="1"
-            Visibility="{x:Bind Model.InputConfiguration.Diameter1Configuration.IsVisible}"
+            Visibility="{x:Bind Model.Diameter1Configuration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.Diameter1InCm, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="6" Visibility="{x:Bind Model.InputConfiguration.Diameter2Configuration.IsVisible}">
+		<TextBlock Grid.Row="6" Visibility="{x:Bind Model.Diameter2Configuration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d₂" />
             <Run Text="(cm)" />
@@ -170,7 +170,7 @@
             x:Name="Diameter2NumberBox"
             Grid.Row="6"
             Grid.Column="1"
-            Visibility="{x:Bind Model.InputConfiguration.Diameter2Configuration.IsVisible}"
+            Visibility="{x:Bind Model.Diameter2Configuration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.Diameter2InCm, Mode=TwoWay}" />
 
         <TextBlock

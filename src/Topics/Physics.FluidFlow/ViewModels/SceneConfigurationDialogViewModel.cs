@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using MvvmCross;
 using MvvmCross.ViewModels;
+using Physics.FluidFlow.Logic;
 using Physics.FluidFlow.Logic;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -20,6 +22,10 @@ namespace Physics.FluidFlow.ViewModels
 			InputVariant = inputVariant;
 			InitializeDiameterRelationPicker(inputVariant);
 			UpdateInputConfiguration();
+
+			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
+			SelectedFluid = Fluids.First();
+
 			if (sceneConfiguration != null)
 			{
 				SelectedDiameterRelationTypeIndex = DiameterRelationTypes.IndexOf(sceneConfiguration.DiameterRelationType);
@@ -33,16 +39,14 @@ namespace Physics.FluidFlow.ViewModels
 			}
 			else
 			{
-				DiameterInM = InputConfiguration.DiameterConfiguration.DefaultValue ?? 1;
-				Diameter1InM = InputConfiguration.Diameter1Configuration.DefaultValue ?? 1;
-				Diameter2InM = InputConfiguration.Diameter2Configuration.DefaultValue ?? 1;
+				DiameterInM = DiameterConfiguration.DefaultValue ?? 1;
+				Diameter1InM = Diameter1Configuration.DefaultValue ?? 1;
+				Diameter2InM = Diameter2Configuration.DefaultValue ?? 1;
 				Length = InputConfiguration.LengthConfiguration.DefaultValue ?? 1;
-				Velocity = InputConfiguration.VelocityConfiguration.DefaultValue ?? 1;
+				Velocity = VelocityConfiguration.DefaultValue ?? 1;
 				HeightDecreaseInM = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
 			}
 
-			Fluids = FluidDefinitions.Definitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
-			SelectedFluid = Fluids.First();
 			//Label = oscillationInfo.Label;
 			//Color = ColorHelper.ToColor(oscillationInfo.Color);
 			//Frequency = oscillationInfo.Frequency;
@@ -58,6 +62,14 @@ namespace Physics.FluidFlow.ViewModels
 
 		public InputConfiguration InputConfiguration { get; private set; }
 
+		public FieldConfiguration DiameterConfiguration { get; private set; }
+
+		public FieldConfiguration Diameter1Configuration { get; private set; }
+
+		public FieldConfiguration Diameter2Configuration { get; private set; }
+
+		public FieldConfiguration VelocityConfiguration { get; private set; }
+
 		public bool ShowDiameterRelationPicker { get; private set; } = true;
 
 		public DiameterRelationType[] DiameterRelationTypes { get; private set; }
@@ -67,7 +79,7 @@ namespace Physics.FluidFlow.ViewModels
 		public DiameterRelationType SelectedDiameterRelationType => SelectedDiameterRelationTypeIndex >= 0 ?
 			DiameterRelationTypes[SelectedDiameterRelationTypeIndex] : default;
 
-		public FluidDefinitionViewModel[] Fluids { get; }
+		public FluidDefinitionViewModel[] Fluids { get; private set; }
 
 		public FluidDefinitionViewModel SelectedFluid { get; set; }
 
@@ -155,7 +167,7 @@ namespace Physics.FluidFlow.ViewModels
 
 		private SceneConfiguration PrepareConfiguration()
 		{
-			var diameter1 = InputConfiguration.DiameterConfiguration.IsVisible ? DiameterInM : Diameter1InM;
+			var diameter1 = DiameterConfiguration.IsVisible ? DiameterInM : Diameter1InM;
 			return new SceneConfiguration(
 				InputVariant,
 				SelectedDiameterRelationType,
@@ -182,6 +194,27 @@ namespace Physics.FluidFlow.ViewModels
 			}
 
 			UpdateInputConfiguration();
+			UpdateFieldConfigurations();
+		}
+
+		internal void OnSelectedFluidChanged() => UpdateFieldConfigurations();
+
+		private void UpdateFieldConfigurations()
+		{
+			DiameterConfiguration = GetFieldConfiguration(InputConfiguration.DiameterConfigurations);
+			Diameter1Configuration = GetFieldConfiguration(InputConfiguration.Diameter1Configurations);
+			Diameter2Configuration = GetFieldConfiguration(InputConfiguration.Diameter2Configurations);
+			VelocityConfiguration = GetFieldConfiguration(InputConfiguration.VelocityConfigurations);
+			InputConfigurationChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		private FieldConfiguration GetFieldConfiguration(Dictionary<FluidDefinition, FieldConfiguration> source)
+		{
+			if (source.TryGetValue(SelectedFluid.FluidDefinition, out var configuration))
+			{
+				return configuration;
+			}
+			return FieldConfiguration.CreateInvisible();
 		}
 
 		private async void UpdateInputConfiguration()
@@ -192,12 +225,9 @@ namespace Physics.FluidFlow.ViewModels
 				c.InputVariant == InputVariant &&
 				c.DiameterRelationType == SelectedDiameterRelationType);
 
-			InputConfigurationChanged?.Invoke(this, EventArgs.Empty);
-
 			await Task.Yield();
 
 			// Ensure the current values are valid
-
 			if (SelectedDiameterRelationType == DiameterRelationType.S1Larger &&
 				Diameter1InCm <= Diameter2InCm)
 			{

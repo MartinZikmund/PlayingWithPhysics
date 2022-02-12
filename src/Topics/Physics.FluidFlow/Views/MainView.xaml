@@ -143,19 +143,19 @@
                     <TextBlock Grid.Row="5" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.ShowDiameterTypePicker}">
                         <Run FontWeight="Bold" Text="{x:Bind Model.SceneConfiguration.Configuration.DiameterRelationType, Converter={StaticResource EnumLocalizationConverter}}" />
                     </TextBlock>
-                    <TextBlock Grid.Row="6" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.DiameterConfiguration.IsVisible}">
+                    <TextBlock Grid.Row="6" Visibility="{x:Bind Model.SceneConfiguration.DiameterConfiguration.IsVisible, Mode=OneWay}">
                         <Run Text="{extensions:Localize Key=DiameterLabel}" />
                         <Run FontWeight="Bold" Text="d" /><Run Text=":" />
                         <Run Text="{x:Bind Model.SceneConfiguration.Diameter1InCm}" />
                         <Run Text="cm" />
                     </TextBlock>
-                    <TextBlock Grid.Row="7" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.Diameter1Configuration.IsVisible}">
+					<TextBlock Grid.Row="7" Visibility="{x:Bind Model.SceneConfiguration.Diameter1Configuration.IsVisible, Mode=OneWay}">
                         <Run Text="{extensions:Localize Key=DiameterLabel}" />
                         <Run FontWeight="Bold" Text="d₁" /><Run Text=":" />
                         <Run Text="{x:Bind Model.SceneConfiguration.Diameter1InCm}" />
                         <Run Text="cm" />
                     </TextBlock>
-                    <TextBlock Grid.Row="8" Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.Diameter2Configuration.IsVisible}">
+					<TextBlock Grid.Row="8" Visibility="{x:Bind Model.SceneConfiguration.Diameter2Configuration.IsVisible, Mode=OneWay}">
                         <Run Text="{extensions:Localize Key=DiameterLabel}" />
                         <Run FontWeight="Bold" Text="d₂" /><Run Text=":" />
                         <Run Text="{x:Bind Model.SceneConfiguration.Diameter2InCm}" />

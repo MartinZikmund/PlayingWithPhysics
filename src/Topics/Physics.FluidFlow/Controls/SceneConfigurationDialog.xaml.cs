@@ -1,5 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using Physics.ElectricParticle.Logic;
+using Physics.FluidFlow.Logic;
 using Physics.FluidFlow.Logic;
 using Physics.FluidFlow.ViewModels;
 using Physics.Shared.UI.Helpers;
@@ -26,12 +26,12 @@ namespace Physics.FluidFlow.Controls
 
 		private void SetupNumberBoxes()
 		{
-			SetupNumberBox(VelocityNumberBox, Model.InputConfiguration.VelocityConfiguration);
+			SetupNumberBox(VelocityNumberBox, Model.VelocityConfiguration);
 			SetupNumberBox(HeightDecreaseNumberBox, Model.InputConfiguration.HeightDecreaseConfiguration);
 			SetupNumberBox(LengthNumberBox, Model.InputConfiguration.LengthConfiguration);
-			SetupNumberBox(DiameterNumberBox, Model.InputConfiguration.DiameterConfiguration);
-			SetupNumberBox(Diameter1NumberBox, Model.InputConfiguration.Diameter1Configuration);
-			SetupNumberBox(Diameter2NumberBox, Model.InputConfiguration.Diameter2Configuration);
+			SetupNumberBox(DiameterNumberBox, Model.DiameterConfiguration);
+			SetupNumberBox(Diameter1NumberBox, Model.Diameter1Configuration);
+			SetupNumberBox(Diameter2NumberBox, Model.Diameter2Configuration);
 		}
 
 		private void SetupNumberBox(NumberBox numberBox, FieldConfiguration fieldConfiguration)

@@ -2,11 +2,8 @@
 {
 	public static class FluidDefinitions
 	{
-		public static FluidDefinition[] Definitions { get; } = new FluidDefinition[]
-		{
-			("Water", 1000f),
-			("Oil", 830f),
-			("HumanBlood", 1060f),
-		};
+		public static FluidDefinition Water { get; } = new FluidDefinition("Water", 1000f);
+
+		public static FluidDefinition Oil { get; } = new FluidDefinition("Oil", 1000f);
 	}
 }

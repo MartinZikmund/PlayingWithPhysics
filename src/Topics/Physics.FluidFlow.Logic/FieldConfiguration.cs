@@ -1,4 +1,4 @@
-﻿namespace Physics.ElectricParticle.Logic
+﻿namespace Physics.FluidFlow.Logic
 {
 	public class FieldConfiguration
 	{
