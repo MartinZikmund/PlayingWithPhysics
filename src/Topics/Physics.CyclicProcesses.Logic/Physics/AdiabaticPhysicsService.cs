@@ -17,7 +17,7 @@ public class AdiabaticPhysicsService : PhysicsService, IBasicProcessPhysicsServi
 		P2 = _input.P1 * _v1PowK / v2PowK;
 		T1 = _input.P1 * _input.V1 / (_input.N * R);
 		T2 = P2 * _input.V2 / (_input.N * R);
-		W12 = P2 * _input.V2 - _input.P1 * _input.V1 / (K - 1);
+		W12 = -1 * ((P2 * _input.V2 - _input.P1 * _input.V1) / (K - 1));
 	}
 
 	public override ProcessType Process => ProcessType.Adiabatic;
@@ -50,7 +50,7 @@ public class AdiabaticPhysicsService : PhysicsService, IBasicProcessPhysicsServi
 
 	public float CalculateT(float time) => CalculateP(time) * CalculateV(time) / (_input.N * R);
 
-	public float CalculateW(float time) => CalculateP(time) * CalculateV(time) - _input.P1 * _input.V1 / (K - 1);
+	public float CalculateW(float time) => -1 * ((CalculateP(time) * CalculateV(time) - _input.P1 * _input.V1) / (K - 1));
 
 	public float CalculateQ(float time) => 0;
 

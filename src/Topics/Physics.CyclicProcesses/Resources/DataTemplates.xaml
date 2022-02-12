@@ -5,9 +5,14 @@
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:process="using:Physics.CyclicProcesses.ViewModels.Process"
     xmlns:resources="using:Physics.CyclicProcesses.Resources">
+	<Style TargetType="TextBlock" x:Key="DescriptionTextBlockStyle">
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Margin" Value="0,8,0,0" />
+	</Style>
     <DataTemplate x:Key="IsobaricStateDataTemplate" x:DataType="process:IsobaricStateViewModel">
-        <StackPanel Spacing="8">
-            <TextBlock>
+        <StackPanel>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=W12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -16,7 +21,8 @@
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=Q12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -25,7 +31,8 @@
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=T1Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -34,7 +41,8 @@
                 <Run Text="{x:Bind T1}" />
                 <Run Text="K" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=T2Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -43,7 +51,8 @@
                 <Run Text="{x:Bind T2}" />
                 <Run Text="K" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaVDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -55,8 +64,9 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="IsochoricStateDataTemplate" x:DataType="process:IsochoricStateViewModel">
-        <StackPanel Spacing="8">
-            <TextBlock>
+        <StackPanel>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=W12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -65,7 +75,8 @@
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=Q12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -74,7 +85,8 @@
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaU12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -83,7 +95,8 @@
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaVDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -95,8 +108,9 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="AdiabaticStateDataTemplate" x:DataType="process:AdiabaticStateViewModel">
-        <StackPanel Spacing="8">
-            <TextBlock>
+        <StackPanel>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=W12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -105,7 +119,8 @@
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=Q12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -114,7 +129,8 @@
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=T1Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -123,7 +139,8 @@
                 <Run Text="{x:Bind T1}" />
                 <Run Text="K" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=T2Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -132,7 +149,8 @@
                 <Run Text="{x:Bind T2}" />
                 <Run Text="K" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaU12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -141,7 +159,8 @@
                 <Run Text="{x:Bind DeltaU12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaVDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -153,8 +172,9 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="IsotermicStateDataTemplate" x:DataType="process:IsotermicStateViewModel">
-        <StackPanel Spacing="8">
-            <TextBlock>
+        <StackPanel>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=W12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -163,7 +183,8 @@
                 <Run Text="{x:Bind W12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=Q12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -172,7 +193,8 @@
                 <Run Text="{x:Bind Q12}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaU12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -181,7 +203,8 @@
                 <Run Text="0" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaVDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -193,8 +216,9 @@
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="StirlingEngineStateDataTemplate" x:DataType="process:StirlingEngineStateViewModel">
-        <StackPanel Spacing="8">
-            <TextBlock>
+        <StackPanel>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=W12Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -203,7 +227,8 @@
                 <Run Text="{x:Bind W}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=P1234Description}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -212,7 +237,7 @@
                 <Run Text="{x:Bind P1InkPa}" />
                 <Run Text="kPa" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -221,7 +246,7 @@
                 <Run Text="{x:Bind P2InkPa}" />
                 <Run Text="kPa" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -230,7 +255,7 @@
                 <Run Text="{x:Bind P3InkPa}" />
                 <Run Text="kPa" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -239,7 +264,8 @@
                 <Run Text="{x:Bind P4InkPa}" />
                 <Run Text="kPa" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=QOutDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -248,7 +274,8 @@
                 <Run Text="{x:Bind QOut}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=QInDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -257,7 +284,8 @@
                 <Run Text="{x:Bind QIn}" />
                 <Run Text="J" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=EffectiveEfficiencyDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -270,7 +298,8 @@
                 <Run Text="{x:Bind EffectiveEfficiencyInPercent}" />
                 <Run Text="%" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=TermicEfficiencyDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"
@@ -283,7 +312,8 @@
                 <Run Text="{x:Bind TermicEfficiencyInPercent}" />
                 <Run Text="%" />
             </TextBlock>
-            <TextBlock>
+			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=DeltaVDescription}" />
+			<TextBlock>
                 <Run
                     FontStyle="Italic"
                     FontWeight="Bold"

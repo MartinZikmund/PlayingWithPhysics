@@ -127,8 +127,17 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Cyklické děje</value>
   </data>
+  <data name="DeltaU12Description" xml:space="preserve">
+    <value>Změna vnitřní energie plynu</value>
+  </data>
+  <data name="DeltaVDescription" xml:space="preserve">
+    <value>Zdvihový objem</value>
+  </data>
   <data name="Effective" xml:space="preserve">
     <value>Efektivní</value>
+  </data>
+  <data name="EffectiveEfficiencyDescription" xml:space="preserve">
+    <value>Efektivní účinnost</value>
   </data>
   <data name="ErrorMessage_T12MustBeLargerThanT34" xml:space="preserve">
     <value>T₁₂ musí být větší než T₃₄</value>
@@ -141,6 +150,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="NDescription" xml:space="preserve">
     <value>Látkové množství</value>
+  </data>
+  <data name="P1234Description" xml:space="preserve">
+    <value>Tlak v průběhu procesu</value>
   </data>
   <data name="P1Description" xml:space="preserve">
     <value>Počáteční tlak</value>
@@ -162,6 +174,15 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ProcessType_StirlingEngine" xml:space="preserve">
     <value>Stirlingův motor</value>
+  </data>
+  <data name="Q12Description" xml:space="preserve">
+    <value>Teplo dodané plynem</value>
+  </data>
+  <data name="QInDescription" xml:space="preserve">
+    <value>Teplo přijaté</value>
+  </data>
+  <data name="QOutDescription" xml:space="preserve">
+    <value>Teplo odevzdané</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Cyklické děje</value>
@@ -190,6 +211,9 @@ Grafika: Petr Weinlich</value>
   <data name="Termic" xml:space="preserve">
     <value>Termická</value>
   </data>
+  <data name="TermicEfficiencyDescription" xml:space="preserve">
+    <value>Termická účinnost</value>
+  </data>
   <data name="V1Description" xml:space="preserve">
     <value>Počáteční objem</value>
   </data>
@@ -198,5 +222,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="VDescription" xml:space="preserve">
     <value>Objem plynu</value>
+  </data>
+  <data name="W12Description" xml:space="preserve">
+    <value>Práce vykonaná plynem</value>
   </data>
 </root>
