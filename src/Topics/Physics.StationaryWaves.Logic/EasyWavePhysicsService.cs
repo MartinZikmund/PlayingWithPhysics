@@ -60,7 +60,7 @@ namespace Physics.StationaryWaves.Logic
 			return 2 * _waveInfo.Amplitude *
 				(float)Math.Sin(
 					2 * Math.PI *
-					(leftEndConstant * Math.PI / 2 + x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
+					(leftEndConstant + x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
 		}
 
 		public float? CalculateFirstWaveY(float x, float time)
@@ -82,7 +82,7 @@ namespace Physics.StationaryWaves.Logic
 				_waveInfo.Amplitude *
 				Math.Sin(
 					2 * Math.PI *
-					((time / _waveInfo.T) + ((x + leftEndConstant * Math.PI) / _waveInfo.WaveLength)));
+					((time / _waveInfo.T) + ((x + leftEndConstant) / _waveInfo.WaveLength)));
 
 			return (float)y;
 		}
@@ -100,7 +100,7 @@ namespace Physics.StationaryWaves.Logic
 				2 * _waveInfo.Amplitude *
 				Math.Sin(
 					2 * Math.PI *
-					(leftEndConstant * Math.PI / 2 +
+					(leftEndConstant +
 					x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
 
 			return (float)Math.Abs(y1);
