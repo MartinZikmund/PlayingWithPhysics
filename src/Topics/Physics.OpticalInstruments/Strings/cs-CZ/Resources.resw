@@ -137,7 +137,7 @@ Grafika: Petr Weinlich</value>
     <value>Spojná čočka</value>
   </data>
   <data name="ConvexMirror" xml:space="preserve">
-    <value>Vypulké zrcadlo</value>
+    <value>Vypuklé zrcadlo</value>
   </data>
   <data name="Diopters" xml:space="preserve">
     <value>Optická mohutnost</value>
