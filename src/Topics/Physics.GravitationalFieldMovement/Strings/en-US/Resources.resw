@@ -125,7 +125,7 @@ Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Earth Gravitational Field Movement</value>
+    <value>Playing with Physics: Gravitational Field</value>
   </data>
   <data name="CannotParseInputNumbers" xml:space="preserve">
     <value>Input numbers are not formatted correctly.</value>
@@ -152,6 +152,6 @@ Graphics: Petr Weinlich</value>
     <value>Planet radius</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Earth Gravitational Field Movement</value>
+    <value>Gravitational Field</value>
   </data>
 </root>

@@ -125,7 +125,7 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyby v centrálním gravitačním poli Země</value>
+    <value>Hrátky s fyzikou: Pohyby v centrálním gravitačním poli</value>
   </data>
   <data name="CannotParseInputNumbers" xml:space="preserve">
     <value>Vstupní čísla nejsou ve správném formátu.</value>
@@ -152,6 +152,6 @@ Grafika: Petr Weinlich</value>
     <value>Poloměr planety</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyby v centrálním gravitačním poli Země</value>
+    <value>Pohyby v centrálním gravitačním poli</value>
   </data>
 </root>

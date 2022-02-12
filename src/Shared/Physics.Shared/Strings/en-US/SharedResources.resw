@@ -138,14 +138,14 @@
   <data name="AppName_Drag" xml:space="preserve">
     <value>Drag</value>
   </data>
-  <data name="AppName_EarthsGravitationalField" xml:space="preserve">
-    <value>Earth's Gravitational Field</value>
-  </data>
   <data name="AppName_ElectricField" xml:space="preserve">
     <value>Electric Field</value>
   </data>
   <data name="AppName_FluidFlow" xml:space="preserve">
     <value>Fluid Flow</value>
+  </data>
+  <data name="AppName_GravitationalField" xml:space="preserve">
+    <value>Gravitational Field</value>
   </data>
   <data name="AppName_HuygensPrinciple" xml:space="preserve">
     <value>Huygens–Fresnel Principle</value>

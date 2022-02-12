@@ -307,7 +307,7 @@
     <Content Include="Assets\Logos\CompoundOscillations.jpg" />
     <Content Include="Assets\Logos\CyclicProcesses.jpg" />
     <Content Include="Assets\Logos\Drag.jpg" />
-    <Content Include="Assets\Logos\EarthsGravitationalField.jpg" />
+    <Content Include="Assets\Logos\GravitationalField.jpg" />
     <Content Include="Assets\Logos\ElectricField.jpg" />
     <Content Include="Assets\Logos\FluidFlow.jpg" />
     <Content Include="Assets\Logos\HuygensPrinciple.jpg" />

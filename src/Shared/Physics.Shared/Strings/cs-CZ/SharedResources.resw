@@ -138,14 +138,14 @@
   <data name="AppName_Drag" xml:space="preserve">
     <value>Pohyby těles v odporujícím prostředí</value>
   </data>
-  <data name="AppName_EarthsGravitationalField" xml:space="preserve">
-    <value>Pohyby v centrálním gravitačním poli Země</value>
-  </data>
   <data name="AppName_ElectricField" xml:space="preserve">
     <value>Pohyb částice v homogenním elektrickém poli</value>
   </data>
   <data name="AppName_FluidFlow" xml:space="preserve">
     <value>Proudění kapalin</value>
+  </data>
+  <data name="AppName_GravitationalField" xml:space="preserve">
+    <value>Pohyby v centrálním gravitačním poli</value>
   </data>
   <data name="AppName_HuygensPrinciple" xml:space="preserve">
     <value>Huygensův princip</value>
