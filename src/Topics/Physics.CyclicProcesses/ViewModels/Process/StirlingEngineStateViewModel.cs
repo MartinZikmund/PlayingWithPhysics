@@ -1,4 +1,5 @@
-﻿using Physics.CyclicProcesses.Logic.Input;
+﻿using System;
+using Physics.CyclicProcesses.Logic.Input;
 using Physics.CyclicProcesses.Logic.Physics;
 
 namespace Physics.CyclicProcesses.ViewModels.Process
@@ -28,9 +29,9 @@ namespace Physics.CyclicProcesses.ViewModels.Process
 
 		public float W => _physicsService.W;
 
-		public float EffectiveEfficiencyInPercent => _physicsService.EffectiveEfficiency * 100;
+		public float EffectiveEfficiencyInPercent => (float)Math.Round(_physicsService.EffectiveEfficiency * 100, 1);
 
-		public float TermicEfficiencyInPercent => _physicsService.TermicEfficiency * 100;
+		public float TermicEfficiencyInPercent => (float)Math.Round(_physicsService.TermicEfficiency * 100, 1);
 
 		public float DeltaVInDm => (_inputConfiguration.V2 - _inputConfiguration.V1) * 1000;
 	}
