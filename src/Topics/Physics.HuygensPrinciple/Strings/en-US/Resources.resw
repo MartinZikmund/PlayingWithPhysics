@@ -160,6 +160,9 @@ Graphics: Petr Weinlich</value>
   <data name="DrawingTool_Eraser" xml:space="preserve">
     <value>Eraser</value>
   </data>
+  <data name="DrawingWarning" xml:space="preserve">
+    <value>Warning! The result of the simulation may be non-realistic when the wall thickness is smaller than the radius of the secondary wave used!</value>
+  </data>
   <data name="Eraser" xml:space="preserve">
     <value>Eraser</value>
   </data>

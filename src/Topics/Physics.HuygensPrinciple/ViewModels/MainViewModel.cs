@@ -27,8 +27,12 @@ namespace Physics.HuygensPrinciple.ViewModels
 			}
 			RaisePropertyChanged(nameof(IsAdvanced));
 
+			DrawingState.PropertyChanged += DrawingState_PropertyChanged;
 			DrawingState.IsDrawingChanged += DrawingState_IsDrawingChanged;
 		}
+
+		private void DrawingState_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+			RaisePropertyChanged(nameof(ShowDrawingWarning));
 
 		private async void DrawingState_IsDrawingChanged(object sender, EventArgs e)
 		{
@@ -36,10 +40,6 @@ namespace Physics.HuygensPrinciple.ViewModels
 			{
 				// Restart simulation
 				await DrawSceneAsync(CurrentPreset);
-			}
-			else
-			{
-				
 			}
 		}
 
@@ -78,9 +78,16 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public RenderSettingsViewModel SavedRenderSettings { get; private set; } = new RenderSettingsViewModel();
 
+		public bool ShowDrawingWarning =>
+			_difficulty == DifficultyOption.Advanced &&
+			DrawingState.Size < SavedRenderSettings.StepRadius &&
+			DrawingState.ActiveTool == DrawingTool.Brush &&
+			DrawingState.SurfaceType == CellState.Wall;
+
 		internal async void OnSavedRenderSettingsChanged()
 		{
 			await DrawSceneAsync(CurrentPreset);
+			await RaisePropertyChanged(nameof(ShowDrawingWarning));
 		}
 
 		public RenderSettingsViewModel UnconfirmedRenderSettings { get; private set; } = new RenderSettingsViewModel();

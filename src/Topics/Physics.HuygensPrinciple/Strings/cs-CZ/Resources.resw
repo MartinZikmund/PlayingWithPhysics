@@ -160,6 +160,9 @@ Grafika: Petr Weinlich</value>
   <data name="DrawingTool_Eraser" xml:space="preserve">
     <value>Zmizík</value>
   </data>
+  <data name="DrawingWarning" xml:space="preserve">
+    <value>Pozor, při kreslení stěn tenčích než uvažovaný poloměr sekundární vlny může být výsledek simulace nerealistický!</value>
+  </data>
   <data name="Eraser" xml:space="preserve">
     <value>Zmizík</value>
   </data>

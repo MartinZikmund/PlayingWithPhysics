@@ -108,6 +108,7 @@
                         Grid.Column="1"
                         Width="100"
                         Height="100"
+						 VerticalAlignment="Top"
                         Background="White">
                         <Grid Visibility="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
                             <Ellipse
@@ -143,13 +144,14 @@
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         IsEnabled="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
-                        <StackPanel Spacing="8">
+                        <StackPanel Spacing="0">
                             <Slider
                                 Header="{extensions:Localize Key=BrushSize}"
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxBrushSize}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinBrushSize}"
                                 Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
-                            <ComboBox
+							<ComboBox
+								Margin="0,8,0,0" 
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=SurfaceType}"
                                 ItemsSource="{x:Bind Model.SurfaceTypes}"
@@ -162,6 +164,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox
+								Margin="0,8,0,0" 
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=BrushShape}"
                                 ItemsSource="{x:Bind Model.ShapeTypes}"
@@ -172,21 +175,28 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                        </StackPanel>
+						</StackPanel>
                     </ContentControl>
                     <Grid
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         ColumnSpacing="8">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button
+						<TextBlock Margin="0,0,0,8" FontSize="{ThemeResource ToolTipContentThemeFontSize}" Grid.ColumnSpan="2" TextAlignment="Center" TextWrapping="WrapWholeWords" Foreground="Orange" Text="{extensions:Localize Key=DrawingWarning}" Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}" />
+						<Button
+							Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ResetPresetCommand}"
                             Content="{extensions:Localize Key=ClearDrawing}" />
                         <Button
+							Grid.Row="1"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ConfirmDrawingCommand}"
