@@ -1,17 +1,18 @@
 ﻿using System;
 using Physics.Shared.Helpers;
 using Physics.Shared.Logic.Constants;
+using Physics.Shared.Mathematics;
 
 namespace Physics.GravitationalFieldMovement.Logic;
 
 public class InputConfiguration
 {
-	public InputConfiguration(double planetRadius, double planetMass, double height, double startVelocity, double elevationAngle, double coordinateAngle)
+	public InputConfiguration(BigNumber planetRadius, BigNumber planetMass, BigNumber height, BigNumber startVelocity, double elevationAngle, double coordinateAngle)
 	{
-		Rz = planetRadius;
-		Mz = planetMass;
-		H = height;
-		V0 = startVelocity;
+		RzBigNumber = planetRadius;
+		MzBigNumber = planetMass;
+		HBigNumber = height;
+		V0BigNumber = startVelocity;
 		BetaDeg = elevationAngle;
 		Phi0Deg = coordinateAngle;
 
@@ -101,13 +102,21 @@ public class InputConfiguration
 		OmegaDeg = 360 * Omega / (2 * Math.PI);
 	}
 
-	public double Rz { get; }
+	public BigNumber RzBigNumber { get; }
 
-	public double Mz { get; }
+	public double Rz => (double)RzBigNumber;
 
-	public double H { get; }
+	public BigNumber MzBigNumber { get; }
 
-	public double V0 { get; }
+	public double Mz => (double)MzBigNumber;
+
+	public BigNumber HBigNumber { get; }
+
+	public double H => (double)HBigNumber;
+
+	public BigNumber V0BigNumber { get; }
+
+	public double V0 => (double)V0BigNumber;
 
 	public double BetaDeg { get; }
 
