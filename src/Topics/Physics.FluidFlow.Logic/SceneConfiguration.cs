@@ -37,7 +37,5 @@
 		public float Length { get; set; }
 
 		public float HeightDecrease { get; set; }
-
-		public float YMax { get; set; } = 15;
 	}
 }

@@ -14,6 +14,7 @@ namespace Physics.FluidFlow.Rendering
 
 		internal override void StartSimulation(SceneConfiguration sceneConfiguration)
 		{
+			base.StartSimulation(sceneConfiguration);
 			_sceneConfiguration = sceneConfiguration;
 			_physicsService = new BernoulliWithHeightChangePhysicsService(sceneConfiguration);
 		}

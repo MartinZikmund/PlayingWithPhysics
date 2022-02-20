@@ -168,6 +168,20 @@ namespace Physics.FluidFlow.ViewModels
 		private SceneConfiguration PrepareConfiguration()
 		{
 			var diameter1 = DiameterConfiguration.IsVisible ? DiameterInM : Diameter1InM;
+
+			// Calculate forced values
+			if (SelectedDiameterRelationType == DiameterRelationType.Equal && InputVariant == InputVariant.ContinuityEquation)
+			{
+				if (SelectedFluid.FluidDefinition == FluidDefinitions.Oil)
+				{
+					Velocity = 4000.4f / (3.14f * diameter1 * diameter1);
+				}
+				else
+				{
+					Velocity = 50.4f / (3.14f * diameter1 * diameter1);
+				}
+			}
+
 			return new SceneConfiguration(
 				InputVariant,
 				SelectedDiameterRelationType,
