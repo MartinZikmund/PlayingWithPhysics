@@ -208,6 +208,9 @@ Grafika: Petr Weinlich</value>
   <data name="SenePreset_Point" xml:space="preserve">
     <value>Bod</value>
   </data>
+  <data name="Set" xml:space="preserve">
+    <value>Nastavit</value>
+  </data>
   <data name="SetDefault" xml:space="preserve">
     <value>Nastavit výchozí</value>
   </data>
@@ -227,7 +230,7 @@ Grafika: Petr Weinlich</value>
     <value>Zobrazit zdroj</value>
   </data>
   <data name="ShowWave" xml:space="preserve">
-    <value>Zobrazit vlnu</value>
+    <value>Zobrazit zasaženou oblast</value>
   </data>
   <data name="ShowWaveEdge" xml:space="preserve">
     <value>Zobrazit okraj vlny</value>
