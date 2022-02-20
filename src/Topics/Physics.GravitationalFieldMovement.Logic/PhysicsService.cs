@@ -38,7 +38,8 @@ public class PhysicsService
 	private TrajectoryPoint[] CalculateEllipseTrajectory()
 	{
 		var results = new List<TrajectoryPoint>();
-		for (int dataPointIndex = 0; dataPointIndex < DataPointCount; dataPointIndex++)
+		var impact = false;
+		for (int dataPointIndex = 0; dataPointIndex < DataPointCount && !impact; dataPointIndex++)
 		{
 			var t = Dt * dataPointIndex;
 			var M = Input.N * (t - Input.Tau);
@@ -65,6 +66,8 @@ public class PhysicsService
 			var v = Math.Sqrt(2 * (Input.En + Input.Alpha / r));
 			var trajectoryPoint = new TrajectoryPoint(t, x, y, v);
 			results.Add(trajectoryPoint);
+
+			impact = r < Input.Rz;
 		}
 		return results.ToArray();
 	}
@@ -76,7 +79,8 @@ public class PhysicsService
 		var c1 = 1.543;
 		var a8 = 10433;
 		var c8 = 1490;
-		for (int dataPointIndex = 0; dataPointIndex < DataPointCount; dataPointIndex++)
+		var impact = false;
+		for (int dataPointIndex = 0; dataPointIndex < DataPointCount && !impact; dataPointIndex++)
 		{
 			var t = Dt * dataPointIndex;
 			var M = Input.N * (t - Input.Tau);
@@ -98,6 +102,8 @@ public class PhysicsService
 			var v = Math.Sqrt(2 * (Input.En + Input.Alpha / r));
 			var trajectoryPoint = new TrajectoryPoint(t, x, y, v);
 			results.Add(trajectoryPoint);
+
+			impact = r < Input.Rz;
 		}
 		return results.ToArray();
 	}

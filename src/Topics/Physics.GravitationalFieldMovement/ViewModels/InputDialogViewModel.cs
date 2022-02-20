@@ -1,4 +1,5 @@
 ﻿using Physics.GravitationalFieldMovement.Logic;
+using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.ViewModels;
@@ -14,10 +15,10 @@ public class InputDialogViewModel : ViewModelBase
 
 		if (inputConfiguration != null)
 		{
-			RzString = inputConfiguration.Rz.ToString();
-			MzString = inputConfiguration.Mz.ToString();
-			HString = inputConfiguration.H.ToString();
-			V0String = inputConfiguration.V0.ToString();
+			RzBigNumber = inputConfiguration.RzBigNumber;
+			MzBigNumber = inputConfiguration.MzBigNumber;
+			HBigNumber = inputConfiguration.HBigNumber;
+			V0BigNumber = inputConfiguration.V0BigNumber;
 			BetaDeg = inputConfiguration.BetaDeg;
 			Phi0Deg = inputConfiguration.Phi0Deg;
 		}
@@ -25,13 +26,13 @@ public class InputDialogViewModel : ViewModelBase
 
 	public bool IsAdvanced { get; }
 
-	public string RzString { get; set; } = "6378000";
+	public BigNumber RzBigNumber { get; set; } = new BigNumber(6.38, 6);
 
-	public string MzString { get; set; } = "5.97E+24";
+	public BigNumber MzBigNumber { get; set; } = new BigNumber(5.97, 24);
 
-	public string HString { get; set; } = "900000";
+	public BigNumber HBigNumber { get; set; } = new BigNumber(9.0, 5);
 
-	public string V0String { get; set; } = "7000";
+	public BigNumber V0BigNumber { get; set; } = new BigNumber(7.0, 3);
 
 	public double BetaDeg { get; set; } = 30;
 
@@ -46,18 +47,14 @@ public class InputDialogViewModel : ViewModelBase
 	public void Save(object sender, ContentDialogButtonClickEventArgs args)
 	{
 		bool allValid = true;
-		allValid &= double.TryParse(RzString, out var rz);
-		allValid &= double.TryParse(MzString, out var mz);
-		allValid &= double.TryParse(HString, out var h);
-		allValid &= double.TryParse(V0String, out var v0);
 
 		if (allValid)
 		{
 			Result = new InputConfiguration(
-				rz,
-				mz,
-				h,
-				v0,
+				RzBigNumber,
+				MzBigNumber,
+				HBigNumber,
+				V0BigNumber,
 				BetaDeg,
 				Phi0Deg);
 		}
