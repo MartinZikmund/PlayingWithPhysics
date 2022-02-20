@@ -11,7 +11,7 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public static float MinStepRadius => 4;
 
-		public static float DefaultStepRadius => (float)Math.Round(Math.Sqrt(DefaultFieldSize), 1);
+		public static float DefaultStepRadius => 33;
 
 		public static float MaxStepRadius => 2 * DefaultStepRadius;
 

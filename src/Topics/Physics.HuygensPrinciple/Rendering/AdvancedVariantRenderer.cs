@@ -133,7 +133,7 @@ namespace Physics.HuygensPrinciple.Rendering
 			}
 			else
 			{
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 10; i++)
 				{
 					var random = _previousStep.WaveBorder[_randomizer.Next(_previousStep.WaveBorder.Length)];
 					canvas.DrawCircle(random.X, random.Y, 2, _controller._significantPointPaint);

@@ -208,6 +208,9 @@ Graphics: Petr Weinlich</value>
   <data name="ScenePreset_Square" xml:space="preserve">
     <value>Square</value>
   </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
   <data name="SetDefault" xml:space="preserve">
     <value>Set default</value>
   </data>
@@ -227,7 +230,7 @@ Graphics: Petr Weinlich</value>
     <value>Show source</value>
   </data>
   <data name="ShowWave" xml:space="preserve">
-    <value>Show wave</value>
+    <value>Show affected area</value>
   </data>
   <data name="ShowWaveEdge" xml:space="preserve">
     <value>Show wavefront</value>

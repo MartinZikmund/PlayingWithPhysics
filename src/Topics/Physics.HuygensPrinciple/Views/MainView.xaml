@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.HuygensPrinciple.Views"
+    xmlns:logic="using:Physics.HuygensPrinciple.Logic"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-	xmlns:logic="using:Physics.HuygensPrinciple.Logic"
     xmlns:viewModels="using:Physics.HuygensPrinciple.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
@@ -76,7 +76,7 @@
 
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Drawing}" />
                 <Button
-					HorizontalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.DrawingState.StartDrawingCommand}"
                     Content="{extensions:Localize Key=StartDrawing}"
                     IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
@@ -108,7 +108,7 @@
                         Grid.Column="1"
                         Width="100"
                         Height="100"
-						 VerticalAlignment="Top"
+                        VerticalAlignment="Top"
                         Background="White">
                         <Grid Visibility="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
                             <Ellipse
@@ -150,8 +150,8 @@
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxBrushSize}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinBrushSize}"
                                 Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
-							<ComboBox
-								Margin="0,8,0,0" 
+                            <ComboBox
+                                Margin="0,8,0,0"
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=SurfaceType}"
                                 ItemsSource="{x:Bind Model.SurfaceTypes}"
@@ -164,7 +164,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox
-								Margin="0,8,0,0" 
+                                Margin="0,8,0,0"
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=BrushShape}"
                                 ItemsSource="{x:Bind Model.ShapeTypes}"
@@ -175,28 +175,36 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-						</StackPanel>
+                        </StackPanel>
                     </ContentControl>
                     <Grid
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         ColumnSpacing="8">
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-						</Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-						<TextBlock Margin="0,0,0,8" FontSize="{ThemeResource ToolTipContentThemeFontSize}" Grid.ColumnSpan="2" TextAlignment="Center" TextWrapping="WrapWholeWords" Foreground="Orange" Text="{extensions:Localize Key=DrawingWarning}" Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}" />
-						<Button
-							Grid.Row="1"
+                        <TextBlock
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,8"
+                            FontSize="{ThemeResource ToolTipContentThemeFontSize}"
+                            Foreground="Orange"
+                            Text="{extensions:Localize Key=DrawingWarning}"
+                            TextAlignment="Center"
+                            TextWrapping="WrapWholeWords"
+                            Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}" />
+                        <Button
+                            Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ResetPresetCommand}"
                             Content="{extensions:Localize Key=ClearDrawing}" />
                         <Button
-							Grid.Row="1"
+                            Grid.Row="1"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ConfirmDrawingCommand}"
@@ -212,36 +220,42 @@
                 HorizontalAlignment="Center"
                 Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
                 <Button.Flyout>
-					<Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
-						<StackPanel Spacing="8" Width="200">
+                    <Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
+                        <StackPanel Width="200" Spacing="8">
                             <mux:NumberBox
                                 x:Name="FieldSizeNumberBox"
                                 Header="{extensions:Localize Key=FieldSize}"
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxFieldSize}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinFieldSize}"
-								SpinButtonPlacementMode="Inline"
+                                SpinButtonPlacementMode="Inline"
                                 Value="{x:Bind Model.UnconfirmedRenderSettings.FieldSize, Mode=TwoWay}" />
                             <mux:NumberBox
                                 x:Name="StepRadiusNumberBox"
                                 Header="{extensions:Localize Key=StepRadius}"
+                                LargeChange="1"
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxStepRadius}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinStepRadius}"
-								SmallChange="0.1"
-								LargeChange="1"
-								SpinButtonPlacementMode="Inline"
+                                SmallChange="0.1"
+                                SpinButtonPlacementMode="Inline"
                                 Value="{x:Bind Model.UnconfirmedRenderSettings.StepRadius, Mode=TwoWay}" />
-							<Button Margin="0,8,0,0" HorizontalAlignment="Stretch" Command="{x:Bind Model.SetDefaultRenderSettingsCommand}">
-								<StackPanel Spacing="8" Orientation="Horizontal">
-									<SymbolIcon Symbol="Undo" />
-									<TextBlock Text="{extensions:Localize Key=SetDefault}" />
-								</StackPanel>
-							</Button>
-							<Button HorizontalAlignment="Stretch" Style="{ThemeResource AccentButtonStyle}" Click="SaveRenderSettings_Click">
-								<StackPanel Spacing="8" Orientation="Horizontal">
-									<SymbolIcon Symbol="Save" />
-									<TextBlock Text="{extensions:Localize Key=Save}" />
-								</StackPanel>
-							</Button>
+                            <Button
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.SetDefaultRenderSettingsCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <SymbolIcon Symbol="Undo" />
+                                    <TextBlock Text="{extensions:Localize Key=SetDefault}" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Click="SaveRenderSettings_Click"
+                                Style="{ThemeResource AccentButtonStyle}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <SymbolIcon Symbol="Save" />
+                                    <TextBlock Text="{extensions:Localize Key=Set}" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>
