@@ -28,6 +28,7 @@ namespace Physics.CyclicProcesses.Rendering
 			Color = SKColors.Black,
 			StrokeWidth = 1,
 			IsStroke = true,
+			TextAlign = SKTextAlign.Center,
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High
 		};
@@ -201,8 +202,8 @@ namespace Physics.CyclicProcesses.Rendering
 
 			canvas.DrawLine(fromX, y, toX, y, _diagramPaint);
 
-			canvas.DrawText("1", fromX - 10, y, _textPaint);
-			canvas.DrawText("2", toX + 10, y, _textPaint);
+			canvas.DrawText("1", fromX, y + 14, _textPaint);
+			canvas.DrawText("2", toX, y + 14, _textPaint);
 		}
 
 		private void DrawIsochoricProcess(SKCanvas canvas)
@@ -215,8 +216,8 @@ namespace Physics.CyclicProcesses.Rendering
 
 			canvas.DrawLine(x, fromY, x, toY, _diagramPaint);
 
-			canvas.DrawText("1", x, fromY - 10, _textPaint);
-			canvas.DrawText("2", x, toY + 10, _textPaint);
+			canvas.DrawText("1", x - 14, fromY, _textPaint);
+			canvas.DrawText("2", x - 14, toY, _textPaint);
 		}
 
 		public override void Update(ISkiaCanvas sender)

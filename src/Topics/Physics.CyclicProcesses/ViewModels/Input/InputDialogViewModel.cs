@@ -17,6 +17,19 @@ namespace Physics.CyclicProcesses.ViewModels.Input
 		{
 			_processType = processType;
 			DialogConfiguration = InputDialogConfigurations.Configurations[processType];
+
+			// Swap the defaults for these two specific processes
+			// to match the value tables with easy variant
+			// animations.
+			if (processType == ProcessType.Isobaric)
+			{
+				(V1, V2) = (V2, V1);
+			}
+			if (processType == ProcessType.Isochoric)
+			{
+				(T1, T2) = (T2, T1);
+			}
+
 			if (inputConfiguration != null)
 			{
 				PresetValues(inputConfiguration);
