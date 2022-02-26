@@ -114,7 +114,7 @@ namespace Physics.CyclicProcesses.Rendering
 			switch (_physicsService.Process)
 			{
 				case Logic.ProcessType.Isotermic:
-					DrawNonLinearProcess(canvas, _physicsService);
+					DrawNonLinearProcess(canvas, _physicsService, true);
 					break;
 				case Logic.ProcessType.Isochoric:
 					DrawIsochoricProcess(canvas);
@@ -123,7 +123,7 @@ namespace Physics.CyclicProcesses.Rendering
 					DrawIsobaricProcess(canvas);
 					break;
 				case Logic.ProcessType.Adiabatic:
-					DrawNonLinearProcess(canvas, _physicsService);
+					DrawNonLinearProcess(canvas, _physicsService, true);
 					break;
 				case Logic.ProcessType.StirlingEngine:
 					DrawStirling(canvas);
@@ -136,8 +136,8 @@ namespace Physics.CyclicProcesses.Rendering
 			var stirling = (StirlingEnginePhysicsService)_physicsService;
 			var stirlingInput = (StirlingEngineInputConfiguration)_inputConfiguration;
 			// Draw two parts
-			DrawNonLinearProcess(canvas, stirling.Isotermic1);
-			DrawNonLinearProcess(canvas, stirling.Isotermic2);
+			DrawNonLinearProcess(canvas, stirling.Isotermic1, false);
+			DrawNonLinearProcess(canvas, stirling.Isotermic2, false);
 
 			var vertical1X = GetRenderX(stirlingInput.V1);
 			var vertical2X = GetRenderX(stirlingInput.V2);
@@ -155,7 +155,7 @@ namespace Physics.CyclicProcesses.Rendering
 			canvas.DrawText("4", vertical1X - 10, vertical1ToY, _textPaint);
 		}
 
-		private void DrawNonLinearProcess(SKCanvas canvas, IPhysicsService physicsService)
+		private void DrawNonLinearProcess(SKCanvas canvas, IPhysicsService physicsService, bool drawPoints)
 		{
 			float stepSizeInUnits = 0.01f;
 
@@ -163,15 +163,19 @@ namespace Physics.CyclicProcesses.Rendering
 			var currentTime = 0.0f;
 			var maxX = PhysicsService.CycleLengthInSeconds / 2;
 			float lastRenderX = GetRenderX(physicsService.CalculateV(currentTime));
+			var startX = lastRenderX;
 			float lastRenderY = GetRenderY(physicsService.CalculateP(currentTime));
+			var startY = lastRenderY;
 			path.MoveTo(lastRenderX, lastRenderY);
 			currentTime += stepSizeInUnits;
 
+			float lastX = startX;
+			float lastY = startY;
 			while (currentTime <= maxX)
 			{
-				float renderX = GetRenderX(physicsService.CalculateV(currentTime));
-				float renderY = GetRenderY(physicsService.CalculateP(currentTime));
-				path.LineTo(renderX, renderY);
+				lastX = GetRenderX(physicsService.CalculateV(currentTime));
+				lastY = GetRenderY(physicsService.CalculateP(currentTime));
+				path.LineTo(lastX, lastY);
 
 				if (currentTime >= maxX)
 				{
@@ -182,6 +186,9 @@ namespace Physics.CyclicProcesses.Rendering
 			}
 
 			canvas.DrawPath(path, _diagramPaint);
+
+			canvas.DrawText("1", startX - 10, startY, _textPaint);
+			canvas.DrawText("2", lastX + 10, lastY, _textPaint);
 		}
 
 		private void DrawIsobaricProcess(SKCanvas canvas)
@@ -193,6 +200,9 @@ namespace Physics.CyclicProcesses.Rendering
 			var y = GetRenderY(input.P);
 
 			canvas.DrawLine(fromX, y, toX, y, _diagramPaint);
+
+			canvas.DrawText("1", fromX - 10, y, _textPaint);
+			canvas.DrawText("2", toX + 10, y, _textPaint);
 		}
 
 		private void DrawIsochoricProcess(SKCanvas canvas)
@@ -204,6 +214,9 @@ namespace Physics.CyclicProcesses.Rendering
 			var toY = GetRenderY(_physicsService.CalculateP(PhysicsService.CycleLengthInSeconds / 2));
 
 			canvas.DrawLine(x, fromY, x, toY, _diagramPaint);
+
+			canvas.DrawText("1", x, fromY - 10, _textPaint);
+			canvas.DrawText("2", x, toY + 10, _textPaint);
 		}
 
 		public override void Update(ISkiaCanvas sender)
