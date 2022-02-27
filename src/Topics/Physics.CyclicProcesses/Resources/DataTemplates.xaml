@@ -283,21 +283,7 @@
                 <Run Text="=" />
                 <Run Text="{x:Bind QIn}" />
                 <Run Text="J" />
-            </TextBlock>
-			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=EffectiveEfficiencyDescription}" />
-			<TextBlock>
-                <Run
-                    FontStyle="Italic"
-                    FontWeight="Bold"
-                    Text="{extensions:Localize Key=Effective}" />
-                <Run
-                    FontStyle="Italic"
-                    FontWeight="Bold"
-                    Text="η" />
-                <Run Text="=" />
-                <Run Text="{x:Bind EffectiveEfficiencyInPercent}" />
-                <Run Text="%" />
-            </TextBlock>
+			</TextBlock>
 			<TextBlock Style="{ThemeResource DescriptionTextBlockStyle}" Text="{extensions:Localize Key=TermicEfficiencyDescription}" />
 			<TextBlock>
                 <Run

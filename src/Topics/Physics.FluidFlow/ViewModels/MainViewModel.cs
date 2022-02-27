@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Physics.FluidFlow.Logic;
 using Physics.FluidFlow.Controls;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
 
 namespace Physics.FluidFlow.ViewModels
 {
@@ -73,7 +74,14 @@ namespace Physics.FluidFlow.ViewModels
 				return;
 			}
 
-			await SetParametersAsync();
+			try
+			{
+				await SetParametersAsync();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+			}
 		}
 
 		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);

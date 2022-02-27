@@ -1,4 +1,5 @@
-﻿using Physics.FluidFlow.Logic;
+﻿using System;
+using Physics.FluidFlow.Logic;
 
 namespace Physics.FluidFlow.Logic
 {
@@ -12,6 +13,11 @@ namespace Physics.FluidFlow.Logic
 				{
 					FluidDefinitions.Water,
 					FluidDefinitions.Oil
+				},
+				VelocityConfigurations = new System.Collections.Generic.Dictionary<FluidDefinition, FieldConfiguration>()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateInvisible()},
+					{ FluidDefinitions.Oil, FieldConfiguration.CreateInvisible()},
 				},
 				DiameterConfigurations = new ()
 				{
@@ -63,24 +69,25 @@ namespace Physics.FluidFlow.Logic
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.Equal)
 			{
-
+				FluidDefinitions = Array.Empty<FluidDefinition>()
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S1Larger)
 			{
-
+				FluidDefinitions = Array.Empty<FluidDefinition>()
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S2Larger)
 			{
+				FluidDefinitions = Array.Empty<FluidDefinition>()
 
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S1Larger)
 			{
-
+				FluidDefinitions = Array.Empty<FluidDefinition>(),
 				HeightDecreaseConfiguration = FieldConfiguration.CreateRestricted(1, 100, 10, step: 1),
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S2Larger)
 			{
-
+				FluidDefinitions = Array.Empty<FluidDefinition>(),
 				HeightDecreaseConfiguration = FieldConfiguration.CreateRestricted(1, 100, 10, step: 1),
 			},
 			new InputConfiguration(InputVariant.RealFluidMovement, DiameterRelationType.Equal)

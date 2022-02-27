@@ -88,7 +88,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <TextBlock Grid.Row="1">
+		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.VelocityConfiguration.IsVisible}">
             <Run Text="{extensions:Localize Key=FlowVelocityLabel}" />
             <Run FontWeight="Bold" Text="v" />
             <Run Text="(m.s⁻¹)" />
@@ -97,7 +97,8 @@
             x:Name="VelocityNumberBox"
             Grid.Row="1"
             Grid.Column="1"
-            Value="{x:Bind Model.Velocity, Mode=TwoWay}" />
+            Value="{x:Bind Model.Velocity, Mode=TwoWay}"
+			Visibility="{x:Bind Model.VelocityConfiguration.IsVisible}" />
 
         <TextBlock Grid.Row="2" Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}">
             <Run Text="{extensions:Localize Key=HeightDecreaseLabel}" />

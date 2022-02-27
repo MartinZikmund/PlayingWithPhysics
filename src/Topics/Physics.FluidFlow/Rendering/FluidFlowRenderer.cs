@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Toolkit.Uwp.Helpers;
 using Physics.FluidFlow.Logic;
 using Physics.Shared.Logic.Geometry;
 using Physics.Shared.UI.Extensions;
 using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using SkiaSharp.Views.UWP;
 
 namespace Physics.FluidFlow.Rendering
 {
@@ -16,12 +18,27 @@ namespace Physics.FluidFlow.Rendering
 
 		private float _horizontalPadding;
 
-		private float _pixelsPerUnitX;
-		private float _pixelsPerUnitY;
+		private float _pixelsPerUnit;
 
 		private SKPaint[] _particlePaints;
 		private SKPaint[] _particlePathPaints;
 		private SKPaint[] _particleVectorPaints;
+
+		protected readonly SKPaint _plumbingBorderPaint = new SKPaint()
+		{
+			Color = SKColors.Black,
+			StrokeWidth = 2,
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
+			IsStroke = true
+		};
+
+		protected readonly SKPaint _plumbingFillPaint = new SKPaint()
+		{
+			IsAntialias = true,
+			FilterQuality = SKFilterQuality.High,
+			IsStroke = false
+		};
 
 		protected float MinRenderX { get; private set; }
 
@@ -84,7 +101,11 @@ namespace Physics.FluidFlow.Rendering
 
 		public abstract IPhysicsService PhysicsService { get; }
 
-		internal abstract void StartSimulation(SceneConfiguration sceneConfiguration);
+		internal virtual void StartSimulation(SceneConfiguration sceneConfiguration)
+		{
+			var fluidColor = sceneConfiguration.Fluid.Color;
+			_plumbingFillPaint.Color = ColorHelper.ToColor(fluidColor).ToSKColor();
+		}
 
 		public void Dispose() { }
 
@@ -98,8 +119,10 @@ namespace Physics.FluidFlow.Rendering
 			_horizontalPadding = _canvas.ScaledSize.Width / 10;
 			MinRenderX = _horizontalPadding;
 			MaxRenderX = _canvas.ScaledSize.Width - _horizontalPadding;
-			_pixelsPerUnitX = ((float)_canvas.ScaledSize.Width - 2 * _horizontalPadding) / PhysicsService.XMax;
-			_pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
+
+			var pixelsPerUnitX = ((float)_canvas.ScaledSize.Width - 2 * _horizontalPadding) / PhysicsService.XMax;
+			var pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
+			_pixelsPerUnit = Math.Min(pixelsPerUnitX, pixelsPerUnitY);
 		}
 
 		public void Draw(ISkiaCanvas sender, SKSurface args)
@@ -110,6 +133,7 @@ namespace Physics.FluidFlow.Rendering
 				return;
 			}
 
+			DrawPlumbing(args.Canvas);
 			DrawTrajectory(args.Canvas);
 			DrawVectors(args.Canvas);
 
@@ -121,6 +145,16 @@ namespace Physics.FluidFlow.Rendering
 				var y = GetRenderY((float)position.Y);
 				args.Canvas.DrawCircle(x, y, 4, _particlePaints[particleId % _particlePaints.Length]);
 			}
+		}
+
+		protected virtual SKPath GetPlumbingPath() => new SKPath();
+
+		protected virtual void DrawPlumbing(SKCanvas args)
+		{
+			using var path = GetPlumbingPath();
+
+			args.DrawPath(path, _plumbingFillPaint);
+			args.DrawPath(path, _plumbingBorderPaint);
 		}
 
 		private void DrawTrajectory(SKCanvas canvas)
@@ -184,8 +218,8 @@ namespace Physics.FluidFlow.Rendering
 
 		protected abstract float GetVelocityVectorSize(int vectorId, int particleId);
 
-		private float GetRenderX(float x) => _horizontalPadding + x * _pixelsPerUnitX;
+		protected float GetRenderX(float x) => _canvas.ScaledSize.Width / 2 - PhysicsService.XMax / 2 * _pixelsPerUnit + x * _pixelsPerUnit;
 
-		private float GetRenderY(float y) => _canvas.ScaledSize.Height / 2 - (y - PhysicsService.YMin) * _pixelsPerUnitY + Math.Abs(PhysicsService.YMax - PhysicsService.YMin) / 2 * _pixelsPerUnitY;
+		protected float GetRenderY(float y) => _canvas.ScaledSize.Height / 2 - (y - PhysicsService.YMin) * _pixelsPerUnit + Math.Abs(PhysicsService.YMax - PhysicsService.YMin) / 2 * _pixelsPerUnit;
 	}
 }

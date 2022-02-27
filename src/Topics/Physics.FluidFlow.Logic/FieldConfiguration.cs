@@ -2,7 +2,11 @@
 {
 	public class FieldConfiguration
 	{
-		private FieldConfiguration(bool isVisible) => IsVisible = isVisible;
+		private FieldConfiguration(bool isVisible, float? forcedValue)
+		{
+			IsVisible = isVisible;
+			ForcedValue = forcedValue;
+		}
 
 		private FieldConfiguration(double minimum, double maximum, float? defaultValue, int descriptionType, float? step = null)
 		{
@@ -14,7 +18,10 @@
 		}
 
 		public static FieldConfiguration CreateInvisible() =>
-			new FieldConfiguration(false);
+			new FieldConfiguration(false, null);
+
+		public static FieldConfiguration CreateInvisible(float forcedValue) =>
+			new FieldConfiguration(false, forcedValue);
 
 		public static FieldConfiguration CreateRestricted(double minimum, double maximum, float? defaultValue = null, int descriptionType = 0, float? step = null) =>
 			new FieldConfiguration(minimum, maximum, defaultValue, descriptionType, step);
@@ -29,6 +36,8 @@
 		public double Maximum { get; set; }
 
 		public float? DefaultValue { get; set; }
+
+		public float? ForcedValue { get; set; }
 
 		public float? Step { get; set; }
 
