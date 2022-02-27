@@ -31,6 +31,8 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public IList<Point> GetBorderPoints(HuygensField field, CellState spotState, CellState backgroundState = 0) =>
 			_stepper.GetBorderPoints(field, spotState, backgroundState);
+		public IList<Point> GetInitialBorderPoints() =>
+			_stepper.GetBorderPoints(_originalField, Logic.CellState.Source);
 
 		public bool Precalculated { get; private set; }
 

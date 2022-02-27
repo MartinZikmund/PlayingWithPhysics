@@ -29,6 +29,8 @@ namespace Physics.HuygensPrinciple.Logic
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+		public bool Redrawn { get; set; } = false;
+
 		public ScenePreset Clone()
 		{
 			var preset = new ScenePreset(Name, SignificantPoints.ToArray());

@@ -154,6 +154,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		private void ConfirmDrawing()
 		{
+			CurrentPreset.Redrawn = true;
 			DrawingState.IsDrawing = false;
 		}
 

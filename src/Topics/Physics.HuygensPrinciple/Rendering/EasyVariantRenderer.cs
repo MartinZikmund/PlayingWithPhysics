@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -9,7 +10,8 @@ namespace Physics.HuygensPrinciple.Rendering
 	{
 		private readonly HuygensPrincipleCanvasController _controller;
 		private IList<SKPoint> _primarySources;
-
+		public Random _randomizer = new Random();
+		List<SKPoint> _initialSignificantPoints = new List<SKPoint>();
 		public EasyVariantRenderer(HuygensPrincipleCanvasController controller)
 		{
 			_controller = controller;
@@ -46,10 +48,21 @@ namespace Physics.HuygensPrinciple.Rendering
 
 				if (_controller._renderConfiguration.ShowSignificantPoints)
 				{
-					foreach (var point in _controller._scene.SignificantPoints)
+					if (!_controller._scene.Redrawn)
 					{
-						args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, 2, _controller._significantPointPaint);
-						args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._significantPointEllipsePaint);
+						foreach (var point in _controller._scene.SignificantPoints)
+						{
+							args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, 2, _controller._significantPointPaint);
+							args.Canvas.DrawCircle(point.X * size + topLeft.X, point.Y * size + topLeft.Y, radius, _controller._significantPointEllipsePaint);
+						}
+					}
+					else
+					{
+						for (int i = 0; i < _initialSignificantPoints.Count; i++)
+						{
+							args.Canvas.DrawCircle(_initialSignificantPoints[i].X * size + topLeft.X, _initialSignificantPoints[i].Y * size + topLeft.Y, 2, _controller._significantPointPaint);
+							args.Canvas.DrawCircle(_initialSignificantPoints[i].X * size + topLeft.X, _initialSignificantPoints[i].Y * size + topLeft.Y, radius, _controller._significantPointEllipsePaint);
+						}
 					}
 				}
 			}
@@ -64,6 +77,12 @@ namespace Physics.HuygensPrinciple.Rendering
 			_primarySources = manager.GetBorderPoints(manager.OriginalField, Logic.CellState.Source)
 				.Select(p => new SKPoint(p.X * 1.0f / (manager.FieldWidth - 1), p.Y * 1.0f / (manager.FieldHeight - 1)))
 				.ToList();
+
+			if (_primarySources.Count > 0)
+			{
+				_initialSignificantPoints = Enumerable.Range(0,10).Select(_ => _primarySources[_randomizer.Next(_primarySources.Count)]).ToList();
+			}
+
 		}
 
 		public void Update(ISkiaCanvas sender)
