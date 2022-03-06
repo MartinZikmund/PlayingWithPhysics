@@ -88,7 +88,7 @@ namespace Physics.FluidFlow.ViewModels
 
 		private async Task SetParametersAsync()
 		{
-			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant);
+			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant, SceneConfiguration?.Configuration);
 			if (await sceneConfigurationDialog.ShowAsync() == ContentDialogResult.Primary)
 			{
 				SceneConfiguration = new SceneConfigurationViewModel(sceneConfigurationDialog.Model.Result);

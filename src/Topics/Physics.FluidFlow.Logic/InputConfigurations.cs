@@ -22,7 +22,7 @@ namespace Physics.FluidFlow.Logic
 				DiameterConfigurations = new ()
 				{
 					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(1, 10, 5, step: 0.5f) },
-					{ FluidDefinitions.Oil, FieldConfiguration.CreateRestricted(40, 105, 10, step: 5f) },
+					{ FluidDefinitions.Oil, FieldConfiguration.CreateRestricted(40, 105, 60, step: 5f) },
 				}
 			},
 			new InputConfiguration(InputVariant.ContinuityEquation, DiameterRelationType.S1Larger)

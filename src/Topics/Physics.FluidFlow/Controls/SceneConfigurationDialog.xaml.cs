@@ -9,10 +9,10 @@ namespace Physics.FluidFlow.Controls
 {
 	public sealed partial class SceneConfigurationDialog : ContentDialog
 	{
-		public SceneConfigurationDialog(InputVariant inputVariant)
+		public SceneConfigurationDialog(InputVariant inputVariant, SceneConfiguration sceneConfiguration)
 		{
 			InitializeComponent();
-			Model = new SceneConfigurationDialogViewModel(inputVariant, null);
+			Model = new SceneConfigurationDialogViewModel(inputVariant, sceneConfiguration);
 			Model.InputConfigurationChanged += Model_InputConfigurationChanged;
 			SetupNumberBoxes();
 		}

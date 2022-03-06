@@ -4,10 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using MvvmCross;
-using MvvmCross.ViewModels;
 using Physics.FluidFlow.Logic;
-using Physics.FluidFlow.Logic;
-using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
 using Physics.Shared.ViewModels;
@@ -24,10 +21,10 @@ namespace Physics.FluidFlow.ViewModels
 			UpdateInputConfiguration();
 
 			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
-			SelectedFluid = Fluids.First();
 
 			if (sceneConfiguration != null)
 			{
+				SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == sceneConfiguration.Fluid) ?? Fluids.First();
 				SelectedDiameterRelationTypeIndex = DiameterRelationTypes.IndexOf(sceneConfiguration.DiameterRelationType);
 
 				DiameterInM = sceneConfiguration.Diameter1;
@@ -39,19 +36,15 @@ namespace Physics.FluidFlow.ViewModels
 			}
 			else
 			{
-				DiameterInM = DiameterConfiguration.DefaultValue ?? 1;
-				Diameter1InM = Diameter1Configuration.DefaultValue ?? 1;
-				Diameter2InM = Diameter2Configuration.DefaultValue ?? 1;
+				SelectedFluid = Fluids.First();
+				SelectedDiameterRelationTypeIndex = 0;
+				DiameterInCm = DiameterConfiguration.DefaultValue ?? 1;
+				Diameter1InCm = Diameter1Configuration.DefaultValue ?? 1;
+				Diameter2InCm = Diameter2Configuration.DefaultValue ?? 1;
 				Length = InputConfiguration.LengthConfiguration.DefaultValue ?? 1;
 				Velocity = VelocityConfiguration.DefaultValue ?? 1;
-				HeightDecreaseInM = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
+				HeightDecreaseInCm = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
 			}
-
-			//Label = oscillationInfo.Label;
-			//Color = ColorHelper.ToColor(oscillationInfo.Color);
-			//Frequency = oscillationInfo.Frequency;
-			//Amplitude = oscillationInfo.Amplitude;
-			//PhaseInDeg = oscillationInfo.PhaseInDeg;
 		}
 
 		public event EventHandler InputConfigurationChanged;
@@ -174,11 +167,11 @@ namespace Physics.FluidFlow.ViewModels
 			{
 				if (SelectedFluid.FluidDefinition == FluidDefinitions.Oil)
 				{
-					Velocity = 4000.4f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.40004f / (3.14f * diameter1 * diameter1);
 				}
 				else
 				{
-					Velocity = 50.4f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.00504f / (3.14f * diameter1 * diameter1);
 				}
 			}
 

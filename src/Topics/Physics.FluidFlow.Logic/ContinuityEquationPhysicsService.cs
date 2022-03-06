@@ -12,16 +12,26 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		_input = input;
 	}
 
-	public int ParticleCount => _input.DiameterRelationType == DiameterRelationType.Equal ? 7 : 5;
+	public int ParticleCount => _input.DiameterRelationType == DiameterRelationType.Equal ? 3 : 5;
 
-	public float XMax =>
-		_input.DiameterRelationType switch
+	public float XMax
+	{
+		get
 		{
-			DiameterRelationType.Equal => 100,
-			DiameterRelationType.S1Larger => 100,
-			DiameterRelationType.S2Larger => 100,
-			_ => throw new InvalidOperationException("Invalid diameter type"),
-		};
+			if (_input.Fluid == FluidDefinitions.Water)
+			{
+				return 0.50f;
+			}
+			else if (_input.Fluid == FluidDefinitions.Oil)
+			{
+				return 5f;
+			}
+			else
+			{
+				throw new InvalidOperationException("Unsupported fluid");
+			}
+		}
+	}
 
 	public float YMax =>
 		_input.DiameterRelationType switch
@@ -51,16 +61,12 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 
 	private Point2d GetDiameterEqualParticlePosition(float time, int particleId)
 	{
-		time = Math.Min(time, 58);
+		var x = _input.Velocity * time;
 		return particleId switch
 		{
-			0 => new Point2d(_input.Velocity * time, YMax),
-			1 => new Point2d(_input.Velocity * time, 2 / 3.0 * YMax),
-			2 => new Point2d(_input.Velocity * time, 1 / 3.0 * YMax),
-			3 => new Point2d(_input.Velocity * time, 0),
-			4 => new Point2d(_input.Velocity * time, -1 / 3.0 * YMax),
-			5 => new Point2d(_input.Velocity * time, -2 / 3.0 * YMax),
-			6 => new Point2d(_input.Velocity * time, - YMax),
+			0 => new Point2d(x, + _input.Diameter1 / 4),
+			1 => new Point2d(x, 0),
+			2 => new Point2d(x, - _input.Diameter1 / 4),
 			_ => throw new InvalidOperationException()
 		};
 	}
