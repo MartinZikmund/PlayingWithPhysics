@@ -30,9 +30,58 @@ namespace Physics.FluidFlow.Rendering
 				path.Close();
 				return path;
 			}
+			else if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.S1Larger)
+			{
+				var diameter1 = _sceneConfiguration.Diameter1;
+				var diameter2 = _sceneConfiguration.Diameter2;
+				var startX = -10;
+				var endX = _canvas.ScaledSize.Width + 10;
+				var x1 = GetRenderX(_physicsService.GetS1LargerX1());
+				var x2 = GetRenderX(_physicsService.GetS1LargerX2());
+				var x3 = GetRenderX(_physicsService.GetS1LargerX3());
+				var d1Top = GetRenderY(diameter1 / 2);
+				var d1bottom = GetRenderY(-diameter1 / 2);
+				var d2Top = GetRenderY(diameter2 / 2);
+				var d2bottom = GetRenderY(-diameter2 / 2);
+
+				var path = new SKPath();
+				path.MoveTo(startX, d1Top);
+				path.LineTo(x1, d1Top);
+				path.LineTo(x2, d2Top);
+				path.LineTo(endX, d2Top);
+				path.LineTo(endX, d2bottom);
+				path.LineTo(x2, d2bottom);
+				path.LineTo(x1, d1bottom);
+				path.LineTo(startX, d1bottom);
+				path.Close();
+
+				return path;
+			}
 			else
 			{
-				return new SKPath();
+				var diameter1 = _sceneConfiguration.Diameter1;
+				var diameter2 = _sceneConfiguration.Diameter2;
+				var startX = -10;
+				var endX = _canvas.ScaledSize.Width + 10;
+				var x1 = GetRenderX(_physicsService.GetS2LargerX1());
+				var x2 = GetRenderX(_physicsService.GetS2LargerX2());
+				var d1Top = GetRenderY(diameter1 / 2);
+				var d1bottom = GetRenderY(-diameter1 / 2);
+				var d2Top = GetRenderY(diameter2 / 2);
+				var d2bottom = GetRenderY(-diameter2 / 2);
+
+				var path = new SKPath();
+				path.MoveTo(startX, d1Top);
+				path.LineTo(x1, d1Top);
+				path.LineTo(x2, d2Top);
+				path.LineTo(endX, d2Top);
+				path.LineTo(endX, d2bottom);
+				path.LineTo(x2, d2bottom);
+				path.LineTo(x1, d1bottom);
+				path.LineTo(startX, d1bottom);
+				path.Close();
+
+				return path;
 			}
 		}
 

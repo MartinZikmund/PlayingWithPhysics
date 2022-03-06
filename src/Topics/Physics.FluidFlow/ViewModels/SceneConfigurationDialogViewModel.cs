@@ -20,8 +20,6 @@ namespace Physics.FluidFlow.ViewModels
 			InitializeDiameterRelationPicker(inputVariant);
 			UpdateInputConfiguration();
 
-			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
-
 			if (sceneConfiguration != null)
 			{
 				SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == sceneConfiguration.Fluid) ?? Fluids.First();
@@ -204,7 +202,13 @@ namespace Physics.FluidFlow.ViewModels
 			UpdateFieldConfigurations();
 		}
 
-		internal void OnSelectedFluidChanged() => UpdateFieldConfigurations();
+		internal void OnSelectedFluidChanged()
+		{
+			if (SelectedFluid != null)
+			{
+				UpdateFieldConfigurations();
+			}
+		}
 
 		private void UpdateFieldConfigurations()
 		{
@@ -232,19 +236,23 @@ namespace Physics.FluidFlow.ViewModels
 				c.InputVariant == InputVariant &&
 				c.DiameterRelationType == SelectedDiameterRelationType);
 
-			await Task.Yield();
+			var selectedFluid = SelectedFluid?.FluidDefinition;
+			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
+			SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == selectedFluid) ?? Fluids.First();
 
-			// Ensure the current values are valid
-			if (SelectedDiameterRelationType == DiameterRelationType.S1Larger &&
-				Diameter1InCm <= Diameter2InCm)
-			{
-				Diameter1InCm = Diameter2InCm + 1;
-			}
-			else if (SelectedDiameterRelationType == DiameterRelationType.S2Larger &&
-			   Diameter2InCm <= Diameter1InCm)
-			{
-				Diameter2InCm = Diameter1InCm + 1;
-			}
+			//await Task.Yield();
+
+			//// Ensure the current values are valid
+			//if (SelectedDiameterRelationType == DiameterRelationType.S1Larger &&
+			//	Diameter1InCm <= Diameter2InCm)
+			//{
+			//	Diameter1InCm = Diameter2InCm + 1;
+			//}
+			//else if (SelectedDiameterRelationType == DiameterRelationType.S2Larger &&
+			//   Diameter2InCm <= Diameter1InCm)
+			//{
+			//	Diameter2InCm = Diameter1InCm + 1;
+			//}
 		}
 	}
 }

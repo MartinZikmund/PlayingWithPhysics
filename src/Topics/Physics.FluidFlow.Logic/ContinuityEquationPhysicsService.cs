@@ -12,7 +12,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		_input = input;
 	}
 
-	public int ParticleCount => _input.DiameterRelationType == DiameterRelationType.Equal ? 3 : 5;
+	public int ParticleCount => 3;
 
 	public float XMax
 	{
@@ -64,24 +64,26 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		var x = _input.Velocity * time;
 		return particleId switch
 		{
-			0 => new Point2d(x, + _input.Diameter1 / 4),
+			0 => new Point2d(x, +_input.Diameter1 / 4),
 			1 => new Point2d(x, 0),
-			2 => new Point2d(x, - _input.Diameter1 / 4),
+			2 => new Point2d(x, -_input.Diameter1 / 4),
 			_ => throw new InvalidOperationException()
 		};
 	}
 
+	#region S1 Larger
+
 	private Point2d GetS1LargerParticlePosition(float time, int particleId)
 	{
-		if (time < 40)
+		var t2 = CalculateS1LargerT2();
+		if (time < CalculateS1LargerT1())
 		{
+			var x = _input.Velocity * time;
 			return particleId switch
 			{
-				0 => new Point2d(time, 20),
-				1 => new Point2d(time, 10),
-				2 => new Point2d(time, 0),
-				3 => new Point2d(time, -10),
-				4 => new Point2d(time, -20),
+				0 => new Point2d(x, +_input.Diameter1 / 4),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, -_input.Diameter1 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
@@ -114,6 +116,22 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 			};
 		}
 	}
+
+	public float GetS1LargerX1() => _input.Fluid == FluidDefinitions.Water ? 0.20f : 2;
+
+	public float GetS1LargerX2() => _input.Fluid == FluidDefinitions.Water ? 0.3f : 3;
+
+	public float GetS1LargerX3() => _input.Fluid == FluidDefinitions.Water ? 0.5f : 5;
+
+	public float CalculateS1LargerV2() => (_input.Velocity * _input.Diameter1 * _input.Diameter1) / (_input.Diameter2 * _input.Diameter2);
+
+	public float CalculateS1LargerT1() => GetS1LargerX1() / _input.Velocity; // TODO!!!
+
+	public float CalculateS1LargerT2() => CalculateS1LargerT1() + (GetS1LargerX2() - GetS1LargerX1()) / (CalculateS1LargerV2() - _input.Velocity); // TODO!!!
+
+	#endregion
+
+	#region S2 Larger
 
 	private Point2d GetS2LargerParticlePosition(float time, int particleId)
 	{
@@ -158,4 +176,18 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 			};
 		}
 	}
+
+	public float GetS2LargerX1() => 0.20f;
+
+	public float GetS2LargerX2() => 0.3f;
+
+	public float GetS2LargerX3() => 0.5f;
+
+	public float CalculateS2LargerV2() => (_input.Velocity * _input.Diameter1 * _input.Diameter1) / (_input.Diameter2 * _input.Diameter2);
+
+	public float CalculateS2LargerT1() => GetS1LargerX1() / _input.Velocity; // TODO!!!
+
+	public float CalculateS2LargerT2() => CalculateS1LargerT1() + (GetS1LargerX2() - GetS1LargerX1()) / (CalculateS1LargerV2() - _input.Velocity); // TODO!!!
+
+	#endregion
 }
