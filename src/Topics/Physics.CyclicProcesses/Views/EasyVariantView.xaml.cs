@@ -1,11 +1,8 @@
-﻿using Physics.Shared.UI.Rendering.Skia;
-using Physics.Shared.UI.Views;
-using Physics.CyclicProcesses.Rendering;
+﻿using System;
 using Physics.CyclicProcesses.ViewModels;
-using System;
-using Windows.UI.Xaml.Controls;
-using MvvmCross.ViewModels;
 using Physics.Shared.Views;
+using Windows.Media.Core;
+using Windows.Storage;
 using Windows.UI.Xaml;
 
 namespace Physics.CyclicProcesses.Views
@@ -16,6 +13,11 @@ namespace Physics.CyclicProcesses.Views
 		{
 			InitializeComponent();
 			DataContextChanged += ViewContextChanged;
+			Loaded += EasyVariantView_Loaded;
+		}
+
+		private void EasyVariantView_Loaded(object sender, RoutedEventArgs e)
+		{
 			AnimationSelection_SelectionChanged(null, null);
 		}
 
@@ -29,30 +31,37 @@ namespace Physics.CyclicProcesses.Views
 
 		public EasyVariantViewModel Model { get; private set; }
 
-		private void AnimationSelection_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
+		private async void AnimationSelection_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
 		{
-			if (AnimationView == null)
+			if (Player == null || AnimationSelection.SelectedIndex < 0)
 			{
 				return;
 			}
 
-			switch (AnimationSelection.SelectedIndex)
+			Uri mediaUri = null;
+			var processType = Model.ProcessTypes[AnimationSelection.SelectedIndex];
+			switch (processType)
 			{
-				case 0:
-					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/adiabat.html"));
+				case Logic.ProcessType.Adiabatic:
+					mediaUri = new Uri("ms-appx:///Assets/Animations/adiabat.mp4");
 					break;
-				case 1:
-					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/izobar.html"));
+				case Logic.ProcessType.Isobaric:
+					mediaUri = new Uri("ms-appx:///Assets/Animations/izobar.mp4");
 					break;
-				case 2:
-					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/izoterm.html"));
+				case Logic.ProcessType.Isotermic:
+					mediaUri = new Uri("ms-appx:///Assets/Animations/izoterm.mp4");
 					break;
-				case 3:
-					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/izochor.html"));
+				case Logic.ProcessType.Isochoric:
+					mediaUri = new Uri("ms-appx:///Assets/Animations/izochor.mp4");
 					break;
-				case 4:
-					AnimationView.Navigate(new Uri("ms-appx-web:///Assets/Animations/motor.html"));
+				case Logic.ProcessType.StirlingEngine:
+					mediaUri = new Uri("ms-appx:///Assets/Animations/motor.mp4");
 					break;
+			}
+			if (mediaUri != null)
+			{
+				var source = MediaSource.CreateFromStorageFile(await StorageFile.GetFileFromApplicationUriAsync(mediaUri));
+				Player.Source = source;
 			}
 		}
 	}
