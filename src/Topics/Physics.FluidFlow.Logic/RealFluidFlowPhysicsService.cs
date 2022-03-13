@@ -14,14 +14,7 @@ namespace Physics.FluidFlow.Logic
 
 		public int ParticleCount => 9;
 
-		public float XMax =>
-			_input.DiameterRelationType switch
-			{
-				DiameterRelationType.Equal => 58 * _input.Velocity,
-				DiameterRelationType.S1Larger => 100,
-				DiameterRelationType.S2Larger => 100,
-				_ => throw new InvalidOperationException("Invalid diameter type"),
-			};
+		public float XMax => _input.Length;
 
 		public float YMax => 0.4f;
 
@@ -35,9 +28,9 @@ namespace Physics.FluidFlow.Logic
 
 		public float DeltaP => 320 * _input.Length * _input.Velocity / (_input.Diameter1 * _input.Diameter1);
 
-		public float Vector1T => throw new NotImplementedException();
+		public float Vector1T => MaxT / 6;
 
-		public float Vector2T => throw new NotImplementedException();
+		public float Vector2T => MaxT * 5 / 6f;
 
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			particleId switch

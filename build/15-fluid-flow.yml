@@ -21,7 +21,7 @@ variables:
 - name: 'major'
   value: '0'
 - name: 'minor'
-  value: '14'
+  value: '16'
 
 name: $(major).$(minor).$(rev:r).0
 
