@@ -47,17 +47,22 @@ namespace Physics.Shared.UI.Rendering.Skia
 				action();
 			}
 
+			ShouldRender = true;
 			Update?.Invoke(this, EventArgs.Empty);
-			var surface = e.Surface;
-			var canvas = surface.Canvas;
 
-			var worldMatrix = SKMatrix.CreateIdentity();
-			// Apply DPI scaling.
-			SKMatrix.Concat(ref worldMatrix, worldMatrix, SKMatrix.CreateScale(ScaleFactor, ScaleFactor));
+			if (ShouldRender)
+			{
+				var surface = e.Surface;
+				var canvas = surface.Canvas;
 
-			canvas.ResetMatrix();
-			canvas.SetMatrix(worldMatrix);
-			Draw?.Invoke(this, e.Surface);
+				var worldMatrix = SKMatrix.CreateIdentity();
+				// Apply DPI scaling.
+				SKMatrix.Concat(ref worldMatrix, worldMatrix, SKMatrix.CreateScale(ScaleFactor, ScaleFactor));
+
+				canvas.ResetMatrix();
+				canvas.SetMatrix(worldMatrix);
+				Draw?.Invoke(this, e.Surface);
+			}
 		}		
 
 		public SKSize ScaledSize => new SKSize(CanvasSize.Width / (float)ContentsScale, CanvasSize.Height / (float)ContentsScale);
@@ -65,6 +70,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 		public SKSize NativeSize => CanvasSize;
 
 		public float ScaleFactor => (float)ContentsScale;
+
+		public bool ShouldRender { get; set; }
 
 		public event SkiaEventHandler<SKSurface> Initialized;
 		public event SkiaEventHandler<EventArgs> Update;
