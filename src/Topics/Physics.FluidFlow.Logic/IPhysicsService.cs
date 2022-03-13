@@ -18,6 +18,10 @@ namespace Physics.FluidFlow.Logic
 
 		float MaxT { get; }
 
+		float Vector1T { get; }
+
+		float Vector2T { get; }
+
 		Point2d GetParticlePosition(float time, int particleId);
 	}
 }

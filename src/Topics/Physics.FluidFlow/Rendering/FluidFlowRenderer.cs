@@ -116,7 +116,7 @@ namespace Physics.FluidFlow.Rendering
 				return;
 			}
 
-			_horizontalPadding = _canvas.ScaledSize.Width / 10;
+			_horizontalPadding = _canvas.ScaledSize.Width / 20;
 			MinRenderX = _horizontalPadding;
 			MaxRenderX = _canvas.ScaledSize.Width - _horizontalPadding;
 
@@ -141,7 +141,7 @@ namespace Physics.FluidFlow.Rendering
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
 				var position = PhysicsService.GetParticlePosition(time, particleId);
-				var x = GetRenderX((float)position.X);
+				var x = GetRenderX((float)Math.Min(position.X, PhysicsService.XMax));
 				var y = GetRenderY((float)position.Y);
 				args.Canvas.DrawCircle(x, y, 4, _particlePaints[particleId % _particlePaints.Length]);
 			}
@@ -157,7 +157,7 @@ namespace Physics.FluidFlow.Rendering
 			args.DrawPath(path, _plumbingBorderPaint);
 		}
 
-		private void DrawTrajectory(SKCanvas canvas)
+		protected virtual void DrawTrajectory(SKCanvas canvas)
 		{
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
@@ -166,7 +166,7 @@ namespace Physics.FluidFlow.Rendering
 				var startPoint = PhysicsService.GetParticlePosition(0, particleId);
 				path.MoveTo(GetRenderX((float)startPoint.X), GetRenderY((float)startPoint.Y));
 				var time = 0f;
-				var timeDiff = 1f;
+				var timeDiff = 0.01f;
 				bool pathFinished = false;
 				do
 				{
@@ -181,6 +181,11 @@ namespace Physics.FluidFlow.Rendering
 					}
 
 					var newPosition = PhysicsService.GetParticlePosition(time, particleId);
+					if (newPosition.X > PhysicsService.XMax)
+					{
+						pathFinished = true;
+						newPosition = new Point2d(PhysicsService.XMax, newPosition.Y);
+					}
 					path.LineTo(GetRenderX((float)newPosition.X), GetRenderY((float)newPosition.Y));
 
 				} while (!pathFinished);
@@ -197,7 +202,7 @@ namespace Physics.FluidFlow.Rendering
 			{
 				var paint = _particleVectorPaints[particleId % _particleVectorPaints.Length];
 				// 1/6
-				var position = PhysicsService.GetParticlePosition(PhysicsService.MaxT / 6, particleId);
+				var position = PhysicsService.GetParticlePosition(PhysicsService.Vector1T, particleId);
 				var size = GetVelocityVectorSize(0, particleId);
 				var y = GetRenderY((float)position.Y);
 				if (size > 0)
@@ -206,7 +211,7 @@ namespace Physics.FluidFlow.Rendering
 				}
 
 				// 5/6
-				position = PhysicsService.GetParticlePosition(PhysicsService.MaxT * 5 / 6, particleId);
+				position = PhysicsService.GetParticlePosition(PhysicsService.Vector2T, particleId);
 				size = GetVelocityVectorSize(1, particleId);
 				y = GetRenderY((float)position.Y);
 				if (size > 0)
@@ -221,5 +226,7 @@ namespace Physics.FluidFlow.Rendering
 		protected float GetRenderX(float x) => _canvas.ScaledSize.Width / 2 - PhysicsService.XMax / 2 * _pixelsPerUnit + x * _pixelsPerUnit;
 
 		protected float GetRenderY(float y) => _canvas.ScaledSize.Height / 2 - (y - PhysicsService.YMin) * _pixelsPerUnit + Math.Abs(PhysicsService.YMax - PhysicsService.YMin) / 2 * _pixelsPerUnit;
+
+		protected SKPaint GetParticlePathPaint(int particleId) => _particlePathPaints[particleId % _particlePathPaints.Length];
 	}
 }

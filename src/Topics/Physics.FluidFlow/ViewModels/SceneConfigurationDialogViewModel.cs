@@ -165,11 +165,11 @@ namespace Physics.FluidFlow.ViewModels
 			{
 				if (SelectedFluid.FluidDefinition == FluidDefinitions.Oil)
 				{
-					Velocity = 0.40004f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.4f * 4f / (3.14f * diameter1 * diameter1);
 				}
 				else
 				{
-					Velocity = 0.00504f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.005f * 4f / (3.14f * diameter1 * diameter1);
 				}
 			}
 
@@ -239,20 +239,6 @@ namespace Physics.FluidFlow.ViewModels
 			var selectedFluid = SelectedFluid?.FluidDefinition;
 			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
 			SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == selectedFluid) ?? Fluids.First();
-
-			//await Task.Yield();
-
-			//// Ensure the current values are valid
-			//if (SelectedDiameterRelationType == DiameterRelationType.S1Larger &&
-			//	Diameter1InCm <= Diameter2InCm)
-			//{
-			//	Diameter1InCm = Diameter2InCm + 1;
-			//}
-			//else if (SelectedDiameterRelationType == DiameterRelationType.S2Larger &&
-			//   Diameter2InCm <= Diameter1InCm)
-			//{
-			//	Diameter2InCm = Diameter1InCm + 1;
-			//}
 		}
 	}
 }

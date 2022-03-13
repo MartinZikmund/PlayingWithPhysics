@@ -30,7 +30,7 @@ namespace Physics.FluidFlow.Logic
 				FluidDefinitions = new[]
 				{
 					FluidDefinitions.Water,
-					FluidDefinitions.Oil
+					//FluidDefinitions.Oil
 				},
 				Diameter1Configurations = new ()
 				{

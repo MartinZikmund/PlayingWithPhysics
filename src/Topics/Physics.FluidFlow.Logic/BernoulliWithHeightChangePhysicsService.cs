@@ -39,6 +39,10 @@ namespace Physics.FluidFlow.Logic
 
 		public string ErrorKey => null;
 
+		public float Vector1T => throw new NotImplementedException();
+
+		public float Vector2T => throw new NotImplementedException();
+
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			_input.DiameterRelationType switch
 			{

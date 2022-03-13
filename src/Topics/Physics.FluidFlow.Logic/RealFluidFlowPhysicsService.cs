@@ -35,6 +35,10 @@ namespace Physics.FluidFlow.Logic
 
 		public float DeltaP => 320 * _input.Length * _input.Velocity / (_input.Diameter1 * _input.Diameter1);
 
+		public float Vector1T => throw new NotImplementedException();
+
+		public float Vector2T => throw new NotImplementedException();
+
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			particleId switch
 			{
