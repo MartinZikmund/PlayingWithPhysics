@@ -4,7 +4,7 @@ namespace Physics.FluidFlow.Rendering
 {
 	public class BernoulliEquationWithoutHeightDecreaseRenderer : FluidFlowRenderer
 	{
-		private BernoulliWithHeightChangePhysicsService _physicsService;
+		private BernoulliWithoutHeightChangePhysicsService _physicsService;
 		private SceneConfiguration _sceneConfiguration;
 
 		public BernoulliEquationWithoutHeightDecreaseRenderer(FluidFlowCanvasController controller) :
@@ -16,7 +16,7 @@ namespace Physics.FluidFlow.Rendering
 		{
 			base.StartSimulation(sceneConfiguration);
 			_sceneConfiguration = sceneConfiguration;
-			_physicsService = new BernoulliWithHeightChangePhysicsService(sceneConfiguration);
+			_physicsService = new BernoulliWithoutHeightChangePhysicsService(sceneConfiguration);
 		}
 
 		protected override float GetVelocityVectorSize(int vectorId, int particleId)

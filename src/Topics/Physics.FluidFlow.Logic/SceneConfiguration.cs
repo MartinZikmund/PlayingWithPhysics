@@ -10,7 +10,8 @@
 			float diameter1,
 			float diameter2,
 			float length,
-			float heightDecrease)
+			float heightDecrease,
+			float pressure)
 		{
 			InputVariant = inputVariant;
 			DiameterRelationType = diameterRelationType;
@@ -20,6 +21,7 @@
 			Diameter2 = diameter2;
 			Length = length;
 			HeightDecrease = heightDecrease;
+			Pressure = pressure;
 		}
 
 		public InputVariant InputVariant { get; set; }
@@ -37,5 +39,7 @@
 		public float Length { get; set; }
 
 		public float HeightDecrease { get; set; }
+
+		public float Pressure { get; set; }
 	}
 }

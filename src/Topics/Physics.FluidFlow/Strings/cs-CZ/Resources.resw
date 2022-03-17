@@ -181,6 +181,9 @@ Grafika: Petr Weinlich</value>
   <data name="LengthLabel" xml:space="preserve">
     <value>Délka potrubí</value>
   </data>
+  <data name="PressureLabel" xml:space="preserve">
+    <value>Tlak v potrubí</value>
+  </data>
   <data name="S1MustBeLargerMessage" xml:space="preserve">
     <value>Musí platit d₁ &gt; d₂, upravte prosím vstupní hodnoty.</value>
   </data>

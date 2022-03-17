@@ -101,6 +101,8 @@ namespace Physics.FluidFlow.Rendering
 
 		public abstract IPhysicsService PhysicsService { get; }
 
+		public double GetAdjustedTime() => _controller.SimulationTime.TotalTime.TotalSeconds * (PhysicsService?.SimulationTimeAdjustment ?? 1f);
+
 		internal virtual void StartSimulation(SceneConfiguration sceneConfiguration)
 		{
 			var fluidColor = sceneConfiguration.Fluid.Color;
@@ -137,7 +139,7 @@ namespace Physics.FluidFlow.Rendering
 			DrawTrajectory(args.Canvas);
 			DrawVectors(args.Canvas);
 
-			var time = (float)_controller.SimulationTime.TotalTime.TotalSeconds;
+			var time = (float)GetAdjustedTime();
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
 				var position = PhysicsService.GetParticlePosition(time, particleId);
@@ -171,11 +173,11 @@ namespace Physics.FluidFlow.Rendering
 				do
 				{
 					time += timeDiff;
-					if (time > _controller.SimulationTime.TotalTime.TotalSeconds ||
+					if (time > GetAdjustedTime() ||
 						time > PhysicsService.MaxT)
 					{
 						time = Math.Min(
-							(float)_controller.SimulationTime.TotalTime.TotalSeconds,
+							(float)GetAdjustedTime(),
 							PhysicsService.MaxT);
 						pathFinished = true;
 					}
@@ -194,7 +196,7 @@ namespace Physics.FluidFlow.Rendering
 			}
 		}
 
-		private void DrawVectors(SKCanvas canvas)
+		protected virtual void DrawVectors(SKCanvas canvas)
 		{
 			var x16 = MinRenderX + (MaxRenderX - MinRenderX) / 6;
 			var x56 = MinRenderX + (MaxRenderX - MinRenderX) * 5 / 6;

@@ -100,6 +100,8 @@ namespace Physics.FluidFlow.ViewModels
 
 		public float Velocity { get; set; }
 
+		public float Pressure { get; set; }
+
 		public float Length { get; set; }
 
 		public float HeightDecreaseInCm { get; set; }
@@ -181,7 +183,8 @@ namespace Physics.FluidFlow.ViewModels
 				diameter1,
 				Diameter2InM,
 				Length,
-				HeightDecreaseInM);
+				HeightDecreaseInM,
+				Pressure);
 		}
 
 		private void InitializeDiameterRelationPicker(InputVariant inputVariant)

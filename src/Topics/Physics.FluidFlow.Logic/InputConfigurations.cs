@@ -67,28 +67,106 @@ namespace Physics.FluidFlow.Logic
 					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
 				},
 			},
-			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.Equal)
-			{
-				FluidDefinitions = Array.Empty<FluidDefinition>()
-			},
+			//new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.Equal)
+			//{
+			//	FluidDefinitions = new[]
+			//	{
+			//		FluidDefinitions.Water,
+			//	},
+			//	Diameter1Configurations = new ()
+			//	{
+			//		{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(1, 4.5, 2, step: 0.5f) },
+			//	},
+			//	Diameter2Configurations = new ()
+			//	{
+			//		{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(5, 10, 5, step: 0.5f) },
+			//	},
+			//	VelocityConfigurations = new ()
+			//	{
+			//		{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
+			//	},
+			//},
 			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S1Larger)
 			{
-				FluidDefinitions = Array.Empty<FluidDefinition>()
+				FluidDefinitions = new[]
+				{
+					FluidDefinitions.Water,
+				},
+				Diameter1Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(3, 10, 5, step: 0.5f) },
+				},
+				Diameter2Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(3, 10, 4, step: 0.5f) },
+				},
+				VelocityConfigurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(0.1, 1, 0.5f, step: 0.1f) },
+				},
+				PressureConfiguration = FieldConfiguration.CreateRestricted(250000, 500000, 250000f, step: 50000f),
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S2Larger)
 			{
-				FluidDefinitions = Array.Empty<FluidDefinition>()
-
+				FluidDefinitions = new[]
+				{
+					FluidDefinitions.Water,
+				},
+				Diameter1Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(1, 4.5, 2, step: 0.5f) },
+				},
+				Diameter2Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(5, 10, 5, step: 0.5f) },
+				},
+				VelocityConfigurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
+				},
+				PressureConfiguration = FieldConfiguration.CreateRestricted(250000, 500000, 250000f, step: 50000f),
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S1Larger)
 			{
-				FluidDefinitions = Array.Empty<FluidDefinition>(),
+				FluidDefinitions = new[]
+				{
+					FluidDefinitions.Water,
+				},
+				Diameter1Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(1, 4.5, 2, step: 0.5f) },
+				},
+				Diameter2Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(5, 10, 5, step: 0.5f) },
+				},
+				VelocityConfigurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
+				},
 				HeightDecreaseConfiguration = FieldConfiguration.CreateRestricted(1, 100, 10, step: 1),
+				PressureConfiguration = FieldConfiguration.CreateRestricted(250000, 500000, 250000f, step: 50000f),
 			},
 			new InputConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S2Larger)
 			{
-				FluidDefinitions = Array.Empty<FluidDefinition>(),
+				FluidDefinitions = new[]
+				{
+					FluidDefinitions.Water,
+				},
+				Diameter1Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(1, 4.5, 2, step: 0.5f) },
+				},
+				Diameter2Configurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(5, 10, 5, step: 0.5f) },
+				},
+				VelocityConfigurations = new ()
+				{
+					{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
+				},
 				HeightDecreaseConfiguration = FieldConfiguration.CreateRestricted(1, 100, 10, step: 1),
+				PressureConfiguration = FieldConfiguration.CreateRestricted(250000, 500000, 250000f, step: 50000f),
 			},
 			new InputConfiguration(InputVariant.RealFluidMovement, DiameterRelationType.Equal)
 			{

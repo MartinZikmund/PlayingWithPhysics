@@ -178,6 +178,9 @@ Graphics: Petr Weinlich</value>
   <data name="LengthLabel" xml:space="preserve">
     <value>Plumbing length</value>
   </data>
+  <data name="PressureLabel" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
   <data name="SelectedParameters" xml:space="preserve">
     <value>Selected parameters</value>
   </data>

@@ -3,11 +3,11 @@ using Physics.Shared.Logic.Geometry;
 
 namespace Physics.FluidFlow.Logic;
 
-public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsService
+public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IPhysicsService
 {
 	private readonly SceneConfiguration _input;
 
-	public ContinuityEquationPhysicsService(SceneConfiguration input)
+	public BernoulliWithoutHeightChangePhysicsService(SceneConfiguration input)
 	{
 		_input = input;
 	}
@@ -203,7 +203,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 	#region S2 Larger
 
 	private Point2d GetS2LargerParticlePosition(float time, int particleId)
-	{		
+	{
 		var t1 = T1;
 		var t2 = T2;
 		var v2 = V2;

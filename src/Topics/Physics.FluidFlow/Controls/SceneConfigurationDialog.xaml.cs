@@ -32,6 +32,7 @@ namespace Physics.FluidFlow.Controls
 			SetupNumberBox(DiameterNumberBox, Model.DiameterConfiguration);
 			SetupNumberBox(Diameter1NumberBox, Model.Diameter1Configuration);
 			SetupNumberBox(Diameter2NumberBox, Model.Diameter2Configuration);
+			SetupNumberBox(PressureNumberBox, Model.InputConfiguration.PressureConfiguration);
 		}
 
 		private void SetupNumberBox(NumberBox numberBox, FieldConfiguration fieldConfiguration)

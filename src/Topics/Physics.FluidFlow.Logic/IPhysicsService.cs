@@ -10,6 +10,8 @@ namespace Physics.FluidFlow.Logic
 
 		int ParticleCount { get; }
 
+		float SimulationTimeAdjustment { get; }
+
 		float XMax { get; }
 
 		float YMax { get; }

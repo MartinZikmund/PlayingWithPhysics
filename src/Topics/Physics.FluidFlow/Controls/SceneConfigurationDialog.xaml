@@ -45,8 +45,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -112,20 +113,32 @@
             Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}"
             Value="{x:Bind Model.HeightDecreaseInCm, Mode=TwoWay}" />
 
-        <TextBlock Grid.Row="3" Visibility="{x:Bind Model.InputConfiguration.LengthConfiguration.IsVisible}">
+		<TextBlock Grid.Row="3" Visibility="{x:Bind Model.InputConfiguration.PressureConfiguration.IsVisible}">
+            <Run Text="{extensions:Localize Key=PressureLabel}" />
+            <Run FontWeight="Bold" Text="p" />
+            <Run Text="(Pa)" />
+		</TextBlock>
+		<winui:NumberBox
+            x:Name="PressureNumberBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.InputConfiguration.PressureConfiguration.IsVisible}"
+            Value="{x:Bind Model.Pressure, Mode=TwoWay}" />
+
+		<TextBlock Grid.Row="4" Visibility="{x:Bind Model.InputConfiguration.LengthConfiguration.IsVisible}">
             <Run Text="{extensions:Localize Key=LengthLabel}" />
             <Run FontWeight="Bold" Text="l" />
             <Run Text="(m)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="LengthNumberBox"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             Visibility="{x:Bind Model.InputConfiguration.LengthConfiguration.IsVisible}"
             Value="{x:Bind Model.Length, Mode=TwoWay}" />
 
         <winui:RadioButtons
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.ColumnSpan="2"
             ItemsSource="{x:Bind Model.DiameterRelationTypes, Mode=OneWay}"
             MaxColumns="3"
@@ -138,44 +151,44 @@
             </winui:RadioButtons.ItemTemplate>
         </winui:RadioButtons>
 
-		<TextBlock Grid.Row="5" Visibility="{x:Bind Model.DiameterConfiguration.IsVisible, Mode=OneWay}">
+		<TextBlock Grid.Row="6" Visibility="{x:Bind Model.DiameterConfiguration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d" />
             <Run Text="(cm)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="DiameterNumberBox"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="1"
             Visibility="{x:Bind Model.DiameterConfiguration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.DiameterInCm, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="5" Visibility="{x:Bind Model.Diameter1Configuration.IsVisible, Mode=OneWay}">
+		<TextBlock Grid.Row="6" Visibility="{x:Bind Model.Diameter1Configuration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d₁" />
             <Run Text="(cm)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="Diameter1NumberBox"
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="1"
             Visibility="{x:Bind Model.Diameter1Configuration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.Diameter1InCm, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="6" Visibility="{x:Bind Model.Diameter2Configuration.IsVisible, Mode=OneWay}">
+		<TextBlock Grid.Row="7" Visibility="{x:Bind Model.Diameter2Configuration.IsVisible, Mode=OneWay}">
             <Run Text="{extensions:Localize Key=DiameterLabel}" />
             <Run FontWeight="Bold" Text="d₂" />
             <Run Text="(cm)" />
         </TextBlock>
         <winui:NumberBox
             x:Name="Diameter2NumberBox"
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="1"
             Visibility="{x:Bind Model.Diameter2Configuration.IsVisible, Mode=OneWay}"
             Value="{x:Bind Model.Diameter2InCm, Mode=TwoWay}" />
 
         <TextBlock
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.ColumnSpan="2"
             Foreground="Red"
             Text="{x:Bind Model.ErrorMessage}"

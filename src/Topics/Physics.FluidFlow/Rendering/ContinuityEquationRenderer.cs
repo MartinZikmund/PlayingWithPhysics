@@ -174,19 +174,19 @@ namespace Physics.FluidFlow.Rendering
 				var t2 = _physicsService.T2;
 				var startPoint = PhysicsService.GetParticlePosition(0, particleId);
 				path.MoveTo(GetRenderX((float)startPoint.X), GetRenderY((float)startPoint.Y));
-				if (_controller.SimulationTime.TotalTime.TotalSeconds >= t1)
+				if (GetAdjustedTime() >= t1)
 				{
 					var firstBreakPosition = PhysicsService.GetParticlePosition(t1, particleId);
 					path.LineTo(GetRenderX((float)firstBreakPosition.X), GetRenderY((float)firstBreakPosition.Y));
 				}
 
-				if (_controller.SimulationTime.TotalTime.TotalSeconds >= (t1 + t2))
+				if (GetAdjustedTime() >= (t1 + t2))
 				{
 					var secondBreakPosition = PhysicsService.GetParticlePosition(t1 + t2, particleId);
 					path.LineTo(GetRenderX((float)secondBreakPosition.X), GetRenderY((float)secondBreakPosition.Y));
 				}
 
-				var endPosition = PhysicsService.GetParticlePosition((float)_controller.SimulationTime.TotalTime.TotalSeconds, particleId);
+				var endPosition = PhysicsService.GetParticlePosition((float)GetAdjustedTime(), particleId);
 				path.LineTo(GetRenderX((float)Math.Min(_physicsService.XMax, endPosition.X)), GetRenderY((float)endPosition.Y));
 
 				canvas.DrawPath(path, GetParticlePathPaint(particleId));
