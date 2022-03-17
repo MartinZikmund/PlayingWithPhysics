@@ -12,7 +12,11 @@ namespace Physics.FluidFlow.Rendering
 		{
 		}
 
-		protected override SKPath GetPlumbingPath()
+		protected override SKPath GetPlumbingStrokePath() => GetPlumbingStroke();
+
+		protected override SKPath GetPlumbingFillPath() => GetPlumbingStroke();
+
+		private SKPath GetPlumbingStroke()
 		{
 			var diameter = _sceneConfiguration.Diameter1;
 			var top = GetRenderY(_physicsService.YMax);

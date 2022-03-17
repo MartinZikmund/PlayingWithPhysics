@@ -29,19 +29,22 @@ namespace Physics.FluidFlow.ViewModels
 				Diameter1InM = sceneConfiguration.Diameter1;
 				Diameter2InM = sceneConfiguration.Diameter2;
 				Length = sceneConfiguration.Length;
-				HeightDecreaseInM = sceneConfiguration.HeightDecrease;
 				Velocity = sceneConfiguration.Velocity;
+				HeightDecreaseInM = sceneConfiguration.HeightDecrease;
+				Pressure = sceneConfiguration.Pressure;
 			}
 			else
 			{
 				SelectedFluid = Fluids.First();
 				SelectedDiameterRelationTypeIndex = 0;
+
 				DiameterInCm = DiameterConfiguration.DefaultValue ?? 1;
 				Diameter1InCm = Diameter1Configuration.DefaultValue ?? 1;
 				Diameter2InCm = Diameter2Configuration.DefaultValue ?? 1;
 				Length = InputConfiguration.LengthConfiguration.DefaultValue ?? 1;
 				Velocity = VelocityConfiguration.DefaultValue ?? 1;
 				HeightDecreaseInCm = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
+				Pressure = InputConfiguration.PressureConfiguration.DefaultValue ?? 1;
 			}
 		}
 

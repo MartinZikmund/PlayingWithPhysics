@@ -149,14 +149,19 @@ namespace Physics.FluidFlow.Rendering
 			}
 		}
 
-		protected virtual SKPath GetPlumbingPath() => new SKPath();
+		protected virtual SKPath GetPlumbingStrokePath() => new SKPath();
+
+		protected virtual SKPath GetPlumbingFillPath() => new SKPath();
 
 		protected virtual void DrawPlumbing(SKCanvas args)
 		{
-			using var path = GetPlumbingPath();
+			using var fillPath = GetPlumbingFillPath();
+			args.DrawPath(fillPath, _plumbingFillPaint);
 
-			args.DrawPath(path, _plumbingFillPaint);
-			args.DrawPath(path, _plumbingBorderPaint);
+			using var strokePath = GetPlumbingStrokePath();
+			args.DrawPath(strokePath, _plumbingBorderPaint);
+
+
 		}
 
 		protected virtual void DrawTrajectory(SKCanvas canvas)

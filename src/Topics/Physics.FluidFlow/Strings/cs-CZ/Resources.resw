@@ -161,13 +161,13 @@ Grafika: Petr Weinlich</value>
     <value>Voda</value>
   </data>
   <data name="HeightDecreaseLabel" xml:space="preserve">
-    <value>Pokles výšky potrubí</value>
+    <value>Změna výšky potrubí</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
     <value>Bernoulliho rovnice se změnou výšky</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulliho rovnice bez změny výšky</value>
+    <value>Bernoulliho rovnice beze změny výšky</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
     <value>Rovnice kontinuity</value>

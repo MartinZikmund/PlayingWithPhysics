@@ -161,13 +161,13 @@ Graphics: Petr Weinlich</value>
     <value>Water</value>
   </data>
   <data name="HeightDecreaseLabel" xml:space="preserve">
-    <value>Height decrease</value>
+    <value>Height change</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (with height decrease)</value>
+    <value>Bernoulli equation (with height change)</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (without height decrease)</value>
+    <value>Bernoulli equation (without height change)</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
     <value>Continuity equation</value>

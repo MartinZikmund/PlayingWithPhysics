@@ -78,6 +78,32 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 			_ => throw new InvalidOperationException("Invalid diameter type"),
 		};
 
+	public float P2 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.S1Larger => CalculateS1LargerP2(),
+			DiameterRelationType.S2Larger => CalculateS2LargerP2(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float H1 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.S1Larger => CalculateS1LargerH1(),
+			DiameterRelationType.S2Larger => CalculateS2LargerH1(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};	
+
+	public float H2 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.S1Larger => CalculateS1LargerH2(),
+			DiameterRelationType.S2Larger => CalculateS2LargerH2(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float DeltaP => Math.Abs(_input.Pressure - P2);
+
 	public float YMin => -YMax;
 
 	public override float MaxT
@@ -198,6 +224,12 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 
 	public float CalculateS1LargerT3() => 2 * XMax / (5 * CalculateS1LargerV2());
 
+	public float CalculateS1LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2);
+
+	public float CalculateS1LargerH1() => Math.Abs(_input.Pressure / 5000000);
+
+	public float CalculateS1LargerH2() => H1 - 3 * DeltaP / 5000000;
+
 	#endregion
 
 	#region S2 Larger
@@ -258,6 +290,12 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 	public float CalculateS2LargerT2() => 2 * XMax / (5 * (CalculateS2LargerV2() + _input.Velocity));
 
 	public float CalculateS2LargerT3() => 2 * XMax / (5 * CalculateS2LargerV2());
+
+	public float CalculateS2LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2);
+
+	public float CalculateS2LargerH1() => H2 - 3 * DeltaP / 5000000; 
+
+	public float CalculateS2LargerH2() => Math.Abs(P2 / 5000000);
 
 	#endregion
 }

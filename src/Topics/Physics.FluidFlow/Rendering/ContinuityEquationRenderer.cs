@@ -13,7 +13,11 @@ namespace Physics.FluidFlow.Rendering
 		{
 		}
 
-		protected override SKPath GetPlumbingPath()
+		protected override SKPath GetPlumbingStrokePath() => GetPlumbingStroke();
+
+		protected override SKPath GetPlumbingFillPath() => GetPlumbingStroke();
+
+		private SKPath GetPlumbingStroke()
 		{
 			if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.Equal)
 			{
