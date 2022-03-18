@@ -29,7 +29,7 @@ public class TableService : ITableService<TableRow>
 
 		foreach (var item in trajectory)
 		{
-			table.Add(new TableRow(item.Time, item.X, item.Y, item.V));
+			table.Add(new TableRow(item.Time, item.X, item.Y, item.V, item.H));
 		}
 
 		return table;

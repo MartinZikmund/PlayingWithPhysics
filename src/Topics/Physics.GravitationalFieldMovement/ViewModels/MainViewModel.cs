@@ -34,6 +34,8 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 		public InputConfiguration Input { get; private set; }
 
+		public bool InputSet => Input != null;
+
 		public double Dt { get; set; }
 
 		internal void OnDtChanged()
@@ -69,7 +71,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 				var input = dialog.Model.Result;
 				Input = null;
-				Dt = input.T / 30;//TODO
+				Dt = input.T / 3000;//TODO
 				Input = input;
 				StartSimulation();
 			}
@@ -83,6 +85,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			}
 
 			_controller.SetInputConfiguration(Input, Dt);
+			_controller.Play();
 		}
 
 		private async Task ShowDerivedParametersAsync()

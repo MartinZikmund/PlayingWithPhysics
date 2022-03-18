@@ -42,6 +42,8 @@ namespace Physics.GravitationalFieldMovement.Rendering
 			FilterQuality = SKFilterQuality.High
 		};
 
+		private int _currentFrame = 0;
+
 		public GravitationalFieldMovementCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
@@ -83,6 +85,9 @@ namespace Physics.GravitationalFieldMovement.Rendering
 			var scaleX = sender.ScaledSize.Width * 0.8 / (2* Math.Max(Math.Abs(_maxX), Math.Abs(_minX)));
 			var scaleY = sender.ScaledSize.Height * 0.8 / (2 * Math.Max(Math.Abs(_maxY),Math.Abs(_minY)));
 			_scale = Math.Min(scaleX, scaleY);
+
+			_currentFrame = (int)(SimulationTime.TotalTime.TotalSeconds / (1 / 60.0));
+			_currentFrame = Math.Min(_currentFrame, _trajectory.Length - 1);
 		}
 
 		private void DrawTrajectory(ISkiaCanvas sender, SKSurface args)
@@ -97,7 +102,7 @@ namespace Physics.GravitationalFieldMovement.Rendering
 			var x = GetRenderX(startingPoint.X);
 			var y = GetRenderY(startingPoint.Y);
 			path.MoveTo(x, y);
-			foreach (var point in _trajectory)
+			foreach (var point in _trajectory.Take(_currentFrame))
 			{
 				x = GetRenderX(point.X);
 				y = GetRenderY(point.Y);
@@ -106,12 +111,10 @@ namespace Physics.GravitationalFieldMovement.Rendering
 
 			args.Canvas.DrawPath(path, _trajectoryPaint);
 
-			foreach (var point in _trajectory)
-			{
-				x = GetRenderX(point.X);
-				y = GetRenderY(point.Y);
-				args.Canvas.DrawCircle(x, y, 2, _trajectoryFillPaint);
-			}
+			var endPoint = _trajectory[_currentFrame];
+			x = GetRenderX(endPoint.X);
+			y = GetRenderY(endPoint.Y);
+			args.Canvas.DrawCircle(x, y, 4, _trajectoryFillPaint);
 		}
 
 		private void DrawPlanet(ISkiaCanvas sender, SKSurface args)

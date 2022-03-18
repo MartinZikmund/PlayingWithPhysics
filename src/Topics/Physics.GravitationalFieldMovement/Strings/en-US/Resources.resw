@@ -145,11 +145,20 @@ Graphics: Petr Weinlich</value>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Initial velocity</value>
   </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Planet" xml:space="preserve">
+    <value>Planet</value>
+  </data>
   <data name="PlanetMass" xml:space="preserve">
     <value>Planet mass</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
     <value>Planet radius</value>
+  </data>
+  <data name="SetEarth" xml:space="preserve">
+    <value>Set Earth</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Gravitational Field</value>

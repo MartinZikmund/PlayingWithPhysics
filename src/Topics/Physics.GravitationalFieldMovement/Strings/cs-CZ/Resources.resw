@@ -145,11 +145,20 @@ Grafika: Petr Weinlich</value>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Počáteční rychlost</value>
   </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Planet" xml:space="preserve">
+    <value>Planeta</value>
+  </data>
   <data name="PlanetMass" xml:space="preserve">
     <value>Hmotnost planety</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
     <value>Poloměr planety</value>
+  </data>
+  <data name="SetEarth" xml:space="preserve">
+    <value>Nastavit Zemi</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby v centrálním gravitačním poli</value>
