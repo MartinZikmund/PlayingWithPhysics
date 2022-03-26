@@ -12,7 +12,7 @@ variables:
 - name: 'solution'
   value: '**/*.sln'
 - name: project
-  value: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
+  value: 'src/Topics/Physics.ElectricParticle/Physics.ElectricParticle.csproj'
 - name: buildPlatform
   value: 'x86|x64|ARM|ARM64'
 - name: buildConfiguration
