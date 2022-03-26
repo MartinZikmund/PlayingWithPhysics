@@ -10,14 +10,6 @@
     <PackageReference Update="Microsoft.AppCenter.Analytics" Version="4.5.0" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="4.5.0" />
 
-    <!-- Microsoft Extensions -->
-    <PackageReference Update="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-    <PackageReference Update="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.Localization" Version="5.0.10" />
-    <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <!-- WCT -->
     <PackageReference Update="Microsoft.Toolkit" Version="7.1.2" />
     <PackageReference Update="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
@@ -35,8 +27,6 @@
     <PackageReference Update="MvvmCross.Plugin.Visibility" Version="8.0.2" />
 
     <!-- Other -->
-    <PackageReference Update="AutoMapper" Version="10.1.1" />
-    <PackageReference Update="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" />
@@ -55,7 +45,7 @@
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
     <PackageReference Update="ReactiveUI" Version="17.1.50" />
     <PackageReference Update="BenchmarkDotNet" Version="0.13.1" />
-    <PackageReference Update="Moq" Version="4.16.1" />
+    <PackageReference Update="Moq" Version="4.17.2" />
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Update="coverlet.collector" Version="3.1.2" />
