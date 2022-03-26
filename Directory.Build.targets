@@ -14,7 +14,7 @@
     <PackageReference Update="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Update="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Update="Microsoft.Extensions.Localization" Version="5.0.10" />
+    <PackageReference Update="Microsoft.Extensions.Localization" Version="6.0.3" />
     <PackageReference Update="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Update="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
@@ -31,8 +31,8 @@
     <PackageReference Update="SkiaSharp.Views" Version="2.80.3" />
 
     <!-- MvvmCross-->
-    <PackageReference Update="MvvmCross" Version="7.1.2" />
-    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="7.1.2" />
+    <PackageReference Update="MvvmCross" Version="8.0.2" />
+    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="8.0.2" />
 
     <!-- Other -->
     <PackageReference Update="AutoMapper" Version="10.1.1" />
