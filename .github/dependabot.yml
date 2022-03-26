@@ -31,7 +31,7 @@ updates:
     - 13.2.2
   - dependency-name: Microsoft.NETCore.UniversalWindowsPlatform
     versions:
-    - 6.2.12
+    - 6.2.13
   - dependency-name: coverlet.collector
     versions:
     - 3.0.2
