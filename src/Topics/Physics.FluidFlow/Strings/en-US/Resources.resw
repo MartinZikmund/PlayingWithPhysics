@@ -178,8 +178,17 @@ Graphics: Petr Weinlich</value>
   <data name="LengthLabel" xml:space="preserve">
     <value>Plumbing length</value>
   </data>
+  <data name="PipeHeightLabel" xml:space="preserve">
+    <value>Pipe height</value>
+  </data>
   <data name="PressureLabel" xml:space="preserve">
     <value>Pressure</value>
+  </data>
+  <data name="S1MustBeLargerMessage" xml:space="preserve">
+    <value>d₁ must be greater than d₂, please adjust the input.</value>
+  </data>
+  <data name="S2MustBeLargerMessage" xml:space="preserve">
+    <value>d₁ must be less than d₂, please adjust the input.</value>
   </data>
   <data name="SelectedParameters" xml:space="preserve">
     <value>Selected parameters</value>

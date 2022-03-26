@@ -14,6 +14,12 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 
 	public int ParticleCount => 3;
 
+	public float P2 => 0;
+
+	public float H1 => 0;
+
+	public float H2 => 0;
+
 	public float XMax
 	{
 		get

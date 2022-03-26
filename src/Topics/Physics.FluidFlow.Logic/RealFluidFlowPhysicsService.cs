@@ -32,6 +32,14 @@ namespace Physics.FluidFlow.Logic
 
 		public float Vector2T => MaxT * 5 / 6f;
 
+		public float V2 => _input.Velocity;
+
+		public float P2 => 0;
+
+		public float H1 => 0;
+
+		public float H2 => 0;
+
 		public float SimulationTimeAdjustment => 0.2f;
 
 		public Point2d GetParticlePosition(float time, int particleId) =>

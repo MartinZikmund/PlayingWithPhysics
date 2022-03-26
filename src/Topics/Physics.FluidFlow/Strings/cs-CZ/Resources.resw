@@ -181,6 +181,9 @@ Grafika: Petr Weinlich</value>
   <data name="LengthLabel" xml:space="preserve">
     <value>Délka potrubí</value>
   </data>
+  <data name="PipeHeightLabel" xml:space="preserve">
+    <value>Výška trubice</value>
+  </data>
   <data name="PressureLabel" xml:space="preserve">
     <value>Tlak v potrubí</value>
   </data>
