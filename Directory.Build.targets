@@ -31,12 +31,12 @@
     <PackageReference Update="SkiaSharp.Views" Version="2.80.3" />
 
     <!-- MvvmCross-->
-    <PackageReference Update="MvvmCross" Version="7.1.2" />
-    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="7.1.2" />
+    <PackageReference Update="MvvmCross" Version="8.0.2" />
+    <PackageReference Update="MvvmCross.Plugin.Visibility" Version="8.0.2" />
 
     <!-- Other -->
     <PackageReference Update="AutoMapper" Version="10.1.1" />
-    <PackageReference Update="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Update="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" />
