@@ -141,6 +141,7 @@
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdvancedVariantViewModel.cs" />
+    <Compile Include="ViewModels\DemoVariantViewModel.cs" />
     <Compile Include="ViewModels\EasyVariantViewModel.cs" />
     <Compile Include="ViewModels\Input\InputDialogViewModel.cs" />
     <Compile Include="ViewModels\Process\AdiabaticStateViewModel.cs" />
@@ -151,6 +152,9 @@
     <Compile Include="ViewModels\Process\StirlingEngineStateViewModel.cs" />
     <Compile Include="Views\AdvancedVariantView.xaml.cs">
       <DependentUpon>AdvancedVariantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EasyVariantView.xaml.cs">
       <DependentUpon>EasyVariantView.xaml</DependentUpon>
@@ -167,6 +171,10 @@
     <Content Include="Assets\Animations\izochor.mp4" />
     <Content Include="Assets\Animations\izoterm.mp4" />
     <Content Include="Assets\Animations\motor.mp4" />
+    <Content Include="Assets\Demo\adiabat.mp4" />
+    <Content Include="Assets\Demo\izobar.mp4" />
+    <Content Include="Assets\Demo\izochor.mp4" />
+    <Content Include="Assets\Demo\izoterm.mp4" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -289,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdvancedVariantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DemoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

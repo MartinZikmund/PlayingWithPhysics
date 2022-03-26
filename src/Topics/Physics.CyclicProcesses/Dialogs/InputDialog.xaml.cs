@@ -46,7 +46,7 @@ namespace Physics.CyclicProcesses.Dialogs
 					smallChange: fieldStep,
 					largeChange: fieldStep,
 					increment: 0.1,
-					fractionDigits: 1;
+					fractionDigits: 1);
 
 				numberBox.Minimum = fieldConfiguration.Minimum;
 				numberBox.Maximum = fieldConfiguration.Maximum;

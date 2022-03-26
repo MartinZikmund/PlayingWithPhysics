@@ -15,24 +15,24 @@ namespace Physics.CyclicProcesses.ViewModels.Process
 			_inputConfiguration = inputConfiguration;
 		}
 
-		public float P1InkPa => _physicsService.P1 / 1000;
+		public string P1InkPa => (_physicsService.P1 / 1000).ToString("0.#");
 
-		public float P2InkPa => _physicsService.P2 / 1000;
+		public string P2InkPa => (_physicsService.P2 / 1000).ToString("0.#");
 
-		public float P3InkPa => _physicsService.P3 / 1000;
+		public string P3InkPa => (_physicsService.P3 / 1000).ToString("0.#");
 
-		public float P4InkPa => _physicsService.P4 / 1000;
+		public string P4InkPa => (_physicsService.P4 / 1000).ToString("0.#");
 
-		public float QIn => _physicsService.QIn;
+		public string QIn => (_physicsService.QIn).ToString("0.#");
 
-		public float QOut => _physicsService.QOut;
+		public string QOut => (_physicsService.QOut).ToString("0.#");
 
-		public float W => _physicsService.W;
+		public string W => (_physicsService.W).ToString("0.#");
 
-		public float EffectiveEfficiencyInPercent => (float)Math.Round(_physicsService.EffectiveEfficiency * 100, 1);
+		public string EffectiveEfficiencyInPercent => ((float)Math.Round(_physicsService.EffectiveEfficiency * 100, 1)).ToString("0.#");
 
-		public float TermicEfficiencyInPercent => (float)Math.Round(_physicsService.TermicEfficiency * 100, 1);
+		public string TermicEfficiencyInPercent => ((float)Math.Round(_physicsService.TermicEfficiency * 100, 1)).ToString("0.#");
 
-		public float DeltaVInDm => (_inputConfiguration.V2 - _inputConfiguration.V1) * 1000;
+		public string DeltaVInDm => ((_inputConfiguration.V2 - _inputConfiguration.V1) * 1000).ToString("0.#");
 	}
 }

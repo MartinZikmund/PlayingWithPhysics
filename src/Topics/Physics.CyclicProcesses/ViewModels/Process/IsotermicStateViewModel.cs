@@ -14,10 +14,10 @@ namespace Physics.CyclicProcesses.ViewModels.Process
 			_inputConfiguration = inputConfiguration;
 		}
 
-		public float W12 => _physicsService.W12;
+		public string W12 => (_physicsService.W12).ToString("0.#");
 
-		public float Q12 => _physicsService.W12;
+		public string Q12 => (_physicsService.W12).ToString("0.#");
 
-		public float DeltaVInDm => (_inputConfiguration.V2 - _inputConfiguration.V1) * 1000;
+		public string DeltaVInDm => ((_inputConfiguration.V2 - _inputConfiguration.V1) * 1000).ToString("0.#");
 	}
 }
