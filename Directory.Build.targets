@@ -45,7 +45,7 @@
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
     <PackageReference Update="ReactiveUI" Version="17.1.50" />
     <PackageReference Update="BenchmarkDotNet" Version="0.13.1" />
-    <PackageReference Update="Moq" Version="4.16.1" />
+    <PackageReference Update="Moq" Version="4.17.2" />
     <PackageReference Update="xunit" Version="2.4.1" />
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Update="coverlet.collector" Version="3.1.2" />
