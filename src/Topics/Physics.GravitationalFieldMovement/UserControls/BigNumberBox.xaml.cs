@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using Physics.Shared.Mathematics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,32 +15,37 @@ namespace Physics.GravitationalFieldMovement.UserControls
 
 		private double Mantisa
 		{
-			get => _mantisa;
-			set
-			{
-				if (double.IsNaN(value) || _mantisa == value)
-				{
-					return;
-				}
+			get => (double)GetValue(MantisaProperty);
+			set => SetValue(MantisaProperty, value);
+		}
 
-				_mantisa = value;
-				Value = new BigNumber(value, Value.Exponent);
-			}
+		public static readonly DependencyProperty MantisaProperty =
+			DependencyProperty.Register(nameof(Mantisa), typeof(double), typeof(BigNumberBox), new PropertyMetadata(0, OnMantisaChanged));
+
+		private static void OnMantisaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var box = (BigNumberBox)d;
+			box.UpdateValue();
 		}
 
 		private int Exponent
 		{
-			get => _exponent;
-			set
-			{
-				if (double.IsNaN(value) || _exponent == value)
-				{
-					return;
-				}
+			get => (int)GetValue(ExponentProperty);
+			set => SetValue(ExponentProperty, value);
+		}
 
-				_exponent = value;
-				Value = new BigNumber(Value.Mantisa, value);
-			}
+		public static readonly DependencyProperty ExponentProperty =
+			DependencyProperty.Register(nameof(Exponent), typeof(int), typeof(BigNumberBox), new PropertyMetadata(0, OnExponentChanged));
+
+		private static void OnExponentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var box = (BigNumberBox)d;
+			box.UpdateValue();
+		}
+
+		private void UpdateValue()
+		{
+			Value = new BigNumber(Mantisa, Exponent);
 		}
 
 		public BigNumber Value
@@ -52,8 +56,6 @@ namespace Physics.GravitationalFieldMovement.UserControls
 
 		public static readonly DependencyProperty ValueProperty =
 			DependencyProperty.Register(nameof(Value), typeof(BigNumber), typeof(BigNumberBox), new PropertyMetadata(0, OnValueChanged));
-		private double _mantisa;
-		private int _exponent;
 
 		private static void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
 		{

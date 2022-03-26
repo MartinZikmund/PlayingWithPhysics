@@ -149,13 +149,28 @@ Graphics: Petr Weinlich</value>
     <value>Object</value>
   </data>
   <data name="Planet" xml:space="preserve">
-    <value>Planet</value>
+    <value>Central body</value>
   </data>
   <data name="PlanetMass" xml:space="preserve">
-    <value>Planet mass</value>
+    <value>Mass</value>
+  </data>
+  <data name="PlanetPresetPlaceholder" xml:space="preserve">
+    <value>Pick central body...</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
-    <value>Planet radius</value>
+    <value>Radius</value>
+  </data>
+  <data name="Preset_Earth" xml:space="preserve">
+    <value>Earth</value>
+  </data>
+  <data name="Preset_Mars" xml:space="preserve">
+    <value>Mars</value>
+  </data>
+  <data name="Preset_Moon" xml:space="preserve">
+    <value>Moon</value>
+  </data>
+  <data name="Preset_Sun" xml:space="preserve">
+    <value>Sun</value>
   </data>
   <data name="SetEarth" xml:space="preserve">
     <value>Set Earth</value>
