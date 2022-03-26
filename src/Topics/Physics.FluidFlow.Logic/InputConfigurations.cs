@@ -12,7 +12,7 @@ namespace Physics.FluidFlow.Logic
 				FluidDefinitions = new[]
 				{
 					FluidDefinitions.Water,
-					FluidDefinitions.Oil
+					//FluidDefinitions.Oil
 				},
 				VelocityConfigurations = new System.Collections.Generic.Dictionary<FluidDefinition, FieldConfiguration>()
 				{
