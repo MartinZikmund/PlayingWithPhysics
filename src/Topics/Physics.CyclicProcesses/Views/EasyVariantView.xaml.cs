@@ -4,21 +4,49 @@ using Physics.Shared.Views;
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.UI;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.UI.Xaml.Controls;
 
 namespace Physics.CyclicProcesses.Views
 {
 	public sealed partial class EasyVariantView : EasyVariantViewBase
 	{
+		private AppBarButton _playbackRateButton;
+
 		public EasyVariantView()
 		{
 			InitializeComponent();
 			DataContextChanged += ViewContextChanged;
-			Loaded += EasyVariantView_Loaded;
+			Loaded += EasyVariantView_Loaded;			
+		}
+
+		private void OnFlyoutChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			var flyout = _playbackRateButton.Flyout as MenuFlyout;
+			if (flyout == null)
+			{
+				return;
+			}
+
+			flyout.Opening += Flyout_Opening;
+		}
+
+		private void Flyout_Opening(object sender, object e)
+		{
+			var flyout = (MenuFlyout)sender;
+			flyout.Items[0].Visibility = Visibility.Collapsed;
+			flyout.Items[1].Visibility = Visibility.Collapsed;
 		}
 
 		private void EasyVariantView_Loaded(object sender, RoutedEventArgs e)
 		{
 			AnimationSelection_SelectionChanged(null, null);
+
+			_playbackRateButton = MediaTransport.FindDescendant("PlaybackRateButton") as AppBarButton;
+			_playbackRateButton.RegisterPropertyChangedCallback(Button.FlyoutProperty, OnFlyoutChanged);
 		}
 
 		private void ViewContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)

@@ -109,6 +109,7 @@
 				<MediaPlayerElement Grid.Row="1" Background="White" x:Name="Player" AreTransportControlsEnabled="True">
 					<MediaPlayerElement.TransportControls>
 						<MediaTransportControls
+							x:Name="MediaTransport"
 							IsCompact="True"
 							IsVolumeButtonVisible="False"
 							IsVolumeEnabled="False"
