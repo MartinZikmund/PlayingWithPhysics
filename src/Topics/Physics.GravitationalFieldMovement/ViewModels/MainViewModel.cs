@@ -51,7 +51,9 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		public ICommand ShowDerivedParametersCommand => GetOrCreateAsyncCommand(ShowDerivedParametersAsync);
 
 		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
-		
+
+		public DispatcherTimer DispatcherTime { get; set; }
+
 		public void SetController(GravitationalFieldMovementCanvasController controller)
 		{
 			if (controller is null)
@@ -59,10 +61,30 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				throw new ArgumentNullException(nameof(controller));
 			}
 
+			DispatcherTime = new DispatcherTimer();
+			DispatcherTime.Tick += TimerTick;
+			DispatcherTime.Interval = TimeSpan.FromSeconds(1/30.0);
+			DispatcherTime.Start();
+
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
 		}
 
+		private void TimerTick(object sender, object e)
+		{
+			if (_controller.CurrentPoint != null)
+			{
+				Velocity = _controller.CurrentPoint.V;
+				Height = _controller.CurrentPoint.H;
+			}
+		}
+
+		public string HeightText => Height.ToString("0.000");
+		public double Height { get; private set; } = 0.0d;
+
+		public string VelocityText => Velocity.ToString("0.000");
+		public double Velocity { get; private set; } = 0.0d;
+		
 		private async Task SetParametersAsync()
 		{
 			var dialog = new InputDialog(_difficulty, Input);
@@ -139,5 +161,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			newWindow.RequestSize(new Size(640, 400));
 			var shown = await newWindow.TryShowAsync();
 		}
+
+		public bool IsEasyVariant => _difficulty == DifficultyOption.Easy;
 	}
 }

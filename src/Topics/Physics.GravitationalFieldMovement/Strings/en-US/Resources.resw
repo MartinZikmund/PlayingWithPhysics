@@ -184,4 +184,13 @@ Graphics: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Gravitational Field</value>
   </data>
+  <data name="CurrentHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="CurrentVelocity" xml:space="preserve">
+    <value>Velocity</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
 </root>

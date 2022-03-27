@@ -9,8 +9,8 @@ namespace Physics.GravitationalFieldMovement.ValuesTable
 {
     public class TableRow : ValuesTableRowBase
     {
-        private const string DistanceFormatting = "0.00";
-		private const string TFormatting = "0.00";
+        private const string DistanceFormatting = "0.00##";
+		private const string TFormatting = "0.00##";
 
 		[ValuesTableHeader("t (s)")]
 		public string T { get; set; }

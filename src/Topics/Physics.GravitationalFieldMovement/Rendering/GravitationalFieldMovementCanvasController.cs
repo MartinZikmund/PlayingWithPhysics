@@ -75,6 +75,7 @@ namespace Physics.GravitationalFieldMovement.Rendering
 			DrawTrajectory(sender, args);
 		}
 
+		public TrajectoryPoint CurrentPoint => _trajectory?.Length > 0 ? _trajectory[_currentFrame] : null;
 
 		public override void Update(ISkiaCanvas sender)
 		{

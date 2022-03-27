@@ -118,7 +118,7 @@ public class InputConfiguration
 
 	public double V0 => (double)V0BigNumber;
 
-	public double BetaDeg { get; }
+	public double BetaDeg { get; } = 0;
 
 	public double Phi0Deg { get; }
 

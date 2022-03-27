@@ -71,6 +71,7 @@
                         Command="{x:Bind Model.ShowValuesTableCommand}"
                         Content="{extensions:Localize Key=ShowValuesTable}" />
                     <mux:NumberBox
+						x:Name="DeltaInput"
                         Header="Δt"
                         Maximum="100000000"
                         Minimum="1"
@@ -83,36 +84,51 @@
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<Grid.Resources>
 						<Style TargetType="TextBlock">
 							<Setter Property="FontSize" Value="16"/>
 							<Setter Property="Margin" Value="0,0,8,0"/>
 						</Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Margin" Value="0,0,0,8"/>
+						</Style>
 					</Grid.Resources>
 
-					<StackPanel Grid.Row="0" Orientation="Horizontal">
+					<StackPanel Visibility="{x:Bind Model.IsEasyVariant}" Grid.Row="0" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=Object}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.Object, Mode=OneWay}"/>
 						</TextBlock>
-						<TextBlock Text="{x:Bind Model.Object, Mode=OneWay}"/>
 					</StackPanel>
 					<StackPanel Grid.Row="1" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=Mass}"/><Run Text=": "/>
-						</TextBlock>
-						<TextBlock>
-							<Run Text="{x:Bind Model.Input.M0, Mode=OneWay}"/>
+							<Run Text="{x:Bind Model.Input.MzBigNumber, Mode=OneWay}"/>
 							<Run Text="kg"/>
 						</TextBlock>
 					</StackPanel>
 					<StackPanel Grid.Row="2" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=Radius}"/><Run Text=": "/>
-						</TextBlock>
-						<TextBlock>
-							<Run Text="{x:Bind Model.Input.R0, Mode=OneWay}"/>
+							<Run Text="{x:Bind Model.Input.RzBigNumber, Mode=OneWay}"/>
 							<Run Text="m"/>
+						</TextBlock>
+					</StackPanel>
+					<StackPanel Grid.Row="3" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
+							<Run Text="m"/>
+						</TextBlock>
+					</StackPanel>
+					<StackPanel Grid.Row="4" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=CurrentVelocity}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.VelocityText, Mode=OneWay}"/>
+							<Run Text="m.s⁻¹"/>
 						</TextBlock>
 					</StackPanel>
 				</Grid>

@@ -184,4 +184,13 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby v centrálním gravitačním poli</value>
   </data>
+  <data name="CurrentHeight" xml:space="preserve">
+    <value>Výška nad povrchem</value>
+  </data>
+  <data name="CurrentVelocity" xml:space="preserve">
+    <value>Rychlost</value>
+  </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Hmotnost</value>
+  </data>
 </root>
