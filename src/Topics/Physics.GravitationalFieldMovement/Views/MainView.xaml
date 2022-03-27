@@ -61,16 +61,17 @@
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind Model.SetParametersCommand}"
                         Content="{extensions:Localize Key=SetParameters}" />
-					<Button
+                    <!--<Button
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind Model.ShowDerivedParametersCommand}"
-                        Content="Show derived parameters (debug)" />
-					<Button
+                        Content="Show derived parameters (debug)" />-->
+                    <Button
+						Visibility="{x:Bind Model.InputSet, Mode=OneWay}"
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind Model.ShowValuesTableCommand}"
                         Content="{extensions:Localize Key=ShowValuesTable}" />
-					<mux:NumberBox
-                        Header="Dt"
+                    <mux:NumberBox
+                        Header="Δt"
                         Maximum="100000000"
                         Minimum="1"
                         Value="{x:Bind Model.Dt, Mode=TwoWay}" />
@@ -141,6 +142,7 @@
                 ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
                 JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
@@ -148,7 +150,7 @@
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"
                 SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
-                SpeedControlVisibility="Collapsed">
+                SpeedControlVisibility="Visible">
                 <sharedControls:SimulationControls.Background>
                     <AcrylicBrush
                         BackgroundSource="Backdrop"

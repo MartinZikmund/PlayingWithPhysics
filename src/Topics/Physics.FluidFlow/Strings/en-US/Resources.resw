@@ -120,7 +120,7 @@
   <data name="AppDescription" xml:space="preserve">
     <value>The material will help students to create or refine an idea of how ideal or real liquids that flow through a given pipe behave. Using the jet model, it will be possible to map the behavior of individual parts of the liquid.
 
-Content authors: Pavel Mládek, Pavel Jirman
+Content authors: Petr Kvoch, Radka Procházková
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
@@ -161,13 +161,13 @@ Graphics: Petr Weinlich</value>
     <value>Water</value>
   </data>
   <data name="HeightDecreaseLabel" xml:space="preserve">
-    <value>Height decrease</value>
+    <value>Height change</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (with height decrease)</value>
+    <value>Bernoulli equation (with height change)</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (without height decrease)</value>
+    <value>Bernoulli equation (without height change)</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
     <value>Continuity equation</value>
@@ -177,6 +177,18 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="LengthLabel" xml:space="preserve">
     <value>Plumbing length</value>
+  </data>
+  <data name="PipeHeightLabel" xml:space="preserve">
+    <value>Pipe height</value>
+  </data>
+  <data name="PressureLabel" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
+  <data name="S1MustBeLargerMessage" xml:space="preserve">
+    <value>d₁ must be greater than d₂, please adjust the input.</value>
+  </data>
+  <data name="S2MustBeLargerMessage" xml:space="preserve">
+    <value>d₁ must be less than d₂, please adjust the input.</value>
   </data>
   <data name="SelectedParameters" xml:space="preserve">
     <value>Selected parameters</value>

@@ -14,6 +14,6 @@ namespace Physics.CyclicProcesses.ViewModels.Process
 			_inputConfiguration = inputConfiguration;
 		}
 
-		public float Q12 => _physicsService.Q12;
+		public string Q12 => (_physicsService.Q12).ToString("0.#");
 	}
 }

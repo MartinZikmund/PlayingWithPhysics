@@ -10,7 +10,8 @@
 			float diameter1,
 			float diameter2,
 			float length,
-			float heightDecrease)
+			float heightDecrease,
+			float pressure)
 		{
 			InputVariant = inputVariant;
 			DiameterRelationType = diameterRelationType;
@@ -20,6 +21,7 @@
 			Diameter2 = diameter2;
 			Length = length;
 			HeightDecrease = heightDecrease;
+			Pressure = pressure;
 		}
 
 		public InputVariant InputVariant { get; set; }
@@ -30,12 +32,26 @@
 
 		public float Velocity { get; set; }
 
+		public string VelocityString => Velocity.ToString("0.###");
+
 		public float Diameter1 { get; set; }
+
+		public string Diameter1String => Diameter1.ToString("0.#");
 
 		public float Diameter2 { get; set; }
 
+		public string Diameter2String => Diameter2.ToString("0.#");
+
 		public float Length { get; set; }
 
+		public string LengthString => Length.ToString("0.#");
+
 		public float HeightDecrease { get; set; }
+
+		public string HeightDecreaseString => HeightDecrease.ToString("0.#");
+
+		public float Pressure { get; set; }
+
+		public string PressureString => Pressure.ToString("0.###");
 	}
 }

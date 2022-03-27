@@ -1,4 +1,5 @@
-﻿using Physics.FluidFlow.Logic;
+﻿using System;
+using Physics.FluidFlow.Logic;
 using SkiaSharp;
 
 namespace Physics.FluidFlow.Rendering
@@ -12,7 +13,11 @@ namespace Physics.FluidFlow.Rendering
 		{
 		}
 
-		protected override SKPath GetPlumbingPath()
+		protected override SKPath GetPlumbingStrokePath() => GetPlumbingStroke();
+
+		protected override SKPath GetPlumbingFillPath() => GetPlumbingStroke();
+
+		private SKPath GetPlumbingStroke()
 		{
 			if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.Equal)
 			{
@@ -30,9 +35,58 @@ namespace Physics.FluidFlow.Rendering
 				path.Close();
 				return path;
 			}
+			else if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.S1Larger)
+			{
+				var diameter1 = _sceneConfiguration.Diameter1;
+				var diameter2 = _sceneConfiguration.Diameter2;
+				var startX = -10;
+				var endX = _canvas.ScaledSize.Width + 10;
+				var x1 = GetRenderX(_physicsService.GetS1LargerX1());
+				var x2 = GetRenderX(_physicsService.GetS1LargerX2());
+				var x3 = GetRenderX(_physicsService.GetS1LargerX3());
+				var d1Top = GetRenderY(diameter1 / 2);
+				var d1bottom = GetRenderY(-diameter1 / 2);
+				var d2Top = GetRenderY(diameter2 / 2);
+				var d2bottom = GetRenderY(-diameter2 / 2);
+
+				var path = new SKPath();
+				path.MoveTo(startX, d1Top);
+				path.LineTo(x1, d1Top);
+				path.LineTo(x2, d2Top);
+				path.LineTo(endX, d2Top);
+				path.LineTo(endX, d2bottom);
+				path.LineTo(x2, d2bottom);
+				path.LineTo(x1, d1bottom);
+				path.LineTo(startX, d1bottom);
+				path.Close();
+
+				return path;
+			}
 			else
 			{
-				return new SKPath();
+				var diameter1 = _sceneConfiguration.Diameter1;
+				var diameter2 = _sceneConfiguration.Diameter2;
+				var startX = -10;
+				var endX = _canvas.ScaledSize.Width + 10;
+				var x1 = GetRenderX(_physicsService.GetS2LargerX1());
+				var x2 = GetRenderX(_physicsService.GetS2LargerX2());
+				var d1Top = GetRenderY(diameter1 / 2);
+				var d1bottom = GetRenderY(-diameter1 / 2);
+				var d2Top = GetRenderY(diameter2 / 2);
+				var d2bottom = GetRenderY(-diameter2 / 2);
+
+				var path = new SKPath();
+				path.MoveTo(startX, d1Top);
+				path.LineTo(x1, d1Top);
+				path.LineTo(x2, d2Top);
+				path.LineTo(endX, d2Top);
+				path.LineTo(endX, d2bottom);
+				path.LineTo(x2, d2bottom);
+				path.LineTo(x1, d1bottom);
+				path.LineTo(startX, d1bottom);
+				path.Close();
+
+				return path;
 			}
 		}
 
@@ -50,11 +104,19 @@ namespace Physics.FluidFlow.Rendering
 				return 0;
 			}
 
-			var range = (MaxRenderX - MinRenderX) / 10;
+			var range = (MaxRenderX - MinRenderX) / 5;
 			if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.Equal)
 			{
-				var relativeVelocity = (_sceneConfiguration.Velocity / 50) * range;
-				return relativeVelocity;
+				var relativeVelocity = 1f;
+				if (_sceneConfiguration.Fluid == FluidDefinitions.Oil)
+				{
+					relativeVelocity = _sceneConfiguration.Velocity / 4;
+				}
+				else
+				{
+					relativeVelocity = _sceneConfiguration.Velocity / 50;
+				}
+				return relativeVelocity * range;
 			}
 			else if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.S1Larger)
 			{
@@ -105,6 +167,34 @@ namespace Physics.FluidFlow.Rendering
 				}
 			}
 			return 0;
+		}
+
+		protected override void DrawTrajectory(SKCanvas canvas)
+		{
+			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
+			{
+				using var path = new SKPath();
+				var t1 = _physicsService.T1;
+				var t2 = _physicsService.T2;
+				var startPoint = PhysicsService.GetParticlePosition(0, particleId);
+				path.MoveTo(GetRenderX((float)startPoint.X), GetRenderY((float)startPoint.Y));
+				if (GetAdjustedTime() >= t1)
+				{
+					var firstBreakPosition = PhysicsService.GetParticlePosition(t1, particleId);
+					path.LineTo(GetRenderX((float)firstBreakPosition.X), GetRenderY((float)firstBreakPosition.Y));
+				}
+
+				if (GetAdjustedTime() >= (t1 + t2))
+				{
+					var secondBreakPosition = PhysicsService.GetParticlePosition(t1 + t2, particleId);
+					path.LineTo(GetRenderX((float)secondBreakPosition.X), GetRenderY((float)secondBreakPosition.Y));
+				}
+
+				var endPosition = PhysicsService.GetParticlePosition((float)GetAdjustedTime(), particleId);
+				path.LineTo(GetRenderX((float)Math.Min(_physicsService.XMax, endPosition.X)), GetRenderY((float)endPosition.Y));
+
+				canvas.DrawPath(path, GetParticlePathPaint(particleId));
+			}
 		}
 
 		public override IPhysicsService PhysicsService => _physicsService;

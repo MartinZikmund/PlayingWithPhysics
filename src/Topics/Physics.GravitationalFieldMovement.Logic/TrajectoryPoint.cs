@@ -18,5 +18,6 @@ public class TrajectoryPoint
 	public double Y { get; }
 
 	public double V { get; }
+
 	public double H { get; }
 }

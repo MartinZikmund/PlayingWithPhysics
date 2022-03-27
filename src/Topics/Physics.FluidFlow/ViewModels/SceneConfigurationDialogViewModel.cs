@@ -4,10 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using MvvmCross;
-using MvvmCross.ViewModels;
 using Physics.FluidFlow.Logic;
-using Physics.FluidFlow.Logic;
-using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Services.Dialogs;
 using Physics.Shared.ViewModels;
@@ -23,35 +20,32 @@ namespace Physics.FluidFlow.ViewModels
 			InitializeDiameterRelationPicker(inputVariant);
 			UpdateInputConfiguration();
 
-			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
-			SelectedFluid = Fluids.First();
-
 			if (sceneConfiguration != null)
 			{
+				SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == sceneConfiguration.Fluid) ?? Fluids.First();
 				SelectedDiameterRelationTypeIndex = DiameterRelationTypes.IndexOf(sceneConfiguration.DiameterRelationType);
 
 				DiameterInM = sceneConfiguration.Diameter1;
 				Diameter1InM = sceneConfiguration.Diameter1;
 				Diameter2InM = sceneConfiguration.Diameter2;
 				Length = sceneConfiguration.Length;
-				HeightDecreaseInM = sceneConfiguration.HeightDecrease;
 				Velocity = sceneConfiguration.Velocity;
+				HeightDecreaseInM = sceneConfiguration.HeightDecrease;
+				Pressure = sceneConfiguration.Pressure;
 			}
 			else
 			{
-				DiameterInM = DiameterConfiguration.DefaultValue ?? 1;
-				Diameter1InM = Diameter1Configuration.DefaultValue ?? 1;
-				Diameter2InM = Diameter2Configuration.DefaultValue ?? 1;
+				SelectedFluid = Fluids.First();
+				SelectedDiameterRelationTypeIndex = 0;
+
+				DiameterInCm = DiameterConfiguration.DefaultValue ?? 1;
+				Diameter1InCm = Diameter1Configuration.DefaultValue ?? 1;
+				Diameter2InCm = Diameter2Configuration.DefaultValue ?? 1;
 				Length = InputConfiguration.LengthConfiguration.DefaultValue ?? 1;
 				Velocity = VelocityConfiguration.DefaultValue ?? 1;
-				HeightDecreaseInM = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
+				HeightDecreaseInCm = InputConfiguration.HeightDecreaseConfiguration.DefaultValue ?? 1;
+				Pressure = InputConfiguration.PressureConfiguration.DefaultValue ?? 1;
 			}
-
-			//Label = oscillationInfo.Label;
-			//Color = ColorHelper.ToColor(oscillationInfo.Color);
-			//Frequency = oscillationInfo.Frequency;
-			//Amplitude = oscillationInfo.Amplitude;
-			//PhaseInDeg = oscillationInfo.PhaseInDeg;
 		}
 
 		public event EventHandler InputConfigurationChanged;
@@ -108,6 +102,8 @@ namespace Physics.FluidFlow.ViewModels
 		}
 
 		public float Velocity { get; set; }
+
+		public float Pressure { get; set; }
 
 		public float Length { get; set; }
 
@@ -174,11 +170,11 @@ namespace Physics.FluidFlow.ViewModels
 			{
 				if (SelectedFluid.FluidDefinition == FluidDefinitions.Oil)
 				{
-					Velocity = 4000.4f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.4f * 4f / (3.14f * diameter1 * diameter1);
 				}
 				else
 				{
-					Velocity = 50.4f / (3.14f * diameter1 * diameter1);
+					Velocity = 0.005f * 4f / (3.14f * diameter1 * diameter1);
 				}
 			}
 
@@ -190,7 +186,8 @@ namespace Physics.FluidFlow.ViewModels
 				diameter1,
 				Diameter2InM,
 				Length,
-				HeightDecreaseInM);
+				HeightDecreaseInM,
+				Pressure);
 		}
 
 		private void InitializeDiameterRelationPicker(InputVariant inputVariant)
@@ -211,7 +208,13 @@ namespace Physics.FluidFlow.ViewModels
 			UpdateFieldConfigurations();
 		}
 
-		internal void OnSelectedFluidChanged() => UpdateFieldConfigurations();
+		internal void OnSelectedFluidChanged()
+		{
+			if (SelectedFluid != null)
+			{
+				UpdateFieldConfigurations();
+			}
+		}
 
 		private void UpdateFieldConfigurations()
 		{
@@ -239,19 +242,9 @@ namespace Physics.FluidFlow.ViewModels
 				c.InputVariant == InputVariant &&
 				c.DiameterRelationType == SelectedDiameterRelationType);
 
-			await Task.Yield();
-
-			// Ensure the current values are valid
-			if (SelectedDiameterRelationType == DiameterRelationType.S1Larger &&
-				Diameter1InCm <= Diameter2InCm)
-			{
-				Diameter1InCm = Diameter2InCm + 1;
-			}
-			else if (SelectedDiameterRelationType == DiameterRelationType.S2Larger &&
-			   Diameter2InCm <= Diameter1InCm)
-			{
-				Diameter2InCm = Diameter1InCm + 1;
-			}
+			var selectedFluid = SelectedFluid?.FluidDefinition;
+			Fluids = InputConfiguration.FluidDefinitions.Select(f => new FluidDefinitionViewModel(f)).ToArray();
+			SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == selectedFluid) ?? Fluids.First();
 		}
 	}
 }

@@ -12,14 +12,66 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		_input = input;
 	}
 
-	public int ParticleCount => _input.DiameterRelationType == DiameterRelationType.Equal ? 7 : 5;
+	public int ParticleCount => 3;
 
-	public float XMax =>
+	public float P2 => 0;
+
+	public float H1 => 0;
+
+	public float H2 => 0;
+
+	public float XMax
+	{
+		get
+		{
+			if (_input.Fluid == FluidDefinitions.Water)
+			{
+				return 0.50f;
+			}
+			else if (_input.Fluid == FluidDefinitions.Oil)
+			{
+				return 5f;
+			}
+			else
+			{
+				throw new InvalidOperationException("Unsupported fluid");
+			}
+		}
+	}
+
+	public float T1 =>
 		_input.DiameterRelationType switch
 		{
-			DiameterRelationType.Equal => 100,
-			DiameterRelationType.S1Larger => 100,
-			DiameterRelationType.S2Larger => 100,
+			DiameterRelationType.Equal => 20,
+			DiameterRelationType.S1Larger => CalculateS1LargerT1(),
+			DiameterRelationType.S2Larger => CalculateS2LargerT1(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float T2 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.Equal => 20,
+			DiameterRelationType.S1Larger => CalculateS1LargerT2(),
+			DiameterRelationType.S2Larger => CalculateS2LargerT2(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float T3 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.Equal => 20,
+			DiameterRelationType.S1Larger => CalculateS1LargerT3(),
+			DiameterRelationType.S2Larger => CalculateS2LargerT3(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float V2 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.Equal => _input.Velocity,
+			DiameterRelationType.S1Larger => CalculateS1LargerV2(),
+			DiameterRelationType.S2Larger => CalculateS2LargerV2(),
 			_ => throw new InvalidOperationException("Invalid diameter type"),
 		};
 
@@ -34,11 +86,43 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 
 	public float YMin => -YMax;
 
-	public override float MaxT => 60;
+	public override float MaxT
+	{
+		get
+		{
+			if (_input.DiameterRelationType == DiameterRelationType.Equal)
+			{
+				return 60;
+			}
+			else if (_input.DiameterRelationType == DiameterRelationType.S1Larger)
+			{
+				return CalculateS1LargerT1() + CalculateS1LargerT2() + CalculateS1LargerT3();
+			}
+			else if (_input.DiameterRelationType == DiameterRelationType.S2Larger)
+			{
+				return CalculateS2LargerT1() + CalculateS2LargerT2() + CalculateS2LargerT3();
+			}
+
+			throw new InvalidOperationException("Invalid diameter type");
+		}
+	}
 
 	public bool CanRenderFlow => throw new NotImplementedException();
 
 	public string ErrorKey => throw new NotImplementedException();
+
+	public float Vector1T => T1 / 2;
+
+	public float Vector2T => T1 + T2 + T3 / 2;
+
+	public float SimulationTimeAdjustment =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.Equal => 0.5f,
+			DiameterRelationType.S1Larger => 0.01f,
+			DiameterRelationType.S2Larger => 0.01f,
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
 
 	public Point2d GetParticlePosition(float time, int particleId) =>
 		_input.DiameterRelationType switch
@@ -51,105 +135,135 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 
 	private Point2d GetDiameterEqualParticlePosition(float time, int particleId)
 	{
-		time = Math.Min(time, 58);
+		var x = _input.Velocity * time;
 		return particleId switch
 		{
-			0 => new Point2d(_input.Velocity * time, YMax),
-			1 => new Point2d(_input.Velocity * time, 2 / 3.0 * YMax),
-			2 => new Point2d(_input.Velocity * time, 1 / 3.0 * YMax),
-			3 => new Point2d(_input.Velocity * time, 0),
-			4 => new Point2d(_input.Velocity * time, -1 / 3.0 * YMax),
-			5 => new Point2d(_input.Velocity * time, -2 / 3.0 * YMax),
-			6 => new Point2d(_input.Velocity * time, - YMax),
+			0 => new Point2d(x, +_input.Diameter1 / 4),
+			1 => new Point2d(x, 0),
+			2 => new Point2d(x, -_input.Diameter1 / 4),
 			_ => throw new InvalidOperationException()
 		};
 	}
 
+	#region S1 Larger
+
 	private Point2d GetS1LargerParticlePosition(float time, int particleId)
 	{
-		if (time < 40)
+		var t1 = T1;
+		var t2 = T2;
+		var v2 = V2;
+		if (time < t1)
 		{
+			var x = _input.Velocity * time;
 			return particleId switch
 			{
-				0 => new Point2d(time, 20),
-				1 => new Point2d(time, 10),
-				2 => new Point2d(time, 0),
-				3 => new Point2d(time, -10),
-				4 => new Point2d(time, -20),
+				0 => new Point2d(x, +_input.Diameter1 / 4),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, -_input.Diameter1 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
-		else if (time < 48)
+		else if (time < t1 + t2)
 		{
-			var x = 40 + (time - 40) + 3 / 16.0 * (time - 40) * (time - 40);
-			var xDiff = x - 40;
+			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 - _input.Velocity);
+			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
+			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch
 			{
-				0 => new Point2d(x, 20 - xDiff * 0.5),
-				1 => new Point2d(x, 10 - xDiff * 0.25),
-				2 => new Point2d(x, 0),
-				3 => new Point2d(x, -10 + xDiff * 0.25),
-				4 => new Point2d(x, -20 + xDiff * 0.5),
+				0 => new Point2d(x, particle0y),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, particle2y),
 				_ => throw new InvalidOperationException()
 			};
 		}
 		else
 		{
-			time = Math.Min(time, 58);
-			var x = 60 + 4 * (time - 48);
+			time = Math.Min(time, MaxT);
+			var x = v2 * (time - t1 - t2) + 3 / 5f * XMax;
 			return particleId switch
 			{
-				0 => new Point2d(x, 10),
-				1 => new Point2d(x, 5),
-				2 => new Point2d(x, 0),
-				3 => new Point2d(x, -5),
-				4 => new Point2d(x, -10),
+				0 => new Point2d(x, +_input.Diameter2 / 4),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, -_input.Diameter2 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
 	}
 
+	public float GetS1LargerX1() => _input.Fluid == FluidDefinitions.Water ? 0.20f : 2;
+
+	public float GetS1LargerX2() => _input.Fluid == FluidDefinitions.Water ? 0.3f : 3;
+
+	public float GetS1LargerX3() => _input.Fluid == FluidDefinitions.Water ? 0.5f : 5;
+
+	public float CalculateS1LargerV2() => (_input.Velocity * _input.Diameter1 * _input.Diameter1) / (_input.Diameter2 * _input.Diameter2);
+
+	public float CalculateS1LargerT1() => 2 * XMax / (5 * _input.Velocity);
+
+	public float CalculateS1LargerT2() => 2 * XMax / (5 * (CalculateS1LargerV2() - _input.Velocity));
+
+	public float CalculateS1LargerT3() => 2 * XMax / (5 * CalculateS1LargerV2());
+
+	#endregion
+
+	#region S2 Larger
+
 	private Point2d GetS2LargerParticlePosition(float time, int particleId)
-	{
-		if (time < 10)
+	{		
+		var t1 = T1;
+		var t2 = T2;
+		var v2 = V2;
+		if (time < t1)
 		{
+			var x = _input.Velocity * time;
 			return particleId switch
 			{
-				0 => new Point2d(4 * time, 10),
-				1 => new Point2d(4 * time, 5),
-				2 => new Point2d(4 * time, 0),
-				3 => new Point2d(4 * time, -5),
-				4 => new Point2d(4 * time, -10),
+				0 => new Point2d(x, +_input.Diameter1 / 4),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, -_input.Diameter1 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
-		else if (time < 18)
+		else if (time < t1 + t2)
 		{
-			var x = 40 + 4 * (time - 10) - 3 / 16.0 * (time - 10) * (time - 10);
-			var xDiff = x - 40;
+			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 + _input.Velocity);
+			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
+			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch
 			{
-				0 => new Point2d(x, 10 + xDiff * 0.5),
-				1 => new Point2d(x, 5 + xDiff * 0.25),
-				2 => new Point2d(x, 0),
-				3 => new Point2d(x, -5 - xDiff * 0.25),
-				4 => new Point2d(x, -10 - xDiff * 0.5),
+				0 => new Point2d(x, particle0y),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, particle2y),
 				_ => throw new InvalidOperationException()
 			};
 		}
 		else
 		{
-			time = Math.Min(time, 58);
-			var x = 60 + (time - 18);
+			time = Math.Min(time, MaxT);
+			var x = v2 * (time - t1 - t2) + 3 / 5f * XMax;
 			return particleId switch
 			{
-				0 => new Point2d(x, 20),
-				1 => new Point2d(x, 10),
-				2 => new Point2d(x, 0),
-				3 => new Point2d(x, -10),
-				4 => new Point2d(x, -20),
+				0 => new Point2d(x, +_input.Diameter2 / 4),
+				1 => new Point2d(x, 0),
+				2 => new Point2d(x, -_input.Diameter2 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
 	}
+
+	public float GetS2LargerX1() => 0.20f;
+
+	public float GetS2LargerX2() => 0.3f;
+
+	public float GetS2LargerX3() => 0.5f;
+
+	public float CalculateS2LargerV2() => (_input.Velocity * _input.Diameter1 * _input.Diameter1) / (_input.Diameter2 * _input.Diameter2);
+
+	public float CalculateS2LargerT1() => 2 * XMax / (5 * _input.Velocity);
+
+	public float CalculateS2LargerT2() => 2 * XMax / (5 * (CalculateS2LargerV2() + _input.Velocity));
+
+	public float CalculateS2LargerT3() => 2 * XMax / (5 * CalculateS2LargerV2());
+
+	#endregion
 }

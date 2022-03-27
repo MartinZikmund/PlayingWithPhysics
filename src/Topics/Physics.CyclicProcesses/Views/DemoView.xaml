@@ -1,0 +1,128 @@
+﻿<local:DemoVariantViewBase
+    x:Class="Physics.CyclicProcesses.Views.DemoVariantView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.CyclicProcesses.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:logic="using:Physics.CyclicProcesses.Logic"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<DrillInNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
+	<Page.Resources>
+		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+	</Page.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="320"
+                MaxWidth="480" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid
+            x:Name="MenuPane"
+            Grid.Column="0"
+            RequestedTheme="Dark">
+			<Grid.Background>
+				<AcrylicBrush
+                    BackgroundSource="HostBackdrop"
+                    FallbackColor="{ThemeResource AppThemeColor}"
+                    TintColor="{ThemeResource AppThemeColor}"
+                    TintOpacity="0.85" />
+			</Grid.Background>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<sharedControls:SkewedMenuHeader
+                FontSize="16"
+                GoBackCommand="{x:Bind Model.GoBackCommand}"
+                Text="{extensions:Localize Key=ShortAppName}" />
+
+			<Border Grid.Row="1" Margin="0,12,0,0">
+				<Grid Margin="8">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<winui:RadioButtons
+						x:Name="AnimationSelection"
+						ItemsSource="{x:Bind Model.ProcessTypes, Mode=OneWay}"
+						MaxColumns="3"
+						SelectedIndex="0"
+						SelectionChanged="AnimationSelection_SelectionChanged">
+						<winui:RadioButtons.Transitions>
+							<TransitionCollection>
+								<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+							</TransitionCollection>
+						</winui:RadioButtons.Transitions>
+						<winui:RadioButtons.Resources>
+							<Style TargetType="RadioButton">
+								<Setter Property="Padding" Value="12,0,0,4" />
+								<Setter Property="VerticalAlignment" Value="Center" />
+								<Setter Property="VerticalContentAlignment" Value="Center" />
+							</Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="FontSize" Value="16" />
+								<Setter Property="TextWrapping" Value="WrapWholeWords" />
+							</Style>
+						</winui:RadioButtons.Resources>
+						<winui:RadioButtons.ItemTemplate>
+							<DataTemplate x:DataType="logic:ProcessType">
+								<RadioButton Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+							</DataTemplate>
+						</winui:RadioButtons.ItemTemplate>
+					</winui:RadioButtons>
+				</Grid>
+			</Border>
+		</Grid>
+		<Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="CanvasHolder" Background="#F4F4F4">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<TextBlock Margin="20" Text="{Binding ElementName=AnimationSelection, Path=SelectedItem}" Style="{ThemeResource HeaderTextBlockStyle}" />
+				<MediaPlayerElement Grid.Row="1" Background="White" x:Name="Player" AreTransportControlsEnabled="True">
+					<MediaPlayerElement.TransportControls>
+						<MediaTransportControls
+							x:Name="MediaTransport"
+							IsCompact="True"
+							IsVolumeButtonVisible="False"
+							IsVolumeEnabled="False"
+                            IsZoomButtonVisible="True"
+                            IsZoomEnabled="True"
+							IsFastRewindEnabled="True"
+							IsFastForwardEnabled="True"
+							IsSkipForwardEnabled="True"
+                            IsPlaybackRateButtonVisible="True"
+                            IsPlaybackRateEnabled="True" />
+					</MediaPlayerElement.TransportControls>
+				</MediaPlayerElement>
+			</Grid>
+		</Grid>
+	</Grid>
+</local:DemoVariantViewBase>

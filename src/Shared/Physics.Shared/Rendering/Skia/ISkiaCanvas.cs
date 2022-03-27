@@ -28,6 +28,8 @@ namespace Physics.Shared.UI.Rendering.Skia
 
 		float ScaleFactor { get; }
 
+		bool ShouldRender { get; set; }
+
 		Task RunOnRenderThreadAsync(Action action);
 	}
 }

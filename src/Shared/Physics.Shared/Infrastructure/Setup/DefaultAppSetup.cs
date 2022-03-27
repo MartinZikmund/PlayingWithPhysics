@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Uap.Core;
@@ -19,14 +21,14 @@ namespace Physics.Shared.UI.Infrastructure.Setup
     public abstract class DefaultAppSetup<T> : MvxWindowsSetup<T>
         where T : class, IMvxApplication, new()
     {
-        protected override void InitializeFirstChance()
-        {
-            base.InitializeFirstChance();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IPreferences, Preferences>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISoundPlayer, SoundPlayer>();
-			Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IContentDialogHelper, ContentDialogHelper>();
-			Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppList, AppList>();
-        }
+		protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
+		{
+			base.InitializeFirstChance(iocProvider);
+			iocProvider.LazyConstructAndRegisterSingleton<IPreferences, Preferences>();
+			iocProvider.LazyConstructAndRegisterSingleton<ISoundPlayer, SoundPlayer>();
+			iocProvider.LazyConstructAndRegisterSingleton<IContentDialogHelper, ContentDialogHelper>();
+			iocProvider.LazyConstructAndRegisterSingleton<IAppList, AppList>();
+		}
 
         public override IEnumerable<Assembly> GetViewAssemblies()
         {
@@ -50,5 +52,15 @@ namespace Physics.Shared.UI.Infrastructure.Setup
         {
             return new DefaultViewPresenter(rootFrame);
         }
-    }
+
+		protected override ILoggerProvider CreateLogProvider()
+		{
+			return NullLoggerProvider.Instance;
+		}
+
+		protected override ILoggerFactory CreateLogFactory()
+		{
+			return NullLoggerFactory.Instance;
+		}
+	}
 }

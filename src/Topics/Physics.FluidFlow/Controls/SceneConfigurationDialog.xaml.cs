@@ -9,10 +9,10 @@ namespace Physics.FluidFlow.Controls
 {
 	public sealed partial class SceneConfigurationDialog : ContentDialog
 	{
-		public SceneConfigurationDialog(InputVariant inputVariant)
+		public SceneConfigurationDialog(InputVariant inputVariant, SceneConfiguration sceneConfiguration)
 		{
 			InitializeComponent();
-			Model = new SceneConfigurationDialogViewModel(inputVariant, null);
+			Model = new SceneConfigurationDialogViewModel(inputVariant, sceneConfiguration);
 			Model.InputConfigurationChanged += Model_InputConfigurationChanged;
 			SetupNumberBoxes();
 		}
@@ -32,6 +32,7 @@ namespace Physics.FluidFlow.Controls
 			SetupNumberBox(DiameterNumberBox, Model.DiameterConfiguration);
 			SetupNumberBox(Diameter1NumberBox, Model.Diameter1Configuration);
 			SetupNumberBox(Diameter2NumberBox, Model.Diameter2Configuration);
+			SetupNumberBox(PressureNumberBox, Model.InputConfiguration.PressureConfiguration);
 		}
 
 		private void SetupNumberBox(NumberBox numberBox, FieldConfiguration fieldConfiguration)

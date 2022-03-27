@@ -1,0 +1,365 @@
+[
+  {
+    "Title": "1. Optické zobrazení",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Úvod",
+        "Text": "\\par \\textit{„Vážený dóže, vážení pánové, děkuji všem, že jste vážili cestu sem na kampanilu svatého Marka, abyste zhlédli můj vynález, který chci věnovat Nejjasnější republice benátské.\\\\\r\r\\par Když jsem se před nedávnem dozvěděl, že vám jakýsi francouzský obchodník nabízel k prodeji za horentní sumu trubku s dvěma čočkami, která umožňuje vidět do dálky, nelenil jsem a ve své dílně vyrobil za zlomek původní ceny vlastní dalekohled. Ten vám nabízím darem k věčné slávě Benátské republiky.\\\\\r\r\\par Prosím, zde je a můžete si s ním prohlédnout obyvatele ostrova Murano, který je odtud vzdálen 2,5 km či zvonici kostela sv. Justiny v Padově, která je odtud vzdálena 40 km.“\\\\\r\r\\par Dóže Leonardo Donato, vládce Nejjasnější republiky benátské, se dlouze zahleděl do mosazné trubky. Klouzal pohledem po budovách a obyvatelích nedalekého ostrova. V hlavě mu vířily myšlenky na vojenské a námořní využití tohoto přístroje. V uších mu cinkaly floriny, které díky tomu republika získá. Usmíval se.\\\\\r\r\\par Dalekohled se zastavil a dóže v něm sledoval bujný dekolt dámy, která se právě objevila v oknu a netušila, že není sama.\\\\\r\r\\par Dóže se usmál více a nedokázal odvrátit zrak od pohledu, který mu přístroj nyní poskytoval.\\\\\r\r\\par „Úžasný vynález, Galileo. Předpovídám Vám skvělou budoucnost!“\rByl 21. srpen 1609 a Galileo Galilei poprvé předvedl svůj dalekohled veřejnosti.}\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Optické přístroje i lidské oko vytvářejí obrazy předmětů na základně zákonů optiky. Ty vycházejí ze základních principů paprskové (geometrické) optiky:\\\\\r1. přímočaré šíření světla\\\\\r2. zákon odrazu\\\\\r3. zákon lomu\\\\\r4. nezávislost chodu světelných paprsků\\\\\r\r\\par Nebudeme uvažovat vlnovou povahu světla (jevy jako ohyb, interference…).\\\\\r\r\\par Z každého bodu předmětu, který okem pozorujeme, vycházejí světelné paprsky a vytvářejí rozbíhavý svazek světelných paprsků.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Zobrazit bod $A$ (předmět) znamená, že se rozbíhavý svazek paprsků v oku mění na sbíhavý svazek paprsků, které se protnou v bodě $A´$ na sítnici oka. Bod $A´$ nazveme obrazem bodu $A$.\\\\\r\r\\par Mezi předmětem a okem není žádné další optické prostředí, které by měnilo směr chodu světelných paprsků. Při použití jakéhokoliv optického přístroje (např. brýlí, mikroskopu, dalekohledu…) budeme pomocí čoček, zrcadel, optických hranolů apod. měnit chod světelných paprsků. Tyto součásti optických přístrojů nazýváme zobrazovací prvky. Jejich uspořádáním vznikne optická (zobrazovací) soustava.\\\\\r\r\\par Svazek paprsků vystupující z optické soustavy může být:\\\\\r1. sbíhavý\\\\\r2. rozbíhavý\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V případě sbíhavého svazku vzniká v průsečíku skutečný (reálný) obraz, který lze zachytit na stínítko.\\\\\r\r\\par Vytváří-li optická soustava rozbíhavý svazek paprsků, nemůžeme obraz bodu zachytit na stínítku a skutečný obraz nevzniká.  Obraz ale můžeme pozorovat okem, protože oční čočka mění rozbíhavý svazek na sbíhavý.\\\\\r\r\\par Obraz pak pozorujeme v průsečíku, který vznikne zpětným prodloužením rozbíhavých paprsků. V tomto případě vzniká zdánlivý (neskutečný, virtuální) obraz.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamování",
+        "Text": "\\par Skutečný (reálný) obraz lze zachytit na stínítko, zdánlivý na stínítko zachytit nelze.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co nikdy nevytvoří skutečný obraz?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Lupa",
+          "Dírka v černém papíru",
+          "Rovinné zrcadlo"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Zobrazení rovinným zrcadlem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Když se při optickém zobrazení uplatňuje jen odraz světla, mluvíme o zobrazení odrazem. Setkáváme se s ním při pohledu na předměty s lesklým povrchem.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Nejjednodušší je zobrazení odrazem na lesklé rovinné ploše, která se nazývá rovinné zrcadlo. Zdrojem světla je bod $A$ v prostoru před zrcadlem, ze kterého vycházejí všemi směry rozbíhavé paprsky. Paprsky dopadající na rovinu zrcadla se odrážejí podle zákona odrazu. Odražené paprsky tvoří rozbíhavý svazek, což znamená, že při zobrazení rovinným zrcadlem vzniká neskutečný obraz. Při pohledu okem vidíme tento obraz v průsečíku $A´$ zpětně prodloužených paprsků, tedy v prostoru za zrcadlem (viz obrázek).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Obraz vytvořený rovinným zrcadlem je vždy zdánlivý, vzpřímený, stejně velký jako předmět a souměrný s předmětem podle roviny zrcadla.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Untitled",
+        "Question": "Jak vysoké musí být rovinné zrcadlo, aby člověk vysoký 2 m viděl ze vzdálenosti 1 m celou svoji postavu?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "0,5 m",
+          "1 m",
+          "1,5 m",
+          "2 m"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "3. Konvence znamének a značení",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V dalších kapitolách se budeme zabývat zobrazením kulovými zrcadly a čočkami, tedy zobrazení odrazem a lomem. Pro tato zobrazení odvodíme jednu rovnici, kterou lze použít jak pro oba typy kulových zrcadel, tak pro oba typy čoček, pokud dodržíme následující pravidla značení a znamének:\\\\\r\r\\par 1. Optickou soustavu kreslíme tak, že paprsky procházejí touto soustavou zleva doprava.\\\\\r\r\\par 2. Orientovaná ohnisková vzdálenost (předmětová nebo obrazová) se měří od příslušného ohniska k optickému středu (vrcholu) soustavy. Má-li tato orientovaná vzdálenost souhlasný směr se směrem chodu paprsků, je kladná, má-li směr opačný, je záporná.\\\\\r\r\\par 3. Orientovaná výška předmětu se značí $y$, orientovaná výška jeho obrazu $y´$. Tyto orientované výšky měříme od optické osy (na níž předmět stojí) ke konci předmětu. Leží-li koncový bod předmětu (nebo jeho obrazu) nad optickou osou, je jeho orientovaná výška kladná, leží-li pod optickou osou, je jeho orientovaná výška záporná.\\\\\r\r\\par 4. Vzdálenost předmětu od vrcholu (resp. středu) optické soustavy se značí $a$, vzdálenost jeho obrazu od vrcholu (resp. středu) optické soustavy se značí $a´$. Vzdálenost $a$ se měří vždy od předmětu k vrcholu (resp. středu) optické soustavy a je vždy kladná. Vzdálenost $a´$ se měří od obrazu předmětu k vrcholu (resp. středu) dané soustavy. Jedná-li se o kulové zrcadlo, je vzdálenost $a´$ kladná před zrcadlem a záporná za zrcadlem. Jedná-li se o čočku, je vzdálenost $a´$ kladná za čočkou a záporná před čočkou.\\\\\r\r\\par Můžeme to ale říct i jinak: Vzdálenost $a´$ je kladná tam, kde očekáváme, že vznikne obraz. Kulová zrcadla zobrazují na základě odrazu světla, proto očekáváme, že obraz vznikne před nimi. Čočky zobrazují na základě průchodu a lomu světla - obraz by měl tedy vznikat za nimi. V určitých situacích ale vznikne obraz za zrcadlem, resp. před čočkou (tj. tam, kde ho neočekáváme) - v tom případě je vzdálenost $a´$ záporná.\\\\\r\r\\par 5. U čoček značíme poloměry křivostí indexy 1 a 2 a to tak, že index 1 přísluší optické ploše, na kterou paprsek dopadá jako první.\\\\\r\r\\par 6. Poloměry křivosti u čoček bereme kladné (resp. záporné), jedná-li se o plochu vypuklou (resp. dutou). Poloměry křivosti u kulových zrcadel bereme kladné (resp. záporné), jedná-li se o plochu dutou (resp. vypuklou).\\\\\r\r\\par 7. Index lomu čočky se značí $n_1$, index lomu prostředí, v němž se čočka nachází, se značí $n_2$.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaká znaménka budou mít vzdálenosti u rozptylky?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "předmětová vzdálenost $a$ bude kladná, obrazová vzdálenost $a´$ bude kladná",
+          "předmětová vzdálenost $a$ bude kladná, obrazová vzdálenost $a´$ bude záporná",
+          "předmětová vzdálenost $a$ bude záporná, obrazová vzdálenost $a´$ bude kladná",
+          "předmětová vzdálenost $a$ bude záporná, obrazová vzdálenost $a´$ bude záporná"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "4. Zobrazení kulovým zrcadlem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Kulové (sférické) zrcadlo je vytvořené nanesením zrcadlící plochy na kulový vrchlík. Podle toho, na které straně vrchlíku kulové plochy je zrcadlící plocha, rozlišujeme:\\\\\r1. duté (konkávní) zrcadlo - zrcadlící plocha je na vnitřní straně vrchlíku\\\\\r2. vypuklé (konvexní) zrcadlo - zrcadlící plocha je na vnější straně vrchlíku\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-04.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Přímka procházející středem křivosti $C$ a vrcholem $V$ zrcadla se nazývá optická osa o zrcadla. Vzdálenost $r=|CV|$ je poloměr křivosti zrcadla.\\\\\r\r\\par V dalších částech se omezíme pouze na paprsky, které se nacházejí v blízkosti optické osy, v tzv. paraxiálním prostoru.\\\\\r\r\\par  Paraxiální prostor je prostor symetricky rozložený kolem optické osy zrcadla (nebo čočky), v němž je zobrazení kolineární, tedy při zobrazování nevznikají žádné vady.\\\\\r\r\\par  Při optickém zobrazování používáme tři význačné paprsky.\\\\\r\r\\par  1. Paprsek procházející středem křivosti zrcadla $C$ má po odrazu od zrcadla opačný směr než měl paprsek dopadající na zrcadlo.\\\\\r\r\\par  2. Paprsek rovnoběžný s optickou osou se od zrcadla odráží tak, že optickou osu protíná v bodě $F$.\\\\\r\r\\par  3. Paprsek procházející bodem F se po odrazu od zrcadla šíří rovnoběžně s optickou osou.\\\\\r\r\\par  Pro konstrukci obrazu stačí dva význačné paprsky. Předmět, který leží na optické ose, se zobrazí tak, že i jeho obraz leží na optické ose.\\\\\r\r\\par  Bod $F$ se nazývá ohnisko kulového zrcadla. Vzdálenost ohniska $F$ od vrcholu $V$ kulového zrcadla je ohnisková vzdálenost $f$: $$f=|FV|=\\frac{r}{2}$$\\\\\r\r\\par U dutého zrcadla se paprsky v ohnisku skutečně protínají - bod $F$ představuje tedy skutečné ohnisko. U vypuklého zrcadla jsou paprsky rozbíhavé a protínají se po zpětném prodloužení v tzv. zdánlivém ohnisku.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-05.png",
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-06.png",
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Vzdálenost předmětu $a=|AV|$ od vrcholu zrcadla se nazývá předmětová vzdálenost, vzdálenost $a´=|A´V|$ je obrazová vzdálenost.\\\\\r\r\\par Optické zobrazení charakterizujeme z hlediska vztahu obrazu k předmětu pojmy:\\\\\r1. zmenšený - zvětšený\\\\\r2. skutečný - neskutečný\\\\\r3. vzpřímený - převrácený\\\\\r\r\\par Vlastnosti obrazu vytvořeného dutým zrcadlem závisí na poloze předmětu na optické ose:\\\\\r\r\\par Vzdálenost předmětu: $a>r$,\\\\\rvzdálenost obrazu: $f<a´<r$,\\\\\rvlastnosti obrazu: zmenšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=r$,\\\\\rvzdálenost obrazu: $a´=r$,\\\\\rvlastnosti obrazu: stejně vysoký, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $f<a<r$,\\\\\rvzdálenost obrazu: $a´>r$,\\\\\rvlastnosti obrazu: zvětšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=f$,\\\\\rvzdálenost obrazu: $a´\\to \\infty$,\\\\\rvlastnosti obrazu: $y´\\to \\infty$.\\\\\r\r\\par Vzdálenost předmětu: $a<f$,\\\\\rvzdálenost obrazu: $0<a´<\\infty$,\\\\\rvlastnosti obrazu: zvětšený, vzpřímený, zdánlivý.\\\\\r\r\\par Při zobrazení vypuklým zrcadlem vzniká vždy zmenšený, vzpřímený a zdánlivý obraz.\\\\\r\r\\par Vlastnosti obrazu si nemusíme pamatovat - lze kdykoliv odvodit pomocí dvou (resp. tří) význačných paprsků.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Zubní lékař při vyšetření chrupu nejčastěji používá:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "duté zrcátko",
+          "rovinné zrcátko",
+          "vypuklé zrcátko"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "5. Příčné zvětšení",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Optické zobrazení charakterizuje veličina příčné zvětšení $Z$. Je definována poměrem velikosti obrazu $y´$ a velikosti předmětu $y$: $$Z=\\frac{y´}{y}$$\\\\\r\r\\par Protože při optickém zobrazení může vznikat i obraz zmenšený, není název této veličiny zcela přesný. Mnohem výstižnější je tuto veličinu nazývat měřítko optického zobrazení.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-07.png",
+        "Title": "Obrázek č. 7"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Příčné zvětšení zrcadla $Z$ je možné vypočítat i na základě veličin $a$,  $a´$, $f$. Na základě definičního vztahu příčného zvětšení $Z$ a podobných trojúhelníků na obrázku lze odvodit další vztahy pro příčné zvětšení: $$Z=\\frac{y´}{y}=-\\frac{a´}{a}=-\\frac{a´-f}{f}=-\\frac{f}{a-f}$$\\\\\r\r\\par Znaménko mínus před odvozenými členy nevychází z matematických úvah o podobných trojúhelnících, ale ze znaménkové konvence.\\\\\r\r\\par Pro příčné zvětšení platí:\\\\\r$Z>0$ - obraz je vzpřímený\\\\\r$Z<0$ - obraz je převrácený\\\\\r$│Z│>1$ - obraz je zvětšený\\\\\r$│Z│=1$  - obraz je stejně velký jako předmět\\\\\r$│Z│<1$ - obraz je zmenšený\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaký bude obraz vytvořený dutým zrcadlem s poloměrem křivosti 50 cm, je-li předmět ve vzdálenosti 1 m od zrcadla?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "převrácený, dvakrát menší než předmět",
+          "vzpřímený, dvakrát menší než předmět",
+          "převrácený, třikrát menší než předmět",
+          "vzpřímený, třikrát menší než předmět"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Souvislost mezi vzdáleností předmětu $a$, vzdáleností obrazu $a´$ a ohniskovou vzdáleností $f=\\frac{r}{2}$, vyjadřuje zobrazovací rovnice kulového zrcadla: $$\\frac{1}{a}+\\frac{1}{a´}=\\frac{1}{f}$$",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "6. Čočky",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Většina optických přístrojů používá k zobrazování čočky, které jsou založeny na lomu světla. Čočky se převážně zhotovují ze skla, které má větší index lomu $n_2$, než je index lomu $n_1$ okolního prostředí (většinou vzduch). Povrch čočky tvoří dvě kulové plochy (nebo jedna plocha kulová a jedna plocha rovinná).\\\\\r\r\\par Základní typy čoček rozlišujeme podle toho, jak se po průchodu čočkou šíří rovnoběžné paprsky. Jestliže se paprsky lámou tak, že se po průchodu čočkou sbíhají v jednom bodě, jde o spojnou čočku neboli spojku. Když se paprsky po průchodu čočkou rozbíhají, jde o rozptylnou čočku neboli rozptylku.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-08.png",
+        "Title": "Obrázek č. 8"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Pro popis chodu světelných paprsků čočkou si zavedeme některé pojmy.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-09.png",
+        "Title": "Obrázek č. 9"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Optická osa o prochází středy křivostí optických ploch $C_1$ a $C_2$ a vrcholy optických ploch $V_1$ a $V_2$. Veličiny $r_1$ a $r_2$ jsou poloměry křivosti optických ploch čočky. Pro jednoduchost se budeme zabývat tenkou čočkou. Vzdálenost bodů $V_1$ a $V_2$ budeme považovat za zanedbatelně malou, takže body $V_1$ a $V_2$ splývají v optický střed čočky $O$.\\\\\r\r\\par Protože světlo čočkami prochází, nazveme prostor, ze kterého světlo do čočky přichází, předmětový a prostor, do kterého světlo po průchodu čočkou vstupuje, obrazový.\\\\\r\r\\par Indexy poloměrů křivosti (resp. středů křivosti) jednotlivých optických ploch jsou značeny v souladu s konvencí znamének a značení: plocha, na kterou světlo dopadá jako první, má index 1.\\\\\r\r\\par Vlastnosti tenkých čoček:\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-10.png",
+        "Title": "Obrázek č. 10"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par 1. Paprsky procházející optickým středem čočky nemění svůj směr.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-11.png",
+        "Title": "Obrázek č. 11"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par 2. Paprsky rovnoběžné s optickou osou v prostoru předmětovém se u spojky lámou tak, že v prostoru obrazovém směřují do jednoho bodu na optické ose – do obrazového ohniska $F´$. U rozptylky se paprsky lámou tak, že zdánlivě vycházejí z jednoho bodu na optické ose – z obrazového ohniska $F´$. U spojky je toto ohnisko skutečné, u rozptylky zdánlivé.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-12.png",
+        "Title": "Obrázek č. 12"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par 3. Na optické ose spojky v prostoru předmětovém leží předmětové ohnisko $F$, které má tu vlastnost, že paprsky, které jím procházejí, jsou po průchodu čočkou rovnoběžné s optickou osou v prostoru obrazovém. U rozptylky leží předmětové ohnisko v prostoru obrazovém a sbíhavé paprsky, které do něho míří, jsou po průchodu čočkou rovnoběžné s optickou osou.\\\\\r\r\\par Vzdálenost bodů $F$, $O$ se nazývá předmětová ohnisková vzdálenost $f$, vzdálenost bodů $O$, $F´$ je obrazová ohnisková vzdálenost $f´$. Je-li před a za tenkou čočkou stejné prostředí, platí: $f=f´$. V tom případě se používá název ohnisková vzdálenost čočky $f$.\\\\\r\r\\par Ohnisková vzdálenost závisí na indexu lomu $n_2$ skla, z něhož je čočka vyrobena, na indexu lomu $n_1$ okolního prostředí a na poloměrech křivosti $r_1$ a $r_2$ optických ploch podle vztahu:$$\\frac{1}{f}=\\left(\\frac{n_2}{n_1}-1 \\right)\\left(\\frac{1}{r_1}+\\frac{1}{r_2} \\right)$$\r\r\\par Okolní prostředí je většinou vzduch, takže $n_1=1$. Pro rovinné plochy ploskovypuklé či ploskoduté čočky můžeme psát $\\frac{1}{r}=0$.\\\\\r\r\\par Podle znaménka ohniskové vzdálenosti rozlišujeme:\\\\\r1. spojky – $f>0$, ohniska jsou skutečná\\\\\r2. rozptylky – $f<0$, ohniska jsou zdánlivá\\\\\r\r\\par Charakteristickou veličinou čočky je i optická mohutnost $\\varphi$, která je definována vztahem: $$\\varphi = \\frac{1}{f}$$\\\\\r\r\\par Jednotkou optické mohutnosti je D (dioptrie). Optická mohutnost spojek je kladná, rozptylek záporná. \\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Úloha",
+        "HasNumericInput": true,
+        "Unit": "D",
+        "Placeholder": null,
+        "Question": "Jaká bude optická mohutnost tenké dvojvypuklé čočky s poloměrem křivosti obou ploch 25 cm, je-li vyrobena ze skla o indexu lomu 1,5?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "AllowedAnswers": [
+          "4"
+        ],
+        "Tolerance": 0.0
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "7. Zobrazení tenkou čočkou",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Podobně jako u kulových zrcadel použijeme pro geometrickou konstrukci obrazu význačné paprsky:\\\\\r1. paprsek rovnoběžný s optickou osou\\\\\r2. paprsek procházející optickým středem čočky\\\\\r3. paprsek procházející předmětovým ohniskem\\\\\t\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-13.png",
+        "Title": "Obrázek č. 13"
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-14.png",
+        "Title": "Obrázek č. 14"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "U spojné čočky se paprsky mohou skutečně protnout v bodě $A´$, vznikne skutečný obraz. Při průchodu rozptylkou jsou paprsky vždy rozbíhavé, takže nelze vytvořit skutečný obraz. Vzniká obraz zdánlivý, který najdeme tak, že paprsky prodloužíme v opačném směru.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "16_v04-15.png",
+        "Title": "Obrázek č. 15"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Vzdálenost $a=│AO│$  se nazývá předmětová vzdálenost a obraz vzniká v obrazové vzdálenosti $a´=│OA´│$. Pro příčné zvětšení platí definiční vztah $Z=\\frac{y´}{y}$. Podle obrázku je možné psát: $$Z=\\frac{y´}{y}=-\\frac{a´}{a}=-\\frac{a´-f}{f}=-\\frac{f}{a-f}$$\\\\\r\r\\par Při dodržení znaménkové konvence platí:\\\\\r$Z>0$ - obraz je vzpřímený\\\\\r$Z<0$ - obraz je převrácený\\\\\r$│Z│>1$ - obraz je zvětšený\\\\\r$│Z│=1$  - obraz je stejně velký jako předmět\\\\\r$│Z│<1$ - obraz je zmenšený\\\\\r\r\\par Souvislost mezi vzdáleností předmětu a, vzdáleností obrazu a´ a ohniskovou vzdáleností f, vyjadřuje zobrazovací rovnice čočky: $$\\frac{1}{a}+\\frac{1}{a´}=\\frac{1}{f}$$\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní úloha",
+        "Question": "Kolik centimetrů od spojky s ohniskovou vzdáleností 10 cm vznikne obraz předmětu, který je 30 cm od čočky? Jaké vlastnosti bude mít obraz?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "15 cm, zmenšený, skutečný, převrácený",
+          "15 cm, zvětšený, zdánlivý, vzpřímený",
+          "3 cm, zmenšený, skutečný, převrácený",
+          "3 cm, zvětšený, zdánlivý, vzpřímený"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Vlastnosti obrazu předmětu při zobrazení tenkou spojnou čočkou závisí na poloze předmětu na optické ose:\\\\\r\r\\par Vzdálenost předmětu: $a>2f$,\\\\\rvzdálenost obrazu: $f<a´<2f$,\\\\\rvlastnosti obrazu: zmenšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=2f$,\\\\\rvzdálenost obrazu: $a´=2f$,\\\\\rvlastnosti obrazu: stejně vysoký, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $f<a<2f$,\\\\\rvzdálenost obrazu: $a´>2f$,\\\\\rvlastnosti obrazu: zvětšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=f$,\\\\\rvzdálenost obrazu: $a´\\to \\infty$,\\\\\rvlastnosti obrazu: $y´\\to \\infty$.\\\\\r\r\\par Vzdálenost předmětu: $a<f$,\\\\\rvzdálenost obrazu: $0<a´<\\infty$,\\\\\rvlastnosti obrazu: zvětšený, vzpřímený, zdánlivý.\\\\\r\r\\par Při zobrazení tenkou rozptylnou čočkou vzniká při všech polohách předmětu obraz zmenšený, vzpřímený a zdánlivý.\\\\\r\r\\par Vlastnosti obrazu si nemusíme pamatovat - lze kdykoliv odvodit pomocí dvou (resp. tří) význačných paprsků.\\\\\r\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

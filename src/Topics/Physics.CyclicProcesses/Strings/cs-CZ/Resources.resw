@@ -197,10 +197,10 @@ Grafika: Petr Weinlich</value>
     <value>Teplota ohřívače</value>
   </data>
   <data name="T1Description" xml:space="preserve">
-    <value>Spodní teplota</value>
+    <value>Počáteční teplota</value>
   </data>
   <data name="T2Description" xml:space="preserve">
-    <value>Horní teplota</value>
+    <value>Koncová teplota</value>
   </data>
   <data name="T34Description" xml:space="preserve">
     <value>Teplota chladiče</value>

@@ -120,7 +120,7 @@
   <data name="AppDescription" xml:space="preserve">
     <value>Materiál poslouží žákům k vytvoření nebo zpřesnění představy o tom, jak se chovají ideální nebo reálné kapaliny, které proudí daným potrubím. Pomocí modelu proudnic bude možné mapovat chování jednotlivých částí kapaliny.
 
-Autoři obsahu: Pavel Mládek, Pavel Jirman
+Autoři obsahu: Petr Kvoch, Radka Procházková
 Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
@@ -146,7 +146,7 @@ Grafika: Petr Weinlich</value>
     <value>Rychlost proudění</value>
   </data>
   <data name="Fluid" xml:space="preserve">
-    <value>Tekutina</value>
+    <value>Kapalina</value>
   </data>
   <data name="Fluid_Air" xml:space="preserve">
     <value>Vzduch</value>
@@ -161,13 +161,13 @@ Grafika: Petr Weinlich</value>
     <value>Voda</value>
   </data>
   <data name="HeightDecreaseLabel" xml:space="preserve">
-    <value>Pokles výšky potrubí</value>
+    <value>Změna výšky potrubí</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
     <value>Bernoulliho rovnice se změnou výšky</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulliho rovnice bez změny výšky</value>
+    <value>Bernoulliho rovnice beze změny výšky</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
     <value>Rovnice kontinuity</value>
@@ -180,6 +180,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="LengthLabel" xml:space="preserve">
     <value>Délka potrubí</value>
+  </data>
+  <data name="PipeHeightLabel" xml:space="preserve">
+    <value>Výška trubice</value>
+  </data>
+  <data name="PressureLabel" xml:space="preserve">
+    <value>Tlak v potrubí</value>
   </data>
   <data name="S1MustBeLargerMessage" xml:space="preserve">
     <value>Musí platit d₁ &gt; d₂, upravte prosím vstupní hodnoty.</value>

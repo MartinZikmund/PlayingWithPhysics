@@ -20,7 +20,7 @@ namespace Physics.OpticalInstruments.Infrastructure
 
 		public bool HasAdvancedDifficulty => true;
 
-		public bool HasStudyMode => false;
+		public bool HasStudyMode => true;
 
 		public bool HasGame => false;
 
@@ -35,10 +35,6 @@ namespace Physics.OpticalInstruments.Infrastructure
 		public async Task GoToStudyModeAsync()
 		{
 			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
-		}
-
-		public async Task OpenStudyTextAsync()
-		{
 		}
 	}
 }

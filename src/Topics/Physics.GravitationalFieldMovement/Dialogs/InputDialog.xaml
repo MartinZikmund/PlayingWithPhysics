@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:extensions="using:Physics.Shared.Extensions"
     xmlns:local="using:Physics.GravitationalFieldMovement.Dialogs"
-    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:usercontrols="using:Physics.GravitationalFieldMovement.UserControls"
+    xmlns:usercontrols="using:Physics.GravitationalFieldMovement.UserControls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:viewmodels="using:Physics.GravitationalFieldMovement.ViewModels"
 	Title="{extensions:Localize Key=SetParameters}"
     x:DefaultBindMode="OneWay"
     PrimaryButtonClick="{x:Bind Model.Save}"
@@ -29,9 +30,19 @@
 			<Setter Property="Margin" Value="0,8,0,0" />
 			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
+		<Style
+            x:Key="HeaderStyle"
+            BasedOn="{StaticResource SubtitleTextBlockStyle}"
+            TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,8,0,0" />
+			<Setter Property="FontSize" Value="16" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
 	</ContentDialog.Resources>
 	<Grid ColumnSpacing="8">
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -52,80 +63,105 @@
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 
-		<TextBlock Visibility="{x:Bind Model.IsAdvanced}" Grid.Row="0">
+		<TextBlock
+            Style="{ThemeResource HeaderStyle}"
+            Text="{extensions:Localize Key=Planet}"
+            Visibility="{x:Bind Model.IsAdvanced}" />
+		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced}">
             <Run Text="{extensions:Localize Key=PlanetRadius}" />
             <Run FontWeight="Bold" Text="R" />
             <Run Text="(m)" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
-			x:Name="RzBigNumberBox"
-			Visibility="{x:Bind Model.IsAdvanced}"
-			Value="{x:Bind Model.RzBigNumber, Mode=TwoWay}"
-			Grid.Row="0"
-            Grid.Column="1" />
+            x:Name="RzBigNumberBox"
+            Grid.Row="1"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.IsAdvanced}"
+            Value="{x:Bind Model.RzBigNumber, Mode=TwoWay}" />
 
-		<TextBlock Visibility="{x:Bind Model.IsAdvanced}" Grid.Row="1">
+		<TextBlock Grid.Row="2" Visibility="{x:Bind Model.IsAdvanced}">
             <Run Text="{extensions:Localize Key=PlanetMass}" />
             <Run FontWeight="Bold" Text="M" />
             <Run Text="(kg)" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
-			x:Name="MzBigNumberBox"
-			Visibility="{x:Bind Model.IsAdvanced}"
-			Value="{x:Bind Model.MzBigNumber, Mode=TwoWay}"
-			Grid.Row="1"
-            Grid.Column="1" />
+            x:Name="MzBigNumberBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            Visibility="{x:Bind Model.IsAdvanced}"
+            Value="{x:Bind Model.MzBigNumber, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="2">
+		<ComboBox
+			Margin="0,8,0,0"
+			Grid.Row="3"
+			HorizontalAlignment="Stretch"
+			Grid.Column="1"
+            Visibility="{x:Bind Model.IsAdvanced}"
+			PlaceholderText="{extensions:Localize Key=PlanetPresetPlaceholder}"
+			ItemsSource="{x:Bind Model.Presets}"
+			SelectedItem="{x:Bind Model.SelectedPreset, Mode=TwoWay}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate x:DataType="viewmodels:PlanetPresetViewModel">
+					<TextBlock Text="{x:Bind Name}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
+		<TextBlock
+            Grid.Row="4"
+            Style="{ThemeResource HeaderStyle}"
+            Text="{extensions:Localize Key=Object}"
+            Visibility="{x:Bind Model.IsAdvanced}" />
+		<TextBlock Grid.Row="5">
             <Run Text="{extensions:Localize Key=InitialHeight}" />
             <Run FontWeight="Bold" Text="h" />
             <Run Text="(m)" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
-			x:Name="HBigNumberBox"
-			Value="{x:Bind Model.HBigNumber, Mode=TwoWay}"
-			Grid.Row="2"
-            Grid.Column="1" />
+            x:Name="HBigNumberBox"
+            Grid.Row="5"
+            Grid.Column="1"
+            Value="{x:Bind Model.HBigNumber, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="3">
+		<TextBlock Grid.Row="6">
             <Run Text="{extensions:Localize Key=InitialVelocity}" />
             <Run FontWeight="Bold" Text="v₀" />
             <Run Text="(m.s⁻¹)" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
-			x:Name="V0BigNumberBox"
-			Value="{x:Bind Model.V0BigNumber, Mode=TwoWay}"
-			Grid.Row="3"
-            Grid.Column="1" />
+            x:Name="V0BigNumberBox"
+            Grid.Row="6"
+            Grid.Column="1"
+            Value="{x:Bind Model.V0BigNumber, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="4">
+		<TextBlock Grid.Row="7">
             <Run Text="{extensions:Localize Key=ElevationAngle}" />
             <Run FontWeight="Bold" Text="β" />
             <Run Text="(°)" />
 		</TextBlock>
 		<winui:NumberBox
             x:Name="ElevationAngleNumberBox"
-            Grid.Row="4"
+            Grid.Row="7"
             Grid.Column="1"
             Maximum="360"
             Minimum="0"
             Value="{x:Bind Model.BetaDeg, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="5">
+		<TextBlock Grid.Row="8">
             <Run Text="{extensions:Localize Key=InitialCoordinateAngle}" />
             <Run FontWeight="Bold" Text="Φ₀" />
             <Run Text="(°)" />
 		</TextBlock>
 		<winui:NumberBox
             x:Name="InitialCoordinateAngleNumberBox"
-            Grid.Row="5"
+            Grid.Row="8"
             Grid.Column="1"
             Maximum="360"
             Minimum="0"
             Value="{x:Bind Model.Phi0Deg, Mode=TwoWay}" />
 
 		<TextBlock
-            Grid.Row="6"
+            Grid.Row="9"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             Foreground="Red"

@@ -16,10 +16,10 @@ namespace Physics.HomogenousMovement.Core
 {
 	public class AppSetup : DefaultAppSetup<DefaultApp<AppStart>>
 	{
-		protected override void InitializeFirstChance()
+		protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
 		{
-			base.InitializeFirstChance();
-			Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
+			base.InitializeFirstChance(iocProvider);
+			iocProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
 		}
 
 		public override async void UpdateActivationArguments(IActivatedEventArgs e)

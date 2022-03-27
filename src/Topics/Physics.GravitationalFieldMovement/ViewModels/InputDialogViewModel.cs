@@ -1,4 +1,5 @@
-﻿using Physics.GravitationalFieldMovement.Logic;
+﻿using System.Linq;
+using Physics.GravitationalFieldMovement.Logic;
 using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -43,6 +44,21 @@ public class InputDialogViewModel : ViewModelBase
 	public string ErrorMessage { get; private set; }
 
 	public InputConfiguration Result { get; private set; }
+
+	public PlanetPresetViewModel[] Presets { get; } = PlanetPresets.Presets.Select(x => new PlanetPresetViewModel(x)).ToArray();
+
+	public PlanetPresetViewModel SelectedPreset { get; set; }
+
+	internal void OnSelectedPresetChanged()
+	{
+		if (SelectedPreset == null)
+		{
+			return;
+		}
+
+		RzBigNumber = SelectedPreset.Preset.R;
+		MzBigNumber = SelectedPreset.Preset.M;
+	}
 
 	public void Save(object sender, ContentDialogButtonClickEventArgs args)
 	{

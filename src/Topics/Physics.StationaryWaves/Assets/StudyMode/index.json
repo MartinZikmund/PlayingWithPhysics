@@ -1,0 +1,251 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par \\textit{Koncertní sál byl jako obvykle vyprodaný. Na divácích bylo znát vzrušení z nadcházejícího koncertu. Mistra předcházely divoké historky, kterým bylo jen těžko uvěřit.\\\\\r\r\\par „Víte, milostivá, že má smlouvu s ďáblem? Ten mu prý dal moc hrát tak divoce na housle. Po smrti ho snad ani nepohřbí do posvěcené půdy.”\\\\\r\r\\par „Prý mu na jednom koncertu praskly tři houslové struny a on dokázal zbytek zahrát na jedné jediné – na struně G!”\\\\\r\r\\par „Paní lékárníková říkala, že trpí priapismem. Co vám budu povídat, sestřenko. Na koncertu… Před publikem vyl bolestí... A ty jeho ohnivé oči!... Ženu prý ale nikdy nezklame. Rozumíme si, že? Vždyť jste také provdána...“\\\\\r\r\\par „Drahý pane, byl zázračné dítě. Teď je z něj houslový démon. Ta jeho kombinace pizzicata levou rukou a hraní smyčcem. Jeho použití skordatury. To ďábelsky rychlé staccato. Jeho dvojité flažolety, hra glissando… No, co vám budu povídat, učiněný démon.”\\\\\r\r\\par „Jeho Vojenská sonáta je komponována výhradně pro strunu G. Úžasné.”\\\\\r\r\\par „Házené létavé smyky ricochet, flažolety či pizzicata vedou pouze k povrchnosti. Uvidíme, co nám pan umělec předvede…”\\\\\r\r\\par Na pódium vstoupil konferenciér. Počkal, až se publikum uklidní, a zvučným hlasem pronesl: „Dámy a pánové, pan Nicolo Paganini!”}\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "1. Odraz vlnění v řadě bodů",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Možná jste se někdy zamysleli nad otázkou: „Co se stane s vlněním, když dospěje na konec bodové řady. Abychom si utvořili lepší představu, provedeme dva experimenty. K pevné překážce připevníme jeden konec asi 3 m dlouhé gumové hadice nebo můžeme použít posilovací lana na tzv. „core trénink“. Druhý konec hadice držíme v ruce.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_01_v03.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 1: Odraz vlnění na pevném konci\\\\\r\r\\par Jestliže kmitneme začátkem hadice, vznikne důl, který se pohybuje podél hadice k překážce. Tam se odráží a vrací se zpět k ruce jako vrch.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_02_v03.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 2: Odraz vlnění na volném konci\\\\\r\r\\par Jestliže mezi hadici a překážku vložíme lehké vlákno a po napnutí pokus opakujeme, tak se na volném konci důl odráží a vrací se k ruce opět jako důl.\\\\\r\r\\par Z pokusů lze usoudit, jak bude podobný děj probíhat v řadě hmotných bodů v pružném prostředí. Jestliže vlnění dorazí až ke krajnímu bodu, který je k překážce vázán pevněji než k ostatním bodům bodové řady, tak vlnění postupuje řadou bodů zpět. Přitom má odražené vlnění stejnou vlnovou délku, ale liší se fází, která se změní o $π$. Říkáme, že na pevném konci dochází k odrazu vlnění s opačnou fází.\\\\\r\r\\par Jestliže řada končí volným bodem, který je s okolními body vázán slaběji než s body bodové řady, vlnění se od koncového bodu vrací bez změny fáze. Říkáme, že na volném konci dochází k odrazu vlnění se stejnou fází.\\\\\r\r\\par Podobné jevy nastávají také při přechodu vlnění přes rozhraní dvou prostředí. Zde se způsob odrazu řídí rychlostmi postupu vlnění před a za rozhraním. Je-li rychlost v 1. prostředí před rozhraním $v_1$ a v 2. prostředí za rozhraním $v_2$, tak platí, že pokud je $v_2<v_1$, nastává odraz na rozhraní obou prostředí s opačnou fází (obdoba odrazu vlnění na pevném konci). Pokud je $v_2>v_1$, odráží se vlnění na rozhraní se stejnou fází (obdoba odrazu vlnění na volném konci).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Pokud světlo dorazí atmosférou k oknu a dopadne na něj pod úhlem 30°, tak se ho část zlomí a projde do domu, ale část se ho odrazí. Odrazí se se stejnou nebo s opačnou fází? Nápověda: K odpovědi si vyhledejte rychlost světla ve vzduchu a ve skle.",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Světlo se odrazí se stejnou fází",
+          "Světlo se odrazí s opačnou fází"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Rychlost světla ve vzduchu je větší než rychlost světla ve skle. Odraz světla proběhne tedy obdobně jako odraz vlnění na pevném konci. To znamená, že se vlnění odrazí s opačnou fází. Tento jev můžete nasimulovat v aplikaci Hrátky s fyzikou: Stojaté vlnění.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Stojaté vlnění",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Ve výkladu odrazu vlnění v řadě bodů jsme sledovali pohyb jediné výchylky řadou bodů. Co se bude dít, když počáteční bod řady bude kmitat harmonicky?\\\\\r\r\\par Pojďme rozkmitat třeba levý konec vlákna, které je na pravém konci upevněno. Vlnění postupuje zleva doprava, v místě upevnění se odráží s opačnou fází a vrací se zpět. V tu chvíli začnou proti sobě pružným prostředím postupovat dvě vlnění se stejnou amplitudou výchylky a stejnou vlnovou délkou. Tato vlnění nazveme přímé vlnění a odražené vlnění.\\\\\r\r\\par Každý bod vlákna tedy koná kmitavý pohyb, který vznikl superpozicí (složením) okamžitých výchylek obou vlnění. Průběh tohoto děje si vysvětlíme za pomoci obrázku. Vznik vlnění budeme sledovat v bodě $M$, v němž se přímé i odražené vlnění setkají se stejnou fází. Tento okamžik budeme považovat za počáteční ($t=0$ s) a okamžitá výchylka $y_M$ v bodu $M$ bude nulová ($y_M=0$ m).\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_03_v03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 3: Vznik stojatého vlnění\\\\\r\r\\par Za dobu $t=T/4$ se přímé vlnění posunulo o $λ/4$ vpravo a odražené vlnění o $λ/4$ vlevo, takže v bodě $M$ mají obě vlnění amplitudu výchylky $y_M=2y_m$.\\\\\r\r\\par V čase t = T/2 mají obě vlnění nulovou okamžitou výchylku $y_M=0$ m.\\\\\r\r\\par V čase t = 3T/4 je patrné, že obě vlnění mají výchylku $y_M=−2y_m$.\\\\\r\r\\par Vidíme, že v bodě $M$ se přímé a odražené vlnění setkávají v každém okamžiku se stejnou fází. Bod $M$ kmitá harmonicky s amplitudou $y_M=2y_m$. Obdobně kmitají také další body ve vzdálenostech $\\pm k\\frac{\\lambda}{2}$ od bodu $M$, kde $k=$ 1, 2, 3, … Těmto bodům říkáme kmitny.\\\\\r\r\\par Současně vidíme, že v některých bodech má přímé a odražené vlnění stále opačnou fázi. Proto je v těchto bodech výchylka stále nulová. Tyto body jsou stále v klidu a říkáme jim uzly.\\\\\r\r\\par Ostatní body kmitají harmonicky, ale s menší amplitudou výchylky než $2y_m$.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak daleko od sebe leží v bodové řadě dva sousední uzly?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Ve vzdálenosti jedné vlnové délky λ",
+          "Ve vzdálenosti jedné poloviny vlnové délky λ/2",
+          "Ve vzdálenosti jedné čtvrtiny vlnové délky λ/4"
+        ]
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Složením přímého a odraženého vlnění vzniká nový druh vlnění, při němž jednotlivé body harmonicky kmitají s různou amplitudou výchylky, která je pro daný bod konstantní. Tento druh vlnění nazýváme stojaté vlnění.\\\\\r\r\\par V bodech, v nichž kmitání dosahuje největší amplitudy výchylky, jsou kmitny stojatého vlnění. V bodech, které jsou trvale v klidu, jsou uzly stojatého vlnění.\\\\\r\r\\par Poloha kmiten a uzlů se nemění.\\\\\r\r\\par Vzdálenost sousedních kmiten, popřípadě uzlů, je rovna polovině vlnové délky $λ/2$ stojatého vlnění.\\\\\r\r\\par Polohy kmiten a uzlů jsou navzájem posunuty o čtvrtinu vlnové délky $λ/4$.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "3. Zásadní rozdíly mezi postupným a stojatým vlněním",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Postupné vlnění\\\\\r\r\\par 1. Při postupném vlnění kmitají všechny body bodové řady se stejnou amplitudou, ale s různou fází. To znamená, že každý následující bod dosahuje stejné výchylky později než bod předcházející.\\\\\r\r\\par 2. Fáze postupného vlnění se šíří fázovou rychlostí.\\\\\r\r\\par 3. Postupným vlněním se přenáší mechanická energie.\\\\\r\r\\par Stojaté vlnění\\\\\r\r\\par 1. Při stojatém vlnění kmitají všechny body mezi dvěma uzly se stejnou fází, ale s různou amplitudou výchylky, která závisí na poloze bodu.\\\\\r\r\\par 2. Stojatým vlněním se energie nepřenáší, ale jen se periodicky mění potenciální energie pružnosti v kinetickou energii hmotných bodů bodové řady a naopak.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "AdditionalResources",
+        "Title": "Zajímavost",
+        "Text": "\\par Stojaté zvukové vlnění lze zviditelnit pomocí jednoduchého zařízení zvaného Rubensova trubice (Rubens Tube). Byla vynalezena německým fyzikem Heinrichem Rubensem v roce 1905 a graficky ukazuje vztah mezi zvukovými vlnami a akustickým tlakem jako primitivní osciloskop. Občas ji ve svých veřejných vystoupeních používají popularizátoři přírodních věd. Jedním z takových lidí je i vědec věnující se hlavně chemii, Angličan žijící v Čechách Michael Londesborough. Pěkné video s experimenty s Rubensovou trubicí můžete vidět na Youtube ve videu s názvem Rubens Tube (https://youtu.be/LSRFs8DzgAA).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "K přenosu mobilního signálu se využívá elektromagnetické vlnění o frekvencích 876–2170 MHz. Je toto vlnění postupné nebo stojaté?",
+        "CorrectResponse": "Protože stojatým vlněním nelze energii přenášet musí být k přenosu mobilního signálu využíváno vlnění postupné.",
+        "WrongResponse": "Protože stojatým vlněním nelze energii přenášet musí být k přenosu mobilního signálu využíváno vlnění postupné.",
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Stojaté",
+          "Postupné"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "4.  Chvění mechanických soustav – stojaté vlnění v praxi",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Výrazné stojaté vlnění vzniká, když je prostředí ohraničeno z obou stran. V tomto případě se vlnění odráží na obou rozhraních. V první kapitole „Odraz vlnění v řadě bodů“ jsme poznali, že při odrazu na pevném konci se fáze vlnění mění v opačnou a na volném konci se fáze nemění.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par U stojatého vlnění se výše uvedená skutečnost projeví tak, že na pevném konci bude vždy uzel vlnění a na volném konci bude kmitna vlnění.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na následujících třech obrázcích jsou tři typy chvějících se mechanických soustav. Struna upevněná na koncích (obrázek 4), pružná tyč upevněná uprostřed nebo vzduchový sloupec s volnými konci (obrázek 5) a pružná tyč upevněná na konci nebo vzduchový sloupec s jedním volným koncem (obrázek 6). Rozložení kmiten a uzlů na obrázcích odpovídá jen příčnému chvění. Podélné chvění má složitější průběh.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_04_v03.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 4: Struna (vlákno) upevněná na obou koncích\\\\\r\r\\par Vlnění, které vznikne rozkmitáním pružného vlákna, například struny hudebního nástroje. Konce vlákna jsou připevněné, a proto v nich vznikají uzly, které jsou stále v klidu. Ostatní body vlákna kmitají s různou amplitudou výchylky a na vlákně vzniká polovina vlny stojatého vlnění (obrázek 4a). Má-li vlákno délku $l$, platí $l=k\\frac{\\lambda}{2}$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Protože je rychlost vlnění $v$ ve vlákně konstantní, vznikne v něm stojaté vlnění při základní frekvenci $$f_z=\\frac{v}{\\lambda}=\\frac{v}{2l}$$\\\\\r\r\\par A také při všech frekvencích, které jsou celým násobkem základní frekvence. Můžeme je vyjádřit vztahem $f_k=kf_z$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Frekvence, při nichž $k>1$, nazýváme vyšší harmonické frekvence. Na obrázku 4b vidíme vyšší harmonickou frekvenci pro $k=2$. Vlákno má 2 kmitny a 3 uzly. Jako uzly počítáme i místa upevnění.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "V kterém místě musíme stlačit strunu houslí, aby vznikl tón o oktávu vyšší (s dvojnásobnou frekvencí) než je tón základní frekvence?",
+        "CorrectResponse": "Aby vznikl tón o oktávu vyšší, musíme stlačit strunu houslí v jedné polovině délky struny.",
+        "WrongResponse": "Aby vznikl tón o oktávu vyšší, musíme stlačit strunu houslí v jedné polovině délky struny.",
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "V jedné polovině délky struny",
+          "V jedné třetině délky struny",
+          "V jedné čtvrtině délky struny"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Podobné stojatá vlnění vznikají také při rozkmitání tyčí nebo zvukových sloupců a podobně.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_05_v03.png",
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 5: Struna upevněná uprostřed nebo vzduchový sloupec píšťaly s otvorem na obou stranách\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "09_vlneni_06_v03.png",
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 6: Struna upevněná na konci nebo vzduchový sloupec píšťaly s otvorem na jedné straně\\\\\r\rZákladní frekvence je $f_z=\\frac{v}{2l}$",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Na obrázku č. 6 jsou znázorněna dvě stojatá vlnění tyče upevněné na konci s druhou a třetí vyšší harmonickou frekvencí. Pokuste se vyjádřit vztah pro základní frekvenci $f_z$ tyče, která je na jednom koci upevněná (uzel) a na druhém konci volná (kmitna). Nápověda: Nejprve si vyjádřete délku vlnící se tyče jako násobek vlnové délky $\\lambda$, vyjádřete $\\lambda$, a pak dosaďte do vztahu $f_z=\\frac{v}{\\lambda}$.",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Základní frekvence je $f_z=\\frac{v}{l}$",
+          "Základní frekvence je $f_z=\\frac{v}{2l}$",
+          "Základní frekvence je $f_z=\\frac{v}{4l}$"
+        ]
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Ukázali jsme si, že v pružných tělesech může vzniknout stojaté vlnění jen určitých frekvencí, které jsou určeny rozměry tělesa, rychlostí vlnění v materiálu, z něhož je těleso vyrobeno a způsobem upevnění tělesa. Takovéto stojaté vlnění v tělesech označujeme jako chvění.\\\\\r\r\\par Tato tělesa se liší tím, že kromě základní frekvence vlastního kmitání, mohou kmitat s řadou harmonických frekvencí, které jsou celým násobkem základní frekvence a nazýváme je vyšší harmonické frekvence.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "AdditionalResources",
+        "Title": "K zamyšlení",
+        "Text": "\\par Pokuste se vyjmenovat alespoň tři nástroje využívajících chvění struny upevněné na obou koncích. Tři využívající vzduchových sloupců s volnými konci a alespoň jeden hudební nástroj využívající vzduchových sloupců uzavřených na jedné straně.\\\\\r\r\\par • Příklady nástrojů využívajících chvění struny upevněné na obou koncích jsou kytara, housle, viola, kontrabas. violoncello.\\\\\r\r\\par • Příklady nástrojů využívající vzduchových sloupců s volnými konci jsou píšťala, flétna, hoboj, klarinet.\\\\\r\r\\par • Příkladem nástroje využívající vzduchových sloupců uzavřených na jedné straně je Panova flétna.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "5. Zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použité zdroje",
+        "Text": "\\par LEPIL, Oldřich. Mechanické vlnění. PECHO, Alojz. Fyzika pro 2. ročník gymnázií: mechanické kmitání a vlnění. Praha: SPN, 1991, str. 39 - 49. Učebnice pro střední školy. ISBN 80-04-25971-5\\\\\r\r\\par Rubens Tube. Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2021 [cit. 2022-01-16]. Dostupné z: https://en.wikipedia.org/wiki/Rubens'\\_tube\\\\\r\r\\par Rubens Tube. Youtube.com [online]. 2017 [cit. 2022-01-16]. Dostupné z: https://youtu.be/LSRFs8DzgAA\\\\\r\r\\par KRYNICKÝ, Martin. Www.realisticky.cz: když (se) chcete naučit... [online]. [cit. 24.1.2022]. Dostupné z:  http://www.realisticky.cz/\\\\\r\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

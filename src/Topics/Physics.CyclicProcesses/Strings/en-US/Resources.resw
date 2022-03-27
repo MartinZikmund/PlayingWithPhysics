@@ -197,10 +197,10 @@ Graphics: Petr Weinlich</value>
     <value>Heater temperature</value>
   </data>
   <data name="T1Description" xml:space="preserve">
-    <value>Lower temperature</value>
+    <value>Initial temperature</value>
   </data>
   <data name="T2Description" xml:space="preserve">
-    <value>Upper temperature</value>
+    <value>Final temperature</value>
   </data>
   <data name="T34Description" xml:space="preserve">
     <value>Cooler temperature</value>

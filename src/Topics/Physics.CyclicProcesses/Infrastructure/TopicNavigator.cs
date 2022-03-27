@@ -8,6 +8,7 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.CyclicProcesses.ViewModels;
 using Windows.ApplicationModel;
+using Physics.Shared.UI.Localization;
 
 namespace Physics.CyclicProcesses.Infrastructure
 {
@@ -22,9 +23,9 @@ namespace Physics.CyclicProcesses.Infrastructure
 
 		public bool HasStudyMode => false;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
-		public string GameNameOverride => null;
+		public string GameNameOverride => Localizer.Instance["Demo"];
 
 		public int Id => 12;
 
@@ -40,7 +41,7 @@ namespace Physics.CyclicProcesses.Infrastructure
 			}
 		}
 
-		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
+		public async Task GoToGameAsync() => await _navigationService.Navigate<DemoVariantViewModel>();
 
 		public async Task GoToStudyModeAsync()
 		{

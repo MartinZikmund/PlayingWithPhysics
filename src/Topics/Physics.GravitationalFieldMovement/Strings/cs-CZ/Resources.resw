@@ -148,17 +148,35 @@ Grafika: Petr Weinlich</value>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Počáteční rychlost</value>
   </data>
-  <data name="Mass" xml:space="preserve">
-    <value>Hmotnost</value>
-  </data>
   <data name="Object" xml:space="preserve">
-    <value>Těleso</value>
+    <value>Objekt</value>
+  </data>
+  <data name="Planet" xml:space="preserve">
+    <value>Centrální těleso</value>
   </data>
   <data name="PlanetMass" xml:space="preserve">
-    <value>Hmotnost planety</value>
+    <value>Hmotnost</value>
+  </data>
+  <data name="PlanetPresetPlaceholder" xml:space="preserve">
+    <value>Vyberte centrální těleso...</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
-    <value>Poloměr planety</value>
+    <value>Poloměr</value>
+  </data>
+  <data name="Preset_Earth" xml:space="preserve">
+    <value>Země</value>
+  </data>
+  <data name="Preset_Mars" xml:space="preserve">
+    <value>Mars</value>
+  </data>
+  <data name="Preset_Moon" xml:space="preserve">
+    <value>Měsíc</value>
+  </data>
+  <data name="Preset_Sun" xml:space="preserve">
+    <value>Slunce</value>
+  </data>
+  <data name="SetEarth" xml:space="preserve">
+    <value>Nastavit Zemi</value>
   </data>
   <data name="Radius" xml:space="preserve">
     <value>Poloměr</value>

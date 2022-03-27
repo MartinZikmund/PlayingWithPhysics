@@ -12,20 +12,13 @@ namespace Physics.FluidFlow.Logic
 			_input = input;
 		}
 
-		public int ParticleCount => 9;
+		public int ParticleCount => 5;
 
-		public float XMax =>
-			_input.DiameterRelationType switch
-			{
-				DiameterRelationType.Equal => 58 * _input.Velocity,
-				DiameterRelationType.S1Larger => 100,
-				DiameterRelationType.S2Larger => 100,
-				_ => throw new InvalidOperationException("Invalid diameter type"),
-			};
+		public float XMax => 0.2f;
 
-		public float YMax => 0.4f;
+		public float YMax => 9 / 16f * _input.Diameter1;
 
-		public float YMin => -0.4f;
+		public float YMin => -9 / 16f * _input.Diameter1;
 
 		public float R => 1000000 * _input.Velocity * _input.Diameter1;
 
@@ -35,18 +28,28 @@ namespace Physics.FluidFlow.Logic
 
 		public float DeltaP => 320 * _input.Length * _input.Velocity / (_input.Diameter1 * _input.Diameter1);
 
+		public float Vector1T => MaxT / 6;
+
+		public float Vector2T => MaxT * 5 / 6f;
+
+		public float V2 => _input.Velocity;
+
+		public float P2 => 0;
+
+		public float H1 => 0;
+
+		public float H2 => 0;
+
+		public float SimulationTimeAdjustment => 0.2f;
+
 		public Point2d GetParticlePosition(float time, int particleId) =>
 			particleId switch
 			{
-				0 => new Point2d(0 * time, YMax),
-				1 => new Point2d(7 / 8f * _input.Velocity * time, 3 / 4f * YMax),
-				2 => new Point2d(3 / 2f * _input.Velocity * time, 2 / 4f * YMax),
-				3 => new Point2d(15 / 8f * _input.Velocity * time, 1 / 4f * YMax),
-				4 => new Point2d(2 / 1f * _input.Velocity * time, 0),
-				5 => new Point2d(15 / 8f * _input.Velocity * time, -1 / 4f * YMax),
-				6 => new Point2d(3 / 2f * _input.Velocity * time, -2 / 4f * YMax),
-				7 => new Point2d(7 / 8f * _input.Velocity * time, -3 / 4f * YMax),
-				8 => new Point2d(0 * time, -YMax),
+				0 => new Point2d(0 * time, _input.Diameter1 / 2),
+				1 => new Point2d(3 / 2f * _input.Velocity * time, 2 / 8f * _input.Diameter1),
+				2 => new Point2d(2 / 1f * _input.Velocity * time, 0),
+				3 => new Point2d(3 / 2f * _input.Velocity * time, -2 / 8f * _input.Diameter1),
+				4 => new Point2d(0 * time, -_input.Diameter1 / 2),
 				_ => throw new InvalidOperationException()
 			};
 	}

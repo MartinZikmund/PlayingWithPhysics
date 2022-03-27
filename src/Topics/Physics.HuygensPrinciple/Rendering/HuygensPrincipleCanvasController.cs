@@ -108,7 +108,6 @@ namespace Physics.HuygensPrinciple.Rendering
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
-			args.Canvas.Clear(new SKColor(255, 255, 255, 255));
 			Renderer?.Draw(sender, args);
 		}
 

@@ -11,7 +11,7 @@
     <AssemblyName>Physics.CyclicProcesses</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -20,7 +20,7 @@
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -141,6 +141,7 @@
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdvancedVariantViewModel.cs" />
+    <Compile Include="ViewModels\DemoVariantViewModel.cs" />
     <Compile Include="ViewModels\EasyVariantViewModel.cs" />
     <Compile Include="ViewModels\Input\InputDialogViewModel.cs" />
     <Compile Include="ViewModels\Process\AdiabaticStateViewModel.cs" />
@@ -152,6 +153,9 @@
     <Compile Include="Views\AdvancedVariantView.xaml.cs">
       <DependentUpon>AdvancedVariantView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EasyVariantView.xaml.cs">
       <DependentUpon>EasyVariantView.xaml</DependentUpon>
     </Compile>
@@ -162,25 +166,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Animations\adiabat.html" />
-    <Content Include="Assets\Animations\adiabat.js" />
-    <Content Include="Assets\Animations\images\adiabat_atlas_1.png" />
-    <Content Include="Assets\Animations\images\ani_motor_atlas_1.png" />
-    <Content Include="Assets\Animations\images\izobar_atlas_1.png" />
-    <Content Include="Assets\Animations\images\izobar_atlas_2.png" />
-    <Content Include="Assets\Animations\images\izochor_atlas_1.png" />
-    <Content Include="Assets\Animations\images\izochor_atlas_2.png" />
-    <Content Include="Assets\Animations\images\izoterm_atlas_1.png" />
-    <Content Include="Assets\Animations\images\izoterm_atlas_2.png" />
-    <Content Include="Assets\Animations\images\motor_atlas_1.png" />
-    <Content Include="Assets\Animations\izobar.html" />
-    <Content Include="Assets\Animations\izobar.js" />
-    <Content Include="Assets\Animations\izochor.html" />
-    <Content Include="Assets\Animations\izochor.js" />
-    <Content Include="Assets\Animations\izoterm.html" />
-    <Content Include="Assets\Animations\izoterm.js" />
-    <Content Include="Assets\Animations\motor.html" />
-    <Content Include="Assets\Animations\motor.js" />
+    <Content Include="Assets\Animations\adiabat.mp4" />
+    <Content Include="Assets\Animations\izobar.mp4" />
+    <Content Include="Assets\Animations\izochor.mp4" />
+    <Content Include="Assets\Animations\izoterm.mp4" />
+    <Content Include="Assets\Animations\motor.mp4" />
+    <Content Include="Assets\Demo\adiabat.mp4" />
+    <Content Include="Assets\Demo\izobar.mp4" />
+    <Content Include="Assets\Demo\izochor.mp4" />
+    <Content Include="Assets\Demo\izoterm.mp4" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -248,6 +242,12 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>7.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" />
     <PackageReference Include="PropertyChanged.Fody" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -297,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdvancedVariantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DemoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -66,6 +66,8 @@ namespace Physics.FluidFlow.ViewModels
 
 		public SceneConfigurationViewModel SceneConfiguration { get; set; }
 
+		public DisplayViewModel Display { get; set; }
+
 		internal async void OnSelectedVariantIndexChanged()
 		{
 			if (IsLoading || SelectedVariantIndex < 0)
@@ -88,10 +90,11 @@ namespace Physics.FluidFlow.ViewModels
 
 		private async Task SetParametersAsync()
 		{
-			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant);
+			var sceneConfigurationDialog = new SceneConfigurationDialog(SelectedVariant, SceneConfiguration?.Configuration);
 			if (await sceneConfigurationDialog.ShowAsync() == ContentDialogResult.Primary)
 			{
 				SceneConfiguration = new SceneConfigurationViewModel(sceneConfigurationDialog.Model.Result);
+				Display = new DisplayViewModel(sceneConfigurationDialog.Model.Result);
 				StartSimulation();
 			}
 		}

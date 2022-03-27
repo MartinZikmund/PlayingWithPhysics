@@ -9,10 +9,10 @@ namespace Physics.HomogenousParticle.Core
 {
 	public class AppSetup : DefaultAppSetup<DefaultApp>
     {
-        protected override void InitializeFirstChance()
+        protected override void InitializeFirstChance(IMvxIoCProvider iocProvider)
         {
-            base.InitializeFirstChance();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
+            base.InitializeFirstChance(iocProvider);
+			iocProvider.LazyConstructAndRegisterSingleton<ITopicConfiguration, TopicNavigator>();
         }
     }
 }
