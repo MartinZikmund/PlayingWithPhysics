@@ -24,12 +24,16 @@ namespace Physics.GravitationalFieldMovement.ValuesTable
 		[ValuesTableHeader("v (m.s⁻¹)")]
 		public string V { get; set; }
 
-        public TableRow(double t, double x, double y, double v)
+		[ValuesTableHeader("h (m)")]
+		public string H { get; set; }
+
+		public TableRow(double t, double x, double y, double v, double h)
         {
 			T = t.ToString(TFormatting);
             X = x.ToString(DistanceFormatting);
 			Y = y.ToString(DistanceFormatting) ?? "";
 			V = v.ToString(DistanceFormatting) ?? "";
+			H = h.ToString(DistanceFormatting) ?? "";
 		}
 
         protected override IEnumerable<string> GetCellValuesInOrder()
@@ -38,6 +42,7 @@ namespace Physics.GravitationalFieldMovement.ValuesTable
 			yield return X;
 			yield return Y;
 			yield return V;
+			yield return H;
         }
     }
 }

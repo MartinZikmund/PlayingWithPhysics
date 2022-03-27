@@ -130,6 +130,9 @@ Grafika: Petr Weinlich</value>
   <data name="CannotParseInputNumbers" xml:space="preserve">
     <value>Vstupní čísla nejsou ve správném formátu.</value>
   </data>
+  <data name="Earth" xml:space="preserve">
+    <value>Země</value>
+  </data>
   <data name="ElevationAngle" xml:space="preserve">
     <value>Elevační úhel</value>
   </data>
@@ -145,11 +148,20 @@ Grafika: Petr Weinlich</value>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Počáteční rychlost</value>
   </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Hmotnost</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Těleso</value>
+  </data>
   <data name="PlanetMass" xml:space="preserve">
     <value>Hmotnost planety</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
     <value>Poloměr planety</value>
+  </data>
+  <data name="Radius" xml:space="preserve">
+    <value>Poloměr</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Pohyby v centrálním gravitačním poli</value>

@@ -64,7 +64,8 @@ public class PhysicsService
 			var x = r * Math.Cos(phi);
 			var y = r * Math.Sin(phi);
 			var v = Math.Sqrt(2 * (Input.En + Input.Alpha / r));
-			var trajectoryPoint = new TrajectoryPoint(t, x, y, v);
+			var h = y - Input.Rz;
+			var trajectoryPoint = new TrajectoryPoint(t, x, y, v, h);
 			results.Add(trajectoryPoint);
 
 			impact = r < Input.Rz;
@@ -100,7 +101,8 @@ public class PhysicsService
 			var x = r * Math.Cos(phi);
 			var y = r * Math.Sin(phi);
 			var v = Math.Sqrt(2 * (Input.En + Input.Alpha / r));
-			var trajectoryPoint = new TrajectoryPoint(t, x, y, v);
+			var h = y - Input.Rz;
+			var trajectoryPoint = new TrajectoryPoint(t, x, y, v, h);
 			results.Add(trajectoryPoint);
 
 			impact = r < Input.Rz;

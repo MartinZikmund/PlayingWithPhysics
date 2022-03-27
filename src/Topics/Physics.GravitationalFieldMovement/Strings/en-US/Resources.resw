@@ -130,6 +130,9 @@ Graphics: Petr Weinlich</value>
   <data name="CannotParseInputNumbers" xml:space="preserve">
     <value>Input numbers are not formatted correctly.</value>
   </data>
+  <data name="Earth" xml:space="preserve">
+    <value>Earth</value>
+  </data>
   <data name="ElevationAngle" xml:space="preserve">
     <value>Elevation angle</value>
   </data>
@@ -145,11 +148,20 @@ Graphics: Petr Weinlich</value>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Initial velocity</value>
   </data>
+  <data name="Mass" xml:space="preserve">
+    <value>Mass</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
   <data name="PlanetMass" xml:space="preserve">
     <value>Planet mass</value>
   </data>
   <data name="PlanetRadius" xml:space="preserve">
     <value>Planet radius</value>
+  </data>
+  <data name="Radius" xml:space="preserve">
+    <value>Radius</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Gravitational Field</value>

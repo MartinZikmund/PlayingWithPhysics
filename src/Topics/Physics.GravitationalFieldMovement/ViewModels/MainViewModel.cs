@@ -35,7 +35,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		public InputConfiguration Input { get; private set; }
 
 		public double Dt { get; set; }
-
+		public string Object { get; set; } = Localizer.Instance["Earth"];
 		internal void OnDtChanged()
 		{
 			if (Input != null && _controller != null)

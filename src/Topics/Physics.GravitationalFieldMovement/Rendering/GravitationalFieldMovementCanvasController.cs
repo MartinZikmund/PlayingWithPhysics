@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Physics.GravitationalFieldMovement.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;

@@ -34,7 +34,7 @@ public class InputDialogViewModel : ViewModelBase
 
 	public BigNumber V0BigNumber { get; set; } = new BigNumber(7.0, 3);
 
-	public double BetaDeg { get; set; } = 30;
+	public double BetaDeg { get; set; } = 0;
 
 	public double Phi0Deg { get; set; } = 90;
 
