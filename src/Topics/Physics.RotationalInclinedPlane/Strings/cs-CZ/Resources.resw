@@ -126,7 +126,7 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Rotační pohyb těles po nakloněné rovině</value>
+    <value>Hrátky s fyzikou: Valivý pohyb těles po nakloněné rovině</value>
   </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Válec</value>
@@ -180,7 +180,7 @@ Grafika: Petr Weinlich</value>
     <value>Chyba ve vstupu</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Rotační pohyb těles po nakloněné rovině</value>
+    <value>Valivý pohyb těles po nakloněné rovině</value>
   </data>
   <data name="TooManyMotionsDescription" xml:space="preserve">
     <value>Není možné vykreslovat více než 5 pohybů najednou.</value>
