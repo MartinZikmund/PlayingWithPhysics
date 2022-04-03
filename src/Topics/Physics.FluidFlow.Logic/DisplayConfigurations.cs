@@ -70,7 +70,10 @@ public static class DisplayConfigurations
 		new DisplayConfiguration(InputVariant.RealFluidMovement, DiameterRelationType.Equal)
 		{
 			D = true,
-			P = true,
+			L = true,
+			V = true,
+			Re = true,
+			DeltaP = true,
 		},
 	};
 }

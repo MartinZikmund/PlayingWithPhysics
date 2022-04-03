@@ -1,4 +1,5 @@
 ﻿using Physics.FluidFlow.Logic;
+using Physics.Shared.Mathematics;
 
 namespace Physics.FluidFlow.ViewModels;
 
@@ -13,11 +14,15 @@ public class DisplayViewModel
 		_physicsService = PhysicsServiceFactory.Create(sceneConfiguration);
 	}
 
-	public string V2 => _physicsService.V2.ToString("0.###");
+	public string V2 => _physicsService.V2.ToSignificantDigitsString(3);
 
-	public string P2 => _physicsService.P2.ToString("0.###");
+	public string P2 => _physicsService.P2.ToSignificantDigitsString(3);
 
-	public string H1 => _physicsService.H1.ToString("0.##");
+	public string H1 => _physicsService.H1.ToSignificantDigitsString(3);
 
-	public string H2 => _physicsService.H2.ToString("0.##");
+	public string H2 => _physicsService.H2.ToSignificantDigitsString(3);
+
+	public string Re => ((RealFluidFlowPhysicsService)_physicsService).R.ToSignificantDigitsString(3);
+
+	public string DeltaP => ((RealFluidFlowPhysicsService)_physicsService).DeltaP.ToSignificantDigitsString(3);
 }

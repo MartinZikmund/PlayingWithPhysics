@@ -28,7 +28,7 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="*" MinWidth="240" MaxWidth="320" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid
@@ -108,13 +108,13 @@
                                 <Setter Property="Margin" Value="0,8,0,0" />
                             </Style>
                         </StackPanel.Resources>
-                        <TextBlock>
+                        <!--<TextBlock>
                             <Run Text="{extensions:Localize Key=Fluid}" /><Run Text=":" />
                             <Run FontWeight="Bold" Text="{x:Bind Model.SceneConfiguration.Fluid.LocalizedName}" />
                             <Run Text="(ρ =" />
                             <Run Text="{x:Bind Model.SceneConfiguration.Fluid.Density}" />
                             <Run Text="kg.m⁻³)" />
-                        </TextBlock>
+                        </TextBlock>-->
                         <TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.V}">
                             <Run Text="{extensions:Localize Key=FlowVelocityLabel}" />
                             <Run FontWeight="Bold" Text="v" /><Run Text=":" />
@@ -160,13 +160,13 @@
                             <Run Text="{x:Bind Model.SceneConfiguration.Diameter1InCm}" />
                             <Run Text="cm" />
                         </TextBlock>
-                        <TextBlock Visibility="{x:Bind Model.SceneConfiguration.Diameter2Configuration.IsVisible, Mode=OneWay}">
+						<TextBlock Visibility="{x:Bind Model.SceneConfiguration.Diameter2Configuration.IsVisible, Mode=OneWay}">
                             <Run Text="{extensions:Localize Key=DiameterLabel}" />
                             <Run FontWeight="Bold" Text="d₂" /><Run Text=":" />
                             <Run Text="{x:Bind Model.SceneConfiguration.Diameter2InCm}" />
                             <Run Text="cm" />
-                        </TextBlock>
-                        <TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.P, Mode=OneWay}">
+						</TextBlock>
+						<TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.P, Mode=OneWay}">
                             <Run Text="{extensions:Localize Key=PressureLabel}" />
                             <Run FontWeight="Bold" Text="p" /><Run Text=":" />
                             <Run Text="{x:Bind Model.SceneConfiguration.Configuration.PressureString}" />
@@ -184,7 +184,19 @@
                             <Run Text="{x:Bind Model.Display.P2}" />
                             <Run Text="Pa" />
                         </TextBlock>
-                        <TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.H1, Mode=OneWay}">
+						<TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.DeltaP, Mode=OneWay}">
+                            <Run Text="{extensions:Localize Key=PressureLabel}" />
+                            <Run FontWeight="Bold" Text="Δp" /><Run Text=":" />
+                            <Run Text="{x:Bind Model.Display.DeltaP}" />
+                            <Run Text="Pa" />
+						</TextBlock>
+						<TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.Re, Mode=OneWay}">
+                            <Run Text="{extensions:Localize Key=ReynoldsNumberLabel}" />
+                            <Run FontWeight="Bold" Text="Re" /><Run Text=":" />
+                            <Run Text="{x:Bind Model.Display.Re}" />
+                            <Run Text="" />
+						</TextBlock>
+						<TextBlock Visibility="{x:Bind Model.SceneConfiguration.DisplayConfiguration.H1, Mode=OneWay}">
                             <Run Text="{extensions:Localize Key=PipeHeightLabel}" />
                             <Run FontWeight="Bold" Text="h₁" /><Run Text=":" />
                             <Run Text="{x:Bind Model.Display.H1}" />
