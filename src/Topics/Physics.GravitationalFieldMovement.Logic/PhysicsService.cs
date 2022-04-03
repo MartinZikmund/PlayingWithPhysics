@@ -42,7 +42,7 @@ public class PhysicsService
 		for (int dataPointIndex = 0; dataPointIndex < MaxDataPointCount && !impact; dataPointIndex++)
 		{
 			var t = Dt * dataPointIndex;
-			var M = Input.N * (t - Input.Tau);
+			var M = Input.N * (t - Input.Tau) % (2 * Math.PI);
 			var E =
 				Math.Sign(M) *
 				Math.Min(
