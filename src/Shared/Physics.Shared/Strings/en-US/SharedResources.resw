@@ -172,7 +172,7 @@
     <value>Radioactive Decay</value>
   </data>
   <data name="AppName_RotationalInclinedPlane" xml:space="preserve">
-    <value>Rotational Movement on Inclined Plane</value>
+    <value>Rolling on Inclined Plane</value>
   </data>
   <data name="AppName_StationaryWaves" xml:space="preserve">
     <value>Stationary Waves</value>

@@ -14,7 +14,7 @@
   <mp:PhoneIdentity PhoneProductId="8a7216ab-5017-4fc2-bee5-9e7e90e2fff0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Playing with Physics: Rotational Movement on Inclined Plane</DisplayName>
+    <DisplayName>Playing with Physics: Rolling on Inclined Plane</DisplayName>
     <PublisherDisplayName>Vzdělávací centrum Turnov, o.p.s.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -43,7 +43,7 @@
       <Extensions>
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="playingwithphysics-rotationalinclined">
-            <uap:DisplayName>Playing with Physics: Rotational Movement on Inclined Plane</uap:DisplayName>
+            <uap:DisplayName>Playing with Physics: Rolling on Inclined Plane</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
       </Extensions>

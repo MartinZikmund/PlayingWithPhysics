@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>When rotating bodies along an inclined plane, we must take into account not only the angle of the inclined plane, but also the dimensions of the body and its shape (or mass distribution).
+    <value>When rolling bodies along an inclined plane, we must take into account not only the angle of the inclined plane, but also the dimensions of the body and its shape (or mass distribution).
 The program allows the selection of basic parameters (height and length of the inclined plane, dimensions and shape of the body - sphere, cylinder, hollow cylinder) and animates the rotational movement of the body along the inclined plane. Lists the calculated values of the selected quantities in the table. 
 
 Content authors: Vladimír Kafka, Pavel Vlček
@@ -126,7 +126,7 @@ Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Playing with Physics: Rotational Movement on Inclined Plane</value>
+    <value>Playing with Physics: Rolling on Inclined Plane</value>
   </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Full cylinder</value>
@@ -180,7 +180,7 @@ Graphics: Petr Weinlich</value>
     <value>Input error</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Rotational Movement on Inclined Plane</value>
+    <value>Rolling on Inclined Plane</value>
   </data>
   <data name="TooManyMotionsDescription" xml:space="preserve">
     <value>Can't render more than 5 motions at once. Plese remove one.</value>

@@ -4,7 +4,7 @@
 - **TemplateCsDescription** - App description in CZ
 - **TemplateEnDescription** - App description in EN
 - **Rotační pohyb těles na nakloněné rovině** - App name in CZ - e.g. "Pohyby v homogenním poli země" or "Elektrické pole"
-- **Rotational Movement on Inclined Plane** - App name in CZ - e.g. "Homogenous movements" or "Electric field"
+- **Rolling on Inclined Plane** - App name in CZ - e.g. "Homogenous movements" or "Electric field"
 - **Vladimír Kafka, Pavel Vlček** - Content authors - e.g. "Pavel Mládek, Pavel Vlček"
 - **#43bbc2** - Main app color
 - **#2a8085** - Darker variant of app color
