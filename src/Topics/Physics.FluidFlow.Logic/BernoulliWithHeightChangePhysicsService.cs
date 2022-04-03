@@ -33,10 +33,21 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 		}
 	}
 
+	public float YMin => 0;
+
+	public float YMax => GetTotalHeight();
+
+	public float V2 =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.S1Larger => CalculateS1LargerV2(),
+			DiameterRelationType.S2Larger => CalculateS2LargerV2(),
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
 	public float T1 =>
 		_input.DiameterRelationType switch
 		{
-			DiameterRelationType.Equal => 20,
 			DiameterRelationType.S1Larger => CalculateS1LargerT1(),
 			DiameterRelationType.S2Larger => CalculateS2LargerT1(),
 			_ => throw new InvalidOperationException("Invalid diameter type"),
@@ -45,7 +56,6 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 	public float T2 =>
 		_input.DiameterRelationType switch
 		{
-			DiameterRelationType.Equal => 20,
 			DiameterRelationType.S1Larger => CalculateS1LargerT2(),
 			DiameterRelationType.S2Larger => CalculateS2LargerT2(),
 			_ => throw new InvalidOperationException("Invalid diameter type"),
@@ -54,27 +64,8 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 	public float T3 =>
 		_input.DiameterRelationType switch
 		{
-			DiameterRelationType.Equal => 20,
 			DiameterRelationType.S1Larger => CalculateS1LargerT3(),
 			DiameterRelationType.S2Larger => CalculateS2LargerT3(),
-			_ => throw new InvalidOperationException("Invalid diameter type"),
-		};
-
-	public float V2 =>
-		_input.DiameterRelationType switch
-		{
-			DiameterRelationType.Equal => _input.Velocity,
-			DiameterRelationType.S1Larger => CalculateS1LargerV2(),
-			DiameterRelationType.S2Larger => CalculateS2LargerV2(),
-			_ => throw new InvalidOperationException("Invalid diameter type"),
-		};
-
-	public float YMax =>
-		_input.DiameterRelationType switch
-		{
-			DiameterRelationType.Equal => _input.Diameter1 / 2,
-			DiameterRelationType.S1Larger => _input.Diameter1 / 2,
-			DiameterRelationType.S2Larger => _input.Diameter2 / 2,
 			_ => throw new InvalidOperationException("Invalid diameter type"),
 		};
 
@@ -103,8 +94,6 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 		};
 
 	public float DeltaP => Math.Abs(_input.Pressure - P2);
-
-	public float YMin => -YMax;
 
 	public override float MaxT
 	{
@@ -224,7 +213,7 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 
 	public float CalculateS1LargerT3() => 2 * XMax / (5 * CalculateS1LargerV2());
 
-	public float CalculateS1LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2) + 100 * (_input.HeightDecrease * 100 + _input.Diameter1 * 100 / 2 + _input.Diameter2 * 100 / 2);
+	public float CalculateS1LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2) + 100 * (_input.HeightDecrease + _input.Diameter1 / 2 + _input.Diameter2 / 2);
 
 	public float CalculateS1LargerH1() => Math.Abs(_input.Pressure / 5000000);
 
@@ -291,11 +280,23 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 
 	public float CalculateS2LargerT3() => 2 * XMax / (5 * CalculateS2LargerV2());
 
-	public float CalculateS2LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2) + 100 * (-_input.HeightDecrease * 100 - _input.Diameter1 * 100 / 2 - _input.Diameter2 * 100 / 2);
+	public float CalculateS2LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2);
 
 	public float CalculateS2LargerH1() => H2 - 3 * DeltaP / 5000000;
 
 	public float CalculateS2LargerH2() => Math.Abs(P2 / 5000000);
 
 	#endregion
+
+	private float GetTotalHeight()
+	{
+		if (_input.DiameterRelationType == DiameterRelationType.S1Larger)
+		{
+			return _input.Diameter1 + _input.HeightDecrease;
+		}
+		else
+		{
+			return _input.Diameter2 + _input.HeightDecrease;
+		}
+	}
 }

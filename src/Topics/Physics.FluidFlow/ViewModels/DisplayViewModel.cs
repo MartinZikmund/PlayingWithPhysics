@@ -22,7 +22,7 @@ public class DisplayViewModel
 
 	public string H2 => _physicsService.H2.ToSignificantDigitsString(3);
 
-	public string Re => ((RealFluidFlowPhysicsService)_physicsService).R.ToSignificantDigitsString(3);
+	public string Re => (_physicsService as RealFluidFlowPhysicsService)?.R.ToSignificantDigitsString(3);
 
-	public string DeltaP => ((RealFluidFlowPhysicsService)_physicsService).DeltaP.ToSignificantDigitsString(3);
+	public string DeltaP => (_physicsService as RealFluidFlowPhysicsService)?.DeltaP.ToSignificantDigitsString(3);
 }
