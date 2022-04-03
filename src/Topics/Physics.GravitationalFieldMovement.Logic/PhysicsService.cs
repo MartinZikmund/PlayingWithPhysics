@@ -88,7 +88,7 @@ public class PhysicsService
 			var absMe1 = Math.Abs(M) / (Input.Eps - 1);
 			var absMA1 = (Math.Abs(M) + a1 * Input.Eps) / (c1 * Input.Eps - 1);
 			var absMA8 = (Math.Abs(M) + a8 * Input.Eps) / (c8 * Input.Eps - 1);
-			var H = M * Math.Min(absMe1, Math.Min(absMA1, absMA8));
+			var H = Math.Sign(M) * Math.Min(absMe1, Math.Min(absMA1, absMA8));
 
 			for (int i = 0; i < 8; i++)
 			{
