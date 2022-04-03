@@ -184,8 +184,14 @@ Grafika: Petr Weinlich</value>
   <data name="PipeHeightLabel" xml:space="preserve">
     <value>Výška trubice</value>
   </data>
+  <data name="PressureDecreaseLabel" xml:space="preserve">
+    <value>Pokles tlaku v potrubí</value>
+  </data>
   <data name="PressureLabel" xml:space="preserve">
     <value>Tlak v potrubí</value>
+  </data>
+  <data name="ReynoldsNumber" xml:space="preserve">
+    <value>Reynoldsovo číslo</value>
   </data>
   <data name="S1MustBeLargerMessage" xml:space="preserve">
     <value>Musí platit d₁ &gt; d₂, upravte prosím vstupní hodnoty.</value>

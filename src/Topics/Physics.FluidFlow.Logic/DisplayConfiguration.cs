@@ -30,6 +30,12 @@ public class DisplayConfiguration
 
 	public bool P2 { get; set; }
 
+	public bool L { get; set; }
+
+	public bool Re { get; set; }
+
+	public bool DeltaP { get; set; }
+
 	public bool H1 { get; set; }
 
 	public bool H2 { get; set; }

@@ -12,6 +12,12 @@ namespace Physics.FluidFlow.Rendering
 		{
 		}
 
+		protected override bool ForceXRenderRatio => true;
+
+		protected override float LeftPadding => 8;
+
+		protected override float RightPadding => -8;
+
 		protected override SKPath GetPlumbingStrokePath() => GetPlumbingStroke();
 
 		protected override SKPath GetPlumbingFillPath() => GetPlumbingStroke();
@@ -35,16 +41,30 @@ namespace Physics.FluidFlow.Rendering
 
 		protected override void DrawVectors(SKCanvas canvas)
 		{
+			var time = GetAdjustedTime();
 			// Instead of vectors we draw particle spots
+			if (time >= _physicsService.MiddleParticleEndTime * 0.25f)
+			{
+				DrawParticleSpotsAtTime(_physicsService.MiddleParticleEndTime * 0.25f, canvas);
+			}
+			if (time >= _physicsService.MiddleParticleEndTime * 0.75)
+			{
+				DrawParticleSpotsAtTime(_physicsService.MiddleParticleEndTime * 0.75f, canvas);
+			}
+		}
+
+		private void DrawParticleSpotsAtTime(float time, SKCanvas canvas)
+		{
 			for (int particleId = 0; particleId < PhysicsService.ParticleCount; particleId++)
 			{
-				//DrawParticleSpot(particleId, 0.7, ) TODO: WTF
+				DrawParticleSpot(particleId, time, canvas);
 			}
 		}
 
 		private void DrawParticleSpot(int particleId, float time, SKCanvas canvas)
 		{
-
+			var position = _physicsService.GetParticlePosition(time, particleId);
+			canvas.DrawCircle(GetRenderX((float)position.X), GetRenderY((float)position.Y), 4, GetParticlePathPaint(particleId));
 		}
 
 		internal override void StartSimulation(SceneConfiguration sceneConfiguration)

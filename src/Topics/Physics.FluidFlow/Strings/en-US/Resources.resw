@@ -181,8 +181,14 @@ Graphics: Petr Weinlich</value>
   <data name="PipeHeightLabel" xml:space="preserve">
     <value>Pipe height</value>
   </data>
+  <data name="PressureDecreaseLabel" xml:space="preserve">
+    <value>Pressure decrease</value>
+  </data>
   <data name="PressureLabel" xml:space="preserve">
     <value>Pressure</value>
+  </data>
+  <data name="ReynoldsNumberLabel" xml:space="preserve">
+    <value>Reynold's number</value>
   </data>
   <data name="S1MustBeLargerMessage" xml:space="preserve">
     <value>d₁ must be greater than d₂, please adjust the input.</value>
