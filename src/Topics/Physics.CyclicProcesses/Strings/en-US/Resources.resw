@@ -118,9 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>The aim of the material is to connect the issue of circular events and technical devices that use these events.
+    <value>The aim of the material is to clarify the concept of cyclic process and its use in the Stirling engine.
+Thanks to clear interactive animations, students can watch the events in the ideal gas and the working cycle of the Stirling engine. Animations can be used to examine a given plot in an animated p-V diagram. In this way, students will learn to connect the working phases of the engine with the issue of idealized working diagrams when describing the principle of operation of the Stirling engine. By choosing the parameters of state variables, it will be possible to monitor thermal and energetic changes in individual processes in the ideal gas and in the operating cycle of the Stirling engine.
 
-Content authors: Pavel Vlček
+Content authors: Pavel Mládek, Pavel Jirman
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>

@@ -164,13 +164,13 @@ Graphics: Petr Weinlich</value>
     <value>Height change</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (with height change)</value>
+    <value>Bernoulli equation for ideal fluid (with height change)</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulli equation (without height change)</value>
+    <value>Bernoulli equation for ideal fluid (without height change)</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
-    <value>Continuity equation</value>
+    <value>Continuity equation for ideal fluid</value>
   </data>
   <data name="InputVariant_RealFluidMovement" xml:space="preserve">
     <value>Real fluid motion</value>

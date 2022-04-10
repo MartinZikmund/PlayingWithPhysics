@@ -166,21 +166,22 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 			var x = _input.Velocity * time;
 			return particleId switch
 			{
-				0 => new Point2d(x, +_input.Diameter1 / 4),
-				1 => new Point2d(x, 0),
-				2 => new Point2d(x, -_input.Diameter1 / 4),
+				0 => new Point2d(x, (3 * _input.Diameter1 / 4) + _input.HeightDecrease),
+				1 => new Point2d(x, 0.5 * _input.Diameter1 + _input.HeightDecrease),
+				2 => new Point2d(x, _input.Diameter1 / 4 + _input.HeightDecrease),
 				_ => throw new InvalidOperationException()
 			};
 		}
 		else if (time < t1 + t2)
 		{
 			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 - _input.Velocity);
-			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
-			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
+			var particle0y = (_input.HeightDecrease + 3 * _input.Diameter1 / 4) - ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 3 / 4.0 * _input.Diameter1 - 3 / 4.0 * _input.Diameter2) / XMax));
+			var particle1y = (_input.HeightDecrease + 2 * _input.Diameter1 / 4) - ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 2 / 4.0 * _input.Diameter1 - 2 / 4.0 * _input.Diameter2) / XMax));
+			var particle2y = (_input.HeightDecrease + 1 * _input.Diameter1 / 4) - ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 1 / 4.0 * _input.Diameter1 - 1 / 4.0 * _input.Diameter2) / XMax));
 			return particleId switch
 			{
 				0 => new Point2d(x, particle0y),
-				1 => new Point2d(x, 0),
+				1 => new Point2d(x, particle1y),
 				2 => new Point2d(x, particle2y),
 				_ => throw new InvalidOperationException()
 			};
@@ -191,9 +192,9 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 			var x = v2 * (time - t1 - t2) + 3 / 5f * XMax;
 			return particleId switch
 			{
-				0 => new Point2d(x, +_input.Diameter2 / 4),
-				1 => new Point2d(x, 0),
-				2 => new Point2d(x, -_input.Diameter2 / 4),
+				0 => new Point2d(x, 3 * _input.Diameter2 / 4),
+				1 => new Point2d(x, 2 * _input.Diameter2 / 4),
+				2 => new Point2d(x, 1 * _input.Diameter2 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
@@ -233,21 +234,22 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 			var x = _input.Velocity * time;
 			return particleId switch
 			{
-				0 => new Point2d(x, +_input.Diameter1 / 4),
-				1 => new Point2d(x, 0),
-				2 => new Point2d(x, -_input.Diameter1 / 4),
+				0 => new Point2d(x, 3 * _input.Diameter1 / 4),
+				1 => new Point2d(x, 2 * _input.Diameter1 / 4),
+				2 => new Point2d(x, 1 * _input.Diameter1 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}
 		else if (time < t1 + t2)
 		{
 			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 + _input.Velocity);
-			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
-			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
+			var particle0y = (3 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 3 / 4.0 * _input.Diameter1 - 3 / 4.0 * _input.Diameter2) / XMax));
+			var particle1y = (2 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 2 / 4.0 * _input.Diameter1 - 2 / 4.0 * _input.Diameter2) / XMax));
+			var particle2y = (1 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 1 / 4.0 * _input.Diameter1 - 1 / 4.0 * _input.Diameter2) / XMax));
 			return particleId switch
 			{
 				0 => new Point2d(x, particle0y),
-				1 => new Point2d(x, 0),
+				1 => new Point2d(x, particle1y),
 				2 => new Point2d(x, particle2y),
 				_ => throw new InvalidOperationException()
 			};
@@ -258,9 +260,9 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 			var x = v2 * (time - t1 - t2) + 3 / 5f * XMax;
 			return particleId switch
 			{
-				0 => new Point2d(x, +_input.Diameter2 / 4),
-				1 => new Point2d(x, 0),
-				2 => new Point2d(x, -_input.Diameter2 / 4),
+				0 => new Point2d(x, _input.HeightDecrease + 3 * _input.Diameter2 / 4),
+				1 => new Point2d(x, _input.HeightDecrease + 2 * _input.Diameter2 / 4),
+				2 => new Point2d(x, _input.HeightDecrease + 1 * _input.Diameter2 / 4),
 				_ => throw new InvalidOperationException()
 			};
 		}

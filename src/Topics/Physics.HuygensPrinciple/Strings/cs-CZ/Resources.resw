@@ -118,10 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Huygensův princip umožňuje znázornit vlnění v izotropním prostředí, tj. v prostředí, ve kterém se vlnění šíří ve všech směrech stejnou rychlostí. Vlnění se znázorňuje pomocí vlnoploch a paprsků. Vlnoplochy mají kulový tvar a ve velké vzdálenosti od zdroje vlnění se považují za rovinu. Paprsky jako kolmice k vlnoploše zobrazují směr šíření vlnění v daném bodě.
+    <value>Huygensův princip popisuje šíření vln v izotropním prostředí. Říká, že každý bod vlnoplochy v uvažovaném čase lze chápat jako zdroj sekundární sférické vlny a že tvar vlnoplochy v pozdějším čase je dán vnější obálkou všech sekundárních vlnoploch.
+Aplikace obsahuje počítačové simulace časového vývoje vlnoploch libovolného počátečního tvaru. Základní a pokročilá varianta využívají rozdílné algoritmy, oba však vycházejí z Huygensova principu. První varianta predikuje šíření vlny v homogenním prostředí, zatímco v druhé lze modelovat též situace, v nichž uživatel nakreslí neprostupnou překážku. Aplikace též umožňuje demonstrovat využití tohoto přístupu při předpovídání tsunami po zemětřesení. Aplikace může sloužit nejen ke studiu fyziky šíření vln, ale též k uvědomění si možností a limitů různých počítačových simulací.
 
 Autoři obsahu: Matěj Hudec
-Programátoři: Daniel Zikmund, Martin Zikmund
+Programátoři: Martin Zikmund, Daniel Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
@@ -143,7 +144,7 @@ Grafika: Petr Weinlich</value>
     <value>Zdroj</value>
   </data>
   <data name="CellState_Wall" xml:space="preserve">
-    <value>Překážka</value>
+    <value>Zeď</value>
   </data>
   <data name="ClearDrawing" xml:space="preserve">
     <value>Smazat vše</value>
@@ -185,7 +186,7 @@ Grafika: Petr Weinlich</value>
     <value>Uložit a spustit</value>
   </data>
   <data name="ScenePreset_Brick" xml:space="preserve">
-    <value>Cihla</value>
+    <value>Obdélník</value>
   </data>
   <data name="ScenePreset_Circle" xml:space="preserve">
     <value>Kruh</value>
