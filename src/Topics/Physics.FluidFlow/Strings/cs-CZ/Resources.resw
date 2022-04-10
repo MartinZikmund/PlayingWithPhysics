@@ -164,16 +164,16 @@ Grafika: Petr Weinlich</value>
     <value>Změna výšky potrubí</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
-    <value>Bernoulliho rovnice se změnou výšky</value>
+    <value>Bernoulliho rovnice se změnou výšky pro ideální kapalinu</value>
   </data>
   <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
-    <value>Bernoulliho rovnice beze změny výšky</value>
+    <value>Bernoulliho rovnice bez změny výšky pro ideální kapalinu</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
-    <value>Rovnice kontinuity</value>
+    <value>Rovnice kontinuity ideální kapaliny</value>
   </data>
   <data name="InputVariant_RealFluidMovement" xml:space="preserve">
-    <value>Pohyb reálné vody v potrubí</value>
+    <value>Proudění reálné kapaliny</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
     <value>Neplatný vstup</value>
