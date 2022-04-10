@@ -118,9 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Cílem materiálu je propojit problematiku kruhových dějů a technických zařízení, která tyto děje využívají.
+    <value>Cílem materiálu je objasnit pojem cyklický děj a jeho využití ve Stirlingově motoru.
+Díky přehledným interaktivním animacím mohou žáci sledovat děje v ideálním plynu a pracovní cyklus Stirlingova motoru. Pomocí animací lze zkoumat daný děj v animovaném p-V diagramu. Tím se žáci naučí při popisu principu činnosti Stirlingova motoru propojit pracovní fáze motoru s problematikou zidealizovaných pracovních diagramů. Volbou parametrů stavových veličin bude možné sledovat tepelné a energetické změny při jednotlivých dějích v ideálním plynu a v pracovním cyklu Stirlingova motoru.
 
-Autoři obsahu: Pavel Vlček
+Autoři obsahu: Pavel Mládek, Pavel Jirman
 Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
