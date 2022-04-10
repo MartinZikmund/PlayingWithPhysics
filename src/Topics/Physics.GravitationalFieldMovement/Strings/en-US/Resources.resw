@@ -193,4 +193,7 @@ Graphics: Petr Weinlich</value>
   <data name="Mass" xml:space="preserve">
     <value>Mass</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
 </root>

@@ -144,7 +144,7 @@
             Grid.Row="7"
             Grid.Column="1"
             Maximum="360"
-            Minimum="0"
+            Minimum="-360"
             Value="{x:Bind Model.BetaDeg, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="8">

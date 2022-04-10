@@ -66,13 +66,31 @@ namespace Physics.GravitationalFieldMovement.Rendering
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
 			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
-			if (_trajectory == null)
+			if (_trajectory == null || InputStoppingCondition())
 			{
 				return;
 			}
 
 			DrawPlanet(sender, args);
 			DrawTrajectory(sender, args);
+		}
+
+		private bool InputStoppingCondition()
+		{
+			if (_trajectory == null)
+			{
+				return false;
+			}
+
+			return _input.ConicSec switch
+			{
+				MovementType.Ellipse =>
+					_trajectory switch
+					{
+						_ => false
+					},
+				_ => false
+			};
 		}
 
 		public TrajectoryPoint CurrentPoint => _trajectory?.Length > 0 ? _trajectory[_currentFrame] : null;
