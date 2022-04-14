@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI;
+using System.Linq;
 
 namespace Physics.GravitationalFieldMovement.ViewModels
 {
@@ -37,7 +38,12 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		public bool InputSet => Input != null;
 
 		public double Dt { get; set; }
-		public string Object { get; set; } = Localizer.Instance["Earth"];
+
+		public string Object =>
+			IsKnownObject
+			? Localizer.Instance[SelectedPreset.NameKey]
+			: null;
+
 		internal void OnDtChanged()
 		{
 			if (Input != null && _controller != null)
@@ -63,7 +69,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 			DispatcherTime = new DispatcherTimer();
 			DispatcherTime.Tick += TimerTick;
-			DispatcherTime.Interval = TimeSpan.FromSeconds(1/30.0);
+			DispatcherTime.Interval = TimeSpan.FromSeconds(1 / 30.0);
 			DispatcherTime.Start();
 
 			_controller = controller;
@@ -74,17 +80,36 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		{
 			if (_controller.CurrentPoint != null)
 			{
+				TimeText = GetFormattedTime((int)_controller.CurrentPoint.Time);
 				Velocity = _controller.CurrentPoint.V;
 				Height = _controller.CurrentPoint.H;
 			}
 		}
+
+		//Source: https://rosettacode.org/wiki/Convert_seconds_to_compound_duration#C.23
+		private string GetFormattedTime(int seconds)
+		{
+			if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds));
+			if (seconds == 0) return "0 s";
+
+			TimeSpan span = TimeSpan.FromSeconds(seconds);
+			int[] parts = { span.Days / 7, span.Days % 7, span.Hours, span.Minutes, span.Seconds };
+			string[] units = { " týdnů", " dní", " hodin", " minut", " sekund" };
+
+			return string.Join(" ",
+				from index in Enumerable.Range(0, units.Length)
+				where parts[index] > 0
+				select parts[index] + units[index]);
+		}
+
+		public string TimeText { get; private set; }
 
 		public string HeightText => Height.ToString("0.000");
 		public double Height { get; private set; } = 0.0d;
 
 		public string VelocityText => Velocity.ToString("0.000");
 		public double Velocity { get; private set; } = 0.0d;
-		
+
 		private async Task SetParametersAsync()
 		{
 			var dialog = new InputDialog(_difficulty, Input);
@@ -95,9 +120,24 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				Input = null;
 				Dt = input.T / 3000;//TODO
 				Input = input;
+				if (_difficulty == DifficultyOption.Advanced)
+				{
+					var preset = dialog.Model.SelectedPreset;
+					if (preset != null)
+					{
+						SelectedPreset = preset.Preset;
+					}
+				}
+				else
+				{
+					SelectedPreset = PlanetPresets.Presets[0];
+				}
+				_controller.SimulationTime.Reset();
 				StartSimulation();
 			}
 		}
+
+		private PlanetPreset SelectedPreset { get; set; }
 
 		private void StartSimulation()
 		{
@@ -162,6 +202,6 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			var shown = await newWindow.TryShowAsync();
 		}
 
-		public bool IsEasyVariant => _difficulty == DifficultyOption.Easy;
+		public bool IsKnownObject => SelectedPreset != null;
 	}
 }

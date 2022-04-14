@@ -193,4 +193,7 @@ Grafika: Petr Weinlich</value>
   <data name="Mass" xml:space="preserve">
     <value>Hmotnost</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Čas</value>
+  </data>
 </root>

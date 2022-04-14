@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Physics.Shared.Mathematics;
 
 namespace Physics.GravitationalFieldMovement.ValuesTable
 {
     public class TableRow : ValuesTableRowBase
     {
-        private const string DistanceFormatting = "0.00##";
-		private const string TFormatting = "0.00##";
+		private const int TableSignificantDigits = 5;
 
 		[ValuesTableHeader("t (s)")]
 		public string T { get; set; }
@@ -29,11 +29,11 @@ namespace Physics.GravitationalFieldMovement.ValuesTable
 
 		public TableRow(double t, double x, double y, double v, double h)
         {
-			T = t.ToString(TFormatting);
-            X = x.ToString(DistanceFormatting);
-			Y = y.ToString(DistanceFormatting) ?? "";
-			V = v.ToString(DistanceFormatting) ?? "";
-			H = h.ToString(DistanceFormatting) ?? "";
+			T = t.ToSignificantDigitsString(TableSignificantDigits);
+			X = x.ToSignificantDigitsString(TableSignificantDigits);
+			Y = y.ToSignificantDigitsString(TableSignificantDigits);
+			V = v.ToSignificantDigitsString(TableSignificantDigits);
+			H = h.ToSignificantDigitsString(TableSignificantDigits);
 		}
 
         protected override IEnumerable<string> GetCellValuesInOrder()
