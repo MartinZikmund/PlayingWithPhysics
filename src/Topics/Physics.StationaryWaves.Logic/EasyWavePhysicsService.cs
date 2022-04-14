@@ -76,7 +76,7 @@ namespace Physics.StationaryWaves.Logic
 
 		public float? CalculateSecondWaveY(float x, float time)
 		{
-			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 0.5;
 
 			var y =
 				_waveInfo.Amplitude *
@@ -94,7 +94,7 @@ namespace Physics.StationaryWaves.Logic
 				return null;
 			}
 
-			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 0.5;
 
 			var y1 =
 				2 * _waveInfo.Amplitude *

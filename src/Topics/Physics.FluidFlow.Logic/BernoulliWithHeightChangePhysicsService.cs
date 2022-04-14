@@ -243,9 +243,9 @@ public class BernoulliWithHeightChangePhysicsService : PhysicsServiceBase, IPhys
 		else if (time < t1 + t2)
 		{
 			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 + _input.Velocity);
-			var particle0y = (3 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 3 / 4.0 * _input.Diameter1 - 3 / 4.0 * _input.Diameter2) / XMax));
-			var particle1y = (2 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 2 / 4.0 * _input.Diameter1 - 2 / 4.0 * _input.Diameter2) / XMax));
-			var particle2y = (1 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease + 1 / 4.0 * _input.Diameter1 - 1 / 4.0 * _input.Diameter2) / XMax));
+			var particle0y = (3 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease - 3 / 4.0 * _input.Diameter1 + 3 / 4.0 * _input.Diameter2) / XMax));
+			var particle1y = (2 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease - 2 / 4.0 * _input.Diameter1 + 2 / 4.0 * _input.Diameter2) / XMax));
+			var particle2y = (1 * _input.Diameter1 / 4) + ((x - 2 / 5f * XMax) * 5f * ((_input.HeightDecrease - 1 / 4.0 * _input.Diameter1 + 1 / 4.0 * _input.Diameter2) / XMax));
 			return particleId switch
 			{
 				0 => new Point2d(x, particle0y),

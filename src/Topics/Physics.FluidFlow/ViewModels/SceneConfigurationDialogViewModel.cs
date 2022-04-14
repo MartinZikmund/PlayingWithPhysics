@@ -20,7 +20,7 @@ namespace Physics.FluidFlow.ViewModels
 			InitializeDiameterRelationPicker(inputVariant);
 			UpdateInputConfiguration();
 
-			if (sceneConfiguration != null)
+			if (sceneConfiguration != null && sceneConfiguration.InputVariant == inputVariant)
 			{
 				SelectedFluid = Fluids.FirstOrDefault(f => f.FluidDefinition == sceneConfiguration.Fluid) ?? Fluids.First();
 				SelectedDiameterRelationTypeIndex = DiameterRelationTypes.IndexOf(sceneConfiguration.DiameterRelationType);
