@@ -29,6 +29,11 @@ public class TableService : ITableService<TableRow>
 
 		foreach (var item in trajectory)
 		{
+			if (item.H < 0)
+			{
+				table.Add(new TableRow(item.Time, item.X, item.Y, item.V, 0));
+				return table;
+			}
 			table.Add(new TableRow(item.Time, item.X, item.Y, item.V, item.H));
 		}
 

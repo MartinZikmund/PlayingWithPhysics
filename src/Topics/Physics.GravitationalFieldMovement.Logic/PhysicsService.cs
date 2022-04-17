@@ -105,7 +105,7 @@ public class PhysicsService
 			var trajectoryPoint = new TrajectoryPoint(t, x, y, v, h);
 			results.Add(trajectoryPoint);
 
-			impact = r < Input.Rz;
+			impact = r - Input.Rz < -0.1;
 		}
 		return results.ToArray();
 	}

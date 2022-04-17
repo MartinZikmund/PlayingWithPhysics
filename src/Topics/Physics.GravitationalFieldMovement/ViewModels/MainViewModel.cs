@@ -20,6 +20,7 @@ using Windows.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI;
 using System.Linq;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 
 namespace Physics.GravitationalFieldMovement.ViewModels
 {
@@ -27,6 +28,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 	{
 		private DifficultyOption _difficulty;
 		private GravitationalFieldMovementCanvasController _controller;
+		private double _height = 0.0d;
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
@@ -80,21 +82,21 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		{
 			if (_controller.CurrentPoint != null)
 			{
-				TimeText = GetFormattedTime((int)_controller.CurrentPoint.Time);
+				TimeText = GetFormattedTime((double)_controller.CurrentPoint.Time);
 				Velocity = _controller.CurrentPoint.V;
 				Height = _controller.CurrentPoint.H;
 			}
 		}
 
 		//Source: https://rosettacode.org/wiki/Convert_seconds_to_compound_duration#C.23
-		private string GetFormattedTime(int seconds)
+		private string GetFormattedTime(double seconds)
 		{
 			if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds));
 			if (seconds == 0) return "0 s";
 
 			TimeSpan span = TimeSpan.FromSeconds(seconds);
-			int[] parts = { span.Days / 7, span.Days % 7, span.Hours, span.Minutes, span.Seconds };
-			string[] units = { " týdnů", " dní", " hodin", " minut", " sekund" };
+			int[] parts = { span.Days / 365, span.Days % 365, span.Hours, span.Minutes, span.Seconds };
+			string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", " dní", " hodin", " minut", " sekund" };
 
 			return string.Join(" ",
 				from index in Enumerable.Range(0, units.Length)
@@ -102,11 +104,30 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				select parts[index] + units[index]);
 		}
 
+		private string GetFormattedYearLabel(int year) =>
+			year switch
+			{
+				1 => "rok",
+				<= 4 => "roky",
+				> 4 => "let"
+			};
+
 		public string TimeText { get; private set; }
 
 		public string HeightText => Height.ToString("0.000");
-		public double Height { get; private set; } = 0.0d;
+		public double Height
+		{
+			get => _height;
 
+			private set
+			{
+				if (value < 0)
+				{
+					value = 0;
+				}
+				_height = value;
+			}
+		}
 		public string VelocityText => Velocity.ToString("0.000");
 		public double Velocity { get; private set; } = 0.0d;
 

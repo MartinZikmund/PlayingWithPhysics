@@ -87,4 +87,46 @@ public class InputConfigurationTests
 		Assert.Equal(-1.571, input.Omega, 3);
 		Assert.Equal(-90.0, input.OmegaDeg, 3);
 	}
+
+	[Fact]
+	public void InputConfiguration_TestData3()
+	{
+		var input = new InputConfiguration(
+			6378000,
+			5970000000000000000000000d,
+			0,
+			11000,
+			80,
+			90);
+
+		Assert.Equal(1.571, input.Phi0, 3);
+		Assert.Equal(6378000.000, input.R0, 3);
+		Assert.Equal(0.000, input.X0, 3);
+		Assert.Equal(6378000.000, input.Y0, 3);
+		Assert.Equal(1.396, input.Beta, 3);
+		Assert.Equal(1, input.SigBeta);
+		Assert.Equal(-1910.130, input.Vx0, 3);
+		Assert.Equal(10832.885, input.Vy0, 3);
+		Assert.Equal(398199000000000.000, input.Alpha, 3);
+		Assert.Equal(12182808848.757, input.L, 3);
+		Assert.Equal(1, input.SigL, 3);
+		Assert.Equal(-1973457.197, input.En, 3);
+		Assert.Equal(372490.161, input.P, 3);
+		Assert.Equal(0.99815, input.Eps, 5);
+		Assert.Equal(MovementType.Ellipse, input.ConicSec);
+		Assert.Equal(100953724.936, input.A, 3);
+		Assert.Equal(0.000, input.N, 3);
+		Assert.Equal(319281.212, input.T, 3);
+		Assert.Equal(88.689225, input.PeriodInHours, 3);
+		Assert.Equal(3.695384, input.PeriodInDays, 3);
+		Assert.Equal(-0.9433, input.Chi, 3);
+		Assert.Equal(2.803, input.Theta0, 3);
+		Assert.NotNull(input.E0);
+		Assert.Equal(0.3524, input.E0!.Value, 3);
+		Assert.Equal(0.008, input.M0, 3);
+		Assert.Null(input.H0);
+		Assert.Equal(-400.650, input.Tau, 3);
+		Assert.Equal(-1.233, input.Omega, 3);
+		Assert.Equal(-70.6, input.OmegaDeg, 3);
+	}
 }
