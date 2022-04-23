@@ -277,7 +277,7 @@ namespace Physics.StationaryWaves.Rendering
 			args.Canvas.DrawPath(path, paint);
 		}
 
-		private double GetAdjustedTotalTime() => Math.Truncate(_controller.SimulationTime.TotalTime.TotalMilliseconds) / 1000 * InherentSlowdown;
+		public double GetAdjustedTotalTime() => Math.Truncate(_controller.SimulationTime.TotalTime.TotalMilliseconds) / 1000 * InherentSlowdown;
 
 		private float GetDisplayHeightInPixels(ISkiaCanvas sender) => (float)sender.ScaledSize.Height;
 

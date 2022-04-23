@@ -115,7 +115,12 @@ namespace Physics.StationaryWaves.ViewModels
 			string title = Localizer.Instance.GetString("StationaryWaves");
 
 			var valuesTableService = new TableService(physicsService, Difficulty == DifficultyOption.Easy ? RightEndDistance: 1);
-			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty);
+			float? initialTime = null;
+			if (Difficulty == DifficultyOption.Easy && _controller != null)
+			{
+				initialTime = (float)_controller.Renderer?.GetAdjustedTotalTime();
+			}
+			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, Difficulty, initialTime);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.
 			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
