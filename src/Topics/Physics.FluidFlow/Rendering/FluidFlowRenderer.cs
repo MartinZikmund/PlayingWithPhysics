@@ -141,7 +141,7 @@ namespace Physics.FluidFlow.Rendering
 			}
 			else
 			{
-				var pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 2) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
+				var pixelsPerUnitY = ((float)_canvas.ScaledSize.Height / 1.3f) / (Math.Abs(PhysicsService.YMax) + Math.Abs(PhysicsService.YMin));
 				_pixelsPerUnit = Math.Min(pixelsPerUnitX, pixelsPerUnitY);
 			}
 		}

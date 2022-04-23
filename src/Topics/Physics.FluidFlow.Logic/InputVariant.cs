@@ -3,8 +3,8 @@
 	public enum InputVariant
 	{
 		ContinuityEquation,
-		BernoulliEquationWithoutHeightDecrease,
-		BernoulliEquationWithHeightDecrease,
+		BernoulliEquationWithoutHeightChange,
+		BernoulliEquationWithHeightChange,
 		RealFluidMovement
 	}
 }

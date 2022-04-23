@@ -29,7 +29,7 @@ public class InputConfiguration
 
 	public FieldConfiguration LengthConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
 
-	public FieldConfiguration HeightDecreaseConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
+	public FieldConfiguration HeightChangeConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
 
 	public FieldConfiguration PressureConfiguration { get; set; } = FieldConfiguration.CreateInvisible();
 }

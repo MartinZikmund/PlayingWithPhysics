@@ -23,7 +23,7 @@ public static class DisplayConfigurations
 			D1 = true,
 			D2 = true,
 		},
-		new DisplayConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S1Larger)
+		new DisplayConfiguration(InputVariant.BernoulliEquationWithoutHeightChange, DiameterRelationType.S1Larger)
 		{
 			V1 = true,
 			V2 = true,
@@ -34,7 +34,7 @@ public static class DisplayConfigurations
 			H1 = true,
 			H2 = true,
 		},
-		new DisplayConfiguration(InputVariant.BernoulliEquationWithoutHeightDecrease, DiameterRelationType.S2Larger)
+		new DisplayConfiguration(InputVariant.BernoulliEquationWithoutHeightChange, DiameterRelationType.S2Larger)
 		{
 			V1 = true,
 			V2 = true,
@@ -45,7 +45,7 @@ public static class DisplayConfigurations
 			H1 = true,
 			H2 = true,
 		},
-		new DisplayConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S1Larger)
+		new DisplayConfiguration(InputVariant.BernoulliEquationWithHeightChange, DiameterRelationType.S1Larger)
 		{
 			V1 = true,
 			V2 = true,
@@ -56,7 +56,7 @@ public static class DisplayConfigurations
 			H1 = true,
 			H2 = true,
 		},
-		new DisplayConfiguration(InputVariant.BernoulliEquationWithHeightDecrease, DiameterRelationType.S2Larger)
+		new DisplayConfiguration(InputVariant.BernoulliEquationWithHeightChange, DiameterRelationType.S2Larger)
 		{
 			V1 = true,
 			V2 = true,

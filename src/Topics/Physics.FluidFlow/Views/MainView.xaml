@@ -133,10 +133,10 @@
                             <Run Text="{x:Bind Model.Display.V2}" />
                             <Run Text="m.s⁻¹" />
                         </TextBlock>
-                        <TextBlock Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.HeightDecreaseConfiguration.IsVisible}">
-                            <Run Text="{extensions:Localize Key=HeightDecreaseLabel}" />
+                        <TextBlock Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.HeightChangeConfiguration.IsVisible}">
+                            <Run Text="{extensions:Localize Key=HeightChangeLabel}" />
                             <Run FontWeight="Bold" Text="Δh" /><Run Text=":" />
-                            <Run Text="{x:Bind Model.SceneConfiguration.HeightDecreaseInCm}" />
+                            <Run Text="{x:Bind Model.SceneConfiguration.HeightChangeInCm}" />
                             <Run Text="cm" />
                         </TextBlock>
                         <TextBlock Visibility="{x:Bind Model.SceneConfiguration.InputConfiguration.LengthConfiguration.IsVisible}">

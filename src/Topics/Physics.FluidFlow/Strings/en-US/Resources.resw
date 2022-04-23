@@ -136,8 +136,14 @@ Graphics: Petr Weinlich</value>
   <data name="DiameterRelationType_S1Larger" xml:space="preserve">
     <value>S₁ &gt; S₂</value>
   </data>
+  <data name="DiameterRelationType_S1Larger_WithHeightChange" xml:space="preserve">
+    <value>S₁ &gt; S₂ (with height decrease)</value>
+  </data>
   <data name="DiameterRelationType_S2Larger" xml:space="preserve">
     <value>S₁ &lt; S₂</value>
+  </data>
+  <data name="DiameterRelationType_S2Larger_WithHeightChange" xml:space="preserve">
+    <value>S₁ &lt; S₂ (with height increase)</value>
   </data>
   <data name="ErrorRealFluidLowerDOrV" xml:space="preserve">
     <value>Flow is not laminar, lower diameter or velocity.</value>
@@ -160,13 +166,13 @@ Graphics: Petr Weinlich</value>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Water</value>
   </data>
-  <data name="HeightDecreaseLabel" xml:space="preserve">
+  <data name="HeightChangeLabel" xml:space="preserve">
     <value>Height change</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
+  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
     <value>Bernoulli equation for ideal fluid (with height change)</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
+  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
     <value>Bernoulli equation for ideal fluid (without height change)</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
