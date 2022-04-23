@@ -56,11 +56,11 @@ namespace Physics.StationaryWaves.Logic
 				return null;
 			}
 
-			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 1;
+			var leftEndConstant = _leftEndBounce == BounceType.Oscillating ? 0 : 0.5;
 			return 2 * _waveInfo.Amplitude *
-				(float)Math.Sin(
+				(float)Math.Sin(leftEndConstant * Math.PI + 
 					2 * Math.PI *
-					(leftEndConstant + x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
+					(x + _waveInfo.WaveLength / 4) / _waveInfo.WaveLength);
 		}
 
 		public float? CalculateFirstWaveY(float x, float time)
