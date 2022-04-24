@@ -49,7 +49,7 @@ public class SceneConfigurationViewModel : ViewModelBase
 
 	public FieldConfiguration VelocityConfiguration { get; private set; }
 
-	public string HeightDecreaseInCm => (Configuration.HeightDecrease * 100).ToString("0.#");
+	public string HeightChangeInCm => (Configuration.HeightChange * 100).ToString("0.#");
 
 	public string Diameter1InCm => (Configuration.Diameter1 * 100).ToString("0.#");
 

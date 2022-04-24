@@ -136,8 +136,14 @@ Grafika: Petr Weinlich</value>
   <data name="DiameterRelationType_S1Larger" xml:space="preserve">
     <value>S₁ &gt; S₂</value>
   </data>
+  <data name="DiameterRelationType_S1Larger_WithHeightChange" xml:space="preserve">
+    <value>S₁ &gt; S₂ (se snížením výšky)</value>
+  </data>
   <data name="DiameterRelationType_S2Larger" xml:space="preserve">
     <value>S₁ &lt; S₂</value>
+  </data>
+  <data name="DiameterRelationType_S2Larger_WithHeightChange" xml:space="preserve">
+    <value>S₁ &lt; S₂ (se zvýšením výšky)</value>
   </data>
   <data name="ErrorRealFluidLowerDOrV" xml:space="preserve">
     <value>Proudění není laminární, snižte hodnotu průměru nebo rychlosti.</value>
@@ -160,13 +166,13 @@ Grafika: Petr Weinlich</value>
   <data name="Fluid_Water" xml:space="preserve">
     <value>Voda</value>
   </data>
-  <data name="HeightDecreaseLabel" xml:space="preserve">
+  <data name="HeightChangeLabel" xml:space="preserve">
     <value>Změna výšky potrubí</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithHeightDecrease" xml:space="preserve">
+  <data name="InputVariant_BernoulliEquationWithHeightChange" xml:space="preserve">
     <value>Bernoulliho rovnice se změnou výšky pro ideální kapalinu</value>
   </data>
-  <data name="InputVariant_BernoulliEquationWithoutHeightDecrease" xml:space="preserve">
+  <data name="InputVariant_BernoulliEquationWithoutHeightChange" xml:space="preserve">
     <value>Bernoulliho rovnice bez změny výšky pro ideální kapalinu</value>
   </data>
   <data name="InputVariant_ContinuityEquation" xml:space="preserve">
@@ -190,7 +196,7 @@ Grafika: Petr Weinlich</value>
   <data name="PressureLabel" xml:space="preserve">
     <value>Tlak v potrubí</value>
   </data>
-  <data name="ReynoldsNumber" xml:space="preserve">
+  <data name="ReynoldsNumberLabel" xml:space="preserve">
     <value>Reynoldsovo číslo</value>
   </data>
   <data name="S1MustBeLargerMessage" xml:space="preserve">

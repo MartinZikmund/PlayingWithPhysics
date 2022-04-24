@@ -27,7 +27,7 @@ namespace Physics.FluidFlow.ViewModels
 				InputVariants = new[]
 				{
 					InputVariant.ContinuityEquation,
-					InputVariant.BernoulliEquationWithoutHeightDecrease,
+					InputVariant.BernoulliEquationWithoutHeightChange,
 				};
 				SelectedVariantIndex = (int)InputVariant.ContinuityEquation;
 			}
@@ -35,7 +35,7 @@ namespace Physics.FluidFlow.ViewModels
 			{
 				InputVariants = new[]
 				{
-					InputVariant.BernoulliEquationWithHeightDecrease,
+					InputVariant.BernoulliEquationWithHeightChange,
 					InputVariant.RealFluidMovement,
 				};
 				SelectedVariantIndex = (int)InputVariant.ContinuityEquation;
@@ -112,11 +112,11 @@ namespace Physics.FluidFlow.ViewModels
 				case InputVariant.ContinuityEquation:
 					_controller.SetVariantRenderer(new ContinuityEquationRenderer(_controller));
 					break;
-				case InputVariant.BernoulliEquationWithoutHeightDecrease:
-					_controller.SetVariantRenderer(new BernoulliEquationWithoutHeightDecreaseRenderer(_controller));
+				case InputVariant.BernoulliEquationWithoutHeightChange:
+					_controller.SetVariantRenderer(new BernoulliEquationWithoutHeightChangeRenderer(_controller));
 					break;
-				case InputVariant.BernoulliEquationWithHeightDecrease:
-					_controller.SetVariantRenderer(new BernoulliEquationWithHeightDecreaseRenderer(_controller));
+				case InputVariant.BernoulliEquationWithHeightChange:
+					_controller.SetVariantRenderer(new BernoulliEquationWithHeightChangeRenderer(_controller));
 					break;
 				case InputVariant.RealFluidMovement:
 					_controller.SetVariantRenderer(new RealFluidMovementRenderer(_controller));

@@ -14,6 +14,7 @@
     PrimaryButtonClick="{x:Bind Model.Save}"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}"
+	x:Name="Page"
     mc:Ignorable="d">
 
     <ContentDialog.Resources>
@@ -101,17 +102,17 @@
             Value="{x:Bind Model.Velocity, Mode=TwoWay}"
 			Visibility="{x:Bind Model.VelocityConfiguration.IsVisible}" />
 
-        <TextBlock Grid.Row="2" Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}">
-            <Run Text="{extensions:Localize Key=HeightDecreaseLabel}" />
+        <TextBlock Grid.Row="2" Visibility="{x:Bind Model.InputConfiguration.HeightChangeConfiguration.IsVisible}">
+            <Run Text="{extensions:Localize Key=HeightChangeLabel}" />
             <Run FontWeight="Bold" Text="Δh" />
             <Run Text="(cm)" />
         </TextBlock>
         <winui:NumberBox
-            x:Name="HeightDecreaseNumberBox"
+            x:Name="HeightChangeNumberBox"
             Grid.Row="2"
             Grid.Column="1"
-            Visibility="{x:Bind Model.InputConfiguration.HeightDecreaseConfiguration.IsVisible}"
-            Value="{x:Bind Model.HeightDecreaseInCm, Mode=TwoWay}" />
+            Visibility="{x:Bind Model.InputConfiguration.HeightChangeConfiguration.IsVisible}"
+            Value="{x:Bind Model.HeightChangeInCm, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="3" Visibility="{x:Bind Model.InputConfiguration.PressureConfiguration.IsVisible}">
             <Run Text="{extensions:Localize Key=PressureLabel}" />
@@ -145,8 +146,8 @@
             SelectedIndex="{x:Bind Model.SelectedDiameterRelationTypeIndex, Mode=TwoWay}"
             Visibility="{x:Bind Model.ShowDiameterRelationPicker, Mode=OneWay}">
             <winui:RadioButtons.ItemTemplate>
-                <DataTemplate x:DataType="logic:DiameterRelationType">
-                    <RadioButton HorizontalAlignment="Center" Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+                <DataTemplate x:DataType="viewmodels:DiameterRelationTypeViewModel">
+					<RadioButton HorizontalAlignment="Center" Content="{x:Bind Label}" />
                 </DataTemplate>
             </winui:RadioButtons.ItemTemplate>
         </winui:RadioButtons>

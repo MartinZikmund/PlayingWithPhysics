@@ -17,12 +17,19 @@ namespace Physics.StationaryWaves.ValuesTable
 		private float _distanceInterval = 0.05f;
 		private ApplicationDataContainer _localSettings = ApplicationData.Current.LocalSettings;
 
-		public ValuesTableDialogViewModel(TableService tableService, DifficultyOption movementType)
+		public ValuesTableDialogViewModel(TableService tableService, DifficultyOption movementType, float? initialTime)
 			: base(tableService)
 		{
 			_difficulty = movementType;
 			tableService.Owner = this;
-			_time = movementType == DifficultyOption.Advanced ? 2.1f : 0f;
+			if (initialTime != null)
+			{
+				_time = initialTime.Value;
+			}
+			else
+			{
+				_time = movementType == DifficultyOption.Advanced ? 2.1f : 0f;
+			}
 			UpdateTable();
 		}
 

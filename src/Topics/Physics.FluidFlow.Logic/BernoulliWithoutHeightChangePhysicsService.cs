@@ -69,7 +69,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 			_ => throw new InvalidOperationException("Invalid diameter type"),
 		};
 
-	public float YMax =>
+	public float LargerDiameter =>
 		_input.DiameterRelationType switch
 		{
 			DiameterRelationType.Equal => _input.Diameter1 / 2,
@@ -77,6 +77,17 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 			DiameterRelationType.S2Larger => _input.Diameter2 / 2,
 			_ => throw new InvalidOperationException("Invalid diameter type"),
 		};
+
+	public float YMax =>
+		_input.DiameterRelationType switch
+		{
+			DiameterRelationType.Equal => LargerDiameter,
+			DiameterRelationType.S1Larger => LargerDiameter + H1,
+			DiameterRelationType.S2Larger => LargerDiameter + H2,
+			_ => throw new InvalidOperationException("Invalid diameter type"),
+		};
+
+	public float YMin => -LargerDiameter;
 
 	public float P2 =>
 		_input.DiameterRelationType switch
@@ -104,7 +115,6 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 
 	public float DeltaP => Math.Abs(_input.Pressure - P2);
 
-	public float YMin => -YMax;
 
 	public override float MaxT
 	{

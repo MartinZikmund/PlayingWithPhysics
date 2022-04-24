@@ -27,7 +27,7 @@ namespace Physics.FluidFlow.Controls
 		private void SetupNumberBoxes()
 		{
 			SetupNumberBox(VelocityNumberBox, Model.VelocityConfiguration);
-			SetupNumberBox(HeightDecreaseNumberBox, Model.InputConfiguration.HeightDecreaseConfiguration);
+			SetupNumberBox(HeightChangeNumberBox, Model.InputConfiguration.HeightChangeConfiguration);
 			SetupNumberBox(LengthNumberBox, Model.InputConfiguration.LengthConfiguration);
 			SetupNumberBox(DiameterNumberBox, Model.DiameterConfiguration);
 			SetupNumberBox(Diameter1NumberBox, Model.Diameter1Configuration);

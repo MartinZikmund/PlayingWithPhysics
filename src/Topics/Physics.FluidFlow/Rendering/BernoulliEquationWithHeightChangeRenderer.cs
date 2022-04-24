@@ -4,12 +4,12 @@ using SkiaSharp;
 
 namespace Physics.FluidFlow.Rendering
 {
-	public class BernoulliEquationWithoutHeightDecreaseRenderer : FluidFlowRenderer
+	public class BernoulliEquationWithHeightChangeRenderer : FluidFlowRenderer
 	{
-		private BernoulliWithoutHeightChangePhysicsService _physicsService;
+		private BernoulliWithHeightChangePhysicsService _physicsService;
 		private SceneConfiguration _sceneConfiguration = null;
 
-		public BernoulliEquationWithoutHeightDecreaseRenderer(FluidFlowCanvasController controller) : base(controller)
+		public BernoulliEquationWithHeightChangeRenderer(FluidFlowCanvasController controller) : base(controller)
 		{
 		}
 
@@ -21,29 +21,52 @@ namespace Physics.FluidFlow.Rendering
 		{
 			var diameter1 = _sceneConfiguration.Diameter1;
 			var diameter2 = _sceneConfiguration.Diameter2;
+
+			var heightChange = _sceneConfiguration.HeightChange;
+
 			var startX = -10;
 			var endX = _canvas.ScaledSize.Width + 10;
 			var x1 = GetRenderX(_physicsService.GetS1LargerX1());
 
 			var x2 = GetRenderX(_physicsService.GetS1LargerX2());
 			var x3 = GetRenderX(_physicsService.GetS1LargerX3());
-			var d1Top = GetRenderY(diameter1 / 2);
-			var d1bottom = GetRenderY(-diameter1 / 2);
-			var d2Top = GetRenderY(diameter2 / 2);
-			var d2bottom = GetRenderY(-diameter2 / 2);
 
+
+			var firstPartTopRealY = 0f;
+			var firstPartBottomRealY = 0f;
+			var secondPartTopRealY = 0f;
+			var secondPartBottomRealY = 0f;
+			if (_sceneConfiguration.DiameterRelationType == DiameterRelationType.S1Larger)
+			{
+				firstPartTopRealY = _sceneConfiguration.HeightChange + diameter1;
+				firstPartBottomRealY = _sceneConfiguration.HeightChange;
+				secondPartTopRealY = diameter2;
+				secondPartBottomRealY = 0f;
+			}
+			else
+			{
+				firstPartTopRealY = diameter1;
+				firstPartBottomRealY = 0f;
+				secondPartTopRealY = _sceneConfiguration.HeightChange + diameter2;
+				secondPartBottomRealY = _sceneConfiguration.HeightChange;
+			}
+
+			var firstPartTopY = GetRenderY(firstPartTopRealY);
+			var firstPartBottomY = GetRenderY(firstPartBottomRealY);
+			var secondPartTopY = GetRenderY(secondPartTopRealY);
+			var secondPartBottomY = GetRenderY(secondPartBottomRealY);
 
 			var firstUpX1 = GetRenderX(0.095f);
 			var firstUpX2 = GetRenderX(0.105f);
 			var secondUpX1 = GetRenderX(0.395f);
 			var secondUpX2 = GetRenderX(0.405f);
 
-			var firstUpY = GetRenderY(diameter1 / 2 + _physicsService.H1);
-			var secondUpY = GetRenderY(diameter2 / 2 + _physicsService.H2);
+			var firstUpY = GetRenderY(firstPartTopRealY + _physicsService.H1);
+			var secondUpY = GetRenderY(secondPartTopRealY + _physicsService.H2);
 
 			var path = new SKPath();
-			path.MoveTo(startX, d1Top);
-			path.LineTo(firstUpX1, d1Top);
+			path.MoveTo(startX, firstPartTopY);
+			path.LineTo(firstUpX1, firstPartTopY);
 			path.LineTo(firstUpX1, firstUpY);
 			if (isFill)
 			{
@@ -53,10 +76,10 @@ namespace Physics.FluidFlow.Rendering
 			{
 				path.MoveTo(firstUpX2, firstUpY);
 			}
-			path.LineTo(firstUpX2, d1Top);
-			path.LineTo(x1, d1Top);
-			path.LineTo(x2, d2Top);
-			path.LineTo(secondUpX1, d2Top);
+			path.LineTo(firstUpX2, firstPartTopY);
+			path.LineTo(x1, firstPartTopY);
+			path.LineTo(x2, secondPartTopY);
+			path.LineTo(secondUpX1, secondPartTopY);
 			path.LineTo(secondUpX1, secondUpY);
 			if (isFill)
 			{
@@ -66,12 +89,12 @@ namespace Physics.FluidFlow.Rendering
 			{
 				path.MoveTo(secondUpX2, secondUpY);
 			}
-			path.LineTo(secondUpX2, d2Top);
-			path.LineTo(endX, d2Top);
-			path.LineTo(endX, d2bottom);
-			path.LineTo(x2, d2bottom);
-			path.LineTo(x1, d1bottom);
-			path.LineTo(startX, d1bottom);
+			path.LineTo(secondUpX2, secondPartTopY);
+			path.LineTo(endX, secondPartTopY);
+			path.LineTo(endX, secondPartBottomY);
+			path.LineTo(x2, secondPartBottomY);
+			path.LineTo(x1, firstPartBottomY);
+			path.LineTo(startX, firstPartBottomY);
 
 			if (isFill)
 			{
@@ -85,7 +108,7 @@ namespace Physics.FluidFlow.Rendering
 		{
 			base.StartSimulation(sceneConfiguration);
 			_sceneConfiguration = sceneConfiguration;
-			_physicsService = new BernoulliWithoutHeightChangePhysicsService(sceneConfiguration);
+			_physicsService = new BernoulliWithHeightChangePhysicsService(sceneConfiguration);
 		}
 
 		protected override float GetVelocityVectorSize(int vectorId, int particleId)

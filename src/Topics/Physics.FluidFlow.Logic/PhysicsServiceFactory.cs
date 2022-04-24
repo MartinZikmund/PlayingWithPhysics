@@ -8,8 +8,8 @@ public static class PhysicsServiceFactory
 		sceneConfiguration.InputVariant switch
 		{
 			InputVariant.ContinuityEquation => new ContinuityEquationPhysicsService(sceneConfiguration),
-			InputVariant.BernoulliEquationWithoutHeightDecrease => new BernoulliWithoutHeightChangePhysicsService(sceneConfiguration),
-			InputVariant.BernoulliEquationWithHeightDecrease => new BernoulliWithHeightChangePhysicsService(sceneConfiguration),
+			InputVariant.BernoulliEquationWithoutHeightChange => new BernoulliWithoutHeightChangePhysicsService(sceneConfiguration),
+			InputVariant.BernoulliEquationWithHeightChange => new BernoulliWithHeightChangePhysicsService(sceneConfiguration),
 			InputVariant.RealFluidMovement => new RealFluidFlowPhysicsService(sceneConfiguration),
 			_ => throw new InvalidOperationException()
 		};

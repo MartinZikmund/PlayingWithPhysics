@@ -10,7 +10,7 @@
 			float diameter1,
 			float diameter2,
 			float length,
-			float heightDecrease,
+			float heightChange,
 			float pressure)
 		{
 			InputVariant = inputVariant;
@@ -20,7 +20,7 @@
 			Diameter1 = diameter1;
 			Diameter2 = diameter2;
 			Length = length;
-			HeightDecrease = heightDecrease;
+			HeightChange = heightChange;
 			Pressure = pressure;
 		}
 
@@ -46,9 +46,9 @@
 
 		public string LengthString => Length.ToString("0.#");
 
-		public float HeightDecrease { get; set; }
+		public float HeightChange { get; set; }
 
-		public string HeightDecreaseString => HeightDecrease.ToString("0.#");
+		public string HeightChangeString => HeightChange.ToString("0.#");
 
 		public float Pressure { get; set; }
 
