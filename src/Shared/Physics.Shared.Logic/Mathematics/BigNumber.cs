@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Physics.Shared.Mathematics
 {
@@ -133,8 +135,24 @@ namespace Physics.Shared.Mathematics
 				return "0";
 			}
 
-			return $"{rounded.ToString("0.000")}.10^{exponent}";
+			var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
+			return $"{rounded.ToString("0.000")}×10{exponentRepresentation}";
 		}
+
+		static Dictionary<char, char> SuperscriptNumberMap = new()
+		{
+			{ '-', '⁻' },
+			{ '0', '¹' },
+			{ '1', '²' },
+			{ '2', '²' },
+			{ '3', '³' },
+			{ '4', '⁴' },
+			{ '5', '⁵' },
+			{ '6', '⁶' },
+			{ '7', '⁷' },
+			{ '8', '⁸' },
+			{ '9', '⁹' },
+		};
 
 		public string ToString(string formatString)
 		{
@@ -143,7 +161,8 @@ namespace Physics.Shared.Mathematics
 			{
 				return 0.ToString(formatString);
 			}
-			return $"{normalized.Mantisa.ToString(formatString)}.10^{normalized.Exponent}";
+			var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
+			return $"{normalized.Mantisa.ToString(formatString)}×10{exponentRepresentation}";
 		}
 	}
 }

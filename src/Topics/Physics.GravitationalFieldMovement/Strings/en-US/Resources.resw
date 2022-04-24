@@ -120,7 +120,7 @@
   <data name="AppDescription" xml:space="preserve">
     <value>For astronautics, motions in which the body is given an initial velocity in a direction perpendicular to the gravitational field intensity vector are of great importance. The animation will allow you to choose the size and direction of the initial velocity of the body and the place above the Earth's surface, from which the motion of the body will be monitored.
 
-Content authors: Matěj Hudec, Pavel Vlček
+Content authors: Matěj Hudec, Vladimír Kafka, Pavel Vlček
 Developer: Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
@@ -147,9 +147,6 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Initial velocity</value>
-  </data>
-  <data name="Object" xml:space="preserve">
-    <value>Object</value>
   </data>
   <data name="Planet" xml:space="preserve">
     <value>Central body</value>
@@ -185,15 +182,21 @@ Graphics: Petr Weinlich</value>
     <value>Gravitational Field</value>
   </data>
   <data name="CurrentHeight" xml:space="preserve">
-    <value>Height</value>
+    <value>Height above the surface</value>
   </data>
   <data name="CurrentVelocity" xml:space="preserve">
-    <value>Velocity</value>
+    <value>Speed</value>
   </data>
   <data name="Mass" xml:space="preserve">
     <value>Mass</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="CentralBody" xml:space="preserve">
+    <value>Central body</value>
+  </data>
+  <data name="Projectile" xml:space="preserve">
+    <value>Projectile</value>
   </data>
 </root>

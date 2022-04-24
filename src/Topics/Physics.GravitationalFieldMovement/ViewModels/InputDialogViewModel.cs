@@ -4,6 +4,7 @@ using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.ViewModels;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;
@@ -60,8 +61,17 @@ public class InputDialogViewModel : ViewModelBase
 		MzBigNumber = SelectedPreset.Preset.M;
 	}
 
-	public void Save(object sender, ContentDialogButtonClickEventArgs args)
+	public void SaveHandler(object sender, ContentDialogButtonClickEventArgs args)
 	{
+		if (!Save())
+		{
+			args.Cancel = true;
+		}
+	}
+
+	public bool Save()
+	{
+
 		bool allValid = true;
 
 		if (allValid)
@@ -73,11 +83,12 @@ public class InputDialogViewModel : ViewModelBase
 				V0BigNumber,
 				BetaDeg,
 				Phi0Deg);
+			return true;
 		}
 		else
 		{
 			ErrorMessage = Localizer.Instance.GetString("CannotParseInputNumbers");
-			args.Cancel = true;
+			return false;
 		}
 	}
 }

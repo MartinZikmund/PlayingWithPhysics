@@ -1,9 +1,18 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using MvvmCross.WeakSubscription;
 using Physics.GravitationalFieldMovement.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
+using Physics.GravitationalFieldMovement.Rendering.Extensions;
+using Windows.ApplicationModel;
+using Typography.TextLayout;
+using Physics.Shared.UI.Helpers;
+using Microsoft.Toolkit.Uwp.Helpers;
+using SkiaSharp.Views.UWP;
+using Physics.Shared.UI.Infrastructure.Topics;
 
 namespace Physics.GravitationalFieldMovement.Rendering
 {
@@ -19,9 +28,11 @@ namespace Physics.GravitationalFieldMovement.Rendering
 
 		private double _scale = 1;
 
+		private double _lastPlanetRadius = 0;
+		
 		private readonly SKPaint _planetPaint = new SKPaint()
 		{
-			Color = new SKColor(150, 150, 150, 150),
+			Color = SKColors.LightGray,
 			IsStroke = false,
 			IsAntialias = true,
 			FilterQuality = SKFilterQuality.High
@@ -44,14 +55,24 @@ namespace Physics.GravitationalFieldMovement.Rendering
 		};
 
 		private int _currentFrame = 0;
-
+		
 		public GravitationalFieldMovementCanvasController(ISkiaCanvas canvasAnimatedControl)
 			: base(canvasAnimatedControl)
 		{
+			var gameAssetsPath = Path.Combine(Package.Current.InstalledLocation.Path, "Assets", "Objects");
+			EarthBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "earth.png"));
 		}
 
 		public void SetInputConfiguration(InputConfiguration input, double dt)
 		{
+			if (Planet != null)
+			{
+				var color = ColorHelper.ToColor(Planet.ColorHex);
+				_planetPaint.Color = color.ToSKColor();
+			} else
+			{
+				_planetPaint.Color = SKColors.LightGray;
+			}
 			_input = input;
 			var physicsService = new PhysicsService(input, dt);
 
@@ -102,8 +123,8 @@ namespace Physics.GravitationalFieldMovement.Rendering
 				return;
 			}
 
-			var scaleX = sender.ScaledSize.Width * 0.8 / (2* Math.Max(Math.Abs(_maxX), Math.Abs(_minX)));
-			var scaleY = sender.ScaledSize.Height * 0.8 / (2 * Math.Max(Math.Abs(_maxY),Math.Abs(_minY)));
+			var scaleX = sender.ScaledSize.Width * 0.8 / (2 * Math.Max(Math.Abs(_maxX), Math.Abs(_minX)));
+			var scaleY = sender.ScaledSize.Height * 0.8 / (2 * Math.Max(Math.Abs(_maxY), Math.Abs(_minY)));
 			_scale = Math.Min(scaleX, scaleY);
 
 			_currentFrame = (int)(SimulationTime.TotalTime.TotalSeconds / (1 / 60.0));
@@ -139,8 +160,13 @@ namespace Physics.GravitationalFieldMovement.Rendering
 
 		private void DrawPlanet(ISkiaCanvas sender, SKSurface args)
 		{
-			args.Canvas.DrawCircle(GetRenderX(0), GetRenderY(0), (float)(_scale * _input.Rz), _planetPaint);
+			args.Canvas.DrawCircle(GetRenderX(0), GetRenderY(0), (float)PlanetRadius, _planetPaint);
 		}
+
+		public SKBitmap EarthBitmap { get; private set; }
+		public PlanetPreset Planet { get; set; }
+
+		public double PlanetRadius => (_scale * _input.Rz) < 1 ? 1f : (_scale * _input.Rz);
 
 		private float GetRenderX(double x) => (float)(_canvas.ScaledSize.Width / 2 + x * _scale);
 

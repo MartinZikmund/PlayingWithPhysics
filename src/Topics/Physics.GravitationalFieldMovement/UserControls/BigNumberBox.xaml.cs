@@ -20,7 +20,7 @@ namespace Physics.GravitationalFieldMovement.UserControls
 		}
 
 		public static readonly DependencyProperty MantisaProperty =
-			DependencyProperty.Register(nameof(Mantisa), typeof(double), typeof(BigNumberBox), new PropertyMetadata(0, OnMantisaChanged));
+			DependencyProperty.Register(nameof(Mantisa), typeof(double), typeof(BigNumberBox), new PropertyMetadata(0.0, OnMantisaChanged));
 
 		private static void OnMantisaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
@@ -55,7 +55,7 @@ namespace Physics.GravitationalFieldMovement.UserControls
 		}
 
 		public static readonly DependencyProperty ValueProperty =
-			DependencyProperty.Register(nameof(Value), typeof(BigNumber), typeof(BigNumberBox), new PropertyMetadata(0, OnValueChanged));
+			DependencyProperty.Register(nameof(Value), typeof(BigNumber), typeof(BigNumberBox), new PropertyMetadata(default(BigNumber), OnValueChanged));
 
 		private static void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
 		{

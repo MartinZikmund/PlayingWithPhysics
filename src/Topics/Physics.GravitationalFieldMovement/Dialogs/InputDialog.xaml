@@ -8,7 +8,7 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:viewmodels="using:Physics.GravitationalFieldMovement.ViewModels"
 	Title="{extensions:Localize Key=SetParameters}"
     x:DefaultBindMode="OneWay"
-    PrimaryButtonClick="{x:Bind Model.Save}"
+    PrimaryButtonClick="{x:Bind Model.SaveHandler}"
     PrimaryButtonText="{extensions:Localize Key=Save}"
     SecondaryButtonText="{extensions:Localize Key=Cancel}">
 
@@ -110,7 +110,7 @@
 		<TextBlock
             Grid.Row="4"
             Style="{ThemeResource HeaderStyle}"
-            Text="{extensions:Localize Key=Object}"
+            Text="{extensions:Localize Key=Projectile}"
             Visibility="{x:Bind Model.IsAdvanced}" />
 		<TextBlock Grid.Row="5">
             <Run Text="{extensions:Localize Key=InitialHeight}" />

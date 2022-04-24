@@ -120,7 +120,7 @@
   <data name="AppDescription" xml:space="preserve">
     <value>Pro kosmonautiku mají velký význam pohyby, při nichž je tělesu udělena počáteční rychlost ve směru kolmém k vektoru intenzity gravitačního pole. Animace umožní volbu velikosti a směru počáteční rychlosti tělesa a místa nad povrchem Země, od kterého bude sledován pohyb daného tělesa.
 
-Autoři obsahu: Matěj Hudec, Pavel Vlček
+Autoři obsahu: Matěj Hudec, Vladimír Kafka, Pavel Vlček
 Programátor: Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
@@ -147,9 +147,6 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="InitialVelocity" xml:space="preserve">
     <value>Počáteční rychlost</value>
-  </data>
-  <data name="Object" xml:space="preserve">
-    <value>Objekt</value>
   </data>
   <data name="Planet" xml:space="preserve">
     <value>Centrální těleso</value>
@@ -195,5 +192,11 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Čas</value>
+  </data>
+  <data name="CentralBody" xml:space="preserve">
+    <value>Centrální těleso</value>
+  </data>
+  <data name="Projectile" xml:space="preserve">
+    <value>Projektil</value>
   </data>
 </root>

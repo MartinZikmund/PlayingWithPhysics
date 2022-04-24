@@ -87,6 +87,7 @@
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<Grid.Resources>
 						<Style TargetType="TextBlock">
@@ -98,17 +99,21 @@
 						</Style>
 					</Grid.Resources>
 
-					<StackPanel Visibility="{x:Bind Model.IsKnownObject, Mode=OneWay}" Grid.Row="0" Orientation="Horizontal">
+
+					<StackPanel Grid.Row="0" Margin="0,0,0,24" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Object}"/><Run Text=": "/>
-							<Run FontWeight="Bold" Text="{x:Bind Model.Object, Mode=OneWay}"/>
+							<Run Text="{extensions:Localize Key=Time}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.TimeText, Mode=OneWay}"/>
 						</TextBlock>
 					</StackPanel>
 
 					<StackPanel Grid.Row="1" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Time}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.TimeText, Mode=OneWay}"/>
+						<TextBlock Margin="0">
+							<Run FontWeight="{x:Bind Model.ObjectFontWeight, Mode=OneWay}" Text="{extensions:Localize Key=CentralBody}"/>
+						</TextBlock>
+						<TextBlock Visibility="{x:Bind Model.IsKnownObject, Mode=OneWay}">
+							<Run Text=": "/>
+							<Run FontWeight="Bold" Text="{x:Bind Model.Object, Mode=OneWay}"/>
 						</TextBlock>
 					</StackPanel>
 					
@@ -119,21 +124,22 @@
 							<Run Text="kg"/>
 						</TextBlock>
 					</StackPanel>
-					<StackPanel Grid.Row="3" Orientation="Horizontal">
+					<StackPanel Grid.Row="3" Margin="0,0,0,24" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=Radius}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.Input.RzBigNumber, Mode=OneWay}"/>
-							<Run Text="m"/>
+							<Run Text="{x:Bind Model.RadiusText, Mode=OneWay}"/>
+							<Run Text="km"/>
 						</TextBlock>
 					</StackPanel>
-					<StackPanel Grid.Row="4" Orientation="Horizontal">
+					<TextBlock Grid.Row="4" Margin="0,0,0,8" FontWeight="Bold" Text="{extensions:Localize Key=Projectile}" />
+					<StackPanel Grid.Row="5" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
 							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
 							<Run Text="m"/>
 						</TextBlock>
 					</StackPanel>
-					<StackPanel Grid.Row="5" Orientation="Horizontal">
+					<StackPanel Grid.Row="6" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=CurrentVelocity}"/><Run Text=": "/>
 							<Run Text="{x:Bind Model.VelocityText, Mode=OneWay}"/>

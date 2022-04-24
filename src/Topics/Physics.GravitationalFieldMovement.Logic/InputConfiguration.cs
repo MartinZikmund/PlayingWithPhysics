@@ -181,4 +181,5 @@ public class InputConfiguration
 	public double Omega { get; }
 
 	public double OmegaDeg { get; }
+	public static InputConfiguration Default => new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), new BigNumber(9.0, 5), new BigNumber(7.0, 3), 0, 90);
 }

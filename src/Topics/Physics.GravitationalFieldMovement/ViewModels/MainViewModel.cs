@@ -21,6 +21,7 @@ using Windows.Foundation;
 using Windows.UI;
 using System.Linq;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.UI.Text;
 
 namespace Physics.GravitationalFieldMovement.ViewModels
 {
@@ -39,7 +40,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 		public bool InputSet => Input != null;
 
-		public double Dt { get; set; }
+		public double Dt { get; set; } = 1;
 
 		public string Object =>
 			IsKnownObject
@@ -76,6 +77,9 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 			_controller = controller;
 			SimulationPlayback.SetController(_controller);
+			Input = InputConfiguration.Default;
+			StartSimulation();
+			SimulationPlayback.Pause();
 		}
 
 		private void TimerTick(object sender, object e)
@@ -128,8 +132,26 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				_height = value;
 			}
 		}
-		public string VelocityText => Velocity.ToString("0.000");
+		public string VelocityText => Math.Round(Velocity).ToString();
 		public double Velocity { get; private set; } = 0.0d;
+
+		public string RadiusText
+		{
+			get
+			{
+				if (Input == null)
+				{
+					return "0";
+				}
+
+				var radiusInKilometers = (double)Input.RzBigNumber / 1000;
+				if (radiusInKilometers >= 1000)
+				{
+					return Math.Round(radiusInKilometers).ToString();
+				}
+				return Math.Round(radiusInKilometers, 3).ToString();
+			}
+		}
 
 		private async Task SetParametersAsync()
 		{
@@ -144,10 +166,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				if (_difficulty == DifficultyOption.Advanced)
 				{
 					var preset = dialog.Model.SelectedPreset;
-					if (preset != null)
-					{
-						SelectedPreset = preset.Preset;
-					}
+					SelectedPreset = preset?.Preset ?? null;
 				}
 				else
 				{
@@ -158,7 +177,16 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 			}
 		}
 
-		private PlanetPreset SelectedPreset { get; set; }
+		private PlanetPreset _selectedPreset = null;
+
+		private PlanetPreset SelectedPreset
+		{
+			get
+			{
+				return _difficulty == DifficultyOption.Easy ? PlanetPresets.Presets[0] : _selectedPreset;
+			}
+			set => _selectedPreset = value;
+		}
 
 		private void StartSimulation()
 		{
@@ -167,6 +195,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 				return;
 			}
 
+			_controller.Planet = SelectedPreset;
 			_controller.SetInputConfiguration(Input, Dt);
 			_controller.Play();
 		}
@@ -224,5 +253,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 		}
 
 		public bool IsKnownObject => SelectedPreset != null;
+
+		public FontWeight ObjectFontWeight => IsKnownObject ? FontWeights.Normal : FontWeights.Bold;
 	}
 }
