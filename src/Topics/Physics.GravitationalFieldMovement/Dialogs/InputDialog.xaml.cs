@@ -1,5 +1,6 @@
 ﻿using Physics.GravitationalFieldMovement.Logic;
 using Physics.GravitationalFieldMovement.ViewModels;
+using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Helpers;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Windows.UI.Xaml.Controls;

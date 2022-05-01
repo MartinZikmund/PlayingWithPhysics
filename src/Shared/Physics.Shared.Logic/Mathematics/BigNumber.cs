@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 
 namespace Physics.Shared.Mathematics
@@ -24,6 +25,12 @@ namespace Physics.Shared.Mathematics
 
 		public static implicit operator BigNumber(float number) =>
 			new BigNumber(number, 0);
+
+		public static bool operator ==(BigNumber left, BigNumber right) =>
+			(double)left == (double)right;
+
+		public static bool operator !=(BigNumber left, BigNumber right) =>
+			!((double)left == (double)right);
 
 		public static BigNumber operator *(BigNumber a, BigNumber b) =>
 			new BigNumber(a.Mantisa * b.Mantisa, a.Exponent + b.Exponent);
@@ -56,6 +63,18 @@ namespace Physics.Shared.Mathematics
 			}
 			return new BigNumber(a.Mantisa - b.Mantisa, a.Exponent);
 		}
+
+		public static bool operator >(BigNumber a, BigNumber b) =>
+			(double)a > (double)b;
+
+		public static bool operator <(BigNumber a, BigNumber b) =>
+			(double)a < (double)b;
+
+		public static bool operator >=(BigNumber a, BigNumber b) =>
+			(double)a <= (double)b;
+
+		public static bool operator <=(BigNumber a, BigNumber b) =>
+			(double)a <= (double)b;
 
 		public BigNumber WithExponent(int newExponent)
 		{
