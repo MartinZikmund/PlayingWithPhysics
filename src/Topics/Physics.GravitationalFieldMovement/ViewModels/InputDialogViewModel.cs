@@ -26,6 +26,8 @@ public class InputDialogViewModel : ViewModelBase
 		}
 	}
 
+	private bool _preventPresetChanges = false;
+
 	public bool IsAdvanced { get; }
 
 	public BigNumber _rzBigNumber = new BigNumber(6.38, 6);
@@ -124,6 +126,11 @@ public class InputDialogViewModel : ViewModelBase
 
 	public void ValidatePlanetPreset()
 	{
+		if (_preventPresetChanges)
+		{
+			return;
+		}
+
 		//Check if new Rz and Mz are valid given the selected planet
 		var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
 		SelectedPreset = preset;
@@ -140,8 +147,10 @@ public class InputDialogViewModel : ViewModelBase
 			return;
 		}
 
+		_preventPresetChanges = true;
 		RzBigNumber = SelectedPreset.Preset.R;
 		MzBigNumber = SelectedPreset.Preset.M;
+		_preventPresetChanges = false;
 	}
 
 	public void SaveHandler(object sender, ContentDialogButtonClickEventArgs args)
