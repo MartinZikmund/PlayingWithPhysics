@@ -48,10 +48,10 @@ public class InputDialogViewModel : ViewModelBase
 
 
 			//M_Z / R_Z < 3x10 ^ 24
-			//if ((MzBigNumber / value) >= _mzRzBigNumberDivision)
-			//{
-			//	value = _rzBigNumber;
-			//}
+			if ((MzBigNumber / value) >= _mzRzBigNumberDivision)
+			{
+				value = _rzBigNumber;
+			}
 
 			_rzBigNumber = value;
 			ValidatePlanetPreset();
@@ -80,10 +80,10 @@ public class InputDialogViewModel : ViewModelBase
 			}
 
 			//M_Z / R_Z < 3x10 ^ 24
-			//if ((value / RzBigNumber) >= _mzRzBigNumberDivision)
-			//{
-			//	value = _mzBigNumber;
-			//}
+			if ((value / RzBigNumber) >= _mzRzBigNumberDivision)
+			{
+				value = _mzBigNumber;
+			}
 
 			_mzBigNumber = value;
 			ValidatePlanetPreset();

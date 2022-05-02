@@ -1,0 +1,273 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Motivační text",
+        "Text": "\\par „Princip hracího stolu spočívá v tom, že je v něm zabudovaný ventilátor, od kterého se rozvádí vzduch pomocí štěrbin k otvorům v desce stolu. Těmi vzduch uniká ven. Puk se tak udržuje těsně nad stolem, jako na nějakém polštáři. Díky tomu se může kotouč pohybovat bez tření a zpomalení po hrací ploše. Říkám tomu vzdušný hokej.\\\\\r\r\\par Koukněte se!”\\\\\r\r\\par Bob Lemieux položil na desku stolu tenkou plastovou destičku, které říkal puk. Vzal do ruky něco, co připomínalo cylindr, a udeřil tím do puku.\\\\\r\r\\par Touš se po úderu rozletěl k protější straně stolu, kde se odrazil od nízké stěny, která lemovala okraj stolu, a po několika odrazech od stěn spadl do branky.\\\\\r\r\\par „Mohu si to půjčit?”, zeptal se ředitel firmy Brunswick Bowling $\\&$ Billiards a udeřil cylindrem do puku.\\\\\r\r\\par Bob letící puk trefil vlastním cylindrem. Kotouč  se odrazil  a vletěl do ředitelovy branky.\\\\\r\r\\par Ředitel se zamračil, odložil si sako, povytáhl rukávy, protáhl se a zavolal na sekretářku: „Tohle bude vyžadovat delší jednání. Nepřeji si být nikým rušen!”\\\\\r\r\\par Prokřupal si prsty a obrátil se na Boba.\\\\\r\r\\par „Sice to není ani biliár ani bowling, ale ta hra mě začíná bavit. Vhazujete, Bobe!”\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Všude kolem nás na sebe vzájemně působí tělesa a mění svůj pohybový stav. Silovým polem se vzájemně přitahují či odpuzují, srážejí se a odrážejí se při vzájemném dotyku.\\\\\r\r\\par S popisovanými jevy se můžeme setkat nejen při chování těles v našem okolí (míčové hry, dopravní nehody, výstřel ze zbraně, exploze granátu, činnost reaktivního motoru, vzájemné přitažení a odstrčení bruslařské dvojice, srážky kulečníkových koulí, zatloukání hřebíku), ale též v oblasti mikrosvěta či vesmíru. V jaderném reaktoru narážejí rychlé neutrony vzniklé při jaderné reakci na jádra atomů, v urychlovačích posíláme proti sobě částice a zkoumáme výsledky vzájemných srážek. Srážejí se molekuly plynu a odrážejí se od stěn nádoby.\\\\\r\r\\par Při popisu srážek (rázů) nás bude zajímat pouze pohybový stav těles před vzájemným působením a po něm. Srážky budeme popisovat z hlediska zákona zachování hybnosti a zákona zachování mechanické energie. Problematika srážek těles může být velmi komplikovaná – tělesa mohou mít nejen různé rychlosti, ale i různé tvary, mohou před srážkou rotovat atd.  Pro zjednodušení budeme předpokládat přímou středovou srážku ve vodorovném směru. Přímá znamená, že rychlosti těles leží na přímce procházející středy těles, středová znamená, že nárazové síly leží na přímce procházející těžišti těles.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Zákon zachování hybnosti",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Hybnost je vektorová veličina daná vztahem $$\\vec{p}=m\\vec{v},$$kde $m$ je hmotnost tělesa a $\\vec{v}$ je jeho rychlost. Směr vektoru hybnosti je stejný se směrem vektoru rychlosti.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaká je jednotka hybnosti?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "$\\mathrm{kg\\cdot m \\cdot s}$",
+          "$\\mathrm{kg\\cdot m \\cdot s^{-1}}$",
+          "$\\mathrm{kg\\cdot (m \\cdot s)^{-1}}$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Ze zákona zachování hybnosti vyplývá, že se celková hybnost soustavy během děje nemění. Hybnost soustavy před srážkou je tedy stejná jako hybnost soustavy po srážce: $$p_1+p_2+...+p_n=p_1´+p_2´+...+p_n´$$nebo$$m_1v_1+m_2v_2+..+m_nv_n=m_1v_1´+m_2v_2´+...+m_nv_n´$$\\\\\r\r\\par Zákon zachování hybnosti platí při každé srážce.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Zákon zachování mechanické energie",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Zákon zachování mechanické energie bude mít při popisu srážek tvar:$$E_{k1}+E_{k2}+...=E_{k1}´+E_{k2}´+...$$nebo$$\\frac{1}{2}m_1v_1^2+\\frac{1}{2}m_2v_2^2+...=\\frac{1}{2}m_1v_1^2´+\\frac{1}{2}m_2v_2^2´+...$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jak se mění polohová tíhová energie při popisu přímé středové srážky?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Klesá",
+          "Roste",
+          "Nemění se"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při vyšetřování srážek dvou a více těles rozeznáváme 3 typy srážek:\\\\\r\r\\par Dokonale nepružnou – při této srážce se zachovává hybnost, mechanická energie nikoliv. Tělesa se po srážce drží při sobě.\\\\\r\r\\par Dokonale pružnou – při této srážce se zachovává hybnost i mechanická energie. Tělesa se po srážce od sebe odrazí.\\\\\r\r\\par Nedokonale pružnou – při této srážce se zachovává hybnost, mechanická energie nikoliv. Tělesa se po srážce nedrží při sobě.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Přímá středová srážka koulí v kulečníku má charakter:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "dokonale nepružný",
+          "dokonale pružný",
+          "nedokonale pružný"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Po výstřelu zůstala nábojnice v kmenu stromu. Srážka má charakter:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "dokonale nepružný",
+          "dokonale pružný",
+          "nedokonale pružný"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Tenisový míček se odrazil od podlahy. Srážka má charakter:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "dokonale nepružný",
+          "dokonale pružný",
+          "nedokonale pružný"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Dokonale nepružná srážka",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Dokonale nepružná srážka je charakteristická tím, že tělesa se po srážce drží při sobě. Příkladem jsou srážky plastických koulí (koule se k sobě přilepí), srážku najdete při posunování vagónů (vagóny se spolu spojí), častým příkladem jsou srážky hráčů při kontaktních sportech – ragby, americký fotbal…\\\\\r\r\\par Při dokonale nepružné srážce dvou těles platí zákon zachování hybnosti ve tvaru:$$m_1v_1+m_2v_2=m_1v´+m_2v´$$Po výslednou společnou rychlost platí vztah$$v´=\\frac{m_1v_1+m_2v_2}{m_1+m_2}$$\\\\\r\r\\par Znaménka rychlostí $v_1$ a $v_2$ volíme podle jejich směru. Bývá zvykem dodržovat znaménkovou dohodu obvyklou i v matematice - kladná znaménka odpovídají kladnému směru osy $x$ (nejčastěji doprava), kladnému směru osy $y$ (nejčastěji nahoru) nebo kladnému směru osy $z$ (nejčastěji z nárysny).\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Těleso 2 s podobnou hmotností jako těleso 1 se před srážkou nepohybovalo. Jaký bude směr rychlosti těles po srážce:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "proti směru tělesa 1",
+          "obě tělesa se zastavila",
+          "ve směru tělesa 1"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Těleso 2 se před srážkou nepohybovalo a obě tělesa byla stejně těžká. Jaká byla velikost rychlosti těles po srážce?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "stejná jako mělo těleso 1 před srážkou",
+          "poloviční než mělo těleso 1 před srážkou",
+          "třetinová než mělo těleso 1 před srážkou"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Těleso 2 se před srážkou nepohybovalo a bylo výrazně těžší než těleso 1 (dokonale nepružný náraz na stěnu).  Pro velikost rychlosti tělesa 1 po srážce platí: ",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "bude nulová",
+          "bude poloviční, než mělo těleso 1 před srážkou",
+          "bude stejná, jako mělo těleso 1 před srážkou"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Tělesa 1 a 2 se pohybují proti sobě.  Po srážce se budou pohybovat ve směru tělesa 1 vždy, když:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "těleso 2 bude rychlejší a těžší",
+          "těleso 2 bude rychlejší a lehčí",
+          "těleso 2 bude pomalejší a lehčí"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Kinetická energie soustavy těles se po srážce:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "zvýší",
+          "nezmění",
+          "zmenší"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Dokonale pružná srážka",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Již z názvu srážky vyplývá dokonalost, což znamená v přírodních vědách modelovou situaci. Této srážce se blíží přímá středová srážka kulečníkových koulí, odraz všech typů „hopsakoulí“ od stěny či podlahy. V termodynamice pokládáme srážky částic za dokonale pružné.\\\\\r\r\\par Při dokonale pružné srážce dvou těles platí současně zákon zachování hybnosti a zákon zachování mechanické energie:$$m_1v_1+m_2v_2=m_1v´+m_2v´$$ $$\\frac{1}{2}m_1v_1^2+\\frac{1}{2}m_2v_2^2=\\frac{1}{2}m_1v_1^2´+\\frac{1}{2}m_2v_2^2´$$Znaménka rychlostí v zákonu zachování hybnosti opět volíme podle směru rychlostí.\\\\\r\r\\par Řešením soustavy rovnic (úloha není jednoduchá) lze získat vztah mezi rychlostmi:$$v_1+v_1´=v_2+v_2´$$ nebo $$v_1-v_2=v_2´-v_1´$$\\\\\r\r\\par A následně vztahy pro rychlosti po srážce$$v_1´=\\frac{m_1v_1+m_2(2v_2-v_1)}{m_1+m_2}$$ $$v_2´=\\frac{m_2v_2+m_1(2v_1-v_2)}{m_1+m_2}$$ Znaménka rychlostí volíme podle směru rychlostí.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Těleso 1 a 2 mají stejné hmotnosti a těleso 2 je před srážkou v klidu. Rychlost tělesa 1 po srážce:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "se zvýší",
+          "se nezmění",
+          "bude nulová"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Těleso 2 se před srážkou nepohybovalo a bylo výrazně těžší než těleso 1 (dokonale pružný náraz na stěnu). Velikost rychlosti tělesa 1 se po srážce (řešte úvahou a zkušeností bez rovnic):",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "zvýší",
+          "zmenší",
+          "nezmění"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Kinetická energie soustavy těles se po dokonale pružné srážce:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "zvýší",
+          "zmenší",
+          "nezmění"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Nedokonale pružná srážka",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Hledáte reálnou srážku? Pak je to přesně tahle skupina. Málokterá reálná srážka není součástí této skupiny.  Odrazy míčku od rakety při sportu, odrazy míče od rukou volejbalistů, odrazy kotoučů při curlingu a mnoho dalších situací z reálného života.\\\\\r\r\\par Při nedokonale pružné srážce (rázu) se velikost vzájemné rychlosti po rázu zmenší, což se dá vyjádřit rovnicí:$$v_1-v_2=k(v_2´-v_1´)$$Konstanta $k$ se nazývá koeficient restituce, pro nedokonale pružnou srážku je větší než 0 a zároveň menší než 1.\\\\\r\r\\par Při nedokonale pružné srážce dvou těles platí pouze zákon zachování hybnosti: $$m_1v_1+m_2v_2=m_1v_1´+m_2v_2´$$Znaménka rychlostí v zákonu zachování hybnosti volíme podle směru rychlostí.\\\\\r\r\\par Po odvození lze získat vztahy pro rychlosti po srážce$$v_1´=\\frac{m_1v_1+m_2(v_2+kv_2-kv_1)}{m_1+m_2}$$ $$v_2´=\\frac{m_2v_2+m_1(v_1+kv_1-kv_2)}{m_1+m_2}$$",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Použité zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Literatura",
+        "Text": "\\par BARTUŠKA, Karel. Sbírka z fyziky pro střední školy IV., 1. vydání. Praha: Prometheus, 2000. ISBN 80-7196-037-3\\\\\r\r\\par LEPIL, Oldřich, Milan BEDNAŘÍK a Miroslava ŠIROKÁ. Fyzika: sbírka úloh pro střední školy. Dotisk 3. vydání. Praha: Prometheus, 2012. ISBN 978-80-7196-266-3\\\\\r\r\\par BEDNAŘÍK, Milan a Miroslava ŠIROKÁ. Fyzika pro gymnázia: mechanika. 3., přeprac. vyd. Praha: Prometheus, 2000. ISBN 80-7196-176-0 \\\\\r\r\\par HALLIDAY, David, Robert RESNICK a Jearl WALKER. Fyzika: Část 1, Mechanika. Brno: VUTIUM, 2000. ISBN 80-214-1868-0\\\\\r\r\\par Jírů Josef.: Hybnost a energie při vzájemném působení těles (Knihovnička FO). MAFY Hradec Králové, 2010\\\\\r\r\\par Teplička Ivan, Pudivítr Petr: Fyzika, Enigma 2010, ISBN 9788089132676\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

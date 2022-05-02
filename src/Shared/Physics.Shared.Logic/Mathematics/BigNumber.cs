@@ -71,7 +71,7 @@ namespace Physics.Shared.Mathematics
 			(double)a < (double)b;
 
 		public static bool operator >=(BigNumber a, BigNumber b) =>
-			(double)a <= (double)b;
+			(double)a >= (double)b;
 
 		public static bool operator <=(BigNumber a, BigNumber b) =>
 			(double)a <= (double)b;
@@ -161,8 +161,8 @@ namespace Physics.Shared.Mathematics
 		static Dictionary<char, char> SuperscriptNumberMap = new()
 		{
 			{ '-', '⁻' },
-			{ '0', '¹' },
-			{ '1', '²' },
+			{ '0', '⁰' },
+			{ '1', '¹' },
 			{ '2', '²' },
 			{ '3', '³' },
 			{ '4', '⁴' },
