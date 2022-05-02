@@ -4,8 +4,6 @@ using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.ViewModels;
-using ReactiveUI;
-using Windows.ApplicationModel.VoiceCommands;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;
@@ -24,6 +22,7 @@ public class InputDialogViewModel : ViewModelBase
 			V0BigNumber = inputConfiguration.V0BigNumber;
 			BetaDeg = inputConfiguration.BetaDeg;
 			Phi0Deg = inputConfiguration.Phi0Deg;
+			ValidatePlanetPreset();
 		}
 	}
 
@@ -126,15 +125,8 @@ public class InputDialogViewModel : ViewModelBase
 	public void ValidatePlanetPreset()
 	{
 		//Check if new Rz and Mz are valid given the selected planet
-		if (SelectedPreset != null)
-		{
-			return;
-		}
-
-		if (!Presets.Any(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber))
-		{
-			SelectedPreset = null;
-		}
+		var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
+		SelectedPreset = preset;
 	}
 
 	public PlanetPresetViewModel[] Presets { get; } = PlanetPresets.Presets.Select(x => new PlanetPresetViewModel(x)).ToArray();
