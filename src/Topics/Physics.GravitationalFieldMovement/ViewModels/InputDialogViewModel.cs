@@ -4,6 +4,7 @@ using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
 using Physics.Shared.ViewModels;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml.Controls;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;

@@ -1,0 +1,95 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Untitled",
+        "Text": "\\par Tři muži se tísní uvnitř kabiny a vzpomínají na své rodiny, které opustili, aby mohli uskutečnit svůj sen – být zde a pozorovat tu šedou pouštní krajinou, která jim ubíhala za malým okénkem.\\\\\r\r\\par „No, tak se do toho dáme.“, oznámil Borman svým kolegům. Raketové motory bafly a kabina se začala pomalu otáčet.\\\\\r\r\\par „Proboha, podívejte se támhle!“, vykřikl Anders. „Vychází Země! To je nádhera!“\\\\\r\r\\par Fotoaparát několikrát cvakl.\\\\\r\r\\par Frank Borman, Jim Lovell a William Anders se právě stali prvními lidmi, kteří pozorovali východ Země nad stříbrným okrajem Měsíce.\\\\\r\r\\par Tři a půl miliardy lidí právě žilo na té modravé a křehké kouli, která šla na tuto vzdálenost zastínit pouhým palcem.\\\\\r\r\\par „Požehnané Vánoční svátky a mír všem lidem,“ pomyslel si Jim Lovell. Byl Štědrý večer roku 1968 a na palubních hodinách bylo právě 15:40.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 1"
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Pohyby v centrálním gravitačním poli",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při pohybu raket, družic či planet nemůžeme považovat gravitační pole za homogenní. Všechny planety, hvězdy či měsíce přitahují okolní tělesa gravitační silou $F_g$  směrem do svého středu. Pokud je pro pohyb rakety, družice či planety zásadní jen gravitace jednoho dalšího vesmírného tělesa, mluvíme o pohybu těles v centrálním gravitačním poli.\\\\\r\r\\par Pro kosmonautiku má největší význam pohyb, kdy je tělesu v dostatečně velké vzdálenosti od povrchu planety (kde je odpor atmosféry zanedbatelný) udělena počáteční rychlost $v_0$ a dále na něj působí již jen gravitace.\\\\\r\r\\par Naše aplikace sice umožňuje volbu elevačního úhlu počáteční rychlosti, ale výpočty jsou velmi složité a přesahují látku střední školy. Dále se v textu budeme zabývat pouze počáteční rychlostí $v_0$ ve směru kolmém k vektoru gravitační síly $F_g$, tedy s elevačním úhlem 0°.\\\\\r\r\\par V textu budeme mluvit o planetě, ale níže uvedené vztahy platí i pro hvězdy či měsíce.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při malé počáteční rychlosti $v_0$ se těleso pohybuje po trajektorii, která je částí elipsy (trajektorie 1). S rostoucí rychlostí se bude délka trajektorie prodlužovat. Při větších počátečních rychlostech již těleso na povrch planety nedopadne, ale opíše celou elipsu (trajektorie 2). Při určité počáteční rychlosti těleso opíše kružnici, která bude mít střed shodný se středem planety (trajektorie 3). Tato rychlost se nazývá kruhová rychlost $v_k$. Je to důležitá veličina pro pohyb některých umělých družic okolo Země, a proto je jí budeme podrobně věnovat v následujících odstavcích.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při pohybu družice o hmotnosti $m$ kolem planety o hmotnosti $M$ a poloměru $R$ po kružnici o poloměru $R+h$, kde $h$ je výška družice nad povrchem planety, působí na družici planeta gravitační silou $\\vec{F_g}$ o velikosti $$F_g=G\\frac{mM}{(R+h)^2},$$kde $G$ je gravitační konstanta.\\\\\r\r\\par Gravitační síla $\\vec{F_g}$ směřuje do středu planety a vytváří tak dostředivou sílu $\\vec{F_d}$, která způsobuje stálé zakřivení trajektorie do tvaru kružnice o poloměru $R+h$. Pro velikost dostředivé síly platí$$F_d=\\frac{mv_k^2}{R+h}.$$\\\\\r\r\\par Oba vztahy vyjadřují stejnou sílu, a proto platí$$F_g=F_d,$$neboli$$\\frac{mv_k^2}{R+h}=G\\frac{mM}{(R+h)^2}.$$\\\\\r\r\\par Po úpravě dostáváme pro velikost kruhové rychlosti vztah$$v_k=\\sqrt{\\frac{GM}{R+h}}.$$\\\\\r\r\\par Velikost kruhové rychlosti závisí na výšce nad povrchem planety, nezávisí na hmotnosti tělesa. S rostoucí výškou $h$, resp. s rostoucím poloměrem, se kruhová rychlost zmenšuje.\\\\\r\r\\par Kruhová rychlost při povrchu Země, kdy zanedbáme odpor vzduchu, se nazývá první kosmická rychlost. Její velikost vypočítáme ze vztahu$$v_{kZ}=\\sqrt{\\frac{GM_Z}{R_Z}},$$kde $M_Z$ je hmotnost Země a $R_Z$ je poloměr Země. Po dosazení $G=6,67\\cdot 10^{-11}$ $\\mathrm{N\\cdot m^2\\cdot kg^{-2}}$, $M_Z = 5,98\\cdot 10^{24}$ kg a $R_Z=6,38\\cdot 10^6$ m vychází velikost kruhové rychlosti 7,9 $\\mathrm{km\\cdot s^{-1}}$.\\\\\r\r\\par Mnoho umělých družic včetně Mezinárodní kosmické stanice ISS létá celkem nízko nad povrchem Země (v porovnání s jejím poloměrem) a jejich rychlost je tedy jen o málo menší.\\\\\r\r\\par Oběžná doba $T$ tělesa pohybujícího se po kruhové dráze s poloměrem $R+h$ a s kruhovou rychlostí $v_k$ je $$T=\\frac{2\\pi(R+h)}{v_k}.$$\\\\\r\r\\par Po dosazení za vk dostaneme vztah $$T=2\\pi\\sqrt{\\frac{(R+h)^3}{GM}}.$$\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Když tělesu ve výšce $h$ udělíme počáteční rychlost $v_0$ nepatrně větší než je kruhová rychlost $v_k$, bude se těleso pohybovat opět po elipse (trajektorie 4). Rovina elipsy prochází středem planety, v němž leží jedno ohnisko elipsy. Bod $P$, kde má těleso nejmenší vzdálenost od planety, se nazývá perigeum, bod $A$, kde je těleso od planety nejdál, se nazývá apogeum.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Kdy bude mít těleso pohybující se kolem planety po elipse největší rychlost?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "V perigeu",
+          "V apogeu",
+          "Těleso se bude pohybovat stále stejnou rychlostí"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při počáteční rychlosti $$v_0=v_p=\\sqrt{\\frac{2GM}{R+h}}=\\sqrt{2}v_k$$se změní uzavřená elipsa na parabolu (trajektorie 5) a těleso se bude trvale vzdalovat od planety. Rychlost $v_p$ se nazývá parabolická rychlost či úniková rychlost.\\\\\r\r\\par V blízkosti povrchu Země je velikost parabolické rychlosti 11,2 $\\mathrm{km\\cdot s^{-1}}$. Tato hodnota parabolické rychlosti se nazývá druhá kosmická rychlost.\\\\\r\r\\par Pokud bude počáteční rychlost větší než parabolická rychlost, bude se těleso pohybovat po křivce zvané hyperbola.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Použité zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použité zdroje",
+        "Text": "\\par ANDERS, Bill, NASA. [online]. [cit. 26.6.2021]. Dostupné z: https://www.hq.nasa.gov/office/pao/History/alsj/a410/AS8-14-2383HR.jpg\\\\\r\r\\par SVOBODA, Emanuel, BEDNAŘÍK, Milan, ŠIROKÁ, Miroslava. Fyzika pro gymnázia. 5., přeprac. vyd. Praha: Prometheus, 2013. ISBN 978-80-7196-431-5\\\\\r\r\\par Pohyb těles v centrálním gravitačním poli :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 29.3.2022]. Dostupné z: http://fyzika.jreichl.com/main.article/view/69-pohyb-teles-v-centralnim-gravitacnim-poli\\\\\r\r\\par První a druhá kosmická rychlost :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 29.3.2022]. Dostupné z: http://fyzika.jreichl.com/main.article/view/70-prvni-a-druha-kosmicka-rychlost\\\\\r\r\\par Co to jsou kosmické rychlosti? | Kosmonautika | Články | Astronomický informační server astro.cz . Astronomický informační server astro.cz [online]. Copyright © 2022 [cit. 29.03.2022]. Dostupné z: https://www.astro.cz/clanky/kosmonautika/co-to-jsou-kosmicke-rychlosti.html\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]
