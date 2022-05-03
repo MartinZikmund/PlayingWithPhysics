@@ -121,7 +121,7 @@
     <value>For astronautics, motions in which the body is given an initial velocity in a direction perpendicular to the gravitational field intensity vector are of great importance. The animation will allow you to choose the size and direction of the initial velocity of the body and the place above the Earth's surface, from which the motion of the body will be monitored.
 
 Content authors: Matěj Hudec, Vladimír Kafka, Pavel Vlček
-Developer: Martin Zikmund
+Developers: Martin Zikmund, Daniel Zikmund
 Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
