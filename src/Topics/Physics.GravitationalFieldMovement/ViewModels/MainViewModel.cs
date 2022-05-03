@@ -233,7 +233,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 			string title = Localizer.Instance.GetString("ShortAppName");
 			var physicsService = new PhysicsService(Input, Dt);
-			var valuesTableService = new TableService(physicsService);
+			var valuesTableService = new TableService(physicsService, _controller?.CurrentPoint?.Time);
 			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
 			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 			// Attach the XAML content to the window.

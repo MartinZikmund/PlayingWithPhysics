@@ -8,10 +8,11 @@ namespace Physics.GravitationalFieldMovement.ValuesTable;
 public class TableService : ITableService<TableRow>
 {
 	private readonly PhysicsService _physicsService;
-
-	public TableService(PhysicsService physicsService)
+	private readonly double? _time;
+	public TableService(PhysicsService physicsService, double? time)
 	{
 		_physicsService = physicsService;
+		_time = time;
 	}
 
 	public ValuesTableDialogViewModel Owner { get; set; }
@@ -29,12 +30,15 @@ public class TableService : ITableService<TableRow>
 
 		foreach (var item in trajectory)
 		{
-			if (item.H < 0)
+			if (_time == null || item.Time <= _time)
 			{
-				table.Add(new TableRow(item.Time, item.X, item.Y, item.V, 0));
-				return table;
+				if (item.H < 0)
+				{
+					table.Add(new TableRow(item.Time, item.X, item.Y, item.V, 0));
+					return table;
+				}
+				table.Add(new TableRow(item.Time, item.X, item.Y, item.V, item.H));
 			}
-			table.Add(new TableRow(item.Time, item.X, item.Y, item.V, item.H));
 		}
 
 		return table;
