@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Text;
 using Physics.GravitationalFieldMovement.Logic;
+using Physics.GravitationalFieldMovement.Services;
+using Physics.Shared.Helpers;
 using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -11,19 +13,45 @@ namespace Physics.GravitationalFieldMovement.ViewModels;
 
 public class InputDialogViewModel : ViewModelBase
 {
-	public InputDialogViewModel(DifficultyOption difficulty, InputConfiguration inputConfiguration)
+	private readonly IAppPreferences _appPreferences;
+
+	public InputDialogViewModel(DifficultyOption difficulty, InputConfiguration inputConfiguration, IAppPreferences appPreferences)
 	{
+		_appPreferences = appPreferences;
 		IsAdvanced = difficulty == DifficultyOption.Advanced;
 
 		if (inputConfiguration != null)
 		{
-			RzBigNumber = inputConfiguration.RzBigNumber;
+			if (appPreferences.LengthUnit == LengthUnit.Metric)
+			{
+				RzBigNumber = inputConfiguration.RzBigNumber;
+				HBigNumber = inputConfiguration.HBigNumber;
+			}
+			else
+			{
+				RzBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)inputConfiguration.RzBigNumber));
+				HBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)inputConfiguration.HBigNumber));
+			}
 			MzBigNumber = inputConfiguration.MzBigNumber;
-			HBigNumber = inputConfiguration.HBigNumber;
 			V0BigNumber = inputConfiguration.V0BigNumber;
 			BetaDeg = inputConfiguration.BetaDeg;
 			Phi0Deg = inputConfiguration.Phi0Deg;
 			ValidatePlanetPreset();
+		}
+		else
+		{
+			var defaultRzMeters = new BigNumber(6.38, 6);
+			var defaultHMeters = new BigNumber(9.0, 5);
+			if (appPreferences.LengthUnit == LengthUnit.Metric)
+			{
+				RzBigNumber = defaultRzMeters;
+				HBigNumber = defaultHMeters;
+			}
+			else
+			{
+				RzBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)defaultRzMeters));
+				HBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)defaultHMeters));
+			}
 		}
 	}
 
@@ -47,6 +75,7 @@ public class InputDialogViewModel : ViewModelBase
 		{
 			_rzBigNumber = value;
 			ValidatePlanetPreset();
+			RaisePropertyChanged();
 		}
 	}
 
@@ -57,6 +86,7 @@ public class InputDialogViewModel : ViewModelBase
 		{
 			_mzBigNumber = value;
 			ValidatePlanetPreset();
+			RaisePropertyChanged();
 		}
 	}
 
@@ -85,6 +115,8 @@ public class InputDialogViewModel : ViewModelBase
 		var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
 		SelectedPreset = preset;
 	}
+
+	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "AU";
 
 	public PlanetPresetViewModel[] Presets { get; } = PlanetPresets.Presets.Select(x => new PlanetPresetViewModel(x)).ToArray();
 
@@ -129,7 +161,7 @@ public class InputDialogViewModel : ViewModelBase
 			allValid = false;
 		}
 
-		if (RzBigNumber < _rzBigNumberMinimum)
+		if (MathHelpers.AstronomicalUnitsToMeters((double)RzBigNumber) < (double)_rzBigNumberMinimum)
 		{
 			errorMessages.AppendLine(
 				string.Format(Localizer.Instance.GetString("RzTooSmallErrorMessage"), _rzBigNumberMinimum));

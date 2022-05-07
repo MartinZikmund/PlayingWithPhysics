@@ -9,7 +9,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:utu="using:Uno.Toolkit.UI" xmlns:logic="using:Physics.GravitationalFieldMovement.Logic"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Transitions>
         <TransitionCollection>
@@ -55,9 +56,9 @@
                 GoBackCommand="{x:Bind Model.GoBackCommand}"
                 Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="8,12,8,0">
-				<StackPanel Spacing="8">
-					<Button
+            <Border Grid.Row="1" Margin="8,12,8,0">
+                <StackPanel Spacing="8">
+                    <Button
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind Model.SetParametersCommand}"
                         Content="{extensions:Localize Key=SetParameters}" />
@@ -66,88 +67,138 @@
                         Command="{x:Bind Model.ShowDerivedParametersCommand}"
                         Content="Show derived parameters (debug)" />-->
                     <Button
-						Visibility="{x:Bind Model.InputSet, Mode=OneWay}"
                         HorizontalAlignment="Stretch"
                         Command="{x:Bind Model.ShowValuesTableCommand}"
-                        Content="{extensions:Localize Key=ShowValuesTable}" />
+                        Content="{extensions:Localize Key=ShowValuesTable}"
+                        Visibility="{x:Bind Model.InputSet, Mode=OneWay}" />
                     <mux:NumberBox
-						x:Name="DeltaInput"
+                        x:Name="DeltaInput"
                         Header="Δt"
                         Maximum="100000000"
                         Minimum="1"
                         Value="{x:Bind Model.Dt, Mode=TwoWay}" />
-				</StackPanel>
-			</Border>
-			<Border Margin="8,12,0,0" Grid.Row="2">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" Margin="8,12,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
-					<Grid.Resources>
-						<Style TargetType="TextBlock">
-							<Setter Property="FontSize" Value="16"/>
-							<Setter Property="Margin" Value="0,0,8,0"/>
-						</Style>
-						<Style TargetType="StackPanel">
-							<Setter Property="Margin" Value="0,0,0,8"/>
-						</Style>
-					</Grid.Resources>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Margin" Value="0,0,8,0" />
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Margin" Value="0,0,0,8" />
+                        </Style>
+                    </Grid.Resources>
 
 
-					<StackPanel Grid.Row="0" Margin="0,0,0,24" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Time}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.TimeText, Mode=OneWay}"/>
-						</TextBlock>
-					</StackPanel>
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="0,0,0,24"
+                        Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold">
+                            <Run Text="{extensions:Localize Key=Time}" /><Run Text=": " />
+                            <Run Text="{x:Bind Model.TimeText, Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
 
-					<StackPanel Grid.Row="1" Orientation="Horizontal">
-						<TextBlock Margin="0">
-							<Run FontWeight="{x:Bind Model.ObjectFontWeight, Mode=OneWay}" Text="{extensions:Localize Key=CentralBody}"/>
-						</TextBlock>
-						<TextBlock Visibility="{x:Bind Model.IsKnownObject, Mode=OneWay}">
-							<Run Text=": "/>
-							<Run FontWeight="Bold" Text="{x:Bind Model.Object, Mode=OneWay}"/>
-						</TextBlock>
-					</StackPanel>
-					
-					<StackPanel Grid.Row="2" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Mass}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.Input.MzBigNumber, Mode=OneWay}"/>
-							<Run Text="kg"/>
-						</TextBlock>
-					</StackPanel>
-					<StackPanel Grid.Row="3" Margin="0,0,0,24" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Radius}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.RadiusText, Mode=OneWay}"/>
-							<Run Text="km"/>
-						</TextBlock>
-					</StackPanel>
-					<TextBlock Grid.Row="4" Margin="0,0,0,8" FontWeight="Bold" Text="{extensions:Localize Key=Projectile}" />
-					<StackPanel Grid.Row="5" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
-							<Run Text="m"/>
-						</TextBlock>
-					</StackPanel>
-					<StackPanel Grid.Row="6" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=CurrentVelocity}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.VelocityText, Mode=OneWay}"/>
-							<Run Text="m.s⁻¹"/>
-						</TextBlock>
-					</StackPanel>
-				</Grid>
-			</Border>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock Margin="0">
+                            <Run FontWeight="{x:Bind Model.ObjectFontWeight, Mode=OneWay}" Text="{extensions:Localize Key=CentralBody}" />
+                        </TextBlock>
+                        <TextBlock Visibility="{x:Bind Model.IsKnownObject, Mode=OneWay}">
+                            <Run Text=": " />
+                            <Run FontWeight="Bold" Text="{x:Bind Model.Object, Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold">
+                            <Run Text="{extensions:Localize Key=Mass}" /><Run Text=": " />
+                            <Run Text="{x:Bind Model.Input.MzBigNumber, Mode=OneWay}" />
+                            <Run Text="kg" />
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="3"
+                        Margin="0,0,0,24"
+                        Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold">
+                            <Run Text="{extensions:Localize Key=Radius}" /><Run Text=": " />
+                            <Run Text="{x:Bind Model.RadiusText, Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
+                    <TextBlock
+                        Grid.Row="4"
+                        Margin="0,0,0,8"
+                        FontWeight="Bold"
+                        Text="{extensions:Localize Key=Projectile}" />
+                    <StackPanel Grid.Row="5" Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold">
+                            <Run Text="{extensions:Localize Key=CurrentHeight}" /><Run Text=": " />
+                            <Run Text="{x:Bind Model.HeightText, Mode=OneWay}" />
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold">
+                            <Run Text="{extensions:Localize Key=CurrentVelocity}" /><Run Text=": " />
+                            <Run Text="{x:Bind Model.VelocityText, Mode=OneWay}" />
+                            <Run Text="m.s⁻¹" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Button
+                        Grid.Row="8"
+                        Margin="8"
+                        HorizontalAlignment="Center">
+                        <Button.Flyout>
+                            <Flyout x:Name="SettingsFlyout">
+                                <StackPanel Width="200" Spacing="4">
+									<TextBlock Text="{extensions:Localize Key=LengthUnits}" />
+									<mux:RadioButtons
+										ItemsSource="{x:Bind Model.LengthUnits, Mode=OneWay}"
+										MaxColumns="1"
+										SelectedIndex="{x:Bind Model.SelectedLengthUnitIndex, Mode=TwoWay}">
+										<mux:RadioButtons.Transitions>
+											<TransitionCollection>
+												<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+											</TransitionCollection>
+										</mux:RadioButtons.Transitions>
+										<mux:RadioButtons.Resources>
+											<Style TargetType="RadioButton">
+												<Setter Property="Padding" Value="12,0,0,4" />
+												<Setter Property="VerticalAlignment" Value="Center" />
+												<Setter Property="VerticalContentAlignment" Value="Center" />
+											</Style>
+											<Style TargetType="TextBlock">
+												<Setter Property="FontSize" Value="16" />
+												<Setter Property="TextWrapping" Value="WrapWholeWords" />
+											</Style>
+										</mux:RadioButtons.Resources>
+										<mux:RadioButtons.ItemTemplate>
+											<DataTemplate x:DataType="logic:LengthUnit">
+												<RadioButton Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+											</DataTemplate>
+										</mux:RadioButtons.ItemTemplate>
+									</mux:RadioButtons>
+								</StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                        <SymbolIcon Symbol="Setting" />
+                    </Button>
+                </Grid>
+            </Border>
         </Grid>
         <Grid
             x:Name="SecondPane"
@@ -173,10 +224,10 @@
                 ForwardVisibility="Collapsed"
                 IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
                 JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
-				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
                 JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
                 JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
                 PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
                 PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
                 RequestedTheme="Light"

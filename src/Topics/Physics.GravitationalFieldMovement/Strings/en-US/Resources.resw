@@ -199,6 +199,15 @@ Graphics: Petr Weinlich</value>
   <data name="Projectile" xml:space="preserve">
     <value>Projectile</value>
   </data>
+  <data name="LengthUnit_AstronomicalUnits" xml:space="preserve">
+    <value>Astronomical units</value>
+  </data>
+  <data name="LengthUnits" xml:space="preserve">
+    <value>Length units</value>
+  </data>
+  <data name="LengthUnit_Metric" xml:space="preserve">
+    <value>Metric</value>
+  </data>
   <data name="MzRzRatioErrorMessage" xml:space="preserve">
     <value>The ratio of planet mass to its radius must be at most {0}.</value>
   </data>
@@ -220,4 +229,5 @@ Graphics: Petr Weinlich</value>
   <data name="ChooseDemo" xml:space="preserve">
     <value>Choose demo:</value>
   </data>
+</root>
 </root>

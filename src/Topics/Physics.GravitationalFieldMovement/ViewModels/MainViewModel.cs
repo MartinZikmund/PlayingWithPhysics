@@ -20,240 +20,300 @@ using Windows.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI;
 using System.Linq;
-using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.GravitationalFieldMovement.Services;
+using Physics.Shared.Helpers;
+using Physics.Shared.Mathematics;
 using Windows.UI.Text;
 
-namespace Physics.GravitationalFieldMovement.ViewModels
+namespace Physics.GravitationalFieldMovement.ViewModels;
+
+public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<GravitationalFieldMovementCanvasController>
 {
-	public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<GravitationalFieldMovementCanvasController>
+	private readonly IAppPreferences _appPreferences;
+	
+	private DifficultyOption _difficulty;
+	private GravitationalFieldMovementCanvasController _controller;
+	private double _height = 0.0d;
+
+	public MainViewModel(IAppPreferences appPreferences)
 	{
-		private DifficultyOption _difficulty;
-		private GravitationalFieldMovementCanvasController _controller;
-		private double _height = 0.0d;
+		_appPreferences = appPreferences;
+	}
 
-		public override void Prepare(SimulationNavigationModel parameter)
+	public override void Prepare(SimulationNavigationModel parameter)
+	{
+		_difficulty = parameter.Difficulty;
+	}
+
+	public InputConfiguration Input { get; private set; }
+
+	public bool InputSet => Input != null;
+
+	public double Dt { get; set; } = 1;
+
+	public string Object =>
+		IsKnownObject
+		? Localizer.Instance[SelectedPreset.NameKey]
+		: null;
+
+	internal void OnDtChanged()
+	{
+		if (Input != null && _controller != null)
 		{
-			_difficulty = parameter.Difficulty;
-		}
-
-		public InputConfiguration Input { get; private set; }
-
-		public bool InputSet => Input != null;
-
-		public double Dt { get; set; } = 1;
-
-		public string Object =>
-			IsKnownObject
-			? Localizer.Instance[SelectedPreset.NameKey]
-			: null;
-
-		internal void OnDtChanged()
-		{
-			if (Input != null && _controller != null)
-			{
-				StartSimulation();
-			}
-		}
-
-		public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
-
-		public ICommand ShowDerivedParametersCommand => GetOrCreateAsyncCommand(ShowDerivedParametersAsync);
-
-		public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
-
-		public DispatcherTimer DispatcherTime { get; set; }
-
-		public void SetController(GravitationalFieldMovementCanvasController controller)
-		{
-			if (controller is null)
-			{
-				throw new ArgumentNullException(nameof(controller));
-			}
-
-			DispatcherTime = new DispatcherTimer();
-			DispatcherTime.Tick += TimerTick;
-			DispatcherTime.Interval = TimeSpan.FromSeconds(1 / 30.0);
-			DispatcherTime.Start();
-
-			_controller = controller;
-			SimulationPlayback.SetController(_controller);
-			Input = InputConfiguration.Default;
 			StartSimulation();
-			SimulationPlayback.Pause();
+		}
+	}
+
+	public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
+
+	public ICommand ShowDerivedParametersCommand => GetOrCreateAsyncCommand(ShowDerivedParametersAsync);
+
+	public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
+
+	public DispatcherTimer DispatcherTime { get; set; }
+
+	public void SetController(GravitationalFieldMovementCanvasController controller)
+	{
+		if (controller is null)
+		{
+			throw new ArgumentNullException(nameof(controller));
 		}
 
-		private void TimerTick(object sender, object e)
+		DispatcherTime = new DispatcherTimer();
+		DispatcherTime.Tick += TimerTick;
+		DispatcherTime.Interval = TimeSpan.FromSeconds(1 / 30.0);
+		DispatcherTime.Start();
+
+		_controller = controller;
+		SimulationPlayback.SetController(_controller);
+		Input = InputConfiguration.Default;
+		StartSimulation();
+		SimulationPlayback.Pause();
+	}
+
+	private void TimerTick(object sender, object e)
+	{
+		if (_controller.CurrentPoint != null)
 		{
-			if (_controller.CurrentPoint != null)
+			TimeText = GetFormattedTime((double)_controller.CurrentPoint.Time);
+			Velocity = _controller.CurrentPoint.V;
+			Height = _controller.CurrentPoint.H;
+		}
+	}
+
+	//Source: https://rosettacode.org/wiki/Convert_seconds_to_compound_duration#C.23
+	private string GetFormattedTime(double seconds)
+	{
+		if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds));
+		if (seconds == 0) return "0 s";
+
+		TimeSpan span = TimeSpan.FromSeconds(seconds);
+		int[] parts = { span.Days / 365, span.Days % 365, span.Hours, span.Minutes, span.Seconds };
+		string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", " dní", " hodin", " minut", " sekund" };
+
+		return string.Join(" ",
+			from index in Enumerable.Range(0, units.Length)
+			where parts[index] > 0
+			select parts[index] + units[index]);
+	}
+
+	private string GetFormattedYearLabel(int year) =>
+		year switch
+		{
+			1 => "rok",
+			<= 4 => "roky",
+			> 4 => "let"
+		};
+
+	public string TimeText { get; private set; }
+
+	public int SelectedLengthUnitIndex
+	{
+		get => (int)LengthUnit;
+		set
+		{
+			if (value >= 0)
 			{
-				TimeText = GetFormattedTime((double)_controller.CurrentPoint.Time);
-				Velocity = _controller.CurrentPoint.V;
-				Height = _controller.CurrentPoint.H;
+				LengthUnit = (LengthUnit)value;
+			}
+			RaisePropertyChanged(nameof(SelectedLengthUnitIndex));
+		}
+	}
+
+	public LengthUnit[] LengthUnits { get; } = Enum.GetValues(typeof(LengthUnit)).OfType<LengthUnit>().ToArray();
+
+	public LengthUnit LengthUnit
+	{
+		get => _appPreferences.LengthUnit;
+		set => _appPreferences.LengthUnit = value;
+	}
+
+	public string HeightText
+	{
+		get
+		{
+			if (LengthUnit == LengthUnit.Metric)
+			{
+				return $"{Height.ToString("0.000")} m";
+			}
+			else
+			{
+				var heightInAu = MathHelpers.MetersToAstronomicalUnits(Height);
+				return $"{new BigNumber(heightInAu)} AU";
 			}
 		}
+	}
 
-		//Source: https://rosettacode.org/wiki/Convert_seconds_to_compound_duration#C.23
-		private string GetFormattedTime(double seconds)
+	public double Height
+	{
+		get => _height;
+
+		private set
 		{
-			if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds));
-			if (seconds == 0) return "0 s";
-
-			TimeSpan span = TimeSpan.FromSeconds(seconds);
-			int[] parts = { span.Days / 365, span.Days % 365, span.Hours, span.Minutes, span.Seconds };
-			string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", " dní", " hodin", " minut", " sekund" };
-
-			return string.Join(" ",
-				from index in Enumerable.Range(0, units.Length)
-				where parts[index] > 0
-				select parts[index] + units[index]);
-		}
-
-		private string GetFormattedYearLabel(int year) =>
-			year switch
+			if (value < 0)
 			{
-				1 => "rok",
-				<= 4 => "roky",
-				> 4 => "let"
-			};
-
-		public string TimeText { get; private set; }
-
-		public string HeightText => Height.ToString("0.000");
-		public double Height
-		{
-			get => _height;
-
-			private set
-			{
-				if (value < 0)
-				{
-					value = 0;
-				}
-				_height = value;
+				value = 0;
 			}
+			_height = value;
 		}
-		public string VelocityText => Math.Round(Velocity).ToString();
-		public double Velocity { get; private set; } = 0.0d;
+	}
+	public string VelocityText => Math.Round(Velocity).ToString();
 
-		public string RadiusText
-		{
-			get
-			{
-				if (Input == null)
-				{
-					return "0";
-				}
+	public double Velocity { get; private set; } = 0.0d;
 
-				var radiusInKilometers = (double)Input.RzBigNumber / 1000;
-				if (radiusInKilometers >= 1000)
-				{
-					return Math.Round(radiusInKilometers).ToString();
-				}
-				return Math.Round(radiusInKilometers, 3).ToString();
-			}
-		}
-
-		private async Task SetParametersAsync()
-		{
-			var dialog = new InputDialog(_difficulty, Input);
-			if (await dialog.ShowAsync() == ContentDialogResult.Primary)
-			{
-
-				var input = dialog.Model.Result;
-				Input = null;
-				Dt = input.Dt;
-				Input = input;
-				if (_difficulty == DifficultyOption.Advanced)
-				{
-					var preset = dialog.Model.SelectedPreset;
-					SelectedPreset = preset?.Preset ?? null;
-				}
-				else
-				{
-					SelectedPreset = PlanetPresets.Presets[0];
-				}
-				_controller.SimulationTime.Reset();
-				StartSimulation();
-			}
-		}
-
-		private PlanetPreset _selectedPreset = null;
-
-		private PlanetPreset SelectedPreset
-		{
-			get
-			{
-				return _difficulty == DifficultyOption.Easy ? PlanetPresets.Presets[0] : _selectedPreset;
-			}
-			set => _selectedPreset = value;
-		}
-
-		private void StartSimulation()
-		{
-			if (_controller == null || Input == null)
-			{
-				return;
-			}
-
-			_controller.Planet = SelectedPreset;
-			_controller.SetInputConfiguration(Input, Dt);
-			_controller.Play();
-		}
-
-		private async Task ShowDerivedParametersAsync()
+	public string RadiusText
+	{
+		get
 		{
 			if (Input == null)
 			{
-				return;
+				return "0 " + (LengthUnit == LengthUnit.Metric ? "km" : "AU");
 			}
 
-			var outputBuilder = new StringBuilder();
-			foreach (var property in typeof(InputConfiguration).GetProperties())
+			if (LengthUnit == LengthUnit.Metric)
 			{
-				outputBuilder.Append(property.Name);
-				outputBuilder.Append(": ");
-				outputBuilder.Append(property.GetValue(Input));
-				outputBuilder.AppendLine();
+				var radiusInKilometers = (double)Input.RzBigNumber / 1000;
+				var textResult = "";
+				if (radiusInKilometers >= 1000)
+				{
+					textResult = Math.Round(radiusInKilometers).ToString();
+				}
+				else
+				{
+					textResult = Math.Round(radiusInKilometers, 3).ToString();
+				}
+
+				return $"{textResult} km";
 			}
-
-			var dialog = new MessageDialog(outputBuilder.ToString(), "Output");
-			await dialog.ShowAsync();
-		}
-
-		private async Task ShowValuesTableAsync()
-		{
-			if (Input is null)
+			else
 			{
-				return;
+				var astronomicalUnits = MathHelpers.MetersToAstronomicalUnits((double)Input.RzBigNumber);
+				return $"{new BigNumber(astronomicalUnits)} AU";
 			}
-
-			var newWindow = await AppWindow.TryCreateAsync();
-			var appWindowContentFrame = new Frame();
-			appWindowContentFrame.Navigate(typeof(ValuesTablePage));
-
-			string title = Localizer.Instance.GetString("ShortAppName");
-			var physicsService = new PhysicsService(Input, Dt);
-			var valuesTableService = new TableService(physicsService, _controller?.CurrentPoint?.Time);
-			var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
-			(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
-			// Attach the XAML content to the window.
-			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
-			newWindow.Title = title;
-
-			newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
-			newWindow.TitleBar.ForegroundColor = Colors.White;
-			newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
-			newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
-			newWindow.RequestSize(new Size(640, 400));
-			var shown = await newWindow.TryShowAsync();
+				
 		}
-
-		public bool IsKnownObject => SelectedPreset != null;
-
-		public FontWeight ObjectFontWeight => IsKnownObject ? FontWeights.Normal : FontWeights.Bold;
 	}
+
+	private async Task SetParametersAsync()
+	{
+		var dialog = new InputDialog(_difficulty, Input, _appPreferences);
+		if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+		{
+
+			var input = dialog.Model.Result;
+			Input = null;
+			Dt = input.Dt;
+			Input = input;
+			if (_difficulty == DifficultyOption.Advanced)
+			{
+				var preset = dialog.Model.SelectedPreset;
+				SelectedPreset = preset?.Preset ?? null;
+			}
+			else
+			{
+				SelectedPreset = PlanetPresets.Presets[0];
+			}
+			_controller.SimulationTime.Reset();
+			StartSimulation();
+		}
+	}
+
+	private PlanetPreset _selectedPreset = null;
+
+	private PlanetPreset SelectedPreset
+	{
+		get
+		{
+			return _difficulty == DifficultyOption.Easy ? PlanetPresets.Presets[0] : _selectedPreset;
+		}
+		set => _selectedPreset = value;
+	}
+
+	private void StartSimulation()
+	{
+		if (_controller == null || Input == null)
+		{
+			return;
+		}
+
+		_controller.Planet = SelectedPreset;
+		_controller.SetInputConfiguration(Input, Dt);
+		_controller.Play();
+	}
+
+	private async Task ShowDerivedParametersAsync()
+	{
+		if (Input == null)
+		{
+			return;
+		}
+
+		var outputBuilder = new StringBuilder();
+		foreach (var property in typeof(InputConfiguration).GetProperties())
+		{
+			outputBuilder.Append(property.Name);
+			outputBuilder.Append(": ");
+			outputBuilder.Append(property.GetValue(Input));
+			outputBuilder.AppendLine();
+		}
+
+		var dialog = new MessageDialog(outputBuilder.ToString(), "Output");
+		await dialog.ShowAsync();
+	}
+
+	private async Task ShowValuesTableAsync()
+	{
+		if (Input is null)
+		{
+			return;
+		}
+
+		var newWindow = await AppWindow.TryCreateAsync();
+		var appWindowContentFrame = new Frame();
+		appWindowContentFrame.Navigate(typeof(ValuesTablePage));
+
+		string title = Localizer.Instance.GetString("ShortAppName");
+		var physicsService = new PhysicsService(Input, Dt);
+		var valuesTableService = new TableService(physicsService, _controller?.CurrentPoint?.Time);
+		var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
+		(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
+		// Attach the XAML content to the window.
+		ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+		newWindow.Title = title;
+
+		newWindow.TitleBar.BackgroundColor = (Color)Application.Current.Resources["AppThemeColor"];
+		newWindow.TitleBar.ForegroundColor = Colors.White;
+		newWindow.TitleBar.InactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+		newWindow.TitleBar.InactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+		newWindow.TitleBar.ButtonBackgroundColor = newWindow.TitleBar.BackgroundColor;
+		newWindow.TitleBar.ButtonForegroundColor = newWindow.TitleBar.ForegroundColor;
+		newWindow.TitleBar.ButtonInactiveBackgroundColor = newWindow.TitleBar.BackgroundColor;
+		newWindow.TitleBar.ButtonInactiveForegroundColor = newWindow.TitleBar.ForegroundColor;
+		newWindow.RequestSize(new Size(640, 400));
+		var shown = await newWindow.TryShowAsync();
+	}
+
+	public bool IsKnownObject => SelectedPreset != null;
+
+	public FontWeight ObjectFontWeight => IsKnownObject ? FontWeights.Normal : FontWeights.Bold;
 }

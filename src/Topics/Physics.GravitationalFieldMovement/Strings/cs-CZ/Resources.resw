@@ -199,6 +199,15 @@ Grafika: Petr Weinlich</value>
   <data name="Projectile" xml:space="preserve">
     <value>Projektil</value>
   </data>
+  <data name="LengthUnit_AstronomicalUnits" xml:space="preserve">
+    <value>Astronomické jednotky</value>
+  </data>
+  <data name="LengthUnits" xml:space="preserve">
+    <value>Délkové jednotky</value>
+  </data>
+  <data name="LengthUnit_Metric" xml:space="preserve">
+    <value>Metrické</value>
+  </data>
   <data name="MzRzRatioErrorMessage" xml:space="preserve">
     <value>Poměr hmotnosti a poloměru planety musí být nejvýše {0}.</value>
   </data>
@@ -220,4 +229,5 @@ Grafika: Petr Weinlich</value>
   <data name="ChooseDemo" xml:space="preserve">
     <value>Vyberte demo:</value>
   </data>
+</root>
 </root>

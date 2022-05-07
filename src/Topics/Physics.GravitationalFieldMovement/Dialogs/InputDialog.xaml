@@ -71,7 +71,7 @@
 		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced}">
             <Run Text="{extensions:Localize Key=PlanetRadius}" />
             <Run FontWeight="Bold" Text="R" />
-            <Run Text="(m)" />
+            <Run Text="(" /><Run Text="{x:Bind Model.LengthUnitText}" /><Run Text=")" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
             x:Name="RzBigNumberBox"
@@ -116,7 +116,7 @@
 		<TextBlock Grid.Row="5">
             <Run Text="{extensions:Localize Key=InitialHeight}" />
             <Run FontWeight="Bold" Text="h" />
-            <Run Text="(m)" />
+            <Run Text="(" /><Run Text="{x:Bind Model.LengthUnitText}" /><Run Text=")" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
             x:Name="HBigNumberBox"

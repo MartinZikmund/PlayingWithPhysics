@@ -1,4 +1,5 @@
 ﻿using Physics.GravitationalFieldMovement.Logic;
+using Physics.GravitationalFieldMovement.Services;
 using Physics.GravitationalFieldMovement.ViewModels;
 using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Helpers;
@@ -9,10 +10,10 @@ namespace Physics.GravitationalFieldMovement.Dialogs;
 
 public sealed partial class InputDialog : ContentDialog
 {
-	public InputDialog(DifficultyOption difficulty, InputConfiguration input)
+	public InputDialog(DifficultyOption difficulty, InputConfiguration input, IAppPreferences appPreferences)
 	{
 		InitializeComponent();
-		Model = new InputDialogViewModel(difficulty, input);
+		Model = new InputDialogViewModel(difficulty, input, appPreferences);
 		SetupNumberBoxes();
 	}
 

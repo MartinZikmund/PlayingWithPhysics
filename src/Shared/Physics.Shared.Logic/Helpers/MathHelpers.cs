@@ -12,6 +12,10 @@ namespace Physics.Shared.Helpers
 
 		public static float RadiansToDegrees(float angleInRadians) => angleInRadians * 180f / (float)Math.PI;
 
+		public static double MetersToAstronomicalUnits(double meters) => meters * 6.684589e-12;
+
+		public static double AstronomicalUnitsToMeters(double astronomicalUnits) => astronomicalUnits / 6.684589e-12;
+
 		public static bool AlmostEqualTo(this float number, float otherNumber, float epsilon = 0.00001f)
 		{
 			return Math.Abs(number - otherNumber) < epsilon;
