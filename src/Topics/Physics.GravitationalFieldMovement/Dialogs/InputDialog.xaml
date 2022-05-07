@@ -52,6 +52,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
@@ -165,7 +166,8 @@
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             Foreground="Red"
-            Text="{x:Bind Model.ErrorMessage}"
+			TextAlignment="Center"
+            Text="{x:Bind Model.ErrorMessage, Mode=OneWay}"
             TextWrapping="WrapWholeWords"
             Visibility="{x:Bind Model.HasErrors}" />
 	</Grid>

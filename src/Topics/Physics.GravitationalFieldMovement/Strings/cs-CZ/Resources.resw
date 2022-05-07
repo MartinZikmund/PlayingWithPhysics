@@ -199,4 +199,22 @@ Grafika: Petr Weinlich</value>
   <data name="Projectile" xml:space="preserve">
     <value>Projektil</value>
   </data>
+  <data name="MzRzRatioErrorMessage" xml:space="preserve">
+    <value>Poměr hmotnosti a poloměru planety musí být nejvýše {0}.</value>
+  </data>
+  <data name="MzTooLargeErrorMessage" xml:space="preserve">
+    <value>Hmotnost planety musí být nejvýše {0} kg.</value>
+  </data>
+  <data name="MzTooSmallErrorMessage" xml:space="preserve">
+    <value>Hmotnost planety musí být alespoň {0} kg.</value>
+  </data>
+  <data name="RzTooLargeErrorMessage" xml:space="preserve">
+    <value>Poloměr planety musí být nejvýše {0} m.</value>
+  </data>
+  <data name="RzTooSmallErrorMessage" xml:space="preserve">
+    <value>Poloměr planety musí být alespoň {0} m.</value>
+  </data>
+  <data name="V0TooLargeErrorMessage" xml:space="preserve">
+    <value>Počáteční rychlost musí být nejvýše {0} m/s.</value>
+  </data>
 </root>
