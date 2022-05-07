@@ -47,7 +47,7 @@ public class PhysicsService
 				Math.Sign(M) *
 				Math.Min(
 					Math.Min(
-						Math.Abs(M) / (1 - Input.Eps),
+						Input.Eps != 1 ? Math.Abs(M) / (1 - Input.Eps) : 1e24,
 						Math.Abs(M) + Input.Eps),
 					(Math.Abs(M) + Math.PI * Input.Eps) / (1 + Input.Eps));
 
@@ -59,7 +59,7 @@ public class PhysicsService
 			var theta = 2 * Math.Atan2(
 				Math.Sqrt(1 + Input.Eps) * Math.Sin(E / 2),
 				Math.Sqrt(1 - Input.Eps) * Math.Cos(E / 2));
-			var r = Input.P / (1 + Input.Eps * Math.Cos(theta));
+			var r = Input.A * (1 - Input.Eps * Math.Cos(E));
 			var h = r - Input.Rz;
 			var phi = Input.Omega + Input.SigL * theta;
 			var x = r * Math.Cos(phi);
@@ -85,7 +85,7 @@ public class PhysicsService
 		{
 			var t = Dt * dataPointIndex;
 			var M = Input.N * (t - Input.Tau);
-			var absMe1 = Math.Abs(M) / (Input.Eps - 1);
+			var absMe1 = Input.Eps != 1 ? Math.Abs(M) / (Input.Eps - 1) : 1e24;
 			var absMA1 = (Math.Abs(M) + a1 * Input.Eps) / (c1 * Input.Eps - 1);
 			var absMA8 = (Math.Abs(M) + a8 * Input.Eps) / (c8 * Input.Eps - 1);
 			var H = Math.Sign(M) * Math.Min(absMe1, Math.Min(absMA1, absMA8));
@@ -96,7 +96,7 @@ public class PhysicsService
 			}
 
 			var theta = 2 * Math.Atan2(Math.Sqrt(Input.Eps + 1) * Math.Sinh(H / 2), Math.Sqrt(Input.Eps - 1) * Math.Cosh(H / 2));
-			var r = Input.P / (1 + Input.Eps * Math.Cos(theta));
+			var r = Input.A * (1 - Input.Eps * Math.Cosh(H));
 			var h = r - Input.Rz;
 			var phi = Input.Omega + Input.SigL * theta;
 			var x = r * Math.Cos(phi);

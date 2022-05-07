@@ -51,5 +51,10 @@ namespace Physics.Shared.Helpers
 		{
 			return (Math.Log(1 + x) - Math.Log(1 - x)) / 2;
 		}
+
+		public static double Acosh(double x)
+		{
+			return Math.Log(Math.Sqrt(x * x - 1.0d) + x);
+		}
 	}
 }

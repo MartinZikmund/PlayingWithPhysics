@@ -32,26 +32,7 @@ public class InputConfiguration
 		P = L * L / Alpha;
 		Eps = Math.Sqrt(1 + 2 * L * L * En / (Alpha * Alpha));
 
-		if (L == 0) // TODO: This should be truncating to 15 places
-		{
-			ConicSec = MovementType.Line;
-		}
-		else if (Eps == 0)
-		{
-			ConicSec = MovementType.Circle;
-		}
-		else if (0 < Eps && Eps < 1)
-		{
-			ConicSec = MovementType.Ellipse;
-		}
-		else if (Eps > 1)
-		{
-			ConicSec = MovementType.Hyperbola;
-		}
-		else
-		{
-			ConicSec = MovementType.Undefined;
-		}
+		ConicSec = En < 0 ? MovementType.Ellipse : MovementType.Hyperbola;
 
 		A = -Alpha / (2 * En);
 		var absA = Math.Abs(A);
@@ -87,19 +68,51 @@ public class InputConfiguration
 
 		if (ConicSec == MovementType.Ellipse)
 		{
-			E0 = 2 * Math.Atan2(Math.Sqrt(1 - Eps) * Math.Sin(Theta0 / 2), Math.Sqrt(1 + Eps) * Math.Cos(Theta0 / 2));
+			Psi = MathHelpers.Clamp(-1, (1 - R0 / A) / Eps, 1);
+			if (SigBeta == 0)
+			{
+				E0 = Math.Sign(Chi) == -1 ? Math.PI : 0;
+			}
+			else
+			{
+				E0 = SigBeta * Math.Acos(Psi.Value);
+			}
+
 			M0 = E0.Value - Eps * Math.Sin(E0.Value);
 		}
 
 		if (ConicSec == MovementType.Hyperbola)
 		{
-			H0 = 2 * MathHelpers.Atanh(Math.Sqrt((Eps - 1) / (Eps + 1)) * Math.Tan(Theta0 / 2));
+			Psi = (1 - R0 / A) / Eps;
+			H0 = MathHelpers.Acosh(Psi.Value) * SigBeta;
 			M0 = Eps * Math.Sinh(H0.Value) - H0.Value;
 		}
 
 		Tau = -M0 / N;
 		Omega = Phi0 - SigL * Theta0;
 		OmegaDeg = 360 * Omega / (2 * Math.PI);
+
+
+		// Time defaults
+		if ( ConicSec == MovementType.Ellipse)
+		{
+			TMax = T * 1.15;
+		}
+		else
+		{
+			var thetaInf = Math.Acos(-1 / Eps);
+			var theta1 = (thetaInf + Math.Abs(Theta0)) / 2;
+			var theta2 = 0.9 * thetaInf;
+			var thetaMax = Math.Max(theta1, theta2);
+			var hMax =
+				2 * MathHelpers.Atanh(
+					Math.Sqrt((Eps - 1) / (Eps + 1)) *
+					Math.Tan(thetaMax / 2));
+			var mMax = Eps * Math.Sinh(hMax) - hMax;
+			TMax = mMax / N + Tau;
+		}
+		var nSteps = 3600;
+		Dt = TMax / nSteps;
 	}
 
 	public BigNumber RzBigNumber { get; }
@@ -168,6 +181,8 @@ public class InputConfiguration
 
 	public double Theta0 { get; }
 
+	public double? Psi { get; }
+
 	public double? E0 { get; }
 
 	public double M0 { get; }
@@ -181,5 +196,10 @@ public class InputConfiguration
 	public double Omega { get; }
 
 	public double OmegaDeg { get; }
+
+	public double TMax { get; }
+
+	public double Dt { get; }
+	
 	public static InputConfiguration Default => new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), new BigNumber(9.0, 5), new BigNumber(7.0, 3), 0, 90);
 }

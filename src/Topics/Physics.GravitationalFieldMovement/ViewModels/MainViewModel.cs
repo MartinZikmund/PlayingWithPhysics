@@ -161,7 +161,7 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 
 				var input = dialog.Model.Result;
 				Input = null;
-				Dt = input.T / 3000;//TODO
+				Dt = input.Dt;
 				Input = input;
 				if (_difficulty == DifficultyOption.Advanced)
 				{
