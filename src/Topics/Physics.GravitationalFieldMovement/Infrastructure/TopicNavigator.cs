@@ -24,7 +24,7 @@ namespace Physics.GravitationalFieldMovement.Infrastructure
 
 		public bool HasGame => true;
 
-		public string GameNameOverride => !"Demo";
+		public string GameNameOverride => "Demo";
 
 		public int Id => 3;
 
