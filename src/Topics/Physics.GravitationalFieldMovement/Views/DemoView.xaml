@@ -72,10 +72,7 @@
 				</StackPanel>
 			</Border>
 			<StackPanel Margin="8,12,0,0" Grid.Row="2" Orientation="Horizontal">
-				<TextBlock Margin="0,8,8,0">
-					<Run Text="{extensions:Localize Key=ChooseDemo}"/>
-					<Run Text=":"/>
-				</TextBlock>
+				<TextBlock Margin="0,8,8,0" Text="{extensions:Localize Key=ChooseDemo}" />
 				<ComboBox
 					ItemsSource="{x:Bind Model.DemoList, Mode=OneWay}"
 					SelectedItem="{x:Bind Model.SelectedDemo, Mode=TwoWay}">
