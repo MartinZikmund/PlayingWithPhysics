@@ -140,9 +140,14 @@
     <Compile Include="ValuesTable\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DemoItemViewModel.cs" />
+    <Compile Include="ViewModels\DemoViewModel.cs" />
     <Compile Include="ViewModels\InputDialogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlanetPresetViewModel.cs" />
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -269,6 +274,10 @@
     <Page Include="ValuesTable\ValuesTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DemoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>

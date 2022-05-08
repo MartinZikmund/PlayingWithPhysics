@@ -29,8 +29,8 @@ namespace Physics.GravitationalFieldMovement.Rendering
 		private double _scale = 1;
 
 		private double _lastPlanetRadius = 0;
-		
-		private readonly SKPaint _planetPaint = new SKPaint()
+
+		public SKPaint PlanetPaint { get; set; } = new SKPaint()
 		{
 			Color = SKColors.LightGray,
 			IsStroke = false,
@@ -68,10 +68,10 @@ namespace Physics.GravitationalFieldMovement.Rendering
 			if (Planet != null)
 			{
 				var color = ColorHelper.ToColor(Planet.ColorHex);
-				_planetPaint.Color = color.ToSKColor();
+				PlanetPaint.Color = color.ToSKColor();
 			} else
 			{
-				_planetPaint.Color = SKColors.LightGray;
+				PlanetPaint.Color = SKColors.LightGray;
 			}
 			_input = input;
 			var physicsService = new PhysicsService(input, dt);
@@ -160,13 +160,13 @@ namespace Physics.GravitationalFieldMovement.Rendering
 
 		private void DrawPlanet(ISkiaCanvas sender, SKSurface args)
 		{
-			args.Canvas.DrawCircle(GetRenderX(0), GetRenderY(0), (float)PlanetRadius, _planetPaint);
+			args.Canvas.DrawCircle(GetRenderX(0), GetRenderY(0), (float)PlanetRadius, PlanetPaint);
 		}
 
 		public SKBitmap EarthBitmap { get; private set; }
 		public PlanetPreset Planet { get; set; }
 
-		public double PlanetRadius => (_scale * _input.Rz) < 1 ? 1f : (_scale * _input.Rz);
+		public double PlanetRadius => (_scale * _input.Rz) < 1 ? 2f : (_scale * _input.Rz);
 
 		private float GetRenderX(double x) => (float)(_canvas.ScaledSize.Width / 2 + x * _scale);
 

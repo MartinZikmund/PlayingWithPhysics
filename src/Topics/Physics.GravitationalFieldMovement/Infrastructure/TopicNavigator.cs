@@ -22,15 +22,15 @@ namespace Physics.GravitationalFieldMovement.Infrastructure
 
 		public bool HasStudyMode => true;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
-		public string GameNameOverride => null;
+		public string GameNameOverride => !"Demo";
 
 		public int Id => 3;
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
+		public async Task GoToGameAsync() => await _navigationService.Navigate<DemoViewModel>();
 
 		public async Task GoToStudyModeAsync()
 		{

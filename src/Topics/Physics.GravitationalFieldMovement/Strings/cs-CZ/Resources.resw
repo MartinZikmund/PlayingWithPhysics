@@ -217,4 +217,7 @@ Grafika: Petr Weinlich</value>
   <data name="V0TooLargeErrorMessage" xml:space="preserve">
     <value>Počáteční rychlost musí být nejvýše {0} m/s.</value>
   </data>
+  <data name="ChooseDemo" xml:space="preserve">
+    <value>Vyberte demo:</value>
+  </data>
 </root>

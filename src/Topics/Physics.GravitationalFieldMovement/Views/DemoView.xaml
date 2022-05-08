@@ -1,0 +1,202 @@
+﻿<local:DemoViewBase
+    x:Class="Physics.GravitationalFieldMovement.Views.DemoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.GravitationalFieldMovement.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<DrillInNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
+	<Page.Resources>
+		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+	</Page.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" MinWidth="320" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid
+            x:Name="MenuPane"
+            Grid.Column="0"
+            RequestedTheme="Dark">
+			<Grid.Background>
+				<AcrylicBrush
+                    BackgroundSource="HostBackdrop"
+                    FallbackColor="{ThemeResource AppThemeColor}"
+                    TintColor="{ThemeResource AppThemeColor}"
+                    TintOpacity="0.85" />
+			</Grid.Background>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<sharedControls:SkewedMenuHeader
+                FontSize="16"
+                GoBackCommand="{x:Bind Model.GoBackCommand}"
+                Text="{extensions:Localize Key=ShortAppName}" />
+
+			<Border Grid.Row="1" Margin="8,12,8,0">
+				<StackPanel Spacing="8">
+					<Button
+						Visibility="{x:Bind Model.InputSet, Mode=OneWay}"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind Model.ShowValuesTableCommand}"
+                        Content="{extensions:Localize Key=ShowValuesTable}" />
+					<mux:NumberBox
+						x:Name="DeltaInput"
+                        Header="Δt"
+                        Maximum="100000000"
+                        Minimum="1"
+                        Value="{x:Bind Model.Dt, Mode=TwoWay}" />
+				</StackPanel>
+			</Border>
+			<StackPanel Margin="8,12,0,0" Grid.Row="2" Orientation="Horizontal">
+				<TextBlock Margin="0,8,8,0">
+					<Run Text="{extensions:Localize Key=ChooseDemo}"/>
+					<Run Text=":"/>
+				</TextBlock>
+				<ComboBox
+					ItemsSource="{x:Bind Model.DemoList, Mode=OneWay}"
+					SelectedItem="{x:Bind Model.SelectedDemo, Mode=TwoWay}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding FriendlyName}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+			<Border Margin="8,12,0,0" Grid.Row="3">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.Resources>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="16"/>
+							<Setter Property="Margin" Value="0,0,8,0"/>
+						</Style>
+						<Style TargetType="StackPanel">
+							<Setter Property="Margin" Value="0,0,0,8"/>
+						</Style>
+					</Grid.Resources>
+
+
+					<StackPanel Grid.Row="0" Margin="0,0,0,24" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=Time}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.TimeText, Mode=OneWay}"/>
+						</TextBlock>
+					</StackPanel>
+
+					<StackPanel Grid.Row="1" Orientation="Horizontal">
+						<TextBlock Margin="0">
+							<Run FontWeight="{x:Bind Model.ObjectFontWeight, Mode=OneWay}" Text="{extensions:Localize Key=CentralBody}"/>
+						</TextBlock>
+						<TextBlock Visibility="{x:Bind Model.IsKnownObject, Mode=OneWay}">
+							<Run Text=": "/>
+							<Run FontWeight="Bold" Text="{x:Bind Model.Object, Mode=OneWay}"/>
+						</TextBlock>
+					</StackPanel>
+
+					<StackPanel Grid.Row="2" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=Mass}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.Input.MzBigNumber, Mode=OneWay}"/>
+							<Run Text="kg"/>
+						</TextBlock>
+					</StackPanel>
+					<StackPanel Grid.Row="3" Margin="0,0,0,24" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=Radius}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.RadiusText, Mode=OneWay}"/>
+							<Run Text="km"/>
+						</TextBlock>
+					</StackPanel>
+					<TextBlock Grid.Row="4" Margin="0,0,0,8" FontWeight="Bold" Text="{extensions:Localize Key=Projectile}" />
+					<StackPanel Grid.Row="5" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
+							<Run Text="m"/>
+						</TextBlock>
+					</StackPanel>
+					<StackPanel Grid.Row="6" Orientation="Horizontal">
+						<TextBlock FontWeight="SemiBold">
+							<Run Text="{extensions:Localize Key=CurrentVelocity}"/><Run Text=": "/>
+							<Run Text="{x:Bind Model.VelocityText, Mode=OneWay}"/>
+							<Run Text="m.s⁻¹"/>
+						</TextBlock>
+					</StackPanel>
+				</Grid>
+			</Border>
+		</Grid>
+		<Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="CanvasHolder" Background="#F4F4F4" />
+			<InkCanvas x:Name="InkCanvas" />
+			<InkToolbar
+                x:Name="inkToolbar"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                RequestedTheme="Light"
+                TargetInkCanvas="{x:Bind InkCanvas}" />
+			<sharedControls:SimulationControls
+                x:Name="SimulationControls"
+                Grid.Row="1"
+                d:Visibility="Collapsed"
+                BackwardVisibility="Collapsed"
+                ForwardVisibility="Collapsed"
+                IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+				JumpToStartCommand="{x:Bind Model.SimulationPlayback.JumpToStartCommand}"
+                JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                RequestedTheme="Light"
+                SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
+                SpeedControlVisibility="Visible">
+				<sharedControls:SimulationControls.Background>
+					<AcrylicBrush
+                        BackgroundSource="Backdrop"
+                        FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                        TintColor="{ThemeResource SystemChromeMediumColor}" />
+				</sharedControls:SimulationControls.Background>
+			</sharedControls:SimulationControls>
+		</Grid>
+	</Grid>
+</local:DemoViewBase>

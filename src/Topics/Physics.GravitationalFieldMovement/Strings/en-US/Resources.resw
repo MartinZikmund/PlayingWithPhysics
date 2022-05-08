@@ -217,4 +217,7 @@ Graphics: Petr Weinlich</value>
   <data name="V0TooLargeErrorMessage" xml:space="preserve">
     <value>Initial velocity mustbe at most {0} m/s.</value>
   </data>
+  <data name="ChooseDemo" xml:space="preserve">
+    <value>Choose demo:</value>
+  </data>
 </root>
