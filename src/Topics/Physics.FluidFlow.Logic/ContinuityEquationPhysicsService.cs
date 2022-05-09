@@ -165,7 +165,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		}
 		else if (time < t1 + t2)
 		{
-			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 - _input.Velocity);
+			var x = 2 / 5f * XMax + _input.Velocity * (time - t1) + 2.5 * (v2 * v2 - _input.Velocity * _input.Velocity) * (time - t1) * (time - t1);
 			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch
@@ -200,7 +200,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 
 	public float CalculateS1LargerT1() => 2 * XMax / (5 * _input.Velocity);
 
-	public float CalculateS1LargerT2() => 2 * XMax / (5 * (CalculateS1LargerV2() - _input.Velocity));
+	public float CalculateS1LargerT2() => 2 * XMax / (5 * (CalculateS1LargerV2() + _input.Velocity));
 
 	public float CalculateS1LargerT3() => 2 * XMax / (5 * CalculateS1LargerV2());
 
@@ -209,7 +209,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 	#region S2 Larger
 
 	private Point2d GetS2LargerParticlePosition(float time, int particleId)
-	{		
+	{
 		var t1 = T1;
 		var t2 = T2;
 		var v2 = V2;
@@ -226,7 +226,7 @@ public class ContinuityEquationPhysicsService : PhysicsServiceBase, IPhysicsServ
 		}
 		else if (time < t1 + t2)
 		{
-			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 + _input.Velocity);
+			var x = 2 / 5f * XMax + _input.Velocity * (time - t1) - 2.5 * (_input.Velocity * _input.Velocity - v2 * v2) * (time - t1) * (time - t1);
 			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch

@@ -103,7 +103,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 			DiameterRelationType.S1Larger => CalculateS1LargerH1(),
 			DiameterRelationType.S2Larger => CalculateS2LargerH1(),
 			_ => throw new InvalidOperationException("Invalid diameter type"),
-		};	
+		};
 
 	public float H2 =>
 		_input.DiameterRelationType switch
@@ -195,7 +195,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 		}
 		else if (time < t1 + t2)
 		{
-			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 - _input.Velocity);
+			var x = 2 / 5f * XMax + _input.Velocity * (time - t1) + 2.5 * (v2 * v2 - _input.Velocity * _input.Velocity) * (time - t1) * (time - t1);
 			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch
@@ -230,7 +230,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 
 	public float CalculateS1LargerT1() => 2 * XMax / (5 * _input.Velocity);
 
-	public float CalculateS1LargerT2() => 2 * XMax / (5 * (CalculateS1LargerV2() - _input.Velocity));
+	public float CalculateS1LargerT2() => 2 * XMax / (5 * (CalculateS1LargerV2() + _input.Velocity));
 
 	public float CalculateS1LargerT3() => 2 * XMax / (5 * CalculateS1LargerV2());
 
@@ -262,7 +262,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 		}
 		else if (time < t1 + t2)
 		{
-			var x = 2 / 5f * XMax + 1 / 2f * (time - t1) * (v2 + _input.Velocity);
+			var x = 2 / 5f * XMax + _input.Velocity * (time - t1) - 2.5 * (_input.Velocity * _input.Velocity - v2 * v2) * (time - t1) * (time - t1);
 			var particle0y = _input.Diameter1 / 4 - ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			var particle2y = -_input.Diameter1 / 4 + ((x - 2 / 5f * XMax) * 1.2f * ((_input.Diameter1 - _input.Diameter2) / XMax));
 			return particleId switch
@@ -303,7 +303,7 @@ public class BernoulliWithoutHeightChangePhysicsService : PhysicsServiceBase, IP
 
 	public float CalculateS2LargerP2() => _input.Pressure + 500 * (_input.Velocity * _input.Velocity - V2 * V2);
 
-	public float CalculateS2LargerH1() => H2 - 3 * DeltaP / 5000000; 
+	public float CalculateS2LargerH1() => H2 - 3 * DeltaP / 5000000;
 
 	public float CalculateS2LargerH2() => Math.Abs(P2 / 5000000);
 
