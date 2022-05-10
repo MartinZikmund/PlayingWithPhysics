@@ -61,7 +61,7 @@ public static class InputConfigurations
 			},
 			VelocityConfigurations = new ()
 			{
-				{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(20, 100, 50f, step: 1f) },
+				{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(0.1, 1, 0.5f, step: 0.1f) },
 			},
 		},
 		//new InputConfiguration(InputVariant.BernoulliEquationWithoutHeightChange, DiameterRelationType.Equal)
@@ -99,7 +99,7 @@ public static class InputConfigurations
 			},
 			VelocityConfigurations = new ()
 			{
-				{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(5, 13, 5f, step: 0.5f) },
+				{ FluidDefinitions.Water, FieldConfiguration.CreateRestricted(0.1, 1, 0.5f, step: 0.1f) },
 			},
 			PressureConfiguration = FieldConfiguration.CreateRestricted(250000, 500000, 250000f, step: 50000f),
 		},
