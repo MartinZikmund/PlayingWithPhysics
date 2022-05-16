@@ -116,7 +116,7 @@
 		<TextBlock Grid.Row="5">
             <Run Text="{extensions:Localize Key=InitialHeight}" />
             <Run FontWeight="Bold" Text="h" />
-            <Run Text="(m)" />
+            <Run Text="(" /><Run Text="{x:Bind Model.LengthUnitText}" /><Run Text=")" />
 		</TextBlock>
 		<usercontrols:BigNumberBox
             x:Name="HBigNumberBox"

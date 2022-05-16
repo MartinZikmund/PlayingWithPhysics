@@ -79,11 +79,6 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 		{
 			eventArgs.Column.Header = "t (s)";
 		}
-
-		if (eventArgs.Column.Header.ToString() == "H")
-		{
-			eventArgs.Column.Header = "h (m)";
-		}
 	}
 
 	public override void CopyToClipboard()

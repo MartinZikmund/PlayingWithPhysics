@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 
 namespace Physics.Shared.Mathematics
@@ -11,6 +12,14 @@ namespace Physics.Shared.Mathematics
 		{
 			Mantisa = mantisa;
 			Exponent = exponent;
+		}
+
+		public BigNumber(double value)
+		{
+			var exponentialNotationString = value.ToString("E", CultureInfo.InvariantCulture);
+			var split = exponentialNotationString.Split('E');
+			Mantisa = double.Parse(split[0], CultureInfo.InvariantCulture);
+			Exponent = int.Parse(split[1], CultureInfo.InvariantCulture);
 		}
 
 		public double Mantisa { get; }
@@ -140,22 +149,30 @@ namespace Physics.Shared.Mathematics
 
 		public override string ToString()
 		{
-			var normalized = Normalize();
-			var exponent = normalized.Exponent;
-			var rounded = Math.Round(normalized.Mantisa, 3);
-			if (rounded >= 10 || rounded <= -10)
+			var doubleValue = (double)this;
+			if (doubleValue.ToString("G", CultureInfo.InvariantCulture).IndexOf("E", StringComparison.InvariantCultureIgnoreCase) >= 0)
 			{
-				rounded /= 10;
-				exponent++;
-			}
+				var normalized = Normalize();
+				var exponent = normalized.Exponent;
+				var rounded = Math.Round(normalized.Mantisa, 3);
+				if (rounded >= 10 || rounded <= -10)
+				{
+					rounded /= 10;
+					exponent++;
+				}
 
-			if (rounded == 0)
+				if (rounded == 0)
+				{
+					return "0";
+				}
+
+				var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
+				return $"{rounded.ToString("0.000")}×10{exponentRepresentation}";
+			}
+			else
 			{
-				return "0";
+				return doubleValue.ToString("0.###");
 			}
-
-			var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
-			return $"{rounded.ToString("0.000")}×10{exponentRepresentation}";
 		}
 
 		static Dictionary<char, char> SuperscriptNumberMap = new()

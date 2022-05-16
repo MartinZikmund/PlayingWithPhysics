@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Text;
 using Physics.GravitationalFieldMovement.Logic;
+using Physics.GravitationalFieldMovement.Services;
+using Physics.Shared.Helpers;
 using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Localization;
@@ -11,19 +13,41 @@ namespace Physics.GravitationalFieldMovement.ViewModels;
 
 public class InputDialogViewModel : ViewModelBase
 {
-	public InputDialogViewModel(DifficultyOption difficulty, InputConfiguration inputConfiguration)
+	private readonly IAppPreferences _appPreferences;
+
+	public InputDialogViewModel(DifficultyOption difficulty, InputConfiguration inputConfiguration, IAppPreferences appPreferences)
 	{
+		_appPreferences = appPreferences;
 		IsAdvanced = difficulty == DifficultyOption.Advanced;
 
 		if (inputConfiguration != null)
 		{
 			RzBigNumber = inputConfiguration.RzBigNumber;
+			if (appPreferences.LengthUnit == LengthUnit.Metric)
+			{
+				HBigNumber = inputConfiguration.HBigNumber;
+			}
+			else
+			{
+				HBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)inputConfiguration.HBigNumber));
+			}
 			MzBigNumber = inputConfiguration.MzBigNumber;
-			HBigNumber = inputConfiguration.HBigNumber;
 			V0BigNumber = inputConfiguration.V0BigNumber;
 			BetaDeg = inputConfiguration.BetaDeg;
 			Phi0Deg = inputConfiguration.Phi0Deg;
 			ValidatePlanetPreset();
+		}
+		else
+		{
+			var defaultHMeters = new BigNumber(9.0, 5);
+			if (appPreferences.LengthUnit == LengthUnit.Metric)
+			{
+				HBigNumber = defaultHMeters;
+			}
+			else
+			{
+				HBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)defaultHMeters));
+			}
 		}
 	}
 
@@ -85,6 +109,8 @@ public class InputDialogViewModel : ViewModelBase
 		var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
 		SelectedPreset = preset;
 	}
+
+	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "AU";
 
 	public PlanetPresetViewModel[] Presets { get; } = PlanetPresets.Presets.Select(x => new PlanetPresetViewModel(x)).ToArray();
 

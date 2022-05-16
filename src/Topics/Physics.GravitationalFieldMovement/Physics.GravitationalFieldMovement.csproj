@@ -131,6 +131,8 @@
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\GravitationalFieldMovementCanvasController.cs" />
+    <Compile Include="Services\AppPreferences.cs" />
+    <Compile Include="Services\IAppPreferences.cs" />
     <Compile Include="UserControls\BigNumberBox.xaml.cs">
       <DependentUpon>BigNumberBox.xaml</DependentUpon>
     </Compile>
