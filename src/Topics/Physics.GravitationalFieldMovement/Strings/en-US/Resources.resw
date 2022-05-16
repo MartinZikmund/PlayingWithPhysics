@@ -229,5 +229,22 @@ Graphics: Petr Weinlich</value>
   <data name="ChooseDemo" xml:space="preserve">
     <value>Choose demo:</value>
   </data>
-</root>
+  <data name="TimePartDay1" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="TimePartDay2" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="TimePartDay5" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="TimePartYear1" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="TimePartYear2" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="TimePartYear5" xml:space="preserve">
+    <value>years</value>
+  </data>
 </root>

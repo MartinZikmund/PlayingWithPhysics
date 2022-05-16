@@ -229,5 +229,22 @@ Grafika: Petr Weinlich</value>
   <data name="ChooseDemo" xml:space="preserve">
     <value>Vyberte demo:</value>
   </data>
-</root>
+  <data name="TimePartDay1" xml:space="preserve">
+    <value>den</value>
+  </data>
+  <data name="TimePartDay2" xml:space="preserve">
+    <value>dny</value>
+  </data>
+  <data name="TimePartDay5" xml:space="preserve">
+    <value>dní</value>
+  </data>
+  <data name="TimePartYear1" xml:space="preserve">
+    <value>rok</value>
+  </data>
+  <data name="TimePartYear2" xml:space="preserve">
+    <value>roky</value>
+  </data>
+  <data name="TimePartYear5" xml:space="preserve">
+    <value>let</value>
+  </data>
 </root>

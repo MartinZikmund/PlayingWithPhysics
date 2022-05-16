@@ -32,7 +32,7 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 	private readonly IAppPreferences _appPreferences;
 	
 	private DifficultyOption _difficulty;
-	private GravitationalFieldMovementCanvasController _controller;
+	protected GravitationalFieldMovementCanvasController _controller;
 	private double _height = 0.0d;
 
 	public MainViewModel(IAppPreferences appPreferences)
@@ -65,8 +65,6 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 	}
 
 	public ICommand SetParametersCommand => GetOrCreateAsyncCommand(SetParametersAsync);
-
-	public ICommand ShowDerivedParametersCommand => GetOrCreateAsyncCommand(ShowDerivedParametersAsync);
 
 	public ICommand ShowValuesTableCommand => GetOrCreateAsyncCommand(ShowValuesTableAsync);
 
@@ -109,9 +107,9 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 
 		TimeSpan span = TimeSpan.FromSeconds(seconds);
 		int[] parts = { span.Days / 365, span.Days % 365, span.Hours, span.Minutes, span.Seconds };
-		string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", " dní", " hodin", " minut", " sekund" };
+		string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", $" {GetFormattedDayLabel(span.Days % 365)}", " h", " m", " s" };
 
-		return string.Join(" ",
+		return string.Join(", ",
 			from index in Enumerable.Range(0, units.Length)
 			where parts[index] > 0
 			select parts[index] + units[index]);
@@ -120,9 +118,17 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 	private string GetFormattedYearLabel(int year) =>
 		year switch
 		{
-			1 => "rok",
-			<= 4 => "roky",
-			> 4 => "let"
+			1 => Localizer.Instance.GetString("TimePartYear1"),
+			<= 4 => Localizer.Instance.GetString("TimePartYear2"),
+			> 4 => Localizer.Instance.GetString("TimePartYear5")
+		};
+
+	private string GetFormattedDayLabel(int days) =>
+		days switch
+		{
+			1 => Localizer.Instance.GetString("TimePartDay1"),
+			<= 4 => Localizer.Instance.GetString("TimePartDay2"),
+			> 4 => Localizer.Instance.GetString("TimePartDay5")
 		};
 
 	public string TimeText { get; private set; }
@@ -244,26 +250,6 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 		_controller.Planet = SelectedPreset;
 		_controller.SetInputConfiguration(Input, Dt);
 		_controller.Play();
-	}
-
-	private async Task ShowDerivedParametersAsync()
-	{
-		if (Input == null)
-		{
-			return;
-		}
-
-		var outputBuilder = new StringBuilder();
-		foreach (var property in typeof(InputConfiguration).GetProperties())
-		{
-			outputBuilder.Append(property.Name);
-			outputBuilder.Append(": ");
-			outputBuilder.Append(property.GetValue(Input));
-			outputBuilder.AppendLine();
-		}
-
-		var dialog = new MessageDialog(outputBuilder.ToString(), "Output");
-		await dialog.ShowAsync();
 	}
 
 	private async Task ShowValuesTableAsync()

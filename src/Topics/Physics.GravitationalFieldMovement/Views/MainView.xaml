@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls"
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-    xmlns:utu="using:Uno.Toolkit.UI" xmlns:logic="using:Physics.GravitationalFieldMovement.Logic"
+    xmlns:logic="using:Physics.GravitationalFieldMovement.Logic"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
     <Page.Transitions>
@@ -103,15 +103,12 @@
                     </Grid.Resources>
 
 
-                    <StackPanel
-                        Grid.Row="0"
-                        Margin="0,0,0,24"
-                        Orientation="Horizontal">
-                        <TextBlock FontWeight="SemiBold">
-                            <Run Text="{extensions:Localize Key=Time}" /><Run Text=": " />
-                            <Run Text="{x:Bind Model.TimeText, Mode=OneWay}" />
-                        </TextBlock>
-                    </StackPanel>
+					<StackPanel Margin="0,0,0,24">
+						<TextBlock>
+							<Run Text="{extensions:Localize Key=Time}" /><Run Text=":" />
+						</TextBlock>
+						<TextBlock TextWrapping="Wrap" FontWeight="SemiBold" Text="{x:Bind Model.TimeText, Mode=OneWay}" />
+					</StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <TextBlock Margin="0">

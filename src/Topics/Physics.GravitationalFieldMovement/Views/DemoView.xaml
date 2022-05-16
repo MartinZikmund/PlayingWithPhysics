@@ -8,8 +8,8 @@
     xmlns:local="using:Physics.GravitationalFieldMovement.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls"
-    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls" xmlns:logic="using:Physics.GravitationalFieldMovement.Logic"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 	<Page.Transitions>
 		<TransitionCollection>
@@ -27,7 +27,7 @@
 	</Page.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="320" />
+			<ColumnDefinition Width="*" MinWidth="360" />
 			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
 		<Grid
@@ -56,7 +56,7 @@
                 GoBackCommand="{x:Bind Model.GoBackCommand}"
                 Text="{extensions:Localize Key=ShortAppName}" />
 
-			<Border Grid.Row="1" Margin="8,12,8,0">
+			<Border Grid.Row="2" Margin="8,12,8,0">
 				<StackPanel Spacing="8">
 					<Button
 						Visibility="{x:Bind Model.InputSet, Mode=OneWay}"
@@ -71,18 +71,19 @@
                         Value="{x:Bind Model.Dt, Mode=TwoWay}" />
 				</StackPanel>
 			</Border>
-			<StackPanel Margin="8,12,0,0" Grid.Row="2" Orientation="Horizontal">
-				<TextBlock Margin="0,8,8,0" Text="{extensions:Localize Key=ChooseDemo}" />
-				<ComboBox
-					ItemsSource="{x:Bind Model.DemoList, Mode=OneWay}"
-					SelectedItem="{x:Bind Model.SelectedDemo, Mode=TwoWay}">
-					<ComboBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding FriendlyName}"/>
-						</DataTemplate>
-					</ComboBox.ItemTemplate>
-				</ComboBox>
-			</StackPanel>
+			<ComboBox
+				Margin="8"
+				Grid.Row="1"
+				HorizontalAlignment="Stretch"
+				Header="{extensions:Localize Key=ChooseDemo}"
+				ItemsSource="{x:Bind Model.DemoList, Mode=OneWay}"
+				SelectedItem="{x:Bind Model.SelectedDemo, Mode=TwoWay}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding FriendlyName}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
 			<Border Margin="8,12,0,0" Grid.Row="3">
 				<Grid>
 					<Grid.RowDefinitions>
@@ -92,6 +93,8 @@
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<Grid.Resources>
@@ -105,11 +108,11 @@
 					</Grid.Resources>
 
 
-					<StackPanel Grid.Row="0" Margin="0,0,0,24" Orientation="Horizontal">
-						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=Time}"/><Run Text=": "/>
-							<Run Text="{x:Bind Model.TimeText, Mode=OneWay}"/>
+					<StackPanel Margin="0,0,0,24">
+						<TextBlock>
+							<Run Text="{extensions:Localize Key=Time}" /><Run Text=":" />
 						</TextBlock>
+						<TextBlock TextWrapping="Wrap" FontWeight="SemiBold" Text="{x:Bind Model.TimeText, Mode=OneWay}" />
 					</StackPanel>
 
 					<StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -151,8 +154,52 @@
 							<Run Text="m.s⁻¹"/>
 						</TextBlock>
 					</StackPanel>
+
+					<Button
+                        Grid.Row="8"
+                        Margin="8"
+                        HorizontalAlignment="Center">
+						<Button.Flyout>
+							<Flyout x:Name="SettingsFlyout">
+								<StackPanel Width="200" Spacing="4">
+									<TextBlock Text="{extensions:Localize Key=LengthUnits}" />
+									<mux:RadioButtons
+										ItemsSource="{x:Bind Model.LengthUnits, Mode=OneWay}"
+										MaxColumns="1"
+										SelectedIndex="{x:Bind Model.SelectedLengthUnitIndex, Mode=TwoWay}">
+										<mux:RadioButtons.Transitions>
+											<TransitionCollection>
+												<EntranceThemeTransition FromVerticalOffset="100" IsStaggeringEnabled="True" />
+											</TransitionCollection>
+										</mux:RadioButtons.Transitions>
+										<mux:RadioButtons.Resources>
+											<Style TargetType="RadioButton">
+												<Setter Property="Padding" Value="12,0,0,4" />
+												<Setter Property="VerticalAlignment" Value="Center" />
+												<Setter Property="VerticalContentAlignment" Value="Center" />
+											</Style>
+											<Style TargetType="TextBlock">
+												<Setter Property="FontSize" Value="16" />
+												<Setter Property="TextWrapping" Value="WrapWholeWords" />
+											</Style>
+										</mux:RadioButtons.Resources>
+										<mux:RadioButtons.ItemTemplate>
+											<DataTemplate x:DataType="logic:LengthUnit">
+												<RadioButton Content="{x:Bind Converter={StaticResource EnumLocalizationConverter}}" />
+											</DataTemplate>
+										</mux:RadioButtons.ItemTemplate>
+									</mux:RadioButtons>
+								</StackPanel>
+							</Flyout>
+						</Button.Flyout>
+						<SymbolIcon Symbol="Setting" />
+					</Button>
+
 				</Grid>
+				
 			</Border>
+
+			
 		</Grid>
 		<Grid
             x:Name="SecondPane"
