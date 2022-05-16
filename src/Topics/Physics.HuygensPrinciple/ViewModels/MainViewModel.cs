@@ -156,6 +156,10 @@ namespace Physics.HuygensPrinciple.ViewModels
 		{
 			CurrentPreset.Redrawn = true;
 			DrawingState.IsDrawing = false;
+			if (_controller.IsPaused)
+			{
+				_controller.Play();
+			}
 		}
 
 		public async Task DrawSceneAsync(ScenePreset scene)

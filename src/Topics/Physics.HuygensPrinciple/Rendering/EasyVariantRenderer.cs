@@ -120,7 +120,7 @@ namespace Physics.HuygensPrinciple.Rendering
 			}
 
 
-			if (_controller.IsPaused)
+			if (_controller.IsPaused && !_controller._drawingState.IsDrawing)
 			{
 				sender.ShouldRender = false;
 			}
