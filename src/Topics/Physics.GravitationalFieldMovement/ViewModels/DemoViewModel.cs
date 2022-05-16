@@ -7,6 +7,8 @@ using SkiaSharp;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using SkiaSharp.Views.UWP;
 using Physics.GravitationalFieldMovement.Services;
+using System;
+using Windows.UI.Xaml;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;
 
@@ -44,8 +46,18 @@ public class DemoViewModel : MainViewModel
 
 		//_controller.Planet = SelectedPreset;
 		_controller.SimulationTime.Reset();
-		_controller.SetInputConfiguration(SelectedDemo.Input, SelectedDemo.Input.Dt);
+		Input = null;
+		Dt = SelectedDemo.Input.Dt;
+		Input = SelectedDemo.Input;		
 		_controller.PlanetPaint.Color = SelectedDemo.Color;
+		_controller.SetInputConfiguration(Input, Dt);
 		_controller.Play();
+	}
+
+	protected override void LoadDefaultSimulation()
+	{
+		Dt = SelectedDemo.Input.Dt;
+		Input = SelectedDemo.Input;
+		_controller.PlanetPaint.Color = SelectedDemo.Color;
 	}
 }

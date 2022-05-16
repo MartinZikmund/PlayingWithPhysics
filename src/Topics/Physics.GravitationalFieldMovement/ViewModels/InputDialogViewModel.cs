@@ -200,7 +200,7 @@ public class InputDialogViewModel : ViewModelBase
 		Result = new InputConfiguration(
 			RzBigNumber,
 			MzBigNumber,
-			HBigNumber,
+			_appPreferences.LengthUnit == LengthUnit.Metric ? HBigNumber : MathHelpers.AstronomicalUnitsToMeters((double)HBigNumber),
 			V0BigNumber,
 			BetaDeg,
 			Phi0Deg);

@@ -1,36 +1,36 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Physics.GravitationalFieldMovement.Dialogs;
+using Physics.GravitationalFieldMovement.Logic;
+using Physics.GravitationalFieldMovement.Rendering;
+using Physics.GravitationalFieldMovement.Services;
+using Physics.GravitationalFieldMovement.ValuesTable;
+using Physics.GravitationalFieldMovement.Views;
+using Physics.Shared.Helpers;
+using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
-using Physics.GravitationalFieldMovement.Rendering;
-using System.Windows.Input;
-using System.Threading.Tasks;
-using Physics.GravitationalFieldMovement.Dialogs;
-using Physics.GravitationalFieldMovement.Logic;
-using Windows.UI.Xaml.Controls;
-using System.Text;
-using Windows.UI.Popups;
-using Windows.UI.WindowManagement;
-using Physics.GravitationalFieldMovement.Views;
-using Physics.Shared.UI.Localization;
-using Physics.GravitationalFieldMovement.ValuesTable;
-using Windows.UI.Xaml.Hosting;
-using Windows.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI;
-using System.Linq;
-using Physics.GravitationalFieldMovement.Services;
-using Physics.Shared.Helpers;
-using Physics.Shared.Mathematics;
+using Windows.UI.Popups;
 using Windows.UI.Text;
+using Windows.UI.WindowManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;
 
 public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<GravitationalFieldMovementCanvasController>
 {
 	private readonly IAppPreferences _appPreferences;
-	
+
 	private DifficultyOption _difficulty;
 	protected GravitationalFieldMovementCanvasController _controller;
 	private double _height = 0.0d;
@@ -45,7 +45,7 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 		_difficulty = parameter.Difficulty;
 	}
 
-	public InputConfiguration Input { get; private set; }
+	public InputConfiguration Input { get; protected set; }
 
 	public bool InputSet => Input != null;
 
@@ -84,9 +84,15 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 
 		_controller = controller;
 		SimulationPlayback.SetController(_controller);
-		Input = InputConfiguration.Default;
+		LoadDefaultSimulation();
 		StartSimulation();
 		SimulationPlayback.Pause();
+	}
+
+	protected virtual void LoadDefaultSimulation()
+	{
+		Input = InputConfiguration.Default;
+		SelectedPreset = PlanetPresets.Presets[0];
 	}
 
 	private void TimerTick(object sender, object e)
@@ -265,8 +271,8 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 
 		string title = Localizer.Instance.GetString("ShortAppName");
 		var physicsService = new PhysicsService(Input, Dt);
-		var valuesTableService = new TableService(physicsService, _controller?.CurrentPoint?.Time);
-		var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService);
+		var valuesTableService = new TableService(physicsService, _appPreferences, _controller?.CurrentPoint?.Time);
+		var valuesTableViewModel = new ValuesTableDialogViewModel(valuesTableService, _appPreferences);
 		(appWindowContentFrame.Content as ValuesTablePage).Initialize(valuesTableViewModel);
 		// Attach the XAML content to the window.
 		ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);

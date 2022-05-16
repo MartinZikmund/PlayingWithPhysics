@@ -27,7 +27,7 @@
 	</Page.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="360" />
+			<ColumnDefinition Width="*" MinWidth="320" />
 			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
 		<Grid

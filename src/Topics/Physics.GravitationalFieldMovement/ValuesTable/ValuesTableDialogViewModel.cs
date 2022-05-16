@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Physics.GravitationalFieldMovement.Services;
 using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Services.ValuesTable;
 using Physics.Shared.UI.ViewModels;
@@ -15,12 +16,14 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 	private float _time = 0f;
 	private float _distanceInterval = 0.05f;
 	private ApplicationDataContainer _localSettings = ApplicationData.Current.LocalSettings;
+	private readonly IAppPreferences _appPreferences;
 
-	public ValuesTableDialogViewModel(TableService tableService)
+	public ValuesTableDialogViewModel(TableService tableService, IAppPreferences appPreferences)
 		: base(tableService)
 	{
 		tableService.Owner = this;
 		UpdateTable();
+		_appPreferences = appPreferences;
 	}
 
 	public float Time
@@ -55,19 +58,21 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 
 	public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)
 	{
+		var lengthUnit = _appPreferences.LengthUnit == Logic.LengthUnit.Metric ? "m" : "AU";
+
 		if (eventArgs.Column.Header.ToString() == "X")
 		{
-			eventArgs.Column.Header = "x (m)";
+			eventArgs.Column.Header = $"x ({lengthUnit})";
 		}
 
 		if (eventArgs.Column.Header.ToString() == "Y")
 		{
-			eventArgs.Column.Header = "y (m)";
+			eventArgs.Column.Header = $"y ({lengthUnit})";
 		}
 
 		if (eventArgs.Column.Header.ToString() == "H")
 		{
-			eventArgs.Column.Header = "h (m)";
+			eventArgs.Column.Header = $"h ({lengthUnit})";
 		}
 
 		if (eventArgs.Column.Header.ToString() == "V")
