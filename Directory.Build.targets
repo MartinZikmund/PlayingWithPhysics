@@ -1,7 +1,7 @@
 <Project>
   <ItemGroup>
     <!-- Fody -->
-    <PackageReference Update="Fody" Version="6.6.1" PrivateAssets="All" />
+    <PackageReference Update="Fody" Version="6.6.2" PrivateAssets="All" />
     <PackageReference Update="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
     <PackageReference Update="MethodTimer.Fody" Version="3.2.0" PrivateAssets="All" />
 
