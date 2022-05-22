@@ -9,7 +9,7 @@ namespace Physics.HuygensPrinciple.Logic
 {
 	public class ScenePreset : IEnumerable<IShape>
 	{
-		private readonly List<IShape> _shapes = new List<IShape>();
+		protected readonly List<IShape> _shapes = new List<IShape>();
 
 		public ScenePreset(string name, PointF[] significantPoints = null)
 		{
@@ -31,7 +31,7 @@ namespace Physics.HuygensPrinciple.Logic
 
 		public bool Redrawn { get; set; } = false;
 
-		public ScenePreset Clone()
+		public virtual ScenePreset Clone()
 		{
 			var preset = new ScenePreset(Name, SignificantPoints.ToArray());
 			preset._shapes.AddRange(_shapes);

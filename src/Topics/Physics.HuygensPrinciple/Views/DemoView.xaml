@@ -1,0 +1,338 @@
+﻿<local:DemoViewBase
+    x:Class="Physics.HuygensPrinciple.Views.DemoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:Physics.Shared.Extensions"
+    xmlns:local="using:Physics.HuygensPrinciple.Views"
+    xmlns:logic="using:Physics.HuygensPrinciple.Logic"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
+    xmlns:sharedControls="using:Physics.Shared.UI.Controls"
+    xmlns:viewModels="using:Physics.HuygensPrinciple.ViewModels"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<DrillInNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
+	<Page.Resources>
+		<SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource AppThemeColor}" />
+		<SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="{StaticResource AppThemeColor}" />
+	</Page.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition
+                Width="*"
+                MinWidth="320"
+                MaxWidth="420" />
+			<ColumnDefinition Width="3*" />
+		</Grid.ColumnDefinitions>
+		<Grid
+            x:Name="MenuPane"
+            Grid.Column="0"
+            RequestedTheme="Dark">
+			<Grid.Background>
+				<AcrylicBrush
+                    BackgroundSource="HostBackdrop"
+                    FallbackColor="{ThemeResource AppThemeColor}"
+                    TintColor="{ThemeResource AppThemeColor}"
+                    TintOpacity="0.85" />
+			</Grid.Background>
+			<Windows10version1903:Grid.Shadow>
+				<ThemeShadow />
+			</Windows10version1903:Grid.Shadow>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<sharedControls:SkewedMenuHeader
+                FontSize="16"
+                GoBackCommand="{x:Bind Model.GoBackCommand}"
+                Text="{extensions:Localize Key=ShortAppName}" />
+
+			<ScrollViewer Grid.Row="1">
+				<StackPanel
+                Grid.Row="1"
+                Margin="0,12,0,0"
+                Padding="8"
+                Spacing="8">
+
+					<ComboBox Header="{extensions:Localize Key=SelectDemo}" HorizontalAlignment="Stretch" ItemsSource="{x:Bind Model.Demos}" SelectedItem="{x:Bind Model.SelectedDemo, Mode=TwoWay}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate x:DataType="viewModels:DemoScenarioViewModel">
+								<TextBlock Text="{x:Bind Name}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+
+				<TextBlock Text="{x:Bind Model.SelectedDemo.Name, Mode=OneWay}" Style="{ThemeResource SubtitleTextBlockStyle}" />
+				<TextBlock Text="{x:Bind Model.SelectedDemo.Description, Mode=OneWay}" TextWrapping="Wrap" />
+
+				<CheckBox Content="{extensions:Localize Key=ShowWaveEdge}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" />
+				<CheckBox Content="{extensions:Localize Key=ShowWave}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWave, Mode=TwoWay}" />
+				<CheckBox Content="{extensions:Localize Key=ShowSamplePoints}" IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" />
+				<CheckBox Content="{extensions:Localize Key=ShowSource}" IsChecked="{x:Bind Model.RenderConfiguration.ShowObject, Mode=TwoWay}" />
+
+				<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Drawing}" />
+				<Button
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind Model.DrawingState.StartDrawingCommand}"
+                    Content="{extensions:Localize Key=StartDrawing}"
+                    IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
+                    Visibility="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}" />
+				<Grid RowSpacing="8" Visibility="{x:Bind Model.DrawingState.IsDrawing, Mode=OneWay}">
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="120" />
+					</Grid.ColumnDefinitions>
+					<ComboBox
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        Header="{extensions:Localize Key=DrawingTool}"
+                        ItemsSource="{x:Bind Model.DrawingState.DrawingTools}"
+                        SelectedItem="{x:Bind Model.DrawingState.ActiveTool, Mode=TwoWay}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<Grid
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="100"
+                        Height="100"
+                        VerticalAlignment="Top"
+                        Background="White">
+						<Grid Visibility="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
+							<Ellipse
+                                Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
+                                Stroke="Gray"
+                                StrokeThickness="1"
+                                Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}" />
+							<Rectangle
+                                Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
+                                Stroke="Gray"
+                                StrokeThickness="1"
+                                Visibility="{x:Bind Model.DrawingState.IsSquare, Mode=OneWay}" />
+						</Grid>
+						<Image
+                            Width="20"
+                            Height="20"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Source="ms-appx:///Assets/Eraser.png"
+                            Visibility="{x:Bind Model.DrawingState.IsEraser, Mode=OneWay}" />
+					</Grid>
+					<ContentControl
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        IsEnabled="{x:Bind Model.DrawingState.IsBrush, Mode=OneWay}">
+						<StackPanel Spacing="0">
+							<Slider
+                                Header="{extensions:Localize Key=BrushSize}"
+                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxBrushSize}"
+                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinBrushSize}"
+                                Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
+							<ComboBox
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Header="{extensions:Localize Key=SurfaceType}"
+                                ItemsSource="{x:Bind Model.SurfaceTypes}"
+                                SelectedItem="{x:Bind Model.DrawingState.SurfaceType, Mode=TwoWay}"
+                                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+							<ComboBox
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Header="{extensions:Localize Key=BrushShape}"
+                                ItemsSource="{x:Bind Model.ShapeTypes}"
+                                SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</StackPanel>
+					</ContentControl>
+					<Grid
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ColumnSpacing="8">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<TextBlock
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,8"
+                            FontSize="{ThemeResource ToolTipContentThemeFontSize}"
+                            Foreground="Orange"
+                            Text="{extensions:Localize Key=DrawingWarning}"
+                            TextAlignment="Center"
+                            TextWrapping="WrapWholeWords"
+                            Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}" />
+						<Button
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.ResetPresetCommand}"
+                            Content="{extensions:Localize Key=ClearDrawing}" />
+						<Button
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            Command="{x:Bind Model.ConfirmDrawingCommand}"
+                            Content="{extensions:Localize Key=SaveAndStart}"
+                            Style="{ThemeResource AccentButtonStyle}" />
+					</Grid>
+				</Grid>
+			</StackPanel>
+
+			</ScrollViewer>
+
+			<Button
+                Grid.Row="2"
+                Margin="8"
+                HorizontalAlignment="Center"
+                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+				<Button.Flyout>
+					<Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
+						<StackPanel Width="200" Spacing="8">
+							<mux:NumberBox
+                                x:Name="StepRadiusNumberBox"
+                                Header="{extensions:Localize Key=StepRadius}"
+                                LargeChange="1"
+                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxStepRadius}"
+                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinStepRadius}"
+                                SmallChange="0.1"
+                                SpinButtonPlacementMode="Inline"
+                                Value="{x:Bind Model.UnconfirmedRenderSettings.StepRadius, Mode=TwoWay}" />
+							<Button
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind Model.SetDefaultRenderSettingsCommand}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<SymbolIcon Symbol="Undo" />
+									<TextBlock Text="{extensions:Localize Key=SetDefault}" />
+								</StackPanel>
+							</Button>
+							<Button
+                                HorizontalAlignment="Stretch"
+                                Click="SaveRenderSettings_Click"
+                                Style="{ThemeResource AccentButtonStyle}">
+								<StackPanel Orientation="Horizontal" Spacing="8">
+									<SymbolIcon Symbol="Save" />
+									<TextBlock Text="{extensions:Localize Key=Set}" />
+								</StackPanel>
+							</Button>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+				<SymbolIcon Symbol="Setting" />
+			</Button>
+		</Grid>
+		<Grid
+            x:Name="SecondPane"
+            Grid.Column="1"
+            Padding="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<!--<InkToolbar
+                x:Name="inkToolbar"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                RequestedTheme="Light"
+                TargetInkCanvas="{x:Bind InkCanvas}" />-->
+			<Grid
+                x:Name="CanvasHolder"
+                Grid.Row="1"
+                Background="#F3F3F3"
+                SizeChanged="CanvasHolder_SizeChanged" />
+			<Canvas
+                x:Name="DrawingSurface"
+                Grid.Row="1"
+                Background="Transparent"
+                PointerExited="CanvasHolder_PointerExited"
+                PointerMoved="CanvasHolder_PointerMoved"
+                PointerPressed="CanvasHolder_PointerMoved"
+                PointerReleased="DrawingSurface_PointerReleased" />
+			<!--<InkCanvas Grid.Row="1" x:Name="InkCanvas" />-->
+
+			<ContentControl
+                Grid.Row="2"
+                HorizontalContentAlignment="Stretch"
+                IsEnabled="{x:Bind Model.IsLoading, Converter={StaticResource BoolNegationConverter}, Mode=OneWay}">
+				<sharedControls:SimulationControls
+                    x:Name="SimulationControls"
+                    d:Visibility="Collapsed"
+                    BackwardVisibility="{x:Bind Model.IsEasy, Mode=OneWay}"
+                    ForwardVisibility="{x:Bind Model.IsEasy, Mode=OneWay}"
+                    IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
+                    IsPaused="{x:Bind Model.SimulationPlayback.IsPaused, Mode=OneWay}"
+                    JumpBackCommand="{x:Bind Model.SimulationPlayback.JumpBackCommand}"
+                    JumpForwardCommand="{x:Bind Model.SimulationPlayback.JumpForwardCommand}"
+                    JumpSize="{x:Bind Model.SimulationPlayback.JumpSize, Mode=TwoWay}"
+                    JumpToEndCommand="{x:Bind Model.SimulationPlayback.JumpToEndCommand}"
+                    JumpToStartCommand="{x:Bind Model.ResetSimulationCommand}"
+                    PauseCommand="{x:Bind Model.SimulationPlayback.PauseCommand}"
+                    PlayCommand="{x:Bind Model.SimulationPlayback.PlayCommand}"
+                    RequestedTheme="Light"
+                    SimulationSpeed="{x:Bind Model.SimulationPlayback.PlaybackSpeed, Mode=TwoWay}"
+                    SpeedControlVisibility="Visible">
+					<sharedControls:SimulationControls.Background>
+						<AcrylicBrush
+                            BackgroundSource="Backdrop"
+                            FallbackColor="{ThemeResource SystemChromeMediumColor}"
+                            TintColor="{ThemeResource SystemChromeMediumColor}" />
+					</sharedControls:SimulationControls.Background>
+				</sharedControls:SimulationControls>
+			</ContentControl>
+		</Grid>
+		<Grid Background="#AA000000" Visibility="{x:Bind Model.IsLoading, Mode=OneWay}">
+			<mux:ProgressRing
+                Width="50"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                IsActive="{x:Bind Model.IsLoading, Mode=OneWay}" />
+		</Grid>
+	</Grid>
+</local:DemoViewBase>

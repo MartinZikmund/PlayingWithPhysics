@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reactive.Disposables;
 using Physics.HuygensPrinciple.Logic;
 using Physics.HuygensPrinciple.ViewModels;
 using Physics.Shared.UI.Rendering.Skia;
@@ -114,8 +116,19 @@ namespace Physics.HuygensPrinciple.Rendering
 		internal void DrawInitalScene(ISkiaCanvas sender, SKSurface args)
 		{
 			var sourcePaint = _renderConfiguration.ShowObject ? _sourceFillPaint : _emptyFillPaint;
+
 			var squareSize = GetSquareSize(sender);
 			var topLeft = GetRenderTopLeft(sender);
+
+			if (_scene is BitmapScenePreset bitmapPreset)
+			{
+				var key = bitmapPreset.Name;
+				if (_demoBitmaps.ContainsKey(key))
+				{
+					args.Canvas.DrawBitmap(_demoBitmaps[key], new SKRect(0, 0, _demoBitmaps[key].Width, _demoBitmaps[key].Height), new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
+				}
+			}
+
 			foreach (var shape in _scene)
 			{
 				var paint = shape.State switch
@@ -159,6 +172,28 @@ namespace Physics.HuygensPrinciple.Rendering
 					args.Canvas.DrawRect(topLeft.X + left, topLeft.Y + top, right - left, bottom - top, paint);
 				}
 			}
+		}
+
+		protected Dictionary<string, SKBitmap> _demoBitmaps = new Dictionary<string, SKBitmap>();
+
+		private CompositeDisposable _bitmapsDisposable = new CompositeDisposable();
+
+		public override void Initialized(ISkiaCanvas sender, SKSurface args)
+		{
+			// TODO: Allow async initialization in Skia
+
+			// Load assets
+			var demoAssetsPath = "Assets/Demo/";
+
+			foreach (var demo in DemoScenarios.Scenarios)
+			{
+				_demoBitmaps.Add(demo.Key, LoadImageFromPackage($"{demoAssetsPath}{demo.Key}.png").DisposeWith(_bitmapsDisposable));
+			}
+		}
+
+		public override void Dispose()
+		{
+			_bitmapsDisposable.Dispose();
 		}
 	}
 }

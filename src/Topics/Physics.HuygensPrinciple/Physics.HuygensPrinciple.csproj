@@ -128,8 +128,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\AdvancedVariantRenderer.cs" />
     <Compile Include="Rendering\EasyVariantRenderer.cs" />
+    <Compile Include="Rendering\GameVariantRenderer.cs" />
     <Compile Include="Rendering\HuygensPrincipleCanvasController.cs" />
     <Compile Include="Rendering\IHuygensVariantRenderer.cs" />
+    <Compile Include="ViewModels\DemoScenarioViewModel.cs" />
+    <Compile Include="ViewModels\DemoViewModel.cs" />
     <Compile Include="ViewModels\DrawingStateViewModel.cs" />
     <Compile Include="ViewModels\DrawingTool.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -137,6 +140,9 @@
     <Compile Include="ViewModels\RenderSettingsViewModel.cs" />
     <Compile Include="ViewModels\ScenePickerViewModel.cs" />
     <Compile Include="ViewModels\ScenePresetViewModel.cs" />
+    <Compile Include="Views\DemoView.xaml.cs">
+      <DependentUpon>DemoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -150,6 +156,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Demo\Chicxulub.png" />
+    <Content Include="Assets\Demo\Japan.png" />
+    <Content Include="Assets\Demo\Krakatoa.png" />
+    <Content Include="Assets\Demo\Santorini.png" />
+    <Content Include="Assets\Demo\Vesuvius.png" />
     <Content Include="Assets\Eraser.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
@@ -264,6 +275,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\DemoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

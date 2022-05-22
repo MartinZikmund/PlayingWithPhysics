@@ -147,7 +147,43 @@ Grafika: Petr Weinlich</value>
     <value>Zeď</value>
   </data>
   <data name="ClearDrawing" xml:space="preserve">
-    <value>Smazat vše</value>
+    <value>Zahodit změny</value>
+  </data>
+  <data name="Demo_Chicxulub_Description" xml:space="preserve">
+    <value>Chicxulubský kráter o průměru zhruba 200 kilometrů vznikl před 66 miliony lety dopadem meteoritu do mělkého moře. Změny podnebí vyvolané dopadem a zvýšenou vulkanickou činností jsou považovány za příčinu vyhynutí dinosaurů. 
+Dopad vyvolal obří vlnu tsunami, jejíž stopy v podobě vápencové brekcie se nachází například na Kubě. Její mocnost zde dosahuje až 180 metrů. Mapa zobrazuje, jak vypadala oblast dopadu před 66 miliony roky.</value>
+  </data>
+  <data name="Demo_Chicxulub_Name" xml:space="preserve">
+    <value>Chicxulubský kráter</value>
+  </data>
+  <data name="Demo_Japan_Description" xml:space="preserve">
+    <value>Zemětřesení o síle 8,9 Richterovy škály zasáhlo 11. března 2011 Japonsko. Epicentrum se nacházelo v moři zhruba 130 kilometrů od ostrova Honšú.
+Zdvih mořského dna o 5–8 metrů vyvolal vlny, které na pobřeží Japonska dosahovaly výšky  až 15 m.
+Katastrofou byla také zasažena jaderná elektrárna Fukušima I. Havárie elektrárny je považována za nejhorší od černobylské havárie z roku 1986.</value>
+  </data>
+  <data name="Demo_Japan_Name" xml:space="preserve">
+    <value>Japonsko</value>
+  </data>
+  <data name="Demo_Krakatoa_Description" xml:space="preserve">
+    <value>Krakatoa (dříve též Rakata) je aktivní sopkou v Sundském průlivu, mezi indonéskými ostrovy Jáva a Sumatra. 
+Roku 1883 vznikla z původní sopky při sebezničujícím výbuchu podmořská kaldera. Výbuch sopky byl doprovázen čtyřicetimetrovou tsunami, které podlehlo 36 000 lidí.
+V tsunami z roku 2018 zemřelo 400 lidí.</value>
+  </data>
+  <data name="Demo_Krakatoa_Name" xml:space="preserve">
+    <value>Sopka Krakatoa</value>
+  </data>
+  <data name="Demo_Santorini_Description" xml:space="preserve">
+    <value>Souostroví Santorini je zbytkem sopečného ostrova Théra. K sopečné erupci došlo na přelomu 17. a 16. století před naším letopočtem. Při erupci se propadl střed ostrova. 
+Tato událost je spojována se zničením bájné Atlantidy či deseti egyptskými ranami. Tsunami pustošila okolní ostrovy a pobřeží Kréty a je některými považována za příčinu zániku minojské civilizace.</value>
+  </data>
+  <data name="Demo_Santorini_Name" xml:space="preserve">
+    <value>Santorini (Théra)</value>
+  </data>
+  <data name="Demo_Vesuvius_Description" xml:space="preserve">
+    <value>Italská sopka Vesuv proslula svým  výbuchem v roce 79, při kterém byly zničeny města Pompeje a Herculaneum. Jelikož se sopka nachází v blízkosti moře, je možné, že některá z příštích erupcí vyvolá tsunami, která ohrozí hustě obydlené pobřeží neapolského zálivu.</value>
+  </data>
+  <data name="Demo_Vesuvius_Name" xml:space="preserve">
+    <value>Sopka Vesuv</value>
   </data>
   <data name="Drawing" xml:space="preserve">
     <value>Kreslení</value>
@@ -205,6 +241,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ScenePreset_Square" xml:space="preserve">
     <value>Čtverec</value>
+  </data>
+  <data name="SelectDemo" xml:space="preserve">
+    <value>Vyberte si demo:</value>
   </data>
   <data name="SenePreset_Point" xml:space="preserve">
     <value>Bod</value>
