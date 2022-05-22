@@ -30,7 +30,7 @@ public class TableService : ITableService<TableRow>
 			return Array.Empty<TableRow>();
 		}
 
-		var trajectory = _physicsService.CalculateTrajectory();
+		var trajectory = _physicsService.CalculateTrajectory();		
 
 		List<TableRow> table = new List<TableRow>();
 
@@ -43,10 +43,10 @@ public class TableService : ITableService<TableRow>
 				var h = _appPreferences.LengthUnit == LengthUnit.Metric ? item.H : MathHelpers.MetersToAstronomicalUnits(item.H);
 				if (item.H < 0)
 				{
-					table.Add(new TableRow(item.Time, x, y, item.V, 0));
+					table.Add(new TableRow(item.Time, x, y, item.Phi, _physicsService.Input.Rz, 0, item.V));
 					return table;
 				}
-				table.Add(new TableRow(item.Time, x, y, item.V, h));
+				table.Add(new TableRow(item.Time, x, y, item.Phi, item.R, h, item.V));
 			}
 		}
 

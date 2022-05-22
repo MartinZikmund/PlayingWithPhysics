@@ -75,6 +75,16 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 			eventArgs.Column.Header = $"h ({lengthUnit})";
 		}
 
+		if (eventArgs.Column.Header.ToString() == "Phi")
+		{
+			eventArgs.Column.Header = $"φ (°)";
+		}		
+
+		if (eventArgs.Column.Header.ToString() == "R")
+		{
+			eventArgs.Column.Header = $"r (m)";
+		}
+
 		if (eventArgs.Column.Header.ToString() == "V")
 		{
 			eventArgs.Column.Header = "v (m.s⁻¹)";

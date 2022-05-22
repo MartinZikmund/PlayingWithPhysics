@@ -2,13 +2,15 @@
 
 public class TrajectoryPoint
 {
-	public TrajectoryPoint(double time, double x, double y, double v, double h)
+	public TrajectoryPoint(double time, double x, double y, double phi, double r, double h, double v)
 	{
 		Time = time;
 		X = x;
 		Y = y;
-		V = v;
+		Phi = phi;
+		R = r;
 		H = h;
+		V = v;
 	}
 
 	public double Time { get; set; }
@@ -17,7 +19,11 @@ public class TrajectoryPoint
 
 	public double Y { get; }
 
-	public double V { get; }
+	public double Phi { get; }
+
+	public double R { get; }
 
 	public double H { get; }
+
+	public double V { get; }
 }
