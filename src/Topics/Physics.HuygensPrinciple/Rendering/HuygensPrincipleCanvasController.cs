@@ -113,21 +113,6 @@ namespace Physics.HuygensPrinciple.Rendering
 			Renderer?.Draw(sender, args);
 		}
 
-		internal void DrawBackground(ISkiaCanvas sender, SKSurface args)
-		{
-			var squareSize = GetSquareSize(sender);
-			var topLeft = GetRenderTopLeft(sender);
-
-			if (_scene is BitmapScenePreset bitmapPreset)
-			{
-				var key = bitmapPreset.Name;
-				if (_demoBitmaps.ContainsKey(key))
-				{
-					args.Canvas.DrawBitmap(_demoBitmaps[key], new SKRect(0, 0, _demoBitmaps[key].Width, _demoBitmaps[key].Height), new SKRect(topLeft.X, topLeft.Y, topLeft.X + squareSize, topLeft.Y + squareSize));
-				}
-			}
-		}
-
 		internal void DrawInitalScene(ISkiaCanvas sender, SKSurface args)
 		{
 			var sourcePaint = _renderConfiguration.ShowObject ? _sourceFillPaint : _emptyFillPaint;

@@ -234,13 +234,6 @@
 					<Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
 						<StackPanel Width="200" Spacing="8">
 							<mux:NumberBox
-                                x:Name="FieldSizeNumberBox"
-                                Header="{extensions:Localize Key=FieldSize}"
-                                Maximum="{x:Bind logic:RenderSettingsDefaults.MaxFieldSize}"
-                                Minimum="{x:Bind logic:RenderSettingsDefaults.MinFieldSize}"
-                                SpinButtonPlacementMode="Inline"
-                                Value="{x:Bind Model.UnconfirmedRenderSettings.FieldSize, Mode=TwoWay}" />
-							<mux:NumberBox
                                 x:Name="StepRadiusNumberBox"
                                 Header="{extensions:Localize Key=StepRadius}"
                                 LargeChange="1"

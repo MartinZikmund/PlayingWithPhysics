@@ -76,7 +76,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public RenderConfigurationViewModel RenderConfiguration { get; } = new RenderConfigurationViewModel();
 
-		public RenderSettingsViewModel SavedRenderSettings { get; private set; } = new RenderSettingsViewModel();
+		public RenderSettingsViewModel SavedRenderSettings { get; protected set; } = new RenderSettingsViewModel();
 
 		public bool ShowDrawingWarning =>
 			_difficulty == DifficultyOption.Advanced &&
@@ -90,7 +90,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 			await RaisePropertyChanged(nameof(ShowDrawingWarning));
 		}
 
-		public RenderSettingsViewModel UnconfirmedRenderSettings { get; private set; } = new RenderSettingsViewModel();
+		public RenderSettingsViewModel UnconfirmedRenderSettings { get; protected set; } = new RenderSettingsViewModel();
 
 		public ICommand PickScenePresetCommand => GetOrCreateAsyncCommand(PickSceneAsync);
 
@@ -104,7 +104,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 
 		public ICommand SetDefaultRenderSettingsCommand => GetOrCreateCommand(SetDefaultRenderSettings);
 
-		private void SetDefaultRenderSettings()
+		protected virtual void SetDefaultRenderSettings()
 		{
 			UnconfirmedRenderSettings = new RenderSettingsViewModel();
 		}
@@ -165,7 +165,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public async Task DrawSceneAsync(ScenePreset scene)
 		{
 			var wasPaused = SimulationPlayback.IsPaused;
-			if (scene == null)
+			if (scene == null || _controller == null)
 			{
 				return;
 			}

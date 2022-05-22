@@ -91,7 +91,6 @@ namespace Physics.HuygensPrinciple.Rendering
 
 			args.Canvas.Clear(new SKColor(255, 255, 255, 255));
 
-			_controller.DrawBackground(sender, args);
 			if (!_controller._drawingState.IsDrawing)
 			{
 				var squareSize = _controller.GetSquareSize(sender);

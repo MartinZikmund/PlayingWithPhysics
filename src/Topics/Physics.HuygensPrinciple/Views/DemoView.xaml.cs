@@ -24,7 +24,6 @@ namespace Physics.HuygensPrinciple.Views
 		{
 			InitializeComponent();
 			Unloaded += DemoView_Unloaded;
-			FieldSizeNumberBox.SetupFormatting(1, 1, 0, 1, 10);
 			StepRadiusNumberBox.SetupFormatting(0.1, 1, 1, 0.5, 1);
 		}
 

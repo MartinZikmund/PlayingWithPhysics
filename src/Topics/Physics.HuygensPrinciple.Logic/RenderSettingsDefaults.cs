@@ -5,13 +5,16 @@ namespace Physics.HuygensPrinciple.Logic
 	public static class RenderSettingsDefaults
 	{
 		public const int DefaultFieldSize = 1080;
+		public const int DefaultDemoFieldSize = 1080;
+
+		public const int DefaultDemoStepRadius = 12;
 
 		public const int MinFieldSize = 300;
 		public const int MaxFieldSize = 3000;
 
 		public static float MinStepRadius => 4;
 
-		public static float DefaultStepRadius => 33;
+		public const float DefaultStepRadius = 33;
 
 		public static float MaxStepRadius => 2 * DefaultStepRadius;
 

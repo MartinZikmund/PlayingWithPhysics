@@ -52,6 +52,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 				}
 
 				_scenePreset = new BitmapScenePreset(huygensField, Scenario.Key);
+				_scenePreset.Add(Scenario.DefaultSource);
 			}
 			
 			return _scenePreset;

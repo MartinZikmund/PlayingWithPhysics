@@ -9,6 +9,25 @@ namespace Physics.HuygensPrinciple.ViewModels
 		public DemoViewModel()
 		{
 			SelectedDemo = Demos.First();
+			SavedRenderSettings = new RenderSettingsViewModel()
+			{
+				FieldSize = RenderSettingsDefaults.DefaultDemoFieldSize,
+				StepRadius = RenderSettingsDefaults.DefaultDemoStepRadius
+			};
+			UnconfirmedRenderSettings = new RenderSettingsViewModel()
+			{
+				FieldSize = RenderSettingsDefaults.DefaultDemoFieldSize,
+				StepRadius = RenderSettingsDefaults.DefaultDemoStepRadius
+			};
+		}
+
+		protected override void SetDefaultRenderSettings()
+		{
+			UnconfirmedRenderSettings = new RenderSettingsViewModel()
+			{
+				FieldSize = RenderSettingsDefaults.DefaultDemoFieldSize,
+				StepRadius = RenderSettingsDefaults.DefaultDemoStepRadius
+			};
 		}
 
 		public DemoScenarioViewModel[] Demos { get; } = DemoScenarios.Scenarios.Select(s => new DemoScenarioViewModel(s)).ToArray();
