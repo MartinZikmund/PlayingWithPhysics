@@ -147,7 +147,43 @@ Graphics: Petr Weinlich</value>
     <value>Wall</value>
   </data>
   <data name="ClearDrawing" xml:space="preserve">
-    <value>Clear all</value>
+    <value>Undo all changes</value>
+  </data>
+  <data name="Demo_Chicxulub_Description" xml:space="preserve">
+    <value>The Chicxulub crater, about 200 kilometers in diameter, was formed 66 million years ago by a meteorite impact into a shallow sea. Climate change caused by impact and increased volcanic activity is considered to be the cause of the extinction of dinosaurs.
+The impact caused a giant tsunami, whose traces of limestone breccia are found in Cuba, for example. Its thickness here reaches up to 180 meters. The map shows what the impact area looked like 66 million years ago.</value>
+  </data>
+  <data name="Demo_Chicxulub_Name" xml:space="preserve">
+    <value>Chicxulub crater</value>
+  </data>
+  <data name="Demo_Japan_Description" xml:space="preserve">
+    <value>An earthquake measuring 8.9 on the Richter scale struck Japan on March 11, 2011. The epicenter was located in the sea about 130 kilometers from the island of Honshu.
+The rise of the seabed by 5-8 meters caused waves that reached a height of 15 meters on the coast of Japan.
+The Fukushima I nuclear power plant was also affected by the disaster. The power plant accident is considered to be the worst since the 1986 Chernobyl accident.</value>
+  </data>
+  <data name="Demo_Japan_Name" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="Demo_Krakatoa_Description" xml:space="preserve">
+    <value>Krakatoa (formerly Rakata) is an active volcano in the Sunda Strait, between the Indonesian islands of Java and Sumatra.
+It was formed in 1883 from the original volcano during the self-destructive eruption of the submarine caldera. The eruption of the volcano was accompanied by a 40-meter tsunami that killed 36,000 people.
+400 people died in the 2018 tsunami.</value>
+  </data>
+  <data name="Demo_Krakatoa_Name" xml:space="preserve">
+    <value>Krakatoa</value>
+  </data>
+  <data name="Demo_Santorini_Description" xml:space="preserve">
+    <value>The Santorini archipelago is a remnant of the volcanic island of Thera. The volcanic eruption occurred at the turn of the 17th and 16th centuries BC. The center of the island collapsed during the eruption.
+This event is associated with the destruction of the mythical Atlantis or the ten Egyptian wounds. The tsunami ravaged the surrounding islands and the coast of Crete and is considered by some to be the cause of the demise of Minoan civilization.</value>
+  </data>
+  <data name="Demo_Santorini_Name" xml:space="preserve">
+    <value>Santorini (Thera)</value>
+  </data>
+  <data name="Demo_Vesuvius_Description" xml:space="preserve">
+    <value>The Italian volcano Mount Vesuvius became famous for its eruption in 79, during which the cities of Pompeii and Herculaneum were destroyed. As the volcano is located near the sea, it is possible that some of the next eruptions will cause a tsunami that will threaten the densely populated coast of the Gulf of Naples.</value>
+  </data>
+  <data name="Demo_Vesuvius_Name" xml:space="preserve">
+    <value>Vesuvius</value>
   </data>
   <data name="Drawing" xml:space="preserve">
     <value>Drawing</value>
@@ -208,6 +244,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="ScenePreset_Square" xml:space="preserve">
     <value>Square</value>
+  </data>
+  <data name="SelectDemo" xml:space="preserve">
+    <value>Select a demo:</value>
   </data>
   <data name="Set" xml:space="preserve">
     <value>Set</value>

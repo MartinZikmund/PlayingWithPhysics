@@ -16,7 +16,7 @@ namespace Physics.HuygensPrinciple.ViewModels
 	public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<HuygensPrincipleCanvasController>
 	{
 		private DifficultyOption _difficulty;
-		private HuygensPrincipleCanvasController _controller;
+		protected HuygensPrincipleCanvasController _controller;
 
 		public override void Prepare(SimulationNavigationModel parameter)
 		{

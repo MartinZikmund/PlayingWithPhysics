@@ -90,6 +90,8 @@ namespace Physics.HuygensPrinciple.Rendering
 			}
 
 			args.Canvas.Clear(new SKColor(255, 255, 255, 255));
+
+			_controller.DrawBackground(sender, args);
 			if (!_controller._drawingState.IsDrawing)
 			{
 				var squareSize = _controller.GetSquareSize(sender);
@@ -127,6 +129,7 @@ namespace Physics.HuygensPrinciple.Rendering
 			canvas.Clear(SKColors.Transparent);
 			if (_previousStep == null || _previousStep.WaveBorder.Length == 0)
 			{
+				if (_controller._scene.Redrawn)
 				foreach (var point in _controller._scene.SignificantPoints)
 				{
 					canvas.DrawCircle(point.X * _controller._manager.FieldWidth, point.Y * _controller._manager.FieldWidth, 2, _controller._significantPointPaint);

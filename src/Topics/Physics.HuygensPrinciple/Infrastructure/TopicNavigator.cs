@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using MvvmCross;
 using MvvmCross.Navigation;
+using Physics.HuygensPrinciple.ViewModels;
 using Physics.SelfStudy;
 using Physics.Shared.UI.Infrastructure.Topics;
+using Physics.Shared.UI.Localization;
 using Physics.Shared.UI.Models.Navigation;
-using Physics.HuygensPrinciple.ViewModels;
 using Windows.ApplicationModel;
 
 namespace Physics.HuygensPrinciple.Infrastructure
@@ -22,15 +22,15 @@ namespace Physics.HuygensPrinciple.Infrastructure
 
 		public bool HasStudyMode => false;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
-		public string GameNameOverride => null;
+		public string GameNameOverride => Localizer.Instance.GetString("Demo");
 
 		public int Id => 11;
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
+		public async Task GoToGameAsync() => await _navigationService.Navigate<DemoViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = DifficultyOption.Advanced });
 
 		public async Task GoToStudyModeAsync()
 		{
