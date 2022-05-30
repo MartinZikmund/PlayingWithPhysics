@@ -19,7 +19,7 @@
     <PackageReference Update="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" Version="7.1.2" />
 
     <!-- SkiaSharp -->
-    <PackageReference Update="SkiaSharp" Version="2.80.3" />
+    <PackageReference Update="SkiaSharp" Version="2.88.0" />
     <PackageReference Update="SkiaSharp.Views" Version="2.88.0" />
 
     <!-- MvvmCross-->
