@@ -246,7 +246,7 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 		set => _selectedPreset = value;
 	}
 
-	private void StartSimulation()
+	protected virtual void StartSimulation()
 	{
 		if (_controller == null || Input == null)
 		{

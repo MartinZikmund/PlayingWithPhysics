@@ -22,9 +22,9 @@ public class DemoViewModel : MainViewModel
 
 	public List<DemoItemViewModel> DemoList { get; } = new List<DemoItemViewModel>()
 	{
-		new DemoItemViewModel(Localizer.Instance.GetString("FirstCosmicVelocity"), new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), 2, 7900.229, 0, 90), ColorHelper.ToColor(PlanetPresets.Presets[0].ColorHex).ToSKColor()),
-		new DemoItemViewModel(Localizer.Instance.GetString("EllipticTrajectoryOfHalleysComet"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5.25, 12), 912, 0, 90), SKColors.Red),
-		new DemoItemViewModel(Localizer.Instance.GetString("HyperbolicTrajectory"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5, 11), new BigNumber(4, 4), -75, 90), SKColors.Red)
+		new DemoItemViewModel(Localizer.Instance.GetString("FirstCosmicVelocity"), new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), 2, 7900.229, 0, 90), ColorHelper.ToColor(PlanetPresets.Earth.ColorHex).ToSKColor()),
+		new DemoItemViewModel(Localizer.Instance.GetString("EllipticTrajectoryOfHalleysComet"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5.25, 12), 912, 0, 90), ColorHelper.ToColor(PlanetPresets.Sun.ColorHex).ToSKColor()),
+		new DemoItemViewModel(Localizer.Instance.GetString("HyperbolicTrajectory"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5, 11), new BigNumber(4, 4), -75, 90), ColorHelper.ToColor(PlanetPresets.Sun.ColorHex).ToSKColor())
 	};
 
 	public DemoItemViewModel SelectedDemo { get; set; }
@@ -38,7 +38,7 @@ public class DemoViewModel : MainViewModel
 		StartSimulation();
 	}
 
-	private void StartSimulation()
+	protected override void StartSimulation()
 	{
 		if (_controller == null || SelectedDemo?.Input == null)
 		{
@@ -50,8 +50,8 @@ public class DemoViewModel : MainViewModel
 		Input = null;
 		Dt = SelectedDemo.Input.Dt;
 		Input = SelectedDemo.Input;		
-		_controller.PlanetPaint.Color = SelectedDemo.Color;
 		_controller.SetInputConfiguration(Input, Dt);
+		_controller.PlanetPaint.Color = SelectedDemo.Color;
 		_controller.Play();
 	}
 
