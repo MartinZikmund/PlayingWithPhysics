@@ -35,8 +35,7 @@ steps:
   inputs:
     command: 'restore'
     restoreSolution: '$(solution)'
-    feedsToUse: 'select'
-    vstsFeed: 'e39a0172-6018-49ae-b9df-d1af9af4cf0b'
+    feedsToUse: 'config'
 
 - task: VersionAPPX@2
   inputs:
