@@ -127,6 +127,7 @@
       <DependentUpon>MathWebView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Json\ContentConverter.cs" />
+    <Compile Include="LaTeX\CsBreakingEngine.cs" />
     <Compile Include="LaTeX\CsharpMathXaml.cs" />
     <Compile Include="LaTeX\LaTeXView.xaml.cs">
       <DependentUpon>LaTeXView.xaml</DependentUpon>
@@ -186,12 +187,12 @@
   <ItemGroup>
     <PackageReference Include="CSharpMath.SkiaSharp" />
     <PackageReference Include="Fody" PrivateAssets="all">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>      
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations" />
     <PackageReference Include="Microsoft.UI.Xaml" />
-    <PackageReference Include="MvvmLight" />      
+    <PackageReference Include="MvvmLight" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="PropertyChanged.Fody" />
     <PackageReference Include="ReactiveUI" />

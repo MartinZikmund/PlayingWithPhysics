@@ -1,15 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Physics.SelfStudy.Html;
 using Physics.SelfStudy.Json;
-using Physics.SelfStudy.Models;
+using Physics.SelfStudy.LaTeX;
 using Physics.SelfStudy.Models.Contents;
 using Physics.SelfStudy.Views;
 using Physics.Shared.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Typography.TextBreak;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage;
@@ -21,45 +19,52 @@ using Windows.UI.Xaml.Hosting;
 
 namespace Physics.SelfStudy
 {
-    public static class StudyModeManager
-    {
-        public static async Task InitializeAsync()
-        {
-            await HtmlHelpers.InitializeAsync();
-        }
+	public static class StudyModeManager
+	{
+		private static bool _initialized = false;
 
-        public static async Task OpenStudyModeAsync(Uri backingFileUri, string imageFolderPath)
-        {
-            await InitializeAsync();            
+		public static async Task InitializeAsync()
+		{
+			if (!_initialized)
+			{
+				_initialized = true;
+				await HtmlHelpers.InitializeAsync();
+				CSharpMath.Rendering.Text.TextLaTeXParser.AdditionalBreakingEngines.Add(new CsBreakingEngine());
+			}
+		}
 
-            var resourceLoader = new ResourceLoader("Physics.SelfStudy/Resources");
+		public static async Task OpenStudyModeAsync(Uri backingFileUri, string imageFolderPath)
+		{
+			await InitializeAsync();
 
-            // open new application view
-            var newWindow = await AppWindow.TryCreateAsync();
-            var appWindowContentFrame = new Frame();
-            appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri + "|" + imageFolderPath);
+			var resourceLoader = new ResourceLoader("Physics.SelfStudy/Resources");
 
-            // Attach the XAML content to the window.
-            ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
-            //newWindow.Closed += NewWindow_Closed;
-            newWindow.Title = resourceLoader.GetString("WindowTitle");
+			// open new application view
+			var newWindow = await AppWindow.TryCreateAsync();
+			var appWindowContentFrame = new Frame();
+			appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri + "|" + imageFolderPath);
 
-            TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["AppTitleBarColor"]);
-            newWindow.RequestSize(new Size(1280, 768));
-            var shown = await newWindow.TryShowAsync();
-        }
+			// Attach the XAML content to the window.
+			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
+			//newWindow.Closed += NewWindow_Closed;
+			newWindow.Title = resourceLoader.GetString("WindowTitle");
 
-        public static async Task<Chapter[]> ReadDefinitionFileAsync(StorageFile file)
-        {
-            var json = await FileIO.ReadTextAsync(file);
-            var options = new JsonSerializerSettings()
-            {
-                Converters =
-                {
-                    new ContentConverter()
-                }
-            };
-            return JsonConvert.DeserializeObject<Chapter[]>(json, options);
-        }
-    }
+			TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["AppTitleBarColor"]);
+			newWindow.RequestSize(new Size(1280, 768));
+			var shown = await newWindow.TryShowAsync();
+		}
+
+		public static async Task<Chapter[]> ReadDefinitionFileAsync(StorageFile file)
+		{
+			var json = await FileIO.ReadTextAsync(file);
+			var options = new JsonSerializerSettings()
+			{
+				Converters =
+				{
+					new ContentConverter()
+				}
+			};
+			return JsonConvert.DeserializeObject<Chapter[]>(json, options);
+		}
+	}
 }

@@ -35,6 +35,7 @@ using XInheritControl = SkiaSharp.Views.UWP.SKXamlCanvas;
 using XProperty = Windows.UI.Xaml.DependencyProperty;
 using MathPainter = CSharpMath.SkiaSharp.MathPainter;
 using TextPainter = CSharpMath.SkiaSharp.TextPainter;
+using Thickness = Windows.UI.Xaml.Thickness;
 namespace CSharpMath.UWPUno
 {
     [global::Windows.UI.Xaml.Markup.ContentProperty(Name = nameof(LaTeX))]
@@ -237,7 +238,7 @@ namespace CSharpMath.UWPUno
             e.Surface.Canvas.Clear();
             var canvas = e.Surface.Canvas;
 #endif
-            Painter.Draw(canvas, TextAlignment, Padding, (float)DisplacementX, (float)DisplacementY);
+            Painter.Draw(canvas, TextAlignment, new Structures.Thickness((float)Padding.Left, (float)Padding.Top, (float)Padding.Right, (float)Padding.Bottom), (float)DisplacementX, (float)DisplacementY);
         }
         /// <summary>Requires touch events to be enabled in SkiaSharp/Xamarin.Forms</summary>
         public bool EnablePanning { get => (bool)GetValue(DisablePanningProperty); set => SetValue(DisablePanningProperty, value); }
@@ -245,7 +246,7 @@ namespace CSharpMath.UWPUno
 
         static readonly System.Reflection.ParameterInfo[] drawMethodParams = typeof(TPainter)
           .GetMethod(nameof(Painter<XCanvas, TContent, XColor>.Draw),
-            new[] { typeof(XCanvas), typeof(TextAlignment), typeof(Thickness), typeof(float), typeof(float) }).GetParameters();
+            new[] { typeof(XCanvas), typeof(TextAlignment), typeof(Structures.Thickness), typeof(float), typeof(float) }).GetParameters();
         static T? Nullable<T>(T value) where T : struct => new T?(value);
         public (XColor glyph, XColor textRun)? GlyphBoxColor { get => ((XColor glyph, XColor textRun)?)GetValue(GlyphBoxColorProperty); set => SetValue(GlyphBoxColorProperty, value); }
         public static readonly XProperty GlyphBoxColorProperty = CreateProperty<BaseView<TPainter, TContent>, (XColor glyph, XColor textRun)?>(nameof(GlyphBoxColor), false,
@@ -277,7 +278,7 @@ namespace CSharpMath.UWPUno
         public TextAlignment TextAlignment { get => (TextAlignment)GetValue(TextAlignmentProperty); set => SetValue(TextAlignmentProperty, value); }
         public static readonly XProperty TextAlignmentProperty = CreateProperty<BaseView<TPainter, TContent>, TextAlignment>(nameof(Rendering.FrontEnd.TextAlignment), false, p => (TextAlignment)drawMethodParams[1].DefaultValue, (p, v) => { });
         public Thickness Padding { get => (Thickness)GetValue(PaddingProperty); set => SetValue(PaddingProperty, value); }
-        public static readonly XProperty PaddingProperty = CreateProperty<BaseView<TPainter, TContent>, Thickness>(nameof(Padding), false, p => (Thickness)(drawMethodParams[2].DefaultValue ?? new Thickness()), (p, v) => { });
+        public static readonly XProperty PaddingProperty = CreateProperty<BaseView<TPainter, TContent>, Thickness>(nameof(Padding), false, p => (Thickness)((drawMethodParams[2].DefaultValue as Thickness?) ?? new Thickness()), (p, v) => { });
         public double DisplacementX { get => (double)GetValue(DisplacementXProperty); set => SetValue(DisplacementXProperty, value); }
         public static readonly XProperty DisplacementXProperty = CreateProperty<BaseView<TPainter, TContent>, double>(nameof(DisplacementX), false, p => Convert.ToDouble(drawMethodParams[3].DefaultValue), (p, v) => { });
         public double DisplacementY { get => (double)GetValue(DisplacementYProperty); set => SetValue(DisplacementYProperty, value); }
