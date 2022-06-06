@@ -27,7 +27,7 @@ name: $(major).$(minor).$(rev:r).0
 
 steps:
 - checkout: self
-  lfs: false
+  lfs: true
   
 - task: NuGetToolInstaller@1
 
