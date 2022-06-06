@@ -256,4 +256,7 @@ Grafika: Petr Weinlich</value>
   <data name="HyperbolicTrajectory" xml:space="preserve">
     <value>Hyperbolická trajektorie</value>
   </data>
+  <data name="Preset_Custom" xml:space="preserve">
+    <value>Jiné těleso</value>
+  </data>
 </root>

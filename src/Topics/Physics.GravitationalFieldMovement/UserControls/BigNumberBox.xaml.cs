@@ -45,6 +45,16 @@ namespace Physics.GravitationalFieldMovement.UserControls
 
 		private void UpdateValue()
 		{
+			if (double.IsNaN(Mantisa))
+			{
+				Mantisa = 1;
+			}
+
+			if (Exponent < -1000) // When NumberBox is left empty, int.MinValue is used
+			{
+				Exponent = 1;
+			}
+			
 			Value = new BigNumber(Mantisa, Exponent);
 		}
 

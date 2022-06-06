@@ -77,6 +77,7 @@
             x:Name="RzBigNumberBox"
             Grid.Row="1"
             Grid.Column="1"
+			IsEnabled="{x:Bind extensions:BoolFunctions.Not(Model.SelectedPreset.Preset.IsReadOnly), Mode=OneWay}"
             Visibility="{x:Bind Model.IsAdvanced}"
             Value="{x:Bind Model.RzBigNumber, Mode=TwoWay}" />
 
@@ -89,6 +90,7 @@
             x:Name="MzBigNumberBox"
             Grid.Row="2"
             Grid.Column="1"
+			IsEnabled="{x:Bind extensions:BoolFunctions.Not(Model.SelectedPreset.Preset.IsReadOnly), Mode=OneWay}"
             Visibility="{x:Bind Model.IsAdvanced}"
             Value="{x:Bind Model.MzBigNumber, Mode=TwoWay}" />
 

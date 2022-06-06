@@ -68,7 +68,7 @@ public class InputConfiguration
 
 		if (ConicSec == MovementType.Ellipse)
 		{
-			Psi = MathHelpers.Clamp(-1, (1 - R0 / A) / Eps, 1);
+			Psi = Math.Round(MathHelpers.Clamp(-1, (1 - R0 / A) / Eps, 1), 8);
 			if (SigBeta == 0)
 			{
 				E0 = Math.Sign(Chi) == -1 ? Math.PI : 0;
@@ -83,7 +83,7 @@ public class InputConfiguration
 
 		if (ConicSec == MovementType.Hyperbola)
 		{
-			Psi = (1 - R0 / A) / Eps;
+			Psi = Math.Round((1 - R0 / A) / Eps, 8);
 			H0 = MathHelpers.Acosh(Psi.Value) * SigBeta;
 			M0 = Eps * Math.Sinh(H0.Value) - H0.Value;
 		}

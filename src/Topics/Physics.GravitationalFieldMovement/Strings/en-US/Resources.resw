@@ -256,4 +256,7 @@ Graphics: Petr Weinlich</value>
   <data name="HyperbolicTrajectory" xml:space="preserve">
     <value>Hyperbolic trajectory</value>
   </data>
+  <data name="Preset_Custom" xml:space="preserve">
+    <value>Custom body</value>
+  </data>
 </root>

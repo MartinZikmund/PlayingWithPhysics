@@ -63,7 +63,7 @@ public class InputDialogViewModel : ViewModelBase
 	private bool _preventPresetChanges = false;
 
 	public bool IsAdvanced { get; }
-	
+
 	public BigNumber RzBigNumber
 	{
 		get => _rzBigNumber;
@@ -105,9 +105,28 @@ public class InputDialogViewModel : ViewModelBase
 			return;
 		}
 
+		if (SelectedPreset == null)
+		{
+			var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
+			SelectedPreset = preset;
+		}
+
+		if (SelectedPreset == null)
+		{
+			var preset = Presets.FirstOrDefault(p => !p.Preset.IsReadOnly);
+			preset.Preset.R = RzBigNumber;
+			preset.Preset.M = MzBigNumber;
+			SelectedPreset = preset;
+		}
+
 		//Check if new Rz and Mz are valid given the selected planet
-		var preset = Presets.FirstOrDefault(p => p.Preset.R == RzBigNumber && p.Preset.M == MzBigNumber);
-		SelectedPreset = preset;
+		if (!SelectedPreset.Preset.IsReadOnly)
+		{
+			SelectedPreset.Preset.R = RzBigNumber;
+			SelectedPreset.Preset.M = MzBigNumber;
+		}
+		
+
 	}
 
 	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "AU";

@@ -20,7 +20,7 @@
             Grid.Column="0"
 			SpinButtonPlacementMode="Hidden"
             Value="{x:Bind Mantisa, Mode=TwoWay}" />
-		<TextBlock Text=". 10^" Grid.Column="1" />
+		<TextBlock Text="× 10^" Grid.Column="1" />
 		<controls:NumberBox
             x:Name="ExponentNumberBox"
             Grid.Column="2"

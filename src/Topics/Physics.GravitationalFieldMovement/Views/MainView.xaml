@@ -134,8 +134,9 @@
                         <TextBlock FontWeight="SemiBold">
                             <Run Text="{extensions:Localize Key=Radius}" /><Run Text=": " />
                             <Run Text="{x:Bind Model.RadiusText, Mode=OneWay}" />
-                        </TextBlock>
-                    </StackPanel>
+							<Run Text="km"/>
+						</TextBlock>
+					</StackPanel>
                     <TextBlock
                         Grid.Row="4"
                         Margin="0,0,0,8"
