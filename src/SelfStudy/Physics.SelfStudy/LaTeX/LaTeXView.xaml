@@ -12,6 +12,8 @@
     <Grid x:Name="Wrapper" CornerRadius="2">
         <unouwp:TextView
             x:Name="View"
+			Padding="0,0,8,0"
+			Margin="4"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"            
             TextColor="Black"
