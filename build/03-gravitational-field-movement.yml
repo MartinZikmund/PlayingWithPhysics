@@ -27,12 +27,14 @@ name: $(major).$(minor).$(rev:r).0
 
 steps:
 - checkout: self
-  lfs: true
+  lfs: false
   
-- task: DotNetCoreCLI@2
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
   inputs:
     command: 'restore'
-    projects: '$(solution)'
+    restoreSolution: '$(solution)'
     feedsToUse: 'config'
 
 - task: VersionAPPX@2
