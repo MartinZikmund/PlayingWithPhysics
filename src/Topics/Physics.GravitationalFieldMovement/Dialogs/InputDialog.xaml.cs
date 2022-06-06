@@ -22,6 +22,7 @@ public sealed partial class InputDialog : ContentDialog
 	private void SetupNumberBoxes()
 	{
 		HBigNumberBox.MantisaBox.Minimum = 0.0;
+		V0BigNumberBox.MantisaBox.Minimum = 0.0;
 		ElevationAngleNumberBox.SetupFormatting(0.1, smallChange: 0.1, largeChange: 1);
 		InitialCoordinateAngleNumberBox.SetupFormatting(0.1, smallChange: 0.1, largeChange: 1);
 	}

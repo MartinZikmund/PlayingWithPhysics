@@ -68,11 +68,30 @@
             Style="{ThemeResource HeaderStyle}"
             Text="{extensions:Localize Key=Planet}"
             Visibility="{x:Bind Model.IsAdvanced}" />
+
+		<ComboBox
+			Margin="0,8,0,0"
+			Grid.Row="0"
+			HorizontalAlignment="Stretch"
+			Grid.Column="1"
+            Visibility="{x:Bind Model.IsAdvanced}"
+			PlaceholderText="{extensions:Localize Key=PlanetPresetPlaceholder}"
+			ItemsSource="{x:Bind Model.Presets}"
+			SelectedItem="{x:Bind Model.SelectedPreset, Mode=TwoWay}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate x:DataType="viewmodels:PlanetPresetViewModel">
+					<TextBlock Text="{x:Bind Name}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
 		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.IsAdvanced}">
             <Run Text="{extensions:Localize Key=PlanetRadius}" />
             <Run FontWeight="Bold" Text="R" />
             <Run Text="(m)" />
 		</TextBlock>
+
+		
 		<usercontrols:BigNumberBox
             x:Name="RzBigNumberBox"
             Grid.Row="1"
@@ -94,21 +113,6 @@
             Visibility="{x:Bind Model.IsAdvanced}"
             Value="{x:Bind Model.MzBigNumber, Mode=TwoWay}" />
 
-		<ComboBox
-			Margin="0,8,0,0"
-			Grid.Row="3"
-			HorizontalAlignment="Stretch"
-			Grid.Column="1"
-            Visibility="{x:Bind Model.IsAdvanced}"
-			PlaceholderText="{extensions:Localize Key=PlanetPresetPlaceholder}"
-			ItemsSource="{x:Bind Model.Presets}"
-			SelectedItem="{x:Bind Model.SelectedPreset, Mode=TwoWay}">
-			<ComboBox.ItemTemplate>
-				<DataTemplate x:DataType="viewmodels:PlanetPresetViewModel">
-					<TextBlock Text="{x:Bind Name}" />
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
 
 		<TextBlock
             Grid.Row="4"

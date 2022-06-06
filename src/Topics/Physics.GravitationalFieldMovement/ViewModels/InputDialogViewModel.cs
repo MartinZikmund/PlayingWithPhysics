@@ -14,10 +14,12 @@ namespace Physics.GravitationalFieldMovement.ViewModels;
 public class InputDialogViewModel : ViewModelBase
 {
 	private readonly IAppPreferences _appPreferences;
+	private bool _isInitializing = true;
 
 	public InputDialogViewModel(DifficultyOption difficulty, InputConfiguration inputConfiguration, IAppPreferences appPreferences)
 	{
 		_appPreferences = appPreferences;
+		_isInitializing = true;
 		IsAdvanced = difficulty == DifficultyOption.Advanced;
 
 		if (inputConfiguration != null)
@@ -35,7 +37,6 @@ public class InputDialogViewModel : ViewModelBase
 			V0BigNumber = inputConfiguration.V0BigNumber;
 			BetaDeg = inputConfiguration.BetaDeg;
 			Phi0Deg = inputConfiguration.Phi0Deg;
-			ValidatePlanetPreset();
 		}
 		else
 		{
@@ -49,6 +50,8 @@ public class InputDialogViewModel : ViewModelBase
 				HBigNumber = new BigNumber(MathHelpers.MetersToAstronomicalUnits((double)defaultHMeters));
 			}
 		}
+		_isInitializing = false;
+		ValidatePlanetPreset();
 	}
 
 	private BigNumber _mzBigNumberMinimum = new BigNumber(4.0, 9);
@@ -111,7 +114,7 @@ public class InputDialogViewModel : ViewModelBase
 			SelectedPreset = preset;
 		}
 
-		if (SelectedPreset == null)
+		if (SelectedPreset == null && !_isInitializing)
 		{
 			var preset = Presets.FirstOrDefault(p => !p.Preset.IsReadOnly);
 			preset.Preset.R = RzBigNumber;
@@ -120,13 +123,11 @@ public class InputDialogViewModel : ViewModelBase
 		}
 
 		//Check if new Rz and Mz are valid given the selected planet
-		if (!SelectedPreset.Preset.IsReadOnly)
+		if (SelectedPreset is not null && !SelectedPreset.Preset.IsReadOnly)
 		{
 			SelectedPreset.Preset.R = RzBigNumber;
 			SelectedPreset.Preset.M = MzBigNumber;
 		}
-		
-
 	}
 
 	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "AU";
