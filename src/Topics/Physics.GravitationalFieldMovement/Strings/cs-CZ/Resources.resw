@@ -247,4 +247,13 @@ Grafika: Petr Weinlich</value>
   <data name="TimePartYear5" xml:space="preserve">
     <value>let</value>
   </data>
+  <data name="EllipticTrajectoryOfHalleysComet" xml:space="preserve">
+    <value>Eliptická dráha Halleovy komety</value>
+  </data>
+  <data name="FirstCosmicVelocity" xml:space="preserve">
+    <value>První kosmická rychlost</value>
+  </data>
+  <data name="HyperbolicTrajectory" xml:space="preserve">
+    <value>Hyperbolická trajektorie</value>
+  </data>
 </root>

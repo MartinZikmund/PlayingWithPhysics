@@ -82,7 +82,7 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 
 		if (eventArgs.Column.Header.ToString() == "R")
 		{
-			eventArgs.Column.Header = $"r (m)";
+			eventArgs.Column.Header = $"r ({lengthUnit})";
 		}
 
 		if (eventArgs.Column.Header.ToString() == "V")

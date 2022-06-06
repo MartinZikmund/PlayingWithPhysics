@@ -41,12 +41,13 @@ public class TableService : ITableService<TableRow>
 				var x = _appPreferences.LengthUnit == LengthUnit.Metric ? item.X : MathHelpers.MetersToAstronomicalUnits(item.X);
 				var y = _appPreferences.LengthUnit == LengthUnit.Metric ? item.Y : MathHelpers.MetersToAstronomicalUnits(item.Y);
 				var h = _appPreferences.LengthUnit == LengthUnit.Metric ? item.H : MathHelpers.MetersToAstronomicalUnits(item.H);
+				var r = _appPreferences.LengthUnit == LengthUnit.Metric ? item.R : MathHelpers.MetersToAstronomicalUnits(item.R);
 				if (item.H < 0)
 				{
-					table.Add(new TableRow(item.Time, x, y, item.Phi, _physicsService.Input.Rz, 0, item.V));
+					table.Add(new TableRow(item.Time, x, y, item.Phi, MathHelpers.MetersToAstronomicalUnits(_physicsService.Input.Rz), 0, item.V));
 					return table;
 				}
-				table.Add(new TableRow(item.Time, x, y, item.Phi, item.R, h, item.V));
+				table.Add(new TableRow(item.Time, x, y, item.Phi, r, h, item.V));
 			}
 		}
 

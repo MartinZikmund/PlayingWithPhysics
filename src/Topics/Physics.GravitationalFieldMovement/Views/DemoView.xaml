@@ -144,7 +144,6 @@
 						<TextBlock FontWeight="SemiBold">
 							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
 							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
-							<Run Text="m"/>
 						</TextBlock>
 					</StackPanel>
 					<StackPanel Grid.Row="6" Orientation="Horizontal">

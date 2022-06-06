@@ -150,7 +150,7 @@
 
 		<TextBlock Grid.Row="8">
             <Run Text="{extensions:Localize Key=InitialCoordinateAngle}" />
-            <Run FontWeight="Bold" Text="Φ₀" />
+            <Run FontWeight="Bold" Text="φ₀" />
             <Run Text="(°)" />
 		</TextBlock>
 		<winui:NumberBox

@@ -144,42 +144,42 @@ public class InputDialogViewModel : ViewModelBase
 		if (MzBigNumber < _mzBigNumberMinimum)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("MzTooSmallErrorMessage"), _mzBigNumberMinimum));
+				string.Format(Localizer.Instance.GetString("MzTooSmallErrorMessage"), _mzBigNumberMinimum.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 
 		if (MzBigNumber > _mzBigNumberMaximum)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("MzTooLargeErrorMessage"), _mzBigNumberMaximum));
+				string.Format(Localizer.Instance.GetString("MzTooLargeErrorMessage"), _mzBigNumberMaximum.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 
 		if (RzBigNumber < _rzBigNumberMinimum)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("RzTooSmallErrorMessage"), _rzBigNumberMinimum));
+				string.Format(Localizer.Instance.GetString("RzTooSmallErrorMessage"), _rzBigNumberMinimum.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 
 		if (RzBigNumber > _rzBigNumberMaximum)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("RzTooLargeErrorMessage"), _rzBigNumberMaximum));
+				string.Format(Localizer.Instance.GetString("RzTooLargeErrorMessage"), _rzBigNumberMaximum.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 
 		if ((MzBigNumber / RzBigNumber) > _mzRzBigNumberRatio)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("MzRzRatioErrorMessage"), _mzRzBigNumberRatio));
+				string.Format(Localizer.Instance.GetString("MzRzRatioErrorMessage"), _mzRzBigNumberRatio.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 
 		if (V0BigNumber > _v0BigNumberBoxMaximum)
 		{
 			errorMessages.AppendLine(
-				string.Format(Localizer.Instance.GetString("V0TooLargeErrorMessage"), _v0BigNumberBoxMaximum));
+				string.Format(Localizer.Instance.GetString("V0TooLargeErrorMessage"), _v0BigNumberBoxMaximum.ToSimplifiedUpperIndexString()));
 			allValid = false;
 		}
 

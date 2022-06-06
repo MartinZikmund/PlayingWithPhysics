@@ -12,10 +12,7 @@ public class AppPreferences : IAppPreferences
 	{
 		_preferences = preferences;
 	}
-	
-	public LengthUnit LengthUnit
-	{
-		get => _preferences.GetSetting(nameof(LengthUnit), () => LengthUnit.Metric);
-		set => _preferences.SetSetting(nameof(LengthUnit), value);
-	}
+
+	// Value should not be persisted as per https://github.com/Playing-With-Physics/03-Pohyby-v-centralnim-gravitacnim-poli/issues/41
+	public LengthUnit LengthUnit { get; set; } = LengthUnit.Metric;
 }

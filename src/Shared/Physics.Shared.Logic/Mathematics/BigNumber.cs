@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 
@@ -175,6 +174,24 @@ namespace Physics.Shared.Mathematics
 			}
 		}
 
+		public string ToUpperIndexString()
+		{
+			return ToString("0");
+		}
+
+		public string ToSimplifiedUpperIndexString()
+		{
+			var normalized = Normalize();
+			if (normalized.Exponent >= -3 && normalized.Exponent <= 3)
+			{
+				return ((double)normalized).ToString("0.###");
+			}
+			else
+			{
+				return ToString("0");
+			}
+		}
+
 		static Dictionary<char, char> SuperscriptNumberMap = new()
 		{
 			{ '-', '⁻' },
@@ -198,7 +215,15 @@ namespace Physics.Shared.Mathematics
 				return 0.ToString(formatString);
 			}
 			var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
-			return $"{normalized.Mantisa.ToString(formatString)}×10{exponentRepresentation}";
+
+			if (normalized.Mantisa == 1)
+			{
+				return $"10{exponentRepresentation}";
+			}
+			else
+			{
+				return $"{normalized.Mantisa.ToString(formatString)}×10{exponentRepresentation}";
+			}
 		}
 	}
 }

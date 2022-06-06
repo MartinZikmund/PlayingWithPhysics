@@ -247,4 +247,13 @@ Graphics: Petr Weinlich</value>
   <data name="TimePartYear5" xml:space="preserve">
     <value>years</value>
   </data>
+  <data name="EllipticTrajectoryOfHalleysComet" xml:space="preserve">
+    <value>Elliptic trajectory of Halley's comet</value>
+  </data>
+  <data name="FirstCosmicVelocity" xml:space="preserve">
+    <value>First cosmic velocity</value>
+  </data>
+  <data name="HyperbolicTrajectory" xml:space="preserve">
+    <value>Hyperbolic trajectory</value>
+  </data>
 </root>

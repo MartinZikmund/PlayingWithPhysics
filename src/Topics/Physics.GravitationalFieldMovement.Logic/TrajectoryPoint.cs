@@ -1,4 +1,6 @@
-﻿namespace Physics.GravitationalFieldMovement.Logic;
+﻿using Physics.Shared.Helpers;
+
+namespace Physics.GravitationalFieldMovement.Logic;
 
 public class TrajectoryPoint
 {
@@ -20,6 +22,9 @@ public class TrajectoryPoint
 	public double Y { get; }
 
 	public double Phi { get; }
+
+	public double PhiDeg => !double.IsNaN(Phi) ?
+		MathHelpers.RadiansToDegrees((float)Phi) : double.NaN;
 
 	public double R { get; }
 
