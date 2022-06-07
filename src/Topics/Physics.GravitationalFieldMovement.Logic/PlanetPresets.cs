@@ -4,7 +4,9 @@ namespace Physics.GravitationalFieldMovement.Logic;
 
 public static class PlanetPresets
 {
-	public static PlanetPreset[] Presets { get; } = new[]
+	private static PlanetPreset[] _presets = null;
+
+	public static PlanetPreset[] Presets => _presets ??= new[]
 	{
 		Earth,
 		new PlanetPreset("Preset_Moon", new BigNumber(1.74, 6), new BigNumber(7.35, 22), "#627480"),
