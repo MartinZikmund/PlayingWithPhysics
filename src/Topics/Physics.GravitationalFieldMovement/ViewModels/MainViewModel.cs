@@ -235,14 +235,11 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 		}
 	}
 
-	private PlanetPreset _selectedPreset = null;
-
-	private PlanetPreset SelectedPreset
+	private PlanetPreset _selectedPreset = PlanetPresets.Earth;
+	
+	protected PlanetPreset SelectedPreset
 	{
-		get
-		{
-			return _difficulty == DifficultyOption.Easy ? PlanetPresets.Presets[0] : _selectedPreset;
-		}
+		get => _selectedPreset;
 		set => _selectedPreset = value;
 	}
 

@@ -166,7 +166,7 @@ namespace Physics.GravitationalFieldMovement.Rendering
 		public SKBitmap EarthBitmap { get; private set; }
 		public PlanetPreset Planet { get; set; }
 
-		public double PlanetRadius => (_scale * _input.Rz) < 1 ? 2f : (_scale * _input.Rz);
+		public double PlanetRadius => Math.Max(4, _scale * _input.Rz);
 
 		private float GetRenderX(double x) => (float)(_canvas.ScaledSize.Width / 2 + x * _scale);
 

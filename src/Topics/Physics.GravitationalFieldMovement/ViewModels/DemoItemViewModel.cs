@@ -13,16 +13,16 @@ namespace Physics.GravitationalFieldMovement.ViewModels
 	public class DemoItemViewModel
 	{
 		public string FriendlyName { get; }
+
 		public InputConfiguration Input { get; }
-		public SKColor Color { get; } = SKColors.LightGray;
-		public DemoItemViewModel(string name, InputConfiguration input, SKColor? color)
+
+		public PlanetPreset Planet { get; }
+
+		public DemoItemViewModel(string name, InputConfiguration input, PlanetPreset planet)
 		{
 			FriendlyName = name;
 			Input =	input;
-			if (color != null)
-			{
-				Color = color.Value;
-			}
+			Planet = planet;
 		}
 	}
 }

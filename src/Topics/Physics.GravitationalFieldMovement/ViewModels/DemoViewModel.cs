@@ -22,9 +22,9 @@ public class DemoViewModel : MainViewModel
 
 	public List<DemoItemViewModel> DemoList { get; } = new List<DemoItemViewModel>()
 	{
-		new DemoItemViewModel(Localizer.Instance.GetString("FirstCosmicVelocity"), new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), 2, 7900.229, 0, 90), ColorHelper.ToColor(PlanetPresets.Earth.ColorHex).ToSKColor()),
-		new DemoItemViewModel(Localizer.Instance.GetString("EllipticTrajectoryOfHalleysComet"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5.25, 12), 912, 0, 90), ColorHelper.ToColor(PlanetPresets.Sun.ColorHex).ToSKColor()),
-		new DemoItemViewModel(Localizer.Instance.GetString("HyperbolicTrajectory"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5, 11), new BigNumber(4, 4), -75, 90), ColorHelper.ToColor(PlanetPresets.Sun.ColorHex).ToSKColor())
+		new DemoItemViewModel(Localizer.Instance.GetString("FirstCosmicVelocity"), new InputConfiguration(new BigNumber(6.38, 6), new BigNumber(5.97, 24), 2, 7900.229, 0, 90), PlanetPresets.Earth),
+		new DemoItemViewModel(Localizer.Instance.GetString("EllipticTrajectoryOfHalleysComet"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5.25, 12), 912, 0, 90), PlanetPresets.Sun),
+		new DemoItemViewModel(Localizer.Instance.GetString("HyperbolicTrajectory"), new InputConfiguration(new BigNumber(6.96, 8), new BigNumber(1.99, 30), new BigNumber(5, 11), new BigNumber(4, 4), -75, 90), PlanetPresets.Sun)
 	};
 
 	public DemoItemViewModel SelectedDemo { get; set; }
@@ -49,9 +49,10 @@ public class DemoViewModel : MainViewModel
 		_controller.SimulationTime.Reset();
 		Input = null;
 		Dt = SelectedDemo.Input.Dt;
-		Input = SelectedDemo.Input;		
+		Input = SelectedDemo.Input;
+		SelectedPreset = SelectedDemo.Planet;
+		_controller.Planet = SelectedDemo.Planet;
 		_controller.SetInputConfiguration(Input, Dt);
-		_controller.PlanetPaint.Color = SelectedDemo.Color;
 		_controller.Play();
 	}
 
@@ -59,6 +60,7 @@ public class DemoViewModel : MainViewModel
 	{
 		Dt = SelectedDemo.Input.Dt;
 		Input = SelectedDemo.Input;
-		_controller.PlanetPaint.Color = SelectedDemo.Color;
+		SelectedPreset = SelectedDemo.Planet;
+		_controller.Planet = SelectedDemo.Planet;		
 	}
 }
