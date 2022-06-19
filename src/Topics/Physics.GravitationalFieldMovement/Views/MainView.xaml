@@ -72,11 +72,11 @@
                         Content="{extensions:Localize Key=ShowValuesTable}"
                         Visibility="{x:Bind Model.InputSet, Mode=OneWay}" />
                     <mux:NumberBox
-                        x:Name="DeltaInput"
-                        Header="Δt"
+                        x:Name="MaxTInput"
+                        Header="tₘₐₓ (s)"
                         Maximum="100000000"
                         Minimum="1"
-                        Value="{x:Bind Model.Dt, Mode=TwoWay}" />
+                        Value="{x:Bind Model.MaxT, Mode=TwoWay}" />
                 </StackPanel>
             </Border>
             <Border Grid.Row="2" Margin="8,12,0,0">

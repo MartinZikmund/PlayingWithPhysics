@@ -64,11 +64,11 @@
                         Command="{x:Bind Model.ShowValuesTableCommand}"
                         Content="{extensions:Localize Key=ShowValuesTable}" />
 					<mux:NumberBox
-						x:Name="DeltaInput"
-                        Header="Δt"
+						x:Name="MaxTInput"
+                        Header="tₘₐₓ (s)"
                         Maximum="100000000"
                         Minimum="1"
-                        Value="{x:Bind Model.Dt, Mode=TwoWay}" />
+                        Value="{x:Bind Model.MaxT, Mode=TwoWay}" />
 				</StackPanel>
 			</Border>
 			<ComboBox

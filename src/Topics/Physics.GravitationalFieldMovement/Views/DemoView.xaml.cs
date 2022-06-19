@@ -31,7 +31,7 @@ namespace Physics.GravitationalFieldMovement.Views
 		}
 		public void SetupNumberBoxFormatting()
 		{
-			DeltaInput.SetupFormatting(0.001, 1, 3, 0.001, 0.001);
+			MaxTInput.SetupFormatting(0.001, 1, 3, 0.001, 0.001);
 		}
 	}
 

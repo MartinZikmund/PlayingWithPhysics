@@ -154,7 +154,7 @@ namespace Physics.Shared.Mathematics
 				var normalized = Normalize();
 				var exponent = normalized.Exponent;
 				var rounded = Math.Round(normalized.Mantisa, 3);
-				if (rounded >= 10 || rounded <= -10)
+				if (rounded > 10 || rounded < -10)
 				{
 					rounded /= 10;
 					exponent++;
@@ -166,7 +166,7 @@ namespace Physics.Shared.Mathematics
 				}
 
 				var exponentRepresentation = string.Join("", normalized.Exponent.ToString().Select(c => SuperscriptNumberMap[c]));
-				return $"{rounded.ToString("0.000")}×10{exponentRepresentation}";
+				return $"{rounded.ToString("0.###")}×10{exponentRepresentation}";
 			}
 			else
 			{

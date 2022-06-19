@@ -10,6 +10,7 @@ using Physics.GravitationalFieldMovement.Services;
 using System;
 using Windows.UI.Xaml;
 using Physics.Shared.UI.Localization;
+using Physics.Shared.Helpers;
 
 namespace Physics.GravitationalFieldMovement.ViewModels;
 
@@ -48,7 +49,7 @@ public class DemoViewModel : MainViewModel
 		//_controller.Planet = SelectedPreset;
 		_controller.SimulationTime.Reset();
 		Input = null;
-		Dt = SelectedDemo.Input.Dt;
+		MaxT = SelectedDemo.Input.Dt * 3600;
 		Input = SelectedDemo.Input;
 		SelectedPreset = SelectedDemo.Planet;
 		_controller.Planet = SelectedDemo.Planet;
@@ -58,9 +59,22 @@ public class DemoViewModel : MainViewModel
 
 	protected override void LoadDefaultSimulation()
 	{
-		Dt = SelectedDemo.Input.Dt;
+		MaxT = SelectedDemo.Input.Dt * 3600;
 		Input = SelectedDemo.Input;
 		SelectedPreset = SelectedDemo.Planet;
 		_controller.Planet = SelectedDemo.Planet;		
+	}
+
+	public new string HeightText
+	{
+		get
+		{
+			if (SelectedDemo == DemoList[1] || SelectedDemo == DemoList[2])
+			{
+				var heightInAu = MathHelpers.MetersToAstronomicalUnits(Height + Input.Rz);
+				return $"{new BigNumber(heightInAu)} au";
+			}
+			return $"{Math.Round(Height + Input.Rz, 0)} m";
+		}
 	}
 }

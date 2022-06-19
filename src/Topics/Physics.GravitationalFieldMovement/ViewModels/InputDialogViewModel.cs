@@ -130,7 +130,7 @@ public class InputDialogViewModel : ViewModelBase
 		}
 	}
 
-	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "AU";
+	public string LengthUnitText => _appPreferences.LengthUnit == LengthUnit.Metric ? "m" : "au";
 
 	public PlanetPresetViewModel[] Presets { get; } = PlanetPresets.Presets.Select(x => new PlanetPresetViewModel(x)).ToArray();
 

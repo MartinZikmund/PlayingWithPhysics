@@ -18,7 +18,6 @@ using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.Text;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
@@ -48,6 +47,18 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 	public InputConfiguration Input { get; protected set; }
 
 	public bool InputSet => Input != null;
+
+	private double _maxT = 1;
+
+	public double MaxT
+	{
+		get => _maxT;
+		set
+		{
+			_maxT = value;
+			Dt = value / 3600;
+		}
+	}
 
 	public double Dt { get; set; } = 1;
 
@@ -113,7 +124,7 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 
 		TimeSpan span = TimeSpan.FromSeconds(seconds);
 		int[] parts = { span.Days / 365, span.Days % 365, span.Hours, span.Minutes, span.Seconds };
-		string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", $" {GetFormattedDayLabel(span.Days % 365)}", " h", " m", " s" };
+		string[] units = { $" {GetFormattedYearLabel(span.Days / 365)}", $" {GetFormattedDayLabel(span.Days % 365)}", " h", " min", " s" };
 
 		return string.Join(", ",
 			from index in Enumerable.Range(0, units.Length)
@@ -166,12 +177,12 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 		{
 			if (LengthUnit == LengthUnit.Metric)
 			{
-				return $"{Height.ToString("0.000")} m";
+				return $"{Math.Round(Height, 0)} m";
 			}
 			else
 			{
 				var heightInAu = MathHelpers.MetersToAstronomicalUnits(Height);
-				return $"{new BigNumber(heightInAu)} AU";
+				return $"{new BigNumber(heightInAu)} au";
 			}
 		}
 	}
@@ -219,7 +230,7 @@ public class MainViewModel : SimulationViewModelBase<SimulationNavigationModel>,
 
 			var input = dialog.Model.Result;
 			Input = null;
-			Dt = input.Dt;
+			MaxT = input.Dt * 3600;
 			Input = input;
 			if (_difficulty == DifficultyOption.Advanced)
 			{

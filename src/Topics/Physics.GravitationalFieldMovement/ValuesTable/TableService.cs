@@ -44,10 +44,10 @@ public class TableService : ITableService<TableRow>
 				var r = _appPreferences.LengthUnit == LengthUnit.Metric ? item.R : MathHelpers.MetersToAstronomicalUnits(item.R);
 				if (item.H < 0)
 				{
-					table.Add(new TableRow(item.Time, x, y, item.Phi, MathHelpers.MetersToAstronomicalUnits(_physicsService.Input.Rz), 0, item.V));
+					table.Add(new TableRow(item.Time, x, y, item.PhiDeg, MathHelpers.MetersToAstronomicalUnits(_physicsService.Input.Rz), 0, item.V));
 					return table;
 				}
-				table.Add(new TableRow(item.Time, x, y, item.Phi, r, h, item.V));
+				table.Add(new TableRow(item.Time, x, y, item.PhiDeg, r, h, item.V));
 			}
 		}
 

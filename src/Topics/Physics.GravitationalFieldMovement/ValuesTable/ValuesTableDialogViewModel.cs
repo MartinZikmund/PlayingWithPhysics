@@ -58,7 +58,7 @@ public class ValuesTableDialogViewModel : ValuesTableDialogViewModelBase<TableRo
 
 	public override void AdjustColumnHeaders(DataGridAutoGeneratingColumnEventArgs eventArgs)
 	{
-		var lengthUnit = _appPreferences.LengthUnit == Logic.LengthUnit.Metric ? "m" : "AU";
+		var lengthUnit = _appPreferences.LengthUnit == Logic.LengthUnit.Metric ? "m" : "au";
 
 		if (eventArgs.Column.Header.ToString() == "X")
 		{
