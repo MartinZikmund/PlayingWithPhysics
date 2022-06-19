@@ -44,6 +44,7 @@ namespace Physics.RotationalInclinedPlane.Rendering
 
 			DrawBackground(sender, args);
 			DrawInclinedPlane(sender, args);
+			DrawObject(sender, args);
 		}
 
 		public void Update(ISkiaCanvas sender)
@@ -63,17 +64,22 @@ namespace Physics.RotationalInclinedPlane.Rendering
 				new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
 		}
 
+		private void DrawObject(ISkiaCanvas sender, SKSurface args)
+		{
+			
+		}
+
 		private void DrawInclinedPlane(ISkiaCanvas sender, SKSurface args)
 		{
 			var currentAngle = GameInfo.CurrentAngle;
 
-			var baseWidth = sender.ScaledSize.Width * 0.7f;
+			var baseWidth = sender.ScaledSize.Width * 0.72f;
 			var tan = Math.Tan(MathHelpers.DegreesToRadians(currentAngle));
 			var height = (float)(baseWidth * tan);
 
 			SKPath path = new SKPath();
-			var topLeft = new SKPoint(0, sender.ScaledSize.Height * 0.9f - height);
-			var bottomLeft = new SKPoint(0, sender.ScaledSize.Height * 0.9f);
+			var topLeft = new SKPoint(-sender.ScaledSize.Width * 0.02f, sender.ScaledSize.Height * 0.9f - height);
+			var bottomLeft = new SKPoint(-sender.ScaledSize.Width * 0.02f, sender.ScaledSize.Height * 0.9f);
 			var bottomRight = new SKPoint(sender.ScaledSize.Width * 0.7f, bottomLeft.Y);
 
 			path.MoveTo(topLeft);
