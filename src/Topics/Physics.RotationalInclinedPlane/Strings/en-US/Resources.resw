@@ -140,6 +140,9 @@ Graphics: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Changes apply to all objects</value>
   </data>
+  <data name="GameDesiredTime" xml:space="preserve">
+    <value>Desired time:</value>
+  </data>
   <data name="Input_Angle" xml:space="preserve">
     <value>Angle</value>
   </data>

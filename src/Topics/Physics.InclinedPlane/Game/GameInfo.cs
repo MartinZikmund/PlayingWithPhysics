@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Physics.InclinedPlane.Game
+﻿namespace Physics.InclinedPlane.Game
 {
-    public class GameInfo
+	public class GameInfo
     {
         public GameState State { get; set; }
 
