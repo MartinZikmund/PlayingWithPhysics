@@ -185,6 +185,9 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Valivý pohyb těles po nakloněné rovině</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Čas</value>
+  </data>
   <data name="TooManyMotionsDescription" xml:space="preserve">
     <value>Není možné vykreslovat více než 5 pohybů najednou.</value>
   </data>

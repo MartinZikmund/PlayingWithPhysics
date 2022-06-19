@@ -3,7 +3,8 @@
 	public enum GameState
     {
         SetAngle,
-        Fired,
+		Simulation,
+        SimulationEnded,
         GameEnded,
     }
 }

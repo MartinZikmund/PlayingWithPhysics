@@ -7,7 +7,9 @@ namespace Physics.RotationalInclinedPlane.Game
     {
         public GameState State { get; private set; }
 
-        public int CurrentShot { get; private set; } = 1;        
+        public int CurrentShot { get; private set; } = 1;
+
+		public int CurrentAngle { get; set; }
 
         public int TotalThrows => 3;
 

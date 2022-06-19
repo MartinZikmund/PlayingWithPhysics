@@ -185,6 +185,9 @@ Graphics: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Rolling on Inclined Plane</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
   <data name="TooManyMotionsDescription" xml:space="preserve">
     <value>Can't render more than 5 motions at once. Plese remove one.</value>
   </data>

@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Physics.RotationalInclinedPlane.Game;
+using Physics.Shared.Helpers;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 using Windows.ApplicationModel;
@@ -10,6 +12,20 @@ namespace Physics.RotationalInclinedPlane.Rendering
 	{
 		private SKBitmap _backgroundBitmap = null;
 		private SKBitmap _objectBitmap = null;
+
+		private readonly SKPaint _rampFillPaint = new SKPaint()
+		{
+			IsStroke = false,
+			Color = SKColors.Gray,
+		};
+
+		private readonly SKPaint _rampStrokePaint = new SKPaint()
+		{
+			IsStroke = true,
+			Color = SKColors.Black,
+			IsAntialias = true,
+			StrokeWidth = 10f
+		};
 
 		public GameRenderer(RotationalInclinedPlaneCanvasController controller)
 		{
@@ -25,8 +41,9 @@ namespace Physics.RotationalInclinedPlane.Rendering
 			{
 				return;
 			}
-			
+
 			DrawBackground(sender, args);
+			DrawInclinedPlane(sender, args);
 		}
 
 		public void Update(ISkiaCanvas sender)
@@ -46,7 +63,29 @@ namespace Physics.RotationalInclinedPlane.Rendering
 				new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
 		}
 
+		private void DrawInclinedPlane(ISkiaCanvas sender, SKSurface args)
+		{
+			var currentAngle = GameInfo.CurrentAngle;
 
+			var baseWidth = sender.ScaledSize.Width * 0.7f;
+			var tan = Math.Tan(MathHelpers.DegreesToRadians(currentAngle));
+			var height = (float)(baseWidth * tan);
+
+			SKPath path = new SKPath();
+			var topLeft = new SKPoint(0, sender.ScaledSize.Height * 0.9f - height);
+			var bottomLeft = new SKPoint(0, sender.ScaledSize.Height * 0.9f);
+			var bottomRight = new SKPoint(sender.ScaledSize.Width * 0.7f, bottomLeft.Y);
+
+			path.MoveTo(topLeft);
+			path.LineTo(bottomRight);
+			path.LineTo(bottomLeft);
+			path.LineTo(topLeft);
+			path.Close();
+
+			args.Canvas.DrawPath(path, _rampFillPaint);
+			args.Canvas.DrawPath(path, _rampStrokePaint);
+		}
+		
 		private void EnsureBitmaps()
 		{
 			if (_backgroundBitmap == null)
