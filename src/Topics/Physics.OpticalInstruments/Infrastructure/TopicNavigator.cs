@@ -22,15 +22,14 @@ namespace Physics.OpticalInstruments.Infrastructure
 
 		public bool HasStudyMode => true;
 
-		public bool HasGame => false;
-
+		public bool HasGame => true;
 		public string GameNameOverride => null;
 
 		public int Id => 16;
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
+		public async Task GoToGameAsync() => await _navigationService.Navigate<GameViewModel>();
 
 		public async Task GoToStudyModeAsync()
 		{

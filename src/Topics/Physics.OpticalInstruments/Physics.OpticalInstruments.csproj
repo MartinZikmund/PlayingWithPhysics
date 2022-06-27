@@ -123,6 +123,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\GameInfo.cs" />
+    <Compile Include="Game\GameState.cs" />
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,12 +132,17 @@
     <Compile Include="Rendering\ConcaveMirrorRenderer.cs" />
     <Compile Include="Rendering\ConvexLensRenderer.cs" />
     <Compile Include="Rendering\ConvexMirrorRenderer.cs" />
+    <Compile Include="Rendering\GameCanvasController.cs" />
     <Compile Include="Rendering\LensRenderer.cs" />
     <Compile Include="Rendering\MirrorRenderer.cs" />
     <Compile Include="Rendering\OpticalInstrumentsCanvasController.cs" />
     <Compile Include="Rendering\OpticalInstrumentsRenderer.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +153,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\Background.png" />
+    <Content Include="Assets\Game\BackLeg.png" />
+    <Content Include="Assets\Game\FrontLeg.png" />
+    <Content Include="Assets\Game\Gun.png" />
+    <Content Include="Assets\Game\Mirror.png" />
+    <Content Include="Assets\Game\Planet.png" />
     <Content Include="Assets\Icons\ConcaveLens.png" />
     <Content Include="Assets\Icons\ConcaveMirror.png" />
     <Content Include="Assets\Icons\ConvexLens.png" />
@@ -269,6 +282,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
