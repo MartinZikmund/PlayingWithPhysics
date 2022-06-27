@@ -4,14 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Physics.SelfStudy.Editor.Editors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:storage="using:Windows.Storage"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Padding="12" x:Name="Root">
-        <Button Click="{x:Bind OpenTestImagesFolder}">Open test images folder</Button>
-        <TextBox 
+	<StackPanel Padding="12" x:Name="Root" Spacing="8">
+		<Button Click="{x:Bind OpenTestImagesFolder}">Open test images folder</Button>
+		<TextBox
+            Text="{x:Bind ViewModel.ImageCaption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            VerticalAlignment="Top" Header="Image caption:"  />
+        <TextBox
             Text="{x:Bind ViewModel.ImageName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             VerticalAlignment="Top" Header="Image file name:"  />
-    </StackPanel>
+	</StackPanel>
 </Page>

@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Converters\BoolNegationConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\NonEmptyStringVisibilityConverter.cs" />
     <Compile Include="Converters\ValueMatchVisibilityConverter.cs" />
     <Compile Include="Extensions\BoolFunctions.cs" />
     <Compile Include="Helpers\UniqueNameGenerator.cs" />

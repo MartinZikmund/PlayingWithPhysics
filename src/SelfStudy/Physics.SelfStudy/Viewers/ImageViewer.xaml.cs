@@ -33,6 +33,8 @@ namespace Physics.SelfStudy.Viewers
 
         public string ImagePath { get; private set; }
 
+		public string ImageCaption { get; private set; }
+
         public ImageContent Image
         {
             get { return (ImageContent)GetValue(ImageProperty); }
@@ -48,7 +50,9 @@ namespace Physics.SelfStudy.Viewers
             if (e.NewValue is ImageContent content)
             {
                 viewer.ImagePath = Path.Combine(StudyModeGlobals.ImageFolderPath, content.ImageName);
-                viewer.PropertyChanged?.Invoke(viewer, new PropertyChangedEventArgs(nameof(ImagePath)));
+				viewer.ImageCaption = content.ImageCaption ?? "";
+                viewer.PropertyChanged?.Invoke(viewer, new PropertyChangedEventArgs(nameof(ImageCaption)));
+				viewer.PropertyChanged?.Invoke(viewer, new PropertyChangedEventArgs(nameof(ImagePath)));
             }
         }
 

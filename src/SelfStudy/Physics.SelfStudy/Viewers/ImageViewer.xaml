@@ -5,10 +5,20 @@
     xmlns:local="using:Physics.SelfStudy.Viewers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+	xmlns:converters="using:Physics.Shared.UI.Converters"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	<UserControl.Resources>
+		<converters:NonEmptyStringVisibilityConverter x:Key="NonEmptyStringVisibilityConverter" />
+	</UserControl.Resources>
+	
     <Grid x:Name="Root">
-        <Image Margin="8" Stretch="Uniform" Source="{Binding ImagePath, Mode=OneWay}" />
-    </Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Image Margin="8" Stretch="Uniform" Source="{Binding ImagePath, Mode=OneWay}" />
+		<TextBlock Grid.Row="1" Margin="0,8,0,16" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding ImageCaption, Mode=OneWay}" Visibility="{Binding ImageCaption, Converter={StaticResource NonEmptyStringVisibilityConverter}}" />
+	</Grid>
 </UserControl>

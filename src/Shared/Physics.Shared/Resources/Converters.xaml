@@ -10,4 +10,5 @@
     <converters:EnumLocalizationConverter x:Key="EnumLocalizationConverter" />
     <converters:ValueMatchVisibilityConverter x:Key="ValueMatchVisibilityConverter" />
     <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
+	<converters:NonEmptyStringVisibilityConverter x:Key="NonEmptyStringVisibilityConverter" />
 </ResourceDictionary>
