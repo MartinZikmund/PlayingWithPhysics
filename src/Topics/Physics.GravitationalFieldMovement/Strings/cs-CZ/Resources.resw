@@ -209,19 +209,19 @@ Grafika: Petr Weinlich</value>
     <value>Metrické</value>
   </data>
   <data name="MzRzRatioErrorMessage" xml:space="preserve">
-    <value>Poměr hmotnosti a poloměru planety musí být nejvýše {0}.</value>
+    <value>Poměr hmotnosti a poloměru centrálního tělesa musí být nejvýše {0}.</value>
   </data>
   <data name="MzTooLargeErrorMessage" xml:space="preserve">
-    <value>Hmotnost planety musí být nejvýše {0} kg.</value>
+    <value>Hmotnost centrálního tělesa musí být nejvýše {0} kg.</value>
   </data>
   <data name="MzTooSmallErrorMessage" xml:space="preserve">
-    <value>Hmotnost planety musí být alespoň {0} kg.</value>
+    <value>Hmotnost centrálního tělesa musí být alespoň {0} kg.</value>
   </data>
   <data name="RzTooLargeErrorMessage" xml:space="preserve">
-    <value>Poloměr planety musí být nejvýše {0} m.</value>
+    <value>Poloměr centrálního tělesa musí být nejvýše {0} m.</value>
   </data>
   <data name="RzTooSmallErrorMessage" xml:space="preserve">
-    <value>Poloměr planety musí být alespoň {0} m.</value>
+    <value>Poloměr centrálního tělesa musí být alespoň {0} m.</value>
   </data>
   <data name="V0TooLargeErrorMessage" xml:space="preserve">
     <value>Počáteční rychlost musí být nejvýše {0} m/s.</value>
@@ -258,5 +258,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Preset_Custom" xml:space="preserve">
     <value>Jiné těleso</value>
+  </data>
+  <data name="DistanceFromCenterOfBody" xml:space="preserve">
+    <value>Vzdálenost od středu centrálního tělesa</value>
   </data>
 </root>

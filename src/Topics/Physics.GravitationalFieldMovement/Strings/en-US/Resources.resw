@@ -259,4 +259,7 @@ Graphics: Petr Weinlich</value>
   <data name="Preset_Custom" xml:space="preserve">
     <value>Custom body</value>
   </data>
+  <data name="DistanceFromCenterOfBody" xml:space="preserve">
+    <value>Distance from the center of body</value>
+  </data>
 </root>

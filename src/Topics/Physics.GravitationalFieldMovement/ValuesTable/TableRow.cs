@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Physics.GravitationalFieldMovement.Services;
 using Physics.Shared.Mathematics;
 using Physics.Shared.UI.Services.ValuesTable;
+using ReactiveUI;
 
 namespace Physics.GravitationalFieldMovement.ValuesTable;
 
@@ -22,13 +24,21 @@ public class TableRow : ValuesTableRowBase
 
 	public string V { get; set; }
 
-	public TableRow(double t, double x, double y, double phi, double r, double h, double v)
+	private readonly IAppPreferences _appPreferences;
+
+	public TableRow(double t, double x, double y, double phi, double r, double h, double v, IAppPreferences appPreferences)
 	{
+		if (appPreferences.LengthUnit == Logic.LengthUnit.Metric)
+		{
+			H = h.ToSignificantDigitsString(1);
+		} else
+		{
+			H = h.ToSignificantDigitsString(TableSignificantDigits);
+		}
 		T = t.ToSignificantDigitsString(TableSignificantDigits);
 		X = x.ToSignificantDigitsString(TableSignificantDigits);
 		Y = y.ToSignificantDigitsString(TableSignificantDigits);
 		V = v.ToSignificantDigitsString(TableSignificantDigits);
-		H = h.ToSignificantDigitsString(TableSignificantDigits);
 		Phi = phi.ToSignificantDigitsString(TableSignificantDigits);
 		R = r.ToSignificantDigitsString(TableSignificantDigits);
 	}

@@ -77,4 +77,6 @@ public class DemoViewModel : MainViewModel
 			return $"{Math.Round(Height + Input.Rz, 0)} m";
 		}
 	}
+
+	public bool IsDemo => false;
 }

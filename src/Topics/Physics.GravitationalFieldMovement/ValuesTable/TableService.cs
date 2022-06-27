@@ -40,14 +40,14 @@ public class TableService : ITableService<TableRow>
 			{
 				var x = _appPreferences.LengthUnit == LengthUnit.Metric ? item.X : MathHelpers.MetersToAstronomicalUnits(item.X);
 				var y = _appPreferences.LengthUnit == LengthUnit.Metric ? item.Y : MathHelpers.MetersToAstronomicalUnits(item.Y);
-				var h = _appPreferences.LengthUnit == LengthUnit.Metric ? item.H : MathHelpers.MetersToAstronomicalUnits(item.H);
+				var h = _appPreferences.LengthUnit == LengthUnit.Metric ? Math.Round(item.H, 0) : MathHelpers.MetersToAstronomicalUnits(item.H);
 				var r = _appPreferences.LengthUnit == LengthUnit.Metric ? item.R : MathHelpers.MetersToAstronomicalUnits(item.R);
 				if (item.H < 0)
 				{
-					table.Add(new TableRow(item.Time, x, y, item.PhiDeg, MathHelpers.MetersToAstronomicalUnits(_physicsService.Input.Rz), 0, item.V));
+					table.Add(new TableRow(item.Time, x, y, item.PhiDeg, MathHelpers.MetersToAstronomicalUnits(_physicsService.Input.Rz), 0, item.V, _appPreferences));
 					return table;
 				}
-				table.Add(new TableRow(item.Time, x, y, item.PhiDeg, r, h, item.V));
+				table.Add(new TableRow(item.Time, x, y, item.PhiDeg, r, h, item.V, _appPreferences));
 			}
 		}
 
