@@ -142,7 +142,7 @@
 					<TextBlock Grid.Row="4" Margin="0,0,0,8" FontWeight="Bold" Text="{extensions:Localize Key=Projectile}" />
 					<StackPanel Grid.Row="5" Orientation="Horizontal">
 						<TextBlock FontWeight="SemiBold">
-							<Run Text="{extensions:Localize Key=CurrentHeight}"/><Run Text=": "/>
+							<Run Text="{extensions:Localize Key=DistanceFromCenterOfBody}"/><Run Text=": "/>
 							<Run Text="{x:Bind Model.HeightText, Mode=OneWay}"/>
 						</TextBlock>
 					</StackPanel>
@@ -157,7 +157,8 @@
 					<Button
                         Grid.Row="8"
                         Margin="8"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center"
+						Visibility="{x:Bind Model.IsDemo}">
 						<Button.Flyout>
 							<Flyout x:Name="SettingsFlyout">
 								<StackPanel Width="200" Spacing="4">
