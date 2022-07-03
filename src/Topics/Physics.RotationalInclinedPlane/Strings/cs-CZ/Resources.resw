@@ -216,7 +216,7 @@ Grafika: Petr Weinlich</value>
     <value>Start</value>
   </data>
   <data name="StartRolling" xml:space="preserve">
-    <value>Spustit sud</value>
+    <value>Pustit sud</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Čas</value>
