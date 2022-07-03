@@ -162,8 +162,10 @@
   <ItemGroup>
     <Content Include="Assets\Game\Background.jpg" />
     <Content Include="Assets\Game\BackgroundTemp.jpg" />
-    <Content Include="Assets\Game\DialogLeft.png" />
     <Content Include="Assets\Game\DialogRight.png" />
+    <Content Include="Assets\Game\DialogLeft.png" />
+    <Content Include="Assets\Game\Person1.png" />
+    <Content Include="Assets\Game\Person2.png" />
     <Content Include="Assets\Game\LargeSignBackground.png" />
     <Content Include="Assets\Game\Object.png" />
     <Content Include="Assets\Game\SliderBackground.png" />

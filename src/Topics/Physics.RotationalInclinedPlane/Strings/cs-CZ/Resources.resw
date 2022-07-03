@@ -128,6 +128,9 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Valivý pohyb těles po nakloněné rovině</value>
   </data>
+  <data name="BestScore" xml:space="preserve">
+    <value>Nejlepší skóre</value>
+  </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Válec</value>
   </data>
@@ -184,6 +187,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Valivý pohyb těles po nakloněné rovině</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Čas</value>

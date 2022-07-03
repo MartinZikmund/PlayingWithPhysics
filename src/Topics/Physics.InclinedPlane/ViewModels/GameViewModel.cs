@@ -27,7 +27,6 @@ namespace Physics.InclinedPlane.ViewModels
 	public class GameViewModel : SimulationViewModelBase<GameViewModel.NavigationModel>, IReceiveController<InclinedPlaneSkiaController>
     {
         private DifficultyOption Difficulty;
-        private InclinedPlaneInputViewModel _inputViewModel;
         private InclinedPlaneSkiaController _controller;
         private DispatcherTimer _timer = new DispatcherTimer();
 
@@ -53,7 +52,6 @@ namespace Physics.InclinedPlane.ViewModels
         public override void Prepare(NavigationModel parameter)
         {
             Difficulty = parameter.Difficulty;
-            _inputViewModel = new InclinedPlaneInputViewModel(Difficulty);
         }
 
 		public void SetController(InclinedPlaneSkiaController controller)

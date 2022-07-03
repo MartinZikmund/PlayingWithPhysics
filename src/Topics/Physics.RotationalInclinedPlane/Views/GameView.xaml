@@ -340,16 +340,16 @@
 
 
 				<!-- Angle setting panel -->
-				<Grid Canvas.Left="420" Canvas.Top="0" Width="381" Height="237" Padding="90,60,70,88" RowSpacing="8">
-					<Grid.Background>
+				<Grid Canvas.Left="0" Canvas.Top="850" Height="237" Padding="20" ColumnSpacing="20" RowSpacing="8">
+					<!--<Grid.Background>
 						<ImageBrush ImageSource="/Assets/Game/SmallSignBackground.png" />
-					</Grid.Background>
+					</Grid.Background>-->
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="100" />
 					</Grid.ColumnDefinitions>
 					<TextBlock Text="{xaml:Localize Key=Input_Angle}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
-					<TextBlock Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" Grid.Row="1">
+					<TextBlock Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Foreground="Red" HorizontalAlignment="Left" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" Grid.Row="1">
 						<Run Text="{Binding ElementName=AngleSlider, Path=Value}" /><Run Text="°" />
 					</TextBlock>
 				</Grid>
@@ -387,13 +387,13 @@
 					</Grid.ColumnDefinitions>
 					<TextBlock Style="{StaticResource GameLabelStyle}" Grid.ColumnSpan="3" FontWeight="Bold" FontSize="34">
 						<Run Text="{xaml:Localize Key=GameDesiredTime}" />
-						<Run Text="2,4" />
+						<Run Text="{x:Bind Model.GameInfo.DesiredTimeText, Mode=OneWay}" />
 						<Run Text="s." />
 					</TextBlock>
 
-					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="2,6" />
-					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="2,6" Grid.Column="1" />
-					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="2,6" Grid.Column="2" />
+					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" />
+					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" Grid.Column="1" />
+					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" Grid.Column="2" />
 
 					<TextBlock Style="{StaticResource TimeCaptionStyle}">
 						<Run Text="{xaml:Localize Key=Time}" />
@@ -410,38 +410,41 @@
 				</Grid>
 
 				<Image Source="/Assets/Game/SliderBackground.png" Canvas.Left="640" Width="338" Height="338" />
-				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" Opacity="1" Style="{StaticResource GameSliderStyle}" Minimum="1" Maximum="89" Orientation="Vertical" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Height="280" Canvas.Left="750" Canvas.Top="42" />
+				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" Opacity="1" IsEnabled="{x:Bind Model.AllowAngleChanges, Mode=OneWay}" Style="{StaticResource GameSliderStyle}" Minimum="5" Maximum="45" Orientation="Vertical" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Height="280" Canvas.Left="750" Canvas.Top="42" />
 
 				<!-- Button area -->
-				<Grid Canvas.Left="888" Canvas.Top="852" Width="360" Height="200">
-					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="60" FontFamily="Consolas">Start</Button>
+				<Grid Canvas.Left="888" Canvas.Top="952" Width="280" Height="100">
+					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="60" FontFamily="Consolas" Content="{xaml:Localize Key=Start}" Command="{x:Bind Model.ShootCommand}" />
 				</Grid>
 
 				<!-- Score area -->
-				<Grid Canvas.Left="1280" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="500" Height="200" Padding="12" ColumnSpacing="12">
+				<Grid Canvas.Left="1500" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="400" Height="200" Padding="12" ColumnSpacing="12">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="300" />
+						<ColumnDefinition Width="200" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock Text="Nejlepší skóre" Foreground="LightSlateGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="LightSlateGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 					<TextBlock Grid.Column="1" Text="4.23" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 				
 				<!-- Left dialog -->
-				<Grid Canvas.Left="20" Canvas.Top="80" Width="429" Height="495" Padding="40,40,44,180">
+				<!--<Grid Canvas.Left="20" Canvas.Top="80" Width="429" Height="495" Padding="40,40,44,180">
+					<Grid.Background>
+						<ImageBrush ImageSource="/Assets/Game/DialogLeft.png" />
+					</Grid.Background>
+					<Rectangle Fill="Red" />
+				</Grid>-->
+
+				<!-- Right dialog -->
+				<Grid Canvas.Left="1370" Canvas.Top="40" Width="515" Height="487" Padding="84,40,32,160">
 					<Grid.Background>
 						<ImageBrush ImageSource="/Assets/Game/DialogRight.png" />
 					</Grid.Background>
 					<Rectangle Fill="Red" />
 				</Grid>
 
-				<!-- Right dialog -->
-				<Grid Canvas.Left="1370" Canvas.Top="40" Width="515" Height="487" Padding="84,40,32,160">
-					<Grid.Background>
-						<ImageBrush ImageSource="/Assets/Game/DialogLeft.png" />
-					</Grid.Background>
-					<Rectangle Fill="Red" />
-				</Grid>
+				<Image Source="/Assets/Game/Person1.png" Width="300" Height="601" Canvas.Left="216" Canvas.Top="462" />
+				<Image Source="/Assets/Game/Person2.png" Width="267" Height="520" Canvas.Left="1284" Canvas.Top="420" />
 
 			</Canvas>
 		</Viewbox>

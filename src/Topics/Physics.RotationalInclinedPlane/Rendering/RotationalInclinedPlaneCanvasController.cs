@@ -25,7 +25,7 @@ namespace Physics.RotationalInclinedPlane.Rendering
 
 		public ISkiaVariantRenderer Renderer { get; set; }
 
-		public void StartSimulation(MotionSetup[] motions)
+		public void StartSimulation(params MotionSetup[] motions)
 		{
 			if (motions is null)
 			{
