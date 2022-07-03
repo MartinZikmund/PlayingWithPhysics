@@ -87,7 +87,7 @@ namespace Physics.RotationalInclinedPlane.Rendering
 		{
 			var rampEndX = CalculateRampEndRenderX(sender);
 			var metersToPixels = 100;
-			var physicsService = PhysicsService ?? PreviewPhysicsService;
+			var physicsService = GameInfo.State != GameState.SetAngle ? PhysicsService : PreviewPhysicsService;
 			var thisHorizontalWidth = physicsService.CalculateInclinedWidth();
 			var startRenderX = rampEndX - thisHorizontalWidth * metersToPixels;
 			var bottomRenderY = CalculateRampBottomY(sender);

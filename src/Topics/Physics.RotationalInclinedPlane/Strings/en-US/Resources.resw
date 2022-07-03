@@ -143,6 +143,24 @@ Graphics: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Changes apply to all objects</value>
   </data>
+  <data name="Dialog_EndGame_Exact" xml:space="preserve">
+    <value>So Neil, your best time was {0} s, which is exactly as I requested!</value>
+  </data>
+  <data name="Dialog_EndGame_NotExact" xml:space="preserve">
+    <value>So Neil, your best time was {0} s, which is {1} % different than I requested!</value>
+  </data>
+  <data name="Dialog_EndGame_Over10" xml:space="preserve">
+    <value>You have still much to learn!</value>
+  </data>
+  <data name="Dialog_EndGame_Under10" xml:space="preserve">
+    <value>There is still room for improvement, keep trying.</value>
+  </data>
+  <data name="Dialog_EndGame_Under5" xml:space="preserve">
+    <value>Exceptional work, let's go for lunch!</value>
+  </data>
+  <data name="Dialog_SetAngle" xml:space="preserve">
+    <value>Hey Neil, roll in the barrel in {0} s!</value>
+  </data>
   <data name="GameDesiredTime" xml:space="preserve">
     <value>Desired time:</value>
   </data>
@@ -176,6 +194,12 @@ Graphics: Petr Weinlich</value>
   <data name="Input_Radius" xml:space="preserve">
     <value>Radius</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="NextAttempt" xml:space="preserve">
+    <value>Next attempt</value>
+  </data>
   <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
     <value>Length of the inclined plane must be at most 100 times bigger than the radius of any of the objects. The following objects currently violate this rule: {0}.</value>
   </data>
@@ -189,6 +213,9 @@ Graphics: Petr Weinlich</value>
     <value>Rolling on Inclined Plane</value>
   </data>
   <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="StartRolling" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="Time" xml:space="preserve">

@@ -143,6 +143,24 @@ Grafika: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změny platí pro všechna tělesa</value>
   </data>
+  <data name="Dialog_EndGame_Exact" xml:space="preserve">
+    <value>Tak Vaňku, tvůj nejlepší čas je {0} s, což je přesně tolik, kolik jsem si přál!</value>
+  </data>
+  <data name="Dialog_EndGame_NotExact" xml:space="preserve">
+    <value>Tak Vaňku, tvůj nejlepší čas je {0} s, což je odchylka {1} % od mého požadavku!</value>
+  </data>
+  <data name="Dialog_EndGame_Over10" xml:space="preserve">
+    <value>No to snad ne! Píšeš si tu hry, přikuluješ prázdné sudy a žádný Kohout tě nezaměstná!</value>
+  </data>
+  <data name="Dialog_EndGame_Under10" xml:space="preserve">
+    <value>Měl by ses zlepšit! Dobrá parta je základem všeho!</value>
+  </data>
+  <data name="Dialog_EndGame_Under5" xml:space="preserve">
+    <value>Chválím tě! Už jsi byl na svačině?</value>
+  </data>
+  <data name="Dialog_SetAngle" xml:space="preserve">
+    <value>Vaňku, přikul mi ten sud! Pusť ho a ať je tu za {0} s!</value>
+  </data>
   <data name="GameDesiredTime" xml:space="preserve">
     <value>Požadovaný čas:</value>
   </data>
@@ -176,6 +194,12 @@ Grafika: Petr Weinlich</value>
   <data name="Input_Radius" xml:space="preserve">
     <value>Poloměr</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nová hra</value>
+  </data>
+  <data name="NextAttempt" xml:space="preserve">
+    <value>Další pokus</value>
+  </data>
   <data name="PlaneLengthValidationHundredMessage" xml:space="preserve">
     <value>Délka nakloněné roviny musí být nejvýše stokrát větší než poloměr každého z objektů. Nyní to neplatí pro: {0}.</value>
   </data>
@@ -190,6 +214,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="StartRolling" xml:space="preserve">
+    <value>Spustit sud</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Čas</value>

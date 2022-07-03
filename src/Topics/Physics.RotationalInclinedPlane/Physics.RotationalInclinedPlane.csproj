@@ -161,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Game\Background.jpg" />
-    <Content Include="Assets\Game\BackgroundTemp.jpg" />
     <Content Include="Assets\Game\DialogRight.png" />
     <Content Include="Assets\Game\DialogLeft.png" />
     <Content Include="Assets\Game\Person1.png" />

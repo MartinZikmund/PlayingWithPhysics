@@ -392,8 +392,8 @@
 					</TextBlock>
 
 					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" />
-					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" Grid.Column="1" />
-					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt1TimeText, Mode=OneWay}" Grid.Column="2" />
+					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt2TimeText, Mode=OneWay}" Grid.Column="1" />
+					<TextBlock Style="{StaticResource TimeLabelStyle}" Text="{x:Bind Model.GameInfo.Attempt3TimeText, Mode=OneWay}" Grid.Column="2" />
 
 					<TextBlock Style="{StaticResource TimeCaptionStyle}">
 						<Run Text="{xaml:Localize Key=Time}" />
@@ -410,11 +410,13 @@
 				</Grid>
 
 				<Image Source="/Assets/Game/SliderBackground.png" Canvas.Left="640" Width="338" Height="338" />
-				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" Opacity="1" IsEnabled="{x:Bind Model.AllowAngleChanges, Mode=OneWay}" Style="{StaticResource GameSliderStyle}" Minimum="5" Maximum="45" Orientation="Vertical" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Height="280" Canvas.Left="750" Canvas.Top="42" />
+				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" Opacity="1" IsEnabled="{x:Bind Model.AllowAngleChanges, Mode=OneWay}" Style="{StaticResource GameSliderStyle}" Minimum="1" Maximum="45" Orientation="Vertical" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Height="280" Canvas.Left="750" Canvas.Top="42" />
 
 				<!-- Button area -->
-				<Grid Canvas.Left="888" Canvas.Top="952" Width="280" Height="100">
-					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="60" FontFamily="Consolas" Content="{xaml:Localize Key=Start}" Command="{x:Bind Model.ShootCommand}" />
+				<Grid Canvas.Left="440" Canvas.Top="960" Width="320" Height="100">
+					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas" IsEnabled="{x:Bind Model.AllowButtonClick, Mode=OneWay}" Command="{x:Bind Model.StartCommand}">
+						<TextBlock TextAlignment="Center" Text="{x:Bind Model.ButtonText, Mode=OneWay}" TextWrapping="Wrap" />
+					</Button>
 				</Grid>
 
 				<!-- Score area -->
@@ -424,7 +426,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="LightSlateGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
-					<TextBlock Grid.Column="1" Text="4.23" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Grid.Column="1" Text="{x:Bind Model.GameInfo.BestTimeText, Mode=OneWay}" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 				
 				<!-- Left dialog -->
@@ -440,10 +442,10 @@
 					<Grid.Background>
 						<ImageBrush ImageSource="/Assets/Game/DialogRight.png" />
 					</Grid.Background>
-					<Rectangle Fill="Red" />
+					<TextBlock Text="{x:Bind Model.DialogText, Mode=OneWay}" TextWrapping="Wrap" FontSize="32" TextAlignment="Center" VerticalAlignment="Center" />
 				</Grid>
 
-				<Image Source="/Assets/Game/Person1.png" Width="300" Height="601" Canvas.Left="216" Canvas.Top="462" />
+				<Image Source="/Assets/Game/Person1.png" Width="300" Height="601" Canvas.Left="216" Canvas.Top="480" />
 				<Image Source="/Assets/Game/Person2.png" Width="267" Height="520" Canvas.Left="1284" Canvas.Top="420" />
 
 			</Canvas>

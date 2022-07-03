@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MvvmCross.ViewModels;
 using Physics.RotationalInclinedPlane.Logic;
 
@@ -14,7 +15,7 @@ namespace Physics.RotationalInclinedPlane.Game
 
 		public void OnStateChanged() => GameStateChanged?.Invoke(this, EventArgs.Empty);
 
-		public GameState State { get; internal set; }
+		public GameState State { get; private set; }
 
 		public int DesiredAngle { get; internal set; }
 
@@ -30,6 +31,15 @@ namespace Physics.RotationalInclinedPlane.Game
 
 		public float? TotalDistance { get; private set; }
 
+		public float? BestTime =>
+			Attempts
+				.Select(a => new { Attempt = a, Diff = Math.Abs(a - DesiredTime) })
+				.OrderBy(a => a.Diff)
+				.FirstOrDefault()?
+				.Attempt;
+
+		public string BestTimeText => BestTime is not null ? BestTime.Value.ToString("0.0") : "";
+
 		public int FinishedAttempts { get; private set; }
 
 		public string Attempt1TimeText => Attempts.Count > 0 ? Attempts[0].ToString("0.0") : "";
@@ -40,11 +50,19 @@ namespace Physics.RotationalInclinedPlane.Game
 
 		public List<float> Attempts { get; } = new List<float>();
 
-		public void AddAttempt(float distance)
+		public void AddAttempt(float actualTime)
 		{
 			FinishedAttempts++;
-			Attempts.Add(distance);
-			TotalDistance = (TotalDistance ?? 0) + distance;
+			Attempts.Add(actualTime);
+			if (FinishedAttempts == 3 || actualTime == DesiredTime)
+			{
+				State = GameState.GameEnded;
+			}
+			else
+			{
+				State = GameState.SimulationEnded;
+			}
+			RaiseAllPropertiesChanged();
 		}
 
 		public float AverageDistance => TotalDistance != null ? TotalDistance.Value / FinishedAttempts : float.NaN;
@@ -60,6 +78,7 @@ namespace Physics.RotationalInclinedPlane.Game
 			Attempts.Clear();
 			TotalDistance = null;
 			FinishedAttempts = 0;
+			RaiseAllPropertiesChanged();
 		}
 
 		public void NextShot()
@@ -78,5 +97,7 @@ namespace Physics.RotationalInclinedPlane.Game
 				angle,
 				0,
 				"#000000");
+
+		internal void StartAttempt() => State = GameState.Simulation;
 	}
 }
