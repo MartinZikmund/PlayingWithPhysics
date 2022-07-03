@@ -1,0 +1,112 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Návštěvníci",
+        "Text": "\\par V jedné scéně československého seriálu Návštěvníci sedí mladý budoucí génius Adam se svým „velkým učitelem“ u rybníka a společně házejí kameny do vody.\\\\\r\r\\par Dědek Drchlík: \\textit{„Teď mrskni do vody tadytu cihlu. Jaká je, kulatá?“}\\\\ \r\r\\par Adam Bernau: \\textit{„Hranatá…“}\\\\\r\r\\par Dědek Drchlík: \\textit{„No, takže by měla dělat hranatý vlny…. No, ale neudělá je!“}\\\\\r\r\\par Žbluňk.\\\\\r\r\\par Dědek Drchlík: \\textit{„I kdybys tam hodil botu, bude zase kruh.“}\\\\\r\r\\par Adam Bernau: \\textit{„Ale proč, pane Drchlík?“}\\\\\r\rDědek Drchlík: \\textit{„Protože kruh je podstata všeho…“}\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Huygensův princip",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V životě se setkáváme s různými druhy vlnění. Mezi mechanické vlny patří zvuk, rázová vlna po výbuchu nebo vlna šířící se po hladině - v extrémním případě vlna tsunami. Dalším typem jsou vlny elektromagnetické - jako světlo, infračervené záření, mikrovlny či rádiové vlny.\\\\\r\r\\par Jak známo, vlny mají tendenci šířit se do všech směrů. Vnější okraj šířící se vlny se nazývá čelní vlnoplocha (anglicky wavefront) či prostě čelo vlny. Huygensův princip nám pomáhá zjistit, jaký tvar bude mít čelo vlny v nějakém pozdějším čase, pokud známe jeho tvar teď.\\\\\r\r\\par Huygensův princip ve svém tradičním podání zní:\rKaždý bod na čele šířící se vlny lze chápat jako zdroj sekundární sférické vlny. Nový tvar čela vlny v pozdějším čase lze pak určit jako vnější obálku všech sekundárních vln.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "11_obr_v01-01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 1: Huygensův princip\\\\\r\r\\par Méně vybranými slovy: v kterýkoli okamžik si můžeme představit, že každý bod z čela vlny (ať má toto čelo sebesložitější tvar) vysílá sférické (ve 2D případě kruhové) vlny; skutečná vlna dorazí do nějakého určitého pozdějšího času všude tam, kam by během té doby dorazila alespoň jedna z těchto myšlených vln sekundárních.\\\\\r\r\\par Huygensův princip lze úspěšně použít nejen k předpovídání vývoje tvaru původně obdélníkové vlny na hladině (např. po opatrném vhození cihly do rybníka), ale též k popisu šíření vln za překážky či lomu vlnění na rozhraní dvou prostředí, v nichž se vlna šíří odlišnými rychlostmi (mnoho velice povedených videí lze najít na internetu).\\\\\r\r\\par Povšimněte si, že zatímco Huygensův princip určuje vývoj tvaru vlnoplochy, nedokáže predikovat amplitudu (a tedy intenzitu) vlny v různých bodech. Pro korektnější popis šíření vln, beroucí v potaz možné interferenční jevy, je navíc ve skutečnosti třeba použít složitější, více matematizovanou verzi tohoto postupu, známou pod názvem Huygensův-Fresnelův princip (tím se však v této aplikaci zabývat nebudeme).\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Můžeme pomocí Huygensova principu v případě detekce epicentra zemětřesení předpovědět, kdy dorazí vlna tsunami na pobřeží?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "Ano",
+          "Ne"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Můžeme pomocí Huygensova principu v případě detekce epicentra zemětřesení předpovědět, na kterém místě pobřeží bude vlna tsunami nejvyšší?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Ano",
+          "Ne"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V obecném případě (složitý počáteční tvar vlny, existence překážek) je celkem obtížné Huygensův princip použít doslova, jelikož vyžaduje představit si sekundární vlnu šířící se z každého bodu čela vlny, a těch je samozřejmě nekonečně mnoho. K jeho využití je třeba buď v jednotlivých případech využít nejrůznější matematické triky, nebo použít nějaké přiblížení.\\\\\r \r\\par V tomto programu naleznete dvě různé počítačové simulace šíření vln dle Huygensova principu ve dvou dimenzích. Obě využívají takzvanou aproximaci na diskrétní mříži, tedy „rozpixelování“ 2D prostoru na čtverečky. Pro každý pixel (ve skutečnosti nemusí uvažovaný čtvereček nutně odpovídat jednomu pixelu na obrazovce, ale držme se pro názornost této terminologie) postupně v různých časech určujeme, zda jej již zasáhla šířící se vlna, či nikoli. Jelikož uvažovaných pixelů není nekonečně mnoho, není již pro počítač problém uvažovat všechny body čelní vlnoplochy. Jak bývá na počítačích obvyklé, rovněž diskretizujeme čas: nepočítáme tvar vlny pro každý okamžik (jelikož je jich nekonečně mnoho), ale pouze pro vybrané okamžiky, mezi nimiž jsou pravidelné nenulové časové rozestupy.\\\\\r\r\\par V Základní verzi simulujeme šíření vlny v izotropním prostředí bez překážek. Lze zvolit prakticky libovolný počáteční tvar vlny (v aplikaci mu říkáme „primární zdroj“), buď výběrem z nabídky, nebo jej je možné nakreslit dle libosti.\\\\\r\r\\par Počítač vezme v potaz všechny body na okraji primárního zdroje a začne na mříži v běžícím čase simulovat šíření kruhových vln se středy v těchto bodech. Pro každý uvažovaný okamžik dostaneme sjednocením všech získaných „kruhů“ oblast, která již byla vlnou do té doby zasažena. Okraj této oblasti (tedy pixely zasažené vlnou, ale sousedící s pixely vlnou ještě nedotčenými) tvoří nalezenou vlnoplochu v tomto čase. \\\\\r\r\\par Pro lepší pochopení toho, co se v simulaci děje, umožňuje aplikace zobrazit šířící se sekundární vlnoplochy z několika vybraných pixelů na okraji primárního zdroje. Ve skutečnosti však bere v úvahu všechny.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "11_obr_v01-02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 2: Zdroj - oranžová, zasažená oblast - světle modrá, vlnoplocha - tmavě modrá, sekundární vlny - červená.\\\\\r\r\\par Pokročilá verze se liší od základní tím, že umožňuje uvažovat i situace, kdy se v prostředí nacházejí kromě primárního zdroje také překážky, které vlna musí obejít. Povšimněte si, že Základní verze neumožňuje vzít jednoduše v potaz, že vlna nemůže překážkou projít.\\\\\r\r\\par Zde to řešíme tak, že necháme sekundární vlny šířit ze zdroje jen krátký časový krok Δt, takže vlny nedojdou daleko, a nalezneme vlnoplochu v novém čase. Následně postup opakujeme, ale jako zdroje sekundárních vln již bereme nově nalezenou vlnoplochu. Ovšem pokud se některý bod na okraji právě uvažované vlnoplochy nachází uvnitř překážky, ignorujeme ho.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "11_obr_v01-03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 3: Sekundární vlny jsou vyslané z aktuální vlnoplochy.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "11_obr_v01-04.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek č. 4: Sjednocení všech sekundárních vln určuje přírůstek zasažené oblasti, a tedy i novou vlnoplochu.\\\\\r\r\\par Takový postup samozřejmě stále není zcela přesný (jednotlivé sekundární vlny se skrz okraje překážek mohou stále šířit, pokud stihnou „proniknout skrz překážku“ během jednoho $Δt$), ale tak tomu v počítačových simulacích bývá. Povšimněte si, že čím menší uvažujeme poloměr sekundárních vln, tím menší nastává problém s „pronikáním skrz překážky“. Na druhou stranu se ale zmenšujícím se poloměrem sekundárních vln zhoršuje tzv. „diskretizační chyba“. K pochopení těchto pojmů a jejich příčin vedou některé úlohy z Pokročilé varianty pracovního listu.",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura a odkazy k dalšímu studiu",
+        "Text": "\\par Treatise On Light : Huygens, Christiaan : Free Download, Borrow, and Streaming : Internet Archive. Internet Archive: Digital Library of Free \\& Borrowable Books, Movies, Music \\& Wayback Machine [online]. [cit. 14.04.2022]. Dostupné z: https://archive.org/details/treatiseonlight031310mbp/page/n13/mode/2up\\\\\r\r\\par Fyzika JaM .:. Mech. kmitání, vlnění .:. Huygensův princip - YouTube. YouTube [online]. Copyright © 2022 Google LLC [cit. 14.04.2022]. Dostupné z: https://www.youtube.com/watch?v=jRxf1X-\\_mvQ\\\\\r\r\\par Huygen's principle of secondary waves | Wave optics | Physics | Khan Academy - YouTube. YouTube [online]. Copyright © 2022 Google LLC [cit. 14.04.2022]. Dostupné z: https://www.youtube.com/watch?v=4JjhiyXcPl8\\\\\r\r\\par Reflection laws proof using Huygen's principle | Wave optics | Physics | Khan Academy - YouTube. YouTube [online]. Copyright © 2022 Google LLC [cit. 14.04.2022]. Dostupné z: https://www.youtube.com/watch?v=N3levs4TzTA\\\\\r\r\\par Huygens–Fresnel principle - Wikipedia. [online]. [cit. 14.04.2022]. Dostupné z: https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel\\_principle\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]
