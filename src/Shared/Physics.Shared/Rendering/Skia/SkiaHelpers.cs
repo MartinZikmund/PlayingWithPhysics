@@ -40,18 +40,21 @@ namespace Physics.Shared.UI.Rendering.Skia
             return rotatedBitmap;
         }
 
-        public static SKPoint RotatePoint(SKPoint point, int centerX, int centerY, float rad)
-        {
-            var sin = (float)Math.Sin(rad);
-            var cos = (float)Math.Cos(rad);
-            var translatedX = point.X - centerX;
-            var translatedY = point.Y - centerY;
-            var rotatedX = translatedX * cos - translatedY * sin;
-            var rotatedY = translatedX * sin + translatedY * cos;
-            return new SKPoint(rotatedX + centerX, rotatedY + centerY);
-        }
-        
-        private static float ToRadians(float degrees)
+		public static SKPoint RotatePoint(SKPoint point, int centerX, int centerY, float rad) =>
+			RotatePoint(point, new SKPoint(centerX, centerY), rad);
+
+		public static SKPoint RotatePoint(SKPoint point, SKPoint center, float rad)
+		{
+			var sin = (float)Math.Sin(rad);
+			var cos = (float)Math.Cos(rad);
+			var translatedX = point.X - center.X;
+			var translatedY = point.Y - center.Y;
+			var rotatedX = translatedX * cos - translatedY * sin;
+			var rotatedY = translatedX * sin + translatedY * cos;
+			return new SKPoint(rotatedX + center.X, rotatedY + center.Y);
+		}
+
+		private static float ToRadians(float degrees)
         {
             return (float)(Math.PI * degrees / 180.0);
         }

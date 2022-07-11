@@ -126,7 +126,6 @@
     <Compile Include="Dialogs\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Rendering\Extensions\SKBitmapExtensions.cs" />
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +238,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Rendering\Extensions\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

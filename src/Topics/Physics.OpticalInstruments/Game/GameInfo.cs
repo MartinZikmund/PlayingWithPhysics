@@ -11,7 +11,9 @@ namespace Physics.OpticalInstruments.Game
 
         public int TotalThrows => 3;
 
-        public float? TotalDistance { get; private set; }
+		public int CurrentAngle { get; set; } = 20;
+		
+		public float? TotalDistance { get; private set; }
 
         public int FinishedAttempts { get; private set; }
 

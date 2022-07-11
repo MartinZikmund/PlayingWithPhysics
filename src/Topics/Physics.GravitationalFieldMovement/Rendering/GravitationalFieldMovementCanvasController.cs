@@ -6,7 +6,6 @@ using MvvmCross.WeakSubscription;
 using Physics.GravitationalFieldMovement.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
-using Physics.GravitationalFieldMovement.Rendering.Extensions;
 using Windows.ApplicationModel;
 using Typography.TextLayout;
 using Physics.Shared.UI.Helpers;
