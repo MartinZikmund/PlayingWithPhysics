@@ -175,6 +175,7 @@
     <Content Include="Assets\Demo\izobar.mp4" />
     <Content Include="Assets\Demo\izochor.mp4" />
     <Content Include="Assets\Demo\izoterm.mp4" />
+    <Content Include="Assets\Demo\motor.mp4" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />

@@ -6,8 +6,12 @@ namespace Physics.Shared.UI.Converters
 {
     public class EnumLocalizationConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
+		public object Convert(object value, Type targetType, object parameter, string language)
+		{
+			if (value == null)
+			{
+				return "";
+			}
             var type = value.GetType();
             var valueName = Enum.GetName(type, value);
             var localizationKey = $"{type.Name}_{valueName}";
