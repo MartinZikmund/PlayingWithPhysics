@@ -13,7 +13,7 @@ namespace Physics.OpticalInstruments.Rendering
 		private readonly SKPoint _mirrorCenterPoint = new SKPoint(714, 642);
 		private readonly SKPoint _mirrorHitPoint = new SKPoint(714, 630);
 		private readonly SKPoint _gunPoint = new SKPoint(714, 10);
-		
+
 		private SKBitmap _backgroundBitmap;
 		private SKBitmap _backgroundCacheBitmap;
 		private SKBitmap _mirrorBitmap;
@@ -54,10 +54,8 @@ namespace Physics.OpticalInstruments.Rendering
 			}
 			DrawBackground(sender, args);
 			DrawMirror(sender, args);
-			//if (GameInfo.State != GameState.SetAngle)
-			{
-				DrawLaser(sender, args);
-			}
+			DrawLaser(sender, args);
+			DrawObject(sender, args);
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -75,15 +73,23 @@ namespace Physics.OpticalInstruments.Rendering
 				_backgroundBitmap,
 				new SKRect(0, 0, _backgroundBitmap.Width, _backgroundBitmap.Height),
 				new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+
+			//args.Canvas.DrawBitmap(
+			//	_backgroundCacheBitmap,
+			//	new SKRect(0, 0, _backgroundCacheBitmap.Width, _backgroundCacheBitmap.Height),
+			//	new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+
+			var legLeft = 640;
+			var legTop = 560;
 			args.Canvas.DrawBitmap(
-				_backgroundCacheBitmap,
-				new SKRect(0, 0, _backgroundCacheBitmap.Width, _backgroundCacheBitmap.Height),
-				new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+				_backLegBitmap,
+				new SKRect(0, 0, _backLegBitmap.Width, _backLegBitmap.Height),
+				new SKRect(legLeft, legTop, legLeft + _backLegBitmap.Width, legTop + _backLegBitmap.Height));
 		}
 
 		private void DrawMirror(ISkiaCanvas sender, SKSurface args)
 		{
-			using var image = SkiaHelpers.RotateBitmap(_mirrorBitmap, GameInfo.CurrentAngle);
+			using var image = SkiaHelpers.RotateBitmap(_mirrorBitmap, 90 - GameInfo.CurrentAngle);
 			int left = 714;
 			int top = 642;
 			args.Canvas.DrawBitmap(
@@ -92,13 +98,48 @@ namespace Physics.OpticalInstruments.Rendering
 				new SKRect(left - image.Width / 2, top - image.Height / 2, left + image.Width / 2, top + image.Height / 2));
 		}
 
+		private void DrawObject(ISkiaCanvas sender, SKSurface args)
+		{
+			//GameInfo.MockAngle();
+			var targetAngle = GameInfo.TargetAngle;
+
+			if (_planetPointAngle != targetAngle)
+			{
+				var targetX = GameInfo.ObjectX;
+
+				var targetPointDirection = SkiaHelpers.RotatePoint(_gunPoint, _mirrorHitPoint, MathHelpers.DegreesToRadians((90 - (float)targetAngle) * 2));
+
+				var lineToTarget = new Line2d(new Point2d(_mirrorHitPoint.X, _mirrorHitPoint.Y), new Point2d(targetPointDirection.X, targetPointDirection.Y));
+				var lineX = new Line2d(new Point2d(targetX, 0), new Point2d(targetX, 1000));
+				_planetPoint = lineToTarget.IntersectWith(lineX).Value;
+				_planetPointAngle = (int)targetAngle;
+			}
+
+			args.Canvas.DrawBitmap(
+				_planetBitmap,
+				new SKRect(0, 0, _planetBitmap.Width, _planetBitmap.Height),
+				new SKRect(
+					(float)_planetPoint.X - _planetBitmap.Width / 2,
+					(float)_planetPoint.Y - _planetBitmap.Height / 2,
+					(float)_planetPoint.X + _planetBitmap.Width / 2,
+					(float)_planetPoint.Y + _planetBitmap.Height / 2));
+		}
+
+		private int _planetPointAngle = -1;
+		private Point2d _planetPoint = default;
+
 		private void DrawLaser(ISkiaCanvas sender, SKSurface args)
 		{
+			if (GameInfo.State == GameState.SetAngle)
+			{
+				return;
+			}
+
 			// Down laser
 			using var laserPath = new SKPath();
 			laserPath.MoveTo(_gunPoint);
 			laserPath.LineTo(_mirrorHitPoint);
-			var targetPoint = SkiaHelpers.RotatePoint(_gunPoint, _mirrorHitPoint, MathHelpers.DegreesToRadians(GameInfo.CurrentAngle * 2));
+			var targetPoint = SkiaHelpers.RotatePoint(_gunPoint, _mirrorHitPoint, MathHelpers.DegreesToRadians((90 - GameInfo.CurrentAngle) * 2));
 			laserPath.LineTo(targetPoint);
 			args.Canvas.DrawPath(laserPath, _laserStrokePaint);
 			args.Canvas.DrawPath(laserPath, _laserFillPaint);

@@ -336,7 +336,7 @@
 		<Viewbox Margin="0">
 			<Canvas Width="1920" Height="1080">
 				<Grid x:Name="CanvasHolder" Width="1920" Height="1080" />
-				<Slider x:Name="AngleSlider" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
+				<Slider x:Name="AngleSlider" IsEnabled="{x:Bind Model.IsShootVisible, Mode=OneWay}" Minimum="0" Maximum="90" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
 
 				<Button
 					RequestedTheme="Dark"
@@ -363,11 +363,13 @@
 
 				<!-- Button area -->
 				<Grid Canvas.Left="888" Canvas.Top="852" Width="360" Height="200">
-					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="60" FontFamily="Consolas">Vystřelit</Button>
+					<Button HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsShootVisible, Mode=OneWay}" Command="{x:Bind Model.ShootCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas">Vystřelit</Button>
+					<Button HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsNextShotVisible, Mode=OneWay}" Command="{x:Bind Model.NextShotCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas">Další střela</Button>
+					<Button HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsNewGameVisible, Mode=OneWay}" Command="{x:Bind Model.NewGameCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas">Nová hra</Button>
 				</Grid>
 
-				<Image Source="/Assets/Game/Gun.png" Canvas.Left="458" Canvas.Top="0" />
-				<Image Source="/Assets/Game/FrontLeg.png" Canvas.Left="606" Canvas.Top="540" />
+				<Image Source="/Assets/Game/Gun.png" Canvas.Left="444" Canvas.Top="0" />
+				<Image Source="/Assets/Game/FrontLeg.png" Canvas.Left="596" Canvas.Top="540" />
 
 				<!-- Score area -->
 				<Grid Canvas.Left="1280" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="500" Height="200" Padding="12" ColumnSpacing="12">
@@ -376,7 +378,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 					<TextBlock Text="Nejlepší skóre" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
-					<TextBlock Grid.Column="1" Text="4.23" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Grid.Column="1" Text="{x:Bind Model.GameInfo.BestScore, Mode=OneWay}" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 			</Canvas>
 		</Viewbox>
