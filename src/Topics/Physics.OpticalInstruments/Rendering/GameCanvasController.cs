@@ -14,6 +14,8 @@ namespace Physics.OpticalInstruments.Rendering
 		private readonly SKPoint _mirrorHitPoint = new SKPoint(714, 630);
 		private readonly SKPoint _gunPoint = new SKPoint(714, 10);
 
+		private const int HitX = 1000;
+		
 		private SKBitmap _backgroundBitmap;
 		private SKBitmap _backgroundCacheBitmap;
 		private SKBitmap _mirrorBitmap;
@@ -139,12 +141,32 @@ namespace Physics.OpticalInstruments.Rendering
 			using var laserPath = new SKPath();
 			laserPath.MoveTo(_gunPoint);
 			laserPath.LineTo(_mirrorHitPoint);
-			var targetPoint = SkiaHelpers.RotatePoint(_gunPoint, _mirrorHitPoint, MathHelpers.DegreesToRadians((90 - GameInfo.CurrentAngle) * 2));
-			laserPath.LineTo(targetPoint);
+
+			if (_hitPointAngle != GameInfo.CurrentAngle)
+			{
+				var targetPoint = SkiaHelpers.RotatePoint(_gunPoint, _mirrorHitPoint, MathHelpers.DegreesToRadians((90 - GameInfo.CurrentAngle) * 2));
+				var targetX = GameInfo.ObjectX;
+				var lineX = new Line2d(new Point2d(targetX, 0), new Point2d(targetX, 1000));
+				var lineToTarget = new Line2d(new Point2d(_mirrorHitPoint.X, _mirrorHitPoint.Y), new Point2d(targetPoint.X, targetPoint.Y));
+				var intersect = lineToTarget.IntersectWith(lineX);
+				if (intersect is null || intersect.Value.DistanceTo(new Point2d(_mirrorHitPoint.X, _mirrorHitPoint.Y)) > 2000)
+				{
+					_hitPoint = new Point2d(targetPoint.X, targetPoint.Y);
+				}
+				else
+				{
+					_hitPoint = intersect.Value;
+				}
+				_hitPointAngle = (int)GameInfo.CurrentAngle;
+			}
+
+			laserPath.LineTo(new SKPoint((float)_hitPoint.X, (float)_hitPoint.Y));
 			args.Canvas.DrawPath(laserPath, _laserStrokePaint);
 			args.Canvas.DrawPath(laserPath, _laserFillPaint);
-
 		}
+
+		private int _hitPointAngle = -1;
+		private Point2d _hitPoint = default;
 
 		private void EnsureBitmaps()
 		{

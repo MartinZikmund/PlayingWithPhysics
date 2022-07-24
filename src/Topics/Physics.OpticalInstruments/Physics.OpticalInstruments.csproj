@@ -154,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Game\Background.png" />
-    <Content Include="Assets\Game\BackgroundCache.png" />
     <Content Include="Assets\Game\BackLeg.png" />
     <Content Include="Assets\Game\FrontLeg.png" />
     <Content Include="Assets\Game\Gun.png" />
