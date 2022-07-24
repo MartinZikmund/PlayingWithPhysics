@@ -186,6 +186,9 @@
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Application „{0}“ was created within the project „Hrátky s fyzikou“, which is financed by European Union. Registration number of the project is CZ.02.3.68/0.0/0.0/18_067/0012381. Published under Creative Commons 4.0, BY-NC-SA.</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

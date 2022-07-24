@@ -27,7 +27,8 @@
             <Button
                 VerticalAlignment="Center"
                 Command="{x:Bind Model.GoBackCommand}"
-                Style="{ThemeResource NavigationBackButtonNormalStyle}" />
+                Style="{ThemeResource NavigationBackButtonNormalStyle}"
+				AutomationProperties.Name="{extensions:Localize Key=Back}"/>
         </StackPanel>
         <Image
             x:Name="Logo"
@@ -54,7 +55,8 @@
                         Width="200"
                         Background="Transparent"
                         CornerRadius="4"
-                        RowSpacing="12">
+                        RowSpacing="12"
+						AutomationProperties.Name="{x:Bind ShortName}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="80" />

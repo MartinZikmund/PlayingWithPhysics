@@ -185,7 +185,8 @@
                             Grid.Column="0"
                             HorizontalAlignment="Stretch"
                             Background="#f4f4f4"
-                            Command="{x:Bind Model.GoToEasyCommand}">
+                            Command="{x:Bind Model.GoToEasyCommand}"
+							AutomationProperties.Name="{extensions:Localize Key=EasyDifficulty}">
                             <Button.Content>
                                 <StackPanel
                                     VerticalAlignment="Center"
@@ -207,7 +208,8 @@
                             HorizontalAlignment="Stretch"
                             Background="#ebebeb"
                             Command="{x:Bind Model.GoToAdvancedCommand}"
-                            Visibility="{x:Bind Model.HasAdvancedDifficulty}">
+                            Visibility="{x:Bind Model.HasAdvancedDifficulty}"
+							AutomationProperties.Name="{extensions:Localize Key=AdvancedDifficulty}">
                             <Button.Content>
                                 <StackPanel
                                     VerticalAlignment="Center"
@@ -223,14 +225,15 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button
+						<Button
                             x:Name="GameButton"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Background="#cdcdcd"
                             Command="{x:Bind Model.GameModeCommand}"
-                            Visibility="{x:Bind Model.HasGame}">
-                            <Button.Content>
+                            Visibility="{x:Bind Model.HasGame}"
+							AutomationProperties.Name="{x:Bind Model.GameName, Mode=OneWay}">
+							<Button.Content>
                                 <StackPanel
                                     VerticalAlignment="Center"
                                     Orientation="Horizontal"
@@ -251,7 +254,8 @@
                             HorizontalAlignment="Stretch"
                             Background="#afafaf"
                             Command="{x:Bind Model.GoToStudyModeCommand}"
-                            Visibility="{x:Bind Model.HasStudyMode}">
+                            Visibility="{x:Bind Model.HasStudyMode}"
+							AutomationProperties.Name="{extensions:Localize Key=StudyText}">
                             <Button.Content>
                                 <StackPanel
                                     VerticalAlignment="Center"
@@ -304,7 +308,7 @@
                 Padding="20,0"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
-                <Button Background="#a1a1a1" Command="{x:Bind Model.MoreAppsCommand}">
+				<Button Background="#a1a1a1" Command="{x:Bind Model.MoreAppsCommand}" AutomationProperties.Name="{extensions:Localize Key=MorePhysicsApps}">
                     <StackPanel
                         VerticalAlignment="Center"
                         Orientation="Horizontal"
@@ -317,7 +321,7 @@
                             Text="{extensions:Localize Key=MorePhysicsApps}"
                             TextAlignment="Center"
                             TextWrapping="Wrap" />
-                    </StackPanel>
+					</StackPanel>
                 </Button>
                 <Button
                     x:Name="AboutAppButton"
@@ -325,7 +329,8 @@
                     Padding="12"
                     HorizontalAlignment="Stretch"
                     Background="#a1a1a1"
-                    Click="AboutAppButton_Click">
+                    Click="AboutAppButton_Click"
+					AutomationProperties.Name="{extensions:Localize Key=AboutApp}">
                     <Button.Content>
                         <StackPanel
                             VerticalAlignment="Center"

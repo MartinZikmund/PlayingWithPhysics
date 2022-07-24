@@ -183,6 +183,9 @@
   <data name="AppProjectInfo" xml:space="preserve">
     <value>Aplikace „{0}“ byla vytvořena v rámci projektu „Hrátky s fyzikou“, který je spolufinancován Evropskou unií. Registrační číslo projektu je CZ.02.3.68/0.0/0.0/18_067/0012381. Publikováno pod licencí Creative Commons 4.0 ve variantě BY-NC-SA.</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Zpět</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
