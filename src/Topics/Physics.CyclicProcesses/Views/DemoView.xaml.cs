@@ -82,6 +82,9 @@ namespace Physics.CyclicProcesses.Views
 				case Logic.ProcessType.Isochoric:
 					mediaUri = new Uri("ms-appx:///Assets/Demo/izochor.mp4");
 					break;
+				case Logic.ProcessType.StirlingEngine:
+					mediaUri = new Uri("ms-appx:///Assets/Demo/motor.mp4");
+					break;
 			}
 			if (mediaUri != null)
 			{

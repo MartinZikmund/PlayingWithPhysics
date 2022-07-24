@@ -129,16 +129,21 @@
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\GameController.cs" />
     <Compile Include="Rendering\LawOfConservationOfMomentumCanvasController.cs" />
     <Compile Include="ValuesTable\TableRow.cs" />
     <Compile Include="ValuesTable\TableService.cs" />
     <Compile Include="ValuesTable\ValuesTableDialogViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MotionViewModel.cs" />
     <Compile Include="ViewModels\SetupCollisionDialogViewModel.cs" />
     <Compile Include="ViewModels\SetupCollisionViewModel.cs" />
     <Compile Include="ViewModels\ValuesTablePage.xaml.cs">
       <DependentUpon>ValuesTablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -150,6 +155,23 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Game\baron.png" />
+    <Content Include="Assets\Game\button_red.png" />
+    <Content Include="Assets\Game\celek.png" />
+    <Content Include="Assets\Game\delo.png" />
+    <Content Include="Assets\Game\graf_1.png" />
+    <Content Include="Assets\Game\koule.png" />
+    <Content Include="Assets\Game\more.png" />
+    <Content Include="Assets\Game\obloha.png" />
+    <Content Include="Assets\Game\popisek_1.png" />
+    <Content Include="Assets\Game\posuvnik.png" />
+    <Content Include="Assets\Game\pozadi.png" />
+    <Content Include="Assets\Game\pozadi_l.png" />
+    <Content Include="Assets\Game\pozadi_r.png" />
+    <Content Include="Assets\Game\sitka.png" />
+    <Content Include="Assets\Game\slider.png" />
+    <Content Include="Assets\Game\vojak_1.png" />
+    <Content Include="Assets\Game\vojak_2.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -200,6 +222,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Assets\StudyMode\index.json" />
+    <Content Include="Assets\Game\Fonts\DigitalNormal-xO6j.otf" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -265,6 +288,10 @@
     <Page Include="ViewModels\ValuesTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
