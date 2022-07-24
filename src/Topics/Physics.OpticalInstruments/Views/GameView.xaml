@@ -336,7 +336,7 @@
 		<Viewbox Margin="0">
 			<Canvas Width="1920" Height="1080">
 				<Grid x:Name="CanvasHolder" Width="1920" Height="1080" />
-				<Slider x:Name="AngleSlider" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
+				<Slider x:Name="AngleSlider" IsEnabled="{x:Bind Model.IsShootVisible, Mode=OneWay}" Minimum="0" Maximum="90" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
 
 				<Button
 					RequestedTheme="Dark"
@@ -350,7 +350,7 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<TextBlock Text="Nastavení zrcadla" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Text="{xaml:Localize Key=MirrorAngle}" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Consolas" TextWrapping="Wrap" />
 					<TextBlock TextAlignment="Center" VerticalAlignment="Center" Foreground="Blue" FontSize="80" FontFamily="Consolas" TextWrapping="Wrap" Grid.Row="1">
 						<Run Text="{Binding ElementName=AngleSlider, Path=Value}" /><Run Text="°" />
 					</TextBlock>
@@ -358,16 +358,63 @@
 
 				<!-- Bottom left title -->
 				<Grid Canvas.Left="104" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="440" Height="200">
-					<TextBlock Text="Zasáhni planetu" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Text="{xaml:Localize Key=GameDescription}" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 
 				<!-- Button area -->
 				<Grid Canvas.Left="888" Canvas.Top="852" Width="360" Height="200">
-					<Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="60" FontFamily="Consolas">Vystřelit</Button>
+					<Button Background="Red" HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsShootVisible, Mode=OneWay}" Command="{x:Bind Model.ShootCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas" Content="{xaml:Localize Key=Shoot}" />
+					<Button Background="Orange" HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsNextShotVisible, Mode=OneWay}" Command="{x:Bind Model.NextShotCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas" Content="{xaml:Localize Key=NextShot}" />
+					<Button Background="Green" HorizontalAlignment="Stretch" Visibility="{x:Bind Model.IsNewGameVisible, Mode=OneWay}" Command="{x:Bind Model.NewGameCommand}" VerticalAlignment="Stretch" FontSize="40" FontFamily="Consolas" Content="{xaml:Localize Key=NewGame}"  />
 				</Grid>
 
-				<Image Source="/Assets/Game/Gun.png" Canvas.Left="458" Canvas.Top="0" />
-				<Image Source="/Assets/Game/FrontLeg.png" Canvas.Left="606" Canvas.Top="540" />
+				<Image Source="/Assets/Game/Gun.png" Canvas.Left="444" Canvas.Top="0" />
+				<Image Source="/Assets/Game/FrontLeg.png" Canvas.Left="596" Canvas.Top="540" />
+
+				<!-- Scores area -->
+				<Border Canvas.Left="1088" Canvas.Top="40" Width="200" Height="140" Background="{StaticResource GamePanelBackgroundBrush}" />
+				<Border Canvas.Left="1328" Canvas.Top="40" Width="200" Height="140" Background="{StaticResource GamePanelBackgroundBrush}" />
+				<Border Canvas.Left="1568" Canvas.Top="40" Width="200" Height="140" Background="{StaticResource GamePanelBackgroundBrush}" />
+
+				<Grid Canvas.Left="1088" Canvas.Top="40" ColumnSpacing="40" Width="680" Height="140">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="2*" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.Resources>
+						<Style TargetType="TextBlock" x:Key="HeaderStyle">
+							<Setter Property="Foreground" Value="Aqua" />
+							<Setter Property="FontSize" Value="30" />
+							<Setter Property="VerticalAlignment" Value="Center" />
+						</Style>
+						<Style TargetType="TextBlock" x:Key="ScoreStyle">
+							<Setter Property="Foreground" Value="White" />
+							<Setter Property="FontSize" Value="50" />
+							<Setter Property="VerticalAlignment" Value="Center" />
+							<Setter Property="Grid.Row" Value="1" />
+						</Style>
+					</Grid.Resources>
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource HeaderStyle}">
+						<Run Text="{xaml:Localize Key=Attempt}" />
+						<Run Text="1" />
+					</TextBlock>
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ScoreStyle}" Text="{x:Bind Model.GameInfo.Attempt1Text, Mode=OneWay}" />
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource HeaderStyle}">
+						<Run Text="{xaml:Localize Key=Attempt}" />
+						<Run Text="2" />
+					</TextBlock>
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource ScoreStyle}" Text="{x:Bind Model.GameInfo.Attempt2Text, Mode=OneWay}" />
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource HeaderStyle}">
+						<Run Text="{xaml:Localize Key=Attempt}" />
+						<Run Text="3" />
+					</TextBlock>
+					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ScoreStyle}" Text="{x:Bind Model.GameInfo.Attempt3Text, Mode=OneWay}" />
+				</Grid>
 
 				<!-- Score area -->
 				<Grid Canvas.Left="1280" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="500" Height="200" Padding="12" ColumnSpacing="12">
@@ -375,8 +422,8 @@
 						<ColumnDefinition Width="300" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock Text="Nejlepší skóre" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
-					<TextBlock Grid.Column="1" Text="4.23" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Grid.Column="1" Text="{x:Bind Model.GameInfo.BestScore, Mode=OneWay}" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 			</Canvas>
 		</Viewbox>

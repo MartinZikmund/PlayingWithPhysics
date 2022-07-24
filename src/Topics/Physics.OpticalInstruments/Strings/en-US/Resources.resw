@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Angle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>All optical instruments use the operation of light rays, the law of reflection and the law of refraction. Optical devices are used to capture images, to transmit images, to increase the angle of view, which is the angle at which we see the object.
 
@@ -126,6 +129,12 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Optical Instruments</value>
+  </data>
+  <data name="Attempt" xml:space="preserve">
+    <value>Attempt</value>
+  </data>
+  <data name="BestScore" xml:space="preserve">
+    <value>Best score</value>
   </data>
   <data name="ConcaveLens" xml:space="preserve">
     <value>Concave lens</value>
@@ -144,6 +153,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="FocalDistance" xml:space="preserve">
     <value>Focal distance</value>
+  </data>
+  <data name="GameDescription" xml:space="preserve">
+    <value>Hit the planet!</value>
   </data>
   <data name="ImageDistance" xml:space="preserve">
     <value>Image distance</value>
@@ -187,11 +199,23 @@ Graphics: Petr Weinlich</value>
   <data name="ImageType_Real" xml:space="preserve">
     <value>Real</value>
   </data>
+  <data name="MirrorAngle" xml:space="preserve">
+    <value>Mirror angle</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="NextShot" xml:space="preserve">
+    <value>Next attempt</value>
+  </data>
   <data name="ObjectDistance" xml:space="preserve">
     <value>Object distance</value>
   </data>
   <data name="ObjectHeight" xml:space="preserve">
     <value>Object height</value>
+  </data>
+  <data name="Shoot" xml:space="preserve">
+    <value>Shoot</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Optical Instruments</value>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Angle" xml:space="preserve">
+    <value>Úhel</value>
+  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Všechny optické přístroje využívají chodu světelných paprsků, zákona odrazu a zákona lomu. Optické přístroje slouží k zachycování obrazů, k přenosu obrazů, k zvětšování zorného úhlu, což je úhel, pod nímž vidíme daný předmět.
 
@@ -126,6 +129,12 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Zobrazení odrazem a lomem</value>
+  </data>
+  <data name="Attempt" xml:space="preserve">
+    <value>Pokus</value>
+  </data>
+  <data name="BestScore" xml:space="preserve">
+    <value>Nejlepší skóre</value>
   </data>
   <data name="ConcaveLens" xml:space="preserve">
     <value>Rozptylná čočka</value>
@@ -144,6 +153,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="FocalDistance" xml:space="preserve">
     <value>Ohnisková vzdálenost</value>
+  </data>
+  <data name="GameDescription" xml:space="preserve">
+    <value>Zasáhni planetu!</value>
   </data>
   <data name="ImageDistance" xml:space="preserve">
     <value>Obrazová vzdálenost</value>
@@ -187,11 +199,23 @@ Grafika: Petr Weinlich</value>
   <data name="ImageType_Real" xml:space="preserve">
     <value>Skutečný</value>
   </data>
+  <data name="MirrorAngle" xml:space="preserve">
+    <value>Nastavení zrcadla</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nová hra</value>
+  </data>
+  <data name="NextShot" xml:space="preserve">
+    <value>Další pokus</value>
+  </data>
   <data name="ObjectDistance" xml:space="preserve">
     <value>Předmětová vzdálenost</value>
   </data>
   <data name="ObjectHeight" xml:space="preserve">
     <value>Výška objektu</value>
+  </data>
+  <data name="Shoot" xml:space="preserve">
+    <value>Vystřelit</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Zobrazení odrazem a lomem</value>

@@ -14,6 +14,25 @@ namespace Physics.OpticalInstruments.ViewModels
 	{
 		private GameCanvasController? _controller;
 
+		public GameViewModel()
+		{
+			GameInfo.StartNewGame();
+			GameInfo.GameStateChanged += GameInfo_GameStateChanged;
+		}
+
+		private void GameInfo_GameStateChanged(object sender, EventArgs e)
+		{
+			RaisePropertyChanged(nameof(IsNewGameVisible));
+			RaisePropertyChanged(nameof(IsShootVisible));
+			RaisePropertyChanged(nameof(IsNextShotVisible));
+		}
+
+		public bool IsNewGameVisible => GameInfo.State == GameState.GameEnded;
+
+		public bool IsNextShotVisible => GameInfo.State == GameState.Fired;
+
+		public bool IsShootVisible => GameInfo.State == GameState.SetAngle;
+
 		public override void Prepare(SimulationNavigationModel parameter)
 		{
 		}
@@ -35,12 +54,12 @@ namespace Physics.OpticalInstruments.ViewModels
 
 		public ICommand NextShotCommand => GetOrCreateCommand(() =>
 		{
-
+			GameInfo.NextShot();
 		});
 
 		public ICommand ShootCommand => GetOrCreateCommand(() =>
 		{
-
+			GameInfo.Shoot();
 		});
 
 		public ICommand NewGameCommand => GetOrCreateCommand(() =>
