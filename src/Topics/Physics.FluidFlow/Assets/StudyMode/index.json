@@ -1,0 +1,257 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "Řeka",
+        "Text": "\\par Voda kolem raftu byla klidná a líná. Řeka tu byla široká a lemovaly ji vzrostlé stromy. Sluníčko hřálo a letní scenérii sem tam doplnil průlet ledňáčků hledajících potravu.\\\\\r\r\\par Posádka odpočívala. Za chvíli bude potřebovat všechnu sílu a obratnost.\\\\\r\r\\par „Blíží se průrva. Připravte se, bude to houpat!”, upozornil posádku kormidelník.\\\\\r\r\\par Člun se blížil k soutěsce, kterou voda prorazila ve skalách před dávnými časy.  Řeka se ztenčila a zrychlila, jakoby se skal bála a snažila se z krajiny pískovcových balvanů a věží co nejrychleji zmizet.\\\\\r\r\\par Posádka se zapřela. Proud řeky byl silný. Zkušený kormidelník vydával pokyny a sám se snažil ze všech sil, aby raft udržel ve správném směru a vyhnul se balvanům, které ležely lodi v cestě.\\\\\r\r\\par Po půl hodině byla řeka opět klidná.\\\\\r\r\\par „Zvláštní, jak se se tady dokáže voda rychle změnit”, pomyslel si kormidelník.\\\\\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Proudění kapalin",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Problematika proudění kapalin má pro technickou praxi velký význam. Uplatňuje se například při následujících dějích:\\\\• proudění vody a plynu v domácnosti\\\\• pohánění turbín hydroelektráren\\\\• rozvod oleje a maziv ve strojích\\\\• proudění pohonných látek z nádrží do motorů automobilů\\\\• krevní oběh v lidském těle\\\\• konstrukce letadel, střel\\\\• karosérie automobilů, a další\\\\\r\r\\par Proudění skutečných kapalin je poměrně složité. Proto při dalším popisu budeme předpokládat stacionární proudění, tzn. okamžitá rychlost se v daném místě v čase nemění.\\\\\r\r\\par Proudění kapalin lze popsat pomocí proudnic – myšlených čar, jejichž tečna v libovolném bodě má směr rychlosti pohybující se částice.\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-01.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při laminárním proudění nedochází k mísení vrstev kapaliny. Když je například člověk napojen na krevní transfúzi, krev poklidně skapává nebo protéká – prostě klasické a spořádané laminární proudění, žádné víry nebo dokonce bubliny. \\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-02.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při turbulentním proudění dochází k mísení vrstev kapaliny a proudění je zároveň nestacionární. Při turbulentním proudění vznikají v proudící kapalině víry.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-03.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": null,
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Která z nabízených odpovědí nejvíce splňuje podmínku laminárního proudění?",
+        "CorrectResponse": "",
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "Tok horské bystřiny",
+          "Tok vody v řece při povodni",
+          "Krev v rovných úsecích cév s nepoškozeným epitelem"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Kde vzniká nejčastěji laminární proudění?",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "V kapalinách proudících malou rychlostí",
+          "V kapalinách proudících vysokou rychlostí",
+          "V kapalinách proudících libovolnou rychlostí"
+        ]
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Kontrolní otázka",
+        "HasNumericInput": true,
+        "Unit": "",
+        "Placeholder": null,
+        "Question": "Pomocí Reynoldsova čísla lze rozhodnout, zda je proudění laminární nebo turbulentní. Najděte na internetu přibližnou přelomovou hodnotu Reynoldsova čísla pro vodu v uzavřeném potrubí, při kterém se laminární proudění mění na turbulentní.",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "AllowedAnswers": [
+          "2300"
+        ],
+        "Tolerance": 50.0
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Rovnice kontinuity",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Rovnice kontinuity je aplikací zákona zachování hmotnosti pro proudící kapaliny.\\\\\r\r\\par Chcete-li, aby voda ze zahradní hadice dostříkla dál, použijete na konci hadice trysku – zúžíte tím průměr potrubí protékající kapaliny. A tuto zákonitost popisuje rovnice kontinuity (spojitosti).\\\\\r\r\\par Protéká-li průřezem $S$ částice kapaliny rychlostí $v$, proteče jím za jednu sekundu kapalina o objemu $V$. Objem kapaliny, který proteče daným průřezem trubice za jednotku času, se nazývá objemový průtok a značí se $Q_V$ a vypočítá se pomocí vztahu:$$Q_V=\\frac{V}{t}.$$\\\\\r\r\\par Tato veličina se udává v jednotkách $\\mathrm{m^3\\cdot s^{-1}}$, ale v praxi se používají i $\\mathrm{l\\cdot s^{-1}}$ nebo $\\mathrm{l\\cdot hod^{-1}}$.\\\\\r\r\\par Je-li v rychlost proudící kapaliny, posune se za dobu $t$ každá částice kapaliny průřezem trubice o dráhu $s=vt$. Označíme-li obsah průřezu $S$, je objem kapaliny $V=Svt$",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-04.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro objemový tok platí $$Q_V=Sv.$$\\\\\r\r\\par Poněvadž objemový průtok je v libovolném průřezu trubice stejný, pohybují se částice kapaliny v zúženém místě trubice větší rychlostí. Je-li v průřezu $S_1$ rychlost proudu kapaliny $v_1$, proteče jím za 1 s objem stejný jako v průřezu $S_2$, kde je rychlost proudu $v_2$.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-05.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Platí tedy$$S_1v_1=S_2v_2.$$Tento vztah se nazývá rovnicí kontinuity.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Při snížení obsahu příčného řezu na polovinu původní hodnoty se rychlost proudění: ",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "2x sníží",
+          "nezmění",
+          "2x zvýší",
+          "4x zvýší"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Při snížení průměru potrubí na polovinu původní hodnoty se rychlost proudění:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "2x sníží",
+          "nezmění",
+          "2x zvýší",
+          "4x zvýší"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Chcete-li snížit dostřik zahradní hadice:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 2,
+        "Options": [
+          "zvýšíte objemový průtok při ostatních nezměněných parametrech hadice",
+          "snížíte průměr výstupního otvoru hadice",
+          "zvýšíte průměr výstupního otvoru hadice"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Bernoulliho rovnice",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Přemýšlíte, jaká „síla“ zajistí bezpečný let letadla? Bernoulliho rovnice Vám dá částečnou odpověď.\\\\\r\r\\par Bernoulliho rovnice je aplikací zákona zachování energie pro proudící kapaliny.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-06.png",
+        "ImageCaption": null,
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Proudící kapalina v potrubí má tři složky energie: kinetickou, polohovou a tlakovou.\\\\\r\r\\par Kinetická energie pohybujícího se tělesa je dána vztahem$$E_k=\\frac{1}{2}mv^2.$$\\\\\r\r\\par Označíme-li objem kapalného tělesa $V$, pak zjistíme kinetickou energii vztaženou na jednotku objemu:$$E_k=\\frac{1}{2}\\frac{m}{V}v^2=\\frac{1}{2}\\rho v^2.$$\\\\\r\r\\par Polohová tíhová energie tělesa je dána vztahem$$E_p=mgh.$$\\\\\r\r\\par Označíme-li objem kapalného tělesa $V$, pak zjistíme polohovou energii vztaženou na jednotku objemu:$$E_p=\\frac{m}{V}gh=\\rho gh.$$\\\\\r\r\\par Tlaková energie způsobí vytékání kapaliny z potrubí v případě jeho poškození:$$E_{tl}=pV.$$\\\\\r\r\\par Označíme-li objem kapalného tělesa $V$, pak zjistíme tlakovou energii vztaženou na jednotku objemu:$$E_{tl}=\\frac{pV}{V}=p.$$\\\\\r\r\\par Bernoulliho rovnice (zákon zachování energie) má tvar:$$\\frac{1}{2}\\rho v^2+\\rho gh+p=\\mathrm{konst.}$$nebo$$\\frac{1}{2}\\rho v_1^2+\\rho gh_1+p_1=\\frac{1}{2}\\rho v_2^2+\\rho gh_2+p_2.$$\r\r\\par Pro vodorovné potrubí má rovnice jednodušší tvar:$$\\frac{1}{2}\\rho v_1^2+p_1=\\frac{1}{2}\\rho v_2^2+p_2.$$\r\r\\par Z Bernoulliho rovnice vyplývá, že tlak proudící kapaliny klesá s rostoucí rychlostí. Při velkém zúžení trubice, kde rychlost proudu kapaliny značně vzroste, může tlak v kapalině klesnout tak, že bude menší než tlak atmosférický – v zúženém místě trubice vzniká podtlak. Jestliže v této zúžené části bude otvor, pak bude z okolí nasávat vzduch. Tento jev se také nazývá hydrodynamické paradoxon. Podtlak u proudícího vzduchu se využívá např. u rozprašovače, stříkací pistole, karburátoru nebo vodní vývěvy.\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Ve vodorovném potrubí, jímž protéká kapalina, se snížil průměr hadice. Vyberte správné tvrzení:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "rychlost proudění i tlak v kapalině vzrostly",
+          "rychlost proudění i tlak v kapalině klesly",
+          "rychlost proudění klesla a tlak v kapalině vzrostl",
+          "rychlost proudění vzrostla a tlak v kapalině klesl"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Ve vodorovném potrubí, jímž protéká kapalina, se snížil průměr hadice. Kinetická energie kapaliny vzrostla o 200 J. Tlaková energie:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "vzrostla o 200 J",
+          "se snížila o 200 J",
+          "se nezměnila",
+          "se snížila 200krát"
+        ]
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Když plují dvě lodě rovnoběžně, vzniká mezi jejich boky jakýsi kanál, v němž je v klidu voda a pohybující se stěny. V zúžené části kanálu:",
+        "CorrectResponse": null,
+        "WrongResponse": null,
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "proudí voda rychleji a působí na stěny menším tlakem v porovnání s vnějším",
+          "proudí voda rychleji a působí na stěny větším tlakem v porovnání s vnějším",
+          "proudí voda rychleji a působí na stěny stejným tlakem v porovnání s vnějším",
+          "●\tproudí voda pomaleji a působí na stěny menším tlakem v porovnání s vnějším"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Použitá literatura",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par BARTUŠKA, Karel. Sbírka z fyziky pro střední školy I., 1. vydání. Praha: Prometheus, 2000. ISBN 80-7196-037-3.\\\\\r\r\\par Doc. RNDr. LEPIL Oldřich CSc., RNDr. BEDNAŘÍK CSc., Doc. RNDR. ŠIROKÁ Miroslava, CSc. Fyzika - Sbírka z fyziky pro střední školy, dotisk 3. vydání. Praha: Prometheus, 2012. ISBN 978-80-7196-266-3.\\\\\r\r\\par SVOBODA, E., BEDNAŘÍK M., ŠIROKÁ M. Fyzika pro gymnázia - Mechanika. 5., přeprac. vyd. Praha: Prometheus, 2013. ISBN 978-80-7196-431-5.\\\\\r\r\\par SVOBODA, Emanuel. Přehled středoškolské fyziky. 5., přeprac. vyd. Praha: Prometheus, 2014. ISBN 978-80-7196-438-4.\\\\\r\r\\par HALLIDAY, David, RESNICK, Robert a WALKER, Jearl: Fyzika. Brno: Vutium, 2000. ISBN 80-214-1868-0.\\\\\r\r\\par MECHANIKA IDEÁLNÍCH KAPALIN - Studijní text pro řešitele FO, kat. B [online]. [cit. 04.04.2022]. Dostupné z: http://fyzikalniolympiada.cz/texty/kapaliny.pdf\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

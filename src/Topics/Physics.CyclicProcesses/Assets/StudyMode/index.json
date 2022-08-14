@@ -1,0 +1,491 @@
+[
+  {
+    "Title": "Úvod",
+    "Contents": [
+      {
+        "Type": "RealWorld",
+        "Title": "KRUSTY",
+        "Text": "\\par „Nevíte náhodou, co znamená to KRUSTY?“\\\\\r\r\\par „To nevím, ale doufám, že to nebude nějaká šaškárna. My jsme přece NASA. Sice mám rád ty naše akronymy, ale nejme nějací animovaní klauni. Ale pozor, už začíná prezentace!“\\\\\r\r\\par „Vážené dámy a pánové, dovolte, abychom vám dnes představili KRUSTY (Kilopower Reactor Using Stirling Technology).\\\\\r\r\\par Jedná se vlastně o novou generaci jaderných reaktorů určených pro sondy dálkového výzkumu Sluneční soustavy.\\\\\r\r\\par V naší koncepci je zdrojem energie vysoce obohacený uran. Atomový reaktor vydává 4 až 40 kW tepelného výkonu, který se dále využívá v Stirlingově motoru a v generátoru se přeměňuje na elektrický výkon o hodnotách 1 až 10 kW – odtud Kilopower.\\\\\r\r\\par Výhodami naší konstrukce jsou vysoká účinnost a spolehlivost. To by umožnilo například kolonizovat Mars. Reaktor by zajistil napájení strojů nezbytných k separaci a kryogenickému skladování kyslíku z marťanské atmosféry pro pozdější využití. Jakmile dorazí lidé, reaktor by napájel jejich systémy na podporu života. Naše studie ukázaly, že 40kW reaktor by stačil k podpoře 4 a 6 astronautů.\\\\\r\r\\par Jedná se vlastně o propojení technologií devatenáctého a dvacátého století znalostmi a technologiemi jednadvacátého století. Stirlingův motor čeká díky nám a 28 kilogramům uranu 235 velkolepá renesance.“\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "1. Stavová rovnice ideálního plynu stálé hmotnosti",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro správné pochopení cyklických dějů potřebujeme znát zákonitosti dějů v ideálním plynu. Tyto děje se nazývají izotermický, izochorický, izobarický a adiabatický.\\\\\r\r\\par A proč se mají dít právě v ideálním plynu? Sice mohou nastat i v reálném plynu, ale pak bychom v rovnicích, které tyto děje popisují museli použít podstatně složitější matematické rovnice. Ideální plyn je fyzikální model, ve kterém některé skutečnosti budeme ignorovat, čímž se nám matematický popis výrazně zjednoduší.\\\\\r\r\\par Jaké jsou tedy vlastnosti ideálního plynu?\\\\\r• Rozměry molekul ideálního plynu jsou ve srovnání se vzdálenostmi mezi nimi zanedbatelně malé.\\\\\r• Molekuly ideálního plynu na sebe kromě vzájemných srážek silově nepůsobí.\\\\\r• Vzájemné srážky molekul IP a srážky těchto molekul se stěnami nádoby jsou dokonale pružné.\\\\\r\r\\par Výše uvedená „zanedbání“ nejsou tedy nijak zásadní, ale díky zjednodušení matematických rovnic bude následující téma pochopitelné snadno i na střední škole.\\\\\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Co je důsledkem toho, že srážky molekul ideálního plynu jsou dokonale pružné?",
+        "CorrectResponse": "Pružná srážka znamená, že molekuly si předají veškerou energii formou energie pohybové a žádná energie se tedy nezmění na energii tepelnou. Jestliže molekuly ideálního plynu na sebe navíc nepůsobí žádnými silami, je jejich energie výhradně kinetická (pohybová).",
+        "WrongResponse": "Pružná srážka znamená, že molekuly si předají veškerou energii formou energie pohybové a žádná energie se tedy nezmění na energii tepelnou. Jestliže molekuly ideálního plynu na sebe navíc nepůsobí žádnými silami, je jejich energie výhradně kinetická (pohybová).",
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Ideální plyn se v důsledku srážek výrazně zahřívá.",
+          "Vnitřní energie plynu je pouze součtem kinetických energií molekul ideálního plynu."
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Stavová rovnice popisuje plyn v určitém stavu. Tento stav je charakterizován stavovými veličinami. Těmi jsou termodynamická teplota $T$, tlak $p$, objem $V$, látkové množství $n$, hmotnost $m$, hustota $ρ$, vnitřní energie $U$ a entropie $S$. Mezi stavovými veličinami platí různé fyzikální vztahy, kterým říkáme stavové rovnice. Napíšeme-li stavovou rovnici pro dva různé stavy téhož plynu stejné hmotnosti $m$, dostaneme$$p_1V_1=\\frac{m}{M_m}T_1$$a$$p_2V_2=\\frac{m}{M_m}T_2.$$\\\\\r\r\\par Z obou rovnic vyplývá tzv. stavová rovnice pro změnu stavu ideálního plynu stálé hmotnosti$$\\frac{p_1V_1}{T_1}=\\frac{p_2V_2}{T_2},$$což lze zapsat$$\\frac{p_1V_1}{T_1}=\\mathrm{konst.}$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Při stavové změně ideálního plynu stálé hmotnosti je výraz $\\frac{pV}{T}$ konstantní.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Izotermický děj s ideálním plynem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Děj, při němž je teplota plynu stálá, se nazývá izotermický. Při izotermickém ději s plynem stálé hmotnosti $m$ se mění objem $V$ a tlak plynu $p$. Pro izotermický děj platí $T_1=T_2$, takže dostáváme vztah$$p_1V_1=p_2V_2,$$což lze zapsat jako$$pV=\\mathrm{konst.}$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Při izotermickém ději s ideálním plynem stálé hmotnosti je součin tlaku a objemu plynu stálý (zákon Boyle-Mariottův).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jaká je jednotka konstanty v Boyle-Mariottově zákonu?",
+        "CorrectResponse": "$[p][V]=\\mathrm{\\frac{N}{m^2}\\cdot m^3=N\\cdot m}$",
+        "WrongResponse": "$[p][V]=\\mathrm{\\frac{N}{m^2}\\cdot m^3=N\\cdot m}$",
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "$\\mathrm{N\\cdot m^{-1}}$",
+          "$\\mathrm{N\\cdot m}$",
+          "$\\mathrm{m\\cdot N^{-1}}$"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Graf vyjadřující tlak plynu stálé hmotnosti jako funkci objemu (takzvaný $p$-$V$ diagram) se při izotermickém ději nazývá izoterma.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-01.png",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 1: Izotermy ideálního plynu stálé hmotnosti při různých teplotách\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "3. Izochorický děj s ideálním plynem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Děj, při němž je objem plynu stálý, se nazývá izochorický děj. Zahříváme-li plyn určité hmotnosti tak, že jeho objem zůstává stálý, zvětšuje se jeho tlak. Závislost tlaku ideálního plynu na jeho termodynamické teplotě při tomto ději odvodíme ze stavové rovnice. Protože při izochorickém ději je $V_1=V_2$, dostáváme $$\\frac{p_1}{T_1}=\\frac{p_2}{T_2},$$což lze zapsat jako$$\\frac{p}{T}=\\mathrm{konst.}$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Při izochorickém ději s ideálním plynem stálé hmotnosti je tlak plynu přímo úměrný jeho termodynamické teplotě (zákon Charlesův).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Graf znázorňující v $p$-$V$ diagramu izochorický děj se nazývá izochora. Při izochorickém ději je objem plynu stálý, a proto je izochora úsečka rovnoběžná s osou $p$.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-02.png",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 2: Izochora\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Untitled",
+        "Question": "Vysvětlete, proč se tlak plynu stálé hmotnosti zvětší, jestliže se jeho teplota při stálém objemu zvýší? K nalezení odpovědi na otázku můžete využít webovou interaktivní simulaci, kterou naleznete na adrese https://phet.colorado.edu/sims/html/gases-intro/latest/gases-intro\\_cs.html",
+        "CorrectResponse": "Dodáním tepelné energie vzroste rychlost molekul, a tím jejich kinetická energie. Srážky molekul se stěnami nádoby jsou tak silnější, což způsobí nárůst tlaku.",
+        "WrongResponse": "Dodáním tepelné energie vzroste rychlost molekul, a tím jejich kinetická energie. Srážky molekul se stěnami nádoby jsou tak silnější, což způsobí nárůst tlaku.",
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "Dodáním energie vzroste počet molekul plynu, protože se molekuly rozštěpí. Zvětší se tak počet nárazů na stěnu nádoby a vzroste tím tlak plynu.",
+          "Dodáním energie vzroste rychlost částic plynu a zvětší se tak kinetická energie molekul plynu. Síla nárazů na stěnu nádoby se tak zvětší a vzroste tím tlak plynu."
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "4. Izobarický děj s ideálním plynem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Děj, při němž je tlak plynu stálý, se nazývá izobarický. Zahříváme-li plyn určité hmotnosti tak, že jeho tlak udržujeme stálý, zvětšuje se jeho objem. Protože při izobarickém ději je tlak plynu v počátečním i koncovém stavu stejný a platí $p_1=p_2$dostáváme ze stavové rovnice vztah$$\\frac{V_1}{T_1}=\\frac{V_2}{T_2},$$což lze zapsat$$\\frac{V_1}{T_1}=\\mathrm{konts}.$$",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Při izobarickém ději s ideálním plynem stálé hmotnosti je objem plynu přímo úměrný jeho termodynamické teplotě (zákon Gay-Lussacův).\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Graf znázorňující v $p$-$V$ diagramu izobarický děj se nazývá izobara. Při izobarické ději je tlak plynu stálý, a proto je izobara úsečka rovnoběžná s osou $V$.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-03.png",
+        "Title": "Obrázek č. 3"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 3: Izobara\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Tasks",
+        "Title": "Untitled",
+        "HasNumericInput": true,
+        "Unit": "°C",
+        "Placeholder": null,
+        "Question": "Teplota kyslíku dané hmotnosti se zvětšuje za stálého tlaku z počáteční teploty –20 °C. Při jaké teplotě má kyslík 1,5krát větší objem než při počáteční teplotě? Nápověda: Použijte k výpočtu Gay-Lussacův zákon a nezapomeňte převést jednotky teploty, protože termodynamická teplota se udává v Kelvinech.",
+        "CorrectResponse": "$$t_1=–20\\mathrm{°C}=>T_1=253,15 \\mathrm{K}$$\r$$V_2=1,5V_1$$\r$$\\frac{V_1}{T_1}=\\frac{V_2}{T_2}$$\r$$T_2=\\frac{T_1}{V_1}\\cdot V_2=\\frac{T_1}{V_1}\\cdot 1,5V_1=1,5T_1$$\r$$T_2=1,5\\cdot 253,15=379,73\\mathrm{K}=>t_2=107\\mathrm{°C}$$",
+        "WrongResponse": "$$t_1=–20\\mathrm{°C}=>T_1=253,15 \\mathrm{K}$$\r$$V_2=1,5V_1$$\r$$\\frac{V_1}{T_1}=\\frac{V_2}{T_2}$$\r$$T_2=\\frac{T_1}{V_1}\\cdot V_2=\\frac{T_1}{V_1}\\cdot 1,5V_1=1,5T_1$$\r$$T_2=1,5\\cdot 253,15=379,73\\mathrm{K}=>t_2=107\\mathrm{°C}$$",
+        "AllowedAnswers": [
+          "107",
+          "106"
+        ],
+        "Tolerance": 0.0
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "5. Poissonova konstanta",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par K vysvětlení posledního děje s ideálním plynem je třeba stručně objasnit pojmy měrná tepelná kapacita za konstantního objemu $c_V$ a měrná tepelná kapacita za konstantního tlaku $c_p$.\\\\\r\r\\par Izochorický děj\\\\\r\r\\par Při zvýšení teploty plynu stálé hmotnosti $m$ o hodnotu $\\Delta T=T_2-T_1$ za stálého objemu $V$ přijme plyn teplo $Q_V=mc_V\\Delta T$, kde $c_V$ je měrná tepelná kapacita za konstantního objemu.\\\\\r\r\\par Objem plynu je při izochorickém ději stálý, a proto plyn nekoná práci. Z prvního termodynamického zákona pak plyne, že $Q_V=\\Delta U$, což znamená, že teplo přijaté při izochorickém ději se rovná přírůstku jeho vnitřní energie.\\\\\r\r\\par Izobarický děj\\\\\r\r\\par Zvýšíme-li teplotu ideálního plynu stálé hmotnosti při stálém tlaku o stejnou hodnotu $\\Delta T$ jako u děje izochorického s plynem téže hmotnosti, přijme plyn teplo $Q_p=mc_p\\Delta T$, kde $c_p$ je měrná tepelná kapacita za konstantního tlaku.\\\\\r\r\\par Plyn stálé hmotnosti při izobarickém zvětšení objemu však vykoná práci $W$. Z prvního termodynamického zákona pak dostáváme $Q_p=\\Delta U+W$, což znamená, že teplo přijaté ideálním plynem při izobarickém děj se rovná součtu přírůstku jeho vnitřní energie a práce vykonané plynem.\\\\\r\r\\par Zjistili jsme, že teplo přijaté ideálním plynem při izobarickém ději je větší než teplo přijaté při izochorickém ději, a to o práci vykonanou plynem. Platí tedy $Q_p>Q_V$. Protože je v obou případech hmotnost plynu stejná a přírůstek teploty také, musí platit $c_p>c_V$. Měrná tepelná kapacita za konstantního tlaku je větší než měrná tepelná kapacita za konstantního objemu.\\\\\r\r\\par Podíl$$\\frac{c_p}{c_V}=\\kappa$$se nazývá Poissonova konstanta. Protože $c_p>c_V$, je $\\kappa >1$. Poissonova konstanta závisí na druhu plynu a najdeme ji v Matematicko-fyzikálně-chemických tabulkách a hraje důležitou roli v posledním jevu s ideálním plynem, kterým je děj adiabatický.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "6. Adiabatický děj s ideálním plynem",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Při adiabatickém ději s ideálním plynem nedochází k tepelné výměně mezi plynem a okolím. Při tomto ději je tedy $Q=$ 0 J, a tak z prvního termodynamického zákona $\\Delta U=Q+W$ dostáváme $\\Delta U=W$.\\\\\r\r\\par Mohou tedy nastat následující situace:\\\\\r• Adiabatická komprese - při adiabatickém stlačení plynu v nádobě se působením vnější síly na píst koná práce a teplota plynu a jeho vnitřní energie se zvyšuje.\\\\\r• Adiabatická expanze - při adiabatickém rozpínání koná práci plyn a teplota plynu a jeho vnitřní energie se při tom zmenšuje.\\\\\r\r\\par Pro adiabatický děj s ideálním plynem platí Poissonův zákon:$$p_1V_1^\\kappa=p_2V_2^\\kappa ,$$což lze zapsat jako$$pV^\\kappa=\\mathrm{konst}.$$\\\\$\\kappa$ [kappa] je Poissonova konstanta.\\\\\r\r\\par Graf vyjadřující tlak plynu stálé hmotnosti jako funkci jeho objemu při adiabatickém ději se nazývá adiabata. Adiabata klesá vždy strměji než izoterma téhož plynu stejné hmotnosti.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-04.png",
+        "Title": "Obrázek č. 4"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 4: Adiabata (a) klesá strměji než izoterma (i) téhož plynu stejné hmotnosti.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "AdditionalResources",
+        "Title": "Zajímavost",
+        "Text": "\\par V technické praxi se dosáhne adiabatické komprese nebo expanze zmenšením nebo zvětšením objemu plynu ve velmi krátké době. Plyn tak během této doby nestihne přijmout ani odevzdat svému okolí teplo. Například ochlazení plynu, které provází adiabatickou expanzi, se využívá k získání nízkých teplot. U vznětových motorů se při adiabatické kompresi vzduchu zvýší jeho teplota na zápalnou teplotu nafty, která se po vstříknutí do horkého vzduchu sama vznítí.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Hasicí přístroje $\\mathrm{CO_2}$ (sněhové) obsahují oxid uhličitý, který je v rovnovážném stavu s okolní teplotou vzduchu. Proč se při otevření uzavíracího ventilu vytvářejí vločky pevného oxidu uhličitého? V čem spočívá hasicí účinek tohoto přístroje a pro které účely je vhodný? K nalezení odpovědi použijte internet.",
+        "CorrectResponse": "Při adiabatické expanzi silně poklesne teplota (až -78 °C) a dojde ke ztuhnutí plynu a tvorbě vloček. Zamezí hoření tím, že vytěsní kyslík potřebný k hoření. Vhodný na hašení elektrického proudu, potravin a jemné mechaniky.",
+        "WrongResponse": "Při adiabatické expanzi silně poklesne teplota (až -78 °C) a dojde ke ztuhnutí plynu a tvorbě vloček. Zamezí hoření tím, že vytěsní kyslík potřebný k hoření. Vhodný na hašení elektrického proudu, potravin a jemné mechaniky.",
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "Při adiabatické expanzi silně poklesne teplota a dojde ke ztuhnutí a tvorbě vloček. Zamezí přístupu kyslíku. Vhodný na hašení elektrického proudu.",
+          "Při adiabatické kompresi silně poklesne teplota a dojde ke ztuhnutí a tvorbě vloček. Zamezí přístupu kyslíku. Vhodný na hašení alkalických kovů."
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "7. Práce vykonaná plynem při stálém a proměnném tlaku",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Plyn uzavřený ve válcové nádobě s pohyblivým pístem působí na píst tlakovou silou $F$ a při zvětšování objemu koná práci.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-05.png",
+        "Title": "Obrázek č. 5"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 5: Práce plynu při izobarickém ději\\\\\r\r\\par Pokud je tlak plynu $p$ stálý, je děj izobarický a tlaková síla o velikosti $F=pS$ působící na píst o obsahu $S$ je také stálá. Při posunutí pístu o délku $\\Delta s$ vykoná plyn práci $W=F\\Delta s=pS\\Delta s$ a úpravou dostaneme$$W=p\\Delta V,$$kde $V=S\\Delta s=V_2-V_1$ je změna objemu plynu.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Práce vykonaná plynem při izobarickém ději je rovna součinu tlaku a přírůstku jeho objemu. Při zvětšení objemu plynu (expanzi) koná práci plyn a při poklesu objemu plynu (kompresi) je práce plynu dodávána.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Práci plynu lze znázornit v $p$-$V$ diagramu, kde je tlak vyjádřen jako funkce objemu.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-06.png",
+        "Title": "Obrázek č. 6"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 6: Pracovní diagram pro izobarický děj\\\\\r\r\\par Izobarický děj je znázorněn izobarou 1-2. Z předchozího vztahu plyne, že práce vykonaná plynem při izobarickém ději, při kterém plyn přejde ze stavu A do stavu B, je znázorněna obsahem obdélníku ležícího v p, V diagramu pod izobarou 1-2. Proto je tento diagram nazýván jako pracovní diagram.\\\\\r\r\\par V případě, že při nárůstu objemu plynu je tlak proměnný, například při izotermickém nebo adiabatickém ději, není tlaková síla působící na píst stálá. V takovém případě by p-V diagram vypadal jako na následujícím obrázku.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-07.png",
+        "Title": "Obrázek č. 7"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 7: Pracovní diagram při ději s proměnným tlakem\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Práce vykonaná plynem při zvětšení jeho objemu je v $p$-$V$ diagramu znázorněna obsahem plochy, která leží pod příslušným úsekem křivky.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Matematický způsob výpočtu plochy pod křivkou 1-2 znázorňující závislost tlaku na objemu plynu se nazývá integrace.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Jakou práci vykoná plyn při stálém tlaku 0,15 MPa, jestliže se jeho objem zvýší o 2,0 l?",
+        "CorrectResponse": "$p=0,15$ MPa\\\\$\\Delta V=$ 2 l = 2 dm$^3$ = 0,002 m$^3$\\\\$W=p\\Delta V$\\\\$W=$ 150 000 $\\cdot$ 0,002 = 300 J",
+        "WrongResponse": "$p=0,15$ MPa\\\\$\\Delta V=$ 2 l = 2 dm$^3$ = 0,002 m$^3$\\\\$W=p\\Delta V$\\\\$W=$ 150 000 $\\cdot$ 0,002 = 300 J",
+        "CorrectAnswerIndex": 1,
+        "Options": [
+          "0,3 MJ",
+          "300 J",
+          "300 kJ"
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "8. Cyklický děj",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Práce, kterou může plyn uzavřený ve válci vykonat, má omezenou velikost, protože objem plynu se nemůže neustále zvětšovat. Tepelný stroj může trvale pracovat jen tehdy, když se plyn po ukončení expanze zase vrátí do původního stavu, aby mohl práci vykonat znovu. A právě děj, jehož koncový stav je stejný jako stav počáteční, se nazývá cyklický (někdy též kruhový) děj. Grafem, vyjadřujícím tlak plynu $p$ jako funkci objemu $V$ při kruhovém ději, je tedy vždy uzavřená křivka.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-08.png",
+        "Title": "Obrázek č. 8"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 8: a) Cyklický děj, b) Pracovní diagram pro cyklický děj\\\\\r\r\\par Práce, kterou vykoná plyn při zvětšování objemu ze stavu 1 do stavu 2, je znázorněna obsahem plochy v pracovním diagramu pod křivkou 1A2. A práce, jakou musíme dodat plynu při stlačení (kompresi), abychom ho dostali ze stavu B do stavu A, je znázorněna obsahem plochy pod křivkou 2B1. Rozdíl obsahů obou ploch je roven obsahu plochy omezené křivkou 1A2B1.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Obsah plochy uvnitř křivky, zobrazující v $p$-$V$ diagramu cyklický děj, znázorňuje práci vykonanou plynem během jednoho cyklu.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Tento cyklus se může mnohokrát opakovat, takže tepelný stroj, ve kterém se opakuje cyklický děj, může trvale konat práci.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Aby byl celý cyklus během cyklického děje užitečný, musí platit:",
+        "CorrectResponse": "Práce vykonaná plynem při zvětšování objemu (expanzi) je větší, než práce dodaná plynu při jeho návratu do původního stavu. Při návratu často dochází ke stlačení (kompresi) plynu a práci tak plynu dodáváme.",
+        "WrongResponse": "Práce vykonaná plynem při zvětšování objemu (expanzi) je větší, než práce dodaná plynu při jeho návratu do původního stavu. Při návratu často dochází ke stlačení (kompresi) plynu a práci tak plynu dodáváme.",
+        "CorrectAnswerIndex": 0,
+        "Options": [
+          "Práce vykonaná plynem při zvětšování objemu (expanzi) je větší, než práce dodaná plynu při jeho návratu do původního stavu.",
+          "Práce vykonaná plynem při zvětšování objemu (expanzi) je menší, než práce dodaná plynu při jeho návratu do původního stavu.",
+          "Práce vykonaná plynem při zvětšování objemu (expanzi) je rovna práci, dodané plynu při jeho návratu do původního stavu."
+        ]
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "9. Druhý termodynamický zákon",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Protože při kruhovém ději je počáteční stav plynu totožný s koncovým stavem, je celková změna vnitřní energie plynu po ukončení jednoho cyklu nulová ($\\Delta U=0$). Těleso, od kterého plyn přijímá teplo $Q_1$, nazýváme ohřívač. Těleso, kterému plyn teplo $Q_2$ předá, nazýváme chladič. Platí $Q_1>Q_2$. Celkové teplo, které plyn během jednoho cyklu přijme $Q=Q_1-Q_2$. Protože $\\Delta U=0$, tak podle prvního termodynamického zákona platí, že $Q=𝑊$.",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "Celková práce $W$, kterou vykoná plyn během jednoho cyklu cyklického děje, se rovná celkovému teplu $Q=Q_1-Q_2$, které přijme během tohoto cyklu od okolí.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Při cyklickém ději se vždy jen část tepla přijatého od ohřívače využije k vykonání práce $W$. Zbývající teplo odevzdá plyn chladiči při návratu do původního stavu.",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-09.png",
+        "Title": "Obrázek č. 9"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 9: Schéma činnosti cyklicky pracujícího tepelného stroje\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Druhý termodynamický zákon: Druhý termodynamický zákon: Není možné sestrojit cyklicky pracující tepelný stroj, který by jen přijímal teplo od určitého tělesa (ohřívače) a vykonával stejně velkou práci.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-10.png",
+        "Title": "Obrázek č. 10"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 10: Druhý termodynamický zákon říká, že tepelný stroj pracující podle tohoto schématu neexistuje.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "KnowledgeCheck",
+        "Title": "Kontrolní otázka",
+        "Question": "Druhý termodynamický zákon lze zjednodušeně interpretovat tak, že neexistuje tepelný stroj, který je ve světě nazýván jako:",
+        "CorrectResponse": "Práce vykonaná plynem při zvětšování objemu (expanzi) je větší, než práce dodaná plynu při jeho návratu do původního stavu. Při návratu často dochází ke stlačení (kompresi) plynu a práci tak plynu dodáváme.",
+        "WrongResponse": "Práce vykonaná plynem při zvětšování objemu (expanzi) je větší, než práce dodaná plynu při jeho návratu do původního stavu. Při návratu často dochází ke stlačení (kompresi) plynu a práci tak plynu dodáváme.",
+        "CorrectAnswerIndex": 3,
+        "Options": [
+          "Permanent machina",
+          "Piertotum locomotor",
+          "Perpetuum mobile prvního druhu",
+          "Perpetuum mobile druhého druhu"
+        ]
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Má tedy smysl zavádět veličinu účinnost cyklického děje $\\eta$ jako podíl vykonané práce plynem a tepla přijatého plynem od ohřívače:$$\\eta =\\frac{W}{Q_1}=\\frac{Q_1-Q_2}{Q_1}$$Tato účinnost je vždy menší než 1.\\\\\r\r\\par V roce 1824 ukázal francouzský fyzik Nicolas Léonard Sadi Carnot, že pro účinnost tepelného motoru, který pracuje s ohřívačem teploty $T_1$ a s chladičem teploty $T_2$, platí$$\\eta \\leq \\eta_{max}=\\frac{T_1-T_2}{T_1},$$což znamená, že účinnost tepelných motorů je tím vyšší, čím větší je rozdíl mezi maximální teplotou plynu během cyklu a teplotou plynu na začátku cyklického děje.\\\\ ",
+        "IsHtml": false
+      },
+      {
+        "Type": "RealWorld",
+        "Title": "Zajímavost",
+        "Text": "\\par Skutečná účinnost tepelného motoru $\\eta$ pracujícího mezi teplotami $T_1$ a $T_2$ je ovlivňována různými tepelnými ztrátami, a proto je vždy podstatně menší než maximální hranice účinnosti $\\eta_{max}$. Například čtyřdobý zážehový motor má maximální hranici účinnosti 0,65. Skutečná účinnost však dosahuje 0,20 – 0,33. Vznětové motory mají maximální hranici účinnosti 0,73. Skutečná účinnost však dosahuje 0,30 – 0,42. Vyšší účinnost vznětových motorů je dána tím, že motor musí stlačit vzduch na vyšší tlak, aby se vzduch zahřál natolik, že nafta do něj vstříknutá se sama vznítí. Zážehový motor zapaluje palivo elektrickou jiskrou, tudíž není nutné plyn stlačovat na tak vysoký tlak. Proto má pracovní plyn nižší teplotu.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "10. Stirlingův motor",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Jedná se o čtyřdobý pístový motor s vnějším spalováním, u něhož nedochází k výměně pracovní látky s okolím. Stlačováním při nízké teplotě pracovního plynu a expanzi při vysoké teplotě pracovního plynu probíhá přeměna tepelné energie na mechanickou práci.\\\\\r\r\\par Výměna tepla s okolím probíhá přes tepelné výměníky ohřívače a chladiče. \\\\\r\r\\par Tento motor byl vynalezen Robertem Stirlingem v roce 1816 jako konkurence parního stroje. Stirlingův motor má v porovnání s parním strojem vyšší účinnost. Tyto motory jsou schopny dosáhnout až 40% účinnosti, mají tichý chod a umějí využít téměř libovolný zdroj tepla.\\\\\r\r\\par Například NASA vyvíjí jaderné reaktory, které slouží jako ohřívače pro Stirlingův motor. Ten poté slouží jako pohon elektrického generátoru. Tyto energetické jednotky by sloužily jako zdroj elektrické energie sond pro dálkový průzkum Sluneční soustavy.\\\\\r\r\\par Ideální (v reálných motorech nedosažitelný) Stirlingův cyklus je termodynamický cyklus, který se skládá ze dvou izoterm a dvou izochor. Jedná se o vratný cyklus plynu, při kterém dochází k výměně tepla s okolím a je konána užitečná práce, která odpovídá obsahu plochy vymezené grafy.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "12-11.png",
+        "Title": "Obrázek č. 11"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Obrázek 11: Pracovní $p$-$V$ diagram Stirlingova motoru\\\\\r\r\\par Teoretická nejvyšší účinnost motoru odpovídá hodnotě účinnosti Carnotova cyklu:$$\\eta_{max}=\\frac{T_1-T_2}{T_1},$$kde $T_1$ je teplota ohřívače a $T_2$ je teplota chladiče.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Zdroje",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par BARTUŠKA, Karel a Emanuel SVOBODA. Molekulová fyzika a termika pro gymnázia. Praha: Polygrafia, 1993, s. 83–121. ISBN 80-85204-22-3.\\\\\r\r\\par GIBSON, Marc A.; POSTON, David I.; MCCLURE, Patrick a kol. Kilopower Reactor Using Stirling Technology (KRUSTY) Nuclear Ground Test Results and Lessons Learned [online]. [cit. 10.2.2022]. Dostupný na www: https://ntrs.nasa.gov/api/citations/20180007389/downloads/20180007389.pdf\\\\\r\r\\par MACHÁČEK, Jan. STIRLINGŮV TERMODYNAMICKÝ CYKLUS [online]. [cit. 10.2.2022]. Dostupný na WWW: https://www.vut.cz/www\\_base/zav\\_prace\\_soubor\\_verejne.php?file\\_id=20337.\rDisertační práce. Vysoké učení technické v Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav elektroenergetiky. Vedoucí práce Ing. JAN GREGOR, CSc.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  }
+]
