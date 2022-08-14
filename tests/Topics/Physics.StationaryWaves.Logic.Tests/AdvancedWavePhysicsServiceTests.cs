@@ -24,7 +24,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
         }
 
@@ -56,7 +56,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
 		}
 
@@ -160,7 +160,7 @@ namespace Physics.StationaryWaves.Logic.Tests
 			}
 			else
 			{
-				Assert.Equal(expected.Value, actual.Value, 2);
+				Assert.Equal(expected.Value, actual.Value, 2f);
 			}
 		}
 	}

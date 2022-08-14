@@ -121,8 +121,8 @@ namespace Physics.OpticalInstruments.Logic.Tests
 			{
 				return;
 			}
-			Assert.Equal(imageDistance, image.ImageDistance, 3);
-			Assert.Equal(imageHeight, image.ImageHeight, 3);
+			Assert.Equal(imageDistance, image.ImageDistance, 3f);
+			Assert.Equal(imageHeight, image.ImageHeight, 3f);
 			Assert.Equal(flipped, image.ImageOrientation);
 			Assert.Equal(imageSizeType, image.SizeType);
 		}

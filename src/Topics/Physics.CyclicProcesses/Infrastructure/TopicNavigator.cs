@@ -21,7 +21,7 @@ namespace Physics.CyclicProcesses.Infrastructure
 
 		public bool HasAdvancedDifficulty => true;
 
-		public bool HasStudyMode => false;
+		public bool HasStudyMode => true;
 
 		public bool HasGame => true;
 
