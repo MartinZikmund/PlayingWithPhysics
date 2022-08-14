@@ -41,7 +41,8 @@
                 Style="{ThemeResource SubheaderTextBlockStyle}"
                 Text="{x:Bind Text, Mode=OneWay}"
                 TextAlignment="Center"
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap"
+				AutomationProperties.Name="{x:Bind Text, Mode=OneWay}"/>
         </Grid>
     </Grid>
 </UserControl>

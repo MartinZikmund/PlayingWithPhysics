@@ -23,7 +23,8 @@
         x:Name="ControlsBar"
         Grid.Row="1"
         Padding="12"
-        Background="{x:Bind Background, Mode=OneWay}">
+        Background="{x:Bind Background, Mode=OneWay}"
+		AutomationProperties.Name="{extensions:Localize Key=SimulationControlsBar}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -56,13 +57,14 @@
             Orientation="Horizontal"
             Spacing="8">
             <StackPanel.Resources />
-            <Button Command="{x:Bind JumpToStartCommand, Mode=OneWay}" IsEnabled="True">
+            <Button Command="{x:Bind JumpToStartCommand, Mode=OneWay}" IsEnabled="True" AutomationProperties.Name="{extensions:Localize Key=SimulatioControlsSkipToStart}">
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SkipToStartGlyph}" />
             </Button>
             <Button
                 Command="{x:Bind JumpBackCommand, Mode=OneWay}"
                 IsEnabled="True"
-                Visibility="{x:Bind BackwardVisibility, Mode=OneWay}">
+                Visibility="{x:Bind BackwardVisibility, Mode=OneWay}"
+				AutomationProperties.Name="{extensions:Localize Key=SimulationControlsRewind}">
                 <Button.ContextFlyout>
                     <Flyout>
                         <winui:NumberBox
@@ -72,7 +74,8 @@
                             Minimum="0.1"
                             SmallChange="0.1"
                             SpinButtonPlacementMode="Inline"
-                            Value="{x:Bind JumpSize, Mode=TwoWay}" />
+                            Value="{x:Bind JumpSize, Mode=TwoWay}"
+							AutomationProperties.Name="{extensions:Localize Key=TimeJumpSize}" />
                     </Flyout>
                 </Button.ContextFlyout>
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource RewindGlyph}" />
@@ -83,7 +86,8 @@
                     Height="48"
                     Windows10version1809:CornerRadius="24"
                     Command="{x:Bind PlayCommand, Mode=OneWay}"
-                    Visibility="{x:Bind IsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    Visibility="{x:Bind IsPaused, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+					AutomationProperties.Name="{extensions:Localize Key=SimulationControlsPlay}">
                     <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PlayGlyph}" />
                 </Button>
                 <Button
@@ -91,14 +95,16 @@
                     Height="48"
                     Windows10version1809:CornerRadius="24"
                     Command="{x:Bind PauseCommand, Mode=OneWay}"
-                    Visibility="{x:Bind IsPaused, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}">
+                    Visibility="{x:Bind IsPaused, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
+					AutomationProperties.Name="{extensions:Localize Key=SimulationControlsPause}">
                     <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource PauseGlyph}" />
                 </Button>
             </Grid>
             <Button
                 Command="{x:Bind JumpForwardCommand, Mode=OneWay}"
                 IsEnabled="True"
-                Visibility="{x:Bind ForwardVisibility, Mode=OneWay}">
+                Visibility="{x:Bind ForwardVisibility, Mode=OneWay}"
+				AutomationProperties.Name="{extensions:Localize Key=SimulationControlsForward}">
                 <Button.ContextFlyout>
                     <Flyout>
                         <winui:NumberBox
@@ -108,12 +114,13 @@
                             Minimum="0.1"
                             SmallChange="0.1"
                             SpinButtonPlacementMode="Inline"
-                            Value="{x:Bind JumpSize, Mode=TwoWay}" />
+                            Value="{x:Bind JumpSize, Mode=TwoWay}"
+							AutomationProperties.Name="{extensions:Localize Key=TimeJumpSize}" />
                     </Flyout>
                 </Button.ContextFlyout>
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource FastForwardGlyph}" />
             </Button>
-            <Button Click="{x:Bind ToggleSpeedSlider}" Visibility="{x:Bind SpeedControlVisibility, Mode=OneWay}">
+			<Button Click="{x:Bind ToggleSpeedSlider}" Visibility="{x:Bind SpeedControlVisibility, Mode=OneWay}" AutomationProperties.Name="{extensions:Localize Key=SimulationControlsSpeedButton}">
                 <FontIcon FontFamily="{StaticResource PlayingWithPhysicsIconFont}" Glyph="{StaticResource SpeedGlyph}" />
             </Button>
 
@@ -126,20 +133,23 @@
                 Opacity="0"
                 StepFrequency="0.1"
                 Visibility="Collapsed"
-                Value="{x:Bind SimulationSpeed, Mode=TwoWay}" />
+                Value="{x:Bind SimulationSpeed, Mode=TwoWay}"
+				AutomationProperties.Name="{extensions:Localize Key=SimulationControlsSpeedSlider}"/>
         </StackPanel>
         <Button
             Grid.Column="1"
             Margin="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
-            Background="Transparent">
+            Background="Transparent"
+			AutomationProperties.Name="{extensions:Localize Key=SimulationControlsShare}">
             <Button.Flyout>
                 <MenuFlyout Placement="TopEdgeAlignedRight">
                     <MenuFlyoutItem
                         Command="{x:Bind ShareCommand}"
                         Icon="Share"
-                        Text="Share" />
+                        Text="Share"
+						AutomationProperties.Name="{extensions:Localize Key=SimulationControlsShare}" />
                 </MenuFlyout>
             </Button.Flyout>
             <SymbolIcon Symbol="More" />

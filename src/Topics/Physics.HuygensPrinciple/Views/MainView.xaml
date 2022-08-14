@@ -68,19 +68,21 @@
                 <Button
                     HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.PickScenePresetCommand}"
-                    Content="{extensions:Localize Key=PickScenePreset}" />
-                <CheckBox Content="{extensions:Localize Key=ShowWaveEdge}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" />
-                <CheckBox Content="{extensions:Localize Key=ShowWave}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWave, Mode=TwoWay}" />
-                <CheckBox Content="{extensions:Localize Key=ShowSamplePoints}" IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" />
-                <CheckBox Content="{extensions:Localize Key=ShowSource}" IsChecked="{x:Bind Model.RenderConfiguration.ShowObject, Mode=TwoWay}" />
+                    Content="{extensions:Localize Key=PickScenePreset}"
+					AutomationProperties.Name="{extensions:Localize Key=PickScenePreset}"/>
+				<CheckBox AutomationProperties.Name="{extensions:Localize Key=ShowWaveEdge}" Content="{extensions:Localize Key=ShowWaveEdge}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWaveEdge, Mode=TwoWay}" />
+				<CheckBox AutomationProperties.Name="{extensions:Localize Key=ShowWave}" Content="{extensions:Localize Key=ShowWave}" IsChecked="{x:Bind Model.RenderConfiguration.ShowWave, Mode=TwoWay}" />
+				<CheckBox AutomationProperties.Name="{extensions:Localize Key=ShowSamplePoints}" Content="{extensions:Localize Key=ShowSamplePoints}" IsChecked="{x:Bind Model.RenderConfiguration.ShowSignificantPoints, Mode=TwoWay}" />
+				<CheckBox AutomationProperties.Name="{extensions:Localize Key=ShowSource}" Content="{extensions:Localize Key=ShowSource}" IsChecked="{x:Bind Model.RenderConfiguration.ShowObject, Mode=TwoWay}" />
 
-                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Drawing}" />
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="{extensions:Localize Key=Drawing}" AutomationProperties.Name="{extensions:Localize Key=Drawing}" />
                 <Button
                     HorizontalAlignment="Stretch"
                     Command="{x:Bind Model.DrawingState.StartDrawingCommand}"
                     Content="{extensions:Localize Key=StartDrawing}"
                     IsEnabled="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
-                    Visibility="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}" />
+                    Visibility="{x:Bind Model.DrawingState.CanStart, Mode=OneWay}"
+					AutomationProperties.Name="{extensions:Localize Key=StartDrawing}" />
                 <Grid RowSpacing="8" Visibility="{x:Bind Model.DrawingState.IsDrawing, Mode=OneWay}">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -91,15 +93,16 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
-                    <ComboBox
+					<ComboBox
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Stretch"
                         Header="{extensions:Localize Key=DrawingTool}"
                         ItemsSource="{x:Bind Model.DrawingState.DrawingTools}"
-                        SelectedItem="{x:Bind Model.DrawingState.ActiveTool, Mode=TwoWay}">
-                        <ComboBox.ItemTemplate>
+                        SelectedItem="{x:Bind Model.DrawingState.ActiveTool, Mode=TwoWay}"
+						AutomationProperties.Name="{extensions:Localize Key=DrawingTools}">
+						<ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+								<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" AutomationProperties.Name="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -119,7 +122,8 @@
                                 Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
                                 Stroke="Gray"
                                 StrokeThickness="1"
-                                Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}" />
+                                Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}"
+								AutomationProperties.Name="{extensions:Localize Key=Ellipse}"/>
                             <Rectangle
                                 Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
                                 Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
@@ -128,7 +132,8 @@
                                 Fill="{x:Bind Model.DrawingState.SampleBrush, Mode=OneWay}"
                                 Stroke="Gray"
                                 StrokeThickness="1"
-                                Visibility="{x:Bind Model.DrawingState.IsSquare, Mode=OneWay}" />
+                                Visibility="{x:Bind Model.DrawingState.IsSquare, Mode=OneWay}"
+								AutomationProperties.Name="{extensions:Localize Key=Rectangle}" />
                         </Grid>
                         <Image
                             Width="20"
@@ -149,17 +154,19 @@
                                 Header="{extensions:Localize Key=BrushSize}"
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxBrushSize}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinBrushSize}"
-                                Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}" />
+                                Value="{x:Bind Model.DrawingState.Size, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=BrushSize}" />
                             <ComboBox
                                 Margin="0,8,0,0"
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=SurfaceType}"
                                 ItemsSource="{x:Bind Model.SurfaceTypes}"
                                 SelectedItem="{x:Bind Model.DrawingState.SurfaceType, Mode=TwoWay}"
-                                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+                                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}"
+								AutomationProperties.Name="{extensions:Localize Key=SurfaceType}" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+										<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" AutomationProperties.Name="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -168,10 +175,11 @@
                                 HorizontalAlignment="Stretch"
                                 Header="{extensions:Localize Key=BrushShape}"
                                 ItemsSource="{x:Bind Model.ShapeTypes}"
-                                SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}">
+                                SelectedItem="{x:Bind Model.DrawingState.Shape, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=BrushShape}" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
+										<TextBlock Text="{Binding Converter={StaticResource EnumLocalizationConverter}}" AutomationProperties.Name="{Binding Converter={StaticResource EnumLocalizationConverter}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -197,19 +205,22 @@
                             Text="{extensions:Localize Key=DrawingWarning}"
                             TextAlignment="Center"
                             TextWrapping="WrapWholeWords"
-                            Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}" />
+                            Visibility="{x:Bind Model.ShowDrawingWarning, Mode=OneWay}"
+							AutomationProperties.Name="{extensions:Localize Key=DrawingWarning}" />
                         <Button
                             Grid.Row="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ResetPresetCommand}"
-                            Content="{extensions:Localize Key=ClearDrawing}" />
+                            Content="{extensions:Localize Key=ClearDrawing}"
+							AutomationProperties.Name="{extensions:Localize Key=ClearDrawing}" />
                         <Button
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             Command="{x:Bind Model.ConfirmDrawingCommand}"
                             Content="{extensions:Localize Key=SaveAndStart}"
-                            Style="{ThemeResource AccentButtonStyle}" />
+                            Style="{ThemeResource AccentButtonStyle}"
+							AutomationProperties.Name="{extensions:Localize Key=SaveAndStart}" />
                     </Grid>
                 </Grid>
             </StackPanel>
@@ -218,7 +229,8 @@
                 Grid.Row="2"
                 Margin="8"
                 HorizontalAlignment="Center"
-                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}">
+                Visibility="{x:Bind Model.IsAdvanced, Mode=OneWay}"
+				AutomationProperties.Name="{extensions:Localize Key=Settings}">
                 <Button.Flyout>
                     <Flyout x:Name="RenderSettingsFlyout" Closed="Flyout_Closed">
                         <StackPanel Width="200" Spacing="8">
@@ -228,7 +240,8 @@
                                 Maximum="{x:Bind logic:RenderSettingsDefaults.MaxFieldSize}"
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinFieldSize}"
                                 SpinButtonPlacementMode="Inline"
-                                Value="{x:Bind Model.UnconfirmedRenderSettings.FieldSize, Mode=TwoWay}" />
+                                Value="{x:Bind Model.UnconfirmedRenderSettings.FieldSize, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=FieldSize}" />
                             <mux:NumberBox
                                 x:Name="StepRadiusNumberBox"
                                 Header="{extensions:Localize Key=StepRadius}"
@@ -237,23 +250,26 @@
                                 Minimum="{x:Bind logic:RenderSettingsDefaults.MinStepRadius}"
                                 SmallChange="0.1"
                                 SpinButtonPlacementMode="Inline"
-                                Value="{x:Bind Model.UnconfirmedRenderSettings.StepRadius, Mode=TwoWay}" />
+                                Value="{x:Bind Model.UnconfirmedRenderSettings.StepRadius, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=StepRadius}" />
                             <Button
                                 Margin="0,8,0,0"
                                 HorizontalAlignment="Stretch"
-                                Command="{x:Bind Model.SetDefaultRenderSettingsCommand}">
+                                Command="{x:Bind Model.SetDefaultRenderSettingsCommand}"
+								AutomationProperties.Name="{extensions:Localize Key=SetDefault}">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <SymbolIcon Symbol="Undo" />
-                                    <TextBlock Text="{extensions:Localize Key=SetDefault}" />
+									<TextBlock Text="{extensions:Localize Key=SetDefault}" AutomationProperties.Name="{extensions:Localize Key=SetDefault}" />
                                 </StackPanel>
                             </Button>
                             <Button
                                 HorizontalAlignment="Stretch"
                                 Click="SaveRenderSettings_Click"
-                                Style="{ThemeResource AccentButtonStyle}">
+                                Style="{ThemeResource AccentButtonStyle}"
+								AutomationProperties.Name="{extensions:Localize Key=Set}">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
                                     <SymbolIcon Symbol="Save" />
-                                    <TextBlock Text="{extensions:Localize Key=Set}" />
+									<TextBlock Text="{extensions:Localize Key=Set}" AutomationProperties.Name="{extensions:Localize Key=Set}" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>

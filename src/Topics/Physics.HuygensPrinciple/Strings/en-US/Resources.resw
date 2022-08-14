@@ -200,6 +200,9 @@ This event is associated with the destruction of the mythical Atlantis or the te
   <data name="DrawingWarning" xml:space="preserve">
     <value>Warning! The result of the simulation may be non-realistic when the wall thickness is smaller than the radius of the secondary wave used!</value>
   </data>
+  <data name="Ellipse" xml:space="preserve">
+    <value>Ellipse</value>
+  </data>
   <data name="Eraser" xml:space="preserve">
     <value>Eraser</value>
   </data>
@@ -214,6 +217,9 @@ This event is associated with the destruction of the mythical Atlantis or the te
   </data>
   <data name="PickScenePreset" xml:space="preserve">
     <value>Pick a scenario...</value>
+  </data>
+  <data name="Rectangle" xml:space="preserve">
+    <value>Rectangle</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -253,6 +259,9 @@ This event is associated with the destruction of the mythical Atlantis or the te
   </data>
   <data name="SetDefault" xml:space="preserve">
     <value>Set default</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="ShapeType_Circle" xml:space="preserve">
     <value>Circle</value>

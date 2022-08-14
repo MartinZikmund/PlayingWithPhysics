@@ -315,6 +315,33 @@
   <data name="ShowValuesTable" xml:space="preserve">
     <value>Show table of values</value>
   </data>
+  <data name="SimulatioControlsSkipToStart" xml:space="preserve">
+    <value>Skip to the start of simulation</value>
+  </data>
+  <data name="SimulationControlsBar" xml:space="preserve">
+    <value>Simulation controls bar</value>
+  </data>
+  <data name="SimulationControlsForward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="SimulationControlsPause" xml:space="preserve">
+    <value>Pause simulation</value>
+  </data>
+  <data name="SimulationControlsPlay" xml:space="preserve">
+    <value>Play simulation</value>
+  </data>
+  <data name="SimulationControlsRewind" xml:space="preserve">
+    <value>Rewind</value>
+  </data>
+  <data name="SimulationControlsShare" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="SimulationControlsSpeedButton" xml:space="preserve">
+    <value>Show simulation speed slider</value>
+  </data>
+  <data name="SimulationControlsSpeedSlider" xml:space="preserve">
+    <value>Simulation speed</value>
+  </data>
   <data name="StudyText" xml:space="preserve">
     <value>Learning text</value>
   </data>
