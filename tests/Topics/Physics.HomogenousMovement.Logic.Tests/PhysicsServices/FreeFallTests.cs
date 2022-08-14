@@ -23,7 +23,7 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
             var startY = physicsService.ComputeY(0);
             Assert.Equal(1, startY);
             var endY = physicsService.ComputeY(0.4472f);
-            Assert.Equal(0f, endY, 2);
+            Assert.Equal(0f, endY, 2f);
             var beforeEndY = physicsService.ComputeY(0.3f);
             Assert.NotEqual(0f, beforeEndY, 2);
         }
@@ -45,13 +45,13 @@ namespace Physics.HomogenousMovement.Logic.Tests.PhysicsServices
         {
             var physicsService = new PhysicsService(MotionFactory.CreateFreeFall(new Vector2(0, 4.5f), 1, 0.1f, "#000000", 1.62f));
             var fallTime = physicsService.MaxT;
-            Assert.Equal(2.357f, fallTime, 3);
+            Assert.Equal(2.357f, fallTime, 3f);
             var maxY = physicsService.MaxY;
-            Assert.Equal(4.5f, maxY, 1);
+            Assert.Equal(4.5f, maxY, 1f);
             var maxX = physicsService.MaxX;
             Assert.Equal(0, maxX);
             var groundSpeed = physicsService.ComputeV(2.357f);
-            Assert.Equal(3.818f, groundSpeed, 3);
+            Assert.Equal(3.818f, groundSpeed, 3f);
         }
     }
 }
