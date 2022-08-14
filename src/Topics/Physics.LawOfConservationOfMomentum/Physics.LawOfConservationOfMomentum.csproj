@@ -126,6 +126,10 @@
     <Compile Include="Dialogs\SetupCollisionDialog.xaml.cs">
       <DependentUpon>SetupCollisionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\GameAttemptPhysicsService.cs" />
+    <Compile Include="Game\GameInfo.cs" />
+    <Compile Include="Game\GamePhysicsService.cs" />
+    <Compile Include="Game\GameState.cs" />
     <Compile Include="Infrastructure\AppSetup.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

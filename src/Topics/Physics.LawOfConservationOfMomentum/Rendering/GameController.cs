@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Physics.LawOfConservationOfMomentum.Game;
 using Physics.LawOfConservationOfMomentum.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
@@ -20,7 +21,17 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 		{
 		}
 
-		//internal GamePhysicsService PhysicsService;
+		public GameInfo GameInfo { get; private set; }
+
+		public void StartGame(GameInfo gameInfo)
+		{
+			if (gameInfo is null)
+			{
+				throw new ArgumentNullException(nameof(gameInfo));
+			}
+
+			GameInfo = gameInfo;
+		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
