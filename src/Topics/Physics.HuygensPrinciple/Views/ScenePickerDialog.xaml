@@ -26,7 +26,7 @@
 		<GridView SelectedItem="{x:Bind ViewModel.SelectedScene, Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.Scenes}">
 			<GridView.ItemTemplate>
 				<DataTemplate x:DataType="viewmodels:ScenePresetViewModel">
-					<Grid>
+					<Grid AutomationProperties.Name="{x:Bind Name}">
 						<Image Source="{Binding Image}" Width="160" Height="160" />
 						<TextBlock Text="{x:Bind Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="8" />
 					</Grid>

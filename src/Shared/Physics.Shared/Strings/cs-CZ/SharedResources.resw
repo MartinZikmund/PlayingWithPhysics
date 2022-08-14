@@ -312,6 +312,33 @@
   <data name="ShowValuesTable" xml:space="preserve">
     <value>Zobrazit tabulku hodnot</value>
   </data>
+  <data name="SimulatioControlsSkipToStart" xml:space="preserve">
+    <value>Přeskočit na začátek simulace</value>
+  </data>
+  <data name="SimulationControlsBar" xml:space="preserve">
+    <value>Panel ovládacích prvků simulace</value>
+  </data>
+  <data name="SimulationControlsForward" xml:space="preserve">
+    <value>Posunout simulaci dopředu</value>
+  </data>
+  <data name="SimulationControlsPause" xml:space="preserve">
+    <value>Zastavit simulaci</value>
+  </data>
+  <data name="SimulationControlsPlay" xml:space="preserve">
+    <value>Spustit simulaci</value>
+  </data>
+  <data name="SimulationControlsRewind" xml:space="preserve">
+    <value>Vrátit simulaci zpět v čase</value>
+  </data>
+  <data name="SimulationControlsShare" xml:space="preserve">
+    <value>Sdílet</value>
+  </data>
+  <data name="SimulationControlsSpeedButton" xml:space="preserve">
+    <value>Zobrazit posuvník ryhlosti simulace</value>
+  </data>
+  <data name="SimulationControlsSpeedSlider" xml:space="preserve">
+    <value>Rychlost simulace</value>
+  </data>
   <data name="StudyText" xml:space="preserve">
     <value>Samostudium</value>
   </data>

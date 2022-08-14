@@ -200,6 +200,9 @@ Tato událost je spojována se zničením bájné Atlantidy či deseti egyptský
   <data name="DrawingWarning" xml:space="preserve">
     <value>Pozor, při kreslení stěn tenčích než uvažovaný poloměr sekundární vlny může být výsledek simulace nerealistický!</value>
   </data>
+  <data name="Ellipse" xml:space="preserve">
+    <value>Elipsa</value>
+  </data>
   <data name="Eraser" xml:space="preserve">
     <value>Zmizík</value>
   </data>
@@ -214,6 +217,9 @@ Tato událost je spojována se zničením bájné Atlantidy či deseti egyptský
   </data>
   <data name="PickScenePreset" xml:space="preserve">
     <value>Vybrat scénář...</value>
+  </data>
+  <data name="Rectangle" xml:space="preserve">
+    <value>Obdélník</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -253,6 +259,9 @@ Tato událost je spojována se zničením bájné Atlantidy či deseti egyptský
   </data>
   <data name="SetDefault" xml:space="preserve">
     <value>Nastavit výchozí</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Nastvení</value>
   </data>
   <data name="ShapeType_Circle" xml:space="preserve">
     <value>Kruh</value>
