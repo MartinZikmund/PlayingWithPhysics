@@ -112,12 +112,8 @@ namespace Physics.LawOfConservationOfMomentum.ViewModels
 			}
 
 			_controller = controller;
+			_controller.StartGame(GameInfo);
 		}
-
-		public ICommand NextShotCommand => GetOrCreateCommand(() =>
-		{
-
-		});
 
 		public ICommand StartCommand => GetOrCreateCommand(() =>
 		{
