@@ -158,6 +158,9 @@ Graphics: Petr Weinlich</value>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
   </data>
+  <data name="IsOscillationVisible" xml:space="preserve">
+    <value>Is oscillation visible</value>
+  </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>

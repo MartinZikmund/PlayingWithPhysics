@@ -158,6 +158,9 @@ Grafika: Petr Weinlich</value>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
+  <data name="IsOscillationVisible" xml:space="preserve">
+    <value>Zobrazit kmitání</value>
+  </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>

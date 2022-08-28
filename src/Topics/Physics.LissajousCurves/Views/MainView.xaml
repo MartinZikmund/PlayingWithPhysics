@@ -67,15 +67,17 @@
                         Text="{x:Bind Label, Mode=OneWay}"
                         TextLineBounds="Tight"
                         TextTrimming="CharacterEllipsis"
-                        TextWrapping="NoWrap" />
+                        TextWrapping="NoWrap"
+						AutomationProperties.Name="{x:Bind Label, Mode=OneWay}" />
 
-                    <ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}">
+					<ToggleButton Grid.Column="1" IsChecked="{x:Bind IsVisible, Mode=TwoWay}" AutomationProperties.Name="{extensions:Localize Key=IsOscillationVisible}">
                         <SymbolIcon Symbol="View" />
                     </ToggleButton>
                     <Button
                         Grid.Column="3"
                         Command="{Binding ElementName=Page, Path=Model.EditOscillationCommand}"
-                        CommandParameter="{x:Bind}">
+                        CommandParameter="{x:Bind}"
+						AutomationProperties.Name="{extensions:Localize Key=EditOscillation}">
                         <!--<Button.Flyout>
 							<MenuFlyout>
 								<MenuFlyoutItem
@@ -186,12 +188,14 @@
                             <CheckBox
                                 Grid.Row="3"
                                 Content="{extensions:Localize Key=ShowTrajectory}"
-                                IsChecked="{x:Bind Model.NoTrajectory, Mode=TwoWay}" />
+                                IsChecked="{x:Bind Model.NoTrajectory, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=ShowTrajectory}" />
 
                             <CheckBox
                                 Grid.Row="4"
                                 Content="{extensions:Localize Key=NoAxes}"
-                                IsChecked="{x:Bind Model.NoAces, Mode=TwoWay}" />
+                                IsChecked="{x:Bind Model.NoAces, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=NoAxes}" />
 
                             <controls:NumberBox
                                 Grid.Row="5"
@@ -200,7 +204,8 @@
                                 Minimum="0"
                                 SmallChange="1"
                                 SpinButtonPlacementMode="Inline"
-                                Value="{x:Bind Model.DrawLength, Mode=TwoWay}" />
+                                Value="{x:Bind Model.DrawLength, Mode=TwoWay}"
+								AutomationProperties.Name="{extensions:Localize Key=DrawLength}" />
                             <!--<Button
 									Grid.Row="5"
 									Margin="0,0,0,8"

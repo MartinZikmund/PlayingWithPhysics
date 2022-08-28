@@ -35,22 +35,22 @@
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 		</Style>
 		<DataTemplate x:Key="OscillationFrequencyListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
-			<Grid>
+			<Grid AutomationProperties.Name="{Binding Label}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Grid.Column="0">
-					<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": "/><Run Text="{Binding X.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
+					<Run Text="{extensions:Localize Key=Frequency}" AutomationProperties.Name="{extensions:Localize Key=Frequency}" /><Run Text=": "/><Run Text="{Binding X.OscillationInfo.Frequency}" AutomationProperties.Name="{Binding X.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
 				</TextBlock>
 				<TextBlock Grid.Column="1">
-					<Run Text="{extensions:Localize Key=Frequency}"/><Run Text=": "/><Run Text="{Binding Y.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
+					<Run Text="{extensions:Localize Key=Frequency}" AutomationProperties.Name="{extensions:Localize Key=Frequency}" /><Run Text=": "/><Run Text="{Binding Y.OscillationInfo.Frequency}"></Run><Run Text=" Hz"/>
 				</TextBlock>
 			</Grid>
 		</DataTemplate>
 
 		<DataTemplate x:Key="OscillationAmplitudeListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
-			<Grid>
+			<Grid AutomationProperties.Name="{Binding Label}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
@@ -65,7 +65,7 @@
 		</DataTemplate>
 
 		<DataTemplate x:Key="OscillationPhaseListItemDataTemplate" x:DataType="viewModels:DemoItemViewModel">
-			<Grid>
+			<Grid AutomationProperties.Name="{Binding Label}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
