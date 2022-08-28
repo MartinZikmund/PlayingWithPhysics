@@ -123,7 +123,7 @@
                                 Stroke="Gray"
                                 StrokeThickness="1"
                                 Visibility="{x:Bind Model.DrawingState.IsCircle, Mode=OneWay}"
-								AutomationProperties.Name="{extensions:Localize Key=Ellipse}"/>
+								AutomationProperties.Name="{extensions:Localize Key=Ellipse}" />
                             <Rectangle
                                 Width="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
                                 Height="{x:Bind Model.DrawingState.Size, Mode=OneWay}"
