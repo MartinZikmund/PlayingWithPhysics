@@ -133,6 +133,12 @@ Grafika: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Hrátky s fyzikou: Zákony zachování hybnosti a energie</value>
   </data>
+  <data name="BallWeight" xml:space="preserve">
+    <value>Hmotnost koule</value>
+  </data>
+  <data name="BaronWeight" xml:space="preserve">
+    <value>Hmotnost barona</value>
+  </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změny se projeví u obou</value>
   </data>
@@ -163,14 +169,26 @@ Grafika: Petr Weinlich</value>
   <data name="CollisionType_PerfectlyInelastic" xml:space="preserve">
     <value>Dokonale nepružná srážka</value>
   </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Vystřelit</value>
+  </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
   <data name="Mass" xml:space="preserve">
     <value>Hmotnost tělesa</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nová hra</value>
+  </data>
+  <data name="NextAttempt" xml:space="preserve">
+    <value>Další pokus</value>
+  </data>
   <data name="Period" xml:space="preserve">
     <value>Perioda</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Skóre</value>
   </data>
   <data name="SetParameters" xml:space="preserve">
     <value>Nastavit parametry</value>

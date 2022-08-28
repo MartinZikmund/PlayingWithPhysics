@@ -133,6 +133,12 @@ Graphics: Petr Weinlich</value>
   <data name="AppName" xml:space="preserve">
     <value>Playing with Physics: Law of Conservation of Momentum</value>
   </data>
+  <data name="BallWeight" xml:space="preserve">
+    <value>Ball weight</value>
+  </data>
+  <data name="BaronWeight" xml:space="preserve">
+    <value>Baron weight</value>
+  </data>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Changes apply to both</value>
   </data>
@@ -163,14 +169,26 @@ Graphics: Petr Weinlich</value>
   <data name="CollisionType_PerfectlyInelastic" xml:space="preserve">
     <value>Perfectly Inelastic Collision</value>
   </data>
+  <data name="Fire" xml:space="preserve">
+    <value>Fire!</value>
+  </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
   </data>
   <data name="Mass" xml:space="preserve">
     <value>Mass</value>
   </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="NextAttempt" xml:space="preserve">
+    <value>Next attempt</value>
+  </data>
   <data name="Period" xml:space="preserve">
     <value>Period</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
   </data>
   <data name="SetParameters" xml:space="preserve">
     <value>Set Parameters</value>

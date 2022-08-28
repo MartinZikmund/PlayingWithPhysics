@@ -16,6 +16,9 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 	{
 		private SKBitmap _backgroundBitmap = null;
 		private SKBitmap _objectBitmap = null;
+		
+		private SKBitmap _netBitmap = null;
+		private SKBitmap _netHandleBitmap = null;
 
 		public GameController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
@@ -31,18 +34,21 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			}
 
 			GameInfo = gameInfo;
+			Play();
 		}
 
 		public override void Draw(ISkiaCanvas sender, SKSurface args)
 		{
 			args.Canvas.Clear(new SKColor(255, 244, 244, 244));
 
-			//if (GameInfo is null)
-			//{
-			//	return;
-			//}
-
 			DrawBackground(sender, args);
+
+			if (GameInfo is null)
+			{
+				return;
+			}
+
+			DrawNet(args);
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -60,6 +66,28 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			//}
 		}
 
+		private void DrawNet(SKSurface args)
+		{
+			var netY = GameInfo.PhysicsService.CalculateNetY((float)SimulationTime.TotalTime.TotalSeconds);
+
+			var netCenterY = 585f;
+			netCenterY = netY + 585;
+			var netX = 1512;
+			var netBimtapXOffset = 20;
+			var netBitmapX = netX - netBimtapXOffset;
+			var netHandleX = netX - 4;
+
+			args.Canvas.DrawBitmap(
+				_netBitmap,
+				new SKRect(0, 0, _netBitmap.Width, _netBitmap.Height),
+				new SKRect(netBitmapX, netCenterY - _netBitmap.Height / 2, netBitmapX + _netBitmap.Width, netCenterY + _netBitmap.Height / 2));
+
+			args.Canvas.DrawBitmap(
+				_netHandleBitmap,
+				new SKRect(0, 0, _netHandleBitmap.Width, _netHandleBitmap.Height),
+				new SKRect(netHandleX, netCenterY + 100, netHandleX + _netHandleBitmap.Width, 860));
+		}
+
 		private void DrawBackground(ISkiaCanvas sender, SKSurface args)
 		{
 			args.Canvas.DrawBitmap(
@@ -75,6 +103,8 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 				var gameAssetsPath = Path.Combine(Package.Current.InstalledLocation.Path, "Assets", "Game");
 				_backgroundBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "celek.png"));
 				_objectBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "Object.png"));
+				_netBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "net.png"));
+				_netHandleBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "nethandle.png"));
 			}
 		}
 	}

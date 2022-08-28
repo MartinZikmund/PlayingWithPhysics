@@ -5,6 +5,7 @@
     xmlns:local="using:Physics.LawOfConservationOfMomentum.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xamlEx="using:Physics.Shared.Extensions"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -350,8 +351,8 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="8" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Weight 1" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Text="{x:Bind Model.GameInfo.BallMass, Mode=OneWay}" Margin="8" Foreground="White" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="{xamlEx:Localize Key=BallWeight}" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
 					</Grid>
 
 					<Grid Width="157" Padding="4">
@@ -362,8 +363,8 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="8" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Weight 2" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Text="{x:Bind Model.GameInfo.BaronMass, Mode=OneWay}" Margin="8" Foreground="White" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="{xamlEx:Localize Key=BaronWeight}" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
 					</Grid>
 				</StackPanel>
 
@@ -378,8 +379,11 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="8" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Score 1" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Text="{x:Bind Model.GameInfo.Attempt1DistanceText, Mode=OneWay}" Margin="8" Foreground="White" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap">
+							<Run Text="{xamlEx:Localize Key=Score}" />
+							<Run Text="1" />
+						</TextBlock>
 					</Grid>
 
 					<Grid Width="110" Padding="4">
@@ -390,8 +394,11 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="8" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Score 2" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Text="{x:Bind Model.GameInfo.Attempt2DistanceText, Mode=OneWay}" Margin="8" Foreground="White" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap">
+							<Run Text="{xamlEx:Localize Key=Score}" />
+							<Run Text="2" />
+						</TextBlock>
 					</Grid>
 
 					<Grid Width="110" Padding="4">
@@ -402,8 +409,11 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="8" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Score 3" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Text="{x:Bind Model.GameInfo.Attempt3DistanceText, Mode=OneWay}" Margin="8" Foreground="White" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap">
+							<Run Text="{xamlEx:Localize Key=Score}" />
+							<Run Text="3" />
+						</TextBlock>
 					</Grid>
 				</StackPanel>
 
@@ -416,7 +426,7 @@
 						<RowDefinition Height="4*" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<TextBlock Text="START" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32,0,0,24" Foreground="White" FontSize="28" FontFamily="{x:Bind Model.LabelFont}" />
+					<!--<TextBlock Text="START" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32,0,0,24" Foreground="White" FontSize="28" FontFamily="{x:Bind Model.LabelFont}" />-->
 				</Grid>
 
 				<!-- Controls area -->
@@ -429,8 +439,8 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<Button Grid.Row="0" Grid.Column="0" Width="97" Margin="0,0,32,0" Padding="4" Content="{x:Bind Model.ButtonText, Mode=OneWay}" Background="Red" Foreground="White" RequestedTheme="Dark" />
-					<Grid Grid.Row="0" Grid.Column="1" Width="97" Padding="4">
+					<Button FontSize="30" HorizontalContentAlignment="Center" FontFamily="{x:Bind Model.LabelFont}" IsEnabled="{x:Bind Model.AllowButtonClick, Mode=OneWay}" Grid.Row="0" Grid.Column="0" Width="120" Height="80" Margin="0,0,32,0" Padding="4" Content="{x:Bind Model.ButtonText, Mode=OneWay}" Command="{x:Bind Model.StartCommand}" Background="Red" Foreground="White" RequestedTheme="Dark" />
+					<Grid Grid.Row="0" Grid.Column="1" Width="97" Padding="4" >
 						<Grid.Background>
 							<ImageBrush Opacity="1" ImageSource="/Assets/Game/button_red.png" />
 						</Grid.Background>
@@ -438,12 +448,19 @@
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<TextBlock Text="100" Margin="12" Foreground="LightSlateGray" TextAlignment="Center" FontSize="50" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
-						<TextBlock Grid.Column="1" VerticalAlignment="Bottom" Text="Rychlost" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" />
+						<TextBlock Text="{Binding ElementName=VelocitySlider, Path=Value}" Margin="4" Foreground="White" TextAlignment="Center" FontSize="40" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
+						<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Text="Rychlost" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" />
 					</Grid>
-					<Slider Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" x:Name="AngleSlider" Style="{StaticResource GameSliderStyle}" Value="67" Orientation="Vertical" Height="480" />
+					<Slider x:Name="VelocitySlider" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource GameSliderStyle}" Value="67" Orientation="Vertical" Height="480" />
 				</Grid>
 
+				<!-- Static characters -->
+				<Image Source="/Assets/Game/vojak_1.png" Canvas.Top="432" />
+				<Image Source="/Assets/Game/delo.png" Canvas.Top="540" Canvas.Left="120" />
+				<Image Source="/Assets/Game/vojak_2.png" Canvas.Left="1456" Canvas.Top="720" />
+
+
+				<!--<Image Source="/Assets/Game/hrafull.png" Opacity="0.5" />-->
 			</Canvas>
 		</Viewbox>
 	</Grid>

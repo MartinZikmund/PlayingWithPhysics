@@ -69,6 +69,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 			CurrentFireTime = null;
 			CurrentShot++;
 			AttemptPhysicsService = null;
+			RaiseAllPropertiesChanged();
 		}
 
 		internal void Fire(float currentSimulationTime)
@@ -76,6 +77,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 			CurrentFireTime = currentSimulationTime;
 			AttemptPhysicsService = PhysicsService.StartAttempt(InitialVelocity, currentSimulationTime);
 			State = GameState.Fired;
+			RaiseAllPropertiesChanged();
 		}
 
 		internal void SimulationEnded()
