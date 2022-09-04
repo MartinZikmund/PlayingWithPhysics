@@ -164,7 +164,7 @@
     <Content Include="Assets\Game\celek.png" />
     <Content Include="Assets\Game\delo.png" />
     <Content Include="Assets\Game\graf_1.png" />
-    <Content Include="Assets\Game\koule.png" />
+    <Content Include="Assets\Game\ball.png" />
     <Content Include="Assets\Game\more.png" />
     <Content Include="Assets\Game\net.png" />
     <Content Include="Assets\Game\nethandle.png" />
@@ -174,7 +174,6 @@
     <Content Include="Assets\Game\pozadi.png" />
     <Content Include="Assets\Game\pozadi_l.png" />
     <Content Include="Assets\Game\pozadi_r.png" />
-    <Content Include="Assets\Game\sitka.png" />
     <Content Include="Assets\Game\slider.png" />
     <Content Include="Assets\Game\vojak_1.png" />
     <Content Include="Assets\Game\vojak_2.png" />

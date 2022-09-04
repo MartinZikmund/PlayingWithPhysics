@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Physics.LawOfConservationOfMomentum.Game;
-using Physics.LawOfConservationOfMomentum.Logic;
 using Physics.Shared.UI.Rendering.Skia;
 using SkiaSharp;
 using Windows.ApplicationModel;
@@ -15,10 +10,13 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 	public class GameController : SkiaCanvasController
 	{
 		private SKBitmap _backgroundBitmap = null;
-		private SKBitmap _objectBitmap = null;
-		
+
 		private SKBitmap _netBitmap = null;
 		private SKBitmap _netHandleBitmap = null;
+		private SKBitmap _ballBitmap = null;
+		private SKBitmap _baronBitmap = null;
+
+		private const float NetCenterY = 585f;
 
 		public GameController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
@@ -49,6 +47,8 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			}
 
 			DrawNet(args);
+			DrawBall(args);
+			DrawBaron(args);
 		}
 
 		public override void Update(ISkiaCanvas sender)
@@ -88,6 +88,36 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 				new SKRect(netHandleX, netCenterY + 100, netHandleX + _netHandleBitmap.Width, 860));
 		}
 
+		private void DrawBall(SKSurface args)
+		{
+			var ballX = 0f;
+			if (GameInfo.AttemptPhysicsService is not null)
+			{
+				ballX = GameInfo.AttemptPhysicsService.CalculateBallX((float)SimulationTime.TotalTime.TotalSeconds);
+			}
+
+			var ballY = NetCenterY;
+			args.Canvas.DrawBitmap(
+				_ballBitmap,
+				new SKRect(0, 0, _ballBitmap.Width, _ballBitmap.Height),
+				new SKRect(ballX - _ballBitmap.Width / 2, ballY - _ballBitmap.Height / 2, ballX + _ballBitmap.Width / 2, ballY + _ballBitmap.Height / 2));
+		}
+
+		private void DrawBaron(SKSurface args)
+		{
+			var baronX = 0f;
+			if (GameInfo.AttemptPhysicsService is not null)
+			{
+				baronX = GameInfo.AttemptPhysicsService.CalculateBaronX((float)SimulationTime.TotalTime.TotalSeconds);
+			}
+
+			var baronY = NetCenterY;
+			args.Canvas.DrawBitmap(
+				_baronBitmap,
+				new SKRect(0, 0, _ballBitmap.Width, _ballBitmap.Height),
+				new SKRect(baronX - _ballBitmap.Width / 2, baronY - _ballBitmap.Height / 2, baronX + _ballBitmap.Width / 2, baronY + _ballBitmap.Height / 2));
+		}
+
 		private void DrawBackground(ISkiaCanvas sender, SKSurface args)
 		{
 			args.Canvas.DrawBitmap(
@@ -102,9 +132,10 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			{
 				var gameAssetsPath = Path.Combine(Package.Current.InstalledLocation.Path, "Assets", "Game");
 				_backgroundBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "celek.png"));
-				_objectBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "Object.png"));
 				_netBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "net.png"));
 				_netHandleBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "nethandle.png"));
+				_ballBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "ball.png"));
+				_baronBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "baron.png"));
 			}
 		}
 	}

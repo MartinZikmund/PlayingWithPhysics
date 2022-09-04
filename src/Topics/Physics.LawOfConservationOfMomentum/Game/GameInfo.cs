@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using MvvmCross.ViewModels;
-using Physics.LawOfConservationOfMomentum.Logic;
 
 namespace Physics.LawOfConservationOfMomentum.Game
 {
@@ -26,7 +25,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 
 		public float NetPeriod { get; private set; }
 
-		public float InitialVelocity { get; private set; }
+		public float InitialVelocity { get; set; } = 50;
 
 		public float? CurrentFireTime { get; private set; }
 
@@ -75,7 +74,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 		internal void Fire(float currentSimulationTime)
 		{
 			CurrentFireTime = currentSimulationTime;
-			AttemptPhysicsService = PhysicsService.StartAttempt(InitialVelocity, currentSimulationTime);
+			AttemptPhysicsService = PhysicsService.StartAttempt(InitialVelocity / 100, currentSimulationTime);
 			State = GameState.Fired;
 			RaiseAllPropertiesChanged();
 		}

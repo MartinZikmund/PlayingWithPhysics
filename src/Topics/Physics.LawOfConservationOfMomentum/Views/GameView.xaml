@@ -451,7 +451,7 @@
 						<TextBlock Text="{Binding ElementName=VelocitySlider, Path=Value}" Margin="4" Foreground="White" TextAlignment="Center" FontSize="40" FontFamily="{x:Bind Model.LabelFont}" TextWrapping="Wrap" />
 						<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" Text="Rychlost" Foreground="White" TextAlignment="Center" FontSize="20" FontFamily="{x:Bind Model.LabelFont}" />
 					</Grid>
-					<Slider x:Name="VelocitySlider" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource GameSliderStyle}" Value="67" Orientation="Vertical" Height="480" />
+					<Slider x:Name="VelocitySlider" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.InitialVelocity, Mode=TwoWay}" Orientation="Vertical" Height="480" />
 				</Grid>
 
 				<!-- Static characters -->
