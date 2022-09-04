@@ -15,9 +15,12 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 		private SKBitmap _netHandleBitmap = null;
 		private SKBitmap _ballBitmap = null;
 		private SKBitmap _baronBitmap = null;
+		private SKBitmap _canonBitmap = null;
 
-		private const float NetCenterY = 585f;
-
+		private const float PixelsPerMeter = 91f;
+		private const float CenterLineY = 555f;
+		private const float CanonEndX = 274f;
+		
 		public GameController(ISkiaCanvas canvasAnimatedControl) : base(canvasAnimatedControl)
 		{
 		}
@@ -46,18 +49,26 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 				return;
 			}
 
-			DrawNet(args);
+			DrawCanon(args);
 			DrawBall(args);
 			DrawBaron(args);
+			DrawNet(args);
 		}
 
 		public override void Update(ISkiaCanvas sender)
 		{
 			EnsureBitmaps();
-			//if (GameInfo is null)
-			//{
-			//	return;
-			//}
+			if (GameInfo?.AttemptPhysicsService is { } physicsService && GameInfo.State == GameState.Fired)
+			{
+				var endTime = physicsService.CalculateEndTime();
+				var fireTime = GameInfo.CurrentFireTime;
+				var currentTime = (float)SimulationTime.TotalTime.TotalSeconds;
+				var attemptTime = currentTime - fireTime;
+				if (attemptTime >= endTime)
+				{
+					GameInfo.SimulationEnded();
+				}
+			}
 
 			//if (PreviewPhysicsService is null ||
 			//	PreviewPhysicsService.Setup.InclinedAngle != GameInfo.CurrentAngle)
@@ -68,10 +79,17 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 
 		private void DrawNet(SKSurface args)
 		{
-			var netY = GameInfo.PhysicsService.CalculateNetY((float)SimulationTime.TotalTime.TotalSeconds);
+			var netYMeters = 0f;
+			if (GameInfo.AttemptPhysicsService is not null)
+			{
+				netYMeters = GameInfo.AttemptPhysicsService.CalculateNetY((float)SimulationTime.TotalTime.TotalSeconds);
+			}
+			else
+			{
+				netYMeters = GameInfo.PhysicsService.CalculateNetY((float)SimulationTime.TotalTime.TotalSeconds);
+			}
 
-			var netCenterY = 585f;
-			netCenterY = netY + 585;
+			var netCenterY = netYMeters * PixelsPerMeter + CenterLineY;
 			var netX = 1512;
 			var netBimtapXOffset = 20;
 			var netBitmapX = netX - netBimtapXOffset;
@@ -90,17 +108,27 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 
 		private void DrawBall(SKSurface args)
 		{
-			var ballX = 0f;
-			if (GameInfo.AttemptPhysicsService is not null)
+			if (GameInfo.AttemptPhysicsService is null)
 			{
-				ballX = GameInfo.AttemptPhysicsService.CalculateBallX((float)SimulationTime.TotalTime.TotalSeconds);
+				return;
 			}
 
-			var ballY = NetCenterY;
+			var ballX = GameInfo.AttemptPhysicsService.CalculateBallX((float)SimulationTime.TotalTime.TotalSeconds) * PixelsPerMeter + CanonEndX;
+			var ballY = CenterLineY + 48;
 			args.Canvas.DrawBitmap(
 				_ballBitmap,
 				new SKRect(0, 0, _ballBitmap.Width, _ballBitmap.Height),
-				new SKRect(ballX - _ballBitmap.Width / 2, ballY - _ballBitmap.Height / 2, ballX + _ballBitmap.Width / 2, ballY + _ballBitmap.Height / 2));
+				new SKRect(ballX - _ballBitmap.Width, ballY - _ballBitmap.Height / 2, ballX, ballY + _ballBitmap.Height / 2));
+		}
+
+		private void DrawCanon(SKSurface args)
+		{
+			var canonX = 100;
+			var canonY = 628;
+			args.Canvas.DrawBitmap(
+				_canonBitmap,
+				new SKRect(0, 0, _canonBitmap.Width, _canonBitmap.Height),
+				new SKRect(canonX, canonY - _canonBitmap.Height / 2, canonX + _canonBitmap.Width, canonY + _canonBitmap.Height / 2));
 		}
 
 		private void DrawBaron(SKSurface args)
@@ -110,12 +138,19 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 			{
 				baronX = GameInfo.AttemptPhysicsService.CalculateBaronX((float)SimulationTime.TotalTime.TotalSeconds);
 			}
+			else
+			{
+				baronX = GameAttemptPhysicsService.CollisionX;
+			}
 
-			var baronY = NetCenterY;
+			baronX *= PixelsPerMeter;
+			baronX += CanonEndX;
+
+			var baronY = CenterLineY;
 			args.Canvas.DrawBitmap(
 				_baronBitmap,
-				new SKRect(0, 0, _ballBitmap.Width, _ballBitmap.Height),
-				new SKRect(baronX - _ballBitmap.Width / 2, baronY - _ballBitmap.Height / 2, baronX + _ballBitmap.Width / 2, baronY + _ballBitmap.Height / 2));
+				new SKRect(0, 0, _baronBitmap.Width, _baronBitmap.Height),
+				new SKRect(baronX - _baronBitmap.Width / 2, baronY - _baronBitmap.Height / 2, baronX + _baronBitmap.Width / 2, baronY + _baronBitmap.Height / 2));
 		}
 
 		private void DrawBackground(ISkiaCanvas sender, SKSurface args)
@@ -136,6 +171,7 @@ namespace Physics.LawOfConservationOfMomentum.Rendering
 				_netHandleBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "nethandle.png"));
 				_ballBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "ball.png"));
 				_baronBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "baron.png"));
+				_canonBitmap = SKBitmap.Decode(Path.Combine(gameAssetsPath, "canon.png"));
 			}
 		}
 	}

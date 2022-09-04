@@ -27,9 +27,9 @@ namespace Physics.LawOfConservationOfMomentum.Game
 			_fireTime = fireTime;
 		}
 
-		private float CollisionX => 3;
+		public static float CollisionX => 1.84f;
 
-		private float NetX => 30;
+		private float NetX => 14;
 
 		public float CollisionTime => CollisionX / _ballVelocity;
 
@@ -55,7 +55,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 		public float CalculateBaronX(float simulationTime)
 		{
 			var t = simulationTime - _fireTime;
-			t = Math.Max(t, CalculateEndTime());
+			t = Math.Min(t, CalculateEndTime());
 			if (t <= CollisionTime)
 			{
 				return CollisionX;
@@ -68,8 +68,6 @@ namespace Physics.LawOfConservationOfMomentum.Game
 
 		public float CurrentDistance(float simulationTime)
 		{
-			var t = simulationTime - _fireTime;
-			t = Math.Max(t, CalculateEndTime());
 			var distAbs = Math.Abs(CalculateBaronX(simulationTime) - NetX);
 			var y = CalculateNetY(simulationTime);
 			return (float)Math.Sqrt(distAbs * distAbs + y * y);

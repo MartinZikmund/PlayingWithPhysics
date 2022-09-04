@@ -332,7 +332,7 @@
 		<Viewbox Margin="0">
 			<Canvas Width="1920" Height="1080">
 				<Grid x:Name="CanvasHolder" Width="1920" Height="1080" />
-				
+
 				<!-- Back navigation -->
 				<Button
 					RequestedTheme="Dark"
@@ -418,6 +418,7 @@
 				</StackPanel>
 
 				<!-- Graph area -->
+				<!--
 				<Grid Canvas.Left="940" Canvas.Top="50" Width="582" Height="271">
 					<Grid.Background>
 						<ImageBrush Opacity="1" ImageSource="/Assets/Game/graf_1.png" />
@@ -426,11 +427,16 @@
 						<RowDefinition Height="4*" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<!--<TextBlock Text="START" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32,0,0,24" Foreground="White" FontSize="28" FontFamily="{x:Bind Model.LabelFont}" />-->
+					-->
+				<!--<TextBlock Text="START" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="32,0,0,24" Foreground="White" FontSize="28" FontFamily="{x:Bind Model.LabelFont}" />-->
+				<!--
+				</Grid>-->
+				<Grid Background="Red" Canvas.Left="1000" Canvas.Top="50" Height="100" Width="200">
+					<Button FontSize="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" FontFamily="{x:Bind Model.LabelFont}" IsEnabled="{x:Bind Model.AllowButtonClick, Mode=OneWay}" Grid.Row="0" Grid.Column="0" Padding="4" Content="{x:Bind Model.ButtonText, Mode=OneWay}" Command="{x:Bind Model.StartCommand}" Background="Red" Foreground="White" RequestedTheme="Dark" />
 				</Grid>
 
 				<!-- Controls area -->
-				<Grid Canvas.Left="1562" Canvas.Top="150">
+				<Grid Canvas.Left="1700" Canvas.Top="50">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*" />
 						<RowDefinition Height="Auto" />
@@ -439,7 +445,6 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<Button FontSize="30" HorizontalContentAlignment="Center" FontFamily="{x:Bind Model.LabelFont}" IsEnabled="{x:Bind Model.AllowButtonClick, Mode=OneWay}" Grid.Row="0" Grid.Column="0" Width="120" Height="80" Margin="0,0,32,0" Padding="4" Content="{x:Bind Model.ButtonText, Mode=OneWay}" Command="{x:Bind Model.StartCommand}" Background="Red" Foreground="White" RequestedTheme="Dark" />
 					<Grid Grid.Row="0" Grid.Column="1" Width="97" Padding="4" >
 						<Grid.Background>
 							<ImageBrush Opacity="1" ImageSource="/Assets/Game/button_red.png" />
@@ -455,8 +460,7 @@
 				</Grid>
 
 				<!-- Static characters -->
-				<Image Source="/Assets/Game/vojak_1.png" Canvas.Top="432" />
-				<Image Source="/Assets/Game/delo.png" Canvas.Top="540" Canvas.Left="120" />
+				<Image Source="/Assets/Game/vojak_1.png" Canvas.Top="468" Canvas.Left="-12" />
 				<Image Source="/Assets/Game/vojak_2.png" Canvas.Left="1456" Canvas.Top="720" />
 
 

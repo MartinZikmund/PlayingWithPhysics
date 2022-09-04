@@ -18,7 +18,7 @@ namespace Physics.LawOfConservationOfMomentum.Game
 			_netPeriod = netPeriod;
 		}
 
-		private float NetA => 140;
+		public float NetA => 1.7f;
 
 		public GameAttemptPhysicsService StartAttempt(float initialVelocity, float fireTime)
 		{
