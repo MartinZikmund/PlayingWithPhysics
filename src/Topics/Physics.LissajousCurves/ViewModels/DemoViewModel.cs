@@ -17,27 +17,27 @@ namespace Physics.LissajousCurves.ViewModels
 		private LissajousCurvesController _controller;
 		public ObservableCollection<DemoItemViewModel> DemoOscillationsFrequency { get; set; } = new ObservableCollection<DemoItemViewModel>()
 		{
-			new DemoItemViewModel("0,5 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123"))),
-			new DemoItemViewModel("1 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("1,0 Hz", 1, 1f, 0, "#FFE81123"))),
-			new DemoItemViewModel("1,5 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("1,5 Hz", 1, 1.5f, 0, "#FFE81123"))),
-			new DemoItemViewModel("2 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("2 Hz", 1, 2f, 0, "#FFE81123"))),
-			new DemoItemViewModel("0,75 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,75 Hz", 1, 0.75f, 0, "#FFE81123")))
+			new DemoItemViewModel("X: 0,5 Hz, Y: 0,5 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123"))),
+			new DemoItemViewModel("X: 0,5 Hz, Y: 1 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("1,0 Hz", 1, 1f, 0, "#FFE81123"))),
+			new DemoItemViewModel("X: 0,5 Hz, Y: 1,5 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("1,5 Hz", 1, 1.5f, 0, "#FFE81123"))),
+			new DemoItemViewModel("X: 0,5 Hz, Y: 2 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("2 Hz", 1, 2f, 0, "#FFE81123"))),
+			new DemoItemViewModel("X: 0,5 Hz, Y: 0,75 Hz", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,75 Hz", 1, 0.75f, 0, "#FFE81123")))
 		};
 
 		public ObservableCollection<DemoItemViewModel> DemoOscillationsAmplitude { get; set; } = new ObservableCollection<DemoItemViewModel>()
 		{
-			new DemoItemViewModel("1 m - 0,5 m", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.3f, 0.5f, 90, "#FFE81123"))),
-			new DemoItemViewModel("0,3 m - 0,8 m", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.3f, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.8f, 0.5f, 90f, "#FFE81123")))
+			new DemoItemViewModel("X: 1 m, Y: 0,3 m", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.3f, 0.5f, 90, "#FFE81123"))),
+			new DemoItemViewModel("X: 0,3 m, Y: 0,8 m", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.3f, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 0.8f, 0.5f, 90f, "#FFE81123")))
 		};
 
 		public ObservableCollection<DemoItemViewModel> DemoOscillationsPhase { get; set; } = new ObservableCollection<DemoItemViewModel>()
 		{
-			new DemoItemViewModel("0°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123"))),
-			new DemoItemViewModel("30°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 30, "#FFE81123"))),
-			new DemoItemViewModel("60°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 60, "#FFE81123"))),
-			new DemoItemViewModel("90°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 90, "#FFE81123"))),
-			new DemoItemViewModel("150°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 150, "#FFE81123"))),
-			new DemoItemViewModel("210°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 210, "#FFE81123")))
+			new DemoItemViewModel("X: 0°, Y: 0°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123"))),
+			new DemoItemViewModel("X: 0°, Y: 30°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 30, "#FFE81123"))),
+			new DemoItemViewModel("X: 0°, Y: 60°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 60, "#FFE81123"))),
+			new DemoItemViewModel("X: 0°, Y: 90°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 90, "#FFE81123"))),
+			new DemoItemViewModel("X: 0°, Y: 150°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 150, "#FFE81123"))),
+			new DemoItemViewModel("X: 0°, Y: 210°", new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 0, "#FFE81123")), new OscillationInfoViewModel(new OscillationInfo("0,5 Hz", 1, 0.5f, 210, "#FFE81123")))
 		};
 
 		private DemoItemViewModel _currentOscillation;

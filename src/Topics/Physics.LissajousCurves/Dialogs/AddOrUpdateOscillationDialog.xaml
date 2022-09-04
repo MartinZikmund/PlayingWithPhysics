@@ -53,9 +53,10 @@
         <TextBox
             Grid.ColumnSpan="2"
             PlaceholderText="{extensions:Localize Key=Label}"
-            Text="{x:Bind Model.Label, Mode=TwoWay}" />
+            Text="{x:Bind Model.Label, Mode=TwoWay}"
+			AutomationProperties.Name="{extensions:Localize Key=Label}" />
 
-        <TextBlock Grid.Row="1" Visibility="{x:Bind Model.AdvancedDifficulty}">
+		<TextBlock Grid.Row="1" Visibility="{x:Bind Model.AdvancedDifficulty}" AutomationProperties.Name="{extensions:Localize Key=Amplitude}">
             <Run Text="{extensions:Localize Key=Amplitude}" />
             <Run Text="(m)" />
         </TextBlock>
@@ -66,9 +67,10 @@
             Maximum="1"
             Minimum="0"
             Visibility="{x:Bind Model.AdvancedDifficulty}"
-            Value="{x:Bind Model.Amplitude, Mode=TwoWay}" />
+            Value="{x:Bind Model.Amplitude, Mode=TwoWay}"
+			AutomationProperties.Name="{extensions:Localize Key=Amplitude}" />
 
-        <TextBlock Grid.Row="2" Grid.Column="0">
+		<TextBlock Grid.Row="2" Grid.Column="0" AutomationProperties.Name="{extensions:Localize Key=Frequency}">
             <Run Text="{extensions:Localize Key=Frequency}" />
             <Run Text="(Hz)" />
         </TextBlock>
@@ -78,7 +80,8 @@
             Grid.Column="1"
             Maximum="5"
             Minimum="0.1"
-            Value="{x:Bind Model.Frequency, Mode=TwoWay}" />
+            Value="{x:Bind Model.Frequency, Mode=TwoWay}"
+			AutomationProperties.Name="{extensions:Localize Key=Frequency}" />
 
         <Grid
             Grid.Row="3"
@@ -90,9 +93,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock>
-                <Run Text="{extensions:Localize Key=Period}" /><Run Text=":" />
-                <Run Text="{x:Bind Model.Period, Mode=OneWay}" />
+			<TextBlock>
+                <Run Text="{extensions:Localize Key=Period}" AutomationProperties.Name="{extensions:Localize Key=Period}" /><Run Text=":" />
+                <Run Text="{x:Bind Model.Period, Mode=OneWay}" AutomationProperties.Name="{x:Bind Model.Period}" />
                 <Run Text="s" />
             </TextBlock>
             <Grid Grid.Row="1">
@@ -105,14 +108,14 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock>
-                    <Run Text="{extensions:Localize Key=AngularSpeed}" /><Run Text=":" />
+                    <Run Text="{extensions:Localize Key=AngularSpeed}" AutomationProperties.Name="{extensions:Localize Key=AngularSpeed}" /><Run Text=":" />
                 </TextBlock>
                 <TextBlock Grid.Column="1">
-                    <Run Text="{x:Bind Model.AngularSpeedInDeg, Mode=OneWay}" />
+                    <Run Text="{x:Bind Model.AngularSpeedInDeg, Mode=OneWay}" AutomationProperties.Name="{x:Bind Model.AngularSpeedInDeg}" />
                     <Run Text="°.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
                 </TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1">
-                    <Run Text="{x:Bind Model.AngularSpeedInRad, Mode=OneWay}" />
+                    <Run Text="{x:Bind Model.AngularSpeedInRad, Mode=OneWay}" AutomationProperties.Name="{x:Bind Model.AngularSpeedInRad}" />
                     <Run Text="rad.s" /><Run Text="&#8315;1" Typography.Variants="Superscript" />
                 </TextBlock>
             </Grid>
@@ -120,7 +123,7 @@
 
 
         <TextBlock Grid.Row="4" Visibility="{x:Bind Model.AdvancedDifficulty}">
-            <Run Text="{extensions:Localize Key=StartPhase}" />
+            <Run Text="{extensions:Localize Key=StartPhase}" AutomationProperties.Name="{extensions:Localize Key=StartPhase}" />
             <Run Text="(°)" />
         </TextBlock>
         <controls:NumberBox
@@ -128,37 +131,38 @@
             Grid.Row="4"
             Grid.Column="1"
             Visibility="{x:Bind Model.AdvancedDifficulty}"
-            Value="{x:Bind Model.PhaseInDeg, Mode=TwoWay}" />
+            Value="{x:Bind Model.PhaseInDeg, Mode=TwoWay}"
+			AutomationProperties.Name="{extensions:Localize Key=StartPhase}" />
 
         <TextBlock
             Grid.Row="5"
             Grid.Column="1"
             Margin="0,-8,0,0"
             Opacity="0.8">
-            <Run Text="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
-            <Run Text="{x:Bind Model.PhaseInPiRad, Mode=OneWay}" />
+            <Run Text="{extensions:Localize Key=StartPhase}" AutomationProperties.Name="{extensions:Localize Key=StartPhase}" /><Run Text=":" />
+            <Run Text="{x:Bind Model.PhaseInPiRad, Mode=OneWay}" AutomationProperties.Name="{x:Bind Model.PhaseInPiRad}" />
             <Run Text="π" />
         </TextBlock>
 
-        <GridView
+		<GridView
             Grid.Row="6"
             Grid.ColumnSpan="2"
             Header="{extensions:Localize Key=Color}"
             ItemsSource="{x:Bind Model.AvailableColors, Mode=OneWay}"
-            SelectedItem="{x:Bind Model.Color, Mode=TwoWay}">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Border
+            SelectedItem="{x:Bind Model.Color, Mode=TwoWay}"
+			AutomationProperties.Name="{extensions:Localize Key=Color}">
+			<GridView.ItemTemplate>
+				<DataTemplate>
+					<Border
                         Width="32"
                         Height="32"
                         CornerRadius="2">
-                        <Border.Background>
-                            <SolidColorBrush Color="{Binding}" />
-                        </Border.Background>
-                    </Border>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-
-    </Grid>
+						<Border.Background>
+							<SolidColorBrush Color="{Binding}" />
+						</Border.Background>
+					</Border>
+				</DataTemplate>
+			</GridView.ItemTemplate>
+		</GridView>
+	</Grid>
 </ContentDialog>
