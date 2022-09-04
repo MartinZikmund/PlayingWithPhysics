@@ -1,0 +1,92 @@
+[
+  {
+    "Title": "Princip zachování objemového průtoku kapalin",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par S prouděním kapalin se setkáváme běžně - voda teče korytem řeky, vytéká z trubky či hadice, tělem nám proudí krev, vylučujeme moč.\rNejjednodušší pro popis proudění je situace, ve které se ideální kapalina pohybuje neměnnou rychlostí vodorovným potrubím s kruhovým průřezem stálého poloměru.\\\\\r\r\\par Co se však stane, když se potrubí zúží či rozšíří?\\\\\r\r\\par Kapalina změní svoji rychlost.\\\\\r\r\\par Základní poučka, která popisuje danou situaci, vyjadřuje myšlenku, že objem kapaliny, která protéká za daný čas potrubím (objemový průtok), je ve všech průřezech stejný.\\\\\r\r\\par Užším místem kapalina protéká vyšší rychlostí, než jakou teče v širším místě, aby se průtok zachoval. \\\\\r\r\\par Matematicky je daný jev popsán rovnicí kontinuity.\\\\\r\r\\par S principem zachování objemového průtoku se setkáme, pokud pustíme z vodovodu slabý proud vody. Můžeme si všimnout, jak padající voda nabírá rychlost a pramínek se postupně zužuje. Průtok vody se ale ve všech průřezech zachovává.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-07.png",
+        "ImageCaption": "Obrázek č. 7: Zužující se proud vody",
+        "Title": "Obrázek č. 7"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pokud chceme zrychlit proud vody, stačí nám zúžit průřez trubky. \rHasiči využívají různé typy proudnic, které volí podle situace na místě požáru.\\\\\r\r\\par Pokud potřebují vytvořit kompaktní proud vody, použijí proudnici, která se postupně zužuje a voda v ní nabírá rychlost. Cílem je také vytvořit v proudnici ideálně laminární proudění, aby se proud vody netříštil ve vzduchu a voda tak doletěla dále.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-08.png",
+        "ImageCaption": "Obrázek č. 8: Hydrantová proudnice",
+        "Title": "Obrázek č. 8"
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "Hydrodynamický paradox",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Se změnou průřezu vodorovného potrubí se nemění jen rychlost kapaliny, ale také tlak, který v ní naměříme.\\\\\r\r\\par Pokud do proudící kapaliny umístíme tlakové čidlo tak, že není vystaveno proudu, tak jím naměříme hydrostatický tlak.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-09.png",
+        "ImageCaption": "Obrázek č. 9: Měření hydrostatického tlaku v proudu vody",
+        "Title": "Obrázek č. 9"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par V místě, kde kapalina proudí rychleji, je hydrostatický tlak nižší, než v místě, kde proudí pomaleji. Tento poznatek se nazývá hydrodynamický paradox.\\\\\r\r\\par Matematicky je paradox popsán Bernoulliho rovnicí.\\\\\r\r\\par Pokud těleso obtéká tekutina z jedné strany rychleji a z druhé pomaleji, vytvoří se díky rozdílu statických tlaků síla, která bude tlačit těleso směrem do prostoru, kde se tekutina pohybuje rychleji.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-10.png",
+        "ImageCaption": "Obrázek č. 10: Hydrodynamický paradox",
+        "Title": "Obrázek č. 10"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Můžeme tak například vysvětlit princip vodní vývěvy.\\\\\r\r\\par Rychlost vody v zúženém místě vývěvy vytváří tlak, který je nižší než atmosférický, takže dochází k nasávání okolního vzduchu do proudu vody.\\\\\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-11.png",
+        "ImageCaption": "Obrázek č. 11: Vodní vývěva",
+        "Title": "Obrázek č. 11"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "Některé havárie lodí jsou způsobeny tím, jak voda protéká podél jednoho boku rychleji než kolem druhého. Loď je pak natlačena ke břehu, jiné lodi (bank effect) či ke dnu v mělké vodě (squat effect).\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-12.png",
+        "ImageCaption": "Obrázek č. 12: Bank effect",
+        "Title": "Obrázek č. 12"
+      },
+      {
+        "Type": "Image",
+        "ImageName": "15-13.png",
+        "ImageCaption": "Obrázek č. 13: Squat effect",
+        "Title": "Obrázek č. 13"
+      }
+    ],
+    "Type": "Chapter"
+  }
+]

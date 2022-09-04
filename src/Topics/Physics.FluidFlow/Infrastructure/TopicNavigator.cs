@@ -8,6 +8,7 @@ using Physics.Shared.UI.Infrastructure.Topics;
 using Physics.Shared.UI.Models.Navigation;
 using Physics.FluidFlow.ViewModels;
 using Windows.ApplicationModel;
+using Physics.Shared.UI.Localization;
 
 namespace Physics.FluidFlow.Infrastructure
 {
@@ -22,23 +23,23 @@ namespace Physics.FluidFlow.Infrastructure
 
 		public bool HasStudyMode => true;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
-		public string GameNameOverride => null;
+		public string GameNameOverride => Localizer.Instance.GetString("Demo");
 
 		public int Id => 15;
 
-		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
+		public async Task GoToDifficultyAsync(DifficultyOption option) =>
+			await _navigationService.Navigate<MainViewModel, SimulationNavigationModel>(new SimulationNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync() => throw new NotImplementedException();//await _navigationService.Navigate<GameViewModel>();
+		public async Task GoToGameAsync() =>
+			await StudyModeManager.OpenStudyModeAsync(
+				new Uri("ms-appx:///Assets/Demo/index.json"),
+				Path.Combine(Package.Current.InstalledLocation.Path, "Assets/Demo"));
 
-		public async Task GoToStudyModeAsync()
-		{
-			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
-		}
-
-		public async Task OpenStudyTextAsync()
-		{
-		}
+		public async Task GoToStudyModeAsync() =>
+			await StudyModeManager.OpenStudyModeAsync(
+				new Uri("ms-appx:///Assets/StudyMode/index.json"),
+				Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));
 	}
 }

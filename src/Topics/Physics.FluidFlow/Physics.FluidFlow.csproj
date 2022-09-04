@@ -152,6 +152,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Demo\15-07.png" />
+    <Content Include="Assets\Demo\15-08.png" />
+    <Content Include="Assets\Demo\15-09.png" />
+    <Content Include="Assets\Demo\15-10.png" />
+    <Content Include="Assets\Demo\15-11.png" />
+    <Content Include="Assets\Demo\15-12.png" />
+    <Content Include="Assets\Demo\15-13.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -204,6 +211,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\StudyMode\index.json" />
+    <Content Include="Assets\Demo\index.json" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
