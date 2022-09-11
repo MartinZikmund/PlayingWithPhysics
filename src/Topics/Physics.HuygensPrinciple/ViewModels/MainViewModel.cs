@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Physics.HuygensPrinciple.Logic;
@@ -71,7 +72,15 @@ namespace Physics.HuygensPrinciple.ViewModels
 			_controller.SetRenderConfiguration(RenderConfiguration);
 			_controller.SetDrawingState(DrawingState);
 			SimulationPlayback.SetController(_controller);
-			await DrawSceneAsync(CurrentPreset);
+
+			await StartDefaultPresetAsync();
+		}
+
+		private async Task StartDefaultPresetAsync()
+		{
+			var defaultPreset = _difficulty == DifficultyOption.Easy ?
+				ScenePresets.EasyVariant[1] : ScenePresets.AdvancedVariant[0];
+			await LoadScenePresetAsync(defaultPreset);
 		}
 
 		public RenderConfigurationViewModel RenderConfiguration { get; } = new RenderConfigurationViewModel();
@@ -133,10 +142,15 @@ namespace Physics.HuygensPrinciple.ViewModels
 			if (await scenePicker.ShowAsync() == ContentDialogResult.Primary)
 			{
 				var scene = scenePicker.ViewModel.SelectedScene;
-				TemplatePreset = scene.Preset;
-				CurrentPreset = scene.Preset.Clone();
-				await DrawSceneAsync(CurrentPreset);
+				await LoadScenePresetAsync(scene.Preset);
 			}
+		}
+
+		private async Task LoadScenePresetAsync(ScenePreset scenePreset)
+		{
+			TemplatePreset = scenePreset;
+			CurrentPreset = scenePreset.Clone();
+			await DrawSceneAsync(CurrentPreset);
 		}
 
 		private async void ResetSimulation()

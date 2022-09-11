@@ -121,7 +121,7 @@
     <value>The Huygens' principle is a simple prescription for wave propagation in an isotropic medium. It states that every point of a wavefront becomes a source of a secondary spherical wavelet and that the real wavefront at a later time can be found as an outer envelope of all these wavelets.
 The app simulates the time evolution of arbitrarily shaped wavefronts. The basic and advanced variants employ different algorithms, both of which are, however, based on the Huygens’ principle. The former enables one to predict the propagation of a wave in a homogeneous medium while the latter models also the situations in which barriers are drawn by the user. The usage of this approach for tsunami prediction after an earthquake is also demonstrated. The application enables the user to study the physics of wave propagation, but also to analyse the capabilities and limitations of various computer simulations.
 
-Content authors: Matěj Hudec
+Content authors: Matěj Hudec, Pavel Jirman
 Programmers: Daniel Zikmund, Martin Zikmund
 Graphics: Petr Weinlich</value>
   </data>
@@ -273,7 +273,7 @@ This event is associated with the destruction of the mythical Atlantis or the te
     <value>Huygens' Principle</value>
   </data>
   <data name="ShowSamplePoints" xml:space="preserve">
-    <value>Show sample points</value>
+    <value>Show sample secondary waves</value>
   </data>
   <data name="ShowSource" xml:space="preserve">
     <value>Show source</value>
