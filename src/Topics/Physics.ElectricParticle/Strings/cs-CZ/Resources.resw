@@ -160,8 +160,8 @@ Grafika: Petr Weinlich</value>
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Hmotnost elektronu zadejte pomocí čísla 0,000545.</value>
   </data>
-  <data name="EndDrawing" xml:space="preserve">
-    <value>Ukončit kreslení</value>
+  <data name="EndLevel" xml:space="preserve">
+    <value>Ukončit level</value>
   </data>
   <data name="EnvironmentSetting_Air" xml:space="preserve">
     <value>vzduch</value>
@@ -194,10 +194,10 @@ Grafika: Petr Weinlich</value>
     <value>Pomocí posuvníků obkreslete objekt na obrazovce. Až budete se svým obrázkem spokojeni, přejděte na další level.</value>
   </data>
   <data name="GravityOff" xml:space="preserve">
-    <value>Gravitace vypnuta</value>
+    <value>Gravitaci zapnout</value>
   </data>
   <data name="GravityOn" xml:space="preserve">
-    <value>Gravitace zapnuta</value>
+    <value>Gravitaci vypnout</value>
   </data>
   <data name="Input_Charge" xml:space="preserve">
     <value>Náboj</value>
@@ -263,10 +263,10 @@ Grafika: Petr Weinlich</value>
     <value>Elektron</value>
   </data>
   <data name="PenDown" xml:space="preserve">
-    <value>Pero kreslí</value>
+    <value>Přestat kreslit</value>
   </data>
   <data name="PenUp" xml:space="preserve">
-    <value>Pero nekreslí</value>
+    <value>Začít kreslit</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Uložit obrázek</value>

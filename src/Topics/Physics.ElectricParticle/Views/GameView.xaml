@@ -181,8 +181,8 @@
                                     IsChecked="{x:Bind Model.GameInfo.UseGravity, Mode=TwoWay}"
                                     Style="{ThemeResource GameToggleButtonStyle}">
                                     <Grid>
-                                        <TextBlock Text="{xaml:Localize Key=GravityOn}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                        <TextBlock Text="{xaml:Localize Key=GravityOff}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+										<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{xaml:Localize Key=GravityOn}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
+										<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{xaml:Localize Key=GravityOff}" Visibility="{Binding ElementName=GravityToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
                                     </Grid>
                                 </ToggleButton>
                                 <ToggleButton
@@ -191,8 +191,8 @@
                                     IsChecked="{x:Bind Model.GameInfo.IsPenDown, Mode=TwoWay}"
                                     Style="{ThemeResource GameToggleButtonStyle}">
                                     <Grid>
-                                        <TextBlock Text="{xaml:Localize Key=PenDown}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                        <TextBlock Text="{xaml:Localize Key=PenUp}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
+										<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{xaml:Localize Key=PenDown}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}" />
+										<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{xaml:Localize Key=PenUp}" Visibility="{Binding ElementName=PenToggle, Path=IsChecked, Converter={StaticResource InvertedBoolToVisibilityConverter}}" />
                                     </Grid>
                                 </ToggleButton>
                                 <Button
@@ -204,7 +204,7 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Click="{x:Bind Model.GameInfo.End}"
-                                    Content="{xaml:Localize Key=EndDrawing}"
+                                    Content="{xaml:Localize Key=EndLevel}"
                                     Style="{StaticResource GameButtonStyle}" />
                                 <Button
                                     Grid.Row="2"

@@ -157,8 +157,8 @@ Graphics: Petr Weinlich</value>
   <data name="ElectronWeightInfo" xml:space="preserve">
     <value>Electron weight should be entered as 0,000545.</value>
   </data>
-  <data name="EndDrawing" xml:space="preserve">
-    <value>End drawing</value>
+  <data name="EndLevel" xml:space="preserve">
+    <value>End level</value>
   </data>
   <data name="EnvironmentSetting_Air" xml:space="preserve">
     <value>Air</value>
@@ -191,10 +191,10 @@ Graphics: Petr Weinlich</value>
     <value>Use sliders to draw the highlighted shape. When you are happy with the result, try the next level.</value>
   </data>
   <data name="GravityOff" xml:space="preserve">
-    <value>Gravity off</value>
+    <value>Turn on gravity</value>
   </data>
   <data name="GravityOn" xml:space="preserve">
-    <value>Gravity on</value>
+    <value>Turn off gravity</value>
   </data>
   <data name="Input_Charge" xml:space="preserve">
     <value>Charge</value>
@@ -260,10 +260,10 @@ Graphics: Petr Weinlich</value>
     <value>Electron</value>
   </data>
   <data name="PenDown" xml:space="preserve">
-    <value>Pen down</value>
+    <value>Stop drawing</value>
   </data>
   <data name="PenUp" xml:space="preserve">
-    <value>Pen up</value>
+    <value>Start drawing</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Save image</value>
