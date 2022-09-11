@@ -158,6 +158,9 @@ Grafika: Petr Weinlich</value>
   <data name="Help" xml:space="preserve">
     <value>Návod</value>
   </data>
+  <data name="LeftWaveSource" xml:space="preserve">
+    <value>Levý zdroj vlnění</value>
+  </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>
@@ -175,6 +178,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="PhaseVelocity" xml:space="preserve">
     <value>Fázová rychlost vlnění</value>
+  </data>
+  <data name="RightWaveSource" xml:space="preserve">
+    <value>Pravý zdroj vlnění</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Interference vlnění</value>

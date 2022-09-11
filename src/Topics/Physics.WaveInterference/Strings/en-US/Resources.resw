@@ -158,6 +158,9 @@ Graphics: Petr Weinlich</value>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="LeftWaveSource" xml:space="preserve">
+    <value>Left wave source</value>
+  </data>
   <data name="Legend" xml:space="preserve">
     <value>Legend</value>
   </data>
@@ -175,6 +178,9 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="PhaseVelocity" xml:space="preserve">
     <value>Phase velocity</value>
+  </data>
+  <data name="RightWaveSource" xml:space="preserve">
+    <value>Right wave source</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Wave Interference</value>

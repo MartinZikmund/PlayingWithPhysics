@@ -46,12 +46,12 @@ namespace Physics.WaveInterference.ValuesTable
 
 			if (eventArgs.Column.Header.ToString() == "First")
 			{
-				eventArgs.Column.Header = string.Format(Localizer.Instance.GetString("TableHeaderWave"), 1) + " (m)";
+				eventArgs.Column.Header = Localizer.Instance.GetString("LeftWaveSource") + " (m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Second")
 			{
-				eventArgs.Column.Header = string.Format(Localizer.Instance.GetString("TableHeaderWave"), 2) + " (m)";
+				eventArgs.Column.Header = Localizer.Instance.GetString("RightWaveSource") + " (m)";
 			}
 
 			if (eventArgs.Column.Header.ToString() == "Interference")

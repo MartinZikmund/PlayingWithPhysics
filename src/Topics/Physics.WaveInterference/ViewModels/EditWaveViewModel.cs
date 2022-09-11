@@ -129,12 +129,5 @@ namespace Physics.WaveInterference.ViewModels
 				Result.Color = ColorHelper.ToHex(Color);
 			}
 		}
-
-		private void SetLocalizedAndNumberedLabelName()
-		{
-			var movementTypeName = Localizer.Instance.GetString("Wave");
-			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
-			Label = generatedName;
-		}
 	}
 }

@@ -124,7 +124,7 @@
             Grid.Row="4"
             Grid.Column="1"
             Maximum="10"
-            Minimum="3"
+            Minimum="1"
             Value="{x:Bind Wave.WaveLength, Mode=TwoWay}" />
 		<StackPanel
 			Grid.Row="5"

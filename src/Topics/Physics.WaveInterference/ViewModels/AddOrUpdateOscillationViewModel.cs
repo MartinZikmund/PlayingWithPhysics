@@ -29,10 +29,10 @@ namespace Physics.WaveInterference.ViewModels
 			DialogTitle = Localizer.Instance.GetString(EditOscillationKey);
 
 			WaveEdits[0] = new EditWaveViewModel(wave1, difficulty);
-			WaveEdits[0].Label = Localizer.Instance.GetString("Wave") + " 1";
+			WaveEdits[0].Label = Localizer.Instance.GetString("LeftWaveSource");
 
 			WaveEdits[1] = new EditWaveViewModel(wave2, difficulty);
-			WaveEdits[1].Label = Localizer.Instance.GetString("Wave") + " 2";
+			WaveEdits[1].Label = Localizer.Instance.GetString("RightWaveSource");
 		}
 
 		public EditWaveViewModel SelectedWave { get; set; }
@@ -61,11 +61,11 @@ namespace Physics.WaveInterference.ViewModels
 		{
 			DialogTitle = Localizer.Instance.GetString(AddOscillationKey);
 			WaveEdits[0] = new EditWaveViewModel(difficulty);
-			WaveEdits[0].Label = Localizer.Instance.GetString("Wave") + " 1";
+			WaveEdits[0].Label = Localizer.Instance.GetString("LeftWaveSource");
 			WaveEdits[0].Color = WaveEdits[0].AvailableColors[0];
 
 			WaveEdits[1] = new EditWaveViewModel(difficulty);
-			WaveEdits[1].Label = Localizer.Instance.GetString("Wave") + " 2";
+			WaveEdits[1].Label = Localizer.Instance.GetString("RightWaveSource");
 			WaveEdits[1].Color = WaveEdits[1].AvailableColors[1];
 
 			IsEasyVariant = difficulty == DifficultyOption.Easy;
@@ -148,13 +148,6 @@ namespace Physics.WaveInterference.ViewModels
 			}
 			WaveEdits[1].Result.OriginX = SourceDistance;
 			Result = WaveEdits;
-		}
-
-		private void SetLocalizedAndNumberedLabelName()
-		{
-			var movementTypeName = Localizer.Instance.GetString("Wave");
-			var generatedName = UniqueNameGenerator.Generate(movementTypeName, _existingNames);
-			Label = generatedName;
 		}
 	}
 }
