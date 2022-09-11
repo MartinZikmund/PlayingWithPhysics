@@ -24,7 +24,7 @@ namespace Physics.WaveInterference.Infrastructure
 
 		public bool HasStudyMode => true;
 
-		public bool HasGame => false;
+		public bool HasGame => true;
 
 		public string GameNameOverride => null;
 
@@ -32,11 +32,8 @@ namespace Physics.WaveInterference.Infrastructure
 
 		public async Task GoToDifficultyAsync(DifficultyOption option) => await _navigationService.Navigate<MainViewModel, DifficultyNavigationModel>(new DifficultyNavigationModel { Difficulty = option });
 
-		public async Task GoToGameAsync()
-		{
-			throw new NotImplementedException();
-		}
-
+		public async Task GoToGameAsync() => await _navigationService.Navigate<GameViewModel>();
+		
 		public async Task GoToStudyModeAsync()
 		{
 			await StudyModeManager.OpenStudyModeAsync(new Uri("ms-appx:///Assets/StudyMode/index.json"), Path.Combine(Package.Current.InstalledLocation.Path, "Assets/StudyMode"));

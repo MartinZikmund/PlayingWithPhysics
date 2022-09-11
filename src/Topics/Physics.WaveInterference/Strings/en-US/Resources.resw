@@ -149,11 +149,17 @@ Graphics: Petr Weinlich</value>
   <data name="EditWave" xml:space="preserve">
     <value>Configure waves</value>
   </data>
+  <data name="FirstWave" xml:space="preserve">
+    <value>First wave</value>
+  </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
   </data>
   <data name="GameGuide" xml:space="preserve">
     <value>Deliver the best possible take for your slightly irritated director. While the robot moves, adjust the camera height so that it stays level with the actress' face as accurately as possible.</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -179,8 +185,14 @@ Graphics: Petr Weinlich</value>
   <data name="PhaseVelocity" xml:space="preserve">
     <value>Phase velocity</value>
   </data>
+  <data name="ResultingWave" xml:space="preserve">
+    <value>Resulting wave</value>
+  </data>
   <data name="RightWaveSource" xml:space="preserve">
     <value>Right wave source</value>
+  </data>
+  <data name="SecondWave" xml:space="preserve">
+    <value>Second wave</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Wave Interference</value>

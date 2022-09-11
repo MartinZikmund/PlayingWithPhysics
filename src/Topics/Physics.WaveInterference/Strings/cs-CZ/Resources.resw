@@ -149,11 +149,17 @@ Grafika: Petr Weinlich</value>
   <data name="EditWave" xml:space="preserve">
     <value>Nastavit vlnění</value>
   </data>
+  <data name="FirstWave" xml:space="preserve">
+    <value>První vlna</value>
+  </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
   <data name="GameGuide" xml:space="preserve">
     <value>Natočte pro vašeho mírně cholerického režiséra co nejlepší záběr! Při pohybu vozítka se snažte co nejpřesněji udržet kameru na úrovni obličeje herečky.</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Grupa</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Návod</value>
@@ -179,8 +185,14 @@ Grafika: Petr Weinlich</value>
   <data name="PhaseVelocity" xml:space="preserve">
     <value>Fázová rychlost vlnění</value>
   </data>
+  <data name="ResultingWave" xml:space="preserve">
+    <value>Výsledná vlna</value>
+  </data>
   <data name="RightWaveSource" xml:space="preserve">
     <value>Pravý zdroj vlnění</value>
+  </data>
+  <data name="SecondWave" xml:space="preserve">
+    <value>Druhá vlna</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Interference vlnění</value>

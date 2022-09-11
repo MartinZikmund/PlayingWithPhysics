@@ -129,6 +129,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\GameController.cs" />
     <Compile Include="Rendering\WaveInterferenceController.cs" />
     <Compile Include="UserControls\EditWaveUserControl.xaml.cs">
       <DependentUpon>EditWaveUserControl.xaml</DependentUpon>
@@ -147,8 +148,12 @@
     </Compile>
     <Compile Include="ViewModels\AddOrUpdateOscillationViewModel.cs" />
     <Compile Include="ViewModels\EditWaveViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WaveInfoViewModel.cs" />
+    <Compile Include="Views\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -246,6 +251,10 @@
     <Page Include="ValuesTable\ValuesTablePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
