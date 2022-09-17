@@ -320,7 +320,7 @@
       <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>7.1.2</Version>
+      <Version>9.0.1</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody" />
   </ItemGroup>
