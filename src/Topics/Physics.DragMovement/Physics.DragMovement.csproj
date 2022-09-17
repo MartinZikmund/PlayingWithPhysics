@@ -282,9 +282,7 @@
     <PackageReference Include="Microsoft.Toolkit" />
     <PackageReference Include="Microsoft.Toolkit.Uwp" />
     <PackageReference Include="PropertyChanged.Fody" />
-    <PackageReference Include="MvvmCross">
-      <Version>9.0.1</Version>
-    </PackageReference>
+    <PackageReference Include="MvvmCross" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

@@ -316,12 +316,8 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross">
-      <Version>9.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>9.0.1</Version>
-    </PackageReference>
+    <PackageReference Include="MvvmCross" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility" />
     <PackageReference Include="PropertyChanged.Fody" />
   </ItemGroup>
   <ItemGroup>

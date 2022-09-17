@@ -290,9 +290,7 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" />
     <PackageReference Include="Microsoft.Toolkit.Uwp" />
     <PackageReference Include="Microsoft.UI.Xaml" />
-    <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>9.0.1</Version>
-    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Visibility" />
     <PackageReference Include="PropertyChanged.Fody" />
     <PackageReference Include="SkiaSharp.Views" />
   </ItemGroup>
