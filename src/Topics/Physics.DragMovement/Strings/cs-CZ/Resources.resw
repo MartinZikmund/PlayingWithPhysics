@@ -273,6 +273,9 @@ Grafika: Petr Weinlich</value>
   <data name="Settings" xml:space="preserve">
     <value>Nastavení</value>
   </data>
+  <data name="ShortAppName" xml:space="preserve">
+    <value>Pohyby těles v odporujícím prostředí</value>
+  </data>
   <data name="ShowHideIrrelevantColumns" xml:space="preserve">
     <value>Zobrazit/skrýt nulové sloupce</value>
   </data>
@@ -295,7 +298,7 @@ Grafika: Petr Weinlich</value>
     <value>tenká deska</value>
   </data>
   <data name="TopicName" xml:space="preserve">
-    <value>Pohyby tělesa v odporujícím prostředí</value>
+    <value>Pohyby těles v odporujícím prostředí</value>
   </data>
   <data name="TryAgain" xml:space="preserve">
     <value>Zkusit znovu</value>

@@ -206,6 +206,7 @@ namespace Physics.DragMovement.Rendering
 				var motionInfo = MotionFactory.CreateProjectileMotion(
 					new Vector2(0, currentHeight),
 					1.3f,
+					false,
 					_game.CargoMass,
 					currentArea,
 					startSpeed,
