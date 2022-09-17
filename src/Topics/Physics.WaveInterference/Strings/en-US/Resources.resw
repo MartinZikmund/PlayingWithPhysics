@@ -221,6 +221,9 @@ Graphics: Petr Weinlich</value>
   <data name="TableHeaderWave" xml:space="preserve">
     <value>Wave {0}</value>
   </data>
+  <data name="Task" xml:space="preserve">
+    <value>Task</value>
+  </data>
   <data name="TimeForTable" xml:space="preserve">
     <value>Time (s):</value>
   </data>

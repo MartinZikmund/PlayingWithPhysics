@@ -221,6 +221,9 @@ Grafika: Petr Weinlich</value>
   <data name="TableHeaderWave" xml:space="preserve">
     <value>Vlnění {0}</value>
   </data>
+  <data name="Task" xml:space="preserve">
+    <value>Úkol</value>
+  </data>
   <data name="TimeForTable" xml:space="preserve">
     <value>Čas (s):</value>
   </data>

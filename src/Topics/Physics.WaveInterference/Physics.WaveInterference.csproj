@@ -124,6 +124,11 @@
     <Compile Include="Dialogs\AddOrUpdateOscillationDialog.xaml.cs">
       <DependentUpon>AddOrUpdateOscillationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game\GameInfo.cs" />
+    <Compile Include="Game\GamePhysicsService.cs" />
+    <Compile Include="Game\GameTask.cs" />
+    <Compile Include="Game\GameTasks.cs" />
+    <Compile Include="Game\GameWaveInfo.cs" />
     <Compile Include="Infrastructure\TopicNavigator.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

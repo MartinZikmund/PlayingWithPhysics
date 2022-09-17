@@ -8,11 +8,11 @@
     xmlns:sharedControls="using:Physics.Shared.UI.Controls"
     xmlns:viewModels="using:Physics.WaveInterference.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:unouwp="using:CSharpMath.UWPUno"
+	mc:Ignorable="d"
 	RequestedTheme="Light"
     Background="{ThemeResource AppThemeColor}">
-	<Page.Transitions>
+	<local:GameViewBase.Transitions>
 		<TransitionCollection>
 			<NavigationThemeTransition>
 				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
@@ -20,8 +20,8 @@
 				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
 			</NavigationThemeTransition>
 		</TransitionCollection>
-	</Page.Transitions>
-	<Page.Resources>
+	</local:GameViewBase.Transitions>
+	<local:GameViewBase.Resources>
 		<SolidColorBrush x:Key="HeaderBrush" Color="#f15a24" />
 		<SolidColorBrush x:Key="GroupBrush" Color="#fc8d1f" />
 		<SolidColorBrush x:Key="BlueBrush" Color="#007fc6" />
@@ -31,7 +31,7 @@
 		<Style x:Key="InfoTextBlockStyle" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="15" />
 		</Style>
-	</Page.Resources>
+	</local:GameViewBase.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="3*" />
@@ -52,13 +52,25 @@
 				<Grid Margin="0,20" Background="{StaticResource HeaderBrush}" RequestedTheme="Dark">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="60" />
+						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<Button Style="{ThemeResource NavigationBackButtonNormalStyle}" />
-					<TextBlock TextLineBounds="Tight" VerticalAlignment="Center" Grid.Column="1" Text="Ukol 1: a > b" Style="{ThemeResource HeaderTextBlockStyle}" />
+					<Button Style="{ThemeResource NavigationBackButtonNormalStyle}" Command="{x:Bind Model.GoBackCommand}" />
+					<TextBlock VerticalAlignment="Center" Margin="0,0,20,0" Grid.Column="1" Style="{StaticResource HeaderTextBlockStyle}">
+						<Run Text="{extensions:Localize Key=Task}" />
+						<Run Text="{x:Bind Model.GameInfo.TaskNumber, Mode=OneWay}" /><Run Text=":" />
+					</TextBlock>
+					<unouwp:TextView
+						x:Name="View"
+						LaTeX="{x:Bind Model.GameInfo.CurrentTask.Label, Mode=OneWay}"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Center"
+						Grid.Column="2"
+						TextColor="White"
+						FontSize="30"/>
 				</Grid>
 				<StackPanel Spacing="20" Orientation="Horizontal" Grid.Column="1">
-					<Button>Next task</Button>
+					<Button Click="{x:Bind Model.GameInfo.NextTask}">Next task</Button>
 					<Button>Check result</Button>
 				</StackPanel>
 			</Grid>
@@ -72,12 +84,38 @@
                 RequestedTheme="Light"
                 TargetInkCanvas="{x:Bind InkCanvas}" />
 			</Grid>
-			<Grid Grid.Row="2">
+
+			<!-- Bottom panel -->
+			<Grid Grid.Row="2" Margin="60,20,0,20" ColumnSpacing="20">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
+
+				<Grid RowSpacing="8" ColumnSpacing="8" Background="{StaticResource OrangeBrush}" Padding="8">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16">
+						<Run Text="{extensions:Localize Key=GroupVelocity}" />
+						<Run Text="(m.s⁻¹)" />
+					</TextBlock>
+					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" LaTeX="$v_g = \frac{\pi (f_1 - f_2)}{k_1 - k_2}$" Grid.Row="1" FontSize="24" />
+				</Grid>
+
+				<Grid Grid.Column="1" RowSpacing="8" Background="{StaticResource GreenBrush}" ColumnSpacing="8" Padding="8" HorizontalAlignment="Stretch">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16">
+						<Run Text="{extensions:Localize Key=PhaseVelocity}" />
+						<Run Text="(m.s⁻¹)" />
+					</TextBlock>
+					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" LaTeX="$v_f = \frac{\pi (f_1 + f_2)}{k_1 + k_2}$" Grid.Row="1" />
+				</Grid>
 
 				<!-- Legend -->
 				<Grid Grid.Column="2" HorizontalAlignment="Right" RowSpacing="4" ColumnSpacing="8" VerticalAlignment="Center">
@@ -116,7 +154,22 @@
 		</Grid>
 		<!-- Control column -->
 		<Grid Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.Resources>
+				<Style TargetType="Slider" BasedOn="{StaticResource DefaultSliderStyle}">
+					<Setter Property="Orientation" Value="Vertical" />
+				</Style>
+			</Grid.Resources>
 
+			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.F, Mode=TwoWay}" />
+			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.K, Mode=TwoWay}" Grid.Column="1" />
+			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.F, Mode=TwoWay}" Grid.Column="2" />
+			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.K, Mode=TwoWay}" Grid.Column="3" />
 		</Grid>
 	</Grid>
 </local:GameViewBase>
