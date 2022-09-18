@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Physics.Shared.UI.Rendering;
 using Physics.Shared.UI.Rendering.Skia;
@@ -47,13 +46,13 @@ public class GameController : SkiaCanvasController
 		StrokeWidth = 4,
 		Color = new SKColor(0, 149, 64)
 	};
-	private WaveInterferencePhysicsService _waveInterferencePhysicsService;
-	private WaveInterferenceTrajectory _waveInterferenceTrajectory;
-	private SKPaint _interferenceFillPaint = new SKPaint()
+
+	private SKPaint _wavePackagePaint = new SKPaint()
 	{
-		IsStroke = false,
+		IsStroke = true,
 		IsAntialias = true,
-		Color = SKColors.Red
+		StrokeWidth = 4,
+		Color = new SKColor(252, 141, 31)
 	};
 
 	private SKPaint _axis1Paint = new SKPaint()
@@ -81,21 +80,25 @@ public class GameController : SkiaCanvasController
 	private float _maximumFrequency;
 	private double _inherentSlowdown = 1.0;
 
+	private GameInfo _gameInfo;
+
 	public GameController(ISkiaCanvas canvasAnimatedControl) :
 		base(canvasAnimatedControl)
 	{
 	}
 
-	public void SetActiveWaves(GameWaveInfo[] info, GamePhysicsService physicsService)
+	public void SetGameInfo(GameInfo gameInfo)
 	{
-		if (info == null || info.Length == 0)
+		if (gameInfo == null)
 		{
 			_activeWaves = null;
 			return;
 		}
 
-		_activeWaves = info;
-		_physicsService = physicsService;
+		_gameInfo = gameInfo;
+
+		_activeWaves = new[] { gameInfo.Wave1, gameInfo.Wave2 };
+		_physicsService = gameInfo.GamePhysicsService;
 		_maxY = 2;
 		_minY = -2;
 
@@ -163,7 +166,7 @@ public class GameController : SkiaCanvasController
 		}
 		else
 		{
-			_inherentSlowdown = 1;
+			_inherentSlowdown = 1 / 10.0;
 		}
 	}
 
@@ -276,7 +279,7 @@ public class GameController : SkiaCanvasController
 			return;
 		}
 
-	//	DrawAxes(sender, args);
+		//	DrawAxes(sender, args);
 
 		if (_activeWaves.Length > 1)
 		{
@@ -284,14 +287,23 @@ public class GameController : SkiaCanvasController
 			//DrawWaveCurrentPoint(sender, args, totalValue, _interferenceFillPaint);
 		}
 
-		foreach (var wave in _activeWaves)
+		if (_gameInfo.ShowGroup)
 		{
-			var strokePaint = _waveStrokePaints[Array.IndexOf(_activeWaves, wave)];
-			DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateSingleWave(x, time, wave), strokePaint, false);
+			DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateAbsPackage(x, time), _wavePackagePaint, false);
+			DrawWave(sender, args, (x, time) => -(float)_physicsService.CalculateAbsPackage(x, time), _wavePackagePaint, false);
 		}
-		DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateH(x, time), _resultingWaveStrokePaint, false);
-		DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateAbsPackage(x, time), _axis1Paint, false);
-		DrawWave(sender, args, (x, time) => -(float)_physicsService.CalculateAbsPackage(x, time), _axis1Paint, false);
+		if (_gameInfo.ShowResultingWave)
+		{
+			DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateH(x, time), _resultingWaveStrokePaint, false);
+		}
+		if (_gameInfo.ShowWaves)
+		{
+			foreach (var wave in _activeWaves)
+			{
+				var strokePaint = _waveStrokePaints[Array.IndexOf(_activeWaves, wave)];
+				DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateSingleWave(x, time, wave), strokePaint, false);
+			}
+		}
 	}
 
 	public double GetSimulationDisplayTime() => SimulationTime.TotalTime.TotalSeconds * _inherentSlowdown;
@@ -308,7 +320,7 @@ public class GameController : SkiaCanvasController
 
 		var stepSizeInPixels = GetDisplayWidthInPixels(sender) / 800;
 		var stepSizeInUnits = stepSizeInPixels * _unitsPerPixel;
-		var lastRenderTime = GetAdjustedTotalTime();
+		var lastRenderTime = GetSimulationDisplayTime();
 		using SKPath path = new SKPath();
 		var currentX = _minX;
 
@@ -344,7 +356,7 @@ public class GameController : SkiaCanvasController
 		var axesBounds = new SimulationBounds(HorizontalPadding, 10, (float)sender.ScaledSize.Width - HorizontalPadding, (float)sender.ScaledSize.Height - 10);
 		var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
 		var horizontalPixelDiff = endRenderX - axesBounds.Left;
-		var endTime = GetAdjustedTotalTime();
+		var endTime = GetSimulationDisplayTime();
 		var originSeconds = ((float)endTime - horizontalPixelDiff / _pixelsPerUnit) * (float)_inherentSlowdown;
 		_axesRenderer.ShouldDrawYAxis = false;
 		_axesRenderer.ShouldDrawYMeasure = false;

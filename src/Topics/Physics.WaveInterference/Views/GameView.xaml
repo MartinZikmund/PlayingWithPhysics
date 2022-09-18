@@ -34,7 +34,7 @@
 	</local:GameViewBase.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*" />
+			<ColumnDefinition Width="2*" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<!-- Simulation column -->
@@ -153,23 +153,81 @@
 			</Grid>
 		</Grid>
 		<!-- Control column -->
-		<Grid Grid.Column="1">
+		<Grid Grid.Column="1" Padding="20" ColumnSpacing="8" RowSpacing="8">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
 			<Grid.Resources>
 				<Style TargetType="Slider" BasedOn="{StaticResource DefaultSliderStyle}">
 					<Setter Property="Orientation" Value="Vertical" />
+					<Setter Property="HorizontalAlignment" Value="Center" />
+				</Style>
+				<Style TargetType="ToggleButton" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+					<Setter Property="HorizontalAlignment" Value="Stretch" />
+					<Setter Property="Height" Value="60" />
+				</Style>
+				<Style TargetType="TextBlock">
+					<Setter Property="TextAlignment" Value="Center" />
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="TextWrapping" Value="WrapWholeWords" />
+					<Setter Property="TextTrimming" Value="CharacterEllipsis" />
+				</Style>
+				<Style TargetType="Border">
+					<Setter Property="Height" Value="48" />
 				</Style>
 			</Grid.Resources>
-
-			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.F, Mode=TwoWay}" />
-			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.K, Mode=TwoWay}" Grid.Column="1" />
-			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.F, Mode=TwoWay}" Grid.Column="2" />
-			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.K, Mode=TwoWay}" Grid.Column="3" />
+			<ToggleButton HorizontalAlignment="Stretch" IsChecked="{x:Bind Model.GameInfo.ShowWaves, Mode=TwoWay}" Grid.ColumnSpan="4">
+				<TextBlock Text="{extensions:Localize Key=ShowInterferingWaves}" TextWrapping="Wrap" />
+			</ToggleButton>
+			<ToggleButton IsChecked="{x:Bind Model.GameInfo.ShowGroup, Mode=TwoWay}" Grid.Row="1" Grid.ColumnSpan="2">
+				<TextBlock Text="{extensions:Localize Key=ShowGroup}" TextWrapping="Wrap" />
+			</ToggleButton>
+			<ToggleButton IsChecked="{x:Bind Model.GameInfo.ShowResultingWave, Mode=TwoWay}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="2">
+				<TextBlock Text="{extensions:Localize Key=ShowResultingWave}" TextWrapping="Wrap" />
+			</ToggleButton>
+			<TextBlock FontSize="16" Margin="12" FontWeight="Bold" Text="{extensions:Localize Key=FirstWaveSettings, Uppercase=True}" TextWrapping="WrapWholeWords" TextAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" />
+			<TextBlock FontSize="16" Margin="12" FontWeight="Bold" Text="{extensions:Localize Key=SecondWaveSettings, Uppercase=True}" TextWrapping="WrapWholeWords" TextAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" />
+			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.F, Mode=TwoWay}" Grid.Row="3" />
+			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave1.K, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" />
+			<Slider Minimum="0" Maximum="5" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.F, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" />
+			<Slider Minimum="0" Maximum="3" StepFrequency="0.1" SmallChange="0.1" LargeChange="0.1" Value="{x:Bind Model.GameInfo.Wave2.K, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" />
+			<TextBlock Text="{extensions:Localize Key=Frequency, Uppercase=True}" Grid.Row="4" />
+			<TextBlock Text="{extensions:Localize Key=WaveNumber, Uppercase=True}" Grid.Row="4" Grid.Column="1" />
+			<TextBlock Text="{extensions:Localize Key=Frequency, Uppercase=True}" Grid.Row="4" Grid.Column="2" />
+			<TextBlock Text="{extensions:Localize Key=WaveNumber, Uppercase=True}" Grid.Row="4" Grid.Column="3" />
+			<TextBlock FontStyle="Italic" Text="f₁" Grid.Row="5" />
+			<TextBlock FontStyle="Italic" Text="k₁" Grid.Row="5" Grid.Column="1" />
+			<TextBlock FontStyle="Italic" Text="f₂" Grid.Row="5" Grid.Column="2"  />
+			<TextBlock FontStyle="Italic" Text="k₂" Grid.Row="5" Grid.Column="3"  />
+			<TextBlock Text="(Hz)" Grid.Row="6" />
+			<TextBlock Text="(m⁻¹)" Grid.Row="6" Grid.Column="1" />
+			<TextBlock Text="(Hz)" Grid.Row="6" Grid.Column="2"  />
+			<TextBlock Text="(m⁻¹)" Grid.Row="6" Grid.Column="3"  />
+			<Border Background="White" Grid.Row="7">
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.F, Mode=OneWay}" />
+			</Border>
+			<Border Background="White" Grid.Row="7" Grid.Column="1">
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.K, Mode=OneWay}" />
+			</Border>
+			<Border Background="White" Grid.Row="7" Grid.Column="2">
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.F, Mode=OneWay}" />
+			</Border>
+			<Border Background="White" Grid.Row="7" Grid.Column="3">
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.K, Mode=OneWay}" />
+			</Border>
 		</Grid>
 	</Grid>
 </local:GameViewBase>

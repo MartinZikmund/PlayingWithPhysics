@@ -19,7 +19,7 @@ namespace Physics.WaveInterference.ViewModels
 			}
 
 			_controller = controller;
-			_controller.SetActiveWaves(new[] { GameInfo.Wave1, GameInfo.Wave2 }, GameInfo.GamePhysicsService);
+			_controller.SetGameInfo(GameInfo);
 			_controller.Play();
 		}
 

@@ -152,6 +152,9 @@ Grafika: Petr Weinlich</value>
   <data name="FirstWave" xml:space="preserve">
     <value>První vlna</value>
   </data>
+  <data name="FirstWaveSettings" xml:space="preserve">
+    <value>Nastavení prvního vlnění</value>
+  </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
@@ -160,6 +163,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Grupa</value>
+  </data>
+  <data name="GroupVelocity" xml:space="preserve">
+    <value>Grupová rychlost</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Návod</value>
@@ -194,8 +200,20 @@ Grafika: Petr Weinlich</value>
   <data name="SecondWave" xml:space="preserve">
     <value>Druhá vlna</value>
   </data>
+  <data name="SecondWaveSettings" xml:space="preserve">
+    <value>Nastavení druhého vlnění</value>
+  </data>
   <data name="ShortAppName" xml:space="preserve">
     <value>Interference vlnění</value>
+  </data>
+  <data name="ShowGroup" xml:space="preserve">
+    <value>Zobrazit grupu</value>
+  </data>
+  <data name="ShowInterferingWaves" xml:space="preserve">
+    <value>Zobrazit interferující vlny</value>
+  </data>
+  <data name="ShowResultingWave" xml:space="preserve">
+    <value>Zobrazit výsledné vlnění</value>
   </data>
   <data name="ShowTableOfVisibleWaves" xml:space="preserve">
     <value>Zobrazit tabulku interference vlnění</value>
@@ -247,5 +265,8 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="WaveLength" xml:space="preserve">
     <value>Vlnová délka</value>
+  </data>
+  <data name="Wavenumber" xml:space="preserve">
+    <value>Vlnové číslo</value>
   </data>
 </root>

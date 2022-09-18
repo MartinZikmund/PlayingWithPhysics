@@ -23,6 +23,12 @@ public class GameInfo : MvxNotifyPropertyChanged
 
 	public GameTask CurrentTask { get; private set; }
 
+	public bool ShowWaves { get; set; } = true;
+
+	public bool ShowResultingWave { get; set; } = true;
+
+	public bool ShowGroup { get; set; } = true;
+
 	public int TaskNumber => _currentTaskIndex + 1;
 
 	public void NextTask()
