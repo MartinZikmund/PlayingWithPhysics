@@ -69,9 +69,9 @@
 						TextColor="White"
 						FontSize="30"/>
 				</Grid>
-				<StackPanel Spacing="20" Orientation="Horizontal" Grid.Column="1">
-					<Button Click="{x:Bind Model.GameInfo.NextTask}">Next task</Button>
-					<Button>Check result</Button>
+				<StackPanel Spacing="20" Margin="0,20" Orientation="Horizontal" Grid.Column="1">
+					<Button VerticalAlignment="Stretch" Click="{x:Bind Model.GameInfo.NextTask}" Content="{extensions:Localize Key=NextTask}" />
+					<Button VerticalAlignment="Stretch" Command="{x:Bind Model.GameInfo.CheckResultCommand}" Content="{extensions:Localize Key=CheckResult}" />
 				</StackPanel>
 			</Grid>
 			<Grid Margin="60,0,0,0" Grid.Row="1">
@@ -93,16 +93,23 @@
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 
-				<Grid RowSpacing="8" ColumnSpacing="8" Background="{StaticResource OrangeBrush}" Padding="8">
+				<Grid RowSpacing="8" ColumnSpacing="0" Background="{StaticResource OrangeBrush}" Padding="8">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="48" />
+					</Grid.ColumnDefinitions>
+					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2">
 						<Run Text="{extensions:Localize Key=GroupVelocity}" />
 						<Run Text="(m.s⁻¹)" />
 					</TextBlock>
-					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" LaTeX="$v_g = \frac{\pi (f_1 - f_2)}{k_1 - k_2}$" Grid.Row="1" FontSize="24" />
+					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" LaTeX="$v_g = \frac{\pi (f_1 - f_2)}{k_1 - k_2} =$" Grid.Row="1" FontSize="16" />
+					<Border Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#33FFFFFF" Padding="8" Grid.Row="1">
+						<TextBlock HorizontalAlignment="Center" Text="{x:Bind Model.GameInfo.EvaluatedVg, Mode=OneWay}" />
+					</Border>
 				</Grid>
 
 				<Grid Grid.Column="1" RowSpacing="8" Background="{StaticResource GreenBrush}" ColumnSpacing="8" Padding="8" HorizontalAlignment="Stretch">
@@ -110,11 +117,18 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="*" />
 					</Grid.RowDefinitions>
-					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="48" />
+					</Grid.ColumnDefinitions>
+					<TextBlock HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2">
 						<Run Text="{extensions:Localize Key=PhaseVelocity}" />
 						<Run Text="(m.s⁻¹)" />
 					</TextBlock>
-					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" LaTeX="$v_f = \frac{\pi (f_1 + f_2)}{k_1 + k_2}$" Grid.Row="1" />
+					<unouwp:TextView TextColor="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" LaTeX="$v_f = \frac{\pi (f_1 + f_2)}{k_1 + k_2} =$" Grid.Row="1" />
+					<Border Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#33FFFFFF" Padding="8" Grid.Row="1">
+						<TextBlock HorizontalAlignment="Center" Text="{x:Bind Model.GameInfo.EvaluatedVf, Mode=OneWay}" />
+					</Border>
 				</Grid>
 
 				<!-- Legend -->
@@ -223,10 +237,10 @@
 				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.K, Mode=OneWay}" />
 			</Border>
 			<Border Background="White" Grid.Row="7" Grid.Column="2">
-				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.F, Mode=OneWay}" />
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave2.F, Mode=OneWay}" />
 			</Border>
 			<Border Background="White" Grid.Row="7" Grid.Column="3">
-				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave1.K, Mode=OneWay}" />
+				<TextBlock Foreground="Black" Text="{x:Bind Model.GameInfo.Wave2.K, Mode=OneWay}" />
 			</Border>
 		</Grid>
 	</Grid>

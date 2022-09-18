@@ -10,9 +10,6 @@ namespace Physics.WaveInterference.Rendering;
 
 public class GameController : SkiaCanvasController
 {
-	private const float VerticalPadding = 12;
-	private const float HorizontalPadding = 12;
-
 	private float _unitsPerPixel = 0;
 	private float _pixelsPerUnit = 0;
 	private float _stepSize = 0;
@@ -51,23 +48,26 @@ public class GameController : SkiaCanvasController
 	{
 		IsStroke = true,
 		IsAntialias = true,
+		FilterQuality = SKFilterQuality.High,
 		StrokeWidth = 4,
 		Color = new SKColor(252, 141, 31)
 	};
 
-	private SKPaint _axis1Paint = new SKPaint()
+	private SKPaint _axisThinPaint = new SKPaint()
 	{
 		IsStroke = true,
 		IsAntialias = true,
-		StrokeWidth = 1,
+		FilterQuality = SKFilterQuality.High,
+		StrokeWidth = 0.5f,
 		Color = SKColors.Black
 	};
 
-	private SKPaint _axis2Paint = new SKPaint()
+	private SKPaint _axisThickPaint = new SKPaint()
 	{
 		IsStroke = true,
 		IsAntialias = true,
-		StrokeWidth = 1.5f,
+		FilterQuality = SKFilterQuality.High,
+		StrokeWidth = 2f,
 		Color = SKColors.Black
 	};
 
@@ -81,6 +81,9 @@ public class GameController : SkiaCanvasController
 	private double _inherentSlowdown = 1.0;
 
 	private GameInfo _gameInfo;
+
+	private SKPicture _gridPicture = null;
+	private SKSize _lastCanvasSize;
 
 	public GameController(ISkiaCanvas canvasAnimatedControl) :
 		base(canvasAnimatedControl)
@@ -190,6 +193,12 @@ public class GameController : SkiaCanvasController
 		_stepSize = 2;
 		_maxX = sender.ScaledSize.Width;
 
+		if (_lastCanvasSize != sender.ScaledSize)
+		{
+			_lastCanvasSize = sender.ScaledSize;
+			_gridPicture = null;
+		}
+
 		//var (minX, maxX) = CalculatePreferredWaveXBounds();
 		//var horizontalWidthInMeters = maxX - minX;
 		//var screenWidth = sender.ScaledSize.Width - HorizontalPadding * 2;
@@ -268,7 +277,7 @@ public class GameController : SkiaCanvasController
 
 	private float GetDisplayHeightInPixels(ISkiaCanvas sender) => (float)(sender.ScaledSize.Height - sender.ScaledSize.Height * 0.3);
 
-	private float GetDisplayWidthInPixels(ISkiaCanvas sender) => (float)(sender.ScaledSize.Width - 2 * HorizontalPadding);
+	private float GetDisplayWidthInPixels(ISkiaCanvas sender) => (float)(sender.ScaledSize.Width);
 
 	public override void Draw(ISkiaCanvas sender, SKSurface args)
 	{
@@ -279,7 +288,7 @@ public class GameController : SkiaCanvasController
 			return;
 		}
 
-		//	DrawAxes(sender, args);
+		DrawGrid(sender, args);
 
 		if (_activeWaves.Length > 1)
 		{
@@ -304,6 +313,37 @@ public class GameController : SkiaCanvasController
 				DrawWave(sender, args, (x, time) => (float)_physicsService.CalculateSingleWave(x, time, wave), strokePaint, false);
 			}
 		}
+	}
+
+	private void DrawGrid(ISkiaCanvas sender, SKSurface args)
+	{
+		if (_gridPicture == null)
+		{
+			var recorder = new SKPictureRecorder();
+			var canvas = recorder.BeginRecording(new SKRect(0, 0, sender.ScaledSize.Width, sender.ScaledSize.Height));
+			var xJump = sender.ScaledSize.Width / 6;
+			var yJump = sender.ScaledSize.Height / 6;
+
+			var currentX = xJump;
+			for (int x = 0; x < 5; x++)
+			{
+				canvas.DrawLine(currentX, 0, currentX, sender.ScaledSize.Height, _axisThinPaint);
+				currentX += xJump;
+			}
+
+			var currentY = yJump;
+			for (int x = 0; x < 5; x++)
+			{
+				canvas.DrawLine(0, currentY, sender.ScaledSize.Width, currentY, _axisThinPaint);
+				currentY += yJump;
+			}
+
+			canvas.DrawLine(0, sender.ScaledSize.Height / 2, sender.ScaledSize.Width, sender.ScaledSize.Height / 2, _axisThickPaint);
+
+			_gridPicture = recorder.EndRecording();
+		}
+
+		args.Canvas.DrawPicture(_gridPicture);
 	}
 
 	public double GetSimulationDisplayTime() => SimulationTime.TotalTime.TotalSeconds * _inherentSlowdown;
@@ -345,47 +385,47 @@ public class GameController : SkiaCanvasController
 
 	private float GetRenderY(float y) => (float)(_canvas.ScaledSize.Height / 2 - y * _pixelsPerUnit);
 
-	private float GetRenderX(float x) => ((x - _minX) * _pixelsPerUnit + HorizontalPadding);
+	private float GetRenderX(float x) => ((x - _minX) * _pixelsPerUnit);
 
 	private SkiaAxesRenderer _axesRenderer = new SkiaAxesRenderer();
 
 	private void DrawAxes(ISkiaCanvas sender, SKSurface args)
 	{
-		float relativeOriginPosition = Math.Abs(_minX / (_maxX - _minX));
+		//float relativeOriginPosition = Math.Abs(_minX / (_maxX - _minX));
 
-		var axesBounds = new SimulationBounds(HorizontalPadding, 10, (float)sender.ScaledSize.Width - HorizontalPadding, (float)sender.ScaledSize.Height - 10);
-		var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
-		var horizontalPixelDiff = endRenderX - axesBounds.Left;
-		var endTime = GetSimulationDisplayTime();
-		var originSeconds = ((float)endTime - horizontalPixelDiff / _pixelsPerUnit) * (float)_inherentSlowdown;
-		_axesRenderer.ShouldDrawYAxis = false;
-		_axesRenderer.ShouldDrawYMeasure = false;
-		_axesRenderer.YUnitSizeInPixels = _pixelsPerUnit;
-		_axesRenderer.XUnitSizeInPixels = (float)_pixelsPerUnit;
+		//var axesBounds = new SimulationBounds(HorizontalPadding, 10, (float)sender.ScaledSize.Width - HorizontalPadding, (float)sender.ScaledSize.Height - 10);
+		//var endRenderX = (float)sender.ScaledSize.Width - HorizontalPadding;
+		//var horizontalPixelDiff = endRenderX - axesBounds.Left;
+		//var endTime = GetSimulationDisplayTime();
+		//var originSeconds = ((float)endTime - horizontalPixelDiff / _pixelsPerUnit) * (float)_inherentSlowdown;
+		//_axesRenderer.ShouldDrawYAxis = false;
+		//_axesRenderer.ShouldDrawYMeasure = false;
+		//_axesRenderer.YUnitSizeInPixels = _pixelsPerUnit;
+		//_axesRenderer.XUnitSizeInPixels = (float)_pixelsPerUnit;
 
-		var formatString = "0.#";
-		if (_maximumFrequency > 5000)
-		{
-			formatString = "0.#####";
-		}
-		else if (_maximumFrequency > 500)
-		{
-			formatString = "0.####";
-		}
-		else if (_maximumFrequency > 50)
-		{
-			formatString = "0.###";
-		}
-		else if (_maximumFrequency > 5)
-		{
-			formatString = "0.##";
-		}
-		_axesRenderer.XUnitFormatString = formatString;
+		//var formatString = "0.#";
+		//if (_maximumFrequency > 5000)
+		//{
+		//	formatString = "0.#####";
+		//}
+		//else if (_maximumFrequency > 500)
+		//{
+		//	formatString = "0.####";
+		//}
+		//else if (_maximumFrequency > 50)
+		//{
+		//	formatString = "0.###";
+		//}
+		//else if (_maximumFrequency > 5)
+		//{
+		//	formatString = "0.##";
+		//}
+		//_axesRenderer.XUnitFormatString = formatString;
 
-		_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
-		_axesRenderer.TargetBounds = axesBounds;
-		_axesRenderer.OriginRelativePosition = new SKPoint(relativeOriginPosition, 0.5f);
-		_axesRenderer.Draw(sender, args);
+		//_axesRenderer.OriginUnitCoordinates = new SKPoint(0, 0);
+		//_axesRenderer.TargetBounds = axesBounds;
+		//_axesRenderer.OriginRelativePosition = new SKPoint(relativeOriginPosition, 0.5f);
+		//_axesRenderer.Draw(sender, args);
 	}
 
 	private void DrawWaveOriginPoint(ISkiaCanvas sender, SKSurface args, WaveTrajectory wave, SKPaint paint, float pointSize)

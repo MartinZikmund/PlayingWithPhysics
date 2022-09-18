@@ -143,6 +143,9 @@ Grafika: Petr Weinlich</value>
   <data name="ChangesApplyToAll" xml:space="preserve">
     <value>Změny se projeví u obou vln</value>
   </data>
+  <data name="CheckResult" xml:space="preserve">
+    <value>Ověřit výsledek</value>
+  </data>
   <data name="DistanceIntervalForTable" xml:space="preserve">
     <value>Interval vzdálenosti (m):</value>
   </data>
@@ -158,8 +161,23 @@ Grafika: Petr Weinlich</value>
   <data name="Frequency" xml:space="preserve">
     <value>Frekvence</value>
   </data>
+  <data name="GameEvaluation" xml:space="preserve">
+    <value>Vyhodnocení úkolu</value>
+  </data>
+  <data name="GameFailureMessage" xml:space="preserve">
+    <value>Bohužel toto nastavení nesplňuje požadavky úkolu, zkuste to znovu.</value>
+  </data>
+  <data name="GameFailureTitle" xml:space="preserve">
+    <value>Špatně...</value>
+  </data>
   <data name="GameGuide" xml:space="preserve">
     <value>Natočte pro vašeho mírně cholerického režiséra co nejlepší záběr! Při pohybu vozítka se snažte co nejpřesněji udržet kameru na úrovni obličeje herečky.</value>
+  </data>
+  <data name="GameSuccessMessage" xml:space="preserve">
+    <value>Skvěle, toto je správné řešení úkolu!</value>
+  </data>
+  <data name="GameSuccessTitle" xml:space="preserve">
+    <value>Správně!</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Grupa</value>
@@ -184,6 +202,9 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="LegendGreen" xml:space="preserve">
     <value>🟢 Zelená - Pohyb stativu</value>
+  </data>
+  <data name="NextTask" xml:space="preserve">
+    <value>Další úkol</value>
   </data>
   <data name="Period" xml:space="preserve">
     <value>Perioda</value>
