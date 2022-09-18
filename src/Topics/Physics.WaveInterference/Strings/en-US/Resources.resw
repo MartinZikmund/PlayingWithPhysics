@@ -164,11 +164,17 @@ Graphics: Petr Weinlich</value>
   <data name="GameFailureMessage" xml:space="preserve">
     <value>Unfortunately this is not the correct solution, try again!</value>
   </data>
+  <data name="GameFailureTitle" xml:space="preserve">
+    <value>Incorrect...</value>
+  </data>
   <data name="GameGuide" xml:space="preserve">
     <value>Deliver the best possible take for your slightly irritated director. While the robot moves, adjust the camera height so that it stays level with the actress' face as accurately as possible.</value>
   </data>
   <data name="GameSuccessMessage" xml:space="preserve">
     <value>Perfect, your solution is correct!</value>
+  </data>
+  <data name="GameSuccessTitle" xml:space="preserve">
+    <value>Correct!</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
