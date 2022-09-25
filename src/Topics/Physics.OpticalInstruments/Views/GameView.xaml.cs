@@ -21,6 +21,6 @@ namespace Physics.OpticalInstruments.Views
 
 		protected override ISkiaCanvas CreateSkiaCanvas() => new SkiaCanvas();
 
-		protected override GameCanvasController CreateController(ISkiaCanvas canvas) => new GameCanvasController(canvas);
+		protected override GameCanvasController CreateController(ISkiaCanvas canvas) => Model.CreateController(canvas);
 	}
 }

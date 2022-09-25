@@ -11,9 +11,9 @@ namespace Physics.Shared.Services.Sounds
 {
 	public class SoundPlayer : ISoundPlayer
 	{
+		private readonly object _syncLock = new object();
+		
 		private bool _initialized = false;
-		private object _syncLock = new object();
-
 
 		private AudioGraph _graph;
 		private readonly Dictionary<string, AudioFileInputNode> _fileInputs = new Dictionary<string, AudioFileInputNode>();

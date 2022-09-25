@@ -155,10 +155,12 @@
   <ItemGroup>
     <Content Include="Assets\Game\Background.png" />
     <Content Include="Assets\Game\BackLeg.png" />
+    <Content Include="Assets\Game\ExplosionSound.mp3" />
     <Content Include="Assets\Game\FrontLeg.png" />
     <Content Include="Assets\Game\Gun.png" />
     <Content Include="Assets\Game\Mirror.png" />
     <Content Include="Assets\Game\Planet.png" />
+    <Content Include="Assets\Game\Explosion.png" />
     <Content Include="Assets\Icons\ConcaveLens.png" />
     <Content Include="Assets\Icons\ConcaveMirror.png" />
     <Content Include="Assets\Icons\ConvexLens.png" />
