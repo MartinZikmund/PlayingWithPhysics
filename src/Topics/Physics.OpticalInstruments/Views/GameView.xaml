@@ -336,7 +336,7 @@
 		<Viewbox Margin="0">
 			<Canvas Width="1920" Height="1080">
 				<Grid x:Name="CanvasHolder" Width="1920" Height="1080" />
-				<Slider x:Name="AngleSlider" IsEnabled="{x:Bind Model.IsShootVisible, Mode=OneWay}" Minimum="0" Maximum="90" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
+				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" IsEnabled="{x:Bind Model.IsShootVisible, Mode=OneWay}" Minimum="0" Maximum="90" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
 
 				<Button
 					RequestedTheme="Dark"

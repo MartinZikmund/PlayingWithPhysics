@@ -4,7 +4,9 @@ using System;
 using System.Windows.Input;
 using Physics.OpticalInstruments.Game;
 using Physics.OpticalInstruments.Rendering;
+using Physics.Shared.Services.Sounds;
 using Physics.Shared.UI.Models.Navigation;
+using Physics.Shared.UI.Rendering.Skia;
 using Physics.Shared.UI.ViewModels;
 using Physics.Shared.UI.Views.Interactions;
 
@@ -12,13 +14,19 @@ namespace Physics.OpticalInstruments.ViewModels
 {
 	public class GameViewModel : SimulationViewModelBase<SimulationNavigationModel>, IReceiveController<GameCanvasController>
 	{
+		private readonly ISoundPlayer _soundPlayer;
+		
 		private GameCanvasController? _controller;
 
-		public GameViewModel()
+		public GameViewModel(ISoundPlayer soundPlayer)
 		{
 			GameInfo.StartNewGame();
 			GameInfo.GameStateChanged += GameInfo_GameStateChanged;
+			_soundPlayer = soundPlayer;
+			_soundPlayer = soundPlayer;
 		}
+
+		internal GameCanvasController CreateController(ISkiaCanvas canvas) => new GameCanvasController(canvas, _soundPlayer);
 
 		private void GameInfo_GameStateChanged(object sender, EventArgs e)
 		{

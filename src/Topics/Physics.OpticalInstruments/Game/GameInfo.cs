@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using MvvmCross.ViewModels;
+using Physics.OpticalInstruments.Rendering;
+using Physics.Shared.Helpers;
+using Physics.Shared.Logic.Geometry;
+using Physics.Shared.UI.Rendering.Skia;
+using SkiaSharp;
+using static Microsoft.Toolkit.Uwp.UI.Animations.Expressions.ExpressionValues;
 
 namespace Physics.OpticalInstruments.Game
 {
 	public class GameInfo : MvxNotifyPropertyChanged
 	{
-		internal int ObjectX => 1300;
+		private const float ActualPlanetSize = 100;
+
+		internal int ObjectX => 1300;		
 
 		private Random _randomizer = new Random();
 
@@ -18,17 +26,23 @@ namespace Physics.OpticalInstruments.Game
 
 		public GameState State { get; private set; }
 
+		public DateTimeOffset LastFireTime { get; set; }
+
+		public bool LaserHitPlanet { get; set; } = true;
+
+		public bool PerfectHit => BestScore == 1000;
+
 		public int CurrentShot { get; private set; } = 1;
 
 		public int TotalShots => 3;
 
 		public int CurrentAngle { get; set; } = 20;
 
-		public double? BestScore { get; private set; }
+		public int? BestScore { get; private set; }
 
 		public int FinishedAttempts { get; private set; }
 
-		public List<double> Attempts { get; } = new List<double>();
+		public List<int> Attempts { get; } = new List<int>();
 
 		public string Attempt1Text => Attempts.Count > 0 ? Attempts[0].ToString() : "";
 
@@ -38,8 +52,15 @@ namespace Physics.OpticalInstruments.Game
 
 		public void Shoot()
 		{
+			LastFireTime = DateTimeOffset.UtcNow;
 			FinishedAttempts++;
-			if (FinishedAttempts == 3)
+			int score = CalculateScore();
+			LaserHitPlanet = score > 0;
+
+			Attempts.Add(score);
+			BestScore = BestScore is null ? score : Math.Max(score, BestScore.Value);
+			
+			if (FinishedAttempts == 3 || CurrentAngle == TargetAngle)
 			{
 				State = GameState.GameEnded;
 			}
@@ -47,9 +68,7 @@ namespace Physics.OpticalInstruments.Game
 			{
 				State = GameState.Fired;
 			}
-			double score = CalculateScore();
-			Attempts.Add(score);
-			BestScore = BestScore is null ? score : Math.Max(score, BestScore.Value);
+						
 			RaiseAllPropertiesChanged();
 		}
 
@@ -57,17 +76,19 @@ namespace Physics.OpticalInstruments.Game
 		{
 			GenerateRandomTarget();
 			State = GameState.SetAngle;
+			LaserHitPlanet = false;
 			CurrentShot = 1;
+			CurrentAngle = 78;
 			Attempts.Clear();
 			BestScore = null;
 			FinishedAttempts = 0;
 			RaiseAllPropertiesChanged();
 		}
 
-
 		public void NextShot()
 		{
 			State = GameState.SetAngle;
+			LaserHitPlanet = false;
 			CurrentShot++;
 			RaiseAllPropertiesChanged();
 		}
@@ -82,11 +103,37 @@ namespace Physics.OpticalInstruments.Game
 			TargetAngle = CurrentAngle;
 		}
 
-		private double CalculateScore()
+		private int CalculateScore()
 		{
-			var diff = Math.Min(Math.Abs(CurrentAngle - TargetAngle), 20);
-			var score = 1000 - diff * 50;
-			return score;
+			var maxAngle = CalculatePlanetEdgeAngle();
+			var diff = Math.Abs(CurrentAngle - TargetAngle);
+
+			if (diff > maxAngle)
+			{
+				return 0;
+			}
+			else
+			{
+				return 1000 - diff * 50;
+			}
+		}
+
+		private double CalculatePlanetEdgeAngle()
+		{
+			var planetRadius = ActualPlanetSize / 2;
+			var planetVerticalX = ObjectX;
+
+			var verticalPoint = new SKPoint(GameCanvasController.MirrorHitPoint.X, 0);
+
+			var targetPointDirection = SkiaHelpers.RotatePoint(verticalPoint, GameCanvasController.MirrorHitPoint, MathHelpers.DegreesToRadians((90 - (float)TargetAngle) * 2));
+
+			var mirrorHitPoint = new Point2d(GameCanvasController.MirrorHitPoint.X, GameCanvasController.MirrorHitPoint.Y);
+
+			var lineToTarget = new Line2d(mirrorHitPoint, new Point2d(targetPointDirection.X, targetPointDirection.Y));
+			var lineX = new Line2d(new Point2d(planetVerticalX, 0), new Point2d(planetVerticalX, 1000));
+			var planetPoint = lineToTarget.IntersectWith(lineX).Value;
+
+			return MathHelpers.RadiansToDegrees((float)Math.Atan(planetRadius / planetPoint.DistanceTo(mirrorHitPoint)));
 		}
 	}
 }
