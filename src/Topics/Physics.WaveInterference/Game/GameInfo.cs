@@ -30,15 +30,15 @@ public class GameInfo : MvxNotifyPropertyChanged
 		EvaluatedVg = "?";
 	}
 
-	public GameWaveInfo Wave1 { get; } = new();
+	public GameWaveInfo Wave1 { get; } = new(3.3f, 1.3f);
 
-	public GameWaveInfo Wave2 { get; } = new();
+	public GameWaveInfo Wave2 { get; } = new(1.7f, 2.3f);
 
 	public GamePhysicsService GamePhysicsService { get; }
 
 	public GameTask CurrentTask { get; private set; }
 
-	public bool ShowWaves { get; set; } = true;
+	public bool ShowWaves { get; set; } = false;
 
 	public bool ShowResultingWave { get; set; } = true;
 
