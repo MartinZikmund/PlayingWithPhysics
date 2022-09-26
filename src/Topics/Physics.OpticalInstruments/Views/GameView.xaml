@@ -338,12 +338,14 @@
 				<Grid x:Name="CanvasHolder" Width="1920" Height="1080" />
 				<Slider x:Name="AngleSlider" IsThumbToolTipEnabled="False" IsEnabled="{x:Bind Model.IsShootVisible, Mode=OneWay}" Minimum="0" Maximum="90" Style="{StaticResource GameSliderStyle}" Value="{x:Bind Model.GameInfo.CurrentAngle, Mode=TwoWay}" Orientation="Vertical" Height="480" Canvas.Left="220" Canvas.Top="320" />
 
+				<Viewbox Width="120">
 				<Button
 					RequestedTheme="Dark"
 					VerticalAlignment="Top"
 					Command="{x:Bind Model.GoBackCommand}"
 					Style="{ThemeResource NavigationBackButtonNormalStyle}" />
-
+				</Viewbox>
+				
 				<!-- Angle setting panel -->
 				<Grid Canvas.Left="140" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="40" Width="280" Height="240" Padding="12" RowSpacing="8">
 					<Grid.RowDefinitions>
@@ -414,16 +416,23 @@
 						<Run Text="3" />
 					</TextBlock>
 					<TextBlock TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource ScoreStyle}" Text="{x:Bind Model.GameInfo.Attempt3Text, Mode=OneWay}" />
+
 				</Grid>
+
 
 				<!-- Score area -->
 				<Grid Canvas.Left="1280" Background="{StaticResource GamePanelBackgroundBrush}" Canvas.Top="852" Width="500" Height="200" Padding="12" ColumnSpacing="12">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="300" />
+						<ColumnDefinition Width="200" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
-					<TextBlock Grid.Column="1" Text="{x:Bind Model.GameInfo.BestScore, Mode=OneWay}" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock Grid.RowSpan="2" Text="{xaml:Localize Key=BestScore}" Foreground="Red" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Bottom" FontSize="40" TextWrapping="Wrap" FontWeight="Black" Foreground="White" Text="{xaml:Localize Key=PerfectHit}" Visibility="{x:Bind Model.GameInfo.PerfectHit, Mode=OneWay}" />
+					<TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Text="{x:Bind Model.GameInfo.BestScore, Mode=OneWay}" Foreground="White" TextAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 			</Canvas>
 		</Viewbox>

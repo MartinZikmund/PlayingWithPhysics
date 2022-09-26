@@ -214,6 +214,9 @@ Grafika: Petr Weinlich</value>
   <data name="ObjectHeight" xml:space="preserve">
     <value>Výška objektu</value>
   </data>
+  <data name="PerfectHit" xml:space="preserve">
+    <value>Přesný zásah!</value>
+  </data>
   <data name="Shoot" xml:space="preserve">
     <value>Vystřelit</value>
   </data>

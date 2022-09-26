@@ -214,6 +214,9 @@ Graphics: Petr Weinlich</value>
   <data name="ObjectHeight" xml:space="preserve">
     <value>Object height</value>
   </data>
+  <data name="PerfectHit" xml:space="preserve">
+    <value>Perfect hit!</value>
+  </data>
   <data name="Shoot" xml:space="preserve">
     <value>Shoot</value>
   </data>
