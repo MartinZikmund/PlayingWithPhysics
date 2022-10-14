@@ -120,9 +120,6 @@
   <data name="AddMotion" xml:space="preserve">
     <value>Add motion</value>
   </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Advanced difficulty</value>
-  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>The application enables the simulation of movements on an inclined plane and the travel of a body along a horizontal plane following the end of an inclined plane. After entering the input conditions, it is possible to study the motion of the body on an inclined plane. The movement can be accelerated, slowed down or stopped at any time. The current values of physical quantities are displayed, it is possible to display them clearly in a table.
 Movement on an inclined plane with a range can be simulated in a fun way in a simple game.
@@ -211,9 +208,6 @@ Graphics: Petr Weinlich</value>
   </data>
   <data name="Drift_WoodWoodSoaped" xml:space="preserve">
     <value>Wood – wood (soaped)</value>
-  </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Easy difficulty</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Game</value>
