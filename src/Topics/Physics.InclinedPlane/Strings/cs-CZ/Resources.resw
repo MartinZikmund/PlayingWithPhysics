@@ -120,9 +120,6 @@
   <data name="AddYourMotions" xml:space="preserve">
     <value>Přidejte první pohyb</value>
   </data>
-  <data name="AdvancedDifficulty" xml:space="preserve">
-    <value>Pokročilá úroveň</value>
-  </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Aplikace umožňuje simulaci pohybů na nakloněné rovině a dojezdu tělesa po vodorovné rovině navazující na konec nakloněné roviny. Po zadání vstupních podmínek lze studovat pohyb tělesa na nakloněné rovině. Pohyb lze kdykoliv zrychlit, zpomalit či zastavit. Jsou zobrazovány aktuální hodnoty fyzikálních veličin, je možnost si je přehledně zobrazit v tabulce.
 Pohyb na nakloněné rovině s dojezdem je možné simulovat zábavnou formou v jednoduché hře.
@@ -214,9 +211,6 @@ Grafika: Petr Weinlich</value>
   </data>
   <data name="Drift_WoodWoodSoaped" xml:space="preserve">
     <value>Dřevo – dřevo (namydlené)</value>
-  </data>
-  <data name="EasyDifficulty" xml:space="preserve">
-    <value>Základní úroveň</value>
   </data>
   <data name="Game" xml:space="preserve">
     <value>Hra</value>
