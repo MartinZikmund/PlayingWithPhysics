@@ -1,18 +1,18 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par \\textit{Koncertní sál byl jako obvykle vyprodaný. Na divácích bylo znát vzrušení z nadcházejícího koncertu. Mistra předcházely divoké historky, kterým bylo jen těžko uvěřit.\\\\\r\r\\par „Víte, milostivá, že má smlouvu s ďáblem? Ten mu prý dal moc hrát tak divoce na housle. Po smrti ho snad ani nepohřbí do posvěcené půdy.”\\\\\r\r\\par „Prý mu na jednom koncertu praskly tři houslové struny a on dokázal zbytek zahrát na jedné jediné – na struně G!”\\\\\r\r\\par „Paní lékárníková říkala, že trpí priapismem. Co vám budu povídat, sestřenko. Na koncertu… Před publikem vyl bolestí... A ty jeho ohnivé oči!... Ženu prý ale nikdy nezklame. Rozumíme si, že? Vždyť jste také provdána...“\\\\\r\r\\par „Drahý pane, byl zázračné dítě. Teď je z něj houslový démon. Ta jeho kombinace pizzicata levou rukou a hraní smyčcem. Jeho použití skordatury. To ďábelsky rychlé staccato. Jeho dvojité flažolety, hra glissando… No, co vám budu povídat, učiněný démon.”\\\\\r\r\\par „Jeho Vojenská sonáta je komponována výhradně pro strunu G. Úžasné.”\\\\\r\r\\par „Házené létavé smyky ricochet, flažolety či pizzicata vedou pouze k povrchnosti. Uvidíme, co nám pan umělec předvede…”\\\\\r\r\\par Na pódium vstoupil konferenciér. Počkal, až se publikum uklidní, a zvučným hlasem pronesl: „Dámy a pánové, pan Nicolo Paganini!”}\\\\\r",
+        "Type": "RealWorld",
+        "Title": "Houslista",
+        "Text": "\\par Koncertní sál byl jako obvykle vyprodaný. Na divácích bylo znát vzrušení z nadcházejícího koncertu. Mistra předcházely divoké historky, kterým bylo jen těžko uvěřit.\\\\\r\r\\par „Víte, milostivá, že má smlouvu s ďáblem? Ten mu prý dal moc hrát tak divoce na housle. Po smrti ho snad ani nepohřbí do posvěcené půdy.”\\\\\r\r\\par „Prý mu na jednom koncertu praskly tři houslové struny a on dokázal zbytek zahrát na jedné jediné – na struně G!”\\\\\r\r\\par „Paní lékárníková říkala, že trpí priapismem. Co vám budu povídat, sestřenko. Na koncertu… Před publikem vyl bolestí... A ty jeho ohnivé oči!... Ženu prý ale nikdy nezklame. Rozumíme si, že? Vždyť jste také provdána...“\\\\\r\r\\par „Drahý pane, byl zázračné dítě. Teď je z něj houslový démon. Ta jeho kombinace pizzicata levou rukou a hraní smyčcem. Jeho použití skordatury. To ďábelsky rychlé staccato. Jeho dvojité flažolety, hra glissando… No, co vám budu povídat, učiněný démon.”\\\\\r\r\\par „Jeho Vojenská sonáta je komponována výhradně pro strunu G. Úžasné.”\\\\\r\r\\par „Házené létavé smyky ricochet, flažolety či pizzicata vedou pouze k povrchnosti. Uvidíme, co nám pan umělec předvede…”\\\\\r\r\\par Na pódium vstoupil konferenciér. Počkal, až se publikum uklidní, a zvučným hlasem pronesl: „Dámy a pánové, pan Nicolo Paganini!”\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "1. Odraz vlnění v řadě bodů",
+    "Title": "2. Odraz vlnění v řadě bodů",
     "Contents": [
       {
         "Type": "Text",
@@ -22,24 +22,26 @@
       },
       {
         "Type": "Image",
-        "ImageName": "09_vlneni_01_v03.png",
+        "ImageName": "09-01.png",
+        "ImageCaption": "Obrázek 1: Odraz vlnění na pevném konci",
         "Title": "Obrázek č. 1"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 1: Odraz vlnění na pevném konci\\\\\r\r\\par Jestliže kmitneme začátkem hadice, vznikne důl, který se pohybuje podél hadice k překážce. Tam se odráží a vrací se zpět k ruce jako vrch.\\\\",
+        "Text": "\\par Jestliže kmitneme začátkem hadice, vznikne důl, který se pohybuje podél hadice k překážce. Tam se odráží a vrací se zpět k ruce jako vrch.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
-        "ImageName": "09_vlneni_02_v03.png",
+        "ImageName": "09-02.png",
+        "ImageCaption": "Obrázek 2: Odraz vlnění na volném konci",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 2: Odraz vlnění na volném konci\\\\\r\r\\par Jestliže mezi hadici a překážku vložíme lehké vlákno a po napnutí pokus opakujeme, tak se na volném konci důl odráží a vrací se k ruce opět jako důl.\\\\\r\r\\par Z pokusů lze usoudit, jak bude podobný děj probíhat v řadě hmotných bodů v pružném prostředí. Jestliže vlnění dorazí až ke krajnímu bodu, který je k překážce vázán pevněji než k ostatním bodům bodové řady, tak vlnění postupuje řadou bodů zpět. Přitom má odražené vlnění stejnou vlnovou délku, ale liší se fází, která se změní o $π$. Říkáme, že na pevném konci dochází k odrazu vlnění s opačnou fází.\\\\\r\r\\par Jestliže řada končí volným bodem, který je s okolními body vázán slaběji než s body bodové řady, vlnění se od koncového bodu vrací bez změny fáze. Říkáme, že na volném konci dochází k odrazu vlnění se stejnou fází.\\\\\r\r\\par Podobné jevy nastávají také při přechodu vlnění přes rozhraní dvou prostředí. Zde se způsob odrazu řídí rychlostmi postupu vlnění před a za rozhraním. Je-li rychlost v 1. prostředí před rozhraním $v_1$ a v 2. prostředí za rozhraním $v_2$, tak platí, že pokud je $v_2<v_1$, nastává odraz na rozhraní obou prostředí s opačnou fází (obdoba odrazu vlnění na pevném konci). Pokud je $v_2>v_1$, odráží se vlnění na rozhraní se stejnou fází (obdoba odrazu vlnění na volném konci).\\\\",
+        "Text": "\\par Jestliže mezi hadici a překážku vložíme lehké vlákno a po napnutí pokus opakujeme, tak se na volném konci důl odráží a vrací se k ruce opět jako důl.\\\\\r\r\\par Z pokusů lze usoudit, jak bude podobný děj probíhat v řadě hmotných bodů v pružném prostředí. Jestliže vlnění dorazí až ke krajnímu bodu, který je k překážce vázán pevněji než k ostatním bodům bodové řady, tak vlnění postupuje řadou bodů zpět. Přitom má odražené vlnění stejnou vlnovou délku, ale liší se fází, která se změní o $π$. Říkáme, že na pevném konci dochází k odrazu vlnění s opačnou fází.\\\\\r\r\\par Jestliže řada končí volným bodem, který je s okolními body vázán slaběji než s body bodové řady, vlnění se od koncového bodu vrací bez změny fáze. Říkáme, že na volném konci dochází k odrazu vlnění se stejnou fází.\\\\\r\r\\par Podobné jevy nastávají také při přechodu vlnění přes rozhraní dvou prostředí. Zde se způsob odrazu řídí rychlostmi postupu vlnění před a za rozhraním. Je-li rychlost v 1. prostředí před rozhraním $v_1$ a v 2. prostředí za rozhraním $v_2$, tak platí, že pokud je $v_2<v_1$, nastává odraz na rozhraní obou prostředí s opačnou fází (obdoba odrazu vlnění na pevném konci). Pokud je $v_2>v_1$, odráží se vlnění na rozhraní se stejnou fází (obdoba odrazu vlnění na volném konci).\\\\",
         "IsHtml": false
       },
       {
@@ -64,7 +66,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Stojaté vlnění",
+    "Title": "3. Stojaté vlnění",
     "Contents": [
       {
         "Type": "Text",
@@ -74,13 +76,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "09_vlneni_03_v03.png",
+        "ImageName": "09-03.png",
+        "ImageCaption": "Obrázek 3: Vznik stojatého vlnění",
         "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 3: Vznik stojatého vlnění\\\\\r\r\\par Za dobu $t=T/4$ se přímé vlnění posunulo o $λ/4$ vpravo a odražené vlnění o $λ/4$ vlevo, takže v bodě $M$ mají obě vlnění amplitudu výchylky $y_M=2y_m$.\\\\\r\r\\par V čase t = T/2 mají obě vlnění nulovou okamžitou výchylku $y_M=0$ m.\\\\\r\r\\par V čase t = 3T/4 je patrné, že obě vlnění mají výchylku $y_M=−2y_m$.\\\\\r\r\\par Vidíme, že v bodě $M$ se přímé a odražené vlnění setkávají v každém okamžiku se stejnou fází. Bod $M$ kmitá harmonicky s amplitudou $y_M=2y_m$. Obdobně kmitají také další body ve vzdálenostech $\\pm k\\frac{\\lambda}{2}$ od bodu $M$, kde $k=$ 1, 2, 3, … Těmto bodům říkáme kmitny.\\\\\r\r\\par Současně vidíme, že v některých bodech má přímé a odražené vlnění stále opačnou fázi. Proto je v těchto bodech výchylka stále nulová. Tyto body jsou stále v klidu a říkáme jim uzly.\\\\\r\r\\par Ostatní body kmitají harmonicky, ale s menší amplitudou výchylky než $2y_m$.\\\\\r",
+        "Text": "\\par Za dobu $t=T/4$ se přímé vlnění posunulo o $λ/4$ vpravo a odražené vlnění o $λ/4$ vlevo, takže v bodě $M$ mají obě vlnění amplitudu výchylky $y_M=2y_m$.\\\\\r\r\\par V čase t = T/2 mají obě vlnění nulovou okamžitou výchylku $y_M=0$ m.\\\\\r\r\\par V čase t = 3T/4 je patrné, že obě vlnění mají výchylku $y_M=−2y_m$.\\\\\r\r\\par Vidíme, že v bodě $M$ se přímé a odražené vlnění setkávají v každém okamžiku se stejnou fází. Bod $M$ kmitá harmonicky s amplitudou $y_M=2y_m$. Obdobně kmitají také další body ve vzdálenostech $\\pm k\\frac{\\lambda}{2}$ od bodu $M$, kde $k=$ 1, 2, 3, … Těmto bodům říkáme kmitny.\\\\\r\r\\par Současně vidíme, že v některých bodech má přímé a odražené vlnění stále opačnou fázi. Proto je v těchto bodech výchylka stále nulová. Tyto body jsou stále v klidu a říkáme jim uzly.\\\\\r\r\\par Ostatní body kmitají harmonicky, ale s menší amplitudou výchylky než $2y_m$.\\\\\r",
         "IsHtml": false
       },
       {
@@ -106,7 +109,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "3. Zásadní rozdíly mezi postupným a stojatým vlněním",
+    "Title": "4. Zásadní rozdíly mezi postupným a stojatým vlněním",
     "Contents": [
       {
         "Type": "Text",
@@ -136,7 +139,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "4.  Chvění mechanických soustav – stojaté vlnění v praxi",
+    "Title": "5.  Chvění mechanických soustav – stojaté vlnění v praxi",
     "Contents": [
       {
         "Type": "Text",
@@ -158,13 +161,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "09_vlneni_04_v03.png",
+        "ImageName": "09-04.png",
+        "ImageCaption": "Obrázek 4: Struna (vlákno) upevněná na obou koncích",
         "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 4: Struna (vlákno) upevněná na obou koncích\\\\\r\r\\par Vlnění, které vznikne rozkmitáním pružného vlákna, například struny hudebního nástroje. Konce vlákna jsou připevněné, a proto v nich vznikají uzly, které jsou stále v klidu. Ostatní body vlákna kmitají s různou amplitudou výchylky a na vlákně vzniká polovina vlny stojatého vlnění (obrázek 4a). Má-li vlákno délku $l$, platí $l=k\\frac{\\lambda}{2}$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Protože je rychlost vlnění $v$ ve vlákně konstantní, vznikne v něm stojaté vlnění při základní frekvenci $$f_z=\\frac{v}{\\lambda}=\\frac{v}{2l}$$\\\\\r\r\\par A také při všech frekvencích, které jsou celým násobkem základní frekvence. Můžeme je vyjádřit vztahem $f_k=kf_z$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Frekvence, při nichž $k>1$, nazýváme vyšší harmonické frekvence. Na obrázku 4b vidíme vyšší harmonickou frekvenci pro $k=2$. Vlákno má 2 kmitny a 3 uzly. Jako uzly počítáme i místa upevnění.\\\\",
+        "Text": "\\par Vlnění, které vznikne rozkmitáním pružného vlákna, například struny hudebního nástroje. Konce vlákna jsou připevněné, a proto v nich vznikají uzly, které jsou stále v klidu. Ostatní body vlákna kmitají s různou amplitudou výchylky a na vlákně vzniká polovina vlny stojatého vlnění (obrázek 4a). Má-li vlákno délku $l$, platí $l=k\\frac{\\lambda}{2}$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Protože je rychlost vlnění $v$ ve vlákně konstantní, vznikne v něm stojaté vlnění při základní frekvenci $$f_z=\\frac{v}{\\lambda}=\\frac{v}{2l}$$\\\\\r\r\\par A také při všech frekvencích, které jsou celým násobkem základní frekvence. Můžeme je vyjádřit vztahem $f_k=kf_z$, kde $k=$ 1, 2, 3, …\\\\\r\r\\par Frekvence, při nichž $k>1$, nazýváme vyšší harmonické frekvence. Na obrázku 4b vidíme vyšší harmonickou frekvenci pro $k=2$. Vlákno má 2 kmitny a 3 uzly. Jako uzly počítáme i místa upevnění.\\\\",
         "IsHtml": false
       },
       {
@@ -188,24 +192,20 @@
       },
       {
         "Type": "Image",
-        "ImageName": "09_vlneni_05_v03.png",
+        "ImageName": "09-05.png",
+        "ImageCaption": "Obrázek 5: Struna upevněná uprostřed nebo vzduchový sloupec píšťaly s otvorem na obou stranách",
         "Title": "Obrázek č. 5"
       },
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 5: Struna upevněná uprostřed nebo vzduchový sloupec píšťaly s otvorem na obou stranách\\\\",
-        "IsHtml": false
-      },
-      {
         "Type": "Image",
-        "ImageName": "09_vlneni_06_v03.png",
+        "ImageName": "09-06.png",
+        "ImageCaption": "Obrázek 6: Struna upevněná na konci nebo vzduchový sloupec píšťaly s otvorem na jedné straně",
         "Title": "Obrázek č. 6"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 6: Struna upevněná na konci nebo vzduchový sloupec píšťaly s otvorem na jedné straně\\\\\r\rZákladní frekvence je $f_z=\\frac{v}{2l}$",
+        "Text": "\\par Základní frekvence je $f_z=\\frac{v}{2l}$\\\\",
         "IsHtml": false
       },
       {
@@ -237,11 +237,11 @@
     "Type": "Chapter"
   },
   {
-    "Title": "5. Zdroje",
+    "Title": "6. Literatura",
     "Contents": [
       {
         "Type": "Literature",
-        "Title": "Použité zdroje",
+        "Title": "Použitá literatura",
         "Text": "\\par LEPIL, Oldřich. Mechanické vlnění. PECHO, Alojz. Fyzika pro 2. ročník gymnázií: mechanické kmitání a vlnění. Praha: SPN, 1991, str. 39 - 49. Učebnice pro střední školy. ISBN 80-04-25971-5\\\\\r\r\\par Rubens Tube. Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2021 [cit. 2022-01-16]. Dostupné z: https://en.wikipedia.org/wiki/Rubens'\\_tube\\\\\r\r\\par Rubens Tube. Youtube.com [online]. 2017 [cit. 2022-01-16]. Dostupné z: https://youtu.be/LSRFs8DzgAA\\\\\r\r\\par KRYNICKÝ, Martin. Www.realisticky.cz: když (se) chcete naučit... [online]. [cit. 24.1.2022]. Dostupné z:  http://www.realisticky.cz/\\\\\r\r",
         "IsHtml": false
       }

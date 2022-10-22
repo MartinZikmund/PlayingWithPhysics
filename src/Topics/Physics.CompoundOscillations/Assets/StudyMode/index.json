@@ -1,34 +1,42 @@
 [
   {
-    "Title": "1.1. Kmitavý pohyb a jeho vlastnosti",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "Motivační text",
-        "Text": "\\par \\textit{„Připravit se! Playback! Kamera! Jedem!“\\\\\r\r\\par Do místnosti vchází ŽENA. Vysoký koberec tiše vzdychá a sténá pod jehlovými podpatky elegantních botek. Krásu lýtek zvýrazňují tmavé punčochy. Boky se vlní do rytmu samby jak pole cukrové třtiny v letním kubánském slunci. Křivky těla svůdně proplouvají obláčky namodralého dýmu. V pravé ruce nese ŽENA tác se sklenicemi středoamerického rumu. Ruku drží pevně, ani se nehne.\\\\\r\r\\par - Jaruno musíš! Tahle nadnárodní reklama je pro tebe požehnání. Odraz ode dna, první liga! Dost bylo štěků v hloupejch seriálech a reklamách na psí žrádlo. Dones tenhle tác támhle k tomu stolu a tomu oplzlýmu režisérovi, mámě a celýmu světu ukaž, kdo jsi! Co to sakra ten rum dělá? -\\\\\r\r\\par Hladina zlatavého nápoje se neklidně chvěje a naráží ze strany na stranu. Oko ŽENY nervózně tiká mezi tácem a stolem, který se najednou zdá tak daleko. Pevněji zatne svaly a snaží se, aby se ruka ani nepohnula.\r\\par -Soustřeď se! Ty hodiny baletu, modelingu, chůze s knihou na hlavě (mohla jsem si jich alespoň pár přečíst), spinningu, aerobiku, zpěvu a klavíru, jógy, cardia, kickbox aerobiku a pěti Tibeťanů byly jen pro tuto chvíli. Co to dělá ten pitomej tác? -\\\\\r\r\\par Hladina ve sklenicích se houpe tak, že rum cáká ven na tác. Ruka s tácem se třese a sklenice hrají jak nějaká zvonkohra, když narážejí jedna do druhé. Kotník se podlamuje, ŽENA zavrávorá a tác i sklenice letí směrem k režisérovi. \\\\\r\r\\par Čas se zastavil, zlomil a dohnal sám sebe.\\\\\r\r\\par Zvuk tříštěného skla se odráží od stěn studia.\\\\\r\r\\par „Tak vám Jaruško děkujeme! Pane Karlíčku, vysvětlete prosím ostatním, jak se nosí tác s pitím. DALŠÍ!“}\\\\\r\r\r",
+        "Title": "Casting",
+        "Text": "\\par „Připravit se! Playback! Kamera! Jedem!“\\\\\r\r\\par Do místnosti vchází ŽENA. Vysoký koberec tiše vzdychá a sténá pod jehlovými podpatky elegantních botek. Krásu lýtek zvýrazňují tmavé punčochy. Boky se vlní do rytmu samby jak pole cukrové třtiny v letním kubánském slunci. Křivky těla svůdně proplouvají obláčky namodralého dýmu. V pravé ruce nese ŽENA tác se sklenicemi středoamerického rumu. Ruku drží pevně, ani se nehne.\\\\\r\r\\par - Jaruno musíš! Tahle nadnárodní reklama je pro tebe požehnání. Odraz ode dna, první liga! Dost bylo štěků v hloupejch seriálech a reklamách na psí žrádlo. Dones tenhle tác támhle k tomu stolu a tomu oplzlýmu režisérovi, mámě a celýmu světu ukaž, kdo jsi! Co to sakra ten rum dělá? -\\\\\r\r\\par Hladina zlatavého nápoje se neklidně chvěje a naráží ze strany na stranu. Oko ŽENY nervózně tiká mezi tácem a stolem, který se najednou zdá tak daleko. Pevněji zatne svaly a snaží se, aby se ruka ani nepohnula.\r\\par -Soustřeď se! Ty hodiny baletu, modelingu, chůze s knihou na hlavě (mohla jsem si jich alespoň pár přečíst), spinningu, aerobiku, zpěvu a klavíru, jógy, cardia, kickbox aerobiku a pěti Tibeťanů byly jen pro tuto chvíli. Co to dělá ten pitomej tác? -\\\\\r\r\\par Hladina ve sklenicích se houpe tak, že rum cáká ven na tác. Ruka s tácem se třese a sklenice hrají jak nějaká zvonkohra, když narážejí jedna do druhé. Kotník se podlamuje, ŽENA zavrávorá a tác i sklenice letí směrem k režisérovi. \\\\\r\r\\par Čas se zastavil, zlomil a dohnal sám sebe.\\\\\r\r\\par Zvuk tříštěného skla se odráží od stěn studia.\\\\\r\r\\par „Tak vám Jaruško děkujeme! Pane Karlíčku, vysvětlete prosím ostatním, jak se nosí tác s pitím. DALŠÍ!“\\\\",
         "IsHtml": false
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Kmitání je jedním z mnoha pohybů, se kterým se setkáváme. Ale není kmitání jako kmitání. Příkladem může být taková větev ve větru. Houpe se nahoru a dolů podle toho, jak si s ní vítr hraje. Takové kmitání konce větve bychom graficky mohli zobrazit asi jako na obrázku 1. Bod O je poloha větve, než začalo foukat. Je to tzv. rovnovážná poloha. Takové kmitání je nepravidelné.\\\\",
-        "IsHtml": false
-      },
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Kmitavý pohyb a jeho vlastnosti",
+    "Contents": [
       {
         "Type": "Image",
         "ImageName": "07-01.png",
-        "Title": "Obrázek 1"
+        "ImageCaption": "Obrázek č. 1: Časový průběh kmitání větve ve větru",
+        "Title": "Obrázek č. 1"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Na obrázku 2 je kardiogram. Kardiogram je graf znázorňující kmitání lidského srdce. Na kardiogramu je patrné, že se určitý časový úsek pravidelně (periodicky) opakuje. Takový pohyb nazýváme periodický kmitavý pohyb.\\\\",
+        "Text": "\\par Kmitání je jedním z mnoha pohybů, se kterým se setkáváme. Ale není kmitání jako kmitání. Příkladem může být taková větev ve větru. Houpe se nahoru a dolů podle toho, jak si s ní vítr hraje. Takové kmitání konce větve bychom graficky mohli zobrazit asi jako na obrázku č. 1. Bod $O$ je poloha větve, než začalo foukat. Je to tzv. rovnovážná poloha. Takové kmitání je nepravidelné.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "07-02.png",
-        "Title": "Obrázek 2"
+        "ImageCaption": "Obrázek č. 2: Kardiogram – časový průběh kmitání lidského srdce",
+        "Title": "Obrázek č. 2"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Na obrázku č. 2 je kardiogram. Kardiogram je graf znázorňující kmitání lidského srdce. Na kardiogramu je patrné, že se určitý časový úsek pravidelně (periodicky) opakuje. Takový pohyb nazýváme periodický kmitavý pohyb.\\\\",
+        "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
@@ -46,13 +54,14 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Některé periodické pohyby se dají znázornit takovým časovým průběhem výchylky, který má tvar sinusoidy. Sinusoida je graf funkce sinus, jehož podobu vidíme na obrázku 3. Příkladem takového pohybu je třeba pohyb kyvadla nebo kmitání tělesa zavěšeného na pružině. Takovému kmitavému pohybu říkáme harmonický kmitavý pohyb. Z obrázku 3 je patrné že harmonické kmitání je rovněž periodické.\\\\",
+        "Text": "\\par Některé periodické pohyby se dají znázornit takovým časovým průběhem výchylky, který má tvar sinusoidy. Sinusoida je graf funkce sinus, jehož podobu vidíme na obrázku č. 3. Příkladem takového pohybu je třeba pohyb kyvadla nebo kmitání tělesa zavěšeného na pružině. Takovému kmitavému pohybu říkáme harmonický kmitavý pohyb. Z obrázku č. 3 je patrné že harmonické kmitání je rovněž periodické.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "07-03.png",
-        "Title": "Obrázek 3"
+        "ImageCaption": "Obrázek č. 3: Časový průběh výchylky harmonického kmitavého pohybu",
+        "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
@@ -77,36 +86,37 @@
       {
         "Type": "ToRemember",
         "Title": "K zapamatování",
-        "Text": "\\par Okamžitou výchylku $y$ harmonického kmitavého pohybu lze matematicky vyjádřit rovnicí\r$$y=A\\sin{\\omega t,}$$\rkde $A$ je amplituda (maximální hodnota výchylky, kterou těleso během kmitání dosáhne), $\\omega$ úhlová frekvence a $t$ je čas.\r\r\\par Pro úhlovou frekvenci platí to samé co pro úhlovou rychlost, tedy $$\\omega =2\\pi f=\\frac{2\\pi}{T},$$\rkde f je frekvence a T je perioda. Jednotkou je rad.s$^{–1}$.\\\\\r\r\\par Celý argument funkce sinus, tedy součin $\\omega t$, budeme nazývat okamžitá fáze kmitavého pohybu",
+        "Text": "\\par Okamžitou výchylku $y$ harmonického kmitavého pohybu lze matematicky vyjádřit rovnicí\r$$y=A\\sin{\\omega t,}$$\rkde $A$ je amplituda (maximální hodnota výchylky, kterou těleso během kmitání dosáhne), $\\omega$ úhlová frekvence a $t$ je čas.\\\\\r\r\\par Pro úhlovou frekvenci platí to samé co pro úhlovou rychlost, tedy $$\\omega =2\\pi f=\\frac{2\\pi}{T},$$\rkde $f$ je frekvence a $T$ je perioda. Jednotkou je $\\mathrm{rad\\cdot s^{–1}}$.\\\\\r\r\\par Celý argument funkce sinus, tedy součin $\\omega t$, budeme nazývat okamžitá fáze kmitavého pohybu\\\\",
         "IsHtml": false
       },
       {
-        "Type": "Text",
+        "Type": "AdditionalResources",
         "Title": "K zamyšlení",
-        "Text": "K zamyšlení\\\\\r\r\\par Radián je jednotka pro měření velikosti, která nemá rozměr. Jeho velikost odpovídá středovému úhlu oblouku $d$, jehož délka je rovna poloměru daného oblouku $r$.\\\\\r\r\\par Aby úhel vyšel v radiánech, musí být délka oblouku i poloměr vyjádřeny v metrech. Velikost lze vyjádřit vztahem $\\phi =\\frac{d}{r}$. Proto je radián jednotkou bezrozměrnou a není ji tedy nutné psát. Aby nedocházelo k problémům s tím, v jakých jednotkách je úhel vyjádřen, vyjadřují se radiány buď jako číslo s jednotkou rad (např. $\\phi =3,14$ rad) nebo častěji jako násobek čísla $\\pi$ bez jednotky (např. $\\frac{3}{4}\\pi $).\\\\\r\r\\par Rovněž jednotka úhlové frekvence je tedy s$^{–1}$, tudíž stejná jako jednotka frekvence, neboť s$^{–1}$ = Hz. Jelikož by mohlo dojít k záměně jednotek, je vhodné použít pro úhlovou frekvenci jednotku radián za sekundu (značka rad.s$^{–1}$).\\\\",
+        "Text": "\\par Radián je jednotka pro měření velikosti, která nemá rozměr. Jeho velikost odpovídá středovému úhlu oblouku $d$, jehož délka je rovna poloměru daného oblouku $r$.\\\\\r\r\\par Aby úhel vyšel v radiánech, musí být délka oblouku i poloměr vyjádřeny v metrech. Velikost lze vyjádřit vztahem $\\phi =\\frac{d}{r}$. Proto je radián jednotkou bezrozměrnou a není ji tedy nutné psát. Aby nedocházelo k problémům s tím, v jakých jednotkách je úhel vyjádřen, vyjadřují se radiány buď jako číslo s jednotkou rad (např. $\\varphi =3,14$ rad) nebo častěji jako násobek čísla $\\pi$ bez jednotky (např. $\\frac{3}{4}\\pi $).\\\\\r\r\\par Rovněž jednotka úhlové frekvence je tedy s$^{–1}$, tudíž stejná jako jednotka frekvence, neboť s$^{–1}$ = Hz. Jelikož by mohlo dojít k záměně jednotek, je vhodné použít pro úhlovou frekvenci jednotku radián za sekundu (značka $\\mathrm{rad\\cdot s^{–1}}$).\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "1.2. Fáze kmitavého pohybu",
+    "Title": "3. Fáze kmitavého pohybu",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Ne všechna kmitání začínají v čase $t=$ 0 s z rovnovážné polohy. Pro tato kmitání je třeba rovnici pro okamžitou výchylku kmitavého pohybu rozšířit na tvar\r$$y=A\\sin{(\\omega t+φ_0)},$$\rkde $φ_0$ je počáteční fáze kmitavého pohybu.",
+        "Text": "\\par Ne všechna kmitání začínají v čase $t=$ 0 s z rovnovážné polohy. Pro tato kmitání je třeba rovnici pro okamžitou výchylku kmitavého pohybu rozšířit na tvar\r$$y=A\\sin{(\\omega t+\\varphi_0)},$$\rkde $\\varphi_0$ je počáteční fáze kmitavého pohybu.",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "07-04.png",
-        "Title": "Obrázek 4"
+        "ImageCaption": "Obrázek č. 4: Fázorový diagram a počáteční fáze",
+        "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Šipka spojující střed kružnice na obrázku s bodem ležícím na kružnici se nazývá fázor. Fázor je rotující vektor, který se otočí o 360° = 2π rad za dobu jedné periody $T$. Jedna otočka tedy odpovídá době, za kterou proběhne jeden kmit. Za jednu půlperiodu pak fázor opíše úhel 180° = π rad. Délka fázoru je stejná, jako je velikost maximální výchylky.\\\\\r\r\\par O počáteční fázi mluvíme tehdy, když kmitavý pohyb začal dříve než v okamžiku startu měření času ($t=$ 0 s) a rovnovážnou polohou tedy procházel o $t_0$ dříve (viz obrázek 4). Počáteční fází $φ_0$ se nazývá úhel, který svírá fázor s vodorovnou osou v čase $t=$ 0 s. Je zřejmé, že v době, kdy kmitající těleso procházelo rovnovážnou polohou byl úhel mezi fázorem a vodorovnou osou nulový.\\\\",
+        "Text": "\\par Šipka spojující střed kružnice na obrázku s bodem ležícím na kružnici se nazývá fázor. Fázor je rotující vektor, který se otočí o 360° = 2π rad za dobu jedné periody $T$. Jedna otočka tedy odpovídá době, za kterou proběhne jeden kmit. Za jednu půlperiodu pak fázor opíše úhel 180° = π rad. Délka fázoru je stejná, jako je velikost maximální výchylky.\\\\\r\r\\par O počáteční fázi mluvíme tehdy, když kmitavý pohyb začal dříve než v okamžiku startu měření času ($t=$ 0 s) a rovnovážnou polohou tedy procházel o $t_0$ dříve (viz obrázek č. 4). Počáteční fází $\\varphi_0$ se nazývá úhel, který svírá fázor s vodorovnou osou v čase $t=$ 0 s. Je zřejmé, že v době, kdy kmitající těleso procházelo rovnovážnou polohou byl úhel mezi fázorem a vodorovnou osou nulový.\\\\",
         "IsHtml": false
       },
       {
@@ -126,19 +136,20 @@
       {
         "Type": "Image",
         "ImageName": "07-05.png",
-        "Title": "Obrázek 5"
+        "ImageCaption": "Obrázek č. 5: Kladná a záporná fáze kmitavého pohybu",
+        "Title": "Obrázek č. 5"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Počáteční fáze může mít kladnou i zápornou hodnotu. Na obrázku 5 je vyznačen také fázor, jehož koncový bod $M$ se pohybuje pohybem rovnoměrným po kružnici. V počátečním okamžiku svírá s vodorovnou osou úhel $φ_0$. Obrázek 5 zachycuje dva typické případy, kdy počáteční fáze je kladná ($φ_0>0$), popř. záporná ($φ_0<0$).\\\\",
+        "Text": "\\par Počáteční fáze může mít kladnou i zápornou hodnotu. Na obrázku č. 5 je vyznačen také fázor, jehož koncový bod $M$ se pohybuje pohybem rovnoměrným po kružnici. V počátečním okamžiku svírá s vodorovnou osou úhel $φ_0$. Obrázek č. 5 zachycuje dva typické případy, kdy počáteční fáze je kladná ($φ_0>0$), popř. záporná ($φ_0<0$).\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "1.3. Rychlost a zrychlení kmitavého pohybu",
+    "Title": "4. Rychlost a zrychlení kmitavého pohybu",
     "Contents": [
       {
         "Type": "Text",
@@ -150,7 +161,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Skládání kmitání",
+    "Title": "5. Skládání kmitání",
     "Contents": [
       {
         "Type": "Text",
@@ -162,7 +173,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2.1. Skládání kmitů se stejnými frekvencemi",
+    "Title": "6. Skládání kmitů se stejnými frekvencemi",
     "Contents": [
       {
         "Type": "Text",
@@ -192,12 +203,12 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2.2. Skládání kmitů se různými frekvencemi",
+    "Title": "7. Skládání kmitů se různými frekvencemi",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Superpozicí harmonických kmitání různé frekvence vzniká kmitání neharmonické. Skládáním tedy nevzniká sinusoida a navíc není toto skládání obecně periodické.\\\\\r\r\\par Výsledné kmitání je periodické jen v případě, že frekvence složek jsou v poměru celých čísel. Jestliže např. frekvence $f_1, f_2$ dvou kmitání jsou v poměru celých čísel $k_1, k_2$ $(f_1:f_2=k_1:k_2),$ má výsledné kmitání periodu\r$$T=k_1T_1=k_2T_2$$a frekvenci\r$$f=\\frac{f_1}{k_1}=\\frac{f_2}{k_2}.$$",
+        "Text": "\\par Superpozicí harmonických kmitání různé frekvence vzniká kmitání neharmonické. Skládáním tedy nevzniká sinusoida a navíc není toto skládání obecně periodické.\\\\\r\r\\par Výsledné kmitání je periodické jen v případě, že frekvence složek jsou v poměru celých čísel. Jestliže např. frekvence $f_1, f_2$ dvou kmitání jsou v poměru celých čísel $k_1, k_2$ $(f_1:f_2=k_1:k_2),$ má výsledné kmitání periodu\r$$T=k_1T_1=k_2T_2$$a frekvenci\r$$f=\\frac{f_1}{k_1}=\\frac{f_2}{k_2}.$$\\\\",
         "IsHtml": false
       },
       {
@@ -223,18 +234,19 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2.3. Skládání kmitů blízkých frekvencí",
+    "Title": "8. Skládání kmitů blízkých frekvencí",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Dalším speciálním případem složeného kmitání je ten, kdy složky mají blízké frekvence $f_1$ a $f_2$.\\\\\r\r\\par Rovnici výsledného kmitání najdeme pro případ, že amplitudy jsou stejné $A_1=A_2=A$, počáteční fáze jsou nulové $φ_0_1=φ_0_2=0$ a rozdíl frekvencí je velmi malý v porovnání s rozdílem velikostí frekvencí kmitání $ω_1=ω-Δω,$ $ω_2=ω+Δω,$ přičemž $Δω\\llω.$ Jednotlivá kmitání jsou pak popsána rovnicemi:\r$$y_1=A\\sin{ω_1t,}$$\r$$y_2=A\\sin{ω_2t.}$$Použitím vzorce pro součet funkcí sinus dostaneme pro složené kmitání rovnici\r$$y=y_1+y_2=2A\\cos{\\frac{(ω_2-ω_1)t}{2}}\\sin{\\frac{(ω_2+ω_1)t}{2}}=$$\r$$=2A\\cos{Δωt}\\sin{ωt}$$\\\\\r\r\\par Časový diagram složeného kmitání je na obrázku 6.\\\\\r\r\r\r\r",
+        "Text": "\\par Dalším speciálním případem složeného kmitání je ten, kdy složky mají blízké frekvence $f_1$ a $f_2$.\\\\\r\r\\par Rovnici výsledného kmitání najdeme pro případ, že amplitudy jsou stejné $A_1=A_2=A$, počáteční fáze jsou nulové $φ_0_1=φ_0_2=0$ a rozdíl frekvencí je velmi malý v porovnání s rozdílem velikostí frekvencí kmitání $ω_1=ω-Δω,$ $ω_2=ω+Δω,$ přičemž $Δω\\llω.$ Jednotlivá kmitání jsou pak popsána rovnicemi:\r$$y_1=A\\sin{ω_1t,}$$\r$$y_2=A\\sin{ω_2t.}$$Použitím vzorce pro součet funkcí sinus dostaneme pro složené kmitání rovnici\r$$y=y_1+y_2=2A\\cos{\\frac{(ω_2-ω_1)t}{2}}\\sin{\\frac{(ω_2+ω_1)t}{2}}=$$\r$$=2A\\cos{Δωt}\\sin{ωt}$$\\\\\r\r\\par Časový diagram složeného kmitání je na obrázku č. 6.\\\\\r\r\r\r\r",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "07-06.png",
-        "Title": "Obrázek 6"
+        "ImageCaption": "Obrázek č. 6: Časový diagram složených kmitání blízkých frekvencí",
+        "Title": "Obrázek č. 6"
       },
       {
         "Type": "Text",
@@ -256,16 +268,16 @@
         ]
       },
       {
-        "Type": "Text",
+        "Type": "AdditionalResources",
         "Title": "K zamyšlení",
-        "Text": "K zamyšlení\\\\\r\r\\par Rázy se využívají například při měření frekvence (metoda nulových rázů). Kmitání neznámé frekvence $f_1$ se skládá s kmitáním známé frekvence $f_2$, která se mění. Jestliže se hodnota známé $f_2$ přibližuje k hodnotě $f_1$ neznámé frekvence, tak se frekvence rázů zmenšuje a při shodě obou frekvencí ($f_2=f_1$) rázy zaniknou.\\\\\r\r\\par Jde-li o kmitání v oboru slyšitelných frekvencí, označujeme akustické rázy jako zázněje, které při shodě frekvencí vymizí.\\\\\r",
+        "Text": "\\par Rázy se využívají například při měření frekvence (metoda nulových rázů). Kmitání neznámé frekvence $f_1$ se skládá s kmitáním známé frekvence $f_2$, která se mění. Jestliže se hodnota známé $f_2$ přibližuje k hodnotě $f_1$ neznámé frekvence, tak se frekvence rázů zmenšuje a při shodě obou frekvencí ($f_2=f_1$) rázy zaniknou.\\\\\r\r\\par Jde-li o kmitání v oboru slyšitelných frekvencí, označujeme akustické rázy jako zázněje, které při shodě frekvencí vymizí.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "3. Zdroje",
+    "Title": "9. Literatura",
     "Contents": [
       {
         "Type": "Literature",

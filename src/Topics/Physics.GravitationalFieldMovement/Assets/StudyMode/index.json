@@ -1,6 +1,6 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
@@ -11,13 +11,14 @@
       {
         "Type": "Image",
         "ImageName": "03-01.jpg",
+        "ImageCaption": "Obrázek 1: Východ Země na Měsíci pořízený z lodi Apollo 8",
         "Title": "Obrázek č. 1"
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Pohyby v centrálním gravitačním poli",
+    "Title": "2. Pohyby v centrálním gravitačním poli",
     "Contents": [
       {
         "Type": "Text",
@@ -28,6 +29,7 @@
       {
         "Type": "Image",
         "ImageName": "03-02.png",
+        "ImageCaption": "Obrázek č. 2: Pohyby v centrálním gravitačním poli",
         "Title": "Obrázek č. 2"
       },
       {
@@ -39,6 +41,7 @@
       {
         "Type": "Image",
         "ImageName": "03-03.png",
+        "ImageCaption": "Obrázek č. 3: Pohyby v centrálním gravitačním poli - kruhová rychlost",
         "Title": "Obrázek č. 3"
       },
       {
@@ -50,6 +53,7 @@
       {
         "Type": "Image",
         "ImageName": "03-04.png",
+        "ImageCaption": "Obrázek č. 4: Pohyby v centrálním gravitačním poli",
         "Title": "Obrázek č. 4"
       },
       {
@@ -81,11 +85,11 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Použité zdroje",
+    "Title": "3. Literatura",
     "Contents": [
       {
         "Type": "Literature",
-        "Title": "Použité zdroje",
+        "Title": "Použitá literatura",
         "Text": "\\par ANDERS, Bill, NASA. [online]. [cit. 26.6.2021]. Dostupné z: https://www.hq.nasa.gov/office/pao/History/alsj/a410/AS8-14-2383HR.jpg\\\\\r\r\\par SVOBODA, Emanuel, BEDNAŘÍK, Milan, ŠIROKÁ, Miroslava. Fyzika pro gymnázia. 5., přeprac. vyd. Praha: Prometheus, 2013. ISBN 978-80-7196-431-5\\\\\r\r\\par Pohyb těles v centrálním gravitačním poli :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 29.3.2022]. Dostupné z: http://fyzika.jreichl.com/main.article/view/69-pohyb-teles-v-centralnim-gravitacnim-poli\\\\\r\r\\par První a druhá kosmická rychlost :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 29.3.2022]. Dostupné z: http://fyzika.jreichl.com/main.article/view/70-prvni-a-druha-kosmicka-rychlost\\\\\r\r\\par Co to jsou kosmické rychlosti? | Kosmonautika | Články | Astronomický informační server astro.cz . Astronomický informační server astro.cz [online]. Copyright © 2022 [cit. 29.03.2022]. Dostupné z: https://www.astro.cz/clanky/kosmonautika/co-to-jsou-kosmicke-rychlosti.html\\\\\r",
         "IsHtml": false
       }

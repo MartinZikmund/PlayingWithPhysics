@@ -1,13 +1,19 @@
 [
   {
-    "Title": "Pohyb v odporujícím prostředí",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "První kosmonaut",
-        "Text": "\\par \\textit{Stísněný prostor kabiny ozařovaly plameny, které tančily za kruhovým okénkem. Dýchal zrychleně. Posledních pár minut neprobíhalo vůbec dobře a teď se v té kovové kouli řítil k zemi nadzvukovou rychlostí.\\\\\r\r\\par Za chvilku snad bude po všem.\\\\\r\r\\par Blížil se kritický okamžik přistání. V ramenou ucítil prudké škubnutí a na přístrojové desce se objevil nápis PŘIPRAVIT SE KE KATAPULTÁŽI! Nacházel se ve výšce 7500 metrů nad zemským povrchem.\\\\\r\r\\par Otvorem o průměru necelého jednoho metru se prohnalo katapultovací křeslo. Pilot se jen modlil, aby při tomto krkolomném manévru nepřišel o hlavu.\\\\\r\r\\par Křeslo padalo ještě další tři kilometry a ve výšce čtyř kilometrů se od něj pilot odpoutal a začal se pomalu snášet k zemi na osobním padáku.\\\\\r\r\\par Kde to je? To je Volha? Tady jsem přistát neměl! Hlavou mu proběhla vzpomínka na loňský incident s americkým špionážním letounem U-2, který byl sestřelen a jeho pilot zajat sověty. Nikde neviděl záchranný tým. Snad na něj nevezmou vesničané vidle a uvěří, že je jejich. Rukou psaný nápis CCCP na helmě by mu v tom měl pomoci.\\\\\r\r\\par Vítr ho přenesl přes řeku a snesl ho na pole, kde od samého rána pracovala babička s vnučkou.\\\\\r\r\\par „A kde jsi se tu vzal?“, přivítala ho babka.\\\\\r\r\\par Byl 12. duben 1961, Jurij Alexejevič Gagarin se právě vrátil z vesmíru.\\\\}",
+        "Title": "Gagarin",
+        "Text": "\\par Stísněný prostor kabiny ozařovaly plameny, které tančily za kruhovým okénkem. Dýchal zrychleně. Posledních pár minut neprobíhalo vůbec dobře a teď se v té kovové kouli řítil k zemi nadzvukovou rychlostí.\\\\\r\r\\par Za chvilku snad bude po všem.\\\\\r\r\\par Blížil se kritický okamžik přistání. V ramenou ucítil prudké škubnutí a na přístrojové desce se objevil nápis PŘIPRAVIT SE KE KATAPULTÁŽI! Nacházel se ve výšce 7500 metrů nad zemským povrchem.\\\\\r\r\\par Otvorem o průměru necelého jednoho metru se prohnalo katapultovací křeslo. Pilot se jen modlil, aby při tomto krkolomném manévru nepřišel o hlavu.\\\\\r\r\\par Křeslo padalo ještě další tři kilometry a ve výšce čtyř kilometrů se od něj pilot odpoutal a začal se pomalu snášet k zemi na osobním padáku.\\\\\r\r\\par Kde to je? To je Volha? Tady jsem přistát neměl! Hlavou mu proběhla vzpomínka na loňský incident s americkým špionážním letounem U-2, který byl sestřelen a jeho pilot zajat sověty. Nikde neviděl záchranný tým. Snad na něj nevezmou vesničané vidle a uvěří, že je jejich. Rukou psaný nápis CCCP na helmě by mu v tom měl pomoci.\\\\\r\r\\par Vítr ho přenesl přes řeku a snesl ho na pole, kde od samého rána pracovala babička s vnučkou.\\\\\r\r\\par „A kde jsi se tu vzal?“, přivítala ho babka.\\\\\r\r\\par Byl 12. duben 1961, Jurij Alexejevič Gagarin se právě vrátil z vesmíru.\\\\",
         "IsHtml": false
-      },
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Pohyb v odporujícím prostředí",
+    "Contents": [
       {
         "Type": "Text",
         "Title": "Úvod",
@@ -18,7 +24,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Velikost odporové síly",
+    "Title": "3. Velikost odporové síly",
     "Contents": [
       {
         "Type": "Text",
@@ -43,13 +49,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "",
+        "ImageName": "02-01.png",
+        "ImageCaption": "Obrázek č. 1: Pohybující se tělesa různých tvarů",
         "Title": "Obrázek č. 1"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Když se podíváte do fyzikálních tabulek, naleznete tyto hodnoty:\\\\dutá polokoule 1,33 (obr. č. 1)\\\\tenká rovná deska 1,12 (obr. č. 2)\\\\koule 0,48 (obr. č. 3)\\\\vypuklá polokoule 0,34 (obr. č. 4)\\\\kapkovitý (aerodynamický tvar) 0,03 (obr. č. 5)\\\\\r\r\\par Nejmenší součinitel odporu $C$ má tedy kapkovitý tvar. Říkáme mu sice kapkovitý, ale kapky mají různé tvary. Mohl by to být tvar kapky, která se právě oddělila od zbytku kapaliny, např. kapka vody u kapajícího kohoutku.\\\\\r\r\\par Tabulka součinitele odporu $C$ obsahuje několik málo základních tvarů. Možná byste našli hodnoty i pro další tvary, ale většinou se součinitel odporu $C$ stanovuje experimentálně v aerodynamickém tunelu. Např. Škoda Octavia 4 liftback má součinitel odporu 0,24, combi 0,26.\\\\\r\r\\par U automobilů je žádoucí co nejmenší součinitel odporu $C$, protože snížením tohoto součinitele klesá spotřeba. Konstruktéři letadel, lodí i ponorek se také snaží tento součinitel co nejvíce snížit. Ryby se aerodynamickému tvaru blíží takřka dokonale.\r\r",
+        "Text": "\\par Když se podíváte do fyzikálních tabulek, naleznete tyto hodnoty:\\\\dutá polokoule 1,33 (obr. č. 1-1)\\\\tenká rovná deska 1,12 (obr. č. 1-2)\\\\koule 0,48 (obr. č. 1-3)\\\\vypuklá polokoule 0,34 (obr. č. 1-4)\\\\kapkovitý (aerodynamický tvar) 0,03 (obr. č. 1-5)\\\\\r\r\\par Nejmenší součinitel odporu $C$ má tedy kapkovitý tvar. Říkáme mu sice kapkovitý, ale kapky mají různé tvary. Mohl by to být tvar kapky, která se právě oddělila od zbytku kapaliny, např. kapka vody u kapajícího kohoutku.\\\\\r\r\\par Tabulka součinitele odporu $C$ obsahuje několik málo základních tvarů. Možná byste našli hodnoty i pro další tvary, ale většinou se součinitel odporu $C$ stanovuje experimentálně v aerodynamickém tunelu. Např. Škoda Octavia 4 liftback má součinitel odporu 0,24, combi 0,26.\\\\\r\r\\par U automobilů je žádoucí co nejmenší součinitel odporu $C$, protože snížením tohoto součinitele klesá spotřeba. Konstruktéři letadel, lodí i ponorek se také snaží tento součinitel co nejvíce snížit. Ryby se aerodynamickému tvaru blíží takřka dokonale.\r\r",
         "IsHtml": false
       },
       {
@@ -89,7 +96,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Pád volně puštěného tělesa",
+    "Title": "4. Pád volně puštěného tělesa",
     "Contents": [
       {
         "Type": "Text",
@@ -132,7 +139,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Vrhy v odporujícím prostředí",
+    "Title": "5. Vrhy v odporujícím prostředí",
     "Contents": [
       {
         "Type": "Text",
@@ -142,7 +149,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "",
+        "ImageName": "02-02.png",
+        "ImageCaption": "Obrázek č. 2: Rozložení rychlosti na složky",
         "Title": "Obrázek č. 2"
       },
       {
@@ -194,7 +202,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Zdroje",
+    "Title": "6. Literatura",
     "Contents": [
       {
         "Type": "Literature",

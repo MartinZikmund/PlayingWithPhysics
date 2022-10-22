@@ -1,11 +1,23 @@
 [
   {
-    "Title": "Pohyby částic v homogenním magnetickém poli",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "Úvod",
-        "Text": "\\par \\textit{Napětí v kontrolní místnosti by se dalo krájet. Všechny oči jsou upřeny na monitory.\\\\\r\r\\par Náhle všechna hrdla propukají v jásot. Do plastových kelímků je nalito šampaňské. Vědci si navzájem gratulují. Smějí se a jsou šťastní.\rPrávě bylo dosaženo na velkém hadronovém urychlovači v CERN magické hranice 13 TeV.}\\\\\r\r\\par Pro výzkumy mikrosvěta je potřeba urychlit částice. Urychlit částice po přímé trajektorii klade větší nároky na prostor a tím pádem na materiál. Nedá se nějak při urychlení změnit trajektorie na jinou než přímou?\\\\\r\r\\par Když se podíváte, jak vypadá urychlovač částic v CERN (https://home.cern/), tak je jasné, že řešení problému existuje - pomoci si magnetickým polem.\\\\\r\r\\par Pokud tedy na těleso působí magnetická síla, může za jistých podmínek způsobit zakřivení trajektorie částice.\\\\\r\r\\par Pro zjednodušení budeme předpokládat vliv homogenního magnetického pole, které je ve všech místech všude stejně silné. Pro zjednodušení budeme předpokládat, že ostatní síly, které působí na částici, jsou zanedbatelné, a proto s nimi nebudeme počítat.\\\\\r",
+        "Title": "CERN",
+        "Text": "\\par Napětí v kontrolní místnosti by se dalo krájet. Všechny oči jsou upřeny na monitory.\\\\\r\r\\par Náhle všechna hrdla propukají v jásot. Do plastových kelímků je nalito šampaňské. Vědci si navzájem gratulují. Smějí se a jsou šťastní.\rPrávě bylo dosaženo na velkém hadronovém urychlovači v CERN magické hranice 13 TeV.\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Pohyby částic v homogenním magnetickém poli",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Pro výzkumy mikrosvěta je potřeba urychlit částice. Urychlit částice po přímé trajektorii klade větší nároky na prostor a tím pádem na materiál. Nedá se nějak při urychlení změnit trajektorie na jinou než přímou?\\\\\r\r\\par Když se podíváte, jak vypadá urychlovač částic v CERN (https://home.cern/), tak je jasné, že řešení problému existuje - pomoci si magnetickým polem.\\\\\r\r\\par Pokud tedy na těleso působí magnetická síla, může za jistých podmínek způsobit zakřivení trajektorie částice.\\\\\r\r\\par Pro zjednodušení budeme předpokládat vliv homogenního magnetického pole, které je ve všech místech všude stejně silné. Pro zjednodušení budeme předpokládat, že ostatní síly, které působí na částici, jsou zanedbatelné, a proto s nimi nebudeme počítat.\\\\",
         "IsHtml": false
       },
       {
@@ -23,7 +35,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Kromě cívek lze homogenní pole najít i mezi opačnými póly dvou magnetů, které jsou blízko u sebe.\\\\\r \r\\par Magnetické pole lze znázornit zjednodušeně pomocí magnetických indukčních čar. Magnetické indukční čáry jsou pro homogenní pole rovnoběžky, dohodou směřující od severního magnetického pólu k jižnímu.\\\\\r\r\\par Chceme-li pole popsat pomocí charakteristické veličiny, používá se magnetická indukce $\\vec{B}$. V homogenním poli má magnetická indukce směr i orientaci indukčních čar. Jednotkou indukce je tesla.\\\\",
         "IsHtml": false
       },
@@ -56,7 +68,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Magnetickou sílu působící na částici s elektrickým nábojem můžeme chápat jako jednu z mnoha složek magnetické síly, která působí na vodič s proudem. Analogie se nabízí – jestliže kovovým vodičem protéká elektrický proud, ve vodiči se uspořádaně pohybují nabité částice. A to jsou právě částice, které nás budou zajímat.\\\\\r\r \\par Magnetická síla, která působí na přímý vodič s proudem umístěný v magnetickém poli, je dána vztahem\r\\\\$${F}={B}\\cdot{I}\\cdot{l}\\cdot{\\sin \\alpha}$$\r\r\\\\kde ${B}$ je magnetická indukce pole,\r\\\\${I}$ je proud protékající vodičem,\r\\\\${l}$ je délka vodiče v magnetickém poli,\r\\\\${\\alpha}$ je úhel mezi směrem proudu ve vodiči a indukčními čarami.",
         "IsHtml": false
       },
@@ -76,36 +88,39 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Směr magnetické síly se určuje pomocí Flemingova pravidla levé ruky. Levá ruka je použita tak, aby prsty byly napnuty a palec s nimi svíral pravý úhel (otevřená dlaň).\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "14-01.png",
-        "Title": "Image"
+        "ImageCaption": "Obrázek č. 1: Dlaň levé ruky",
+        "Title": "Obrázek č. 1"
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Ruku použijeme tak, aby indukční čáry směřovaly do otevřené dlaně a napnuté prsty ukazovaly technický směr proudu.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "14-02.png",
-        "Title": "Image"
+        "ImageCaption": "Obrázek č. 2: Magnetické indukční čáry vstupující do dlaně a směr elektrického proud",
+        "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Zdvižený palec potom ukazuje směr magnetické síly.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "14-03.png",
-        "Title": "Image"
+        "ImageCaption": "Obrázek č. 3:  Flemingovo pravidlo levé ruky",
+        "Title": "Obrázek č. 3"
       },
       {
         "Type": "KnowledgeCheck",
@@ -123,7 +138,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Do vztahu ${F}={B}\\cdot{I}\\cdot{l}\\cdot{\\sin\\alpha}$ dosadíme z definice proudu ${I}=\\frac{q}{t}$  a dostaneme vztah ${F}={B}\\cdot\\frac{q}{t}\\cdot l\\cdot \\sin\\alpha$. Poměr $\\frac{l}{t}$ je nejjednodušší definice okamžité rychlosti. Po úpravě tedy dostaneme konečný vztah\r$${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$$\r\\\\kde ${v}$ je okamžitá rychlost částice,\r\\\\$\\alpha $ je úhel mezi směrem rychlosti kladné částice (technický směr proudu) a indukčními čarami.\\\\\r",
         "IsHtml": false
       },
@@ -143,7 +158,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Pohyby částice v poli rozdělíme podle směru počáteční rychlostí $\\vec{v}$.\\\\",
         "IsHtml": false
       }
@@ -151,12 +166,12 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Částice je vložena do magnetického pole",
+    "Title": "3. Částice je vložena do magnetického pole",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "",
-        "Text": "Abyste si uvědomili rozdíl mezi působením tíhového pole (vrhy) a magnetického pole, zopakujeme si, jak se chová toto těleso v tíhovém poli.",
+        "Title": "Text",
+        "Text": "\\par Abyste si uvědomili rozdíl mezi působením tíhového pole (vrhy) a magnetického pole, zopakujeme si, jak se chová toto těleso v tíhovém poli.\\\\",
         "IsHtml": false
       },
       {
@@ -175,8 +190,8 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "Jedná se tedy o volný pád. Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že je-li ${v}=0\\,\\mathrm{{m}\\cdot{s}^{-1}}${,} tak magnetická síla má hodnotu ${F}=0\\,\\mathrm{N}$.",
+        "Title": "Text",
+        "Text": "\\par Jedná se tedy o volný pád. Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že je-li ${v}=0\\,\\mathrm{{m}\\cdot{s}^{-1}}${,} tak magnetická síla má hodnotu ${F}=0\\,\\mathrm{N}$.\\\\ ",
         "IsHtml": false
       },
       {
@@ -194,21 +209,21 @@
         ]
       },
       {
-        "Type": "Text",
-        "Title": "",
-        "Text": "{\\bf{Závěr:}} Jestliže se částice vůči  magnetickému poli nepohybuje, pole na ni {\\bf{nepůsobí}}. {\\bf{Částice setrvává v klidu.}}",
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Jestliže se částice vůči  magnetickému poli nepohybuje, pole na ni nepůsobí. Částice setrvává v klidu.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Částice má rychlost po směru nebo proti směru indukčních čar",
+    "Title": "4. Částice má rychlost po směru nebo proti směru indukčních čar",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "Opět začneme s analogií s tíhovým polem. Jedná se o situaci, kdy je tělesu udělena počáteční rychlost svisle vzhůru nebo svisle dolů.",
+        "Title": "Text",
+        "Text": "\\par Opět začneme s analogií s tíhovým polem. Jedná se o situaci, kdy je tělesu udělena počáteční rychlost svisle vzhůru nebo svisle dolů.",
         "IsHtml": false
       },
       {
@@ -227,8 +242,8 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "Jedná se o vrh svislý vzhůru.",
+        "Title": "Text",
+        "Text": "\\par Jedná se o vrh svislý vzhůru.",
         "IsHtml": false
       },
       {
@@ -247,8 +262,8 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "Jedná se o vrh svislý dolů.\\\\\r\\\\Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že pro ${\\sin}{0°}$ nebo ${\\sin}{180°}$, tak magnetická síla má hodnotu ${F}=0\\,\\mathrm{N}$.",
+        "Title": "Text",
+        "Text": "\\par  Jedná se o vrh svislý dolů.\\\\\r\r\\par Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že pro ${\\sin}{0°}$ nebo ${\\sin}{180°}$, tak magnetická síla má hodnotu ${F}=0$ N.\\\\",
         "IsHtml": false
       },
       {
@@ -266,20 +281,20 @@
         ]
       },
       {
-        "Type": "Text",
-        "Title": "Untitled",
-        "Text": "{\\bf{Závěr:}} Jestliže částice v magnetickém poli má rychlost ve směru siločar nebo proti směru siločar, pole na ni {\\bf{nepůsobí}}. {\\bf{Částice setrvává v rovnoměrném přímočarém pohybu}}.",
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Jestliže částice v magnetickém poli má rychlost ve směru siločar nebo proti směru siločar, pole na ni nepůsobí. Částice setrvává v rovnoměrném přímočarém pohybu.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Částice má rychlost kolmou na směr indukčních čar",
+    "Title": "5. Částice má rychlost kolmou na směr indukčních čar",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Opět začneme s analogií s tíhovým polem. Jedná se o situaci, kdy je tělesu udělena počáteční rychlost vodorovně.\\\\",
         "IsHtml": false
       },
@@ -313,30 +328,43 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "\\par V tíhovém poli se tedy jedná o vodorovný vrh.\\\\\r\r\\par Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že pro ${\\sin}{90°}=1$, tak magnetická síla má hodnotu ${F}={B}\\cdot{q}\\cdot{v}$. Je tedy v tomto případě nenulová.\\\\\r\r\\par Směr magnetické síly se určí analogickým Flemingovým pravidlem levé ruky, podobně jako u směru magnetické síly, působící na přímý vodič. {\\textit{Levá ruka je použita tak, aby prsty byly napnuty a palec s nimi svíral pravý úhel, ruku použijeme tak, aby indukční čáry směřovaly do otevřené dlaně a napnuté prsty ukazovaly technický směr proudu a zdvižený palec ukazuje směr síly.}}\\\\\r\r\\par Analogicky použijeme pravidlo pro částice. Napnuté prsty budou ukazovat směr pohybu kladných částic (odpovídá technickému směru proudu).\\\\\r\rJestliže má kladná částice v nejnižším bodu rychlost vodorovně doprava, s využitím pravidla zjistíme směr síly směrem nahoru. Trajektorie částice bude zakřivována směrem vzhůru. A celý postup zopakujeme v různých místech trajektorie.",
+        "Title": "Text",
+        "Text": "\\par V tíhovém poli se tedy jedná o vodorovný vrh.\\\\\r\r\\par Ze vztahu pro magnetickou sílu ${F}={B}\\cdot{q}\\cdot{v}\\cdot\\sin\\alpha{,}$ vyplývá, že pro ${\\sin}{90°}=1$, tak magnetická síla má hodnotu ${F}={B}\\cdot{q}\\cdot{v}$. Je tedy v tomto případě nenulová.\\\\\r\r\\par Směr magnetické síly se určí analogickým Flemingovým pravidlem levé ruky, podobně jako u směru magnetické síly, působící na přímý vodič. {\\textit{Levá ruka je použita tak, aby prsty byly napnuty a palec s nimi svíral pravý úhel, ruku použijeme tak, aby indukční čáry směřovaly do otevřené dlaně a napnuté prsty ukazovaly technický směr proudu a zdvižený palec ukazuje směr síly.}}\\\\\r\r\\par Analogicky použijeme pravidlo pro částice. Napnuté prsty budou ukazovat směr pohybu kladných částic (odpovídá technickému směru proudu).\\\\\r\r\\par Jestliže má kladná částice v nejnižším bodu rychlost vodorovně doprava, s využitím pravidla zjistíme směr síly směrem nahoru. Trajektorie částice bude zakřivována směrem vzhůru. A celý postup zopakujeme v různých místech trajektorie.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "14-04.png",
-        "Title": "Image"
+        "ImageCaption": "Obrázek č. 4: Částice pohybující se kolmo na směr magnetických indukčních čar",
+        "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "\\par Z obrázku vyplývá, že magnetická síla v různých časech směřuje do kružnice. Magnetická síla ${F}$ je tedy silou dostředivou ${F_d}$, způsobuje zakřivení trajektorie do kružnice o poloměru ${r}$.\\\\\r\r\\par Platí rovnost: ${F}={F_d}$, tedy ${B}\\cdot{q}\\cdot{v}={m}\\frac{v^2}{r}$,\\\\\rkde ${m}$ je hmotnost nabité částice.\\\\\r\r\\par Z rovnice lze vyjádřit požadovanou veličinu.\\\\\r\r\\par Poznámka: {\\textit{Chceme-li uplatnit Flemingovo pravidlo na částici se záporným nábojem, je možné buď dát prsty proti směru pohybu a palec ukazuje směr síly, nebo použít pravidlo v popsané formě a směr síly bude opačný.}}\\\\\r\r\\par {\\bf{Závěr:}} Jestliže částice v magnetickém poli má rychlost kolmou na indukční čáry, pole {\\bf{na ni působí nenulovou silou}}. {\\bf{Trajektorií pohybu je kružnice a velikost rychlosti částice se nemění.}}\r\r\\par Princip působení magnetické síly na částici je základem hmotnostního spektrografu, který umožňuje odlišit částice s různou hmotností a nábojem.\\\\\r\r\\par Zjednodušený princip naleznete na:\\\\\r                                                           \r\\textit{http://fyzika.jreichl.com/main.article/view/714-prakticke-vyuziti}\\\\\r\r\\par Magnetická síla se uplatňuje i v některých urychlovačích částic:\\\\\r\\textit{https://www.cez.cz/edee/content/microsites/urychl/k33.htm}\\\\",
+        "Title": "Text",
+        "Text": "\\par Z obrázku vyplývá, že magnetická síla v různých časech směřuje do kružnice. Magnetická síla ${F}$ je tedy silou dostředivou ${F_d}$, způsobuje zakřivení trajektorie do kružnice o poloměru ${r}$.\\\\\r\r\\par Platí rovnost: ${F}={F_d}$, tedy ${B}\\cdot{q}\\cdot{v}={m}\\frac{v^2}{r}$,\\\\\rkde ${m}$ je hmotnost nabité částice.\\\\\r\r\\par Z rovnice lze vyjádřit požadovanou veličinu.\\\\\r\r\\par Poznámka: Chceme-li uplatnit Flemingovo pravidlo na částici se záporným nábojem, je možné buď dát prsty proti směru pohybu a palec ukazuje směr síly, nebo použít pravidlo v popsané formě a směr síly bude opačný.\\\\\r\r\r\r",
+        "IsHtml": false
+      },
+      {
+        "Type": "ToRemember",
+        "Title": "K zapamatování",
+        "Text": "\\par Jestliže částice v magnetickém poli má rychlost kolmou na indukční čáry, pole na ni působí nenulovou silou. Trajektorií pohybu je kružnice a velikost rychlosti částice se nemění.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Princip působení magnetické síly na částici je základem hmotnostního spektrografu, který umožňuje odlišit částice s různou hmotností a nábojem.\\\\\r\r\\par Zjednodušený princip naleznete na:\\\\http://fyzika.jreichl.com/main.article/view/714-prakticke-vyuziti\\\\\r\r\\par Magnetická síla se uplatňuje i v některých urychlovačích částic:\\\\https://www.cez.cz/edee/content/microsites/urychl/k33.htm\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Použité zdroje",
+    "Title": "6. Literatura",
     "Contents": [
       {
         "Type": "Literature",
-        "Title": "Použité zdroje",
+        "Title": "Použitá literatura",
         "Text": "\\par Doc. RNDr. LEPIL Oldřich Csc., PaedDr. ŠEDIVÝ Přemysl . Fyzika - Elektřina a magnetismus , 1. vydání. Praha: Státní pedagogické nakladatelství, 1992. ISBN 80-04-26093-4.\\\\\r\r\\par MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 04.02.2020]. Dostupné z: http://http://fyzika.jreichl.com/main.article/view/293-castice-s-nabojem-v-magnetickem-poli\\\\\r\r\\par BARTUŠKA, Karel . Sbírka z fyziky pro střední školy III., dotisk 2. vydání. Praha: Prometheus, 2005. ISBN 80-7196-235-X.\\\\\r\r\\par Doc. RNDr. LEPIL Oldřich Csc., RNDr. BEDNAŘÍK Milan Csc, Doc. RNDr. ŠIROKÁ Miroslava, Csc.. Fyzika - Sbírka z fyziky pro střední školy , dotisk 3. vydání. Praha: Prometheus, 2012. ISBN 978-80-7196-266-3.\\\\\r\r\\par Doc. RNDr. LEPIL Oldřich Csc., PaedDr. ŠEDIVÝ Přemysl . Fyzika - Elektřina a magnetismus , 1. vydání. Praha: Státní pedagogické nakladatelství, 1992. ISBN 80-04-26093-4.\\\\\r\r\\par KULHÁNEK, Petr; ROZEHNAL, Jakub. Hvězdy, planety, magnety. Praha: Mladá fronta, 2007, ISBN 978-80-204-1693-3.\\\\\r\r\\par HALLIDAY, David; RESNICK, Robert; WALKER, Jearl. Fyzika, Vysokoškolská učebnice obecné fyziky, Část 3, Elektřina a magnetismus. Brno: VUTIUM a PROMETHEUS, 2000, ISBN 80-2014-1868-0 (VUTIUM), 81-7196-213-9 (PROMETHEUS).\\\\\r\r\\par KRYNICKÝ, Martin. Částice s nábojem v magnetickém poli [online]. Dostupný na WWW: http://www.realisticky.cz/hodina.php?id=787\\\\\r\r",
         "IsHtml": false
       }

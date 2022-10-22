@@ -1,13 +1,19 @@
 [
   {
-    "Title": "1. Optické zobrazení",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "Úvod",
-        "Text": "\\par \\textit{„Vážený dóže, vážení pánové, děkuji všem, že jste vážili cestu sem na kampanilu svatého Marka, abyste zhlédli můj vynález, který chci věnovat Nejjasnější republice benátské.\\\\\r\r\\par Když jsem se před nedávnem dozvěděl, že vám jakýsi francouzský obchodník nabízel k prodeji za horentní sumu trubku s dvěma čočkami, která umožňuje vidět do dálky, nelenil jsem a ve své dílně vyrobil za zlomek původní ceny vlastní dalekohled. Ten vám nabízím darem k věčné slávě Benátské republiky.\\\\\r\r\\par Prosím, zde je a můžete si s ním prohlédnout obyvatele ostrova Murano, který je odtud vzdálen 2,5 km či zvonici kostela sv. Justiny v Padově, která je odtud vzdálena 40 km.“\\\\\r\r\\par Dóže Leonardo Donato, vládce Nejjasnější republiky benátské, se dlouze zahleděl do mosazné trubky. Klouzal pohledem po budovách a obyvatelích nedalekého ostrova. V hlavě mu vířily myšlenky na vojenské a námořní využití tohoto přístroje. V uších mu cinkaly floriny, které díky tomu republika získá. Usmíval se.\\\\\r\r\\par Dalekohled se zastavil a dóže v něm sledoval bujný dekolt dámy, která se právě objevila v oknu a netušila, že není sama.\\\\\r\r\\par Dóže se usmál více a nedokázal odvrátit zrak od pohledu, který mu přístroj nyní poskytoval.\\\\\r\r\\par „Úžasný vynález, Galileo. Předpovídám Vám skvělou budoucnost!“\rByl 21. srpen 1609 a Galileo Galilei poprvé předvedl svůj dalekohled veřejnosti.}\\\\",
+        "Title": "Dalekohled",
+        "Text": "\\par „Vážený dóže, vážení pánové, děkuji všem, že jste vážili cestu sem na kampanilu svatého Marka, abyste zhlédli můj vynález, který chci věnovat Nejjasnější republice benátské.\\\\\r\r\\par Když jsem se před nedávnem dozvěděl, že vám jakýsi francouzský obchodník nabízel k prodeji za horentní sumu trubku s dvěma čočkami, která umožňuje vidět do dálky, nelenil jsem a ve své dílně vyrobil za zlomek původní ceny vlastní dalekohled. Ten vám nabízím darem k věčné slávě Benátské republiky.\\\\\r\r\\par Prosím, zde je a můžete si s ním prohlédnout obyvatele ostrova Murano, který je odtud vzdálen 2,5 km či zvonici kostela sv. Justiny v Padově, která je odtud vzdálena 40 km.“\\\\\r\r\\par Dóže Leonardo Donato, vládce Nejjasnější republiky benátské, se dlouze zahleděl do mosazné trubky. Klouzal pohledem po budovách a obyvatelích nedalekého ostrova. V hlavě mu vířily myšlenky na vojenské a námořní využití tohoto přístroje. V uších mu cinkaly floriny, které díky tomu republika získá. Usmíval se.\\\\\r\r\\par Dalekohled se zastavil a dóže v něm sledoval bujný dekolt dámy, která se právě objevila v oknu a netušila, že není sama.\\\\\r\r\\par Dóže se usmál více a nedokázal odvrátit zrak od pohledu, který mu přístroj nyní poskytoval.\\\\\r\r\\par „Úžasný vynález, Galileo. Předpovídám Vám skvělou budoucnost!“\rByl 21. srpen 1609 a Galileo Galilei poprvé předvedl svůj dalekohled veřejnosti.\\\\",
         "IsHtml": false
-      },
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "2. Optické zobrazení",
+    "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
@@ -16,7 +22,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-01.png",
+        "ImageName": "16-01.png",
+        "ImageCaption": "Obrázek č. 1: Vznik obrazu na sítnici oka",
         "Title": "Obrázek č. 1"
       },
       {
@@ -27,7 +34,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-02.png",
+        "ImageName": "16-02.png",
+        "ImageCaption": "Obrázek č. 2: Optické soustavy",
         "Title": "Obrázek č. 2"
       },
       {
@@ -59,7 +67,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Zobrazení rovinným zrcadlem",
+    "Title": "3. Zobrazení rovinným zrcadlem",
     "Contents": [
       {
         "Type": "Text",
@@ -69,7 +77,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-03.png",
+        "ImageName": "16-03.png",
+        "ImageCaption": "Obrázek č. 3: Zobrazení rovinným zrcadlem",
         "Title": "Obrázek č. 3"
       },
       {
@@ -86,7 +95,7 @@
       },
       {
         "Type": "KnowledgeCheck",
-        "Title": "Untitled",
+        "Title": "Kontrolní otázka",
         "Question": "Jak vysoké musí být rovinné zrcadlo, aby člověk vysoký 2 m viděl ze vzdálenosti 1 m celou svoji postavu?",
         "CorrectResponse": null,
         "WrongResponse": null,
@@ -102,7 +111,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "3. Konvence znamének a značení",
+    "Title": "4. Konvence znamének a značení",
     "Contents": [
       {
         "Type": "Text",
@@ -128,7 +137,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "4. Zobrazení kulovým zrcadlem",
+    "Title": "5. Zobrazení kulovým zrcadlem",
     "Contents": [
       {
         "Type": "Text",
@@ -138,7 +147,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-04.png",
+        "ImageName": "16-04.png",
+        "ImageCaption": "Obrázek č. 4: Zobrazení kulovým zrcadlem",
         "Title": "Obrázek č. 4"
       },
       {
@@ -149,12 +159,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-05.png",
+        "ImageName": "16-05.png",
+        "ImageCaption": "Obrázek č. 5: Duté zrcadlo",
         "Title": "Obrázek č. 5"
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-06.png",
+        "ImageName": "16-06.png",
+        "ImageCaption": "Obrázek č. 6: Vypuklé zrcadlo",
         "Title": "Obrázek č. 6"
       },
       {
@@ -180,7 +192,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "5. Příčné zvětšení",
+    "Title": "6. Příčné zvětšení",
     "Contents": [
       {
         "Type": "Text",
@@ -190,7 +202,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-07.png",
+        "ImageName": "16-07.png",
+        "ImageCaption": "Obrázek č. 7: Odvození vztahů pro příčné zvětšení kulového zrcadla",
         "Title": "Obrázek č. 7"
       },
       {
@@ -223,7 +236,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "6. Čočky",
+    "Title": "7. Čočky",
     "Contents": [
       {
         "Type": "Text",
@@ -233,18 +246,20 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-08.png",
+        "ImageName": "16-08.png",
+        "ImageCaption": "Obrázek č. 8: Tvary čoček a jejich schématické značky",
         "Title": "Obrázek č. 8"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "Pro popis chodu světelných paprsků čočkou si zavedeme některé pojmy.",
+        "Text": "\\par Pro popis chodu světelných paprsků čočkou si zavedeme některé pojmy.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-09.png",
+        "ImageName": "16-09.png",
+        "ImageCaption": "Obrázek č. 9: Základní pojmy u čoček",
         "Title": "Obrázek č. 9"
       },
       {
@@ -255,7 +270,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-10.png",
+        "ImageName": "16-10.png",
+        "ImageCaption": "Obrázek č. 10: Vlastnosti tenkých čoček",
         "Title": "Obrázek č. 10"
       },
       {
@@ -266,7 +282,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-11.png",
+        "ImageName": "16-11.png",
+        "ImageCaption": "Obrázek č. 11: Vlastnosti tenkých čoček",
         "Title": "Obrázek č. 11"
       },
       {
@@ -277,13 +294,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-12.png",
+        "ImageName": "16-12.png",
+        "ImageCaption": "Obrázek č. 12: Vlastnosti tenkých čoček",
         "Title": "Obrázek č. 12"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par 3. Na optické ose spojky v prostoru předmětovém leží předmětové ohnisko $F$, které má tu vlastnost, že paprsky, které jím procházejí, jsou po průchodu čočkou rovnoběžné s optickou osou v prostoru obrazovém. U rozptylky leží předmětové ohnisko v prostoru obrazovém a sbíhavé paprsky, které do něho míří, jsou po průchodu čočkou rovnoběžné s optickou osou.\\\\\r\r\\par Vzdálenost bodů $F$, $O$ se nazývá předmětová ohnisková vzdálenost $f$, vzdálenost bodů $O$, $F´$ je obrazová ohnisková vzdálenost $f´$. Je-li před a za tenkou čočkou stejné prostředí, platí: $f=f´$. V tom případě se používá název ohnisková vzdálenost čočky $f$.\\\\\r\r\\par Ohnisková vzdálenost závisí na indexu lomu $n_2$ skla, z něhož je čočka vyrobena, na indexu lomu $n_1$ okolního prostředí a na poloměrech křivosti $r_1$ a $r_2$ optických ploch podle vztahu:$$\\frac{1}{f}=\\left(\\frac{n_2}{n_1}-1 \\right)\\left(\\frac{1}{r_1}+\\frac{1}{r_2} \\right)$$\r\r\\par Okolní prostředí je většinou vzduch, takže $n_1=1$. Pro rovinné plochy ploskovypuklé či ploskoduté čočky můžeme psát $\\frac{1}{r}=0$.\\\\\r\r\\par Podle znaménka ohniskové vzdálenosti rozlišujeme:\\\\\r1. spojky – $f>0$, ohniska jsou skutečná\\\\\r2. rozptylky – $f<0$, ohniska jsou zdánlivá\\\\\r\r\\par Charakteristickou veličinou čočky je i optická mohutnost $\\varphi$, která je definována vztahem: $$\\varphi = \\frac{1}{f}$$\\\\\r\r\\par Jednotkou optické mohutnosti je D (dioptrie). Optická mohutnost spojek je kladná, rozptylek záporná. \\\\\r\r",
+        "Text": "\\par 3. Na optické ose spojky v prostoru předmětovém leží předmětové ohnisko $F$, které má tu vlastnost, že paprsky, které jím procházejí, jsou po průchodu čočkou rovnoběžné s optickou osou v prostoru obrazovém. U rozptylky leží předmětové ohnisko v prostoru obrazovém a sbíhavé paprsky, které do něho míří, jsou po průchodu čočkou rovnoběžné s optickou osou.\\\\\r\r\\par Vzdálenost bodů $F$, $O$ se nazývá předmětová ohnisková vzdálenost $f$, vzdálenost bodů $O$, $F´$ je obrazová ohnisková vzdálenost $f´$. Je-li před a za tenkou čočkou stejné prostředí, platí: $f=f´$. V tom případě se používá název ohnisková vzdálenost čočky $f$.\\\\\r\r\\par Ohnisková vzdálenost závisí na indexu lomu $n_2$ skla, z něhož je čočka vyrobena, na indexu lomu $n_1$ okolního prostředí a na poloměrech křivosti $r_1$ a $r_2$ optických ploch podle vztahu:$$\\frac{1}{f}=\\left(\\frac{n_2}{n_1}-1 \\right)\\left(\\frac{1}{r_1}+\\frac{1}{r_2} \\right)$$\r\r\\par Okolní prostředí je většinou vzduch, takže $n_1=1$. Pro rovinné plochy ploskovypuklé či ploskoduté čočky můžeme psát $\\frac{1}{r}=0$.\\\\\r\r\\par Podle znaménka ohniskové vzdálenosti rozlišujeme:\\\\\r1. spojky – $f>0$, obrazová ohniska jsou skutečná\\\\\r2. rozptylky – $f<0$, obrazová ohniska jsou zdánlivá\\\\\r\r\\par Charakteristickou veličinou čočky je i optická mohutnost $\\varphi$, která je definována vztahem: $$\\varphi = \\frac{1}{f}$$\\\\\r\r\\par Jednotkou optické mohutnosti je D (dioptrie). Optická mohutnost spojek je kladná, rozptylek záporná. \\\\\r\r",
         "IsHtml": false
       },
       {
@@ -304,7 +322,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "7. Zobrazení tenkou čočkou",
+    "Title": "8. Zobrazení tenkou čočkou",
     "Contents": [
       {
         "Type": "Text",
@@ -314,12 +332,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-13.png",
+        "ImageName": "16-13.png",
+        "ImageCaption": "Obrázek č. 13: Význačné paprsky procházející spojkou",
         "Title": "Obrázek č. 13"
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-14.png",
+        "ImageName": "16-14.png",
+        "ImageCaption": "Obrázek č. 14: Význačné paprsky procházející rozptylkou",
         "Title": "Obrázek č. 14"
       },
       {
@@ -330,7 +350,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "16_v04-15.png",
+        "ImageName": "16-15.png",
+        "ImageCaption": "Obrázek č. 15: Odvození vztahů pro příčné zvětšení čočky",
         "Title": "Obrázek č. 15"
       },
       {
@@ -357,6 +378,18 @@
         "Type": "Text",
         "Title": "Text",
         "Text": "\\par Vlastnosti obrazu předmětu při zobrazení tenkou spojnou čočkou závisí na poloze předmětu na optické ose:\\\\\r\r\\par Vzdálenost předmětu: $a>2f$,\\\\\rvzdálenost obrazu: $f<a´<2f$,\\\\\rvlastnosti obrazu: zmenšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=2f$,\\\\\rvzdálenost obrazu: $a´=2f$,\\\\\rvlastnosti obrazu: stejně vysoký, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $f<a<2f$,\\\\\rvzdálenost obrazu: $a´>2f$,\\\\\rvlastnosti obrazu: zvětšený, převrácený, skutečný.\\\\\r\r\\par Vzdálenost předmětu: $a=f$,\\\\\rvzdálenost obrazu: $a´\\to \\infty$,\\\\\rvlastnosti obrazu: $y´\\to \\infty$.\\\\\r\r\\par Vzdálenost předmětu: $a<f$,\\\\\rvzdálenost obrazu: $0<a´<\\infty$,\\\\\rvlastnosti obrazu: zvětšený, vzpřímený, zdánlivý.\\\\\r\r\\par Při zobrazení tenkou rozptylnou čočkou vzniká při všech polohách předmětu obraz zmenšený, vzpřímený a zdánlivý.\\\\\r\r\\par Vlastnosti obrazu si nemusíme pamatovat - lze kdykoliv odvodit pomocí dvou (resp. tří) význačných paprsků.\\\\\r\r",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "9. Literatura",
+    "Contents": [
+      {
+        "Type": "Literature",
+        "Title": "Použitá literatura",
+        "Text": "\\par LEPIL, Oldřich. Fyzika pro gymnázia. 4. vyd. Praha: Prometheus, 2010. ISBN 978-80-7196-384-4.\\\\\r\r\\par ZOBRAZOVÁNÍ OPTICKÝMI SOUSTAVAMI :: MEF. Fyzika :: MEF [online]. Copyright © 2006 [cit. 04.02.2022]. Dostupné z: http://fyzika.jreichl.com/main.article/view/471-zobrazovani-optickymi-soustavami\\\\",
         "IsHtml": false
       }
     ],

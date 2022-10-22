@@ -20,9 +20,9 @@ variables:
 - name: 'appxPackageDir'
   value: '$(build.artifactStagingDirectory)\AppxPackages\\'
 - name: 'major'
-  value: '0'
+  value: '2'
 - name: 'minor'
-  value: '15'
+  value: '0'
 
 name: $(major).$(minor).$(rev:r).0
 

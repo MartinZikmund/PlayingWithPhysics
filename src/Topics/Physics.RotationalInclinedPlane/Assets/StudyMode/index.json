@@ -1,18 +1,18 @@
 [
   {
-    "Title": "Valivý pohyb po nakloněné rovině",
+    "Title": "1. Úvod",
     "Contents": [
       {
-        "Type": "Text",
-        "Title": "Untitled",
-        "Text": "\\par \\textit{Flo Earlyová stojí na vrcholu kopce Coopr´s Hill a dívá se na řady skandujících diváků, které lemují prudký sráz.\\\\\r\r\\par Před chvílí proběhl druhý závod tohoto dne. Sanitky odvážejí několik zraněných závodníků. Zatím je to dobré. V roce 1993 bylo zraněno patnáct závodníků. V roce 1997 odvezly sanitky 33 běžců.\\\\\r\r\\par Zatím je to dobré…\\\\\r\r\\par Ceremoniář zvedá kulatý bochník sýra.\\\\ \r\r\\par Závodnice se připravují.\\\\\r\r\\par Sýr se kutálí dolů a poskakuje po nerovném terénu.  Běžkyně se vrhají za ním. Klopýtají. Padají jedna pod druhou a podrážejí si nohy. Některé se obratně drží na nohou a stíhají ten poskakující kulatý předmět. Flo je mezi nimi.\\\\\r\r\\par Dvě stě yardů běhu. Dvě stě yardů pádů, odřenin a zlomenin.\\\\\r\r\\par Když se ještě používal pravý sýr, a ne jeho pěnová náhražka, dokázal na své cestě nabrat rychlost až 110 km/h a pokud někoho zasáhlo touto rychlostí 7 liber kvalitního Double Gloucesteru, nedopadlo to dobře.\\\\\r\r\\par Flo Earlyová dobíhá do cíle jako první. Je 27. květen roku 2019 a Flo se stává počtvrté vítězkou ženského kola závodu Cooper's Hill Cheese-Rolling and Wake.}\\\\\r\r\\par Po nakloněné rovině se těleso může valit. Dá se očekávat, že pohyb bude záviset na sklonu roviny a tíhovém zrychlení. Co ale může být pro někoho překvapivé, tak pohyb závisí i na rozložení hmoty v tělese.\\\\",
+        "Type": "RealWorld",
+        "Title": "Cooper's Hill Cheese-Rolling and Wake",
+        "Text": "\\par Flo Earlyová stojí na vrcholu kopce Coopr´s Hill a dívá se na řady skandujících diváků, které lemují prudký sráz.\\\\\r\r\\par Před chvílí proběhl druhý závod tohoto dne. Sanitky odvážejí několik zraněných závodníků. Zatím je to dobré. V roce 1993 bylo zraněno patnáct závodníků. V roce 1997 odvezly sanitky 33 běžců.\\\\\r\r\\par Zatím je to dobré…\\\\\r\r\\par Ceremoniář zvedá kulatý bochník sýra.\\\\ \r\r\\par Závodnice se připravují.\\\\\r\r\\par Sýr se kutálí dolů a poskakuje po nerovném terénu.  Běžkyně se vrhají za ním. Klopýtají. Padají jedna pod druhou a podrážejí si nohy. Některé se obratně drží na nohou a stíhají ten poskakující kulatý předmět. Flo je mezi nimi.\\\\\r\r\\par Dvě stě yardů běhu. Dvě stě yardů pádů, odřenin a zlomenin.\\\\\r\r\\par Když se ještě používal pravý sýr, a ne jeho pěnová náhražka, dokázal na své cestě nabrat rychlost až 110 km/h a pokud někoho zasáhlo touto rychlostí 7 liber kvalitního Double Gloucesteru, nedopadlo to dobře.\\\\\r\r\\par Flo Earlyová dobíhá do cíle jako první. Je 27. květen roku 2019 a Flo se stává počtvrté vítězkou ženského kola závodu Cooper's Hill Cheese-Rolling and Wake.\\\\\r\r\\par Po nakloněné rovině se těleso může valit. Dá se očekávat, že pohyb bude záviset na sklonu roviny a tíhovém zrychlení. Co ale může být pro někoho překvapivé, tak pohyb závisí i na rozložení hmoty v tělese.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Kinetická energie tuhého tělesa",
+    "Title": "2. Kinetická energie tuhého tělesa",
     "Contents": [
       {
         "Type": "Text",
@@ -54,7 +54,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "05_obr_1.png",
+        "ImageName": "05-01.png",
+        "ImageCaption": "Obrázek č. 1: Moment setrvačnosti některých těles",
         "Title": "Obrázek č. 1"
       },
       {
@@ -73,7 +74,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Valivý pohyb po nakloněné rovině",
+    "Title": "3. Valivý pohyb po nakloněné rovině",
     "Contents": [
       {
         "Type": "Text",
@@ -83,13 +84,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "05_obr_2.png",
+        "ImageName": "05-02.png",
+        "ImageCaption": "Obrázek č. 2: Valivý pohyb po nakloněné rovině",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Na obrázku je znázorněn valivý pohyb po nakloněné rovině se sklonem α, který začíná v klidu v bodě A. Po proběhnutí dráhy l má těleso v bodě B kinetickou energii, která je rovna úbytku energie potenciální.$$E_k=E_p$$ $$\\frac{1}{2}mv^2+\\frac{1}{2}J\\omega^2=mgh$$Protože $\\omega=\\frac{v}{R}$ a $h=l\\sin{\\alpha}$, můžeme psát $$\\frac{1}{2}mv^2+\\frac{1}{2}J\\left(\\frac{v}{R}\\right)^2=mgl\\sin{\\alpha}$$ $$\\frac{1}{2}\\left(m+\\frac{J}{R^2}\\right)v^2=mgl\\sin{\\alpha}$$Odtud určíme velikost rychlosti tělesa v bodě B: $$v=\\sqrt{\\frac{2hg}{\\frac{J}{mR^2}+1}}.$$\\\\\r\r\\par Po dosazení příslušných momentů setrvačnosti získáme velikosti rychlostí:\\\\ dutý válec $v=\\sqrt{gh}$, \\\\válec $v=\\sqrt{\\frac{4}{3}gh},$ \\\\koule $v=\\sqrt{\\frac{10}{7}gh}$.\\\\",
+        "Text": "\\par Na obrázku je znázorněn valivý pohyb po nakloněné rovině se sklonem $α$, který začíná v klidu v bodě $A$. Po proběhnutí dráhy $l$ má těleso v bodě $B$ kinetickou energii, která je rovna úbytku energie potenciální.$$E_k=E_p$$\r$$\\frac{1}{2}mv^2+\\frac{1}{2}J\\omega^2=mgh$$ Protože $\\omega =\\frac{v}{R}$ a $h=l\\sin{\\alpha}$, můžeme psát $$\\frac{1}{2}mv^2+\\frac{1}{2}J\\left(\\frac{v}{R}\\right)^2=mgl\\sin{\\alpha}$$ $$\\frac{1}{2}\\left(m+\\frac{J}{R^2}\\right)v^2=mgl\\sin{\\alpha}$$Odtud určíme velikost rychlosti tělesa v bodě B: $$v=\\sqrt{\\frac{2hg}{\\frac{J}{mR^2}+1}}.$$\r\r\\par Po dosazení příslušných momentů setrvačnosti získáme velikosti rychlostí:\\\\ dutý válec $v=\\sqrt{gh}$, \\\\válec $v=\\sqrt{\\frac{4}{3}gh},$ \\\\koule $v=\\sqrt{\\frac{10}{7}gh}$.\\\\",
         "IsHtml": false
       },
       {
@@ -114,7 +116,8 @@
       },
       {
         "Type": "Image",
-        "ImageName": "05_obr_3.png",
+        "ImageName": "05-03.png",
+        "ImageCaption": "Obrázek č. 3: Poloha tělesa na nakloněné rovině",
         "Title": "Obrázek č. 3"
       },
       {
@@ -122,7 +125,13 @@
         "Title": "Text",
         "Text": "\\par Okamžitou polohu tělesa vypočítáme dle vztahů $$x=s\\cos{\\alpha},$$ $$y=h-s\\sin{\\alpha}.$$\r",
         "IsHtml": false
-      },
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "4. Literatura",
+    "Contents": [
       {
         "Type": "Literature",
         "Title": "Použitá literatura",

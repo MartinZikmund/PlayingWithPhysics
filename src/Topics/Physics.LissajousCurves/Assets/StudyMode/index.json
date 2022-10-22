@@ -1,23 +1,23 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par \\textit{Muž vystoupil na židli a zpocenými, nervózními dlaněmi uvázal konec lana k háku trčícímu ze stropu. Zkusmo za lano zatahal. Pevné je dost, určitě udrží i sto kilogramů.\\\\\r\r\\par Seskočil ze židle. Došel k pracovnímu stolu a upil ze šálku studenou kávu.\\\\\r\r\\par Dlouho se díval na velkou plachtu pokrývající podlahu pod hákem. Rozměry jsou dostatečné. Ani kapka nedopadne na podlahu.\\\\\r\r\\par Snažil se na nic nemyslet. Přemýšlení už bylo dost, teď nastal čas činů.\\\\\r\r\\par Zhluboka se nadechl.\\\\\r\r\\par Zvedl kyblík s barvou a zavěsil ho na lano visící ze stropu. Několika energickými pohyby udělal šroubovákem do dna otvory, kterými ihned začala vytékat barva na zem. Pustil lano. To spolu s nádobou, ze které tryskala na všechny strany barva, začalo opisovat nad plátnem složité křivky, jak se kývalo ze strany na stranu, dopředu a dozadu. Barva zanechávala na plátně stopu. Kapky se odrážely, tříštily a dopadaly zpět na plátno.\\\\\r\r\\par Po nějaké době muž lano zachytil a barvu uklidil.\\\\\r\r\\par Zase se dlouze zahleděl na plátno.\\\\\r\r\\par Vzal do ruky štětec a přimaloval na obraz ohnivě červenou skvrnu.}\\\\\r\r\\par Skládáním dvou navzájem kolmých harmonických kmitání mohou vzniknout oku lahodící obrazce. Umělci je neustále vytváří rozličnými metodami. Poprvé je však veřejnosti ukázal francouzský matematik a fyzik Jules-Antoinne Lissajous v roce 1867, kdy pomocí dvou zrcadel bavil návštěvníky Světové výstavy v Paříži.\\\\\r\r\\par Lissajousovy obrazce jsou rovinné křivky, které vznikají skládáním dvou navzájem kolmých harmonických kmitavých pohybů. Tvar křivek je určen poměrem úhlových frekvencí, amplitud a velikostí počáteční fáze.\\\\\r\r\r",
+        "Type": "RealWorld",
+        "Title": "Umělec",
+        "Text": "\\par Muž vystoupil na židli a zpocenými, nervózními dlaněmi uvázal konec lana k háku trčícímu ze stropu. Zkusmo za lano zatahal. Pevné je dost, určitě udrží i sto kilogramů.\\\\\r\r\\par Seskočil ze židle. Došel k pracovnímu stolu a upil ze šálku studenou kávu.\\\\\r\r\\par Dlouho se díval na velkou plachtu pokrývající podlahu pod hákem. Rozměry jsou dostatečné. Ani kapka nedopadne na podlahu.\\\\\r\r\\par Snažil se na nic nemyslet. Přemýšlení už bylo dost, teď nastal čas činů.\\\\\r\r\\par Zhluboka se nadechl.\\\\\r\r\\par Zvedl kyblík s barvou a zavěsil ho na lano visící ze stropu. Několika energickými pohyby udělal šroubovákem do dna otvory, kterými ihned začala vytékat barva na zem. Pustil lano. To spolu s nádobou, ze které tryskala na všechny strany barva, začalo opisovat nad plátnem složité křivky, jak se kývalo ze strany na stranu, dopředu a dozadu. Barva zanechávala na plátně stopu. Kapky se odrážely, tříštily a dopadaly zpět na plátno.\\\\\r\r\\par Po nějaké době muž lano zachytil a barvu uklidil.\\\\\r\r\\par Zase se dlouze zahleděl na plátno.\\\\\r\r\\par Vzal do ruky štětec a přimaloval na obraz ohnivě červenou skvrnu.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Skládání kolmých kmitů",
+    "Title": "2. Skládání kolmých kmitů",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Lissajousovy obrazce vznikají skládáním dvou navzájem kolmých harmonických kmitavých pohybů.\\\\ ",
+        "Text": "\\par Skládáním dvou navzájem kolmých harmonických kmitání mohou vzniknout oku lahodící obrazce. Umělci je neustále vytváří rozličnými metodami. Poprvé je však veřejnosti ukázal francouzský matematik a fyzik Jules-Antoinne Lissajous v roce 1867, kdy pomocí dvou zrcadel bavil návštěvníky Světové výstavy v Paříži.\\\\\r\r\\par Lissajousovy obrazce jsou rovinné křivky, které vznikají skládáním dvou navzájem kolmých harmonických kmitavých pohybů. Tvar křivek je určen poměrem úhlových frekvencí, amplitud a velikostí počáteční fáze.\\\\",
         "IsHtml": false
       },
       {
@@ -42,14 +42,9 @@
       },
       {
         "Type": "Image",
-        "ImageName": "01.png",
+        "ImageName": "10-01.png",
+        "ImageCaption": "Obrázek č. 1: Lissajousův obrazec pro poměr frekvencí 3 : 2 a počáteční fázi 60°",
         "Title": "Obrázek č. 1"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "Obrázek č. 1 - Lissajousův obrazec pro poměr frekvencí 3 : 2 a počáteční fázi 60°.",
-        "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
@@ -62,7 +57,7 @@
           "Vznikne kružnice",
           "Vznikne elipsa",
           "Vznikne úsečka",
-          "Vznikne úsečka"
+          "Vznikne jiný geometrický útvar"
         ]
       },
       {
@@ -81,7 +76,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Historie",
+    "Title": "3. Historie",
     "Contents": [
       {
         "Type": "Text",
@@ -91,31 +86,33 @@
       },
       {
         "Type": "Image",
-        "ImageName": "02.png",
+        "ImageName": "10-02.png",
+        "ImageCaption": "Obrázek č. 2: Blackburnovo kyvadlo",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "Obrázek č. 2 - Blackburnovo kyvadlo\\\\\r\r\\par Toto kyvadlo můžeme považovat za dvě matematická kyvadla s délkami $l_1$ a $l_2$. Na konci závěsu je nádoba s pískem, ze které se sype písek a zaznamenává se tak trajektorie pohybu.\\\\\r\r\\par Skládáním dvou navzájem kolmých harmonických kmitů se v 19. století zabývali hlavně dva vědci. Americký matematik a fyzik Nathaniel Bowditch, který při studiu využíval Blackburnovo kyvadlo. Svoje poznatky publikoval již v roce 1815. Nezávisle na Bowditchovi se problémem zabýval i francouzský fyzik Jules-Antoinne Lissajous, který ke studiu využíval světelný paprsek a dvě zrcadla.\\\\\r\r",
+        "Text": "\\par Toto kyvadlo můžeme považovat za dvě matematická kyvadla s délkami $l_1$ a $l_2$. Na konci závěsu je nádoba s pískem, ze které se sype písek a zaznamenává se tak trajektorie pohybu.\\\\\r\r\\par Skládáním dvou navzájem kolmých harmonických kmitů se v 19. století zabývali hlavně dva vědci. Americký matematik a fyzik Nathaniel Bowditch, který při studiu využíval Blackburnovo kyvadlo. Svoje poznatky publikoval již v roce 1815. Nezávisle na Bowditchovi se problémem zabýval i francouzský fyzik Jules-Antoinne Lissajous, který ke studiu využíval světelný paprsek a dvě zrcadla.\\\\\r\r",
         "IsHtml": false
       },
       {
         "Type": "Image",
-        "ImageName": "03.png",
+        "ImageName": "10-03.png",
+        "ImageCaption": "Obrázek č. 3: Vykreslení Lissajousových obrazců světelným paprskem a ladičkami",
         "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "Obrázek č. 3 – vykreslení Lissajousových obrazců světelným paprskem a ladičkami.\\\\\r\r\\par Na ladičkách byla umístěna zrcadla, která na stínítko vykreslovala Lissajousovy obrazce. Francouzský fyzik tak vlastně zkonstruoval první osciloskop, který sloužil ke studiu zvuku. Jules-Antoinne Lissajous svoji práci publikoval v roce 1857. O deset let později předváděl své experimenty na Světové výstavě v Paříži.\\\\\r",
+        "Text": "\\par Na ladičkách byla umístěna zrcadla, která na stínítko vykreslovala Lissajousovy obrazce. Francouzský fyzik tak vlastně zkonstruoval první osciloskop, který sloužil ke studiu zvuku. Jules-Antoinne Lissajous svoji práci publikoval v roce 1857. O deset let později předváděl své experimenty na Světové výstavě v Paříži.\\\\\r",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Využití",
+    "Title": "4. Využití",
     "Contents": [
       {
         "Type": "Text",
@@ -127,7 +124,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Literatura",
+    "Title": "5. Literatura",
     "Contents": [
       {
         "Type": "Literature",

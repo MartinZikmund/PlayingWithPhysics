@@ -1,6 +1,6 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
@@ -12,7 +12,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "1. Stavová rovnice ideálního plynu stálé hmotnosti",
+    "Title": "2. Stavová rovnice ideálního plynu stálé hmotnosti",
     "Contents": [
       {
         "Type": "Text",
@@ -48,7 +48,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Izotermický děj s ideálním plynem",
+    "Title": "3. Izotermický děj s ideálním plynem",
     "Contents": [
       {
         "Type": "Text",
@@ -84,19 +84,14 @@
       {
         "Type": "Image",
         "ImageName": "12-01.png",
+        "ImageCaption": "Obrázek č. 1: Izotermy ideálního plynu stálé hmotnosti při různých teplotách",
         "Title": "Obrázek č. 1"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 1: Izotermy ideálního plynu stálé hmotnosti při různých teplotách\\\\",
-        "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "3. Izochorický děj s ideálním plynem",
+    "Title": "4. Izochorický děj s ideálním plynem",
     "Contents": [
       {
         "Type": "Text",
@@ -119,17 +114,12 @@
       {
         "Type": "Image",
         "ImageName": "12-02.png",
+        "ImageCaption": "Obrázek č. 2: Izochora",
         "Title": "Obrázek č. 2"
       },
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 2: Izochora\\\\",
-        "IsHtml": false
-      },
-      {
         "Type": "KnowledgeCheck",
-        "Title": "Untitled",
+        "Title": "Kontrolní otázka",
         "Question": "Vysvětlete, proč se tlak plynu stálé hmotnosti zvětší, jestliže se jeho teplota při stálém objemu zvýší? K nalezení odpovědi na otázku můžete využít webovou interaktivní simulaci, kterou naleznete na adrese https://phet.colorado.edu/sims/html/gases-intro/latest/gases-intro\\_cs.html",
         "CorrectResponse": "Dodáním tepelné energie vzroste rychlost molekul, a tím jejich kinetická energie. Srážky molekul se stěnami nádoby jsou tak silnější, což způsobí nárůst tlaku.",
         "WrongResponse": "Dodáním tepelné energie vzroste rychlost molekul, a tím jejich kinetická energie. Srážky molekul se stěnami nádoby jsou tak silnější, což způsobí nárůst tlaku.",
@@ -143,7 +133,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "4. Izobarický děj s ideálním plynem",
+    "Title": "5. Izobarický děj s ideálním plynem",
     "Contents": [
       {
         "Type": "Text",
@@ -166,17 +156,12 @@
       {
         "Type": "Image",
         "ImageName": "12-03.png",
+        "ImageCaption": "Obrázek č. 3: Izobara",
         "Title": "Obrázek č. 3"
       },
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 3: Izobara\\\\",
-        "IsHtml": false
-      },
-      {
         "Type": "Tasks",
-        "Title": "Untitled",
+        "Title": "Úloha",
         "HasNumericInput": true,
         "Unit": "°C",
         "Placeholder": null,
@@ -193,7 +178,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "5. Poissonova konstanta",
+    "Title": "6. Poissonova konstanta",
     "Contents": [
       {
         "Type": "Text",
@@ -205,24 +190,19 @@
     "Type": "Chapter"
   },
   {
-    "Title": "6. Adiabatický děj s ideálním plynem",
+    "Title": "7. Adiabatický děj s ideálním plynem",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Při adiabatickém ději s ideálním plynem nedochází k tepelné výměně mezi plynem a okolím. Při tomto ději je tedy $Q=$ 0 J, a tak z prvního termodynamického zákona $\\Delta U=Q+W$ dostáváme $\\Delta U=W$.\\\\\r\r\\par Mohou tedy nastat následující situace:\\\\\r• Adiabatická komprese - při adiabatickém stlačení plynu v nádobě se působením vnější síly na píst koná práce a teplota plynu a jeho vnitřní energie se zvyšuje.\\\\\r• Adiabatická expanze - při adiabatickém rozpínání koná práci plyn a teplota plynu a jeho vnitřní energie se při tom zmenšuje.\\\\\r\r\\par Pro adiabatický děj s ideálním plynem platí Poissonův zákon:$$p_1V_1^\\kappa = p_2V_2^\\kappa ,$$což lze zapsat jako$$pV^\\kappa = \\mathrm{konst}.$$\\\\$\\kappa$ [kappa] je Poissonova konstanta.\\\\\r\r\\par Graf vyjadřující tlak plynu stálé hmotnosti jako funkci jeho objemu při adiabatickém ději se nazývá adiabata. Adiabata klesá vždy strměji než izoterma téhož plynu stejné hmotnosti.\\\\",
+        "Text": "\\par Při adiabatickém ději s ideálním plynem nedochází k tepelné výměně mezi plynem a okolím. Při tomto ději je tedy $Q=$ 0 J, a tak z prvního termodynamického zákona $\\Delta U=Q+W$ dostáváme $\\Delta U=W$.\\\\\r\r\\par Mohou tedy nastat následující situace:\\\\\r• Adiabatická komprese - při adiabatickém stlačení plynu v nádobě se působením vnější síly na píst koná práce a teplota plynu a jeho vnitřní energie se zvyšuje.\\\\\r• Adiabatická expanze - při adiabatickém rozpínání koná práci plyn a teplota plynu a jeho vnitřní energie se při tom zmenšuje.\\\\\r\r\\par Pro adiabatický děj s ideálním plynem platí Poissonův zákon:$$p_1V_1^\\kappa =p_2V_2^\\kappa ,$$což lze zapsat jako$$pV^\\kappa =\\mathrm{konst}.$$\\\\$\\kappa$ [kappa] je Poissonova konstanta.\\\\\r\r\\par Graf vyjadřující tlak plynu stálé hmotnosti jako funkci jeho objemu při adiabatickém ději se nazývá adiabata. Adiabata klesá vždy strměji než izoterma téhož plynu stejné hmotnosti.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "12-04.png",
+        "ImageCaption": "Obrázek č. 4: Adiabata (a) klesá strměji než izoterma (i) téhož plynu stejné hmotnosti",
         "Title": "Obrázek č. 4"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 4: Adiabata (a) klesá strměji než izoterma (i) téhož plynu stejné hmotnosti.\\\\",
-        "IsHtml": false
       },
       {
         "Type": "AdditionalResources",
@@ -246,7 +226,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "7. Práce vykonaná plynem při stálém a proměnném tlaku",
+    "Title": "8. Práce vykonaná plynem při stálém a proměnném tlaku",
     "Contents": [
       {
         "Type": "Text",
@@ -257,12 +237,13 @@
       {
         "Type": "Image",
         "ImageName": "12-05.png",
+        "ImageCaption": "Obrázek č. 5: Práce plynu při izobarickém ději",
         "Title": "Obrázek č. 5"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 5: Práce plynu při izobarickém ději\\\\\r\r\\par Pokud je tlak plynu $p$ stálý, je děj izobarický a tlaková síla o velikosti $F=pS$ působící na píst o obsahu $S$ je také stálá. Při posunutí pístu o délku $\\Delta s$ vykoná plyn práci $W=F\\Delta s=pS\\Delta s$ a úpravou dostaneme$$W=p\\Delta V,$$kde $V=S\\Delta s=V_2-V_1$ je změna objemu plynu.\\\\",
+        "Text": "\\par Pokud je tlak plynu $p$ stálý, je děj izobarický a tlaková síla o velikosti $F=pS$ působící na píst o obsahu $S$ je také stálá. Při posunutí pístu o délku $\\Delta s$ vykoná plyn práci $W=F\\Delta s=pS\\Delta s$ a úpravou dostaneme$$W=p\\Delta V,$$kde $V=S\\Delta s=V_2-V_1$ je změna objemu plynu.\\\\",
         "IsHtml": false
       },
       {
@@ -280,24 +261,20 @@
       {
         "Type": "Image",
         "ImageName": "12-06.png",
+        "ImageCaption": "Obrázek č. 6: Pracovní diagram pro izobarický děj",
         "Title": "Obrázek č. 6"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 6: Pracovní diagram pro izobarický děj\\\\\r\r\\par Izobarický děj je znázorněn izobarou 1-2. Z předchozího vztahu plyne, že práce vykonaná plynem při izobarickém ději, při kterém plyn přejde ze stavu A do stavu B, je znázorněna obsahem obdélníku ležícího v p, V diagramu pod izobarou 1-2. Proto je tento diagram nazýván jako pracovní diagram.\\\\\r\r\\par V případě, že při nárůstu objemu plynu je tlak proměnný, například při izotermickém nebo adiabatickém ději, není tlaková síla působící na píst stálá. V takovém případě by p-V diagram vypadal jako na následujícím obrázku.\\\\\r",
+        "Text": "\\par Izobarický děj je znázorněn izobarou 1-2. Z předchozího vztahu plyne, že práce vykonaná plynem při izobarickém ději, při kterém plyn přejde ze stavu A do stavu B, je znázorněna obsahem obdélníku ležícího v p, V diagramu pod izobarou 1-2. Proto je tento diagram nazýván jako pracovní diagram.\\\\\r\r\\par V případě, že při nárůstu objemu plynu je tlak proměnný, například při izotermickém nebo adiabatickém ději, není tlaková síla působící na píst stálá. V takovém případě by p-V diagram vypadal jako na následujícím obrázku.\\\\\r",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "12-07.png",
+        "ImageCaption": "Obrázek č. 7: Pracovní diagram při ději s proměnným tlakem",
         "Title": "Obrázek č. 7"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 7: Pracovní diagram při ději s proměnným tlakem\\\\",
-        "IsHtml": false
       },
       {
         "Type": "ToRemember",
@@ -328,7 +305,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "8. Cyklický děj",
+    "Title": "9. Cyklický děj",
     "Contents": [
       {
         "Type": "Text",
@@ -339,12 +316,13 @@
       {
         "Type": "Image",
         "ImageName": "12-08.png",
+        "ImageCaption": "Obrázek č. 8: a) Cyklický děj, b) Pracovní diagram pro cyklický děj",
         "Title": "Obrázek č. 8"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 8: a) Cyklický děj, b) Pracovní diagram pro cyklický děj\\\\\r\r\\par Práce, kterou vykoná plyn při zvětšování objemu ze stavu 1 do stavu 2, je znázorněna obsahem plochy v pracovním diagramu pod křivkou 1A2. A práce, jakou musíme dodat plynu při stlačení (kompresi), abychom ho dostali ze stavu B do stavu A, je znázorněna obsahem plochy pod křivkou 2B1. Rozdíl obsahů obou ploch je roven obsahu plochy omezené křivkou 1A2B1.\\\\",
+        "Text": "\\par Práce, kterou vykoná plyn při zvětšování objemu ze stavu 1 do stavu 2, je znázorněna obsahem plochy v pracovním diagramu pod křivkou 1A2. A práce, jakou musíme dodat plynu při stlačení (kompresi), abychom ho dostali ze stavu B do stavu A, je znázorněna obsahem plochy pod křivkou 2B1. Rozdíl obsahů obou ploch je roven obsahu plochy omezené křivkou 1A2B1.\\\\",
         "IsHtml": false
       },
       {
@@ -376,7 +354,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "9. Druhý termodynamický zákon",
+    "Title": "10. Druhý termodynamický zákon",
     "Contents": [
       {
         "Type": "Text",
@@ -399,13 +377,8 @@
       {
         "Type": "Image",
         "ImageName": "12-09.png",
+        "ImageCaption": "Obrázek č. 9: Schéma činnosti cyklicky pracujícího tepelného stroje",
         "Title": "Obrázek č. 9"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 9: Schéma činnosti cyklicky pracujícího tepelného stroje\\\\",
-        "IsHtml": false
       },
       {
         "Type": "ToRemember",
@@ -416,13 +389,8 @@
       {
         "Type": "Image",
         "ImageName": "12-10.png",
+        "ImageCaption": "Obrázek č. 10: Druhý termodynamický zákon říká, že tepelný stroj pracující podle tohoto schématu neexistuje",
         "Title": "Obrázek č. 10"
-      },
-      {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek 10: Druhý termodynamický zákon říká, že tepelný stroj pracující podle tohoto schématu neexistuje.\\\\",
-        "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
@@ -454,7 +422,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "10. Stirlingův motor",
+    "Title": "11. Stirlingův motor",
     "Contents": [
       {
         "Type": "Text",
@@ -465,19 +433,20 @@
       {
         "Type": "Image",
         "ImageName": "12-11.png",
+        "ImageCaption": "Obrázek 11: Pracovní p-V diagram Stirlingova motoru",
         "Title": "Obrázek č. 11"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek 11: Pracovní $p$-$V$ diagram Stirlingova motoru\\\\\r\r\\par Teoretická nejvyšší účinnost motoru odpovídá hodnotě účinnosti Carnotova cyklu:$$\\eta_{max}=\\frac{T_1-T_2}{T_1},$$kde $T_1$ je teplota ohřívače a $T_2$ je teplota chladiče.\\\\",
+        "Text": "\\par Teoretická nejvyšší účinnost motoru odpovídá hodnotě účinnosti Carnotova cyklu:$$\\eta_{max}=\\frac{T_1-T_2}{T_1},$$kde $T_1$ je teplota ohřívače a $T_2$ je teplota chladiče.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Zdroje",
+    "Title": "12. Literatura",
     "Contents": [
       {
         "Type": "Literature",
