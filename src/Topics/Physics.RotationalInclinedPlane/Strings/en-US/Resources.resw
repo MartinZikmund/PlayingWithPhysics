@@ -129,7 +129,7 @@ Graphics: Petr Weinlich</value>
     <value>Playing with Physics: Rolling on Inclined Plane</value>
   </data>
   <data name="BestScore" xml:space="preserve">
-    <value>Best score</value>
+    <value>Best time</value>
   </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Full cylinder</value>

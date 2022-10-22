@@ -425,7 +425,7 @@
 						<ColumnDefinition Width="200" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="LightSlateGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
+					<TextBlock Text="{xaml:Localize Key=BestScore}" Foreground="LightSlateGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="45" FontFamily="Consolas" TextWrapping="Wrap" />
 					<TextBlock Grid.Column="1" Text="{x:Bind Model.GameInfo.BestTimeText, Mode=OneWay}" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Consolas" TextWrapping="Wrap" />
 				</Grid>
 				
