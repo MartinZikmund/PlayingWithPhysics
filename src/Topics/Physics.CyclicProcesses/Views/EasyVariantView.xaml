@@ -105,7 +105,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				<TextBlock Margin="20" Text="{Binding ElementName=AnimationSelection, Path=SelectedItem}" Style="{ThemeResource HeaderTextBlockStyle}" />
+				<TextBlock Margin="20" Text="{Binding ElementName=AnimationSelection, Path=SelectedItem, Converter={StaticResource EnumLocalizationConverter}}" Style="{ThemeResource HeaderTextBlockStyle}" />
 				<MediaPlayerElement Grid.Row="1" Background="White" x:Name="Player" AreTransportControlsEnabled="True">
 					<MediaPlayerElement.TransportControls>
 						<MediaTransportControls
