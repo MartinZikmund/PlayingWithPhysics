@@ -129,7 +129,7 @@ Grafika: Petr Weinlich</value>
     <value>Hrátky s fyzikou: Valivý pohyb těles po nakloněné rovině</value>
   </data>
   <data name="BestScore" xml:space="preserve">
-    <value>Nejlepší skóre</value>
+    <value>Nejlepší čas</value>
   </data>
   <data name="BodyType_FullCylinder" xml:space="preserve">
     <value>Válec</value>
