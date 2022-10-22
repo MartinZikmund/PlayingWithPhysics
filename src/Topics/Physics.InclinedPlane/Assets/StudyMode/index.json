@@ -1,44 +1,58 @@
 [
   {
-    "Title": "Translační pohyb tělesa po nakloněné rovině",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "Úvod",
-        "Text": "\\par \\textit{Přes ledové koryto se převalují cáry mlhy. Ocelová lyže zapadá do žlábku. Okamžik krátkého soustředění. Jezdec se rozbíhá a naskakuje na skeleton. Saně nabírají rychlost a řítí se do první zatáčky. Přetížení závodníka zatlačí do desky, na které leží. A saně stále zrychlují.\\\\\r\r\\par Je rok 2002 a skeleton se po 54 letech vrátil na program zimních olympijských her. Josef Chuchla zkušeně udržuje ideální stopu a řítí se ze svahu. Podaří se mu vklínit mezi světovou elitu?}\\\\\r\r\\par Na těleso pohybující se po nakloněné působí vedle síly tíhové i síla třecí. Jak bude vypadat pohyb po nakloněné rovině?\\\\",
+        "Title": "Skeleton",
+        "Text": "\\par Přes ledové koryto se převalují cáry mlhy. Ocelová lyže zapadá do žlábku. Okamžik krátkého soustředění. Jezdec se rozbíhá a naskakuje na skeleton. Saně nabírají rychlost a řítí se do první zatáčky. Přetížení závodníka zatlačí do desky, na které leží. A saně stále zrychlují.\\\\\r\r\\par Je rok 2002 a skeleton se po 54 letech vrátil na program zimních olympijských her. Josef Chuchla zkušeně udržuje ideální stopu a řítí se ze svahu. Podaří se mu vklínit mezi světovou elitu?\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "1. Nakloněná rovina bez třecí síly",
+    "Title": "2. Translační pohyb tělesa po nakloněné rovině",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "\\par Za těchto podmínek bude těleso pokaždé zrychlovat z nakloněné roviny dolů, protože tření zanedbáváme.\\\\\r\r\\par Pro naše účely plně postačí nakloněná rovina, která svírá s vodorovným směrem úhel α a je umístěná v homogenním tíhovém poli. Na těleso na této nakloněné rovině potom působí dvě síly.\\\\1. Tíhová síla $\\vec{F_G}$\\\\2. Reakční síla nakloněné roviny $\\vec{F_R}$ - tato síla je kolmá na nakloněnou rovinu.\\\\",
+        "Title": "Text",
+        "Text": "\\par Na těleso pohybující se po nakloněné působí vedle síly tíhové i síla třecí. Jak bude vypadat pohyb po nakloněné rovině?\\\\",
+        "IsHtml": false
+      }
+    ],
+    "Type": "Chapter"
+  },
+  {
+    "Title": "3. Nakloněná rovina bez třecí síly",
+    "Contents": [
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Za těchto podmínek bude těleso pokaždé zrychlovat z nakloněné roviny dolů, protože tření zanedbáváme.\\\\\r\r\\par Pro naše účely plně postačí nakloněná rovina, která svírá s vodorovným směrem úhel $α$ a je umístěná v homogenním tíhovém poli. Na těleso na této nakloněné rovině potom působí dvě síly.\\\\1. Tíhová síla $\\vec{F_G}$\\\\2. Reakční síla nakloněné roviny $\\vec{F_R}$ - tato síla je kolmá na nakloněnou rovinu.\\\\",
+        "IsHtml": false
+      },
+      {
+        "Type": "Image",
+        "ImageName": "04-01.png",
+        "ImageCaption": "Obrázek č. 1: Síly na nakloněné rovině bez tření",
+        "Title": "Obrázek č. 1"
+      },
+      {
+        "Type": "Text",
+        "Title": "Text",
+        "Text": "\\par Prozatím neuvažujeme žádné jiné síly působící na těleso. Za této podmínky síla uvádějící těleso do pohybu je síla pohybová $\\vec{F_p}$, jejíž směr je rovnoběžný s nakloněnou rovinou. Reakční síla je právě tak velká, že pohybová síla má právě směr rovnoběžný s rovinou.\\\\\r\r\\par Platí vztah $\\vec{F_p}=\\vec{F_G}+\\vec{F_R}$",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "04-02.png",
+        "ImageCaption": "Obrázek č. 2: Síly na nakloněné rovině bez tření",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
-        "Text": "\\par Prozatím neuvažujeme žádné jiné síly působící na těleso. Za této podmínky síla uvádějící těleso do pohybu je síla pohybová $\\vec{F_p}$, jejíž směr je rovnoběžný s nakloněnou rovinou. Reakční síla je právě tak velká, že pohybová síla má právě směr rovnoběžný s rovinou.\\\\Platí vztah $\\vec{F_p}=\\vec{F_G}+\\vec{F_R}$",
-        "IsHtml": false
-      },
-      {
-        "Type": "Image",
-        "ImageName": "04-03.png",
-        "Title": "Obrázek č. 3"
-      },
-      {
-        "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Pohybovou sílu $\\vec{F_p}$ lze ovšem vyjádřit i tak, že tíhovou sílu $\\vec{F_G}$ rozložíme na dvě navzájem kolmé složky. První $\\vec{F_p}$, která uvádí těleso na nakloněné rovině do pohybu, a na normálovou sílu $\\vec{F_n}$, která je vždy kolmá k podložce.\\\\\r\r\\par Z matematického hlediska bude tato situace jednodušší, protože využijeme pravý spodní pravoúhlý trojúhelník a goniometrické funkce. Úhel $α$, tedy úhel sklonu nakloněné roviny v něm najdeme mezi silami $\\vec{F_G}$ a $\\vec{F_n}$ a strana trojúhelníku proti úhlu α je vlastně síla $\\vec{F_p}$.\\\\\r\r\\par Velikost obou sil vyjádříme $$F_p=F_G\\cdot \\sin{α}$$ $$F_n=F_G\\cdot \\cos{α}$$\\\\\r\r\\par Síla $F_n$ je vyrovnána reakční silou podložky (nakloněné roviny) a nemá tedy pohybový účinek na těleso. Využijeme ji později v pokročilé obtížnosti na výpočet třecí síly.\\\\",
         "IsHtml": false
       },
@@ -58,7 +72,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Untitled",
+        "Title": "Text",
         "Text": "\\par Síla $F_p$ je zde silou, která uděluje tělesu na nakloněné rovině zrychlení $a$. Platí tedy podle druhého Newtonova pohybového zákona $F_p=m\\cdot a$. Dosadíme-li do výše uvedeného vztahu pro $F_p$, získáváme rovnici $m\\cdot a=m\\cdot g\\cdot \\sin{α}$, kde vydělením rovnice hmotností dostaneme vztah pro zrychlení tělesa při pohybu z nakloněné roviny dolů $a=g\\cdot \\sin{α}$\\\\ ",
         "IsHtml": false
       },
@@ -75,9 +89,9 @@
         ]
       },
       {
-        "Type": "Text",
+        "Type": "AdditionalResources",
         "Title": "K zamyšlení",
-        "Text": "K zamyšlení\\\\\r\r\\par Jelikož se v tomto modelu neuvažuje o tření ani o odporu prostředí, ve kterém se těleso pohybuje, reálně se s tímto typem pohybu v praxi asi nesetkáme. Jedná se však o model, který představuje základní principy, které ovlivňují chování těles na nakloněné rovině. Přibližně bychom ho mohli využít při pohybu těles malými rychlostmi či ve vakuu po velmi kluzkých plochách.\\\\\r\r\\par Nakloněná rovina byla v minulosti některými vědci využita k „sestavení“ perpetuum mobile. Rozborem sil na rovnováhy na nakloněné rovině se zabýval vlámský fyzik Simon Stevin (1548-1620). Z jeho myšlenkového experimentu vycházejí některá videa na internetu, která podávají „důkaz“ o realizaci těchto dokonalých strojů. Dokážete také vytvořit takové trikové video?\\\\ \r",
+        "Text": "\\par Jelikož se v tomto modelu neuvažuje o tření ani o odporu prostředí, ve kterém se těleso pohybuje, reálně se s tímto typem pohybu v praxi asi nesetkáme. Jedná se však o model, který představuje základní principy, které ovlivňují chování těles na nakloněné rovině. Přibližně bychom ho mohli využít při pohybu těles malými rychlostmi či ve vakuu po velmi kluzkých plochách.\\\\\r\r\\par Nakloněná rovina byla v minulosti některými vědci využita k „sestavení“ perpetuum mobile. Rozborem sil na rovnováhy na nakloněné rovině se zabýval vlámský fyzik Simon Stevin (1548-1620). Z jeho myšlenkového experimentu vycházejí některá videa na internetu, která podávají „důkaz“ o realizaci těchto dokonalých strojů. Dokážete také vytvořit takové trikové video?\\\\ \r",
         "IsHtml": false
       },
       {
@@ -90,28 +104,23 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Nakloněná rovina s třecí silou",
+    "Title": "4. Nakloněná rovina s třecí silou",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Pohybový stav tělesa",
-        "Text": "\\par Pohybový stav tělesa bude nyní záviset na vzájemné velikosti pohybové síly $F_p$ a velikosti třecí síly $F_t$. Z hlediska pohybu tělesa mohou nastat následující tři možnosti:\\\\1. Těleso bude zrychlovat z nakloněné roviny dolů se stálým zrychlením $a$, protože $F_p>F_t$.\\\\2. Těleso se nebude pohybovat, protože $F_p<F_t$. Uvedeme-li těleso do pohybu, tak se těleso zastaví se zrychlením $–a$ (resp. se zpomalením $a$)\\\\3. Těleso se nebude pohybovat, protože $F_p=F_t$. Uvedeme-li těleso do pohybu, tak se bude pohybovat rovnoměrným pohybem stálou rychlostí.",
-        "IsHtml": false
-      },
-      {
-        "Type": "Text",
-        "Title": "Fp>Ft (1)",
-        "Text": "\\par Pohybová síla bude větší než síla třecí ($F_p>F_t$) - těleso bude zrychlovat z nakloněné roviny dolů se stálým zrychlením $a$.\\\\",
+        "Title": "Text",
+        "Text": "\\par Pohybový stav tělesa bude nyní záviset na vzájemné velikosti pohybové síly $F_p$ a velikosti třecí síly $F_t$. Z hlediska pohybu tělesa mohou nastat následující tři možnosti:\\\\1. Těleso bude zrychlovat z nakloněné roviny dolů se stálým zrychlením $a$, protože $F_p>F_t$.\\\\2. Těleso se nebude pohybovat, protože $F_p<F_t$. Uvedeme-li těleso do pohybu, tak se těleso zastaví se zrychlením $–a$ (resp. se zpomalením $a$)\\\\3. Těleso se nebude pohybovat, protože $F_p=F_t$. Uvedeme-li těleso do pohybu, tak se bude pohybovat rovnoměrným pohybem stálou rychlostí.\\\\\r\r\\par Pohybová síla bude větší než síla třecí ($F_p>F_t$) - těleso bude zrychlovat z nakloněné roviny dolů se stálým zrychlením $a$.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
-        "ImageName": "04-04.png",
-        "Title": "Obrázek č. 4"
+        "ImageName": "04-03.png",
+        "ImageCaption": "Obrázek č. 3: Síly na nakloněné rovině včetně třecí síly",
+        "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
-        "Title": "Fp>Ft (2)",
+        "Title": "Text",
         "Text": "\\par Rozklad tíhové síly na dvě navzájem kolmé složky použitý výše je užitečný zejména v případě, kdy budeme uvažovat také sílu smykového tření, která působí mezi tělesem na nakloněné rovině a touto nakloněnou rovinou. Třecí síla působí vždy proti směru pohybu tělesa a leží ve styčných plochách obou těles. Těleso na nakloněné rovině, na které působí i třecí síla, je zobrazeno na obrázku, na kterém je ale pro zvýšení přehlednosti zobrazena třecí síla mimo styčné plochy těles.\\\\\r\r\\par Velikost třecí síly vyjádříme vztahem$$F_t=f\\cdot{F_n},$$kde $f$ je součinitel smykového tření mezi tělesem a nakloněnou rovinou. S využitím vztahu pro výpočet normálové síly $F_n=F_G\\cdot\\cos{α}$ můžeme velikost třecí síly působící na těleso na nakloněné rovině psát ve tvaru $$F_t=f\\cdot F_G\\cdot \\cos{α}$$.",
         "IsHtml": false
       },
@@ -130,7 +139,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Fp>Ft (3)",
+        "Title": "Text",
         "Text": "\\par V případě, že $F_p>F_t$ je výsledná síla $F$ působící na těleso nenulová a v tomto případě míří ve směru pohybu tělesa. Pro velikost této výslednice tedy můžeme psát vztah $F=F_p-F_t$. Podle druhého Newtonova zákona tedy dostáváme $F_p-F_t=m\\cdot a$ a dosazením za $F_p$ a $F_t$ dostaneme vztah $m\\cdot g\\cdot \\sin{α}-f\\cdot m\\cdot g\\cdot \\cos{α}=m\\cdot a$. Vydělením hmotností m obdržíme vztah pro zrychlení tělesa na nakloněné rovině se zohledněnou třecí silou jako $$a=g\\cdot (\\sin{α}-f\\cdot \\cos{α})$$\\\\\r\r\\par Je patrné, že i když uvažujeme třecí síly působící mezi tělesem na nakloněné rovině a touto rovinou, nezávisí velikost zrychlení tohoto tělesa pohybujícího se po nakloněné rovině na hmotnosti. Závisí pouze na sklonu nakloněné roviny a na součiniteli smykového tření.\\\\\r",
         "IsHtml": false
       },
@@ -149,14 +158,8 @@
       },
       {
         "Type": "Text",
-        "Title": "Fp>Ft (4)",
-        "Text": "\\par Rychlost na konci pohybu na nakloněné rovině vyjádříme vztahem $v=a\\cdot t$, kde $a$ je zrychlení a $t$ je doba pohybu. Po dosazení dostaneme vztah pro rychlost na konci nakloněné roviny$$v=g\\cdot (\\sin{α}-f\\cdot \\cos{α})\\sqrt{\\frac{2d}{a}}$$\\\\ ",
-        "IsHtml": false
-      },
-      {
-        "Type": "Text",
-        "Title": "Fp<Ft",
-        "Text": "\\par Pohybová síla bude menší než třecí síla  ($F_p<F_t$) - těleso se nebude pohybovat nebo se bude pohybovat zpomaleným pohybem.\\\\\r\r\\par Pokud $F_p-F_t<0$, tedy $F_p<F_t$, je výsledná síla $F_v$ působící na těleso rovna rozdílu $F_v=F_t-F_p$ a působí po nakloněné rovině proti směru pohybu. Těleso, které bylo v klidu, v klidu zůstává. Těleso, které bylo na vrcholu nakloněné roviny uvedené do pohybu, by se pohybovalo se zrychlením, které míří proti směru pohybu; těleso by tedy zpomalovalo. Tření mezi nakloněnou rovinou a tělesem je tak velké (resp. úhel sklonu nakloněné roviny tak malý), že se těleso prostě samovolně nerozjede. Pohybující se těleso se vlivem tření zastaví.\\\\\r\r\\par Aby se těleso pohybovalo, je třeba ho uvést do pohybu rychlostí $v_0$, ze které těleso pak zastaví vlivem síly $F_v$ se zpomalením $a$. Toto zpomalení dostaneme dosazením a následnou úpravou vztahu $F_v=F_t-F_p$:$$a=g\\cdot (f\\cdot \\cos{a}-\\sin{a})$$\\\\\r\r\\par Můžeme také odvodit vztah pro velikost rychlosti, kterou musíme tělesu udělit, aby se pohybovalo rovnoměrně zpožděným pohybem po dobu $\\Delta{t}$.$$v_0=a\\cdot \\Delta{t}.$$Po době $\\Delta{t}$ se tak rychlost tělesa sníží na nulu a těleso zastaví.",
+        "Title": "Text",
+        "Text": "\\par Rychlost na konci pohybu na nakloněné rovině vyjádříme vztahem $v=a\\cdot t$, kde $a$ je zrychlení a $t$ je doba pohybu. Po dosazení dostaneme vztah pro rychlost na konci nakloněné roviny$$v=g\\cdot (\\sin{α}-f\\cdot \\cos{α})\\sqrt{\\frac{2d}{a}}$$\\\\ \r\r\\par Pohybová síla bude menší než třecí síla  ($F_p<F_t$) - těleso se nebude pohybovat nebo se bude pohybovat zpomaleným pohybem.\\\\\r\r\\par Pokud $F_p-F_t<0$, tedy $F_p<F_t$, je výsledná síla $F_v$ působící na těleso rovna rozdílu $F_v=F_t-F_p$ a působí po nakloněné rovině proti směru pohybu. Těleso, které bylo v klidu, v klidu zůstává. Těleso, které bylo na vrcholu nakloněné roviny uvedené do pohybu, by se pohybovalo se zrychlením, které míří proti směru pohybu; těleso by tedy zpomalovalo. Tření mezi nakloněnou rovinou a tělesem je tak velké (resp. úhel sklonu nakloněné roviny tak malý), že se těleso prostě samovolně nerozjede. Pohybující se těleso se vlivem tření zastaví.\\\\\r\r\\par Aby se těleso pohybovalo, je třeba ho uvést do pohybu rychlostí $v_0$, ze které těleso pak zastaví vlivem síly $F_v$ se zpomalením $a$. Toto zpomalení dostaneme dosazením a následnou úpravou vztahu $F_v=F_t-F_p$:$$a=g\\cdot (f\\cdot \\cos{a}-\\sin{a})$$\\\\\r\r\\par Můžeme také odvodit vztah pro velikost rychlosti, kterou musíme tělesu udělit, aby se pohybovalo rovnoměrně zpožděným pohybem po dobu $\\Delta{t}$.$$v_0=a\\cdot \\Delta{t}.$$Po době $\\Delta{t}$ se tak rychlost tělesa sníží na nulu a těleso zastaví.\\\\",
         "IsHtml": false
       },
       {
@@ -175,7 +178,7 @@
       },
       {
         "Type": "Text",
-        "Title": "Fp=Ft",
+        "Title": "Text",
         "Text": "\\par Pohybová síla bude stejně velká jako síla třecí ($F_p=F_t$) - těleso se nebude pohybovat nebo se bude pohybovat rovnoměrným pohybem.\\\\\r\r\\par Pokud $F_p-F_t=0$, tedy $F_p=F_t$, je výsledná síla $F_v$ působící na těleso nulová. Těleso tedy bude v souladu s prvním Newtonovým pohybovým zákonem v klidu. Nebo tělesu můžeme udělit rychlost a těleso se s touto rychlostí bude rovnoměrným pohybem pohybovat po nakloněné rovině dolů. Každopádně je i velikost zrychlení tělesa v tomto případě nulová.\\\\\r\rK zamyšlení\\\\\r\r\\par Třecí síla spolu s odporem prostředí zpomaluje pohyb tělesa po nakloněné rovině. Pro malé rychlosti můžeme považovat součinitel smykového tření za konstantní a současně zanedbat odpor prostředí (vzduchu). To nám zjednodušuje úvahy a výpočty.\\\\\r\r\\par Tato zjednodušení však musíme mít vždy na paměti a podle situace využívat buď jednodušší či komplikovanější způsoby modelování pohybu těles na nakloněné rovině. Při rozboru sjezdu lyžaře ze svahu či pohybu skeletonisty závodní dráhou tak musíme počítat i s výrazným vlivem odporu vzduchu.\\\\\r\r\\par Tato aplikace nemodeluje pohyb těles v odporujícím prostředí.\r",
         "IsHtml": false
       },
@@ -195,12 +198,13 @@
     "Type": "Chapter"
   },
   {
-    "Title": "3. Dojezd po vodorovné rovině po dokončení translačního pohybu na nakloněné rovině",
+    "Title": "5. Dojezd po vodorovné rovině po dokončení translačního pohybu na nakloněné rovině",
     "Contents": [
       {
         "Type": "Image",
-        "ImageName": "04-05.png",
-        "Title": "Obrázek č. 5"
+        "ImageName": "04-04.png",
+        "ImageCaption": "Obrázek č. 4: Nakloněná rovina s dojezdem",
+        "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
@@ -231,7 +235,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "4. Závislost tangenty úhlu na zrychlení",
+    "Title": "6. Závislost tangenty úhlu na zrychlení",
     "Contents": [
       {
         "Type": "Text",
@@ -254,9 +258,9 @@
         "Tolerance": 1.0
       },
       {
-        "Type": "Text",
+        "Type": "AdditionalResources",
         "Title": "K zamyšlení",
-        "Text": "K zamyšlení\\\\\r\r\\par Tření je tečná síla, která vzniká v místě dotyku dvou těles a která působí vždy proti směru pohybu či proti změně klidového stavu. U smykového tření rozeznáváme dva typy tření: statické (klidové) a dynamické (za pohybu).\\\\\r\r\\par Obě se liší hodnotou součinitele tření. U smykového tření součinitel nazýváme součinitel smykového tření a u klidového tření ho nazýváme součinitel klidového tření.\\\\\r\r\\par Aplikace pracuje z důvodu jednoduchosti modelu s hodnotami dynamického součinitele smykového tření.\r",
+        "Text": "\\par Tření je tečná síla, která vzniká v místě dotyku dvou těles a která působí vždy proti směru pohybu či proti změně klidového stavu. U smykového tření rozeznáváme dva typy tření: statické (klidové) a dynamické (za pohybu).\\\\\r\r\\par Obě se liší hodnotou součinitele tření. U smykového tření součinitel nazýváme součinitel smykového tření a u klidového tření ho nazýváme součinitel klidového tření.\\\\\r\r\\par Aplikace pracuje z důvodu jednoduchosti modelu s hodnotami dynamického součinitele smykového tření.\\\\",
         "IsHtml": false
       },
       {
@@ -269,23 +273,23 @@
     "Type": "Chapter"
   },
   {
-    "Title": "5. Energetická bilance translačního pohybu na nakloněné rovině",
+    "Title": "7. Energetická bilance translačního pohybu na nakloněné rovině",
     "Contents": [
       {
         "Type": "Text",
-        "Title": "Úvod",
+        "Title": "Text",
         "Text": "\\par Při translačním pohybu na nakloněné rovině je třeba z hlediska energetické přeměny rozlišit případ, kdy tření neuvažujeme a kdy počítáme i se třením.\\\\\r",
         "IsHtml": false
       },
       {
         "Type": "Text",
-        "Title": "1. Bez tření",
+        "Title": "Text",
         "Text": "1. Bez tření\\\\\r\r\\par V tomto případě má těleso na začátku pohybu potenciální energii, kterou určíme ze vztahu $$E_p=mgh,$$kde $m$ je hmotnost tělesa, $g$ je tíhové zrychlení a $h$ je výška nakloněné roviny.\\\\\r\r\\par Během pohybu se tato pohybová energie přeměňuje na energii kinetickou $E_k$ a platí zákon zachování mechanické energie $$E=E_p+E_k,$$kde $$E_k=\\frac{mv^2}{2}.$$Na konci nakloněné roviny je díky nulové výšce $E_p$ nulová a hodnota $E_k$ je stejná jako byla hodnota $E_p$ na začátku pohybu, když se těleso nacházelo nahoře na začátku nakloněné roviny. ",
         "IsHtml": false
       },
       {
         "Type": "Text",
-        "Title": "2. Se třením",
+        "Title": "Text",
         "Text": "2. Se třením\\\\\r\r\\par V tomto případě se část energie, kterou má těleso před začátkem pohybu nahoře na nakloněné rovině vlivem tření přemění na vnitřní energii tělesa $U$, která uniká do okolí jako tepelná energie. Na konci pohybu tedy platí$$E_p=E_k+U.$$\\\\\r\r\\par Zákon zachování mechanické energie tedy musíme zobecnit na zákon zachování energie tím, že do součtu přidáme vnitřní energii tělesa. Platí tedy zákon zachování energie v následující podobě$$E=E_p+E_k+U.$$\\\\",
         "IsHtml": false
       },
@@ -304,26 +308,26 @@
         "Tolerance": 0.5
       },
       {
-        "Type": "Text",
+        "Type": "RealWorld",
         "Title": "Z praxe",
-        "Text": "Důkazem přeměny pohybové energie tělesa na vnitřní je zahřívání těles, které po sobě kloužou. Pneumatiky auta ve smyku se tak mohou natavit a zanechat po sobě charakteristickou stopu. Policisté vyšetřující nehodu tak mohou z délky brzdné stopy přibližně určit rychlost, se kterou se automobil pohyboval.",
+        "Text": "\\par Důkazem přeměny pohybové energie tělesa na vnitřní je zahřívání těles, které po sobě kloužou. Pneumatiky auta ve smyku se tak mohou natavit a zanechat po sobě charakteristickou stopu. Policisté vyšetřující nehodu tak mohou z délky brzdné stopy přibližně určit rychlost, se kterou se automobil pohyboval.\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Použité zdroje",
+    "Title": "8. Literatura",
     "Contents": [
       {
         "Type": "Literature",
-        "Title": "Použité zdroje",
+        "Title": "Použitá literatura",
         "Text": "\\par SVOBODA, Emanuel. Přehled středoškolské fyziky. 5., přeprac. vyd. Praha: Prometheus, 2014. ISBN 978-80-7196-438-4.\\\\\r\r\\par Nakloněná rovina. Encyklopedie fyziky [online]. Jaroslav Reichl, Martin Všetička, 2006 [cit. 2020-07-01]. Dostupné z: http://fyzika.jreichl.com/main.article/view/98-naklonena-rovina\\\\\r\r\\par Těleso na nakloněné rovině. Encyklopedie fyziky [online]. Jaroslav Reichl, Martin Všetička, 2006 [cit. 2020-07-01]. Dostupné z: http://fyzika.jreichl.com/main.article/view/1540-teleso-na-naklonene-rovine\\\\\r\r\\par Smykové tření. Encyklopedie fyziky [online]. Jaroslav Reichl, Martin Všetička, 2006 [cit. 2020-07-01]. Dostupné z: http://fyzika.jreichl.com/main.article/view/36-smykove-treni\\\\\r\r\\par Rozklad sil. Encyklopedie fyziky [online]. Jaroslav Reichl, Martin Všetička, 2006 [cit. 2020-07-01]. Dostupné z: http://fyzika.jreichl.com/main.article/view/700-rozklad-sil\\\\\r\r\\par URGOŠÍK, Bohuš. Fyzika. Praha: Nakladatelství technické literatury, 1987, ISBN 04-320-87\\\\\r\r\\par HALLIDAY, David; RESNICK, Robert; WALKER, Jearl. Fyzika, Vysokoškolská učebnice obecné fyziky, Část 3, Elektřina a magnetismus. Brno: VUTIUM a PROMETHEUS, 2000, ISBN 80-2014-1868-0 (VUTIUM), 81-7196-213-9 (PROMETHEUS).\\\\",
         "IsHtml": false
       },
       {
         "Type": "Literature",
-        "Title": "Doporučené zdroje",
+        "Title": "Doporučená literatura",
         "Text": "\\par Příklady, které vhodně rozšiřují problematiku nakloněné roviny. Oba příklady jsou převzaté z webu http://fyzika.jreichl.com/\\\\\r\r\\par Příklad 1: \r\\par http://fyzika.jreichl.com/main.downloads/file/?storageType=data%2Fmultimedia\\&relPath=%2F%5B%2B%5DMECHANIKA%2Fteleso\\_na\\_naklonene\\_rovine%2Fu\\_naklonena\\_rovina\\_2\\_telesa.pdf\r\r\\\\\r\\par Příklad 2: \r\\par http://fyzika.jreichl.com/main.downloads/file/?storageType=data%2Fmultimedia\\&relPath=%2F%5B%2B%5DMECHANIKA%2Fteleso\\_na\\_naklonene\\_rovine%2Fu\\_naklonena\\_rovina\\_bedna.pdf\r",
         "IsHtml": false
       }

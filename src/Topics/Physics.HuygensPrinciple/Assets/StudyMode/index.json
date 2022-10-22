@@ -1,18 +1,18 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
         "Title": "Návštěvníci",
-        "Text": "\\par V jedné scéně československého seriálu Návštěvníci sedí mladý budoucí génius Adam se svým „velkým učitelem“ u rybníka a společně házejí kameny do vody.\\\\\r\r\\par Dědek Drchlík: \\textit{„Teď mrskni do vody tadytu cihlu. Jaká je, kulatá?“}\\\\ \r\r\\par Adam Bernau: \\textit{„Hranatá…“}\\\\\r\r\\par Dědek Drchlík: \\textit{„No, takže by měla dělat hranatý vlny…. No, ale neudělá je!“}\\\\\r\r\\par Žbluňk.\\\\\r\r\\par Dědek Drchlík: \\textit{„I kdybys tam hodil botu, bude zase kruh.“}\\\\\r\r\\par Adam Bernau: \\textit{„Ale proč, pane Drchlík?“}\\\\\r\rDědek Drchlík: \\textit{„Protože kruh je podstata všeho…“}\\\\\r",
+        "Text": "\\par V jedné scéně československého seriálu Návštěvníci sedí mladý budoucí génius Adam se svým „velkým učitelem“ u rybníka a společně házejí kameny do vody.\\\\\r\r\\par Dědek Drchlík: „Teď mrskni do vody tadytu cihlu. Jaká je, kulatá?“\\\\ \r\r\\par Adam Bernau: „Hranatá…“\\\\\r\r\\par Dědek Drchlík:„No, takže by měla dělat hranatý vlny…. No, ale neudělá je!“\\\\\r\r\\par Žbluňk.\\\\\r\r\\par Dědek Drchlík: „I kdybys tam hodil botu, bude zase kruh.“\\\\\r\r\\par Adam Bernau: „Ale proč, pane Drchlík?“\\\\\r\rDědek Drchlík: „Protože kruh je podstata všeho…“\\\\",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Huygensův princip",
+    "Title": "2. Huygensův princip",
     "Contents": [
       {
         "Type": "Text",
@@ -22,13 +22,14 @@
       },
       {
         "Type": "Image",
-        "ImageName": "11_obr_v01-01.png",
+        "ImageName": "11-01.png",
+        "ImageCaption": "Obrázek č. 1: Huygensův princip",
         "Title": "Obrázek č. 1"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek č. 1: Huygensův princip\\\\\r\r\\par Méně vybranými slovy: v kterýkoli okamžik si můžeme představit, že každý bod z čela vlny (ať má toto čelo sebesložitější tvar) vysílá sférické (ve 2D případě kruhové) vlny; skutečná vlna dorazí do nějakého určitého pozdějšího času všude tam, kam by během té doby dorazila alespoň jedna z těchto myšlených vln sekundárních.\\\\\r\r\\par Huygensův princip lze úspěšně použít nejen k předpovídání vývoje tvaru původně obdélníkové vlny na hladině (např. po opatrném vhození cihly do rybníka), ale též k popisu šíření vln za překážky či lomu vlnění na rozhraní dvou prostředí, v nichž se vlna šíří odlišnými rychlostmi (mnoho velice povedených videí lze najít na internetu).\\\\\r\r\\par Povšimněte si, že zatímco Huygensův princip určuje vývoj tvaru vlnoplochy, nedokáže predikovat amplitudu (a tedy intenzitu) vlny v různých bodech. Pro korektnější popis šíření vln, beroucí v potaz možné interferenční jevy, je navíc ve skutečnosti třeba použít složitější, více matematizovanou verzi tohoto postupu, známou pod názvem Huygensův-Fresnelův princip (tím se však v této aplikaci zabývat nebudeme).\\\\\r",
+        "Text": "\\par Méně vybranými slovy: v kterýkoli okamžik si můžeme představit, že každý bod z čela vlny (ať má toto čelo sebesložitější tvar) vysílá sférické (ve 2D případě kruhové) vlny; skutečná vlna dorazí do nějakého určitého pozdějšího času všude tam, kam by během té doby dorazila alespoň jedna z těchto myšlených vln sekundárních.\\\\\r\r\\par Huygensův princip lze úspěšně použít nejen k předpovídání vývoje tvaru původně obdélníkové vlny na hladině (např. po opatrném vhození cihly do rybníka), ale též k popisu šíření vln za překážky či lomu vlnění na rozhraní dvou prostředí, v nichž se vlna šíří odlišnými rychlostmi (mnoho velice povedených videí lze najít na internetu).\\\\\r\r\\par Povšimněte si, že zatímco Huygensův princip určuje vývoj tvaru vlnoplochy, nedokáže predikovat amplitudu (a tedy intenzitu) vlny v různých bodech. Pro korektnější popis šíření vln, beroucí v potaz možné interferenční jevy, je navíc ve skutečnosti třeba použít složitější, více matematizovanou verzi tohoto postupu, známou pod názvem Huygensův-Fresnelův princip (tím se však v této aplikaci zabývat nebudeme).\\\\\r",
         "IsHtml": false
       },
       {
@@ -63,42 +64,39 @@
       },
       {
         "Type": "Image",
-        "ImageName": "11_obr_v01-02.png",
+        "ImageName": "11-02.png",
+        "ImageCaption": "Obrázek č. 2: Zdroj - oranžová, zasažená oblast - světle modrá, vlnoplocha - tmavě modrá, sekundární vlny - červená",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek č. 2: Zdroj - oranžová, zasažená oblast - světle modrá, vlnoplocha - tmavě modrá, sekundární vlny - červená.\\\\\r\r\\par Pokročilá verze se liší od základní tím, že umožňuje uvažovat i situace, kdy se v prostředí nacházejí kromě primárního zdroje také překážky, které vlna musí obejít. Povšimněte si, že Základní verze neumožňuje vzít jednoduše v potaz, že vlna nemůže překážkou projít.\\\\\r\r\\par Zde to řešíme tak, že necháme sekundární vlny šířit ze zdroje jen krátký časový krok Δt, takže vlny nedojdou daleko, a nalezneme vlnoplochu v novém čase. Následně postup opakujeme, ale jako zdroje sekundárních vln již bereme nově nalezenou vlnoplochu. Ovšem pokud se některý bod na okraji právě uvažované vlnoplochy nachází uvnitř překážky, ignorujeme ho.\\\\\r",
+        "Text": "\\par Pokročilá verze se liší od základní tím, že umožňuje uvažovat i situace, kdy se v prostředí nacházejí kromě primárního zdroje také překážky, které vlna musí obejít. Povšimněte si, že Základní verze neumožňuje vzít jednoduše v potaz, že vlna nemůže překážkou projít.\\\\\r\r\\par Zde to řešíme tak, že necháme sekundární vlny šířit ze zdroje jen krátký časový krok Δt, takže vlny nedojdou daleko, a nalezneme vlnoplochu v novém čase. Následně postup opakujeme, ale jako zdroje sekundárních vln již bereme nově nalezenou vlnoplochu. Ovšem pokud se některý bod na okraji právě uvažované vlnoplochy nachází uvnitř překážky, ignorujeme ho.\\\\\r",
         "IsHtml": false
       },
       {
         "Type": "Image",
-        "ImageName": "11_obr_v01-03.png",
+        "ImageName": "11-03.png",
+        "ImageCaption": "Obrázek č. 3: Sekundární vlny jsou vyslané z aktuální vlnoplochy",
         "Title": "Obrázek č. 3"
       },
       {
-        "Type": "Text",
-        "Title": "Text",
-        "Text": "\\par Obrázek č. 3: Sekundární vlny jsou vyslané z aktuální vlnoplochy.\\\\",
-        "IsHtml": false
-      },
-      {
         "Type": "Image",
-        "ImageName": "11_obr_v01-04.png",
+        "ImageName": "11-04.png",
+        "ImageCaption": "Obrázek č. 4: Sjednocení všech sekundárních vln určuje přírůstek zasažené oblasti, a tedy i novou vlnoplochu",
         "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Obrázek č. 4: Sjednocení všech sekundárních vln určuje přírůstek zasažené oblasti, a tedy i novou vlnoplochu.\\\\\r\r\\par Takový postup samozřejmě stále není zcela přesný (jednotlivé sekundární vlny se skrz okraje překážek mohou stále šířit, pokud stihnou „proniknout skrz překážku“ během jednoho $Δt$), ale tak tomu v počítačových simulacích bývá. Povšimněte si, že čím menší uvažujeme poloměr sekundárních vln, tím menší nastává problém s „pronikáním skrz překážky“. Na druhou stranu se ale zmenšujícím se poloměrem sekundárních vln zhoršuje tzv. „diskretizační chyba“. K pochopení těchto pojmů a jejich příčin vedou některé úlohy z Pokročilé varianty pracovního listu.",
+        "Text": "\\par Takový postup samozřejmě stále není zcela přesný (jednotlivé sekundární vlny se skrz okraje překážek mohou stále šířit, pokud stihnou „proniknout skrz překážku“ během jednoho $Δt$), ale tak tomu v počítačových simulacích bývá. Povšimněte si, že čím menší uvažujeme poloměr sekundárních vln, tím menší nastává problém s „pronikáním skrz překážky“. Na druhou stranu se ale zmenšujícím se poloměrem sekundárních vln zhoršuje tzv. „diskretizační chyba“. K pochopení těchto pojmů a jejich příčin vedou některé úlohy z Pokročilé varianty pracovního listu.",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Zdroje",
+    "Title": "3. Literatura",
     "Contents": [
       {
         "Type": "Literature",

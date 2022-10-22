@@ -1,10 +1,10 @@
 [
   {
-    "Title": "Úvod",
+    "Title": "1. Úvod",
     "Contents": [
       {
         "Type": "RealWorld",
-        "Title": "Řeka",
+        "Title": "Soutěska",
         "Text": "\\par Voda kolem raftu byla klidná a líná. Řeka tu byla široká a lemovaly ji vzrostlé stromy. Sluníčko hřálo a letní scenérii sem tam doplnil průlet ledňáčků hledajících potravu.\\\\\r\r\\par Posádka odpočívala. Za chvíli bude potřebovat všechnu sílu a obratnost.\\\\\r\r\\par „Blíží se průrva. Připravte se, bude to houpat!”, upozornil posádku kormidelník.\\\\\r\r\\par Člun se blížil k soutěsce, kterou voda prorazila ve skalách před dávnými časy.  Řeka se ztenčila a zrychlila, jakoby se skal bála a snažila se z krajiny pískovcových balvanů a věží co nejrychleji zmizet.\\\\\r\r\\par Posádka se zapřela. Proud řeky byl silný. Zkušený kormidelník vydával pokyny a sám se snažil ze všech sil, aby raft udržel ve správném směru a vyhnul se balvanům, které ležely lodi v cestě.\\\\\r\r\\par Po půl hodině byla řeka opět klidná.\\\\\r\r\\par „Zvláštní, jak se se tady dokáže voda rychle změnit”, pomyslel si kormidelník.\\\\\r",
         "IsHtml": false
       }
@@ -12,7 +12,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Proudění kapalin",
+    "Title": "2. Proudění kapalin",
     "Contents": [
       {
         "Type": "Text",
@@ -23,7 +23,7 @@
       {
         "Type": "Image",
         "ImageName": "15-01.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 1: Proudnice",
         "Title": "Obrázek č. 1"
       },
       {
@@ -35,7 +35,7 @@
       {
         "Type": "Image",
         "ImageName": "15-02.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 2: Laminární proudění",
         "Title": "Obrázek č. 2"
       },
       {
@@ -47,13 +47,13 @@
       {
         "Type": "Image",
         "ImageName": "15-03.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 3: Turbulentní proudění",
         "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": null,
+        "Text": "\\par Pro další popis proudící kapaliny budeme předpokládat stacionární laminární proudění.\\\\",
         "IsHtml": false
       },
       {
@@ -84,7 +84,7 @@
       },
       {
         "Type": "Tasks",
-        "Title": "Kontrolní otázka",
+        "Title": "Úkol",
         "HasNumericInput": true,
         "Unit": "",
         "Placeholder": null,
@@ -100,7 +100,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Rovnice kontinuity",
+    "Title": "3. Rovnice kontinuity",
     "Contents": [
       {
         "Type": "Text",
@@ -111,25 +111,25 @@
       {
         "Type": "Image",
         "ImageName": "15-04.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 4: Objemový průtok",
         "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Pro objemový tok platí $$Q_V=Sv.$$\\\\\r\r\\par Poněvadž objemový průtok je v libovolném průřezu trubice stejný, pohybují se částice kapaliny v zúženém místě trubice větší rychlostí. Je-li v průřezu $S_1$ rychlost proudu kapaliny $v_1$, proteče jím za 1 s objem stejný jako v průřezu $S_2$, kde je rychlost proudu $v_2$.\\\\",
+        "Text": "\\par Pro objemový průtok platí $$Q_V=Sv.$$\\\\\r\r\\par Poněvadž objemový průtok je v libovolném průřezu trubice stejný, pohybují se částice kapaliny v zúženém místě trubice větší rychlostí. Je-li v průřezu $S_1$ rychlost proudu kapaliny $v_1$, proteče jím za 1 s objem stejný jako v průřezu $S_2$, kde je rychlost proudu $v_2$.\\\\",
         "IsHtml": false
       },
       {
         "Type": "Image",
         "ImageName": "15-05.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 5: Rovnice kontinuity",
         "Title": "Obrázek č. 5"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Platí tedy$$S_1v_1=S_2v_2.$$Tento vztah se nazývá rovnicí kontinuity.\\\\",
+        "Text": "\\par Platí tedy$$S_1v_1=S_2v_2.$$Tento vztah se nazývá rovnice kontinuity.\\\\",
         "IsHtml": false
       },
       {
@@ -177,7 +177,7 @@
     "Type": "Chapter"
   },
   {
-    "Title": "Bernoulliho rovnice",
+    "Title": "4. Bernoulliho rovnice",
     "Contents": [
       {
         "Type": "Text",
@@ -188,7 +188,7 @@
       {
         "Type": "Image",
         "ImageName": "15-06.png",
-        "ImageCaption": null,
+        "ImageCaption": "Obrázek č. 6: Bernoulliho rovnice",
         "Title": "Obrázek č. 6"
       },
       {
@@ -236,14 +236,14 @@
           "proudí voda rychleji a působí na stěny menším tlakem v porovnání s vnějším",
           "proudí voda rychleji a působí na stěny větším tlakem v porovnání s vnějším",
           "proudí voda rychleji a působí na stěny stejným tlakem v porovnání s vnějším",
-          "●\tproudí voda pomaleji a působí na stěny menším tlakem v porovnání s vnějším"
+          "proudí voda pomaleji a působí na stěny menším tlakem v porovnání s vnějším"
         ]
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "Použitá literatura",
+    "Title": "5. Lliteratura",
     "Contents": [
       {
         "Type": "Literature",
