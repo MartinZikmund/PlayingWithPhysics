@@ -1,373 +1,104 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80C65FA4-C269-470B-9499-0D26A549E2FA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Physics.Shared.UI</RootNamespace>
-    <AssemblyName>Physics.Shared.UI</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
-    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
-    <PlatformTarget>ARM</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <PlatformTarget>ARM</PlatformTarget>
-    <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
-    <PlatformTarget>ARM64</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\ARM64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
-    <PlatformTarget>ARM64</PlatformTarget>
-    <OutputPath>bin\ARM64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Controls\AboutApp.xaml.cs">
-      <DependentUpon>AboutApp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SimulationControls.xaml.cs">
-      <DependentUpon>SimulationControls.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SkewedMenuHeader.xaml.cs">
-      <DependentUpon>SkewedMenuHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Converters\BoolNegationConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\NonEmptyStringVisibilityConverter.cs" />
-    <Compile Include="Converters\ValueMatchVisibilityConverter.cs" />
-    <Compile Include="Extensions\BoolFunctions.cs" />
-    <Compile Include="Helpers\UniqueNameGenerator.cs" />
-    <Compile Include="Infrastructure\DefaultAppStart.cs" />
-    <Compile Include="Infrastructure\DefaultApp.cs" />
-    <Compile Include="Models\AppListItem.cs" />
-    <Compile Include="Models\AppListItemViewModel.cs" />
-    <Compile Include="Models\Input\GravityDefault.cs" />
-    <Compile Include="Models\Input\SimulationColors.cs" />
-    <Compile Include="Models\Navigation\SimulationNavigationModel.cs" />
-    <Compile Include="Rendering\AxisInfo.cs" />
-    <Compile Include="Rendering\SkiaAxesRenderer.cs" />
-    <Compile Include="Rendering\IRenderingPlayback.cs" />
-    <Compile Include="Rendering\OptimalAxesRenderer.cs" />
-    <Compile Include="Rendering\Skia\ArrowRenderer.cs" />
-    <Compile Include="Rendering\Skia\Infrastructure\ISkiaRenderer.cs" />
-    <Compile Include="Rendering\Skia\ISkiaCanvas.cs" />
-    <Compile Include="Rendering\Skia\ISkiaVariantRenderer.cs" />
-    <Compile Include="Rendering\Skia\NonUiSkiaCanvas.cs" />
-    <Compile Include="Rendering\Skia\SkiaCanvas.cs" />
-    <Compile Include="Controls\UiAnimatedCanvasControl.cs" />
-    <Compile Include="Converters\EnumLocalizationConverter.cs" />
-    <Compile Include="Converters\NativeConverters.cs" />
-    <Compile Include="Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Extensions\ColorExtensions.cs" />
-    <Compile Include="Extensions\Localize.cs" />
-    <Compile Include="Extensions\RectExtensions.cs" />
-    <Compile Include="Helpers\NumberBoxHelpers.cs" />
-    <Compile Include="Infrastructure\DefaultViewPresenter.cs" />
-    <Compile Include="Infrastructure\Interactions\AsyncInteraction.cs" />
-    <Compile Include="Infrastructure\Interactions\AsyncInteractionRequest.cs" />
-    <Compile Include="Infrastructure\Interactions\RunOnCanvasLoopHandler.cs" />
-    <Compile Include="Infrastructure\Interactions\RunOnCanvasLoopRequest.cs" />
-    <Compile Include="Infrastructure\Interactions\IInteractionRequestHandler.cs" />
-    <Compile Include="Infrastructure\PhysicsAppBase.cs" />
-    <Compile Include="Infrastructure\Setup\DefaultAppSetup.cs" />
-    <Compile Include="Infrastructure\Topics\DifficultyOption.cs" />
-    <Compile Include="Infrastructure\Topics\ITopicConfiguration.cs" />
-    <Compile Include="Models\Navigation\SelfStudyNavigationModel.cs" />
-    <Compile Include="Rendering\ArrowRenderer.cs" />
-    <Compile Include="Rendering\AxesRenderer.cs" />
-    <Compile Include="Rendering\BaseCanvasController.cs" />
-    <Compile Include="Rendering\ICanvasController.cs" />
-    <Compile Include="Rendering\IRenderer.cs" />
-    <Compile Include="Rendering\SimulationBounds.cs" />
-    <Compile Include="Rendering\SimulationPadding.cs" />
-    <Compile Include="Rendering\SimulationTime.cs" />
-    <Compile Include="Rendering\Skia\Infrastructure\IRenderLoop.cs" />
-    <Compile Include="Rendering\Skia\Infrastructure\RenderLoop.cs" />
-    <Compile Include="Rendering\Skia\SkiaCanvas.Events.cs" />
-    <Compile Include="Rendering\Skia\SkiaCanvas.uwp.cs" />
-    <Compile Include="Rendering\Skia\SkiaCanvasController.cs" />
-    <Compile Include="Rendering\Skia\SkiaEventHandler.cs" />
-    <Compile Include="Rendering\Skia\SkiaHelpers.cs" />
-    <Compile Include="Rendering\TickDistance.cs" />
-    <Compile Include="Services\AppList\AppList.cs" />
-    <Compile Include="Services\AppList\IAppList.cs" />
-    <Compile Include="Services\Dialogs\ContentDialogHelper.cs" />
-    <Compile Include="Services\Dialogs\IContentDialogHelper.cs" />
-    <Compile Include="Services\Localization\Localizer.cs" />
-    <Compile Include="Services\Preferences\IPreferences.cs" />
-    <Compile Include="Services\Preferences\PreferenceLocality.cs" />
-    <Compile Include="Services\Preferences\Preferences.cs" />
-    <Compile Include="Services\Sounds\ISoundPlayer.cs" />
-    <Compile Include="Services\Sounds\SoundPlayer.cs" />
-    <Compile Include="Services\Store\AppUpdater.cs" />
-    <Compile Include="Services\Store\AppUpdaterResult.cs" />
-    <Compile Include="Services\TitleBarManager.cs" />
-    <Compile Include="Services\ValuesTable\ITableService.cs" />
-    <Compile Include="Services\ValuesTable\IValuesTableRow.cs" />
-    <Compile Include="Services\ValuesTable\ValuesTableHeaderAttribute.cs" />
-    <Compile Include="Services\ValuesTable\ValuesTableRowBase.cs" />
-    <Compile Include="ViewModels\AppListViewModel.cs" />
-    <Compile Include="ViewModels\IValuesTableDialogViewModel.cs" />
-    <Compile Include="ViewModels\Navigation\DifficultyNavigationModel.cs" />
-    <Compile Include="ViewModels\SelfStudyViewModel.cs" />
-    <Compile Include="ViewModels\SimulationPlaybackViewModel.cs" />
-    <Compile Include="ViewModels\SimulationViewModelBase.cs" />
-    <Compile Include="ViewModels\ValuesTableDialogViewModelBase.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\AppListView.xaml.cs">
-      <DependentUpon>AppListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AppShell.xaml.cs">
-      <DependentUpon>AppShell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BaseSkiaView.cs" />
-    <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\MainMenuViewModel.cs" />
-    <Compile Include="Views\Interactions\IReceiveController.cs" />
-    <Compile Include="Views\MainMenuView.xaml.cs">
-      <DependentUpon>MainMenuView.xaml</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Physics.Shared.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Fody" PrivateAssets="all">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp" />
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" />
-    <PackageReference Include="Microsoft.UI.Xaml" />
-    <PackageReference Include="MvvmCross" />
-    <PackageReference Include="MvvmCross.Plugin.Visibility" />
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="Nito.Disposables" />
-    <PackageReference Include="PropertyChanged.Fody" />
-    <PackageReference Include="ReactiveUI" />
-    <PackageReference Include="SkiaSharp.Views" />
-    <PackageReference Include="Win2D.uwp" />
-    <PackageReference Include="XamlFlair.UWP" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\AboutApp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SimulationControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SkewedMenuHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Converters.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\DefaultResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Fonts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\ValuesTableResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\AppListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AppShell.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainMenuView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\creativecommons.png" />
-    <Content Include="Assets\eu.png" />
-    <Content Include="Assets\Fonts\NeoEuler.otf" />
-    <Content Include="Assets\Icons\EditColorful.svg" />
-    <Content Include="Assets\logo.language-en-US.png" />
-    <Content Include="Assets\Logos\CompoundOscillations.jpg" />
-    <Content Include="Assets\Logos\CyclicProcesses.jpg" />
-    <Content Include="Assets\Logos\Drag.jpg" />
-    <Content Include="Assets\Logos\GravitationalField.jpg" />
-    <Content Include="Assets\Logos\ElectricField.jpg" />
-    <Content Include="Assets\Logos\FluidFlow.jpg" />
-    <Content Include="Assets\Logos\HuygensPrinciple.jpg" />
-    <Content Include="Assets\Logos\InclinedPlane.jpg" />
-    <Content Include="Assets\Logos\LawOfConservationOfMomentum.jpg" />
-    <Content Include="Assets\Logos\LissajousCurves.jpg" />
-    <Content Include="Assets\Logos\MagneticField.jpg" />
-    <Content Include="Assets\Logos\OpticalInstruments.jpg" />
-    <Content Include="Assets\Logos\ProjectileMotions.jpg" />
-    <Content Include="Assets\Logos\RadioactiveDecay.jpg" />
-    <Content Include="Assets\Logos\RotationalInclinedPlane.jpg" />
-    <Content Include="Assets\Logos\StationaryWaves.jpg" />
-    <Content Include="Assets\Logos\WaveInterference.jpg" />
-    <Content Include="Assets\msmt.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\logo.language-cs-CZ.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\LatinModern.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\..\..\assets\fonts\playingwithphysics\fonts\playingwithphysics.ttf">
-      <Link>Assets\Fonts\playingwithphysics.ttf</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en-US\SharedResources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\cs-CZ\SharedResources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Physics.Shared.Logic\Physics.Shared.csproj">
-      <Project>{627635c3-ad48-4cc1-960d-f3c60d8e3c3b}</Project>
-      <Name>Physics.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Game\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\AppList.json" />
-  </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">	
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;xamarinios10;MonoAndroid13.0;MonoAndroid12.0</TargetFrameworks>
+		<!--uap10.0.18362;xamarinmac20;-->
+		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+		<LangVersion>10.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.UI" Version="4.6.19" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='uap10.0.18362'">
+		<PackageReference Include="Microsoft.UI.Xaml" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Controls\**" />
+	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Extensions\**" />
+	  <Compile Remove="Infrastructure\**" />
+	  <Compile Remove="Models\**" />
+	  <Compile Remove="Rendering\**" />
+	  <Compile Remove="Resources\**" />
+	  <Compile Remove="Services\**" />
+	  <Compile Remove="Strings\**" />
+	  <Compile Remove="ViewModels\**" />
+	  <Compile Remove="Views\**" />
+	  <EmbeddedResource Remove="Controls\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Extensions\**" />
+	  <EmbeddedResource Remove="Infrastructure\**" />
+	  <EmbeddedResource Remove="Models\**" />
+	  <EmbeddedResource Remove="Rendering\**" />
+	  <EmbeddedResource Remove="Resources\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <EmbeddedResource Remove="Strings\**" />
+	  <EmbeddedResource Remove="ViewModels\**" />
+	  <EmbeddedResource Remove="Views\**" />
+	  <None Remove="Controls\**" />
+	  <None Remove="Converters\**" />
+	  <None Remove="Extensions\**" />
+	  <None Remove="Infrastructure\**" />
+	  <None Remove="Models\**" />
+	  <None Remove="Rendering\**" />
+	  <None Remove="Resources\**" />
+	  <None Remove="Services\**" />
+	  <None Remove="Strings\**" />
+	  <None Remove="ViewModels\**" />
+	  <None Remove="Views\**" />
+	  <Page Remove="Controls\**" />
+	  <Page Remove="Converters\**" />
+	  <Page Remove="Extensions\**" />
+	  <Page Remove="Infrastructure\**" />
+	  <Page Remove="Models\**" />
+	  <Page Remove="Rendering\**" />
+	  <Page Remove="Resources\**" />
+	  <Page Remove="Services\**" />
+	  <Page Remove="Strings\**" />
+	  <Page Remove="ViewModels\**" />
+	  <Page Remove="Views\**" />
+	  <UpToDateCheckInput Remove="Controls\**" />
+	  <UpToDateCheckInput Remove="Converters\**" />
+	  <UpToDateCheckInput Remove="Extensions\**" />
+	  <UpToDateCheckInput Remove="Infrastructure\**" />
+	  <UpToDateCheckInput Remove="Models\**" />
+	  <UpToDateCheckInput Remove="Rendering\**" />
+	  <UpToDateCheckInput Remove="Resources\**" />
+	  <UpToDateCheckInput Remove="Services\**" />
+	  <UpToDateCheckInput Remove="Strings\**" />
+	  <UpToDateCheckInput Remove="ViewModels\**" />
+	  <UpToDateCheckInput Remove="Views\**" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Fody" PrivateAssets="all">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AppCenter.Analytics" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="Nito.Disposables" />
+		<PackageReference Include="PropertyChanged.Fody" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="Helpers\NumberBoxHelpers.cs">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Compile>
+	  <Compile Update="Helpers\UniqueNameGenerator.cs">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Compile>
+	</ItemGroup>
+
 </Project>

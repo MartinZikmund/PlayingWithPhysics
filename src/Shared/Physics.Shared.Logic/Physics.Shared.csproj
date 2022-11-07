@@ -6,8 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MvvmCross.Plugin.Visibility" />
+  <ItemGroup>    
     <PackageReference Include="PropertyChanged.Fody" />
     <PackageReference Include="System.Numerics.Vectors" />
   </ItemGroup>

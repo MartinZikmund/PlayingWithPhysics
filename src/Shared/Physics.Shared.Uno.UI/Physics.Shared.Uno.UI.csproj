@@ -1,0 +1,45 @@
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
+	<!--
+	Adding project references to this project requires some manual adjustments.
+	Please see https://github.com/unoplatform/uno/issues/3909 for more details.
+	-->
+	<PropertyGroup>
+		<TargetFrameworks>uap10.0.18362;netstandard2.0;xamarinios10;xamarinmac20;MonoAndroid13.0;MonoAndroid12.0</TargetFrameworks>
+		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.UI" Version="4.6.19" />
+	</ItemGroup>
+	<ItemGroup>
+		<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Fody" PrivateAssets="all">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AppCenter.Analytics" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" />
+		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" />
+		<PackageReference Include="Microsoft.Toolkit.Uwp" />
+		<PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid" />
+		<PackageReference Include="Microsoft.UI.Xaml" />
+		<PackageReference Include="MvvmCross" />
+		<PackageReference Include="MvvmCross.Plugin.Visibility" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="Nito.Disposables" />
+		<PackageReference Include="PropertyChanged.Fody" />
+		<PackageReference Include="ReactiveUI" />
+		<PackageReference Include="SkiaSharp.Views" />
+		<PackageReference Include="Win2D.uwp" />
+		<PackageReference Include="XamlFlair.UWP" />
+	</ItemGroup>
+
+</Project>
