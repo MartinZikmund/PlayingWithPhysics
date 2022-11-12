@@ -22,7 +22,7 @@ variables:
 - name: 'major'
   value: '2'
 - name: 'minor'
-  value: '0'
+  value: '1'
 
 name: $(major).$(minor).$(rev:r).0
 
