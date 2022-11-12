@@ -137,7 +137,7 @@ Programátoři: Daniel Zikmund, Martin Zikmund
 Grafika: Petr Weinlich</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Hrátky s fyzikou: Pohyb částice v homogenním elektrickém poli</value>
+    <value>Hrátky s fyzikou: Pohyb těles v homogenním elektrickém poli</value>
   </data>
   <data name="ChargePolarity_Negative" xml:space="preserve">
     <value>záporný</value>
@@ -326,7 +326,7 @@ Grafika: Petr Weinlich</value>
     <value>Nastavit parametry</value>
   </data>
   <data name="ShortAppName" xml:space="preserve">
-    <value>Pohyb částice v homogenním elektrickém poli</value>
+    <value>Pohyb těles v homogenním elektrickém poli</value>
   </data>
   <data name="StartSpeedInfo" xml:space="preserve">
     <value>Počáteční rychlost částice je</value>

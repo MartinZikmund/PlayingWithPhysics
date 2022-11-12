@@ -139,7 +139,7 @@
     <value>Pohyby těles v odporujícím prostředí</value>
   </data>
   <data name="AppName_ElectricField" xml:space="preserve">
-    <value>Pohyb částice v homogenním elektrickém poli</value>
+    <value>Pohyb těles v homogenním elektrickém poli</value>
   </data>
   <data name="AppName_FluidFlow" xml:space="preserve">
     <value>Proudění kapalin</value>
