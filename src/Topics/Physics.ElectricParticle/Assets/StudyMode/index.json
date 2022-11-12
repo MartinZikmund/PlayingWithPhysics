@@ -12,12 +12,12 @@
     "Type": "Chapter"
   },
   {
-    "Title": "2. Pohyb částice v elektrickém homogenním poli",
+    "Title": "2. Pohyb těles v elektrickém homogenním poli",
     "Contents": [
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Na částice v elektrickém poli působí elektrická síla. Jak takové působení vypadá, vám předvede naše aplikace.\\\\\r\r\\par V následující textu budeme uvažovat pohyb kladné částice v homogenním elektrickém poli. Homogenní elektrické pole je vytvořeno mezi dvěma rovnoběžnými nabitými deskami. Předpokládejme, že desky jsou umístěny vodorovně, spodní deska je nabitá kladně, horní záporně. Účinky tíhového a magnetického pole Země zanedbáme.\\\\\r\r\\par Elektrické pole je popsáno pomocí elektrických siločar a s využitím intenzity elektrického pole $\\vec{E}$.\\\\\r",
+        "Text": "\\par Na nabitá tělesa v elektrickém poli působí elektrická síla. Jak takové působení vypadá, vám předvede naše aplikace.\\\\\r\r\\par V následující textu budeme uvažovat pohyb kladně nabitého tělesa v homogenním elektrickém poli. Homogenní elektrické pole je vytvořeno mezi dvěma rovnoběžnými nabitými deskami. Předpokládejme, že desky jsou umístěny vodorovně, spodní deska je nabitá kladně, horní záporně. Účinky tíhového a magnetického pole Země zanedbáme.\\\\\r\r\\par Elektrické pole je popsáno pomocí elektrických siločar a s využitím intenzity elektrického pole $\\vec{E}$.\\\\\r",
         "IsHtml": false
       },
       {
@@ -49,7 +49,7 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Částice se v elektrickém poli bude pohybovat vlivem elektrické síly. Její pohyb bude záviset intenzitě a směru elektrického pole, na velikosti a směru počáteční rychlosti.\\\\",
+        "Text": "\\par Těleso se v elektrickém poli bude pohybovat vlivem elektrické síly. Jeho pohyb bude záviset intenzitě a směru elektrického pole, na velikosti a směru počáteční rychlosti.\\\\",
         "IsHtml": false
       },
       {
@@ -68,24 +68,24 @@
     "Type": "Chapter"
   },
   {
-    "Title": "3. Částice s nulovou počáteční rychlostí",
+    "Title": "3. Tělesa s nulovou počáteční rychlostí",
     "Contents": [
       {
         "Type": "Image",
         "ImageName": "13-02.png",
-        "ImageCaption": "Obrázek č. 2: Kladně nabitá částice v elektrickém poli s nulovou počáteční rychlostí",
+        "ImageCaption": "Obrázek č. 2: Kladně nabité těleso v elektrickém poli s nulovou počáteční rychlostí",
         "Title": "Obrázek č. 2"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Nabitá částice byla vložena do elektrického pole, její počáteční rychlost bude nulová.\\\\\r\r\\par Na částici bude působit pouze konstantní elektrická síla svisle nahoru.\\\\",
+        "Text": "\\par Nabité těleso bylo vložena do elektrického pole, její počáteční rychlost bude nulová.\\\\\r\r\\par Na nabité těleso bude působit pouze konstantní elektrická síla svisle nahoru.\\\\",
         "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude pohybovat nabitá částice s nulovou počáteční rychlostí v homogenním elektrickém poli?",
+        "Question": "Jak se bude pohybovat nabité tělěso s nulovou počáteční rychlostí v homogenním elektrickém poli?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 1,
@@ -98,31 +98,31 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}$$a protože jde o kladnou částici, má stejný směr jako elektrické siločáry.\\\\\r\r\\par Protože jde pohyb rovnoměrně zrychlený, rychlost částice roste lineárně s časem a platí $$v=at.$$\\\\\r\r\\par Souřadnice $y$ roste kvadraticky podle vztahu $$y=\\frac{1}{2}at^2.$$\\\\\r\r\\par Částice se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}$$a protože jde o kladně nabité těleso, má jeho zrychlení stejný směr jako elektrické siločáry.\\\\\r\r\\par Protože jde pohyb rovnoměrně zrychlený, rychlost částice roste lineárně s časem a platí $$v=at.$$\\\\\r\r\\par Souřadnice $y$ roste kvadraticky podle vztahu $$y=\\frac{1}{2}at^2.$$\\\\\r\r\\par Nabité těleso se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.",
         "IsHtml": false
       }
     ],
     "Type": "Chapter"
   },
   {
-    "Title": "4. Částice s počáteční rychlostí ve směru elektrických siločar",
+    "Title": "4. Tělesa s počáteční rychlostí ve směru elektrických siločar",
     "Contents": [
       {
         "Type": "Image",
         "ImageName": "13-03.png",
-        "ImageCaption": "Obrázek č. 3: Kladně nabitá částice v elektrickém poli s počáteční rychlostí ve směru elektrických siločar",
+        "ImageCaption": "Obrázek č. 3: Kladně nabité těleso v elektrickém poli s počáteční rychlostí ve směru elektrických siločar",
         "Title": "Obrázek č. 3"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Na částici bude působit konstantní elektrická síla svisle nahoru ve směru počáteční rychlosti a částice se bude pohybovat směrem nahoru.\\\\",
+        "Text": "\\par Na nabité těleso bude působit konstantní elektrická síla svisle nahoru ve směru počáteční rychlosti a těleso se bude pohybovat směrem nahoru.\\\\",
         "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude pohybovat nabitá částice s počáteční rychlostí ve směru elektrických siločar v homogenním elektrickém poli?",
+        "Question": "Jak se bude pohybovat nabité těleso s počáteční rychlostí ve směru elektrických siločar v homogenním elektrickém poli?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 1,
@@ -135,7 +135,7 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Protože se jedná o pohyb rovnoměrně zrychlený, rychlost částice roste lineárně s časem a platí vztah $$v=v_0+at.$$\\\\\r\r",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Protože se jedná o pohyb rovnoměrně zrychlený, rychlost tělesa roste lineárně s časem a platí vztah $$v=v_0+at.$$\\\\\r\r",
         "IsHtml": false
       },
       {
@@ -155,7 +155,7 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Souřadnice y roste kvadraticky podle vztahu $$y=v_0t+\\frac{1}{2}at^2.$$\\\\\r\r\\par Částice se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.\\\\\r",
+        "Text": "\\par Souřadnice $y$ roste kvadraticky podle vztahu $$y=v_0t+\\frac{1}{2}at^2.$$\\\\\r\r\\par Těleso se pohybuje přímočaře ve směru osy $y$, a proto se souřadnice $x$ nemění.\\\\\r",
         "IsHtml": false
       },
       {
@@ -176,24 +176,24 @@
     "Type": "Chapter"
   },
   {
-    "Title": "5. Částice s počáteční rychlostí proti směru elektrických siločar",
+    "Title": "5. Tělesa s počáteční rychlostí proti směru elektrických siločar",
     "Contents": [
       {
         "Type": "Image",
         "ImageName": "13-04.png",
-        "ImageCaption": "Obrázek č. 4: Kladně nabitá částice v elektrickém poli s počáteční rychlostí proti směru elektrických siločar",
+        "ImageCaption": "Obrázek č. 4: Kladně nabité těleso v elektrickém poli s počáteční rychlostí proti směru elektrických siločar",
         "Title": "Obrázek č. 4"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Na částici začne působit konstantní síla proti směru původní rychlosti. Částice se v první fázi bude pohybovat směrem dolů.\\\\",
+        "Text": "\\par Na nabité těleso začne působit konstantní síla proti směru původní rychlosti. Těleso se v první fázi bude pohybovat směrem dolů.\\\\",
         "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude zpočátku pohybovat částice?",
+        "Question": "Jak se bude zpočátku pohybovat Těleso?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 2,
@@ -206,7 +206,7 @@
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Vzhledem k tomu, že původní rychlost a působící síla (tedy i zrychlení) mají opačný směr, bude docházet k rovnoměrnému zpomalování částice. Pokud částice nenarazí na desku, zastaví se a začne se pohybovat rovnoměrně zrychleným pohybem opačným směrem.\\\\\r\r\\par Protože jde o pohyb rovnoměrně zpomalený, rychlost částice klesá lineárně s časem a platí vztah $$v=v_0-at.$$\\\\\r",
+        "Text": "\\par Zrychlení se řídí vztahem $$a=\\frac{F}{m}=\\frac{qE}{m}.$$\\\\\r\r\\par Vzhledem k tomu, že původní rychlost a působící síla (tedy i zrychlení) mají opačný směr, bude docházet k rovnoměrnému zpomalování tělesa. Pokud těleso nenarazí na desku, zastaví se a začne se pohybovat rovnoměrně zrychleným pohybem opačným směrem.\\\\\r\r\\par Protože jde o pohyb rovnoměrně zpomalený, rychlost tělesa klesá lineárně s časem a platí vztah $$v=v_0-at.$$\\\\\r",
         "IsHtml": false
       },
       {
@@ -233,24 +233,24 @@
     "Type": "Chapter"
   },
   {
-    "Title": "6. Částice s počáteční rychlostí kolmou na směr elektrických siločar",
+    "Title": "6. Tělesa s počáteční rychlostí kolmou na směr elektrických siločar",
     "Contents": [
       {
         "Type": "Image",
         "ImageName": "13-05.png",
-        "ImageCaption": "Obrázek č. 5: Kladně nabitá částice v elektrickém poli s počáteční rychlostí kolmou na směr elektrických siločar",
+        "ImageCaption": "Obrázek č. 5: Kladně nabité těleso v elektrickém poli s počáteční rychlostí kolmou na směr elektrických siločar",
         "Title": "Obrázek č. 5"
       },
       {
         "Type": "Text",
         "Title": "Text",
-        "Text": "\\par V tomto případě rozložíme pohyb do dvou směrů – vodorovně ve směru osy $x$ a svisle ve směru osy $y$. Ve směru osy $x$ na částici nepůsobí žádná síla, ve směru osy $y$ na těleso působí pouze konstantní elektrická síla.",
+        "Text": "\\par V tomto případě rozložíme pohyb do dvou směrů – vodorovně ve směru osy $x$ a svisle ve směru osy $y$. Ve směru osy $x$ na těleso nepůsobí žádná síla, ve směru osy $y$ na těleso působí pouze konstantní elektrická síla.",
         "IsHtml": false
       },
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude pohybovat částice ve směru osy $x$?",
+        "Question": "Jak se bude pohybovat nabité tělěso ve směru osy $x$?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 0,
@@ -264,7 +264,7 @@
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude pohybovat částice ve směru osy $y$?",
+        "Question": "Jak se bude pohybovat nabité těleso ve směru osy $y$?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 1,
@@ -316,7 +316,7 @@
       {
         "Type": "KnowledgeCheck",
         "Title": "Kontrolní otázka",
-        "Question": "Jak se bude pohybovat částice?",
+        "Question": "Jak se bude pohybovat těleso?",
         "CorrectResponse": null,
         "WrongResponse": null,
         "CorrectAnswerIndex": 3,
@@ -331,12 +331,12 @@
     "Type": "Chapter"
   },
   {
-    "Title": "7. Částice s počáteční rychlostí v libovolném směru",
+    "Title": "7. Tělesa s počáteční rychlostí v libovolném směru",
     "Contents": [
       {
         "Type": "Image",
         "ImageName": "13-07.png",
-        "ImageCaption": "Obrázek č. 7: Kladně nabitá částice v elektrickém poli s počáteční rychlostí v libovolném směru",
+        "ImageCaption": "Obrázek č. 7: Kladně nabité těleso v elektrickém poli s počáteční rychlostí v libovolném směru",
         "Title": "Obrázek č. 7"
       },
       {
