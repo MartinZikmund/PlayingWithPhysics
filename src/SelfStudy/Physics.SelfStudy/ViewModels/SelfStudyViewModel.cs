@@ -4,6 +4,7 @@ using Physics.SelfStudy.Json;
 using Physics.SelfStudy.Models;
 using Physics.SelfStudy.Models.Contents;
 using Physics.Shared.UI.Extensions;
+using Physics.Shared.UI.Localization;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,9 +17,12 @@ namespace Physics.SelfStudy.ViewModels
     public class SelfStudyViewModel : ViewModelBase
     {
         public SelfStudyViewModel()
-        {            
+        {
+			Title = Localizer.Instance.GetString("StudyText");
         }
-
+		
+		public string Title { get; set; }
+		
         public async Task LoadAsync(string argument)
         {
             var paramParts = argument.Split("|");            

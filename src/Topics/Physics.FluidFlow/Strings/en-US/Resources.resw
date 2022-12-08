@@ -208,4 +208,7 @@ Graphics: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Fluid Flow</value>
   </data>
+  <data name="SomethingMore" xml:space="preserve">
+    <value>Something more</value>
+  </data>
 </root>

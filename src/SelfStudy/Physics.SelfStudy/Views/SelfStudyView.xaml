@@ -40,7 +40,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <controls:SkewedMenuHeader ShowBackButton="False" Text="{extensions:Localize Key=StudyText}" />
+                    <controls:SkewedMenuHeader ShowBackButton="False" Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
                     <ListView
                         Grid.Row="2"
                         ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}"
