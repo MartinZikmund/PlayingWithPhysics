@@ -33,7 +33,7 @@ namespace Physics.SelfStudy
 			}
 		}
 
-		public static async Task OpenStudyModeAsync(Uri backingFileUri, string imageFolderPath)
+		public static async Task OpenStudyModeAsync(Uri backingFileUri, string imageFolderPath, string titleOverride = null)
 		{
 			await InitializeAsync();
 
@@ -44,10 +44,15 @@ namespace Physics.SelfStudy
 			var appWindowContentFrame = new Frame();
 			appWindowContentFrame.Navigate(typeof(SelfStudyView), backingFileUri + "|" + imageFolderPath);
 
+			if (titleOverride is not null)
+			{
+				((SelfStudyView)appWindowContentFrame.Content).ViewModel.Title = titleOverride;
+			}
+
 			// Attach the XAML content to the window.
 			ElementCompositionPreview.SetAppWindowContent(newWindow, appWindowContentFrame);
 			//newWindow.Closed += NewWindow_Closed;
-			newWindow.Title = resourceLoader.GetString("WindowTitle");
+			newWindow.Title = titleOverride ?? resourceLoader.GetString("WindowTitle");
 
 			TitleBarManager.Personalize(newWindow.TitleBar, (Color)Application.Current.Resources["AppTitleBarColor"]);
 			newWindow.RequestSize(new Size(1280, 768));

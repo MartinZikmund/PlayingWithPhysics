@@ -25,7 +25,7 @@ namespace Physics.FluidFlow.Infrastructure
 
 		public bool HasGame => true;
 
-		public string GameNameOverride => Localizer.Instance.GetString("Demo");
+		public string GameNameOverride => Localizer.Instance.GetString("SomethingMore");
 
 		public int Id => 15;
 
@@ -35,7 +35,8 @@ namespace Physics.FluidFlow.Infrastructure
 		public async Task GoToGameAsync() =>
 			await StudyModeManager.OpenStudyModeAsync(
 				new Uri("ms-appx:///Assets/Demo/index.json"),
-				Path.Combine(Package.Current.InstalledLocation.Path, "Assets/Demo"));
+				Path.Combine(Package.Current.InstalledLocation.Path, "Assets/Demo"),
+				GameNameOverride);
 
 		public async Task GoToStudyModeAsync() =>
 			await StudyModeManager.OpenStudyModeAsync(

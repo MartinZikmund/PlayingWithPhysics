@@ -211,4 +211,7 @@ Grafika: Petr Weinlich</value>
   <data name="ShortAppName" xml:space="preserve">
     <value>Proudění kapalin</value>
   </data>
+  <data name="SomethingMore" xml:space="preserve">
+    <value>Něco navíc</value>
+  </data>
 </root>
