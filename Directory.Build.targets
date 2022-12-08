@@ -29,7 +29,7 @@
     <!-- Other -->
     <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
-    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" />
+    <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0" />
     <PackageReference Update="Microsoft.UI.Xaml" Version="2.8.1" />
     <PackageReference Update="Microsoft.Xaml.Behaviors.Uwp.Managed" Version="2.0.1" />
     <PackageReference Update="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.14" />
@@ -43,7 +43,7 @@
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Update="XamlFlair.UWP" Version="1.2.9" />
     <PackageReference Update="MvvmLight" Version="5.4.1.1" />
-    <PackageReference Update="ReactiveUI" Version="18.3.1" />
+    <PackageReference Update="ReactiveUI" Version="18.4.1" />
     <PackageReference Update="BenchmarkDotNet" Version="0.13.2" />
     <PackageReference Update="Moq" Version="4.18.3" />
     <PackageReference Update="xunit" Version="2.4.2" />
