@@ -44,7 +44,8 @@
                     <ListView
                         Grid.Row="2"
                         ItemsSource="{x:Bind ViewModel.Chapters, Mode=OneWay}"
-                        SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}">
+                        SelectedItem="{x:Bind ViewModel.SelectedChapter, Mode=TwoWay}"
+						SelectionChanged="ListView_SelectionChanged">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -73,6 +74,10 @@
             <SplitView.Content>
                 <Grid MaxWidth="700" Padding="12">
                     <ListView
+						PreviewKeyDown="ChapterContentsList_PreviewKeyDown"
+						IsTabStop="True"
+						UseSystemFocusVisuals="False"
+						x:Name="ChapterContentsList"
                         Header="{x:Bind ViewModel.SelectedChapter.Title, Mode=OneWay}"
                         ItemTemplateSelector="{StaticResource ContentViewerDataTemplateSelector}"
                         ItemsSource="{x:Bind ViewModel.SelectedChapter.Contents, Mode=OneWay}"
@@ -94,7 +99,8 @@
                             <Style TargetType="ListViewItem">
                                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
+								<Setter Property="IsTabStop" Value="False" />
+							</Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
                     <!--<winui:ProgressRing

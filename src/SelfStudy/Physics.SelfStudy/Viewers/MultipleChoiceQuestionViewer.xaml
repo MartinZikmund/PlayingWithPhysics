@@ -652,6 +652,7 @@
                 HorizontalAlignment="Center"
                 Command="{x:Bind Model.TryAgainCommand, Mode=OneWay}"
                 Content="{ex:Localize Key=TryAgain}"
+				Visibility="{x:Bind Model.ShowWrongAnswer, Mode=OneWay}"
                 IsEnabled="{x:Bind Model.IsShowAnswerButtonEnabled, Mode=OneWay}" />
         </StackPanel>
     </Grid>
