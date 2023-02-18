@@ -82,11 +82,11 @@ namespace Physics.InclinedPlane.ViewModels
 
 		public float Mass { get; set; } = 1;
 
-		public float V0 { get; set; } = 5;
+		public float V0 { get; set; } = 0;
 
 		public float InclinedLength { get; set; } = 5;
 
-		public float InclinedAngle { get; set; } = 45;
+		public float InclinedAngle { get; set; } = 40;
 
 		public float InclinedDriftCoefficient { get; set; } = 0.5f;
 
@@ -113,7 +113,7 @@ namespace Physics.InclinedPlane.ViewModels
 
         public bool HorizontalEnabled { get; set; }
 
-        public float HorizontalLength { get; set; } = 10;
+        public float HorizontalLength { get; set; } = 5;
 
         public float HorizontalDriftCoefficient { get; set; } = 0.5f;
 

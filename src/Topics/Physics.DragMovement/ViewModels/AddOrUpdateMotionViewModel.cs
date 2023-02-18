@@ -24,11 +24,11 @@ namespace Physics.DragMovement.ViewModels
     public class AddOrUpdateMotionViewModel : ViewModelBase
     {
         private readonly string[] _existingNames;
-        private float _x0;
-        private float _y0;
-        private float _v0;
+        private float _x0 = 10;
+        private float _y0 = 100;
+        private float _v0 = 50;
         private float _mass = 1;
-        private float _angle;
+        private float _angle = 45;
         private float _area;
         private float _gravity = PhysicsConstants.EarthGravity;
         private Color _color = ColorHelper.ToColor("#0063B1");
@@ -63,7 +63,7 @@ namespace Physics.DragMovement.ViewModels
             SelectedMotionIndex = (int)MovementType.FreeFall;
             SetLocalizedAndNumberedLabelName();
             Difficulty = difficulty;
-            SelectedResistanceCoefficient = ResistanceCoefficients[0];
+            SelectedResistanceCoefficient = BallCoefficient;
             SelectedGravityCoefficient = GravityCoefficients[0];
             SelectedEnvironmentDensity = EnvironmentDensities[0];
             //Set localized and numbered label text
@@ -223,6 +223,8 @@ namespace Physics.DragMovement.ViewModels
             new ResistanceCoefficient(Localizer.Instance["Parachute"], 1.3f)
         };
 
+		public ResistanceCoefficient BallCoefficient => ResistanceCoefficients[2];
+
         public ResistanceCoefficient SelectedResistanceCoefficient { get; set; }
 
         public void OnSelectedResistanceCoefficientChanged()
@@ -306,8 +308,8 @@ namespace Physics.DragMovement.ViewModels
             IsMassInputEnabled = Visibility.Visible;
         }
 
-		public float Diameter { get; set; } = 0.1f;
-		public float Density { get; set; } = 100;
+		public float Diameter { get; set; } = 0.01f;
+		public float Density { get; set; } = 7800;
         public Visibility IsDensityInputEnabled { get; set;  }
         public Visibility IsDiameterInputEnabled { get; set;  }
         public Visibility IsAreaInputEnabled { get; set;  }
@@ -446,11 +448,11 @@ namespace Physics.DragMovement.ViewModels
                 MovementType.FreeFall => MotionFactory.CreateFreeFall(
                     new Vector2(X0, Y0),
                     ResistanceCoefficient,
-					ResistanceCoefficient == ResistanceCoefficients[2].Value,
+					ResistanceCoefficient == BallCoefficient.Value,
 					Mass,
                     Area,
-                    V0,
-                    Angle,
+					0,
+                    0,
                     GravityCoefficient,
                     EnvironmentDensity,
 					Diameter,
@@ -459,7 +461,7 @@ namespace Physics.DragMovement.ViewModels
                 MovementType.ProjectileMotion => MotionFactory.CreateProjectileMotion(
                     new Vector2(X0, Y0),
                     ResistanceCoefficient,
-					ResistanceCoefficient == ResistanceCoefficients[2].Value,
+					ResistanceCoefficient == BallCoefficient.Value,
                     Mass,
 					Area,
                     V0,
