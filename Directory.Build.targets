@@ -37,7 +37,7 @@
     <PackageReference Update="SharpZipLib" Version="1.4.2" />
     <PackageReference Update="System.Reflection.Emit" Version="4.7.0" />
     <PackageReference Update="CSharpMath.SkiaSharp" Version="42.11.0-playingwithphysics" />
-    <PackageReference Update="ExtendedNumerics.BigDecimal" Version="1.0.0.1" />
+    <PackageReference Update="ExtendedNumerics.BigDecimal" Version="2023.121.1953" />
     <PackageReference Update="Win2D.uwp" Version="1.26.0" />
     <PackageReference Update="Nito.Disposables" Version="2.3.0" />
     <PackageReference Update="System.Numerics.Vectors" Version="4.5.0" />
