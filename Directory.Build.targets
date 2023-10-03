@@ -7,7 +7,7 @@
 
     <!-- AppCenter-->
     <PackageReference Update="Microsoft.AppCenter" Version="5.0.1" />
-    <PackageReference Update="Microsoft.AppCenter.Analytics" Version="5.0.1" />
+    <PackageReference Update="Microsoft.AppCenter.Analytics" Version="5.0.3" />
     <PackageReference Update="Microsoft.AppCenter.Crashes" Version="5.0.1" />
 
     <!-- WCT -->
