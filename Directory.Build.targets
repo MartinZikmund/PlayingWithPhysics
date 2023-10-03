@@ -27,7 +27,7 @@
     <PackageReference Update="MvvmCross.Plugin.Visibility" Version="8.0.2" />
 
     <!-- Other -->
-    <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
+    <PackageReference Update="Extensions.Hosting.AsyncInitialization" Version="3.0.0" />
     <PackageReference Update="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Update="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0" />
     <PackageReference Update="Microsoft.UI.Xaml" Version="2.8.2" />
